@@ -1,7 +1,10 @@
+import {Request, Response, NextFunction, ErrorRequestHandler} from 'express'
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
 import * as cookieParser from 'cookie-parser'
 import * as morgan from 'morgan'
+
+const routes = require('./routes/index')
 
 const server = express();
 
@@ -17,7 +20,9 @@ server.use((req, res, next) => {
     next();
 });
 
-server.use((err: any, req: express.Request, res: express.Response) => {
+server.use('/', routes)
+
+server.use('/',(err: any, req: Request, res: Response, next: NextFunction) => {
     const status = err.status || 500;
     const message = err.message || err;
     console.error(err);
