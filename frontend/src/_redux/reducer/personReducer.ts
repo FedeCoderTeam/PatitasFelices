@@ -1,7 +1,13 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
+interface Person {
+    id: number;
+    name: string;
+    email: number;
+}
+
 type PersonState = {
-    person: Array<Object>;
+    person: Person[];
 };
 
 const initialState = {
@@ -12,11 +18,11 @@ export const person = createSlice({
     name: 'person',
     initialState,
     reducers: {
-        getAll: (state, action: PayloadAction<any>) => {
-
+        addAllPerson: (state, action: PayloadAction<Person[]>) => {
+            state.person = action.payload
         }
     }
 });
 
-export const {} = person.actions
+export const {addAllPerson} = person.actions
 export default person.reducer;

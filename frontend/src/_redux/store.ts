@@ -1,10 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
 import counterReducer from '@/_redux/reducer/counterSlice';
+import personReducer from '@/_redux/reducer/personReducer';
 
 
 export const store = configureStore({
     reducer: {
-        counterReducer
+        counterReducer,
+        personReducer
     },
     devTools: process.env.NODE_ENV !== 'production',
 });
