@@ -3,6 +3,7 @@ import React from 'react';
 import {useAppDispatch, useAppSelector} from '@/_redux/hooks';
 import {decrement, increment} from '@/_redux/reducer/counterSlice';
 import {addAllPersonAsync} from '@/_redux/actions/personAction';
+import {Button} from '@mui/material';
 
 
 const About = () : JSX.Element => {
@@ -14,10 +15,10 @@ const About = () : JSX.Element => {
         <div>
             <h1>About</h1>
             <h3>Count: {count}</h3>
-            <button onClick={() => dispatch(increment())}>Increment</button>
-            <button onClick={() => dispatch(decrement())}>Decrement</button>
+            <Button variant="contained" size="large" onClick={() => dispatch(increment())}>Increment</Button>
+            <Button variant="contained" size="large" onClick={() => dispatch(decrement())}>Decrement</Button>
 
-            <button onClick={() => dispatch(addAllPersonAsync())}>Add all person</button>
+            <Button variant="contained" size="large" onClick={() => dispatch(addAllPersonAsync())}>Add all person</Button>
 
             <h3>{person.length > 0 && person.map((value, index) => (<div key={index}>{value.name}</div>))}</h3>
         </div>
