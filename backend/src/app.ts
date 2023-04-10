@@ -1,4 +1,4 @@
-import {Request, Response, NextFunction, ErrorRequestHandler} from 'express'
+import {Request, Response, NextFunction} from 'express'
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
 import * as cookieParser from 'cookie-parser'
