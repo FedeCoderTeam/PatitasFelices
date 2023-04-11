@@ -1,6 +1,7 @@
 import axios from 'axios'
+import { getAllTemperaments } from "../reducer/dogsReducer.js";
 
-const getAllDogs = () => {
+const getDogs = () => {
     return async function(dispatch) {
         try {
             // await axios.get(/* API */)
@@ -10,10 +11,11 @@ const getAllDogs = () => {
     } 
 }
 
-const getAllTemperaments = async () => {
+const getTemperaments = () => {
     return async function(dispatch) {
         try {
-            
+            let apiData = await axios.get("http://localhost:3001/temperaments")
+            dispatch(getAllTemperaments(apiData.data));
         } catch (error) {            
             console.log(error);
         }
@@ -21,6 +23,6 @@ const getAllTemperaments = async () => {
 }
 
 export {
-    getAllDogs,
-    getAllTemperaments
+    getDogs,
+    getTemperaments
 }

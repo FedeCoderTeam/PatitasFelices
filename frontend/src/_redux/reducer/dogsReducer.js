@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  dogs: [], // filtrado
-  allDogs: [] //estado original
+    dogs: [], // filtrado
+    allDogs: [], //estado original
+    temperaments: []
 }
 
 export const dogsSlice = createSlice({
@@ -13,10 +14,17 @@ export const dogsSlice = createSlice({
             state.dogs = action.payload
             state.allDogs = action.payload
         },
+
+        getAllTemperaments: (state, action) => {
+            state.temperaments = action.payload
+        },
+        
     },
+
 })
 
 // Action creators are generated for each case reducer function
-export const { getAllDogs } = dogsSlice.actions
+export const { getAllDogs, getAllTemperaments } = dogsSlice.actions
+
 
 export default dogsSlice.reducer
