@@ -1,12 +1,9 @@
 const { Router } = require('express');
 
-// const countriesRoutes = require('./countries')
-// const activitiesRoutes = require('./activities')
 //
 //
 const router = Router();
-//
-// router.use('/countries', countriesRoutes)
-// router.use('/activities', activitiesRoutes)
+
+router.use('/temperaments');
 
 module.exports = router;
