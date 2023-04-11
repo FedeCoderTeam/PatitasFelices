@@ -30,6 +30,7 @@ const Register = () => {
                 <p>¿Ya tienes cuenta? </p>
                 <Link to='/login'>Ingresa</Link>
                 </div>
+                {/* prueba */}
             </div>
         </div>
     )
