@@ -1,5 +1,4 @@
 require('dotenv').config();
-const axios = require ("axios");
 const { dog, color, race, gender, temperament }= require ('../../database/db')
 
 
@@ -12,28 +11,14 @@ const getAllDogs = async()=>{
         },{ model: color,
             attributes: ["name"],
             through: {attributes: [],}
-        }, { model: race,
-            attributes: ["name"],
-            through: {attributes: [],}
-        }, { model: gender,
-            attributes: ["name"],
-            through: {attributes: [],}
+        },{model: race,
+           attributes: ["name"],
+        },{model: gender,
+           attributes: ["name"]
         }]
     });
     
-    let result= data.map((inst)=> {
-        return {
-            id: inst.id,
-            name: inst.name,
-            age: inst.age,
-            size: inst.size,
-            weight: inst.weight,
-            castrated: inst.castrated,
-            // image ???
-            temperament: inst.temperament.map (inst => {})
-
-        }
-    })
+    return data;
 };
 
 const getDogsByName = async(name)=>{};

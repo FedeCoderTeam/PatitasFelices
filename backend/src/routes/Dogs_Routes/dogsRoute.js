@@ -25,6 +25,15 @@ router.get('/', async (req, res)=> {
 
 //GET BY ID WIHT DETAIL CLIENT
 
+router.get ('/:id', async (req, res)=> {
+    const {id}= req.params;
+    try {
+        
+    } catch (error) {
+        
+    }
+})
+
 
 //POST DOGS CLIENT
 
@@ -33,3 +42,5 @@ router.get('/', async (req, res)=> {
 
 
 //DELETE DOGS ADMIN
+
+module.exports= router;
