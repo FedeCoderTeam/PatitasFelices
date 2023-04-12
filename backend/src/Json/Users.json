@@ -1,0 +1,96 @@
+{
+  "users": [
+    {
+      "name": "Federico",
+      "last": "Nieto",
+      "email": "federiconieto04@gmail.com",
+      "password": "123456",
+      "isVerified": true,
+      "rol": "Administrador"
+    },
+    {
+      "name": "Nacho",
+      "last": "Morales",
+      "email": "nacho.morales5@gmail.com",
+      "password": "123456",
+      "isVerified": true,
+      "rol": "Administrador"
+    },
+    {
+      "name": "Belen",
+      "last": "Cufre",
+      "email": "belen_cufre@hotmail.com",
+      "password": "123456",
+      "isVerified": true,
+      "rol": "Administrador"
+    },
+    {
+      "name": "Florencia",
+      "last": "Bohn",
+      "email": "bohn.florencia@gmail.com",
+      "password": "123456",
+      "isVerified": true,
+      "rol": "Administrador"
+    },
+    {
+      "name": "Facundo",
+      "last": "Recabarren",
+      "email": "facundorecabarren10@gmail.com",
+      "password": "123456",
+      "isVerified": true,
+      "rol": "Administrador"
+    },
+    {
+      "name": "Marcos",
+      "last": "Galara",
+      "email": "marcos.galara08@gmail.com",
+      "password": "123456",
+      "isVerified": true,
+      "rol": "Administrador"
+    },
+    {
+      "name": "Santiago",
+      "last": "Recabarren",
+      "email": "santiagorecabarren7@gmail.com",
+      "password": "123456",
+      "isVerified": true,
+      "rol": "Administrador"
+    },
+    {
+      "name": "Rodrigo",
+      "last": "Palomo",
+      "email": "repmlm01@gmail.com",
+      "password": "123456",
+      "isVerified": true,
+      "rol": "Administrador"
+    },
+    {
+      "name": "Mod",
+      "email": "mod@gmail.com",
+      "password": "123456",
+      "isVerified": true,
+      "rol": "Moderador"
+    },
+    {
+      "name": "User A",
+      "email": "user@gmail.com",
+      "password": "123456",
+      "isVerified": true,
+      "rol": "Usuario"
+    },
+    {
+      "name": "User B",
+      "email": "user@gmail.com",
+      "password": "123456",
+      "rol": "Usuario"
+    },
+    {
+      "name": "User C",
+      "email": "user@gmail.com",
+      "password": "123456",
+      "isVerified": true,
+      "isDisabled": true,
+      "rol": "Usuario"
+    }
+  ]
+}
