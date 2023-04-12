@@ -6,8 +6,6 @@ import './Register.css';
 
 const Register = () => {
     return (
-        // Faltaría corregir la imagen para poder ponerla de fondo
-        // ya que se repite y queda cortada/fea
         <div className='mainContainer-Register'>
             <div className='form-Register'>
                 <h1>Registrarse</h1>
@@ -31,7 +29,6 @@ const Register = () => {
                 <p>¿Ya tienes cuenta? </p>
                 <Link to='/login'>Ingresa</Link>
                 </div>
-                {/* prueba */}
             </div>
         </div>
     )

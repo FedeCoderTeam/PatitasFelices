@@ -5,6 +5,7 @@ import About from './views/About/About';
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 import Register from './components/Register/Register';
+import Login from './components/Login/Login';
 
 function App() {
   return (<>
@@ -14,7 +15,7 @@ function App() {
                 <Route path={'/'} element={<Home/>} />
                 <Route path={'/about'} element={<About/>} />
                 <Route path={'/register'} element={<Register />} />
-                {/* <Route path={'/login'} element={<Login />} /> */}
+                <Route path={'/login'} element={<Login />} />
             </Routes>
             {/* <Footer/> */}
       </>);
