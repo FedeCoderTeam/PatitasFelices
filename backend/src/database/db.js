@@ -39,6 +39,7 @@ temperament.belongsToMany(dog, {
 	through: 'Dogs_Temperaments',
 	timestamps: false,
 });
+
 dog.belongsToMany(temperament, {
 	through: 'Dogs_Temperaments',
 	timestamps: false,
