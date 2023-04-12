@@ -1,0 +1,52 @@
+.mainContainer-Register{
+    display: flex;
+    flex-flow: row-reverse;
+    margin-right: 60px;
+}
+.form-Register{
+    background: rgba(242, 242, 242, 1);
+    text-align: center;
+    padding: 22px;
+    width: 31%;
+}
+.form-Register > h1{
+    color: #592519;
+    margin-bottom: 60px;
+}
+.containerInputs-Register{
+    display: flex;
+    flex-direction: column;
+}
+.containerInputs-Register > input {
+    background-color: #D9D9D9;
+    padding: 12px;
+    text-align: center;
+    margin-bottom: 25px;
+    border: none;
+    border-radius: 5px;
+}
+.containerInputs-Register > label {
+    margin-bottom: 20px;
+    color: #592519;
+    font-size: 22px;
+}
+.containerButton-Register > button{
+    padding: 10px;
+    width: 65%;
+    background-color: #592519;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+}
+.containerButton-Register {
+    margin-top: 20px;
+}
+.containerGoogle-Register{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.containerGoogle-Register > p {
+    display: flex;
+    gap: 10px;
+}
