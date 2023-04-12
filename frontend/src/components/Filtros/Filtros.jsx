@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
@@ -32,6 +31,7 @@ const Filtros = (props) => {
     const theme = useTheme();
     const [temp, setTemp] = React.useState([]);
     const [color, setColor] = React.useState([])
+
     const [filter, setFilter] = React.useState({
         abc: "Por defecto",
         weigth: "Todos",
