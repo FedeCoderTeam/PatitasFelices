@@ -1,5 +1,5 @@
 const { gender } = require('../../database/db');
-const genderJson = require('../../Json/Gender.json');
+const features = require('../../Json/Features.json');
 
 const dogsGenders = async () => {
 	try {
@@ -8,7 +8,7 @@ const dogsGenders = async () => {
 		});
 
 		if (!genders.length) {
-			let allGenders = genderJson.gender;
+			let allGenders = features.genders;
 
 			allGenders = allGenders.map((el, index) => {
 				return { id: index + 1, name: el };

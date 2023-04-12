@@ -1,5 +1,5 @@
 const { color } = require('../../database/db');
-const colorsJson = require('../../Json/Colors.json');
+const features = require('../../Json/Features.json');
 
 const dogsColors = async () => {
 	try {
@@ -8,7 +8,7 @@ const dogsColors = async () => {
 		});
 
 		if (!colors.length) {
-			let allColors = colorsJson.colors;
+			let allColors = features.colors;
 
 			allColors = allColors.map((el, index) => {
 				return { id: index + 1, name: el };
