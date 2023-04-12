@@ -10,17 +10,20 @@ const Dogs = () => {
 
     const dispatch = useDispatch();
     const selector = useSelector((state) => state.dogsReducer.temperaments)
+    const selector1 = useSelector((state) => state.dogsReducer.colors)
 
     useEffect(() => {
             dispatch(dogsAction.getTemperaments())
         },[dispatch])
+
+    
         
     return(
         <>
             <TextField id="outlined-basic" label="Buscar..." variant="outlined" />
             <TextField id="filled-basic" label="Buscar..." variant="filled" />
             <TextField id="standard-basic" label="Buscar..." variant="standard" />
-            <Filtros temperaments={selector} />
+            <Filtros temperaments={selector} colors={selector1} />
         </>
     )
 }

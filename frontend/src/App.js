@@ -7,6 +7,7 @@ import Nav from './components/Nav/Nav';
 import Register from './components/Register/Register.jsx';
 import Dogs from './views/Dogs/Dogs.jsx';
 import { useLocation } from 'react-router-dom'; 
+import Login from './views/Login/Login.jsx';
 
 function App() {
 
@@ -14,16 +15,17 @@ function App() {
 
   return (
     <>
-      {/* <Header/> */}
-      { location.pathname !=='/' && <Nav />} {/* falta añadir al loggin, register y landing */}
+      <Header/> 
+      { location.pathname !=='/' && <Nav />} {/* falta añadir register y landing */}
       <Routes>
           <Route path={'/home'} element={<Home/>} />
           <Route path={'/about'} element={<About/>} />
           <Route path={'/register'} element={<Register />} />
-                {/* <Route path={'/login'} element={<Login />} /> */}
+          <Route path={'/login'} element={<Login />} /> 
           <Route path={'/dogs'} element={<Dogs />}/>
+          {/* <Route path={'*'} element={<NotFound />}/> */}
       </Routes>
-      {/* <Footer/> */}
+      <Footer/>
     </>
   );
 }
