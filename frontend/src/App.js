@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
+import Form from './components/Form/Form';
 
 function App() {
   return (<>
@@ -16,6 +17,7 @@ function App() {
                 <Route path={'/about'} element={<About/>} />
                 <Route path={'/register'} element={<Register />} />
                 <Route path={'/login'} element={<Login />} />
+                <Route path={'/form'} element={<Form />} />
             </Routes>
             {/* <Footer/> */}
       </>);
