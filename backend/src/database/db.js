@@ -30,15 +30,13 @@ fs.readdirSync(path.join(__dirname, '/models'))
 	});
 modelDefiners.forEach((model) => model(sequelize));
 
-const { dog, color, race, gender, temperament } = sequelize.models;
+const { dog, color, gender, temperament } = sequelize.models;
 
 dog.belongsToMany(color, { through: 'Dogs_Colors', timestamps: false });
 dog.belongsToMany(temperament, {
 	through: 'Dogs_Temperaments',
 	timestamps: false,
 });
-race.hasMany(dog, { foreignKey: 'raceId' });
-dog.belongsTo(race, { foreignKey: 'raceId' });
 gender.hasMany(dog, { foreignKey: 'genderId' });
 dog.belongsTo(gender, { foreignKey: 'genderId' });
 
