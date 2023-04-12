@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
+
+.mainContainer {
+    width: 100vw;
+    height: 500px;
+    background: url('../Header/img/wallpapersden.com_cute-dog-4k_1920x1080.jpg');
+    /* background: url('https://w0.peakpx.com/wallpaper/912/135/HD-wallpaper-beagle-beam-cute-dog-pets-dogs-forest-cute-animals-beagle-dog.jpg'); */
+    /* background-color: #592519; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    height: 290px;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10% ;
+}
+
+.title {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+    height: min-content;
+}
+
+.title h1 {
+    padding: 0;
+    margin: 0;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.patitasFelices {
+    color: #592519;
+}
+
+.description {
+    display: flex;
+    align-items: center;
+    width: 450px;
+    height: 52px;
+    font-size: 15px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 500;
+    color: #F2F2F2;
+}
+
+.description p {
+    
+    margin: 0;
+    padding: 0;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.button {
+    width: 346px;
+    background-color: #163440;
+    color: #f2f2f2;
+    font-size: 17px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 700;
+    padding: 12.5px 0 12.5px 0;
+    border-color: transparent;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: 
+        background-color 200ms linear,
+        transform 200ms linear;
+}
+
+button:hover {
+    transform: scale(1.03);
+    background-color: #112933;
+}

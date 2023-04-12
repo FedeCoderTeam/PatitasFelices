@@ -1,0 +1,207 @@
+{
+	"dogs": [
+		{
+			"name": "Otis",
+			"age": 4,
+			"size": "Small",
+			"weight": 5,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314775/Pf%20Patitas%20felices/Dogs/1_nbtemw.png",
+			"colors": ["Blanco", "Dorado"],
+			"genders": "Macho",
+			"tempers": ["Curioso", "Entrenable", "Adaptable", "Sociable"]
+		},
+		{
+			"name": "Pepe",
+			"age": 120,
+			"size": "Small",
+			"weight": 13,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314777/Pf%20Patitas%20felices/Dogs/4_kfyqh4.png",
+			"colors": ["Blanco", "Negro"],
+			"genders": "Macho",
+			"tempers": ["Digno", "Independiente", "Leal", "Dócil"]
+		},
+		{
+			"name": "Gringo",
+			"age": 36,
+			"size": "Large",
+			"weight": 20,
+			"castrated": true,
+			"image": "hhttps://res.cloudinary.com/nacho-morales/image/upload/v1681314770/Pf%20Patitas%20felices/Dogs/6_qmjpax.png",
+			"colors": ["Cobrizo", "Negro"],
+			"genders": "Macho",
+			"tempers": ["Divertido", "Audaz", "Robusto", "Luchador"]
+		},
+		{
+			"name": "Tomy",
+			"age": 12,
+			"size": "Large",
+			"weight": 18,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314776/Pf%20Patitas%20felices/Dogs/2_f5m1kk.png",
+			"colors": ["Negro"],
+			"genders": "Macho",
+			"tempers": ["Payaso", "Travieso", "Astuto", "Veloz"]
+		},
+		{
+			"name": "Lolo",
+			"age": 12,
+			"size": "Small",
+			"weight": 12,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314777/Pf%20Patitas%20felices/Dogs/3_ukgio1.png",
+			"colors": ["Marron", "Blanco", "Negro"],
+			"genders": "Macho",
+			"tempers": ["Encantador", "Atletico", "Familiar", "Ágil"]
+		},
+		{
+			"name": "Rocki",
+			"age": 96,
+			"size": "Medium",
+			"weight": 14,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314769/Pf%20Patitas%20felices/Dogs/5_wxkrlg.png",
+			"colors": ["Marron", "Negro"],
+			"genders": "Macho",
+			"tempers": ["Trabajador", "Amigable", "Tierno", "Amable"]
+		},
+		{
+			"name": "Sofi",
+			"age": 8,
+			"size": "Small",
+			"weight": 6,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314769/Pf%20Patitas%20felices/Dogs/9_owgo9h.png",
+			"colors": ["Blanco", "Negro"],
+			"genders": "Hembra",
+			"tempers": ["Acertivo", "Sensible", "Refinado", "Despreocupado"]
+		},
+		{
+			"name": "Pasha",
+			"age": 4,
+			"size": "Giant",
+			"weight": 23,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314769/Pf%20Patitas%20felices/Dogs/7_h5a69w.png",
+			"colors": ["Blanco", "Marron"],
+			"genders": "Hembra",
+			"tempers": ["Astuto", "Bullicioso", "Sociable", "Compañero"]
+		},
+		{
+			"name": "Nube",
+			"age": 18,
+			"size": "Medium",
+			"weight": 10,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314769/Pf%20Patitas%20felices/Dogs/8_iaopz2.png",
+			"colors": ["Blanco"],
+			"genders": "Hembra",
+			"tempers": ["Orgulloso", "Dominante", "Cariñoso", "Alegre"]
+		},
+		{
+			"name": "Delfi",
+			"age": 24,
+			"size": "Large",
+			"weight": 25,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681320991/Pf%20Patitas%20felices/Dogs/22_is3qq3.png",
+			"colors": ["Negro", "Marron"],
+			"genders": "Hembra",
+			"tempers": ["Inteligente", "Fiel", "Firme", "Vigilante"]
+		},
+		{
+			"name": "Clara",
+			"age": 60,
+			"size": "Large",
+			"weight": 18,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681320991/Pf%20Patitas%20felices/Dogs/28_ooc0zi.pngs",
+			"colors": ["Dorado"],
+			"genders": "Hembra",
+			"tempers": ["Juguetón", "Ansioso", "Rápido", "Tolerante"]
+		},
+		{
+			"name": "Pini",
+			"age": 60,
+			"size": "Small",
+			"weight": 7,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681320992/Pf%20Patitas%20felices/Dogs/26_fd6hri.png",
+			"colors": ["Negro"],
+			"genders": "Macho",
+			"tempers": ["Astuto", "Reflexivo", "Diligente", "Estable"]
+		},
+		{
+			"name": "Duki",
+			"age": 36,
+			"size": "Small",
+			"weight": 8,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681320991/Pf%20Patitas%20felices/Dogs/25_t30qyi.png",
+			"colors": ["Blanco", "Negro", "Marron"],
+			"genders": "Macho",
+			"tempers": ["Gran corazón", "Suspicaz", "Sociable", "Estable"]
+		},
+		{
+			"name": "Milo",
+			"age": 4,
+			"size": "Large",
+			"weight": 8,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681320991/Pf%20Patitas%20felices/Dogs/24_q4irt9.png",
+			"colors": ["Negro", "Blanco"],
+			"genders": "Macho",
+			"tempers": ["Tranquilo", "Impertubable", "Racional", "Encantador"]
+		},
+		{
+			"name": "Moca",
+			"age": 24,
+			"size": "Medium",
+			"weight": 17,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314775/Pf%20Patitas%20felices/Dogs/20_duyhh4.png",
+			"colors": ["Marron"],
+			"genders": "Hembra",
+			"tempers": ["Generoso", "Cooperativo", "Brillante", "De buen carácter"]
+		},
+		{
+			"name": "Kappy",
+			"age": 6,
+			"size": "Large",
+			"weight": 20,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314775/Pf%20Patitas%20felices/Dogs/19_osq6ph.png",
+			"colors": ["Negro", "Blanco"],
+			"genders": "Macho",
+			"tempers": ["Ágil", "Intrépido", "Animado", "Burbujeante"]
+		},
+		{
+			"name": "Roma",
+			"age": 84,
+			"size": "Small",
+			"weight": 8,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314775/Pf%20Patitas%20felices/Dogs/21_sce4bz.png",
+			"colors": ["Blanco", "Crema"],
+			"genders": "Hembra",
+			"tempers": [
+				"Orientado a la gente",
+				"Inquisitivo",
+				"Territorial",
+				"Decidido"
+			]
+		},
+		{
+			"name": "Sara",
+			"age": 108,
+			"size": "Medium",
+			"weight": 13,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314773/Pf%20Patitas%20felices/Dogs/18_wkin6a.png",
+			"colors": ["Negro", "Marron", "Blanco"],
+			"genders": "Hembra",
+			"tempers": ["Voluntarioso", "Devoto", "Responsable", "Curioso"]
+		}
+	]
+}

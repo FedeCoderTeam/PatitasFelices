@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
+import Landing from './components/Landing/Landing';
 
 import Form from './components/Form/Form';
 
@@ -14,7 +15,8 @@ function App() {
             {/* <Header/> */}
             {/* <Nav/> */}
             <Routes>
-                <Route path={'/'} element={<Home/>} />
+                <Route path={'/'} element={<Landing/>} />
+                <Route path={'/home'} element={<Home/>} />
                 <Route path={'/about'} element={<About/>} />
                 <Route path={'/register'} element={<Register />} />
                 <Route path={'/login'} element={<Login />} />

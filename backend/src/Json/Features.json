@@ -1,4 +1,6 @@
 {
+	"genders": ["Hembra", "Macho"],
+	"colors": ["Negro", "Blanco", "Gris", "Marron", "Dorado", "Cobrizo", "Crema"],
 	"temperaments": [
 		"Terco",
 		"Curioso",
