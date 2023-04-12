@@ -8,6 +8,8 @@ import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import Landing from './components/Landing/Landing';
 
+import Form from './components/Form/Form';
+
 function App() {
   return (<>
             {/* <Header/> */}
@@ -18,6 +20,7 @@ function App() {
                 <Route path={'/about'} element={<About/>} />
                 <Route path={'/register'} element={<Register />} />
                 <Route path={'/login'} element={<Login />} />
+                <Route path={'/form'} element={<Form />} />
             </Routes>
             {/* <Footer/> */}
       </>);

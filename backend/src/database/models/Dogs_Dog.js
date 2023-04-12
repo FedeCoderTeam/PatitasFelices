@@ -15,7 +15,7 @@ function dogModel(database) {
             allowNull: false
         },
         size: {
-            type: DataTypes.ENUM('Very large', 'Large', 'Medium', 'Small', 'Very small'),
+            type: DataTypes.ENUM('Giant', 'Large', 'Medium', 'Small', 'Mini'),
             allowNull: false
         },
         weight: {
@@ -25,6 +25,18 @@ function dogModel(database) {
         castrated: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
+        },
+        image: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+        },
+        adopted: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
+        isDisabled: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
         }
     }, { timestamps: false });
 }

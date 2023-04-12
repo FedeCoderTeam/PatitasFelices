@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import * as dogsAction from "../../_redux/actions/dogsAction.js"
 import Filtros from '../../components/Filtros/Filtros.jsx';
 import Header from '../../components/Header/Header.jsx';
+import Footer from '../../components/Footer/Footer.jsx';
+
 import Nav from '../../components/Nav/Nav.jsx';
 
 
@@ -26,6 +28,7 @@ const Home = () => {
             <TextField id="standard-basic" label="Buscar..." variant="standard" />
             <Filtros temperaments={selector} />
             <Header/>
+            <Footer/>
         </>
         
     )
