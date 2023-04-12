@@ -1,4 +1,4 @@
-.mainContainer-Register{
+.mainContainer-Login{
     background-image: url(https://images5.alphacoders.com/466/466957.jpg);
     width: 100%;
     display: flex;
@@ -6,7 +6,7 @@
     margin-right: 60px;
     height: 1000px;
 }
-.form-Register{
+.form-Login{
     background: rgba(242, 242, 242, 1);
     text-align: center;
     padding: 22px;
@@ -15,16 +15,17 @@
     border-radius: 7px;
     margin-right: 110px;
     margin-bottom: 43px;
+    height: 60%;
 }
-.form-Register > h1{
+.form-Login > h1{
     color: #592519;
     margin-bottom: 60px;
 }
-.containerInputs-Register{
+.containerInputs-Login{
     display: flex;
     flex-direction: column;
 }
-.containerInputs-Register > input {
+.containerInputs-Login > input {
     background-color: #D9D9D9;
     padding: 12px;
     text-align: center;
@@ -32,12 +33,12 @@
     border: none;
     border-radius: 5px;
 }
-.containerInputs-Register > label {
+.containerInputs-Login > label {
     margin-bottom: 20px;
     color: #592519;
     font-size: 22px;
 }
-.containerButton-Register > button{
+.containerButton-Login > button{
     padding: 10px;
     width: 65%;
     background-color: #592519;
@@ -45,15 +46,15 @@
     border: none;
     border-radius: 5px;
 }
-.containerButton-Register {
+.containerButton-Login {
     margin-top: 20px;
 }
-.containerGoogle-Register{
+.containerGoogle-Login{
     display: flex;
     justify-content: center;
     margin-top: 15px;
 }
-.containerGoogle-Register > p {
+.containerGoogle-Login > p {
     display: flex;
     gap: 10px;
 }
