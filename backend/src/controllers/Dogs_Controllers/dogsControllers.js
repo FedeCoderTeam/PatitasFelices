@@ -46,7 +46,7 @@ const getAllDogs = async () => {
 const getDogsByName = async (name) => {
 	let name2 = name.toLowerCase();
 	let all = await getAllDogs();
-	let result = await all.filter((inst) =>
+	let result = all.filter((inst) =>
 		inst.name.toLowerCase().includes(name2),
 	);
 
@@ -148,6 +148,8 @@ const updateDog = async (
 	weight,
 	castrated,
 	tempers,
+	colors,
+	genders,
 	image,
 	adopted,
 	isDisabled,
@@ -174,14 +176,36 @@ const updateDog = async (
 		});
 
 		if (tempers) {
-			await doguiToUpdate.setTemperament([]);
+			await doguiToUpdate.setTemperaments([]);
 			let newTempers = await temperament.findAll({
 				where: {
 					name: tempers,
 				},
 			});
-			await doguiToUpdate.addTemperament(newTempers);
+			await doguiToUpdate.addTemperaments(newTempers);
 		}
+
+		if(colors) {
+			await doguiToUpdate.setColors([]);
+			let newColors = await color.findAll({
+				where: {
+					name: colors,
+				},
+			});
+			await doguiToUpdate.addColors(newColors);
+		}
+
+		if(genders) {
+			let newGender = await color.findOne({
+				where: {
+					name: genders,
+				},
+			});
+			if(newGender){
+				await doguiToUpdate.setGender(newGender);
+			}
+		}
+
 		return 'Se modificó correctamente al perro';
 	} catch (error) {
 		console.log(error);

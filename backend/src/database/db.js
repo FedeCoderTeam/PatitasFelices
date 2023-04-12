@@ -35,12 +35,13 @@ const { dog, color, gender, temperament , user, role} = sequelize.models;
 dog.belongsToMany(color, { through: 'Dogs_Colors', timestamps: false });
 color.belongsToMany(dog, { through: 'Dogs_Colors', timestamps: false });
 
-temperament.belongsToMany(dog, {
+
+dog.belongsToMany(temperament, {
 	through: 'Dogs_Temperaments',
 	timestamps: false,
 });
 
-dog.belongsToMany(temperament, {
+temperament.belongsToMany(dog, {
 	through: 'Dogs_Temperaments',
 	timestamps: false,
 });
