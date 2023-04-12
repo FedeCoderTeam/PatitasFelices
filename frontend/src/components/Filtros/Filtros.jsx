@@ -28,39 +28,46 @@ function getStyles(name, personName, theme) {
 }
 
 const Filtros = (props) => {
-
     
     const theme = useTheme();
-    const [personName, setPersonName] = React.useState([]);
+    const [temp, setTemp] = React.useState([]);
+    const [color, setColor] = React.useState([])
+    const [filter, setFilter] = React.useState({
+        abc: "Por defecto",
+        weigth: "Todos",
+        size: "Todos",
+        age: "Todos"
+    })
 
-    const handleChange = (event) => {
+    const handleTempChange = (event) => {
         const {
             target: { value },
             } = event;
-            setPersonName(
-            // On autofill we get a stringified value.
+            setTemp(
             typeof value === 'string' ? value.split(',') : value,
             );
         };
 
+    const handleColorChange = (event) => {
+        const {
+            target: { value },
+            } = event;
+            setColor(
+            typeof value === 'string' ? value.split(',') : value,
+            );
+    }
 
     return(
         <div>
-
             <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
-            
-            <Select
-            multiple
-            label='temperamentos'
-            displayEmpty
-            value={personName}
-            onChange={handleChange}
+            <Select multiple label='temperamentos' displayEmpty
+            value={temp}
+            onChange={handleTempChange}
             input={<OutlinedInput />}
             renderValue={(selected) => {
                 if (selected.length === 0) {
                 return <em>Todos</em>;
                 }
-
                 return selected.join(', ');
             }}
             MenuProps={MenuProps}
@@ -73,20 +80,41 @@ const Filtros = (props) => {
                 <MenuItem
                 key={name.id}
                 value={name.name}
-                style={getStyles(name.id, personName, theme)}
+                style={getStyles(name.id, temp, theme)}
                 >
                 {name.name}
                 </MenuItem>
             ))}
             </Select>
+            <Select multiple label='colors' displayEmpty
+                value={color}
+                onChange={handleColorChange}
+                input={<OutlinedInput />}
+                renderValue={(selected) => {
+                    if (selected.length === 0) {
+                    return <em>Colores</em>;
+                    }
+                    return selected.join(', ');
+                }}
+                MenuProps={MenuProps}
+                inputProps={{ 'aria-label': 'Without label' }}
+                >
+                <MenuItem disabled value="">
+                    <em>Colores</em>
+                </MenuItem>
+                {props.colors.map((name) => (
+                    <MenuItem
+                    key={name.id}
+                    value={name.name}
+                    style={getStyles(name.id, color, theme)}
+                    >
+                    {name.name}
+                    </MenuItem>
+                ))}
+                </Select>
         </FormControl>
 
-            <select>
-                <option value="Todos"> Colores </option>
-            </select>
-            <select></select>
-            <select></select>
-            <select></select>
+            
         </div>
     )
 }
