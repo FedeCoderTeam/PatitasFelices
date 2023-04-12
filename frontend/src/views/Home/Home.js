@@ -7,6 +7,7 @@ import Filtros from '../../components/Filtros/Filtros.jsx';
 import Header from '../../components/Header/Header.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
 
+import Nav from '../../components/Nav/Nav.jsx';
 
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
     
     return(
         <>
+            <Nav/>
             <TextField id="outlined-basic" label="Buscar..." variant="outlined" />
             <TextField id="filled-basic" label="Buscar..." variant="filled" />
             <TextField id="standard-basic" label="Buscar..." variant="standard" />
