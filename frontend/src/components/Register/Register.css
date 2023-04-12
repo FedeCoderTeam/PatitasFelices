@@ -1,4 +1,6 @@
 .mainContainer-Register{
+    background-image: url(https://images5.alphacoders.com/466/466957.jpg);
+    width: 100%;
     display: flex;
     flex-flow: row-reverse;
     margin-right: 60px;
@@ -7,7 +9,11 @@
     background: rgba(242, 242, 242, 1);
     text-align: center;
     padding: 22px;
-    width: 31%;
+    width: 28%;
+    margin-top: 100px;
+    border-radius: 7px;
+    margin-right: 110px;
+    margin-bottom: 43px;
 }
 .form-Register > h1{
     color: #592519;
