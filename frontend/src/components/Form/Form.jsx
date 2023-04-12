@@ -29,6 +29,7 @@ const Form = () => {
                             <input type="text" />
                             <label>¿Consultaste en tu edificio, consorcio o propietario (si alquilás), si están de acuerdo con la adopción?</label>
                             <input type="text" />
+                            
                         </div>
                     </div>
                     <div>
