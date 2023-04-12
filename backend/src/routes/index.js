@@ -5,5 +5,7 @@ const router = Router();
 
 router.use('/dogs', dogsRoute);
 router.use('/temperaments', temperamentsRoute);
+router.use('/colors', colorsRoute);
+router.use('/genders', gendersRoute);
 
 module.exports = router;
