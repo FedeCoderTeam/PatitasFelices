@@ -33,6 +33,12 @@ modelDefiners.forEach((model) => model(sequelize));
 const { dog, color, gender, temperament } = sequelize.models;
 
 dog.belongsToMany(color, { through: 'Dogs_Colors', timestamps: false });
+color.belongsToMany(dog, { through: 'Dogs_Colors', timestamps: false });
+
+temperament.belongsToMany(dog, {
+	through: 'Dogs_Temperaments',
+	timestamps: false,
+});
 dog.belongsToMany(temperament, {
 	through: 'Dogs_Temperaments',
 	timestamps: false,
