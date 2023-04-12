@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getAllTemperaments, getAllDogsColors } from "../reducer/dogsReducer.js";
+import { getAllTemperaments, getAllDogsColors, setSort, sortDogs, setfilterByWeigth, setfilterBySize, setfilterByAge, } from "../reducer/dogsReducer.js";
 
 
 const getDogs = () => {
@@ -34,8 +34,16 @@ const getDogsColors = () => {
     }
 }
 
+const sortAction = (sortBy = undefined, sortOrder = undefined) => {
+    return function (dispatch) {
+        dispatch(setSort({ sortBy, sortOrder }))
+        dispatch(sortDogs())
+    }
+}
+
 export {
     getDogs,
     getTemperaments,
-    getDogsColors
+    getDogsColors,
+    sortAction
 }

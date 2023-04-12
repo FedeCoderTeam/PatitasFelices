@@ -30,8 +30,15 @@ export const dogsSlice = createSlice({
             state.colors = action.payload
         },
 
-        setSortBy(state, action) {
-            state.sortBy = action.payload;
+        setSort: (state, action) => {
+            if(action.payload.sortBy) {
+                state.sortBy = action.payload.sortBy
+            } else if(action.payload.sortOrder) {
+                state.sortOrder = action.payload.sortOrder
+            }
+        },
+
+        sortDogs: (state) => {
             state.allDogs = state.allDogs.slice().sort((a, b) => {
                 if(a[state.sortBy] < b[state.sortBy]) {
                     return state.sortOrder === 'asc' ? -1 : 1;
@@ -42,13 +49,11 @@ export const dogsSlice = createSlice({
                 return 0;
             });
         },
-        setSortOrder(state, action) {
-            state.sortOrder = action.payload;
-        },
+        
         setfilterByWeigth(state, action) {
             state.filterByWeigth = action.payload;
         },
-        setfilterBySize(state, action) {
+        setfilterBySize(state, action) { //pequeño, mediano y grande
             state.filterBySize = action.payload;
         },
         setfilterByAge(state, action) {
@@ -63,8 +68,8 @@ export const {
     getAllDogs, 
     getAllTemperaments,
     getAllDogsColors,
-    setSortBy,
-    setSortOrder,
+    setSort,
+    sortDogs,
     setfilterByWeigth,
     setfilterBySize,
     setfilterByAge,

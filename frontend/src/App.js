@@ -8,7 +8,6 @@ import Register from './components/Register/Register.jsx';
 import Dogs from './views/Dogs/Dogs.jsx';
 import { useLocation } from 'react-router-dom'; 
 import Login from './views/Login/Login.jsx';
-import Login from './components/Login/Login';
 import Landing from './components/Landing/Landing';
 
 import Form from './components/Form/Form';
