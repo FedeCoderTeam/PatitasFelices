@@ -30,7 +30,7 @@ fs.readdirSync(path.join(__dirname, '/models'))
 	});
 modelDefiners.forEach((model) => model(sequelize));
 
-const { dog, color, gender, temperament } = sequelize.models;
+const { dog, color, gender, temperament , user, role} = sequelize.models;
 
 dog.belongsToMany(color, { through: 'Dogs_Colors', timestamps: false });
 dog.belongsToMany(temperament, {
@@ -39,6 +39,11 @@ dog.belongsToMany(temperament, {
 });
 gender.hasMany(dog, { foreignKey: 'genderId' });
 dog.belongsTo(gender, { foreignKey: 'genderId' });
+
+role.hasMany(user, { foreignKey: 'roleId' });
+user.belongsTo(role, { foreignKey: 'roleId' });
+
+
 
 module.exports = {
 	...sequelize.models,
