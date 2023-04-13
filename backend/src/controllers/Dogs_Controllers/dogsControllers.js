@@ -64,9 +64,9 @@ const getAllDogs = async () => {
 
 	data = data.map((el) => {
 		let genderStr = '';
-		if (el.gender.id === 1) {
+		if (el.genderId === 1) {
 			genderStr = 'Hembra';
-		} else if (el.gender.id === 2) {
+		} else if (el.genderId === 2) {
 			genderStr = 'Macho';
 		}
 
@@ -234,8 +234,9 @@ const updateDog = async (
 			await doguiToUpdate.addColors(newColors);
 		}
 
-		if (genders) {
-			let newGender = await color.findOne({
+		if(genders) {
+			let newGender = await gender.findOne({
+
 				where: {
 					name: genders,
 				},

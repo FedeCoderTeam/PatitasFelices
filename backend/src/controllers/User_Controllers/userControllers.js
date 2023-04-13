@@ -78,12 +78,13 @@ const postNewUser = async ( name, last, email, password, image, roles) => {
 
 const updateUser= async(id, googleId, name, last, email, password, image, roles, isVerified, isDisabled)=>{
     try {
-        let userUpdated= await user.findOne({where: {id: id}});
+        let userUpdated= await user.findOne({
+            where: {id: id}
+        });
         if(!userUpdated){
             throw new Error (`No se encontró un usuario con id ${id}`);
-        } else {
+        }
             await userUpdated.update({
-                googleId: googleId,
                 name: name,
                 last: last,
                 email: email,
@@ -93,16 +94,17 @@ const updateUser= async(id, googleId, name, last, email, password, image, roles,
                 isDisabled: isDisabled,
             });
             if (roles) {
-                await userUpdated.setRoles([]);
-                let newRoles = await role.findAll({
+                let newRoles = await role.findOne({
                     where: {
                         name: roles,
                     },
                 });
-                await userUpdated.addRoles(newRoles);
+                if(newRoles){
+                await userUpdated.setRole(newRoles);
             }
-            return 'Se modificó correctamente al usuario';   
         }
+
+        return 'Se modificó correctamente al usuario';   
     } catch (error) {
 		console.log(error);
 		return 'Error al intentar actualizar el usuario';

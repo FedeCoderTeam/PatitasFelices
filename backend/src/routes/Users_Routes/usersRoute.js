@@ -40,8 +40,9 @@ router.post('/', async (req, res) => {
 
 
 //UPDATE USER (CLIENT)
-router.put('/update', async(req, res)=> {
-    let { id, googleId, name, last, email, password, image, roles, isVerified, isDisabled } = req.body;
+router.put('/update/:id', async(req, res)=> {
+    let { googleId, name, last, email, password, image, roles, isVerified, isDisabled } = req.body;
+	let {id}= req.params
     try {
         let userUpdated= await updateUser(id, googleId, name, last, email, password, image, roles, isVerified, isDisabled);
         if (userUpdated.error) {
