@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap%27');
 .mainContainer-Register{
     background-image: url(https://images5.alphacoders.com/466/466957.jpg);
     width: 100%;
@@ -5,6 +6,7 @@
     flex-flow: row-reverse;
     margin-right: 60px;
     height: 1000px;
+    font-family: 'Be Vietnam Pro', sans-serif;
 }
 .form-Register{
     background: rgba(242, 242, 242, 1);
@@ -18,6 +20,7 @@
 }
 .form-Register > h1{
     color: #592519;
+    font-family: 'Be Vietnam Pro', sans-serif;
     margin-bottom: 60px;
 }
 .containerInputs-Register{
@@ -31,6 +34,7 @@
     margin-bottom: 25px;
     border: none;
     border-radius: 5px;
+    
 }
 .containerInputs-Register > label {
     margin-bottom: 20px;

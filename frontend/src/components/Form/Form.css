@@ -1,0 +1,67 @@
+.mainContainer-Form{
+    display: flex;
+    justify-content: center;
+    background-image: url('./images/formImage.png');
+    height: 1000px;
+}
+.container-Form {
+    background: rgba( 0, 0, 0, 0.55 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 10px );
+    -webkit-backdrop-filter: blur( 10px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 85%;
+    text-align: center;
+}
+.title-Form{
+    color: #D9AD77;
+    font-size: 60px;
+    margin-bottom: 130px;
+}
+.box-Form{
+    display: flex;
+    gap: 160px;
+    justify-content: center;
+}
+.containerInputsLeft-Form{
+    display: flex;
+    flex-direction: column;
+    width: 28%;
+}
+.containerInputsRight-Form{
+    display: flex;
+    flex-direction: column;
+    width: 28%;
+}
+.containerInputsLeft-Form > label{
+    color: #FFFFFF;
+    margin-bottom: 15px;
+}
+.containerInputsRight-Form > label{
+    margin-bottom: 15px;
+    color: #FFFFFF;
+}
+.containerInputsLeft-Form input {
+    background-color: #D9D9D9;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 60px;
+    padding: 10px;
+}
+.containerInputsRight-Form input {
+    background-color: #D9D9D9;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 60px;
+    padding: 10px;
+}
+.containerBtn-Form > button{
+    padding: 9px;
+    width: 20%;
+    background: #592519;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin-top: 20px;
+}
