@@ -191,7 +191,7 @@ const updateDog = async (
 		}
 
 		if(genders) {
-			let newGender = await color.findOne({
+			let newGender = await gender.findOne({
 				where: {
 					name: genders,
 				},
