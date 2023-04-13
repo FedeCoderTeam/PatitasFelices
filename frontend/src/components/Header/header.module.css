@@ -73,7 +73,7 @@
         transform 200ms linear;
 }
 
-button:hover {
+.button:hover {
     transform: scale(1.03);
     background-color: #112933;
 }

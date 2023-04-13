@@ -1,31 +1,47 @@
 import React from 'react';
 import Google from './Google.png'
 import { Link } from 'react-router-dom';
-import './Login.css';
+import style from './login.module.css';
 
 const Login = () => {
   return (
-    <div className='mainContainer-Login'>
-    <div className='form-Login'>
-        <h1>Ingresar</h1>
-        <div className='containerInputs-Login'>
-            <label>Email</label>
-            <input type="email" />
+    <div className={style.mainContainerLogin}>
+      <div className={style.formLogin}>
+
+        <div className={style.title}>
+          <h1>Ingresar</h1>
+        </div>
+
+        <div className={style.containerInputsLogin}>
+          <div className={style.emailForm}>
+              <label>Email</label>
+              <input type="email" />
+          </div>
+
+          <div className={style.contraseñaForm}>
             <label>Contraseña</label>
             <input type="password" />
-        <div className='containerButton-Login'>
-        <button type='submit'>Ingresar</button>
+          </div>
         </div>
+
+        <div className={style.recuperarContraseña}>
+          <p>¿Olvidaste tu contraseña?</p>
         </div>
-        <div className='containerGoogle-Login'>
-        <p>Ingresar con <img src={Google} alt="Google" /></p>
+
+        <div className={style.containerButtonLogin}>
+          <button type='submit' className={style.ingresarBoton}>Ingresar</button>
         </div>
-        <div>
-        <p>¿No tienes cuenta? </p>
-        <Link to='/register'>Registrate</Link>
+        
+        <div className={style.containerGoogleLogin}>
+          <p>Ingresar con <img src={Google} alt="Google" /></p>
         </div>
+        
+        <div className={style.noCuenta}>
+          <p>¿No tienes cuenta? </p>
+          <Link to='/register'>Registrate</Link>
+        </div>
+      </div>
     </div>
-</div>
   )
 }
 
