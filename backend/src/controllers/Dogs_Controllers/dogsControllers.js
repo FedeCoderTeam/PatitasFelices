@@ -1,7 +1,6 @@
 const { dog, color, gender, temperament } = require('../../database/db');
 const dogsJson = require('../../Json/Dogs.json');
 
-//✅
 const getAllDogs = async () => {
 	let data = await dog.findAll({
 		include: [
@@ -95,7 +94,6 @@ const getAllDogs = async () => {
 	return data;
 };
 
-//✅
 const getDogsByName = async (name) => {
 	let name2 = name.toLowerCase();
 	let all = await getAllDogs();
@@ -108,7 +106,6 @@ const getDogsByName = async (name) => {
 	}
 };
 
-//✅
 const getDogById = async (id) => {
 	let dogui = await dog.findOne({
 		where: {
@@ -132,7 +129,6 @@ const getDogById = async (id) => {
 	}
 };
 
-//✅
 const postNewDog = async (
 	name,
 	age,
@@ -190,7 +186,6 @@ const postNewDog = async (
 	}
 };
 
-//✅
 const updateDog = async (
 	id,
 	name,
@@ -264,7 +259,6 @@ const updateDog = async (
 	}
 };
 
-//✅
 const deleteDog = async (id) => {
 	try {
 		let doguiToDelete = await dog.findOne({

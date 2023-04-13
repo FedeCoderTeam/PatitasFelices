@@ -2,8 +2,6 @@ const { Router } = require('express');
 const router = Router();
 const dogsGenders = require('../../controllers/Gender_Controllers/genderControllers');
 
-//get genders from db
-
 router.get('/', async (req, res) => {
 	try {
 		let allGenders = await dogsGenders();
