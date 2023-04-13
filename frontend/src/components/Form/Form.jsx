@@ -35,7 +35,7 @@ const Form = () => {
                     <div>
                     </div>
                     <div className='containerBtn-Form'>
-                        <button type='submit'>Enviar</button>
+                        <button type='submit'>ENVIAR</button>
                     </div>
                 </form>
             </div>

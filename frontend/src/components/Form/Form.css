@@ -17,11 +17,11 @@
 .title-Form{
     color: #D9AD77;
     font-size: 60px;
-    margin-bottom: 130px;
+    margin-bottom: 60px;
 }
 .box-Form{
     display: flex;
-    gap: 160px;
+    gap: 100px;
     justify-content: center;
 }
 .containerInputsLeft-Form{
@@ -37,27 +37,30 @@
 .containerInputsLeft-Form > label{
     color: #FFFFFF;
     margin-bottom: 15px;
+    display: flex;
 }
 .containerInputsRight-Form > label{
     margin-bottom: 15px;
     color: #FFFFFF;
+    display: flex;
 }
 .containerInputsLeft-Form input {
-    background-color: #D9D9D9;
+    background-color: #FFFFFF;
     border-radius: 5px;
     border: none;
     margin-bottom: 60px;
-    padding: 10px;
+    padding: 15px;
 }
 .containerInputsRight-Form input {
-    background-color: #D9D9D9;
+    background-color: #FFFFFF;
     border-radius: 5px;
     border: none;
     margin-bottom: 60px;
-    padding: 10px;
+    padding: 15px;
 }
 .containerBtn-Form > button{
-    padding: 9px;
+    font-size: 16px;
+    padding: 14px;
     width: 20%;
     background: #592519;
     border: none;
