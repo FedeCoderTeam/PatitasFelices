@@ -22,9 +22,6 @@ const DogCard = ({image, name, age, gender, size, id/* para detail */}) => {
                     <Link>
                         <button>Detalle</button>    
                     </Link>
-                    <Link>
-                        <button>Adoptar</button>    
-                    </Link>
                 </div>
             </div>
         </>
