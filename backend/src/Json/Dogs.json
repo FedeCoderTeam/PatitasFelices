@@ -28,7 +28,7 @@
 			"size": "Large",
 			"weight": 20,
 			"castrated": true,
-			"image": "hhttps://res.cloudinary.com/nacho-morales/image/upload/v1681314770/Pf%20Patitas%20felices/Dogs/6_qmjpax.png",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314770/Pf%20Patitas%20felices/Dogs/6_qmjpax.png",
 			"colors": ["Cobrizo", "Negro"],
 			"genders": "Macho",
 			"tempers": ["Divertido", "Audaz", "Robusto", "Luchador"]
@@ -116,7 +116,7 @@
 			"size": "Large",
 			"weight": 18,
 			"castrated": true,
-			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681320991/Pf%20Patitas%20felices/Dogs/28_ooc0zi.pngs",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681320991/Pf%20Patitas%20felices/Dogs/28_ooc0zi.png",
 			"colors": ["Dorado"],
 			"genders": "Hembra",
 			"tempers": ["Juguetón", "Ansioso", "Rápido", "Tolerante"]
