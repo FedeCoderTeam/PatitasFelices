@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
+
+.mainContainerLogin {
+    background-image: url(https://images5.alphacoders.com/466/466957.jpg);
+    background-position: 20%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    flex-flow: row-reverse;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: #592519;
+}
+.formLogin {
+    background: rgba(242, 242, 242, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 370px;
+    border-radius: 5px;
+    margin-right: 150px;
+    height: 590px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.title {
+    color: #592519;
+    font-size: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.title h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.containerInputsLogin{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 316px;
+    height: 188px;
+}
+
+.emailForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 82px;
+    margin-bottom: 24px;
+}
+.emailForm input {
+    background-color: #D9D9D9;
+    padding: 16px 0 16px 10px;
+    border: none;
+    border-radius: 5px;
+    width: 306px;
+}
+.emailForm label {
+    color: #592519;
+    font-size: 18px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.contraseñaForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 82px;
+}
+.contraseñaForm input {
+    background-color: #D9D9D9;
+    padding: 16px 0 16px 10px;
+    border: none;
+    border-radius: 5px;
+    width: 306px;
+}
+.contraseñaForm label {
+    color: #592519;
+    font-size: 18px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.recuperarContraseña {
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.ingresarBoton {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 316px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: #592519;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: 
+        background-color 200ms linear,
+        transform 200ms linear;
+}
+
+.ingresarBoton:hover {
+    background-color: #163440;
+    transform: scale(1.02);
+}
+
+.containerGoogleLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* margin-top: 15px; */
+    width: 316px;
+    border-radius: 5px;
+    height: 48px;
+    transition: background-color 200ms linear;
+    
+}
+.containerGoogleLogin p {
+    display: flex;
+    gap: 6px;
+    font-weight: 500;
+}
+.containerGoogleLogin:hover {
+    background-color: #D9D9D9;
+}
+
+
+.noCuenta {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    gap: 5px;
+    text-decoration: none;
+}
+
