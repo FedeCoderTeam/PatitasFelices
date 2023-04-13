@@ -10,6 +10,10 @@ function subCategoryModel(database) {
         name: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        isDisabled: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     }, { timestamps: false });
 }

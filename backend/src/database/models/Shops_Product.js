@@ -28,6 +28,10 @@ function productModel(database) {
             validate: {
                 min: 0
             }
+        },
+        isDisabled: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     });
 }
