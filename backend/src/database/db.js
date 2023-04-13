@@ -46,8 +46,8 @@ const {
 dog.belongsToMany(color, { through: 'Dogs_Colors', timestamps: false });
 color.belongsToMany(dog, { through: 'Dogs_Colors', timestamps: false });
 
-temperament.belongsToMany(dog, { through: 'Dogs_Temperaments', timestamps: false, });
 dog.belongsToMany(temperament, { through: 'Dogs_Temperaments', timestamps: false, });
+temperament.belongsToMany(dog, { through: 'Dogs_Temperaments', timestamps: false, });
 
 gender.hasMany(dog, { foreignKey: 'genderId' });
 dog.belongsTo(gender, { foreignKey: 'genderId' });

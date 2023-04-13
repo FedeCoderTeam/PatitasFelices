@@ -1,5 +1,5 @@
 const { temperament } = require('../../database/db');
-const temperamentJson = require('../../Json/Temperaments.json');
+const features = require('../../Json/Features.json');
 
 const dogsTemperaments = async () => {
 	try {
@@ -8,7 +8,7 @@ const dogsTemperaments = async () => {
 		});
 
 		if (!temperaments.length) {
-			let allTemperaments = temperamentJson.temperaments;
+			let allTemperaments = features.temperaments;
 
 			allTemperaments = allTemperaments.map((el, index) => {
 				return { id: index + 1, name: el };
