@@ -1,5 +1,6 @@
 const { user, role } = require ('../../database/db')
 const usersJson = require ('../../Json/Users.json')
+const jwt = require('jsonwebtoken')
 
 const getAllUsers = async ()=> {
     let data= await user.findAll({
@@ -108,10 +109,36 @@ const updateUser= async(id, googleId, name, last, email, password, image, roles,
     }
 };
 
+const loginUser = async (email, password) => {
+    if(!email || !password) {
+        throw new Error('Falta completar algún o algunos datos')
+    }
+    const findUser = await user.findOne({where: {email}})
+
+    if(!findUser) {
+        throw new Error('No se encuentra en la base de datos')
+    }
+
+    if(findUser.email === email && findUser.password === password) {
+        return jwt.sign({findUser}, "MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgHY/fLfFMx4BdEsj49b5SqdlY4Ls\n" +
+            "cHk2Z8ui3fAPwAFQe9YtOnRFCP4A2IbmuXQgTt98HTNV8OAqsFoX9/zG1v8++WDj\n" +
+            "uO+7n2tUY9pvN609L41oKYo0fmo2FVgP5xJMBzuEvHyCU7k9VgOstruEZgDOKxBE\n" +
+            "1r2avOYVGbYCBIzZAgMBAAE", {expiresIn: '1h'})
+    } else {
+        throw new Error('El email o contraseña no son validos.')
+    }
+}
+
+//En progreso
+const authUser = async (token) => {
+
+}
+
 
 module.exports= {
     getAllUsers,
     getUserById,
     postNewUser,
-    updateUser
+    updateUser,
+    loginUser,
 }
