@@ -13,15 +13,9 @@ function userModel(database) {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                isAlpha: true
-            }
         },
         last: {
             type: DataTypes.STRING,
-            validate: {
-                isAlpha: true
-            }
         },
         email: {
             type: DataTypes.STRING,
