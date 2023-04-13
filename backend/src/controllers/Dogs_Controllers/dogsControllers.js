@@ -64,9 +64,9 @@ const getAllDogs = async () => {
 
 	data = data.map((el) => {
 		let genderStr = '';
-		if (el.gender.id === 1) {
+		if (el.genderId === 1) {
 			genderStr = 'Hembra';
-		} else if (el.gender.id === 2) {
+		} else if (el.genderId === 2) {
 			genderStr = 'Macho';
 		}
 
