@@ -9,7 +9,7 @@ import Dogs from './views/Dogs/Dogs.jsx';
 import { useLocation } from 'react-router-dom'; 
 import LoginView from './views/Login/Login.jsx';
 import Landing from './components/Landing/Landing';
-
+import NotFound from './components/NotFound/NotFound';
 import Form from './components/Form/Form';
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
           <Route path={'/login'} element={<LoginView />} /> 
           <Route path={'/form'} element={<Form />} />
           <Route path={'/dogs'} element={<Dogs />}/>
-          {/* <Route path={'*'} element={<NotFound />}/> */}
+          <Route path={'*'} element={<NotFound />}/>
           
       </Routes>
       { location.pathname !=='/' && location.pathname !=='/login' && location.pathname !=='/register' && <Footer />} 
