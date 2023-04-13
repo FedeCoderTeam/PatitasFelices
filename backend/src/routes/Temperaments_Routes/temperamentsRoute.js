@@ -2,8 +2,6 @@ const { Router } = require('express');
 const router = Router();
 const dogsTemperaments = require('../../controllers/Temperaments_Controllers/temperamentsControllers');
 
-//get temperaments from db
-
 router.get('/', async (req, res) => {
 	try {
 		let allTemperaments = await dogsTemperaments();
