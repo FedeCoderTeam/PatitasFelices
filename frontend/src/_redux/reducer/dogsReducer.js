@@ -53,7 +53,7 @@ export const dogsSlice = createSlice({
         setfilterByWeigth(state, action) {
             state.filterByWeigth = action.payload;
         },
-        setfilterBySize(state, action) { //pequeño, mediano y grande
+        setfilterBySize(state, action) { //Giant, Large, Medium, Small, Mini
             state.filterBySize = action.payload;
         },
         setfilterByAge(state, action) {
