@@ -2,10 +2,9 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const dogCard = ({image, name, age, gender, size}) => {
+const DogCard = ({image, name, age, gender, size, id/* para detail */}) => {
 
     //puede ir aca la funcion para manejar el borrar card
-
     
     return(
         <>
@@ -32,4 +31,4 @@ const dogCard = ({image, name, age, gender, size}) => {
     )
 }
 
-export default dogCard;
+export default DogCard;
