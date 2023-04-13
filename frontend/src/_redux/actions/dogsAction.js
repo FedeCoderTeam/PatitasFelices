@@ -1,5 +1,14 @@
 import axios from 'axios'
-import { getAllTemperaments, getAllDogsColors, getAllDogs, setSort, sortDogs, setfilterByWeigth, setfilterBySize, setfilterByAge, } from "../reducer/dogsReducer.js";
+import { 
+    getAllTemperaments,
+    getAllDogsColors, 
+    getAllDogs, 
+    setSort, 
+    sortDogs, 
+    setfilterByWeigth, 
+    setfilterBySize, 
+    setfilterByAge, 
+} from "../reducer/dogsReducer.js";
 
 
 const getDogs = () => {
