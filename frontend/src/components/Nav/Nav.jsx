@@ -10,7 +10,7 @@ export default function Nav() {
                 <Link to="/home">
                     <p className={style.links}>Home</p>
                 </Link>
-                <Link to="/productos">
+                <Link to="/products">
                     <p className={style.links}>Productos</p>
                 </Link>
                 <Link to="/dogs">

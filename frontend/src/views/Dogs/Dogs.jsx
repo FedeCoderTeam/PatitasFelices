@@ -1,10 +1,11 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import * as dogsAction from "../../_redux/actions/dogsAction.js"
 import Filtros from '../../components/Filtros/Filtros.jsx';
-import DogCard from '../../components/DogCard/DogCard.jsx';
+import DogCard from '../../components/Cards/DogCard/DogCard.jsx';
+import PaginadoDogs from '../../components/Paginado/PaginadoDogs/PaginadoDogs.jsx';
 
 
 const Dogs = () => {
@@ -15,7 +16,15 @@ const Dogs = () => {
     const allDogs = useSelector((state) => state.dogsReducer.allDogs)
 
     //----------------------------------------PAGINADO---------------------------------------------------------------
-    
+    const [currentPage, setCurrentPage] = useState(1);
+    const [dogsPerPage] = useState(7);
+    const indexOfLastDog = currentPage * dogsPerPage
+    const indexOfFirstDog = indexOfLastDog - dogsPerPage;
+    const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog)
+
+    const paginado = (pageNumber) => {
+        setCurrentPage(pageNumber)
+    }
     //---------------------------------------------------------------------------------------------------------------
 
     useEffect(() => {
@@ -28,12 +37,15 @@ const Dogs = () => {
         
     return(
         <>
-            {/* <TextField id="outlined-basic" label="Buscar..." variant="outlined" /> */}
-            {/* <TextField id="standard-basic" label="Buscar..." variant="standard" /> */}
             <TextField id="filled-basic" label="Buscar..." variant="filled" />
             <Filtros temperaments={selector} colors={selector1} />
+            <PaginadoDogs 
+            dogsPerPage={dogsPerPage}
+            allDogs={allDogs.length}
+            paginado={paginado}
+            />
             <div>
-            {allDogs?.map((e) => {
+            {currentDogs?.map((e) => {
                 return(
                     <DogCard
                     key={e.id}

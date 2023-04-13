@@ -1,11 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import dogsReducer from './reducer/dogsReducer'
-import thunk from 'redux-thunk';
-import logger from 'redux-logger';
+import productsReducer from './reducer/productsReducer.js';
 
 export const store = configureStore({
     reducer: {
-        dogsReducer
+        dogsReducer,
+        productsReducer
     },
-    /* middleware: [thunk, logger], */
 })
