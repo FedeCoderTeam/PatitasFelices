@@ -18,7 +18,7 @@ export default function Header() {
             </div>
 
             <div className = {style.buttonContainer}>
-                <Link>
+                <Link to='/dogs'>
                     <button className = {style.button}>Conócelos</button>
                 </Link>
                 

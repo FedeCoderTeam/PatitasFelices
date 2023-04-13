@@ -7,9 +7,10 @@ import Nav from './components/Nav/Nav';
 import Register from './components/Register/Register.jsx';
 import Dogs from './views/Dogs/Dogs.jsx';
 import { useLocation } from 'react-router-dom'; 
-import Login from './views/Login/Login.jsx';
+import LoginView from './views/Login/Login.jsx';
 import Landing from './components/Landing/Landing';
 import Products from './views/Products/Products.jsx';
+import NotFound from './components/NotFound/NotFound';
 import Form from './components/Form/Form';
 
 function App() {
@@ -18,20 +19,22 @@ function App() {
 
   return (
     <>
-      <Header/> 
-      { location.pathname !=='/' && <Nav />} {/* falta añadir register y landing */}
+      {/* <Header/>  */}
+      { location.pathname !=='/' && location.pathname !=='/login' && location.pathname !=='/register' && <Nav />} 
+      
       <Routes>
           <Route path={'/'} element={<Landing/>} />
           <Route path={'/home'} element={<Home/>} />
           <Route path={'/about'} element={<About/>} />
           <Route path={'/register'} element={<Register />} />
-          <Route path={'/login'} element={<Login />} /> 
+          <Route path={'/login'} element={<LoginView />} /> 
           <Route path={'/form'} element={<Form />} />
           <Route path={'/dogs'} element={<Dogs />}/>
           <Route path={'/products'} element={<Products />} />
-          {/* <Route path={'*'} element={<NotFound />}/> */}
+          <Route path={'*'} element={<NotFound />}/>
       </Routes>
-      <Footer/>
+      { location.pathname !=='/' && location.pathname !=='/login' && location.pathname !=='/register' && <Footer />} 
+      {/* <Footer/> */}
     </>
   );
 }

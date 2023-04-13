@@ -1,7 +1,6 @@
 const { dog, color, gender, temperament } = require('../../database/db');
 const dogsJson = require('../../Json/Dogs.json');
 
-//✅
 const getAllDogs = async () => {
 	let data = await dog.findAll({
 		include: [
@@ -23,32 +22,25 @@ const getAllDogs = async () => {
 		let alldogs = dogsJson.dogs;
 
 		for (let i = 0; i < alldogs.length; i++) {
-			let el = alldogs[i];
 			let dogDb = await dog.create({
-				name: el.name,
-				age: el.age,
-				size: el.size,
-				weight: el.weight,
-				castrated: el.castrated,
-				image: el.image,
+				name: alldogs[i].name,
+				age: alldogs[i].age,
+				size: alldogs[i].size,
+				weight: alldogs[i].weight,
+				castrated: alldogs[i].castrated,
+				image: alldogs[i].image,
 			});
 
-			let colors = await color.findAll({ where: { name: el.colors } });
+			let colors = await color.findAll({ where: { name: alldogs[i].colors } });
 			await dogDb.addColor(colors);
 
-			let genders = await gender.findOne({ where: { id: el.genderID } });
-
-			let genderStr = '';
-			if (genders.id === 1) {
-				genderStr = 'Hembra';
-			} else if (genders.id === 2) {
-				genderStr = 'Macho';
-			}
-
+			let genders = await gender.findOne({
+				where: { name: alldogs[i].genders },
+			});
 			await dogDb.setGender(genders);
 
 			let tempers = await temperament.findAll({
-				where: { name: el.temperaments },
+				where: { name: alldogs[i].tempers },
 			});
 			await dogDb.addTemperament(tempers);
 		}
@@ -70,24 +62,24 @@ const getAllDogs = async () => {
 		});
 	}
 
-	data = data.map((d) => {
+	data = data.map((el) => {
 		let genderStr = '';
-		if (d.gender.id === 1) {
+		if (el.gender.id === 1) {
 			genderStr = 'Hembra';
-		} else if (d.gender.id === 2) {
+		} else if (el.gender.id === 2) {
 			genderStr = 'Macho';
 		}
 
 		return {
-			id: d.id,
-			name: d.name,
-			age: d.age,
-			size: d.size,
-			weight: d.weight,
-			castrated: d.castrated,
-			image: d.image,
-			temperaments: d.temperaments.map((t) => t.name),
-			colors: d.colors.map((c) => c.name),
+			id: el.id,
+			name: el.name,
+			age: el.age,
+			size: el.size,
+			weight: el.weight,
+			castrated: el.castrated,
+			image: el.image,
+			temperaments: el.temperaments.map((t) => t.name),
+			colors: el.colors.map((c) => c.name),
 			gender: genderStr,
 		};
 	});
@@ -95,7 +87,6 @@ const getAllDogs = async () => {
 	return data;
 };
 
-//✅
 const getDogsByName = async (name) => {
 	let name2 = name.toLowerCase();
 	let all = await getAllDogs();
@@ -108,7 +99,6 @@ const getDogsByName = async (name) => {
 	}
 };
 
-//✅
 const getDogById = async (id) => {
 	let dogui = await dog.findOne({
 		where: {
@@ -132,7 +122,6 @@ const getDogById = async (id) => {
 	}
 };
 
-//✅
 const postNewDog = async (
 	name,
 	age,
@@ -190,7 +179,6 @@ const postNewDog = async (
 	}
 };
 
-//✅
 const updateDog = async (
 	id,
 	name,
@@ -264,7 +252,6 @@ const updateDog = async (
 	}
 };
 
-//✅
 const deleteDog = async (id) => {
 	try {
 		let doguiToDelete = await dog.findOne({

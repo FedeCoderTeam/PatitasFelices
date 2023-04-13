@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@200;400;600;700&display=swap');
+
+.bodyError{
+    display: flex;
+    flex-direction: column;
+    background-image: url(https://res.cloudinary.com/dreso9ye9/image/upload/v1681346388/Proyecto%20Final/pexels-ismael-jim%C3%A9nez-barcenas-12790370_1_ztxc8y.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.divTitles{
+    width: 50em;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.h2{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 500;
+    font-size: 5em;
+    color: #592519;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    height: 10px;
+}
+
+.h1{
+    padding-top: .5em;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 300;
+    font-size: 2.5em;
+    color: #D9AD77;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.btnError{
+    margin-top: 10px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px 50px;
+    color: #ffffff;
+    font-size: 17px;
+    border: 0;
+    border-radius: 5px;
+    background-color: #592519;
+    font-weight: 300;
+    line-height: 30px;
+    transition: .5s ease-in-out;
+}
+
+.btnError:hover{
+    background-color: #d9ad77b6;
+    color: #ffffff;
+}

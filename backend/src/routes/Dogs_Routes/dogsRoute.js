@@ -10,7 +10,6 @@ const {
 
 const router = Router();
 
-//GET ALL DOGS //BY NAME AND ALL CLIENT ✅
 router.get('/', async (req, res) => {
 	const { name } = req.query;
 	try {
@@ -26,7 +25,6 @@ router.get('/', async (req, res) => {
 	}
 });
 
-//GET BY ID WIHT DETAIL CLIENT ✅
 
 router.get('/:id', async (req, res) => {
 	const { id } = req.params;
@@ -39,7 +37,6 @@ router.get('/:id', async (req, res) => {
 	}
 });
 
-//POST DOGS CLIENT ✅
 
 router.post('/', async (req, res) => {
 	let { name, age, size, weight, castrated, tempers, colors, genders, image } =
@@ -61,11 +58,6 @@ router.post('/', async (req, res) => {
 		res.status(404).json({ error: error.message });
 	}
 });
-
-// ---------------------------------------------------------------------------------------------------------------------
-//👀 ¡¡CONTROLAR CÓMO ES EL TEMA DE QUE LOS USERS NO PUEDAN ACCEDER A LAS SIGUIENTES FUNCIONES!! 👀
-
-//UPDATE DOGS ADMIN
 
 router.put('/update', async (req, res) => {
 	let {
@@ -106,8 +98,6 @@ router.put('/update', async (req, res) => {
 		res.status(404).json({ error: error.message });
 	}
 });
-
-//DELETE DOGS ADMIN: CAMBIAR POR UN UPDATE QUE SOLO TOQUE LA PROP ADOPTED A TRUE
 
 router.delete('/delete/:id', async (req, res) => {
 	let { id } = req.params;
