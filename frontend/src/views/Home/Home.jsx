@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Header from '../../components/Header/Header';
 
 
 
@@ -10,7 +11,7 @@ const Home = () => {
    //cards
     return(
         <>
-            
+            <Header/>
         </>
     )
 } 

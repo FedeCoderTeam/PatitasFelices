@@ -8,26 +8,52 @@ const Register = () => {
     return (
         <div className='mainContainer-Register'>
             <div className='form-Register'>
-                <h1>Registrarse</h1>
+                
+                <div className='title'>
+                    <h1>Registrarse</h1>
+                </div>
+
                 <div className='containerInputs-Register'>
-                    <label>Nombre</label>
-                    <input type="text" />
-                    <label>Apellido</label>
-                    <input type="text" />
-                    <label>Email</label>
-                    <input type="email" />
-                    <label>Contraseña</label>
-                    <input type="password" />
-                <div className='containerButton-Register'>
-                <button type='submit'>Crear Cuenta</button>
+                    <div className='personalInfo'>
+                        <div className='nombre'>
+                            <label>Nombre</label>
+                            <input type="text" />
+                        </div>
+
+                        <div className='apellido'>
+                            <label>Apellido</label>
+                            <input type="text" />
+                        </div>
+                    </div>
+
+                    <div className='email'>
+                        <label>Email</label>
+                        <input type="email" />
+                    </div>
+
+                    <div className='contraseña'>
+                        <label>Contraseña</label>
+                        <input type="password" />
+                    </div>
+
+                    <div className='containerButton-Register'>
+                        <button type='submit' className='buttonRegister'>Crear cuenta</button>
+                    </div>
                 </div>
-                </div>
+
                 <div className='containerGoogle-Register'>
-                <p>Registrarse con <img src={Google} alt="Google" /></p>
+                    <p>Registrarse con <img src={Google} alt="Google" /></p>
                 </div>
+
+                <div className='siCuenta'>
+                    <p>¿Ya tienes una cuenta? </p>
+                    <Link to='/login'>Ingresa</Link>
+                </div>
+
                 <div>
-                <p>¿Ya tienes cuenta? </p>
-                <Link to='/login'>Ingresa</Link>
+                    <Link to='/home' className='goHome'>
+                        <i class="fa-solid fa-house"></i>
+                    </Link>
                 </div>
             </div>
         </div>

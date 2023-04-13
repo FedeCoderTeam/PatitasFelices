@@ -38,7 +38,13 @@ const Login = () => {
         
         <div className={style.noCuenta}>
           <p>¿No tienes cuenta? </p>
-          <Link to='/register'>Registrate</Link>
+          <Link to='/register'>Regístrate</Link>
+        </div>
+
+        <div>
+          <Link to='/home' className={style.goHome}>
+            <i class="fa-solid fa-house"></i>
+          </Link>
         </div>
       </div>
     </div>

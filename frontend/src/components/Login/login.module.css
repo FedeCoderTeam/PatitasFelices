@@ -30,7 +30,7 @@
 
 .title {
     color: #592519;
-    font-size: 30px;
+    font-size: 25px;
     padding: 0;
     margin: 0;
 }
@@ -93,7 +93,7 @@
 }
 
 .recuperarContraseña {
-    font-size: 12px;
+    font-size: 14px;
     cursor: pointer;
 }
 
@@ -144,8 +144,17 @@
 .noCuenta {
     display: flex;
     align-items: center;
-    font-size: 12px;
+    font-size: 14px;
     gap: 5px;
     text-decoration: none;
+}
+
+.goHome {
+    color: #592519;
+    font-size: 30px;
+    transition: color 300ms linear;
+}
+.goHome:hover {
+    color: #163440;
 }
 
