@@ -7,9 +7,9 @@ const NotFound = () => {
     return (
         <div className={style.bodyError}>
             <div className={style.divTitles}>
-                <h2>404</h2>
+                <h2 className={style.h2}>404</h2>
                 <div className={style.divTitle}>
-                    <h1>¿Estás perdido?</h1>
+                    <h1 className={style.h1}>¿Estás perdido?</h1>
                     <Link to='/home'>                    
                         <button className={style.btnError}>Vamos a casa</button>
                     </Link>
