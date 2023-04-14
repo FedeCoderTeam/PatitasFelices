@@ -134,6 +134,7 @@ const postNewDog = async (
 	colors,
 	genders,
 	image,
+	description,
 ) => {
 	if (
 		!name ||
@@ -144,7 +145,8 @@ const postNewDog = async (
 		!tempers ||
 		!colors ||
 		!genders ||
-		!image
+		!image ||
+		!description
 	) {
 		throw new Error(
 			'Falta completar algún o algunos datos (name, age, size, weight, castrated, temperament, color, gender)',
@@ -157,6 +159,7 @@ const postNewDog = async (
 			weight: weight,
 			castrated: castrated,
 			image: image,
+			description: description,
 		});
 		let temper = await temperament.findAll({
 			where: {
@@ -192,6 +195,7 @@ const updateDog = async (
 	colors,
 	genders,
 	image,
+	description,
 	adopted,
 	isDisabled,
 ) => {
@@ -212,6 +216,7 @@ const updateDog = async (
 			weight: weight,
 			castrated: castrated,
 			image: image,
+			description: description,
 			adopted: adopted,
 			isDisabled: isDisabled,
 		});
