@@ -44,22 +44,6 @@ const getAllDogs = async () => {
 			});
 			await dogDb.addTemperament(tempers);
 		}
-
-		data = await dog.findAll({
-			include: [
-				{
-					model: temperament,
-					attributes: ['name'],
-					through: { attributes: [] },
-				},
-				{
-					model: color,
-					attributes: ['name'],
-					through: { attributes: [] },
-				},
-				{ model: gender },
-			],
-		});
 	}
 
 	data = data.map((el) => {
