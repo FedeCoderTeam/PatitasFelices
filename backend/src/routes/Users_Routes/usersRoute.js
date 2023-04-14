@@ -1,5 +1,5 @@
 const { Router } = require ('express');
-const {getAllUsers, getUserById, postNewUser, updateUser, loginUser} = require ('../../controllers/User_Controllers/userControllers');
+const {getAllUsers, getUserById, postNewUser, updateUser, loginUser, authUser} = require ('../../controllers/User_Controllers/userControllers');
 
 const router= Router();
 
@@ -68,5 +68,15 @@ router.post('/login', async (req, res) => {
 		res.status(401).json({error: error.message})
 	}
 })
+
 //CREATE AUTH (TOKEN)
+router.post('/auth', async (req, res) => {
+	let { token } = req.body
+	try {
+		await authUser(token);
+		res.status(200).json({authentication: true})
+	} catch (error) {
+		res.status(401).json({authentication: false})
+	}
+})
 //CREATE LOGOUT 
