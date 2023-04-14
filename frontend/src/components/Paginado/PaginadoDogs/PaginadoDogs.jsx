@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './paginadoDogs.module.css'
 
 const PaginadoDogs = ({ dogsPerPage, allDogs, paginado }) => {
 
@@ -10,9 +11,9 @@ const PaginadoDogs = ({ dogsPerPage, allDogs, paginado }) => {
     return(
         <>
             <nav>
-                <ul>
+                <ul className={style.numbersList}>
                     {pageNumbers?.map((number) => (
-                            <li onClick={() => paginado(number)} key={number}>{number}</li>
+                            <li className={style.number} onClick={() => paginado(number)} key={number}>{number}</li>
                     ))}
                 </ul>
             </nav>
