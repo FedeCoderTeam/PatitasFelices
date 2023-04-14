@@ -6,6 +6,9 @@ const dogsGenders = require('./src/controllers/Gender_Controllers/genderControll
 const {
 	getAllDogs,
 } = require('./src/controllers/Dogs_Controllers/dogsControllers');
+const getCategory = require('./src/controllers/Category_Controllers/categoryControllers');
+const getSubCategory = require('./src/controllers/SubCategory_Controllers/subCategoryControllers');
+const getAllProducts = require('./src/controllers/Product_Controllers/productControllers');
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(async () => {
@@ -13,6 +16,9 @@ conn.sync({ force: false }).then(async () => {
 	await dogsColors();
 	await dogsGenders();
 	await getAllDogs();
+	await getCategory();
+	await getSubCategory();
+	await getAllProducts();
 	server.listen(3001, () => {
 		console.log('%s listening at 3001'); // eslint-disable-line no-console
 	});

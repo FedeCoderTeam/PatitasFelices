@@ -44,29 +44,13 @@ const getAllDogs = async () => {
 			});
 			await dogDb.addTemperament(tempers);
 		}
-
-		data = await dog.findAll({
-			include: [
-				{
-					model: temperament,
-					attributes: ['name'],
-					through: { attributes: [] },
-				},
-				{
-					model: color,
-					attributes: ['name'],
-					through: { attributes: [] },
-				},
-				{ model: gender },
-			],
-		});
 	}
 
 	data = data.map((el) => {
 		let genderStr = '';
-		if (el.gender.id === 1) {
+		if (el.genderId === 1) {
 			genderStr = 'Hembra';
-		} else if (el.gender.id === 2) {
+		} else if (el.genderId === 2) {
 			genderStr = 'Macho';
 		}
 
