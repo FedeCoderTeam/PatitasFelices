@@ -22,7 +22,6 @@ const getAllUsers = async ()=> {
             });
 
             let roles = await role.findOne({ where: { name: allUsers[i].rol } });
-            console.log(roles)
             await userDb.setRole(roles);
         }
     }
