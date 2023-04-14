@@ -218,8 +218,9 @@ const updateDog = async (
 			await doguiToUpdate.addColors(newColors);
 		}
 
-		if (genders) {
-			let newGender = await color.findOne({
+		if(genders) {
+			let newGender = await gender.findOne({
+
 				where: {
 					name: genders,
 				},

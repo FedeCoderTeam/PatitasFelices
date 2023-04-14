@@ -44,10 +44,9 @@ function productModel(database) {
 				defaultValue: false,
 			},
 		},
-		{ timestamps: false },
 	);
 }
 
 module.exports = (database) => {
-	productModel(database);
-};
+    productModel(database)
+}

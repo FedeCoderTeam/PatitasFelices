@@ -59,9 +59,8 @@ router.post('/', async (req, res) => {
 	}
 });
 
-router.put('/update', async (req, res) => {
+router.put('/update/:id', async (req, res) => {
 	let {
-		id,
 		name,
 		age,
 		size,
@@ -74,6 +73,7 @@ router.put('/update', async (req, res) => {
 		adopted,
 		isDisabled,
 	} = req.body;
+	let {id}= req.params
 	try {
 		let updateDogui = await updateDog(
 			id,
