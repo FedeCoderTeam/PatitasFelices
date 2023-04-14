@@ -11,6 +11,7 @@ const ProductCard = ({image, name, description, price, id}) => {
                 <h5>{name}</h5>
                 <h5>{description}</h5>
                 <h5>{price}</h5>
+                
             </div>
             <div>
                 <Link>
