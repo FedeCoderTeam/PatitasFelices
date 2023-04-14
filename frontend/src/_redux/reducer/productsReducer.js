@@ -12,13 +12,16 @@ export const productsSlice = createSlice({
         getAllProducts: (state, action) => {
             state.products = action.payload
             state.allProducts = action.payload
+        },
+        getNameProduct: (state, action) => {
+            state.allProducts = action.payload
         }
     }
 })
 
 export const {
     getAllProducts,
-    
+    getNameProduct,
 } = productsSlice.actions
 
 export default productsSlice.reducer

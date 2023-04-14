@@ -1,11 +1,11 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import * as dogsAction from "../../_redux/actions/dogsAction.js"
 import Filtros from '../../components/Filtros/Filtros.jsx';
 import DogCard from '../../components/Cards/DogCard/DogCard.jsx';
 import PaginadoDogs from '../../components/Paginado/PaginadoDogs/PaginadoDogs.jsx';
+import SearchDog from '../../components/SearchBar/SearchDog/SearchDog.jsx';
 
 
 const Dogs = () => {
@@ -30,14 +30,13 @@ const Dogs = () => {
     useEffect(() => {
             dispatch(dogsAction.getDogs())
             dispatch(dogsAction.getTemperaments())
-            
         },[dispatch])
 
     
         
     return(
-        <>
-            <TextField id="filled-basic" label="Buscar..." variant="filled" />
+        <>  
+            <SearchDog />
             <Filtros temperaments={selector} colors={selector1} />
             <PaginadoDogs 
             dogsPerPage={dogsPerPage}
