@@ -84,24 +84,39 @@ const getDogsByName = async (name) => {
 };
 
 const getDogById = async (id) => {
-	let dogui = await dog.findOne({
-		where: {
-			id: id,
-		},
-		include: [
-			{
-				model: temperament,
-				attributes: ['name'],
-				through: { attributes: [] },
+	try {
+		let dogui = await dog.findOne({
+			where: {
+				id: id,
 			},
-			{ model: color, attributes: ['name'], through: { attributes: [] } },
-			{ model: gender, attributes: ['name'] },
-		],
-	});
+			include: [
+				{
+					model: temperament,
+					attributes: ['name'],
+					through: { attributes: [] },
+				},
+				{ model: color, attributes: ['name'], through: { attributes: [] } },
+				{ model: gender, attributes: ['name'] },
+			],
+		});
 
-	if (dogui) {
+		let genderStr = dogui.genderId === 1 ? 'Hembra' : 'Macho';
+
+		dogui = {
+			id: dogui.id,
+			name: dogui.name,
+			age: dogui.age,
+			size: dogui.size,
+			weight: dogui.weight,
+			castrated: dogui.castrated,
+			image: dogui.image,
+			temperaments: dogui.temperaments.map((t) => t.name),
+			colors: dogui.colors.map((c) => c.name),
+			gender: genderStr,
+		};
+
 		return dogui;
-	} else {
+	} catch (error) {
 		return { error: `El perro con id ${id} no existe` };
 	}
 };
@@ -218,9 +233,8 @@ const updateDog = async (
 			await doguiToUpdate.addColors(newColors);
 		}
 
-		if(genders) {
+		if (genders) {
 			let newGender = await gender.findOne({
-
 				where: {
 					name: genders,
 				},

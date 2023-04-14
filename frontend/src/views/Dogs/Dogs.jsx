@@ -1,5 +1,4 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import * as dogsAction from "../../_redux/actions/dogsAction.js"
@@ -7,6 +6,7 @@ import Filtros from '../../components/Filtros/Filtros.jsx';
 import DogCard from '../../components/Cards/DogCard/DogCard.jsx';
 import PaginadoDogs from '../../components/Paginado/PaginadoDogs/PaginadoDogs.jsx';
 import style from './dogs.module.css'
+import SearchDog from '../../components/SearchBar/SearchDog/SearchDog.jsx';
 
 
 const Dogs = () => {
@@ -31,7 +31,6 @@ const Dogs = () => {
     useEffect(() => {
             dispatch(dogsAction.getDogs())
             dispatch(dogsAction.getTemperaments())
-            
         },[dispatch])
 
     
@@ -39,6 +38,7 @@ const Dogs = () => {
     return(
         <div className={style.main}>
             <div className={style.filtersContainer}>
+                <SearchDog />
                 <Filtros temperaments={selector} colors={selector1} />
             </div>
 
@@ -48,8 +48,9 @@ const Dogs = () => {
                     dogsPerPage={dogsPerPage}
                     allDogs={allDogs.length}
                     paginado={paginado}
+
                     />
-                </div>
+              </div>
                 
                 <div className={style.cardsContainer}>
                 {currentDogs?.map((e) => {

@@ -1,5 +1,8 @@
 import axios from 'axios'
-import { getAllProducts, } from '../reducer/productsReducer.js';
+import { 
+    getAllProducts,
+    getNameProduct,
+    } from '../reducer/productsReducer.js';
 
 
 const getProducts = () => {
@@ -13,6 +16,18 @@ const getProducts = () => {
     }
 }
 
+const getProductsByName = (id) => {
+    return async function(dispatch) {
+        try {
+            const dbData = await axios.get(`http://localhost:3001/dogs/${id}`);
+            dispatch(getNameProduct(dbData.data))
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
 export {
     getProducts,
+    getProductsByName,
 }
