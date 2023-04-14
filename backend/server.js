@@ -6,23 +6,35 @@ const dogsGenders = require('./src/controllers/Gender_Controllers/genderControll
 const getCategory = require('./src/controllers/Category_Controllers/categoryControllers');
 const getSubCategory = require('./src/controllers/SubCategory_Controllers/subCategoryControllers');
 const getAllProducts = require('./src/controllers/Product_Controllers/productControllers');
-const { getAllDogs } = require('./src/controllers/Dogs_Controllers/dogsControllers');
-const { userRoles } = require('./src/controllers/Roles_Controllers/rolesControlers')
-const { getAllUsers } = require('./src/controllers/User_Controllers/userControllers');
+const {
+	getAllDogs,
+} = require('./src/controllers/Dogs_Controllers/dogsControllers');
+const {
+	userRoles,
+} = require('./src/controllers/Roles_Controllers/rolesControlers');
+const {
+	getAllUsers,
+} = require('./src/controllers/User_Controllers/userControllers');
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(async () => {
-	await dogsTemperaments();
-	await dogsColors();
-	await dogsGenders();
-	await getAllDogs();
-	await userRoles();
-	await getAllUsers();
-	await getCategory();
-	await getSubCategory();
-	await getAllProducts();
+	try {
+		await Promise.all([
+			dogsTemperaments(),
+			dogsColors(),
+			dogsGenders(),
+			getAllDogs(),
+			userRoles(),
+			getAllUsers(),
+			getCategory(),
+			getSubCategory(),
+			getAllProducts(),
+		]);
 
-	server.listen(3001, () => {
-		console.log('%s listening at 3001'); // eslint-disable-line no-console
-	});
+		server.listen(3001, () => {
+			console.log('%s listening at 3001'); // eslint-disable-line no-console
+		});
+	} catch (error) {
+		console.log(error);
+	}
 });
