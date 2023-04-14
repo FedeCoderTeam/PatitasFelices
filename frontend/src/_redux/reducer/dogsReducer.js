@@ -30,6 +30,10 @@ export const dogsSlice = createSlice({
             state.colors = action.payload
         },
 
+        getNameDog: (state, action) => {
+            state.allDogs = action.payload
+        },
+
         setSort: (state, action) => {
             if(action.payload.sortBy) {
                 state.sortBy = action.payload.sortBy
@@ -73,6 +77,7 @@ export const {
     setfilterByWeigth,
     setfilterBySize,
     setfilterByAge,
+    getNameDog,
     } = dogsSlice.actions
 
 
