@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       {/* <Header/>  */}
-      { location.pathname !=='/' && location.pathname !=='/login' && location.pathname !=='/register' && <Nav />} 
+      { location.pathname !=='/' && location.pathname !=='/login' && location.pathname !=='/register' && location.pathname !=='/form' && <Nav />} 
       
       <Routes>
           <Route path={'/'} element={<Landing/>} />
@@ -33,7 +33,7 @@ function App() {
           <Route path={'/products'} element={<Products />} />
           <Route path={'*'} element={<NotFound />}/>
       </Routes>
-      { location.pathname !=='/' && location.pathname !=='/login' && location.pathname !=='/register' && <Footer />} 
+      { location.pathname !=='/' && location.pathname !=='/login' && location.pathname !=='/register' && location.pathname !=='/form' && <Footer />} 
       {/* <Footer/> */}
     </>
   );

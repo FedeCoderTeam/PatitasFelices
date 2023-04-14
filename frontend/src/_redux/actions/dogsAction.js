@@ -7,7 +7,8 @@ import {
     sortDogs, 
     setfilterByWeigth, 
     setfilterBySize, 
-    setfilterByAge, 
+    setfilterByAge,
+    getNameDog,
 } from "../reducer/dogsReducer.js";
 
 
@@ -20,6 +21,17 @@ const getDogs = () => {
             console.log(error);
         }
     } 
+}
+
+const getDogsByName = (id) => {
+    return async function(dispatch) {
+        try {
+            const dbData = await axios.get(`http://localhost:3001/dogs/${id}`);
+            dispatch(getNameDog(dbData.data))
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 const getTemperaments = () => {
@@ -55,5 +67,6 @@ export {
     getDogs,
     getTemperaments,
     getDogsColors,
-    sortAction
+    sortAction,
+    getDogsByName,
 }

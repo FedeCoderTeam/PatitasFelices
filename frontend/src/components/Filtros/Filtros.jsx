@@ -32,13 +32,6 @@ const Filtros = (props) => {
     const [temp, setTemp] = React.useState([]);
     const [color, setColor] = React.useState([])
 
-    /* const [filter, setFilter] = React.useState({
-        abc: "Por defecto",
-        weigth: "Todos",
-        size: "Todos",
-        age: "Todos"
-    }) */
-
     const handleTempChange = (event) => {
         const {
             target: { value },

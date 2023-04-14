@@ -202,6 +202,105 @@
 			"colors": ["Negro", "Marron", "Blanco"],
 			"genders": "Hembra",
 			"tempers": ["Voluntarioso", "Devoto", "Responsable", "Curioso"]
+		},
+		{
+			"name": "Luca",
+			"age": 72,
+			"size": "Medium",
+			"weight": 12,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681320991/Pf%20Patitas%20felices/Dogs/23_rosgax.png",
+			"colors": ["Negro", "Blanco"],
+			"genders": "Macho",
+			"tempers": ["Diligente", "Inquisitivo", "Adaptable", "Ágil"]
+		},
+		{
+			"name": "Kappi",
+			"age": 5,
+			"size": "Large",
+			"weight": 15,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314772/Pf%20Patitas%20felices/Dogs/17_djxmkx.png",
+			"colors": ["Negro", "Blanco"],
+			"genders": "Macho",
+			"tempers": ["Aventurero", "Salvaje", "Rceptivo", "Dominante"]
+		},
+		{
+			"name": "Jano",
+			"age": 24,
+			"size": "Large",
+			"weight": 20,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314769/Pf%20Patitas%20felices/Dogs/10_vgu9l6.png",
+			"colors": ["Negro", "Marron"],
+			"genders": "Macho",
+			"tempers": ["Alegre", "Valiente", "Protector", "Adaptable"]
+		},
+		{
+			"name": "Nina",
+			"age": 120,
+			"size": "Medium",
+			"weight": 16,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314772/Pf%20Patitas%20felices/Dogs/12_p3st7g.png",
+			"colors": ["Blanco", "Marron"],
+			"genders": "Hembra",
+			"tempers": ["Vivaz", "Sociable", "Astuto", "Diligente"]
+		},
+		{
+			"name": "Dulce",
+			"age": 120,
+			"size": "Mini",
+			"weight": 5,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314771/Pf%20Patitas%20felices/Dogs/11_araodx.png",
+			"colors": ["Blanco"],
+			"genders": "Hembra",
+			"tempers": ["Como un gato", "Atletico", "Travieso", "Suspicaz"]
+		},
+		{
+			"name": "Greta",
+			"age": 12,
+			"size": "Medium",
+			"weight": 10,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314773/Pf%20Patitas%20felices/Dogs/14_lwrdv7.png",
+			"colors": ["Marron", "Dorado"],
+			"genders": "Hembra",
+			"tempers": ["Estable", "Gran corazón", "Tolerante", "Rápido"]
+		},
+		{
+			"name": "Rodo",
+			"age": 84,
+			"size": "Medium",
+			"weight": 21,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314773/Pf%20Patitas%20felices/Dogs/15_pfyn8j.png",
+			"colors": ["Negro"],
+			"genders": "Macho",
+			"tempers": ["Brillante", "Rápido", "Travieso", "Astuto"]
+		},
+		{
+			"name": "Penny",
+			"age": 12,
+			"size": "Medium",
+			"weight": 11,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314775/Pf%20Patitas%20felices/Dogs/16_ta54hn.png",
+			"colors": ["Negro", "Blanco"],
+			"genders": "Hembra",
+			"tempers": ["Tierno", "Reservado", "Cauteloso", "Compañero"]
+		},
+		{
+			"name": "Spok",
+			"age": 60,
+			"size": "Medium",
+			"weight": 10,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314772/Pf%20Patitas%20felices/Dogs/13_wfoatq.png",
+			"colors": ["Negro", "Blanco", "Cobrizo"],
+			"genders": "Macho",
+			"tempers": ["Tierno", "Reservado", "Compañero"]
 		}
 	]
 }

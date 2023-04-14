@@ -1,0 +1,156 @@
+{
+	"products": [
+		{
+			"name": "Comedero Acero Inoxidable 16cm",
+			"description": "Comedero/Bebedero de acero inoxidable con base antideslizante. Base 16cm. Boca 11,5cm. Profundidad 3cm",
+			"price": 1990,
+			"stock": 10,
+			"brand": "Petplus",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681409502/Pf%20Patitas%20felices/Products/Comedero_ityik3.png",
+			"category": "Accesorios",
+			"subCategory": "Comederos"
+		},
+		{
+			"name": "Comedero Acero Inoxidable 26cm",
+			"description": "Comedero/Bebedero de acero inoxidable con base antideslizante. Base 25.5cm. Boca 17,5cm. Profundidad 6cm",
+			"price": 3200,
+			"stock": 10,
+			"brand": "Petplus",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681409502/Pf%20Patitas%20felices/Products/Comedero_ityik3.png",
+			"category": "Accesorios",
+			"subCategory": "Comederos"
+		},
+		{
+			"name": "Collar Rápido Para Perro Regulable",
+			"description": "Collar de colocación rápida para perros regulable. Ancho de cinta 30 mm. Hebilla y regulador de alta resistencia a la tracción. ",
+			"price": 1800,
+			"stock": 10,
+			"brand": "NatCan",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681410075/Pf%20Patitas%20felices/Products/Collar_regulable_yxetxg.png",
+			"category": "Accesorios",
+			"subCategory": "Collares"
+		},
+		{
+			"name": "Collar Tipo Hamilton con Hebilla Reforzada",
+			"description": "El collar tipo Hamilton tiene una hebilla de alta calidad. Ancho de correa 25mm. Útil para paseo o como uso identificatorio",
+			"price": 1500,
+			"stock": 10,
+			"brand": "NatCan",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681410230/Pf%20Patitas%20felices/Products/Collar_con_hebilla_ph9eso.png",
+			"category": "Accesorios",
+			"subCategory": "Collares"
+		},
+		{
+			"name": "Juguetes Para Perros Hueso Cuerda 2 Nudos 17 Cm X 3unid",
+			"description": "Resistente hueso de soga cuerda de algodón. Largo 17 cm. Diámetro 1.2 cm",
+			"price": 1190,
+			"stock": 10,
+			"brand": "Price Mania",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681410843/Pf%20Patitas%20felices/Products/Juguete_soga_wixnmz.png",
+			"category": "Accesorios",
+			"subCategory": "Juguetes"
+		},
+		{
+			"name": "Pelota De Goma Limpia Dientes",
+			"description": "Limpia los dientes y reduce el mal aliento de tu mascota. Diámetro 6 cm. Material goma",
+			"price": 1500,
+			"stock": 10,
+			"brand": "Price Mania",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681411377/Pf%20Patitas%20felices/Products/Pelota_ov4ugs.png",
+			"category": "Accesorios",
+			"subCategory": "Juguetes"
+		},
+		{
+			"name": "Buzo Dachs Gris Oscuro",
+			"description": "Buzo de frisa cuello alto con mangas raglán cortas puños y cintura elastizadas Espalda estampada, cuello con cierre. Ojal en espalda para pasado de correa.",
+			"price": 4000,
+			"stock": 10,
+			"brand": "Black Owl",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681413459/Pf%20Patitas%20felices/Products/Buzo_Gris_axqg2l.png",
+			"category": "Accesorios",
+			"subCategory": "Vestimenta"
+		},
+		{
+			"name": "Buzo Cali Azulino",
+			"description": "Buzo de frisa cuello alto con mangas raglán cortas puños y cintura elastizadas Espalda estampada, cuello con cierre. Ojal en espalda para pasado de correa.",
+			"price": 4000,
+			"stock": 10,
+			"brand": "Black Owl",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681413459/Pf%20Patitas%20felices/Products/Buzo_Azul_ldqrqc.png",
+			"category": "Accesorios",
+			"subCategory": "Vestimenta"
+		},
+		{
+			"name": "Alimento Royal Canin para adultos gigantes",
+			"description": "Alimento completo para perros adultos gigantes. Desde los 18 meses.",
+			"price": 14300,
+			"stock": 10,
+			"brand": "Royal Canin",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681414831/Pf%20Patitas%20felices/Products/ar-l-producto-giant-adult-size-health-nutrition-seco_urdfnz.png",
+			"category": "Alimentos",
+			"subCategory": "Adulto"
+		},
+		{
+			"name": "Alimento Royal Canin para adultos grandes",
+			"description": "Alimento completo para perros adultos grandes. Desde los 18 meses.",
+			"price": 14300,
+			"stock": 10,
+			"brand": "Royal Canin",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681416517/Pf%20Patitas%20felices/Products/packshot-maxi-ad5-shn17-med-res-basic-1-removebg-preview_iqeyzx.png",
+			"category": "Alimentos",
+			"subCategory": "Adulto"
+		},
+		{
+			"name": "Alimento Royal Canin para adultos medianos",
+			"description": "Alimento para perros adultos medianos. Desde los 18 meses.",
+			"price": 14300,
+			"stock": 10,
+			"brand": "Royal Canin",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681415706/Pf%20Patitas%20felices/Products/alimento_medium_kzqwbm.png",
+			"category": "Alimentos",
+			"subCategory": "Adulto"
+		},
+		{
+			"name": "Alimento Royal Canin para adultos pequeños",
+			"description": "Alimento para perros adultos pequeños. Desde los 18 meses.",
+			"price": 14300,
+			"stock": 10,
+			"brand": "Royal Canin",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681416000/Pf%20Patitas%20felices/Products/mini_qf8ex6.png",
+			"category": "Alimentos",
+			"subCategory": "Adulto"
+		},
+		{
+			"name": "Alimento Royal Canin para adultos miniatura",
+			"description": "Alimento para perros adultos de talla miniatura de los 18 de edad.",
+			"price": 14300,
+			"stock": 10,
+			"brand": "Royal Canin",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681416379/Pf%20Patitas%20felices/Products/packshot-xsmall-ad-shn17-med-res-basic-removebg-preview_kerfyi.png",
+			"category": "Alimentos",
+			"subCategory": "Adulto"
+		},
+
+		{
+			"name": "Alimento para cachorros Mini y Pequeños",
+			"description": "Alimento para perros cachorros. Talla Miniatura y Pequeños. Hasta los 18 meses de edad.",
+			"price": 12300,
+			"stock": 10,
+			"brand": "Sieger",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681416973/Pf%20Patitas%20felices/Products/Sieger-Puppy-Mini-Small_c6rtfy.png",
+			"category": "Alimentos",
+			"subCategory": "Cachorro"
+		},
+
+		{
+			"name": "Alimento para cachorros Medianos y Grandes",
+			"description": "Alimento para perros cachorros. Talla Medianos y Grandes. Hasta los 18 meses de edad.",
+			"price": 12300,
+			"stock": 10,
+			"brand": "Sieger",
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681417076/Pf%20Patitas%20felices/Products/Sieger-Puppy-Medium-Large_z1qsnp.png",
+			"category": "Alimentos",
+			"subCategory": "Cachorro"
+		}
+	]
+}
