@@ -24,6 +24,10 @@
     width: 97%;
     margin-top: 5px;
 }
+.containerBtn-HDonationS > button:hover{
+    transform: scale(1.03);
+    transition: 500ms;
+}
 .containerBtn-HDonationS > button > a {
     text-decoration: none;
     color: white;

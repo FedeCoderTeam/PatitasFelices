@@ -14,10 +14,15 @@
 .mainContainerCardsHDS-Home > div > button{
     width: 20%;
     margin-bottom: 50px;
-    padding: 10px;
+    padding: 12px;
     background-color: #A65424;
     border: none;
     border-radius: 4px;
+}
+.mainContainerCardsHDS-Home > div > button:hover{
+    transform: scale(1.03);
+    background-color: #112933;
+    transition: 500ms;
 }
 .mainContainerCardsHDS-Home > div > button > a{
     text-decoration: none;
