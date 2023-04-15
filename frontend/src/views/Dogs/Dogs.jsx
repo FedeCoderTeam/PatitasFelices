@@ -12,9 +12,11 @@ import SearchDog from '../../components/SearchBar/SearchDog/SearchDog.jsx';
 const Dogs = () => {
 
     const dispatch = useDispatch();
-    const selector = useSelector((state) => state.dogsReducer.temperaments)
-    const selector1 = useSelector((state) => state.dogsReducer.colors)
-    const allDogs = useSelector((state) => state.dogsReducer.allDogs)
+    const temperaments = useSelector((state) => state.dogsReducer.temperaments)
+    const colors = useSelector((state) => state.dogsReducer.colors)
+    const allDogs = useSelector((state) => state.dogsReducer.dogs)
+    const gender = useSelector((state) => state.dogsReducer.genders)
+    console.log(allDogs.length);
 
     //----------------------------------------PAGINADO---------------------------------------------------------------
     const [currentPage, setCurrentPage] = useState(1);
@@ -31,6 +33,8 @@ const Dogs = () => {
     useEffect(() => {
             dispatch(dogsAction.getDogs())
             dispatch(dogsAction.getTemperaments())
+            dispatch(dogsAction.getDogsColors())
+            dispatch(dogsAction.genders())
         },[dispatch])
 
     
@@ -38,7 +42,11 @@ const Dogs = () => {
     return(
         <div className={style.main}>
             <div className={style.filtersContainer}>
-                <Filtros temperaments={selector} colors={selector1} />
+                <Filtros 
+                    temperaments={temperaments} 
+                    colors={colors} 
+                    gender={gender}
+                />
             </div>
 
             <div className={style.cardSection}>
