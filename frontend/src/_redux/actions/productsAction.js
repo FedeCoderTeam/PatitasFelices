@@ -2,6 +2,7 @@ import axios from 'axios'
 import { 
     getAllProducts,
     getNameProduct,
+    getProductDetail,
     } from '../reducer/productsReducer.js';
 
 
@@ -27,7 +28,19 @@ const getProductsByName = (name) => {
     }
 }
 
+const getProductsById = (id) => {
+    return async function(dispatch) {
+        try {
+            const dbData = await axios.get(`http://localhost:3001/products/${id}`);
+            dispatch(getProductDetail(dbData.data))
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
 export {
     getProducts,
     getProductsByName,
+    getProductsById,
 }

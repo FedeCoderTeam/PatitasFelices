@@ -15,6 +15,9 @@ export const productsSlice = createSlice({
         },
         getNameProduct: (state, action) => {
             state.allProducts = action.payload
+        },
+        getProductDetail: (state, action) => {
+            state.allProducts = action.payload
         }
     }
 })
@@ -22,6 +25,7 @@ export const productsSlice = createSlice({
 export const {
     getAllProducts,
     getNameProduct,
+    getProductDetail,
 } = productsSlice.actions
 
 export default productsSlice.reducer
