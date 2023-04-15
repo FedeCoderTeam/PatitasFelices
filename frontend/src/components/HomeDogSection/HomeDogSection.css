@@ -31,8 +31,7 @@
     position: absolute;
     top: 3%;
     height: 300px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+    border-radius: 15px;
 }
 .container-HDS > p{
     z-index: 1;

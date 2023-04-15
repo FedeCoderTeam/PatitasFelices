@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import * as dogsAction from "../../_redux/actions/dogsAction.js"
 import './Home.css';
 import { Link } from 'react-router-dom';
+import HomeDonationSection from '../../components/HomeDonationSection/HomeDonationSection';
 
 
 
@@ -51,6 +52,9 @@ const Home = () => {
                 </div>
                 <div>
                     <button><Link to='/dogs'>¡Conócelos a todos!</Link></button>
+                </div>
+                <div className='sectionDonationProducts-Home'>
+                    <HomeDonationSection />
                 </div>
             </div>
         </>
