@@ -13,6 +13,7 @@ import Products from './views/Products/Products.jsx';
 import NotFound from './components/NotFound/NotFound';
 import Form from './components/Form/Form';
 import dogDetailCard from './components/Cards/dogDetailCard/dogDetailCard';
+import ProductDetail from './components/ProductDetail/ProductDetail';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
           <Route path={'/form'} element={<Form />} />
           <Route path={'/dogs'} element={<Dogs />}/>
           <Route path={'/products'} element={<Products />} />
+          <Route path={'/products/:id'} element={<ProductDetail />} />
           <Route path={'*'} element={<NotFound />}/>
           <Route path={'/dogs/:id'} element={<dogDetailCard/>}/>
       </Routes>

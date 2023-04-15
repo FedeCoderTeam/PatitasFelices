@@ -17,7 +17,7 @@ const ProductCard = ({image, name, description, brand, price, id}) => {
                     <h5 className={style.price}>${price}<span className={style.priceSpan}>.00</span></h5>
                 </div>
              <div className={style.divBtn}>
-                    <Link>
+                    <Link to={`/products/${id}`}>
                         <button className={style.btnProduct}>Detalle</button>
                     </Link>
               </div>
