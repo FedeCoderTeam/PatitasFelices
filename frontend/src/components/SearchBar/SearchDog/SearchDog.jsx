@@ -8,15 +8,15 @@ const SearchDog = () => {
 
     const dispatch = useDispatch();
 
-    const [input, setInput] = useState('')
+    const [inputDog, setInputDog] = useState('')
 
     const handleInputChange = (e) => {
-        setInput(e.target.value)
+        setInputDog(e.target.value)
     }
 
     const handleOnClick = () => {
-        dispatch(dogsAction.getDogsByName(input))
-        setInput("");
+        dispatch(dogsAction.getDogsByName(inputDog))
+        setInputDog("");
     }
 
     return(

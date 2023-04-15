@@ -15,7 +15,7 @@ import {
 const getDogs = () => {
     return async function(dispatch) {
         try {
-            let dbData = await axios.get("http://localhost:3001/dogs")
+            let dbData = await axios.get("http://localhost:3001/dogs");
             dispatch(getAllDogs(dbData.data));
         } catch (error) {
             console.log(error);
@@ -23,10 +23,10 @@ const getDogs = () => {
     } 
 }
 
-const getDogsByName = (id) => {
+const getDogsByName = (name) => {
     return async function(dispatch) {
         try {
-            const dbData = await axios.get(`http://localhost:3001/dogs/${id}`);
+            const dbData = await axios.get(`http://localhost:3001/dogs?name=${name}`);
             dispatch(getNameDog(dbData.data))
         } catch (error) {
             console.log(error);
