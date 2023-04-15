@@ -63,20 +63,20 @@ router.post('/login', async (req, res) => {
 	let { email, password } = req.body
 	try {
 		const result = await loginUser(email, password);
-		res.status(200).send(result)
+		res.cookie('token', result.token, {maxAge: 86400, httpOnly: true}).status(200).json({error: null, ...result})
 	} catch (error) {
-		res.status(401).json({error: error.message})
+		res.clearCookie('token').status(401).json({error: error.message, authenticated: false, token: null, user: null})
 	}
 })
 
 //CREATE AUTH (TOKEN)
 router.post('/auth', async (req, res) => {
-	let { token } = req.body
+	const token = req.cookies.token
 	try {
-		await authUser(token);
-		res.status(200).json({authentication: true})
+		let result = await authUser(token);
+		res.cookie('token', result.token, {maxAge: 86400, httpOnly: true}).status(200).json({error: null, ...result})
 	} catch (error) {
-		res.status(401).json({authentication: false})
+		res.clearCookie('token').status(401).json({error: error.message, authenticated: false, token: null, user: null})
 	}
 })
 //CREATE LOGOUT 

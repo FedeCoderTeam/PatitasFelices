@@ -1,10 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-
 const initialState = {
     isFetching: false,
+    error: null,
     isAuthenticated: false,
-    user: {}
+    user: null
 }
 
 export const authSlice = createSlice({
@@ -15,10 +15,14 @@ export const authSlice = createSlice({
             state.isFetching = action.payload
         },
         loginUser: (state, action) => {
-            state.user = action.payload
+            state.error = action.payload.error
+            state.isAuthenticated = action.payload.isAuthenticated
+            state.user = action.payload.user
         },
         authUser: (state, action) => {
-            state.isAuthenticated = action.payload
+            state.error = action.payload.error
+            state.isAuthenticated = action.payload.isAuthenticated
+            state.user = action.payload.user
         }
     }
 })
