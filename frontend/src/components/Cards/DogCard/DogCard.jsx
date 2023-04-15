@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import style from './dogCard.module.css';
 import animals from './img/animals.png';
 import bone from './img/bone.png';
-import gorDetailCard from '../dogDetailCard/dogDetailCard.jsx';
+// import {dogDetailCard} from '../dogDetailCard/dogDetailCard.jsx';
 import { useState } from 'react';
 
 
@@ -20,6 +20,7 @@ const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail
     const [showDetailCard, setShowDetailCard] = useState(false);
 
     const handleShowDetailCard = () => {
+        // window.location.href = "/dogs"
         setShowDetailCard (!showDetailCard);
     }
     
@@ -55,10 +56,11 @@ const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail
                     </div>   
                 </div> 
                 <div className={style.containerButton}>
-                        <Link to = '/dogCardDetail'>
-                            <button className={style.button} onClick= {handleShowDetailCard}>Ver más información</button>    
-                        </Link>
+                    <Link to = '/dogs'>
+                        <button className={style.button} onClick= {handleShowDetailCard}>Ver más información</button>    
+                    </Link>
                 </div>
+                <Outlet/>
             </div>
         </>
     )
