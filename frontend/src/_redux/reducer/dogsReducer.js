@@ -1,17 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    dogs: [], // filtrado
-    allDogs: [], //estado original
+    dogs: [], // el que se puede filtrar
+    allDogs: [], //no lo cambies papu
+    filtered: [], // el que mantiene el ultimo filtro aplicado
     temperaments: [],
     colors: [],
-    genres: [],
+    genders: [],
     sortBy: 'name',
     sortOrder: 'asc',
-    filterByWeigth: null,
-    filterBySize: null,
-    filterByAge: null,
-    filterByGenre: null,
+    setSize: "All",
+    setColor: "All",
+    setGender: "All",
+    setTemperaments: "All",
 }
 
 export const dogsSlice = createSlice({
@@ -21,6 +22,7 @@ export const dogsSlice = createSlice({
         getAllDogs: (state, action) => {
             state.dogs = action.payload
             state.allDogs = action.payload
+            state.filtered = action.payload
         },
 
         getAllTemperaments: (state, action) => {
@@ -33,6 +35,10 @@ export const dogsSlice = createSlice({
 
         getNameDog: (state, action) => {
             state.allDogs = action.payload
+        },
+
+        getGenders: (state, action) => {
+            state.genders = action.payload
         },
 
         setSort: (state, action) => {
@@ -54,16 +60,61 @@ export const dogsSlice = createSlice({
                 return 0;
             });
         },
-        
-        setfilterByWeigth(state, action) {
-            state.filterByWeigth = action.payload;
+
+        setFilters: (state, action) => {
+            if(action.payload.setColor) {
+                return{
+                    ...state,
+                    setColor: action.payload.setColor
+                }
+            }
+            if(action.payload.setSize) {
+                return{
+                    ...state,
+                    setSize: action.payload.setSize
+                }
+            }
+            if (action.payload.setTemperaments) {
+                return{
+                    ...state,
+                    setTemperaments: action.payload.setTemperaments
+                }
+            }
+            if(action.payload.setGender){
+                return{
+                    ...state,
+                    setGender: action.payload.setGender
+                }
+            }
+            return {
+                ...state
+            }
         },
-        setfilterBySize(state, action) { //Giant, Large, Medium, Small, Mini
-            state.filterBySize = action.payload;
-        },
-        setfilterByAge(state, action) {
-            state.filterByAge = action.payload;
-        },
+
+        filtered: (state) => {
+            let filtered = state.allDogs
+            
+            if(state.setColor !== 'All'){
+                filtered = filtered.filter((el) => el.colors.includes(state.setColor))
+            }
+            
+            if(state.setTemperaments !== "All"){
+                filtered = filtered.filter((el) => el.temperaments.includes(state.setTemperaments))
+            }
+            
+            if(state.setSize !== 'All'){
+                filtered = filtered.filter((el) => el.size === state.setSize)
+            }
+            
+            if(state.setGender !== 'All'){
+                filtered = filtered.filter((el) => el.gender === state.setGender)
+            }
+            return {
+                ...state,
+                dogs: filtered,
+                filtered: filtered
+            }
+        }
     },
 
 })
@@ -75,10 +126,10 @@ export const {
     getAllDogsColors,
     setSort,
     sortDogs,
-    setfilterByWeigth,
-    setfilterBySize,
-    setfilterByAge,
     getNameDog,
+    setFilters,
+    filtered,
+    getGenders,
     } = dogsSlice.actions
 
 

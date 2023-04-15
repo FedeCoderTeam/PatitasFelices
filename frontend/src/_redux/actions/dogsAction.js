@@ -9,6 +9,9 @@ import {
     setfilterBySize, 
     setfilterByAge,
     getNameDog,
+    setFilters,
+    filtered,
+    getGenders,
 } from "../reducer/dogsReducer.js";
 
 
@@ -45,6 +48,17 @@ const getTemperaments = () => {
     }
 }
 
+const genders = () => {
+    return async function(dispatch) {
+        try {
+            let dbData = await axios.get("http://localhost:3001/genders")
+            dispatch(getGenders(dbData.data))
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
 const getDogsColors = () => {
     return async function(dispatch) {
         try {
@@ -63,10 +77,26 @@ const sortAction = (sortBy, sortOrder) => {
     }
 }
 
+const setFilter = (set) => {
+    return function(dispatch){
+        dispatch(setFilters(set))
+    }
+}
+
+const filter = () => {
+    return function(dispatch){
+        dispatch(filtered())
+    }
+}
+
+
 export {
     getDogs,
     getTemperaments,
     getDogsColors,
     sortAction,
     getDogsByName,
+    setFilter,
+    genders,
+    filter,
 }
