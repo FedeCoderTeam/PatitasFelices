@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import TextField from '@mui/material/TextField';
 import * as dogsAction from "../../../_redux/actions/dogsAction.js";
+import style from './searchDog.module.css'
 
 const SearchDog = () => {
 
@@ -21,14 +22,15 @@ const SearchDog = () => {
 
     return(
         <>
-            <div>
-                <TextField
+            <div className={style.searchBar}>
+                {/* <TextField
                 id="filled-basic" 
                 label="Buscar..." 
                 variant="filled"
                 onChange={(e) => handleInputChange(e)}
-                />
-                <button onClick={(e) => handleOnClick(e)} >🔍</button>
+                /> */}
+                <input className={style.input} type='search' placeholder='Search...' onChange={handleInputChange}/>
+                {/* <button onClick={(e) => handleOnClick(e)} >🔍</button> */}
             </div>
         </>
     )
