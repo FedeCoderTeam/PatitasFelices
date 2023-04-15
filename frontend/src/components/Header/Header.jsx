@@ -5,7 +5,8 @@ import style from "../Header/header.module.css";
 
 export default function Header() {
     return(
-    <div className = {style.mainContainer}>
+    <div className = {style.mainContainer} data-aos="fade-up"
+    data-aos-anchor-placement="center-bottom">
 
         <div className={style.container}>
 
