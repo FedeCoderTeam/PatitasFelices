@@ -29,6 +29,7 @@ const getAllDogs = async () => {
 				weight: alldogs[i].weight,
 				castrated: alldogs[i].castrated,
 				image: alldogs[i].image,
+				description: alldogs[i].description,
 			});
 
 			let colors = await color.findAll({ where: { name: alldogs[i].colors } });
@@ -62,6 +63,7 @@ const getAllDogs = async () => {
 			weight: el.weight,
 			castrated: el.castrated,
 			image: el.image,
+			description: el.description,
 			temperaments: el.temperaments.map((t) => t.name),
 			colors: el.colors.map((c) => c.name),
 			gender: genderStr,
@@ -110,6 +112,7 @@ const getDogById = async (id) => {
 			weight: dogui.weight,
 			castrated: dogui.castrated,
 			image: dogui.image,
+			description: dogui.description,
 			temperaments: dogui.temperaments.map((t) => t.name),
 			colors: dogui.colors.map((c) => c.name),
 			gender: genderStr,
@@ -131,6 +134,7 @@ const postNewDog = async (
 	colors,
 	genders,
 	image,
+	description,
 ) => {
 	if (
 		!name ||
@@ -141,7 +145,8 @@ const postNewDog = async (
 		!tempers ||
 		!colors ||
 		!genders ||
-		!image
+		!image ||
+		!description
 	) {
 		throw new Error(
 			'Falta completar algún o algunos datos (name, age, size, weight, castrated, temperament, color, gender)',
@@ -154,6 +159,7 @@ const postNewDog = async (
 			weight: weight,
 			castrated: castrated,
 			image: image,
+			description: description,
 		});
 		let temper = await temperament.findAll({
 			where: {
@@ -189,6 +195,7 @@ const updateDog = async (
 	colors,
 	genders,
 	image,
+	description,
 	adopted,
 	isDisabled,
 ) => {
@@ -209,6 +216,7 @@ const updateDog = async (
 			weight: weight,
 			castrated: castrated,
 			image: image,
+			description: description,
 			adopted: adopted,
 			isDisabled: isDisabled,
 		});

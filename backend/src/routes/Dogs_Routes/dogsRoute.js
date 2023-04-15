@@ -25,7 +25,6 @@ router.get('/', async (req, res) => {
 	}
 });
 
-
 router.get('/:id', async (req, res) => {
 	const { id } = req.params;
 	try {
@@ -37,10 +36,19 @@ router.get('/:id', async (req, res) => {
 	}
 });
 
-
 router.post('/', async (req, res) => {
-	let { name, age, size, weight, castrated, tempers, colors, genders, image } =
-		req.body;
+	let {
+		name,
+		age,
+		size,
+		weight,
+		castrated,
+		tempers,
+		colors,
+		genders,
+		image,
+		description,
+	} = req.body;
 	try {
 		await postNewDog(
 			name,
@@ -52,6 +60,7 @@ router.post('/', async (req, res) => {
 			colors,
 			genders,
 			image,
+			description,
 		);
 		res.status(200).send(`${name} se agregó correctamente`);
 	} catch (error) {
@@ -70,10 +79,11 @@ router.put('/update/:id', async (req, res) => {
 		colors,
 		genders,
 		image,
+		description,
 		adopted,
 		isDisabled,
 	} = req.body;
-	let {id}= req.params
+	let { id } = req.params;
 	try {
 		let updateDogui = await updateDog(
 			id,
@@ -86,6 +96,7 @@ router.put('/update/:id', async (req, res) => {
 			colors,
 			genders,
 			image,
+			description,
 			adopted,
 			isDisabled,
 		);
