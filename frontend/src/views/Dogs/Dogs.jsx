@@ -5,6 +5,7 @@ import * as dogsAction from "../../_redux/actions/dogsAction.js"
 import Filtros from '../../components/Filtros/Filtros.jsx';
 import DogCard from '../../components/Cards/DogCard/DogCard.jsx';
 import PaginadoDogs from '../../components/Paginado/PaginadoDogs/PaginadoDogs.jsx';
+import style from './dogs.module.css'
 import SearchDog from '../../components/SearchBar/SearchDog/SearchDog.jsx';
 
 
@@ -35,30 +36,39 @@ const Dogs = () => {
     
         
     return(
-        <>  
-            <SearchDog />
-            <Filtros temperaments={selector} colors={selector1} />
-            <PaginadoDogs 
-            dogsPerPage={dogsPerPage}
-            allDogs={allDogs.length}
-            paginado={paginado}
-            />
-            <div>
-            {currentDogs?.map((e) => {
-                return(
-                    <DogCard
-                    key={e.id}
-                    id={e.id}
-                    image={e.image}
-                    name={e.name}
-                    age={e.age}
-                    gender={e.gender}
-                    size={e.size}
-                    />
-                )
-            })}
+        <div className={style.main}>
+            <div className={style.filtersContainer}>
+                <Filtros temperaments={selector} colors={selector1} />
             </div>
-        </>
+
+            <div className={style.cardSection}>
+                <div className={style.paginatedContainer}>
+                    <PaginadoDogs 
+                    dogsPerPage={dogsPerPage}
+                    allDogs={allDogs.length}
+                    paginado={paginado}
+
+                    />
+                </div>
+                
+                <div className={style.cardsContainer}>
+                {currentDogs?.map((e) => {
+                    return(
+                        <DogCard
+                        key={e.id}
+                        id={e.id}
+                        image={e.image}
+                        name={e.name}
+                        age={e.age}
+                        gender={e.gender}
+                        size={e.size}
+                        temperaments={e.temperaments}
+                        />
+                    )
+                })}
+                </div>
+            </div>
+        </div>
     )
 }
 

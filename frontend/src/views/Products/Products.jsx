@@ -42,6 +42,7 @@ const Products = () => {
                     id={e.id}
                     image={e.image}
                     name={e.name}
+                    brand={e.brand}
                     description={e.description}
                     price={e.price}
                     />
