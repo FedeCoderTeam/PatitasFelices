@@ -1,13 +1,10 @@
 const { Router } = require('express');
-const {
-	getAllDogs,
-	getDogsByName,
-	getDogById,
-	postNewDog,
-	updateDog,
-	deleteDog,
-} = require('../../controllers/Dogs_Controllers/dogsControllers');
-
+const getAllDogs = require('../../controllers/Dogs_Controllers/getAllDogsController');
+const getDogsByName = require ('../../controllers/Dogs_Controllers/getDogsByNameController')
+const getDogById = require ('../../controllers/Dogs_Controllers/getDogByIdController')
+const postNewDog= require ('../../controllers/Dogs_Controllers/postNewDogController')
+const updateDog= require ('../../controllers/Dogs_Controllers/updateDogController')
+const deleteDog= require ('../../controllers/Dogs_Controllers/deleteDogController')
 const router = Router();
 
 router.get('/', async (req, res) => {
