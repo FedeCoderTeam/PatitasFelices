@@ -4,6 +4,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import * as DogsReducer from "../../_redux/actions/dogsAction.js";
 
 
 const ITEM_HEIGHT = 48;

@@ -8,15 +8,15 @@ const SearchProduct = () => {
 
     const dispatch = useDispatch();
 
-    const [input, setInput] = useState('')
+    const [inputProduct, setInputProduct] = useState('')
 
     const handleInputChange = (e) => {
-        setInput(e.target.value)
+        setInputProduct(e.target.value)
     }
 
     const handleOnClick = () => {
-        dispatch(productsAction.getProductsByName(input))
-        setInput("");
+        dispatch(productsAction.getProductsByName(inputProduct))
+        setInputProduct("");
     }
 
     return(
