@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
+import SearchDog from '../SearchBar/SearchDog/SearchDog';
 import style from './filtros.module.css'
 
 const ITEM_HEIGHT = 48;
@@ -127,7 +128,8 @@ const Filtros = (props) => {
         <div className={style.main}>
             <form action="" className={style.formControl}>
                 <div className={style.searchBar}>
-                    <input className={style.input} type='search' placeholder='Search...'/>
+                    {/* <input className={style.input} type='search' placeholder='Search...'/> */}
+                    <SearchDog/>
                 </div>
 
                 <div>
