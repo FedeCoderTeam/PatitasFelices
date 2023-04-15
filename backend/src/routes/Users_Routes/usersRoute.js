@@ -1,6 +1,10 @@
 const { Router } = require ('express');
-const {getAllUsers, getUserById, postNewUser, updateUser, loginUser, authUser} = require ('../../controllers/User_Controllers/userControllers');
-
+const getAllUsers = require ('../../controllers/User_Controllers/getAllUsersController');
+const getUserById= require ('../../controllers/User_Controllers/getUserByIdController')
+const postNewUser= require ('../../controllers/User_Controllers/postNewUserController')
+const updateUser= require ('../../controllers/User_Controllers/updateUserController')
+const loginUser= require ('../../controllers/User_Controllers/loginUserController')
+const authUser= require ('../../controllers/User_Controllers/authUserController')
 const router= Router();
 
 //GET ALL USERS
