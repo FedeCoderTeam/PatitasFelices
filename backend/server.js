@@ -6,28 +6,24 @@ const dogsGenders = require('./src/controllers/Gender_Controllers/genderControll
 const getCategory = require('./src/controllers/Category_Controllers/categoryControllers');
 const getSubCategory = require('./src/controllers/SubCategory_Controllers/subCategoryControllers');
 const getAllProducts = require('./src/controllers/Product_Controllers/productControllers');
-const {
-	getAllDogs,
-} = require('./src/controllers/Dogs_Controllers/dogsControllers');
+const getAllDogs = require('./src/controllers/Dogs_Controllers/getAllDogsController');
 const {
 	userRoles,
 } = require('./src/controllers/Roles_Controllers/rolesControlers');
-const {
-	getAllUsers,
-} = require('./src/controllers/User_Controllers/userControllers');
+const getAllUsers = require('./src/controllers/User_Controllers/getAllUsersController');
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(async () => {
 	try {
 		await Promise.all([
+			getCategory(),
+			await getSubCategory(),
 			dogsTemperaments(),
 			dogsColors(),
 			dogsGenders(),
-			getAllDogs(),
 			userRoles(),
 			getAllUsers(),
-			getCategory(),
-			getSubCategory(),
+			getAllDogs(),
 			getAllProducts(),
 		]);
 

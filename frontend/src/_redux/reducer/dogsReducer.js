@@ -5,6 +5,7 @@ const initialState = {
     allDogs: [], //estado original
     temperaments: [],
     colors: [],
+    genres: [],
     sortBy: 'name',
     sortOrder: 'asc',
     filterByWeigth: null,

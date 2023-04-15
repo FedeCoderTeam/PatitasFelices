@@ -1,10 +1,11 @@
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
+// import OutlinedInput from '@mui/material/OutlinedInput';
+// import MenuItem from '@mui/material/MenuItem';
+// import FormControl from '@mui/material/FormControl';
+// import Select from '@mui/material/Select';
+// import TextField from '@mui/material/TextField';
+import SearchDog from '../SearchBar/SearchDog/SearchDog';
 import style from './filtros.module.css'
 
 const ITEM_HEIGHT = 48;
@@ -127,19 +128,19 @@ const Filtros = (props) => {
         <div className={style.main}>
             <form action="" className={style.formControl}>
                 <div className={style.searchBar}>
-                    <input className={style.input} type='search' placeholder='Search...'/>
+                    <SearchDog/>
                 </div>
 
-                <div>
-                    <div>Ordenamiento</div>
-                    <div>
+                <div className={style.ordenContainer}>
+                    <div className={style.orden}>Ordenar por</div>
+                    <div className={style.edad}>
                         <div>Edad</div>
                         <select name="" id="">
                             <option value=""></option>
                         </select>
                     </div>
 
-                    <div>
+                    <div className={style.peso}>
                         <div>Peso</div>
                         <select name="" id="">
                             <option value=""></option>
@@ -147,16 +148,16 @@ const Filtros = (props) => {
                     </div>
                 </div>
 
-                <div>
-                    <div>Filtros</div>
-                    <div>
+                <div className={style.filtroContainer}>
+                    <div className={style.filtro}>Filtrar por</div>
+                    <div className={style.tamaño}>
                         <div>Tamaño</div>
                         <select name="" id="">
                             <option value=""></option>
                         </select>
                     </div>
 
-                    <div>
+                    <div className={style.color}>
                         <div>Color</div>
                         <select name="" id="" value={color} onChange={handleColorChange}>
                             <option value=""></option>
@@ -172,7 +173,7 @@ const Filtros = (props) => {
                         </select>
                     </div>
 
-                    <div>
+                    <div className={style.temperamento}>
                         <div>Temperamento</div>
                         <select name="" id="" value={temp} onChange={handleTempChange}>
                             <option value=""></option>

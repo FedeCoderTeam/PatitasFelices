@@ -16,10 +16,10 @@ const getProducts = () => {
     }
 }
 
-const getProductsByName = (id) => {
+const getProductsByName = (name) => {
     return async function(dispatch) {
         try {
-            const dbData = await axios.get(`http://localhost:3001/dogs/${id}`);
+            const dbData = await axios.get(`http://localhost:3001/products?name=${name}`);
             dispatch(getNameProduct(dbData.data))
         } catch (error) {
             console.log(error);
