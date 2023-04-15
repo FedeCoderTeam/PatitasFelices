@@ -38,7 +38,6 @@ const Dogs = () => {
     return(
         <div className={style.main}>
             <div className={style.filtersContainer}>
-                <SearchDog />
                 <Filtros temperaments={selector} colors={selector1} />
             </div>
 
@@ -50,7 +49,7 @@ const Dogs = () => {
                     paginado={paginado}
 
                     />
-              </div>
+                </div>
                 
                 <div className={style.cardsContainer}>
                 {currentDogs?.map((e) => {
