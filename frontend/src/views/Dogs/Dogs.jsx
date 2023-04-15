@@ -63,6 +63,7 @@ const Dogs = () => {
                         age={e.age}
                         gender={e.gender}
                         size={e.size}
+                        temperaments={e.temperaments}
                         />
                     )
                 })}
