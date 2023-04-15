@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-// import style from '../DogCard/dogCard.module.css';
+import { Link, Outlet } from 'react-router-dom';
 import style from './dogCard.module.css';
 import animals from './img/animals.png';
 import bone from './img/bone.png';
+// import {dogDetailCard} from '../dogDetailCard/dogDetailCard.jsx';
+import { useState } from 'react';
 
 
 
@@ -16,6 +17,13 @@ const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail
     // favoriteIcon.addEventListener('click', function() {
     //   // agregar dog favorito
     // });
+    const [showDetailCard, setShowDetailCard] = useState(false);
+
+    const handleShowDetailCard = () => {
+        // window.location.href = "/dogs"
+        setShowDetailCard (!showDetailCard);
+    }
+    
 
     return(
         <>
@@ -48,10 +56,11 @@ const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail
                     </div>   
                 </div> 
                 <div className={style.containerButton}>
-                        <Link>
-                            <button className={style.button}>Detalle</button>    
-                        </Link>
-                    </div>
+                    <Link to = '/dogs'>
+                        <button className={style.button} onClick= {handleShowDetailCard}>Ver más información</button>    
+                    </Link>
+                </div>
+                <Outlet/>
             </div>
         </>
     )

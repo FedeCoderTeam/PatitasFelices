@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const dogCardDetail = ({id, name, age, size, weight, image, description,color, gender, temperament}) => {
+const dogDetailCard = ({id, name, age, size, weight, image, description,color, gender, temperament}) => {
 
     return (
         <div className="dogCardDetail">
@@ -28,4 +28,4 @@ const dogCardDetail = ({id, name, age, size, weight, image, description,color, g
     )
 }
 
-export default dogCardDetail;
+export default dogDetailCard
