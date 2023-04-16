@@ -1,5 +1,5 @@
 import Header from './components/Header/Header';
-import {Route, Routes} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Home from './views/Home/Home';
 import About from './views/About/About';
 import Footer from './components/Footer/Footer';
@@ -14,33 +14,56 @@ import NotFound from './components/NotFound/NotFound';
 import Form from './components/Form/Form';
 import dogDetailCard from './components/Cards/dogDetailCard/dogDetailCard';
 import ProductDetail from './components/ProductDetail/ProductDetail';
+import * as dogsAction from '../src/_redux/actions/dogsAction';
+import * as productsAction from '../src/_redux/actions/productsAction';
+import * as authActions from './_redux/actions/authAction';
+import BackDrop from './components/BackDrop/BackDrop';
+
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 function App() {
+	const location = useLocation();
+	const dispatch = useDispatch();
 
-  const location = useLocation();
+	useEffect(() => {
+        dispatch(authActions.authUserAction())
+		dispatch(dogsAction.getDogs());
+		dispatch(dogsAction.getTemperaments());
+		dispatch(dogsAction.getDogsColors());
+		dispatch(dogsAction.genders());
+		dispatch(productsAction.getProducts());
+	}, [dispatch]);
 
-  return (
-    <>
-      {/* <Header/>  */}
-      { location.pathname !=='/' && location.pathname !=='/login' && location.pathname !=='/register' && location.pathname !=='/form' && <Nav />} 
-      
-      <Routes>
-          <Route path={'/'} element={<Landing/>} />
-          <Route path={'/home'} element={<Home/>} />
-          <Route path={'/about'} element={<About/>} />
-          <Route path={'/register'} element={<Register />} />
-          <Route path={'/login'} element={<LoginView />} /> 
-          <Route path={'/form'} element={<Form />} />
-          <Route path={'/dogs'} element={<Dogs />}/>
-          <Route path={'/products'} element={<Products />} />
-          <Route path={'/products/:id'} element={<ProductDetail />} />
-          <Route path={'*'} element={<NotFound />}/>
-          <Route path={'/dogs/:id'} element={<dogDetailCard/>}/>
-      </Routes>
-      { location.pathname !=='/' && location.pathname !=='/login' && location.pathname !=='/register' && location.pathname !=='/form' && <Footer />} 
-      {/* <Footer/> */}
-    </>
-  );
+	return (
+		<>
+			{/* <Header/>  */}
+			{location.pathname !== '/' &&
+				location.pathname !== '/login' &&
+				location.pathname !== '/register' &&
+				location.pathname !== '/form' && <Nav />}
+
+			<Routes>
+				<Route path={'/'} element={<Landing />} />
+				<Route path={'/home'} element={<Home />} />
+				<Route path={'/about'} element={<About />} />
+				<Route path={'/register'} element={<Register />} />
+				<Route path={'/login'} element={<LoginView />} />
+				<Route path={'/form'} element={<Form />} />
+				<Route path={'/dogs'} element={<Dogs />} />
+				<Route path={'/products'} element={<Products />} />
+				<Route path={'/products/:id'} element={<ProductDetail />} />
+				<Route path={'*'} element={<NotFound />} />
+				<Route path={'/dogs/:id'} element={<dogDetailCard />} />
+			</Routes>
+			{location.pathname !== '/' &&
+				location.pathname !== '/login' &&
+				location.pathname !== '/register' &&
+				location.pathname !== '/form' && <Footer />}
+            <BackDrop/>
+			{/* <Footer/> */}
+		</>
+	);
 }
 
 export default App;

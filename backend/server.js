@@ -1,4 +1,4 @@
-const server = require('./src/app');
+const app = require('./src/app');
 const { conn } = require('./src/database/db');
 const dogsTemperaments = require('./src/controllers/Temperaments_Controllers/temperamentsControllers');
 const dogsColors = require('./src/controllers/Color_Controllers/colorsControllers');
@@ -11,8 +11,11 @@ const {
 	userRoles,
 } = require('./src/controllers/Roles_Controllers/rolesControlers');
 const getAllUsers = require('./src/controllers/User_Controllers/getAllUsersController');
+const http = require('http');
 
 // Syncing all the models at once.
+const server = http.createServer(app)
+
 conn.sync({ force: false }).then(async () => {
 	try {
 		await Promise.all([

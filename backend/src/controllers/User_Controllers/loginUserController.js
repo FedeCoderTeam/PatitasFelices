@@ -1,10 +1,10 @@
-const { user , session} = require ('../../database/db')
+const { user , session, role} = require ('../../database/db')
 const jwt = require('jsonwebtoken')
 
 const loginUser = async (email, password) => {
     if(!email || !password) throw new Error('Falta completar algún o algunos datos')
 
-    const findUser = await user.findOne({where: {email}})
+    const findUser = await user.findOne({where: {email}, include: [{model: role}]})
 
     if(!findUser) throw new Error('No se encuentra en la base de datos')
     if(findUser.isDisabled) throw new Error('Tu cuenta esta desactivada. Si crees que es un error comunicalo con algun staff.')
@@ -34,6 +34,7 @@ const loginUser = async (email, password) => {
                 email: findUser.email,
                 image: findUser.image,
                 isVerified: findUser.isVerified,
+                role: findUser.role.name
             }
         }
     } else  throw new Error('El email o contraseña no son validos.')

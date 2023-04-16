@@ -5,40 +5,62 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as dogsAction from "../../../_redux/actions/dogsAction.js";
 
 const DogFilters = (props) => {
-    
+
     const dispatch = useDispatch();
     const setTemp = useSelector((state) => state.dogsReducer.setTemperaments)
     const setColor = useSelector((state) => state.dogsReducer.setColor)
     const setSize = useSelector((state) => state.dogsReducer.setSize)
     const setGender = useSelector((state) => state.dogsReducer.setGender)
-    
+
+    const handleOrder = (event, by) => {
+        dispatch(
+            dogsAction.setFilter({
+                sortOrder: event.target.value,
+                sortBy: by,
+            }),
+        );
+        dispatch(dogsAction.sortAction());
+    };
+
     const handleColor = (event) => {
-        dispatch(dogsAction.setFilter({
-            setColor: event.target.value
-        }))
-        dispatch(dogsAction.filter())
-    }
-    
+        dispatch(
+            dogsAction.setFilter({
+                setColor: event.target.value,
+            }),
+        );
+        dispatch(dogsAction.filter());
+        dispatch(dogsAction.sortAction());
+    };
+
     const handleTemperaments = (event) => {
-        dispatch(dogsAction.setFilter({
-            setTemperaments: event.target.value
-        }))
-        dispatch(dogsAction.filter())
-    }
-    
+        dispatch(
+            dogsAction.setFilter({
+                setTemperaments: event.target.value,
+            }),
+        );
+        dispatch(dogsAction.filter());
+        dispatch(dogsAction.sortAction());
+    };
+
     const handleSize = (event) => {
-        dispatch(dogsAction.setFilter({
-            setSize: event.target.value
-        }))
-        dispatch(dogsAction.filter())
-    }
+        dispatch(
+            dogsAction.setFilter({
+                setSize: event.target.value,
+            }),
+        );
+        dispatch(dogsAction.filter());
+        dispatch(dogsAction.sortAction());
+    };
 
     const handleGender = (event) => {
-        dispatch(dogsAction.setFilter({
-            setGender: event.target.value
-        }))
-        dispatch(dogsAction.filter())
-    }
+        dispatch(
+            dogsAction.setFilter({
+                setGender: event.target.value,
+            }),
+        );
+        dispatch(dogsAction.filter());
+        dispatch(dogsAction.sortAction());
+    };
     
     return (
         <div className={style.main}>
@@ -51,15 +73,35 @@ const DogFilters = (props) => {
                     <div className={style.orden}>Ordenar por</div>
                     <div className={style.edad}>
                         <div>Edad</div>
-                        <select name="" id="">
-                            <option value=""></option>
+                        <select
+                            name=""
+                            id=""
+                            onChange={(event) => {
+                                handleOrder(event, 'age');
+                            }}
+                        >
+                            <option selected disabled>
+                                Elegir orden
+                            </option>
+                            <option value="asc">Menor a mayor</option>
+                            <option value="desc">Mayor a menor</option>
                         </select>
                     </div>
     
                     <div className={style.peso}>
                         <div>Peso</div>
-                        <select name="" id="">
-                            <option value=""></option>
+                        <select
+                            name=""
+                            id=""
+                            onChange={(event) => {
+                                handleOrder(event, 'weight');
+                            }}
+                        >
+                            <option selected disabled>
+                                Elegir orden
+                            </option>
+                            <option value="asc">Más liviano a más pesado</option>
+                            <option value="desc">Más pesado a más liviano</option>
                         </select>
                     </div>
                 </div>
@@ -145,5 +187,4 @@ const DogFilters = (props) => {
         </div>
     )
     }
-
 export default DogFilters;
