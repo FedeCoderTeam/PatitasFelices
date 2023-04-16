@@ -1,82 +1,83 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import * as dogsAction from "../../_redux/actions/dogsAction.js"
+import * as dogsAction from '../../_redux/actions/dogsAction.js';
 import Filtros from '../../components/Filtros/Filtros.jsx';
 import DogCard from '../../components/Cards/DogCard/DogCard.jsx';
 import PaginadoDogs from '../../components/Paginado/PaginadoDogs/PaginadoDogs.jsx';
-import style from './dogs.module.css'
-import SearchDog from '../../components/SearchBar/SearchDog/SearchDog.jsx';
-
+import style from './dogs.module.css';
 
 const Dogs = () => {
+	const dispatch = useDispatch();
+	const allDogs = useSelector((state) => state.dogsReducer.dogs);
+	const temperaments = useSelector((state) => state.dogsReducer.temperaments);
+	const colors = useSelector((state) => state.dogsReducer.colors);
+	const gender = useSelector((state) => state.dogsReducer.genders);
+	let currentPage = useSelector((state) => state.dogsReducer.currentPage);
 
-    const dispatch = useDispatch();
-    const temperaments = useSelector((state) => state.dogsReducer.temperaments)
-    const colors = useSelector((state) => state.dogsReducer.colors)
-    const allDogs = useSelector((state) => state.dogsReducer.dogs)
-    const gender = useSelector((state) => state.dogsReducer.genders)
+	//----------------------------------------PAGINADO---------------------------------------------------------------
+	const [dogsPerPage] = useState(7);
+	const [range, setRange] = useState({ firts: 0, last: 7 });
+	const [currentDogs, setCurrentDogs] = useState(
+		allDogs.slice(range.firts, range.last),
+	);
+	const paginado = (pageNumber) => {
+		dispatch(dogsAction.setPage(pageNumber));
+	};
+	//---------------------------------------------------------------------------------------------------------------
 
-    //----------------------------------------PAGINADO---------------------------------------------------------------
-    const [currentPage, setCurrentPage] = useState(1);
-    const [dogsPerPage] = useState(7);
-    const indexOfLastDog = currentPage * dogsPerPage
-    const indexOfFirstDog = indexOfLastDog - dogsPerPage;
-    const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog)
+	useEffect(() => {
+		setCurrentDogs(allDogs?.slice(range.firts, range.last));
 
-    const paginado = (pageNumber) => {
-        setCurrentPage(pageNumber)
-    }
-    //---------------------------------------------------------------------------------------------------------------
+		setRange({
+			firts: (currentPage - 1) * dogsPerPage,
+			last: currentPage * dogsPerPage,
+		});
+	}, [dispatch, allDogs, range.firts, range.last, currentPage, dogsPerPage]);
 
-    useEffect(() => {
-            dispatch(dogsAction.getDogs())
-            dispatch(dogsAction.getTemperaments())
-            dispatch(dogsAction.getDogsColors())
-            dispatch(dogsAction.genders())
-        },[dispatch])
+	return (
+		<div className={style.main}>
+			<div className={style.filtersContainer}>
+				<Filtros
+					allDogs={allDogs}
+					temperaments={temperaments}
+					colors={colors}
+					gender={gender}
+				/>
+			</div>
 
-    
-        
-    return(
-        <div className={style.main}>
-            <div className={style.filtersContainer}>
-                <Filtros 
-                    temperaments={temperaments} 
-                    colors={colors} 
-                    gender={gender}
-                />
-            </div>
+			<div className={style.cardSection}>
+				<div className={style.paginatedContainer}>
+					<PaginadoDogs
+						dogsPerPage={dogsPerPage}
+						allDogs={allDogs?.length}
+						paginado={paginado}
+					/>
+				</div>
 
-            <div className={style.cardSection}>
-                <div className={style.paginatedContainer}>
-                    <PaginadoDogs 
-                    dogsPerPage={dogsPerPage}
-                    allDogs={allDogs.length}
-                    paginado={paginado}
-
-                    />
-                </div>
-                
-                <div className={style.cardsContainer}>
-                {currentDogs?.map((e) => {
-                    return(
-                        <DogCard
-                        key={e.id}
-                        id={e.id}
-                        image={e.image}
-                        name={e.name}
-                        age={e.age}
-                        gender={e.gender}
-                        size={e.size}
-                        temperaments={e.temperaments}
-                        />
-                    )
-                })}
-                </div>
-            </div>
-        </div>
-    )
-}
+				{!currentDogs.length ? (
+					<h1>NOT FOUND</h1>
+				) : (
+					<div className={style.cardsContainer}>
+						{currentDogs?.map((e) => {
+							return (
+								<DogCard
+									key={e.id}
+									id={e.id}
+									image={e.image}
+									name={e.name}
+									age={e.age}
+									gender={e.gender}
+									size={e.size}
+									temperaments={e.temperaments}
+								/>
+							);
+						})}
+					</div>
+				)}
+			</div>
+		</div>
+	);
+};
 
 export default Dogs;
