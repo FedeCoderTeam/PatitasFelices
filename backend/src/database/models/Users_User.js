@@ -1,11 +1,12 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes} = require('sequelize');
 
 function userModel(database) {
     return database.define('user', {
         id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUID,
             primaryKey: true,
-            autoIncrement: true,
+            allowNull: false,
+            defaultValue: DataTypes.UUIDV4
         },
         googleId: {
             type: DataTypes.STRING,

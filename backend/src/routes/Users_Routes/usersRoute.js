@@ -71,7 +71,6 @@ router.post('/login', cors({credentials: true, origin: 'http://localhost:3000'})
 		const result = await loginUser(email, password);
 		res.cookie('token', result.token, {maxAge: 86400000, httpOnly: true, sameSite: 'lax', secure: false}).status(200).json({error: null, ...result})
 	} catch (error) {
-		console.log(error)
 		// res.clearCookie('token').status(401).json({error: error.message, authenticated: false, token: null, user: null})
 	}
 })
@@ -83,8 +82,7 @@ router.post('/auth', cors({credentials: true, origin: 'http://localhost:3000'}),
 		let result = await authUser(token);
 		res.status(200).json({error: null, ...result})
 	} catch (error) {
-		console.log(error)
-		res.clearCookie('token').status(401).json({error: error.message, authenticated: false, token: null, user: null})
+		res.clearCookie('token', {maxAge: 86400000, httpOnly: true, sameSite: 'lax', secure: false}).status(401).json({error: error.message, authenticated: false, token: null, user: null})
 	}
 })
 

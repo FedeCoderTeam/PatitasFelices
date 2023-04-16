@@ -1,6 +1,5 @@
 import {setIsFetching, loginUser, authUser, logoutUser} from '../reducer/authReducer';
 import axios from 'axios';
-import Cookies from 'js-cookie'
 
 const URL = 'http://localhost:3001'
 
@@ -12,7 +11,6 @@ const loginUserAction = (email, password) => {
             dispatch(loginUser(result.data))
             dispatch(setIsFetching(false))
         } catch (error) {
-            console.log(error)
             dispatch(setIsFetching(false))
         }
     }
@@ -26,7 +24,6 @@ const authUserAction = () => {
             dispatch(authUser(result.data))
             dispatch(setIsFetching(false))
         } catch (error) {
-            console.log(error)
             dispatch(setIsFetching(false))
         }
     }
@@ -40,7 +37,6 @@ const logoutUserAction = (id) => {
             dispatch(logoutUser(result.data))
             dispatch(setIsFetching(false))
         } catch (error) {
-            console.log(error)
             dispatch(setIsFetching(false))
         }
     }
