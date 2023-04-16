@@ -17,6 +17,7 @@ import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import * as authActions from './_redux/actions/authAction';
 import BackDrop from './components/BackDrop/BackDrop';
+import ProductDetail from './components/ProductDetail/ProductDetail';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
           <Route path={'/form'} element={<Form />} />
           <Route path={'/dogs'} element={<Dogs />}/>
           <Route path={'/products'} element={<Products />} />
+          <Route path={'/products/:id'} element={<ProductDetail />} />
           <Route path={'*'} element={<NotFound />}/>
           <Route path={'/dogs/:id'} element={<dogDetailCard/>}/>
       </Routes>
