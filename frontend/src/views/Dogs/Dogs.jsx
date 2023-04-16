@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import * as dogsAction from "../../_redux/actions/dogsAction.js"
-import Filtros from '../../components/Filtros/Filtros.jsx';
+import DogFilters from '../../components/Filters/DogFilters/DogFilters.jsx';
 import DogCard from '../../components/Cards/DogCard/DogCard.jsx';
 import PaginadoDogs from '../../components/Paginado/PaginadoDogs/PaginadoDogs.jsx';
 import style from './dogs.module.css'
@@ -10,13 +10,11 @@ import SearchDog from '../../components/SearchBar/SearchDog/SearchDog.jsx';
 
 
 const Dogs = () => {
-
     const dispatch = useDispatch();
     const temperaments = useSelector((state) => state.dogsReducer.temperaments)
     const colors = useSelector((state) => state.dogsReducer.colors)
     const allDogs = useSelector((state) => state.dogsReducer.dogs)
     const gender = useSelector((state) => state.dogsReducer.genders)
-    console.log(allDogs.length);
 
     //----------------------------------------PAGINADO---------------------------------------------------------------
     const [currentPage, setCurrentPage] = useState(1);
@@ -42,7 +40,7 @@ const Dogs = () => {
     return(
         <div className={style.main}>
             <div className={style.filtersContainer}>
-                <Filtros 
+                <DogFilters 
                     temperaments={temperaments} 
                     colors={colors} 
                     gender={gender}

@@ -5,6 +5,7 @@ import ProductCard from '../../components/Cards/ProductCard/ProductCard.jsx';
 import * as productsAction from '../../_redux/actions/productsAction.js';
 import PaginadoProducts from '../../components/Paginado/PaginadoProducts/PaginadoProducts.jsx';
 import SearchProduct from "../../components/SearchBar/SearchProduct/SearchProduct.jsx";
+import ProductFilters from '../../components/Filters/ProductFilters/ProductFilters.jsx';
 
 const Products = () => {
 
@@ -29,6 +30,7 @@ const Products = () => {
     return(
         <>
         <SearchProduct />
+        <ProductFilters />
         <PaginadoProducts 
         productsPerPage={productsPerPage}
         allProducts={allProducts.length}

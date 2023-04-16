@@ -3,6 +3,8 @@ import {
     getAllProducts,
     getNameProduct,
     getProductDetail,
+    setFilters,
+    filtered,
     } from '../reducer/productsReducer.js';
 
 
@@ -39,8 +41,21 @@ const getProductsById = (id) => {
     }
 }
 
+const setFilter = (set) => {
+    return function(dispatch) {
+        dispatch(setFilters(set))
+    }
+}
+
+const filter = () => {
+    return function(dispatch) {
+        dispatch(filtered())
+    }
+}
 export {
     getProducts,
     getProductsByName,
     getProductsById,
+    setFilter,
+    filter
 }
