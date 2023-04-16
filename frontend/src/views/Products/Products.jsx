@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import ProductCard from '../../components/Cards/ProductCard/ProductCard.jsx';
 import * as productsAction from '../../_redux/actions/productsAction.js';
 import PaginadoProducts from '../../components/Paginado/PaginadoProducts/PaginadoProducts.jsx';
+import ProductFilters from '../../components/Filters/ProductFilters/ProductFilters.jsx';
 import SearchProduct from '../../components/SearchBar/SearchProduct/SearchProduct.jsx';
 
 const Products = () => {
@@ -41,6 +42,7 @@ const Products = () => {
 	return (
 		<>
 			<SearchProduct />
+            <ProductFilters />
 			<PaginadoProducts
 				productsPerPage={productsPerPage}
 				allProducts={allProducts?.length}
@@ -56,6 +58,7 @@ const Products = () => {
 							image={e.image}
 							name={e.name}
 							brand={e.brand}
+                            description={e.description}
 							price={e.price}
 						/>
 					);

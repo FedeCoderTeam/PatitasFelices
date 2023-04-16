@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import * as dogsAction from '../../_redux/actions/dogsAction.js';
-import Filtros from '../../components/Filtros/Filtros.jsx';
+import * as dogsAction from "../../_redux/actions/dogsAction.js"
+import DogFilters from '../../components/Filters/DogFilters/DogFilters.jsx';
 import DogCard from '../../components/Cards/DogCard/DogCard.jsx';
 import PaginadoDogs from '../../components/Paginado/PaginadoDogs/PaginadoDogs.jsx';
 import style from './dogs.module.css';
+import SearchDog from '../../components/SearchBar/SearchDog/SearchDog.jsx';
 
 const Dogs = () => {
 	const dispatch = useDispatch();
@@ -28,23 +29,23 @@ const Dogs = () => {
 
 	useEffect(() => {
 		setCurrentDogs(allDogs?.slice(range.firts, range.last));
-
-		setRange({
-			firts: (currentPage - 1) * dogsPerPage,
-			last: currentPage * dogsPerPage,
-		});
-	}, [dispatch, allDogs, range.firts, range.last, currentPage, dogsPerPage]);
-
-	return (
-		<div className={style.main}>
-			<div className={style.filtersContainer}>
-				<Filtros
-					allDogs={allDogs}
-					temperaments={temperaments}
-					colors={colors}
-					gender={gender}
-				/>
-			</div>
+        setRange({
+            firts: (currentPage - 1) * dogsPerPage,
+            last: currentPage * dogsPerPage,
+        });
+    }, [dispatch, allDogs, range.firts, range.last, currentPage, dogsPerPage]);
+    
+        
+    return(
+        <div className={style.main}>
+            <div className={style.filtersContainer}>
+                <DogFilters
+                    allDogs={allDogs}
+                    temperaments={temperaments} 
+                    colors={colors} 
+                    gender={gender}
+                />
+            </div>
 
 			<div className={style.cardSection}>
 				<div className={style.paginatedContainer}>
