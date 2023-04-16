@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './ProductFilters.module.css'
 import { useSelector, useDispatch } from 'react-redux';
-import * as productsAction from "../../../_redux/actions/productsAction.js";
+import * as productsAction from "../../../_redux/actions/productsAction.js"; 
 
 const ProductFilters = () => {
 
@@ -27,9 +27,9 @@ const ProductFilters = () => {
     return(
         <div className={style.main}>
             <form action="" className={style.formControl}>
-                <div className={style.searchBar}>
+                {/* <div className={style.searchBar}> */}
                     {/* aca va la searchBar */}
-                </div>
+                {/* </div> */}
     
                 <div className={style.ordenContainer}>
                     <div className={style.orden}>Ordenar por</div>
