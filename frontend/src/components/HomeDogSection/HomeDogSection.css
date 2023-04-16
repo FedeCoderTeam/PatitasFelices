@@ -1,0 +1,67 @@
+.mainContainer-HDS {
+    /* background: rgba(22, 52, 64, 0.75);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18); */
+    height: 450px;
+    margin: 25px 70px -7px 70px;
+    /* display: flex;
+    justify-content: center; */
+    display: flex;
+    /* flex-direction: initial; */
+    width: 12%;
+    /* width: 300px; */
+}
+.container-HDS{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* width: 93%; */
+}
+.container-HDS > img {
+    width: 200px;
+    margin-top: 20px;
+    /* border-top-left-radius: 30px;
+    border-top-right-radius: 30px; */
+}
+.container-HDS > div > img {
+    width: 220px;
+    position: absolute;
+    top: 3%;
+    height: 300px;
+    border-radius: 15px;
+}
+.container-HDS > p{
+    z-index: 1;
+    margin-bottom: 1px;
+}
+/* .container-HDS > div{
+    margin-top: 290px;
+} */
+.containerData-HDS{
+    /* display: flex;
+    flex-direction: column;
+    z-index: 1; */
+    /* text-align: center; */
+    /* margin-top: 260px; */
+    position: absolute;
+    /* top: 255px; */
+    /* right: 112px; */
+    text-decoration: underline;
+    left: 13px;
+    top: 198px;
+    color: #FFFFFF;
+}
+.containerData-HDS > p:hover{
+    box-shadow: 1px -200px 69px -157px rgba(0,0,0,0.51) inset;
+-webkit-box-shadow: 1px -200px 69px -157px rgba(0,0,0,0.51) inset;
+-moz-box-shadow: 1px -200px 69px -157px rgba(0,0,0,0.51) inset;
+/* width: 100%; */
+}
+/* .containerData-HDS:hover{
+    box-shadow: 3px -200px 86px 4px rgba(0,0,0,0.51) inset;
+    -webkit-box-shadow: 3px -200px 86px 4px rgba(0,0,0,0.51) inset;
+    -moz-box-shadow: 3px -200px 86px 4px rgba(0,0,0,0.51) inset;
+} */
