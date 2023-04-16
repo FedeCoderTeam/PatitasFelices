@@ -6,9 +6,9 @@
     justify-content: space-around;
     align-items: flex-start;
     height: 100%;
-    height: 560px;
+    height: 600px;
     width: 260px;
-    padding: 0px 20px 0px 20px;
+    padding: 0px 30px 0px 30px;
     /* margin: 0 1% 0 1%; */
     border-radius: 5px;
     /* background: rgba( 22, 52, 64, 0.8 ); */
@@ -16,7 +16,7 @@
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 10px );
     -webkit-backdrop-filter: blur( 10px );
-    border-radius: 10px;
+    border-radius: 5px;
     color: #f2f2f2;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .ordenContainer {
-    height: 38%;
+    height: 35%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -80,7 +80,7 @@
 }
 
 .filtroContainer {
-    height: 48%;
+    height: 51%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -92,6 +92,24 @@
     display: flex;
     align-items: center;
 } */
+
+.gender {
+    width: 100%;
+}
+.gender select {
+    width: 100%;
+    border: none;
+    border-color: transparent;
+    outline: none;
+    height: 20px;
+    margin-top: 5px;
+    background-color: transparent;
+    color: #f2f2f2
+}
+.gender option {
+    color: #f2f2f2;
+    background-color: rgba( 0, 0, 0, 0.8 );;
+}
 
 .tamaño {
     width: 100%;

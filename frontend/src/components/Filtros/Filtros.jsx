@@ -39,16 +39,24 @@ const Filtros = (props) => {
     const setColor = useSelector((state) => state.dogsReducer.setColor)
     const setSize = useSelector((state) => state.dogsReducer.setSize)
     const setGender = useSelector((state) => state.dogsReducer.setGender)
-    console.log(setTemp);
-    console.log(setColor);
-    console.log(setSize);
-    console.log(setGender);
+    // const setSortBy = useSelector((state) => state.dogsReducer.sortBy)
+    // const setOrder = useSelector((state) => state.dogsReducer.sortOrder)
     
+    const handleOrder = (event, by) => {
+        dispatch(dogsAction.setFilter({
+            sortOrder: event.target.value,
+            sortBy: by
+        }))
+        dispatch(dogsAction.sortAction())
+        
+    }
+
     const handleColor = (event) => {
         dispatch(dogsAction.setFilter({
             setColor: event.target.value
         }))
         dispatch(dogsAction.filter())
+        dispatch(dogsAction.sortAction())
     }
     
     const handleTemperaments = (event) => {
@@ -56,6 +64,7 @@ const Filtros = (props) => {
             setTemperaments: event.target.value
         }))
         dispatch(dogsAction.filter())
+        dispatch(dogsAction.sortAction())
     }
     
     const handleSize = (event) => {
@@ -63,6 +72,7 @@ const Filtros = (props) => {
             setSize: event.target.value
         }))
         dispatch(dogsAction.filter())
+        dispatch(dogsAction.sortAction())
     }
 
     const handleGender = (event) => {
@@ -70,34 +80,56 @@ const Filtros = (props) => {
             setGender: event.target.value
         }))
         dispatch(dogsAction.filter())
+        dispatch(dogsAction.sortAction())
     }
     
     return (
         <div className={style.main}>
             <form action="" className={style.formControl}>
-                <div className={style.searchBar}>
-                    <SearchDog/>
-                </div>
     
                 <div className={style.ordenContainer}>
                     <div className={style.orden}>Ordenar por</div>
                     <div className={style.edad}>
                         <div>Edad</div>
-                        <select name="" id="">
-                            <option value=""></option>
+                        <select name="" id="" onChange={(event) => {handleOrder(event, "age")}}>
+                            <option selected disabled>Elegir orden</option>
+                            <option value="asc">Menor a mayor</option>
+                            <option value="desc">Mayor a menor</option>
                         </select>
                     </div>
     
                     <div className={style.peso}>
                         <div>Peso</div>
-                        <select name="" id="">
-                            <option value=""></option>
+                        <select name="" id="" onChange={(event) => {handleOrder(event, "weight")}}>
+                            <option selected disabled>Elegir orden</option>
+                            <option value="asc">Más liviano a más pesado</option>
+                            <option value="desc">Más pesado a más liviano</option>
                         </select>
                     </div>
                 </div>
     
                 <div className={style.filtroContainer}>
                     <div className={style.filtro}>Filtrar por</div>
+
+                    <div className={style.gender}>
+                        <div>Género</div>
+                        <select name="" id="" 
+                            value={setGender} 
+                            onChange={(event) => {
+                                handleGender(event);
+                            }}>
+                            <option value="All">Ambos</option>
+                            {props.gender.map((name) => (
+                                <option
+                                key={name.id}
+                                value={name.name}
+                                >
+                                {name.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
                     <div className={style.tamaño}>
                         <div>Tamaño</div>
                         <select name="" id=""
@@ -106,7 +138,7 @@ const Filtros = (props) => {
                             handleSize(event);
                         }}
                         >
-                            <option value="All"></option>
+                            <option value="All">Todos</option>
                             <option value="Giant">Gigante</option>
                             <option value="Large">Grande</option>
                             <option value="Medium">Mediano</option>
@@ -154,24 +186,7 @@ const Filtros = (props) => {
                             ))}
                         </select>
                     </div>
-                    <div className={style.gender}>
-                        <div>Genero</div>
-                        <select name="" id="" 
-                            value={setGender} 
-                            onChange={(event) => {
-                                handleGender(event);
-                            }}>
-                            <option value="All">Todos</option>
-                            {props.gender.map((name) => (
-                                <option
-                                key={name.id}
-                                value={name.name}
-                                >
-                                {name.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
+                    
                 </div>
             </form>
         </div>

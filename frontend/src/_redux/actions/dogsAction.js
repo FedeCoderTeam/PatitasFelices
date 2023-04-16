@@ -3,11 +3,8 @@ import {
     getAllTemperaments,
     getAllDogsColors, 
     getAllDogs, 
-    setSort, 
-    sortDogs, 
-    setfilterByWeigth, 
-    setfilterBySize, 
-    setfilterByAge,
+    // setSort, 
+    sortDogs,
     getNameDog,
     setFilters,
     filtered,
@@ -70,9 +67,8 @@ const getDogsColors = () => {
     }
 }
 
-const sortAction = (sortBy, sortOrder) => {
+const sortAction = () => {
     return function (dispatch) {
-        dispatch(setSort({ sortBy, sortOrder }))
         dispatch(sortDogs())
     }
 }

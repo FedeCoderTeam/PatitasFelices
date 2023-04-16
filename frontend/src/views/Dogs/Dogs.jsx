@@ -16,7 +16,6 @@ const Dogs = () => {
     const colors = useSelector((state) => state.dogsReducer.colors)
     const allDogs = useSelector((state) => state.dogsReducer.dogs)
     const gender = useSelector((state) => state.dogsReducer.genders)
-    console.log(allDogs.length);
 
     //----------------------------------------PAGINADO---------------------------------------------------------------
     const [currentPage, setCurrentPage] = useState(1);
