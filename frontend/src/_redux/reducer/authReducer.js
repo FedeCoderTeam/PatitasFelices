@@ -16,17 +16,22 @@ export const authSlice = createSlice({
         },
         loginUser: (state, action) => {
             state.error = action.payload.error
-            state.isAuthenticated = action.payload.isAuthenticated
+            state.isAuthenticated = action.payload.authenticated
             state.user = action.payload.user
         },
         authUser: (state, action) => {
             state.error = action.payload.error
-            state.isAuthenticated = action.payload.isAuthenticated
+            state.isAuthenticated = action.payload.authenticated
+            state.user = action.payload.user
+        },
+        logoutUser: (state, action) => {
+            state.error = action.payload.error
+            state.isAuthenticated = action.payload.authenticated
             state.user = action.payload.user
         }
     }
 })
 
-export const { setIsFetching, loginUser, authUser } = authSlice.actions
+export const { setIsFetching, loginUser, authUser , logoutUser} = authSlice.actions
 
 export default authSlice.reducer
