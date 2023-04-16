@@ -6,7 +6,7 @@ import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 import Register from './components/Register/Register.jsx';
 import Dogs from './views/Dogs/Dogs.jsx';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; 
 import LoginView from './views/Login/Login.jsx';
 import Landing from './components/Landing/Landing';
 import Products from './views/Products/Products.jsx';
@@ -16,6 +16,8 @@ import dogDetailCard from './components/Cards/dogDetailCard/dogDetailCard';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import * as dogsAction from '../src/_redux/actions/dogsAction';
 import * as productsAction from '../src/_redux/actions/productsAction';
+import * as authActions from './_redux/actions/authAction';
+import BackDrop from './components/BackDrop/BackDrop';
 
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -25,6 +27,7 @@ function App() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
+        dispatch(authActions.authUserAction())
 		dispatch(dogsAction.getDogs());
 		dispatch(dogsAction.getTemperaments());
 		dispatch(dogsAction.getDogsColors());
@@ -57,6 +60,7 @@ function App() {
 				location.pathname !== '/login' &&
 				location.pathname !== '/register' &&
 				location.pathname !== '/form' && <Footer />}
+            <BackDrop/>
 			{/* <Footer/> */}
 		</>
 	);
