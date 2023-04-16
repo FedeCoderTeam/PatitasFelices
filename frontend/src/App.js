@@ -13,11 +13,20 @@ import Products from './views/Products/Products.jsx';
 import NotFound from './components/NotFound/NotFound';
 import Form from './components/Form/Form';
 import dogDetailCard from './components/Cards/dogDetailCard/dogDetailCard';
+import {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import * as authActions from './_redux/actions/authAction';
+import BackDrop from './components/BackDrop/BackDrop';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 
 function App() {
 
   const location = useLocation();
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+      dispatch(authActions.authUserAction())
+  }, [dispatch])
 
   return (
     <>
@@ -39,6 +48,7 @@ function App() {
       </Routes>
       { location.pathname !=='/' && location.pathname !=='/login' && location.pathname !=='/register' && location.pathname !=='/form' && <Footer />} 
       {/* <Footer/> */}
+      <BackDrop/>
     </>
   );
 }
