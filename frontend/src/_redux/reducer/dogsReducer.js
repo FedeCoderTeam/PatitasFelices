@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { filter } from '../actions/dogsAction'
 
 const initialState = {
     dogs: [], // el que se puede filtrar
@@ -7,8 +8,8 @@ const initialState = {
     temperaments: [],
     colors: [],
     genders: [],
-    sortBy: 'name',
-    sortOrder: 'asc',
+    sortBy: '',
+    sortOrder: '',
     setSize: "All",
     setColor: "All",
     setGender: "All",
@@ -41,24 +42,36 @@ export const dogsSlice = createSlice({
             state.genders = action.payload
         },
 
-        setSort: (state, action) => {
-            if(action.payload.sortBy) {
-                state.sortBy = action.payload.sortBy
-            } else if(action.payload.sortOrder) {
-                state.sortOrder = action.payload.sortOrder
-            }
-        },
+        // setSort: (state, action) => {
+        //     if(action.payload.sortBy) {
+        //         state.sortBy = action.payload.sortBy
+        //     } else if(action.payload.sortOrder) {
+        //         state.sortOrder = action.payload.sortOrder
+        //     }
+        // },
 
         sortDogs: (state) => {
-            state.allDogs = state.allDogs.slice().sort((a, b) => {
-                if(a[state.sortBy] < b[state.sortBy]) {
-                    return state.sortOrder === 'asc' ? -1 : 1;
-                }
-                if(a[state.sortBy] < b[state.sortBy]) {
-                    return state.sortOrder === 'asc' ? 1 : -1;
-                }
-                return 0;
-            });
+            // state.allDogs = state.allDogs.slice().sort((a, b) => {
+            //     if(a[state.sortBy] < b[state.sortBy]) {
+            //         return state.sortOrder === 'asc' ? -1 : 1;
+            //     }
+            //     if(a[state.sortBy] < b[state.sortBy]) {
+            //         return state.sortOrder === 'asc' ? 1 : -1;
+            //     }
+            //     return 0;
+            // });
+            let ordered = state.dogs
+            if(state.sortBy === 'age') {
+                state.sortOrder === 'asc' 
+                ? ordered.sort((a, b) => a.age - b.age) 
+                : ordered.sort((a, b) => b.age - a.age)
+            }
+            if(state.sortBy === 'weight') {
+                state.sortOrder === 'asc' 
+                ? ordered.sort((a, b) => a.weight - b.weight) 
+                : ordered.sort((a, b) => b.weight - a.weight)
+            }
+            state.dogs = ordered
         },
 
         setFilters: (state, action) => {
@@ -86,8 +99,12 @@ export const dogsSlice = createSlice({
                     setGender: action.payload.setGender
                 }
             }
-            return {
-                ...state
+            if (action.payload.sortOrder && action.payload.sortBy) {
+                return {
+                    ...state,
+                    sortBy: action.payload.sortBy,
+                    sortOrder: action.payload.sortOrder
+                }
             }
         },
 
@@ -109,14 +126,11 @@ export const dogsSlice = createSlice({
             if(state.setGender !== 'All'){
                 filtered = filtered.filter((el) => el.gender === state.setGender)
             }
-            return {
-                ...state,
-                dogs: filtered,
-                filtered: filtered
-            }
+            
+            state.dogs = filtered
+            state.filtered = filtered
         }
     },
-
 })
 
 
