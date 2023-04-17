@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchDog from '../../../components/SearchBar/SearchDog/SearchDog';
-import style from './DogFilters.module.css'
+import style from './dogFilters.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import * as dogsAction from "../../../_redux/actions/dogsAction";
 
