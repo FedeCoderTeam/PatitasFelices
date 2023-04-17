@@ -4,7 +4,7 @@ const categoryJson = require('../../Json/Categories.json');
 const getSubCategory = async () => {
 	try {
 		let subCategories = await subCategory.findAll({
-			attributes: ['id', 'name'],
+			attributes: ['id', 'name', 'categoryId'],
 		});
 
 		if (!subCategories.length) {
