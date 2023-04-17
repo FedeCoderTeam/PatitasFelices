@@ -1,6 +1,9 @@
 const { user , session, role} = require ('../../database/db')
 const jwt = require('jsonwebtoken')
 
+const {getAuth} = require('../../database/firebase')
+const auth = require('firebase/auth')
+
 const loginUser = async (email, password) => {
     if(!email || !password) throw new Error('Falta completar algún o algunos datos')
 
@@ -9,11 +12,17 @@ const loginUser = async (email, password) => {
     if(!findUser) throw new Error('No se encuentra en la base de datos')
     if(findUser.isDisabled) throw new Error('Tu cuenta esta desactivada. Si crees que es un error comunicalo con algun staff.')
 
-    if(findUser.email === email && findUser.password === password) {
+    const userFireBase = await auth.signInWithEmailAndPassword(getAuth(), email, password)
+    if(!userFireBase.user.emailVerified) {
+        await auth.sendEmailVerification(userFireBase.user)
+        throw new Error('Tu cuenta no esta verificada, te enviaremos otro mail para que puedas verificar.')
+    }
+
+    if(findUser.email === email) {
         const token = jwt.sign({ user: findUser.dataValues}, "MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgHY/fLfFMx4BdEsj49b5SqdlY4Ls\n" +
             "cHk2Z8ui3fAPwAFQe9YtOnRFCP4A2IbmuXQgTt98HTNV8OAqsFoX9/zG1v8++WDj\n" +
             "uO+7n2tUY9pvN609L41oKYo0fmo2FVgP5xJMBzuEvHyCU7k9VgOstruEZgDOKxBE\n" +
-            "1r2avOYVGbYCBIzZAgMBAAE", {expiresIn: '1h'})
+            "1r2avOYVGbYCBIzZAgMBAAE", {expiresIn: '6h'})
         const findSession = await session.findOne({where: {userId: findUser.id}})
         if(findSession) {
             await session.update({token: token}, {where: {userId: findUser.id}})
@@ -33,7 +42,7 @@ const loginUser = async (email, password) => {
                 last: findUser.last,
                 email: findUser.email,
                 image: findUser.image,
-                isVerified: findUser.isVerified,
+                isVerified: userFireBase.user.emailVerified,
                 role: findUser.role.name
             }
         }
