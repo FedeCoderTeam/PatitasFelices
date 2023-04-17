@@ -17,11 +17,13 @@ const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail
     // favoriteIcon.addEventListener('click', function() {
     //   // agregar dog favorito
     // });
+
+    const separatedTemperaments = temperaments.join (", "); 
+
     const [showDetailCard, setShowDetailCard] = useState(false);
 
     const handleShowDetailCard = () => {
-        // window.location.href = "/dogs"
-        setShowDetailCard (!showDetailCard);
+         setShowDetailCard (!showDetailCard);
     }
     
 
@@ -42,7 +44,7 @@ const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail
                         </h5>
                         <h5 className={style.itemTemp}>
                             <img className={style.itemIcon} src={bone}/>
-                        {temperaments}
+                        {separatedTemperaments}
                         </h5>
                         <h5 className={style.intemAge}>
                             <img className={style.itemIcon} src={bone}/>{age}
@@ -56,7 +58,7 @@ const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail
                     </div>   
                 </div> 
                 <div className={style.containerButton}>
-                    <Link to = '/dogs'>
+                    <Link to = {`/dogs/${id}`}>
                         <button className={style.button} onClick= {handleShowDetailCard}>Ver más información</button>    
                     </Link>
                 </div>
