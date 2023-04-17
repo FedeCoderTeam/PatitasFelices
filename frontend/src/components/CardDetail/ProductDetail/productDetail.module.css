@@ -22,8 +22,7 @@
     backdrop-filter: blur( 7px );
     -webkit-backdrop-filter: blur( 10px );
     border-radius: 14px;
-    height: 100vh;
-    width: 80vw;
+    width: 50em;
     margin-top: 3em;
     margin-bottom: 2em;
     border-radius: 185px 14px 14px 185px;
@@ -33,20 +32,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 75%;
-    background-color: #D9AD77;
+    background-color: #ffffff;
     box-shadow: 2px 2px 2px 2px rgba(0.45, 0.45, 0.45, 0.45);
-    border-radius: 185px 185px 185px 185px;
+    border-radius: 70px;
+    width: 30em;
 }
 
 .divRight{
     margin-left: 2em;
     margin-right: 1em;
     text-align: start;
+    width: 70%;
 }
 
 .imagenDetail{
-    width: 290px;
+    width: 12em;
 }
 
 .titleName{
@@ -140,6 +140,7 @@
     font-size: .9em;
     color: #ffffff;
     margin-top: 4em;
+    margin-bottom: 30px;
     width: 100%;
     height: 40px;
     background: #163440;
@@ -158,7 +159,14 @@
     text-align: center;
     color: #ffffff;
     font-weight: 500;
-    font-size: 2em;
-    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.616);
+    font-size: 1.7em;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.801);
+}
+
+.divOtros{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 

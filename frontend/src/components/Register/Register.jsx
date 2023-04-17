@@ -1,7 +1,7 @@
 import React from 'react';
 import Google from './Google.png';
 import { Link } from 'react-router-dom';
-import './Register.css';
+import './register.css';
 // import RegisterImg from 'registerImage.png'
 
 const Register = () => {
