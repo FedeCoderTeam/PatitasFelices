@@ -5,7 +5,7 @@ import ProductCard from '../../components/Cards/ProductCard/ProductCard.jsx';
 import * as productsAction from '../../_redux/actions/productsAction.js';
 import PaginatedProducts from '../../components/Paginated/PaginatedProducts/PaginatedProducts.jsx';
 import ProductFilters from '../../components/Filters/ProductFilters/ProductFilters.jsx';
-import style from './products.module.css'
+import style from './Products.module.css'
 
 
 const Products = () => {
