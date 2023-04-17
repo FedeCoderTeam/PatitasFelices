@@ -10,6 +10,7 @@ const ProductFilters = () => {
     const dispatch = useDispatch();
     const setCategory = useSelector((state) => state.productsReducer.setCategory)
     const setSubCategory = useSelector((state) => state.productsReducer.setSubCategory)
+    const subCategory = useSelector((state) => state.productsReducer.subCategory)
     
 
     const handleOrder = (event, by) => {
@@ -26,6 +27,13 @@ const ProductFilters = () => {
         dispatch(productsAction.setFilter({
             setCategory: event.target.value
         }))
+        let num = event.target.value === 'All' 
+            ? 0
+            : event.target.value === "Alimentos" 
+            ? 1 
+            : 2;
+        dispatch(productsAction.getIdSubCategory(num))
+        dispatch(productsAction.getAllsubCategory())
         dispatch(productsAction.filter())
         dispatch(productsAction.sortAction())
     }
@@ -97,18 +105,23 @@ const ProductFilters = () => {
                     </div>
                     <div className={style.subCategoria}>
                         <div>Subcategoria</div>
-                        <select name="" id="" 
+                        <select 
+                            name="" 
+                            disabled={!subCategory.length}
+                            id="" 
                             value={setSubCategory} 
                             onChange={(event) => {
                                 handleSubCategory(event);
                             }}>
-                            <option value="All">Todos</option>
-                            <option value="adulto">Adulto</option>
-                            <option value="cachorro">Cachorro</option>
-                            <option value="comederos">Comederos</option>
-                            <option value="collares">Collares</option>
-                            <option value="juguetes">Juguetes</option>
-                            <option value="vestimenta">Vestimenta</option>
+                                <option value="All">Todos</option>
+                            {subCategory?.map((e) => (
+                                <option 
+                                key={e.id}
+                                value={e.name}
+                                >
+                                    {e.name}
+                                </option>
+                            ))}
                         </select>
                     </div>
                 </div>
