@@ -7,6 +7,7 @@ import PaginadoProducts from '../../components/Paginado/PaginadoProducts/Paginad
 import ProductFilters from '../../components/Filters/ProductFilters/ProductFilters.jsx';
 import style from './Products.module.css'
 
+
 const Products = () => {
 	const dispatch = useDispatch();
 	const allProducts = useSelector((state) => state.productsReducer.products);
@@ -73,6 +74,7 @@ const Products = () => {
 						</div>
 				)}
 			</div>
+
 		</div>
 	);
 };

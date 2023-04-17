@@ -22,6 +22,7 @@ const PaginadoProducts = ({
 						key={number}
 						className={style.number}
 						>
+
 							{number}
 						</li>
 					))}

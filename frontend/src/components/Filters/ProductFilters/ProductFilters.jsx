@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as productsAction from "../../../_redux/actions/productsAction.js";
 import SearchProduct from "../../SearchBar/SearchProduct/SearchProduct.jsx"
 
+
 const ProductFilters = () => {
 
     const dispatch = useDispatch();
@@ -41,7 +42,9 @@ const ProductFilters = () => {
     return(
         <div className={style.main}>
             <form action="" className={style.formControl}>
+
                 <div className={style.searchBar}>
+
                     <SearchProduct />
                 </div>
     

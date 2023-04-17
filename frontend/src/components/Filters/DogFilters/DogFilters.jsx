@@ -65,9 +65,9 @@ const DogFilters = (props) => {
     return (
         <div className={style.main}>
             <form action="" className={style.formControl}>
-                <div className={style.searchBar}>
+                {/* <div className={style.searchBar}>
                     <SearchDog/>
-                </div>
+                </div> */}
     
                 <div className={style.ordenContainer}>
                     <div className={style.orden}>Ordenar por</div>
@@ -116,7 +116,7 @@ const DogFilters = (props) => {
                             handleSize(event);
                         }}
                         >
-                            <option value="All"></option>
+                            <option value="All">Todos</option>
                             <option value="Giant">Gigante</option>
                             <option value="Large">Grande</option>
                             <option value="Medium">Mediano</option>
