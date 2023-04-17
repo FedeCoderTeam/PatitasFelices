@@ -5,12 +5,12 @@ const initialState = {
     allProducts: [], //estado original
     filtered: [], // el que mantiene el filtro aplicado
     productDetail: {},
-    category: [],
     subCategory: [],
     sortBy: '',
     sortOrder: '',
     setCategory: "All",
     setSubCategory: "All",
+    setSubCategoryId: 0,
     currentPage: 1,
 };
 
@@ -21,6 +21,7 @@ export const productsSlice = createSlice({
 		getAllProducts: (state, action) => {
 			state.products = action.payload;
 			state.allProducts = action.payload;
+            state.filtered = action.payload;
 		},
 		getNameProduct: (state, action) => {
 			state.allProducts = action.payload;
@@ -70,11 +71,25 @@ export const productsSlice = createSlice({
             }
             if(state.sortBy === 'abc') {
                 state.sortOrder === 'asc'
-                    ? ordered.sort((a, b) => a.abc - b.abc)
-                    : ordered.sort((a, b) => b.abc - a.abc);
+                    ? ordered.sort((a, b) => a.name.localeCompare(b.name))
+                    : ordered.sort((a, b) => b.name.localeCompare(a.name));
             }
             state.products = ordered;
         },
+        getSubCategories: (state, action) => {
+            if(state.setSubCategory !== 0) {
+                let filterCategory = action.payload.filter((el) => el.categoryId === state.setSubCategoryId)
+                return {
+                    ...state,
+                    subCategory: filterCategory,
+                }
+            } 
+            state.subCategory = [];
+
+        },
+        idSubCategories: (state, action) => {
+            state.setSubCategoryId = action.payload
+        }
 	},
 });
 
@@ -87,6 +102,8 @@ export const {
     setFilters,
     filtered,
     sortProduct,
+    getSubCategories,
+    idSubCategories,
 } = productsSlice.actions
 
 export default productsSlice.reducer

@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './PaginadoProducts.module.css';
+import style from './paginadoProducts.module.css';
 
 const PaginadoProducts = ({
 	productsPerPage,
