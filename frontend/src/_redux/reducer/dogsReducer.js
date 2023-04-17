@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	dogs: [], // el que se puede filtrar
-	allDogs: [], //no lo cambies papu
+	allDogs: [], //no cambiar
 	filtered: [], // el que mantiene el ultimo filtro aplicado
+	dogDetail: {},
 	temperaments: [],
 	colors: [],
 	genders: [],
-	dogDetail: {},
 	sortBy: '',
 	sortOrder: '',
 	setSize: 'All',
