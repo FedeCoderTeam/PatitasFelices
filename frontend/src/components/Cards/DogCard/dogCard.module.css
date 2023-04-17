@@ -97,13 +97,10 @@ h5 {
 .intemSize {
   /* margin-bottom: 3px; */
   margin: auto;
-  
 }
 
 .itemIcon{
-    /* position: absolute; */
     margin-right: 5px;
-    /* margin-bottom: 25px; */
     width: 30px;
     height: 30px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
@@ -121,10 +118,6 @@ h5 {
     align-items: center;
 }
 
-.containerButton a {
-    text-decoration: none;
-  }
-
 .button {
     display: flex;
     justify-content: center;
@@ -139,6 +132,6 @@ h5 {
     cursor: pointer;
     color: #D9AD77;
     font-weight: 400;
-    font-size: 19px;   
+    font-size: 19px;
     /* transition: background-color 200ms linear; */
 }

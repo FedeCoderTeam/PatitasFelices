@@ -24,3 +24,10 @@
 .number:hover {
     background-color: #163440;
 }
+
+.box {
+    background: #dadada;
+    padding: 12px 7px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}

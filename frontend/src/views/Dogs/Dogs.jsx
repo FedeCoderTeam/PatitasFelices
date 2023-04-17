@@ -52,6 +52,7 @@ const Dogs = () => {
 						dogsPerPage={dogsPerPage}
 						allDogs={allDogs?.length}
 						paginado={paginado}
+						currentPage={currentPage}
 					/>
 				</div>
 

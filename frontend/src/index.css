@@ -7,6 +7,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Be Vietnam Pro', sans-serif;
+  background: url("./assets/img/bg_main_2.jpg") repeat;
+  background-size: 300px;
+
 }
 
 code {
