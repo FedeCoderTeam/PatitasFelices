@@ -1,0 +1,166 @@
+
+
+.formControl {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    height: 100%;
+    height: 600px;
+    width: 260px;
+    padding: 0px 30px 0px 30px;
+    /* margin: 0 1% 0 1%; */
+    border-radius: 5px;
+    /* background: rgba( 22, 52, 64, 0.8 ); */
+    background: rgba( 0, 0, 0, 0.8 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 10px );
+    -webkit-backdrop-filter: blur( 10px );
+    border-radius: 5px;
+    color: #f2f2f2;
+}
+
+.searchBar {
+    height: 14%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #666666;
+}
+
+.ordenContainer {
+    height: 35%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 2px solid #666666;
+}
+
+/* .orden {
+    display: flex;
+    align-items: center;
+} */
+
+.edad {
+    width: 100%;
+}
+.edad select {
+    width: 100%;
+    border: none;
+    border-color: transparent;
+    outline: none;
+    height: 20px;
+    margin-top: 5px;
+    background-color: transparent;
+    color: #f2f2f2
+}
+.edad option {
+    color: #f2f2f2;
+    background-color: rgba( 0, 0, 0, 0.8 );;
+}
+
+.peso {
+    width: 100%;
+}
+.peso select {
+    width: 100%;
+    border: none;
+    border-color: transparent;
+    outline: none;
+    height: 20px;
+    margin-top: 5px;
+    background-color: transparent;
+    color: #f2f2f2;
+}
+.peso option {
+    color: #f2f2f2;
+    background-color: rgba( 0, 0, 0, 0.8 );;
+}
+
+.filtroContainer {
+    height: 51%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* .filtro {
+    display: flex;
+    align-items: center;
+} */
+
+.gender {
+    width: 100%;
+}
+.gender select {
+    width: 100%;
+    border: none;
+    border-color: transparent;
+    outline: none;
+    height: 20px;
+    margin-top: 5px;
+    background-color: transparent;
+    color: #f2f2f2
+}
+.gender option {
+    color: #f2f2f2;
+    background-color: rgba( 0, 0, 0, 0.8 );;
+}
+
+.tamaño {
+    width: 100%;
+}
+.tamaño select {
+    width: 100%;
+    border: none;
+    border-color: transparent;
+    outline: none;
+    height: 20px;
+    margin-top: 5px;
+    background-color: transparent;
+    color: #f2f2f2
+}
+.tamaño option {
+    color: #f2f2f2;
+    background-color: rgba( 0, 0, 0, 0.8 );;
+}
+
+.color {
+    width: 100%;
+}
+.color select {
+    width: 100%;
+    border: none;
+    border-color: transparent;
+    outline: none;
+    height: 20px;
+    margin-top: 5px;
+    background-color: transparent;
+    color: #f2f2f2
+}
+.color option {
+    color: #f2f2f2;
+    background-color: rgba( 0, 0, 0, 0.8 );;
+}
+
+.temperamento {
+    width: 100%;
+}
+.temperamento select {
+    width: 100%;
+    border: none;
+    border-color: transparent;
+    outline: none;
+    height: 20px;
+    margin-top: 5px;
+    background-color: transparent;
+    color: #f2f2f2
+}
+.temperamento option {
+    color: #f2f2f2;
+    background-color: rgba( 0, 0, 0, 0.8 );;
+}
