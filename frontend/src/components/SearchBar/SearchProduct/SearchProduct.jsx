@@ -1,31 +1,43 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import * as productsAction from "../../../_redux/actions/productsAction.js";
-import style from './SearchProduct.module.css'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as productsAction from '../../../_redux/actions/productsAction.js';
+import style from './SearchProduct.module.css';
 
 const SearchProduct = () => {
+	const dispatch = useDispatch();
+	let name = useSelector((state) => state.productsReducer.name);
 
-    const dispatch = useDispatch();
+	const handlerSetName = (event) => {
+		dispatch(productsAction.setName({ name: event }));
+	};
 
-    const [inputProduct, setInputProduct] = useState('')
+	const handleGetName = () => {
+		dispatch(productsAction.getName());
+		dispatch(productsAction.setPage(1));
+	};
 
-    const handleInputChange = (e) => {
-        setInputProduct(e.target.value)
-    }
-
-    /* const handleOnClick = () => {
+	/* const handleOnClick = () => {
         dispatch(productsAction.getProductsByName(inputProduct))
         setInputProduct("");
     } */
-
-    return(
-        <>
-            <div className={style.searchBar}>
-                <input className={style.input} type='search' placeholder='Search...' onChange={handleInputChange} ></input>
-            </div>
-        </>
-    )
-}
+	console.log(name);
+	return (
+		<>
+			<div className={style.searchBar}>
+				<input
+					className={style.input}
+					autoComplete="off"
+					type="text"
+					placeholder="Search..."
+					value={name}
+					onChange={(event) => {
+						handlerSetName(event.target.value);
+						handleGetName();
+					}}
+				/>
+			</div>
+		</>
+	);
+};
 
 export default SearchProduct;
