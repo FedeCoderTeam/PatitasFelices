@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import ProductCard from '../../components/Cards/ProductCard/ProductCard.jsx';
 import * as productsAction from '../../_redux/actions/productsAction.js';
-import PaginadoProducts from '../../components/Paginado/PaginadoProducts/PaginadoProducts.jsx';
+import PaginatedProducts from '../../components/Paginated/PaginatedProducts/PaginatedProducts.jsx';
 import ProductFilters from '../../components/Filters/ProductFilters/ProductFilters.jsx';
-import style from './Products.module.css'
+import style from './products.module.css'
 
 
 const Products = () => {
@@ -47,7 +47,7 @@ const Products = () => {
 			</div>
 			<div className={style.cardSection}>
 				<div className={style.paginatedContainer}>
-					<PaginadoProducts
+					<PaginatedProducts
 						productsPerPage={productsPerPage}
 						allProducts={allProducts?.length}
 						paginado={paginado}

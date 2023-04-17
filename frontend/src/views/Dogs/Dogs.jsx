@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import * as dogsAction from "../../_redux/actions/dogsAction.js"
 import DogFilters from '../../components/Filters/DogFilters/DogFilters.jsx';
 import DogCard from '../../components/Cards/DogCard/DogCard.jsx';
-import PaginadoDogs from '../../components/Paginado/PaginadoDogs/PaginadoDogs.jsx';
+import PaginatedDogs from '../../components/Paginated/PaginatedDogs/PaginatedDogs.jsx';
 import style from './dogs.module.css';
 
 const Dogs = () => {
@@ -48,7 +48,7 @@ const Dogs = () => {
 
 			<div className={style.cardSection}>
 				<div className={style.paginatedContainer}>
-					<PaginadoDogs
+					<PaginatedDogs
 						dogsPerPage={dogsPerPage}
 						allDogs={allDogs?.length}
 						paginado={paginado}
