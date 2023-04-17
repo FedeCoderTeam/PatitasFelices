@@ -5,6 +5,18 @@ import animals from './img/animals.png';
 import bone from './img/bone.png';
 // import {dogDetailCard} from '../dogDetailCard/dogDetailCard.jsx';
 import { useState } from 'react';
+import {
+    Button,
+    createTheme,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    ThemeProvider
+} from '@mui/material';
+import {brown} from '@mui/material/colors';
+import Avatar from '@mui/material/Avatar';
 
 
 
@@ -17,13 +29,17 @@ const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail
     // favoriteIcon.addEventListener('click', function() {
     //   // agregar dog favorito
     // });
-    const [showDetailCard, setShowDetailCard] = useState(false);
+    // const [showDetailCard, setShowDetailCard] = useState(false);
 
-    const handleShowDetailCard = () => {
-        // window.location.href = "/dogs"
-        setShowDetailCard (!showDetailCard);
+    // const handleShowDetailCard = () => {
+    //     // window.location.href = "/dogs"
+    //     setShowDetailCard (!showDetailCard);
+    // }
+    const [open, setOpen] = React.useState(false)
+
+    const handleOpenDialog = () => {
+        setOpen(!open)
     }
-    
 
     return(
         <>
@@ -57,13 +73,61 @@ const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail
                 </div> 
                 <div className={style.containerButton}>
                     <Link to = '/dogs'>
-                        <button className={style.button} onClick= {handleShowDetailCard}>Ver más información</button>    
+                        <button className={style.button} onClick={handleOpenDialog}>Ver más información</button>
                     </Link>
                 </div>
                 <Outlet/>
             </div>
+            <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, age, gender, size, temperaments, id/* para detail */}}  />
         </>
     )
 }
 
 export default DogCard;
+
+export function DialogDogsDetail(props) {
+
+    const innerTheme = createTheme({
+        palette: {
+            primary: {
+                main: brown[500],
+            },
+            background: {
+                default: '#163440',
+                paper: '#163440'
+            },
+            text: {
+                ...{
+                    primary: '#fff',
+                    secondary: '#fff'
+                }
+            }
+        },
+    });
+    //props.dog.image name
+
+    return(<>
+        <ThemeProvider theme={innerTheme}>
+            <Dialog
+                open={props.open}
+                onClose={props.handleOpenDialog}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogContent dividers>
+                    <DialogContentText id="alert-dialog-description">
+                        <div>
+                        </div>
+                        {/*<Avatar alt={props.dog.name} src={props.dog.image} sx={{width: 300, height: 300}} ></Avatar>*/}
+                        {/*{props.dog.name}*/}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button variant="contained" autoFocus>
+                        Completar el formulario
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </ThemeProvider>
+    </>)
+}
