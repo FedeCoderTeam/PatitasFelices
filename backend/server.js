@@ -25,7 +25,7 @@ conn.sync({ force: false }).then(async () => {
 			dogsColors(),
 			dogsGenders(),
 			userRoles(),
-			getAllUsers(),
+			// getAllUsers(),
 			getAllDogs(),
 			getAllProducts(),
 		]);
