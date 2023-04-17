@@ -135,3 +135,36 @@ h5 {
     font-size: 19px;
     /* transition: background-color 200ms linear; */
 }
+
+.dogDetail {
+
+}
+
+.dogDetail > h3 {
+    margin: 0;
+    background: #592519;
+    display: inline;
+    padding: 8px 18px;
+    border-radius: 20px;
+    color: #D9AD77;
+}
+
+.dogDetail .avatar {
+    width: 230px;
+    height: 230px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 15px solid #D9AD77;
+    background-color: #163440;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 0 auto;
+}
+
+.dogDetail .avatar > img {
+    width: 100%;
+    height: auto;
+}
+
+.dogDetail .description {
+
+}
