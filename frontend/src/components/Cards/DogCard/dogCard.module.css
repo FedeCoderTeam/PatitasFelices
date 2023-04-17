@@ -54,8 +54,10 @@
 .divDogInfo{
     position: absolute;
     display: flex;
-    align-items: center;
-    /* justify-content: space-evenly; */
+    /* align-items: flex-start; */
+    justify-content: space-evenly;
+    /* overflow: scroll; */
+    /* overflow: auto; */
     width: 330px;
     height: 125px;
     bottom: 60px;
@@ -65,59 +67,51 @@
 }
 
 .divData {
-    width: 80%;
-    /* text-align: center; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    overflow: auto;
+    /* flex-direction: row; */
+  }
+
+h5 {
+    display: flex;
+    align-items: center;
+    /* margin-right: 5px; */
+    font-family: 'Be Vietnam Pro';
+    color: #163440;
+    font-weight: 600;
+    font-size: 1em;
+    /* line-height: 15px; */
+  }
+
+.itemName,
+.itemTemp,
+.intemAge,
+.intemGender,
+.intemSize {
+  /* margin-bottom: 3px; */
+  margin: auto;
+  
 }
 
 .itemIcon{
-    position: absolute;
-    width: 35px;
-    height: 35px;
+    /* position: absolute; */
+    margin-right: 5px;
+    /* margin-bottom: 25px; */
+    width: 30px;
+    height: 30px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
 }
 
 .itemName {
-    font-family: 'Be Vietnam Pro';
-    color: #163440;
-    font-weight: 500;
-    font-size: 1em;
-    line-height: 15px;
     text-transform: uppercase;
-    position: absolute; 
-    top: 10px; 
-    flex-direction: column;
-    /* align-items: start; */
 }
-
-.itemTemp {
-    font-family: 'Be Vietnam Pro';
-    color: #163440;
-    font-weight: 500;
-    font-size: 1em;
-    line-height: 15px;
-}
-.itemAge {
-    font-family: 'Be Vietnam Pro';
-    color: #163440;
-    font-weight: 500;
-    font-size: 1em;
-    line-height: 15px;
-}
-.itemGender {
-    font-family: 'Be Vietnam Pro';
-    color: #163440;
-    font-weight: 500;
-    font-size: 1em;
-    line-height: 15px;
-}
-.itemSize {
-    font-family: 'Be Vietnam Pro';
-    color: #163440;
-    font-weight: 500;
-    font-size: 1em;
-    line-height: 15px;
-}
-
 
 .containerButton{
     position: absolute;
@@ -125,7 +119,7 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    
+    text-decoration: none;
 }
 
 .button {
@@ -142,6 +136,6 @@
     cursor: pointer;
     color: #D9AD77;
     font-weight: 400;
-    font-size: 19px;
-    transition: background-color 200ms linear;
+    font-size: 19px;   
+    /* transition: background-color 200ms linear; */
 }
