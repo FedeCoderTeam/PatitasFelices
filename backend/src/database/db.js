@@ -42,6 +42,7 @@ const {
 	subCategory,
 	cartItem,
 	session,
+	requests,
 } = sequelize.models;
 
 dog.belongsToMany(color, { through: 'Dogs_Colors', timestamps: false });
@@ -74,6 +75,8 @@ session.belongsTo(user, { foreignKey: 'userId' })
 session.hasOne(cartItem, { foreignKey: 'sessionId' })
 cartItem.belongsTo(session, { foreignKey: 'sessionId' })
 
+requests.belongsToMany(dog, { through: 'Requests_Of_Dogs', })
+dog.belongsToMany(requests, { through: 'Requests_Of_Dogs', })
 
 module.exports = {
 	...sequelize.models,
