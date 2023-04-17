@@ -17,29 +17,21 @@ import {useNavigate} from 'react-router-dom';
 
 
 const DogCard = ({image, name, age, gender, size, temperaments, id, description}) => {
-
+    
     //puede ir aca la funcion para manejar el borrar card
 
     // const favoriteIcon = document.querySelector('.card .favorite-icon');
-
     // favoriteIcon.addEventListener('click', function() {
     //   // agregar dog favorito
     // });
-
+    let ageInYears = age >= 12 ? Math.round (age / 12) : age + " meses";
     const separatedTemperaments = temperaments.join (", ");
-
-    // const [showDetailCard, setShowDetailCard] = useState(false);
-
-    // const handleShowDetailCard = () => {
-    //      setShowDetailCard (!showDetailCard);
-    // }
 
     const [open, setOpen] = React.useState(false)
 
     const handleOpenDialog = () => {
         setOpen(!open)
     }
-    
 
     return(
         <>
@@ -61,7 +53,7 @@ const DogCard = ({image, name, age, gender, size, temperaments, id, description}
                         {separatedTemperaments}
                         </h5>
                         <h5 className={style.intemAge}>
-                            <img className={style.itemIcon} src={bone}/>{age}
+                            <img className={style.itemIcon} src={bone}/>{ageInYears}
                         </h5>
                         <h5 className={style.intemGender}>
                             <img className={style.itemIcon} src={bone}/>{gender}
@@ -75,7 +67,7 @@ const DogCard = ({image, name, age, gender, size, temperaments, id, description}
                     <button className={style.button} onClick={handleOpenDialog}>Ver más información</button>
                 </div>
             </div>
-            <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, age, gender, size, temperaments, id, description}}  />
+            <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, ageInYears, gender, size,weight, color, temperaments, id, description}}  />
         </>
     )
 }
@@ -128,7 +120,7 @@ export function DialogDogsDetail(props) {
                 </DialogContent>
                 <DialogActions>
                     <Button variant="contained" onClick={() => navigate('/form') } autoFocus>
-                        Completar el formulario
+                        ¡Completa el formulario para adoptarlo!
                     </Button>
                 </DialogActions>
             </Dialog>
