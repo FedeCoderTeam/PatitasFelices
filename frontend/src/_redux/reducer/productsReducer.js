@@ -3,12 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     products: [], //filtrado
     allProducts: [], //estado original
+    filtered: [], // el que mantiene el filtro aplicado
     productDetail: {},
-    currentPage: 1,
     category: [],
     subCategory: [],
+    sortBy: '',
+    sortOrder: '',
     setCategory: "All",
     setSubCategory: "All",
+    currentPage: 1,
 };
 
 export const productsSlice = createSlice({
@@ -38,6 +41,13 @@ export const productsSlice = createSlice({
             if(action.payload.setSubCategory) {
                 state.setSubCategory = action.payload.setSubCategory
             }
+            if(action.payload.sortOrder && action.payload.sortBy) {
+                return{
+                    ...state,
+                    sortBy: action.payload.sortBy,
+                    sortOrder: action.payload.sortOrder,
+                }
+            }
         },
         filtered: (state) => {
             let filtered = state.allProducts
@@ -49,8 +59,22 @@ export const productsSlice = createSlice({
                 filtered = filtered.filter((el) => el.subCategory.includes(state.setSubCategory))
             }
             state.products = filtered
-            // state.filtered = filtered
-        }
+            state.filtered = filtered
+        },
+        sortProduct: (state) => {
+            let ordered = state.products;
+            if (state.sortBy === 'price') {
+                state.sortOrder === 'asc'
+                    ? ordered.sort((a, b) => a.price - b.price)
+                    : ordered.sort((a, b) => b.price - a.price);
+            }
+            if(state.sortBy === 'abc') {
+                state.sortOrder === 'asc'
+                    ? ordered.sort((a, b) => a.abc - b.abc)
+                    : ordered.sort((a, b) => b.abc - a.abc);
+            }
+            state.products = ordered;
+        },
 	},
 });
 
@@ -62,6 +86,7 @@ export const {
     setEmptyDetail,
     setFilters,
     filtered,
+    sortProduct,
 } = productsSlice.actions
 
 export default productsSlice.reducer

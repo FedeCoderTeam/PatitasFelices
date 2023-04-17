@@ -7,6 +7,7 @@ import {
     setEmptyDetail,
     setFilters,
     filtered,
+	sortProduct,
     } from '../reducer/productsReducer.js'
 
 const getProducts = () => {
@@ -68,6 +69,12 @@ const filter = () => {
     }
 }
 
+const sortAction = () => {
+	return function (dispatch) {
+		dispatch(sortProduct());
+	}
+}
+
 export {
     getProducts,
     getProductsByName,
@@ -76,4 +83,5 @@ export {
     setDetail,
     setFilter,
     filter,
+	sortAction,
 };

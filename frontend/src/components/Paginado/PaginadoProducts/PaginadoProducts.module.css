@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@200;400;500;600;700&display=swap');
+
+.numbersList {
+    display: flex;
+    text-decoration: none;
+    list-style-type: none;
+    gap: 10px;
+    align-items: center;
+}
+
+.number {
+    background-color: #255a6e;
+    border: 1px solid #163440;
+    color: #f2f2f2;
+    width: 1.5rem;
+    text-align: center;
+    padding: 0.2rem 0 0.2rem 0;
+    border-radius: 2px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color 200ms linear;
+}
+.number:hover {
+    background-color: #163440;
+}

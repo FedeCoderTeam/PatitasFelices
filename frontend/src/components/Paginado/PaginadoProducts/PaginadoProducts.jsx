@@ -1,5 +1,5 @@
 import React from 'react';
-import style from '../PaginadoProducts/paginadoProducts.module.css';
+import style from './PaginadoProducts.module.css';
 
 const PaginadoProducts = ({
 	productsPerPage,
@@ -17,7 +17,12 @@ const PaginadoProducts = ({
 			<nav>
 				<ul className={style.numbersList}>
 					{pageNumbers?.map((number) => (
-						<li className={style.number} onClick={() => paginado(number)} key={number}>
+						<li 
+						onClick={() => paginado(number)} 
+						key={number}
+						className={style.number}
+						>
+
 							{number}
 						</li>
 					))}

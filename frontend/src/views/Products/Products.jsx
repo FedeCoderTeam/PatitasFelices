@@ -5,8 +5,8 @@ import ProductCard from '../../components/Cards/ProductCard/ProductCard.jsx';
 import * as productsAction from '../../_redux/actions/productsAction.js';
 import PaginadoProducts from '../../components/Paginado/PaginadoProducts/PaginadoProducts.jsx';
 import ProductFilters from '../../components/Filters/ProductFilters/ProductFilters.jsx';
-import SearchProduct from '../../components/SearchBar/SearchProduct/SearchProduct.jsx';
-import style from '../Products/product.module.css';
+import style from './Products.module.css'
+
 
 const Products = () => {
 	const dispatch = useDispatch();
@@ -41,9 +41,9 @@ const Products = () => {
 	]);
 
 	return (
-		<div className={style.bodyProducts}>
+		<div className={style.main}>
 			<div className={style.filtersContainer}>
-            	<ProductFilters />
+				<ProductFilters />
 			</div>
 			<div className={style.cardSection}>
 				<div className={style.paginatedContainer}>
@@ -52,24 +52,29 @@ const Products = () => {
 						allProducts={allProducts?.length}
 						paginado={paginado}
 						currentPage={currentPage}
-					/>
+						/>
 				</div>
-				<div className={style.cardsContainer}>
-					{currentProducts.map((e) => {
-						return (
-							<ProductCard
-								key={e.id}
-								id={e.id}
-								image={e.image}
-								name={e.name}
-								brand={e.brand}
-								description={e.description}
-								price={e.price}
-							/>
-						);
-					})}
-				</div>
+				{!currentProducts.length ? (
+					<h1>NOT FOUND</h1>
+					) : (
+						<div className={style.cardsContainer}>
+							{currentProducts?.map((e) => {
+								return (
+									<ProductCard
+										key={e.id}
+										id={e.id}
+										image={e.image}
+										name={e.name}
+										brand={e.brand}
+										description={e.description}
+										price={e.price}
+									/>
+								);
+							})}
+						</div>
+				)}
 			</div>
+
 		</div>
 	);
 };

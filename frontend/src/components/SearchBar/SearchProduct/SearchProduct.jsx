@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import TextField from '@mui/material/TextField';
 import * as productsAction from "../../../_redux/actions/productsAction.js";
+import style from './SearchProduct.module.css'
 
 const SearchProduct = () => {
 
@@ -14,21 +14,15 @@ const SearchProduct = () => {
         setInputProduct(e.target.value)
     }
 
-    const handleOnClick = () => {
+    /* const handleOnClick = () => {
         dispatch(productsAction.getProductsByName(inputProduct))
         setInputProduct("");
-    }
+    } */
 
     return(
         <>
-            <div>
-                <TextField
-                id="filled-basic" 
-                label="Buscar..." 
-                variant="filled"
-                onChange={(e) => handleInputChange(e)}
-                />
-                <button onClick={(e) => handleOnClick(e)} >🔍</button>
+            <div className={style.searchBar}>
+                <input className={style.input} type='search' placeholder='Search...' onChange={handleInputChange} ></input>
             </div>
         </>
     )
