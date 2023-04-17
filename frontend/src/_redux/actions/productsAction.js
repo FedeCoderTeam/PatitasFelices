@@ -7,6 +7,9 @@ import {
     setEmptyDetail,
     setFilters,
     filtered,
+	sortProduct,
+	getSubCategories,
+	idSubCategories,
     } from '../reducer/productsReducer.js'
 
 const getProducts = () => {
@@ -44,6 +47,23 @@ const getProductsById = (id) => {
 	}
 }
 
+const getAllsubCategory = () => {
+	return async function (dispatch) {
+		try {
+			const db = await axios.get('http://localhost:3001/subcategories')
+			dispatch(getSubCategories(db.data))
+		} catch (error) {
+			console.log(error);
+		}
+	}
+}
+
+const getIdSubCategory = (num) => {
+	return function (dispatch) {
+		dispatch(idSubCategories(num))
+	}
+}
+
 const setPage = (page) => {
 	return (dispatch) => {
 		dispatch(setPages(page))
@@ -68,6 +88,12 @@ const filter = () => {
     }
 }
 
+const sortAction = () => {
+	return function (dispatch) {
+		dispatch(sortProduct());
+	}
+}
+
 export {
     getProducts,
     getProductsByName,
@@ -76,4 +102,7 @@ export {
     setDetail,
     setFilter,
     filter,
+	sortAction,
+	getAllsubCategory,
+	getIdSubCategory,
 };

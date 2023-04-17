@@ -6,7 +6,6 @@ import DogFilters from '../../components/Filters/DogFilters/DogFilters.jsx';
 import DogCard from '../../components/Cards/DogCard/DogCard.jsx';
 import PaginadoDogs from '../../components/Paginado/PaginadoDogs/PaginadoDogs.jsx';
 import style from './dogs.module.css';
-import SearchDog from '../../components/SearchBar/SearchDog/SearchDog.jsx';
 
 const Dogs = () => {
 	const dispatch = useDispatch();
@@ -58,7 +57,7 @@ const Dogs = () => {
 				</div>
 
 				{!currentDogs.length ? (
-					<h1>NOT FOUND</h1>
+					<h1>No hay ningun perro con las características seleccionadas</h1>
 				) : (
 					<div className={style.cardsContainer}>
 						{currentDogs?.map((e) => {

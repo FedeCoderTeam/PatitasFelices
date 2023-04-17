@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { Link, Outlet } from 'react-router-dom';
 import style from './dogCard.module.css';
 import animals from './img/animals.png';
 import bone from './img/bone.png';
-// import {dogDetailCard} from '../dogDetailCard/dogDetailCard.jsx';
-import { useState } from 'react';
 import {
     Button,
     createTheme,
@@ -12,11 +9,9 @@ import {
     DialogActions,
     DialogContent,
     DialogContentText,
-    DialogTitle,
     ThemeProvider
 } from '@mui/material';
 import {brown} from '@mui/material/colors';
-import Avatar from '@mui/material/Avatar';
 
 
 
@@ -29,17 +24,21 @@ const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail
     // favoriteIcon.addEventListener('click', function() {
     //   // agregar dog favorito
     // });
+
+    const separatedTemperaments = temperaments.join (", ");
+
     // const [showDetailCard, setShowDetailCard] = useState(false);
 
     // const handleShowDetailCard = () => {
-    //     // window.location.href = "/dogs"
-    //     setShowDetailCard (!showDetailCard);
+    //      setShowDetailCard (!showDetailCard);
     // }
+
     const [open, setOpen] = React.useState(false)
 
     const handleOpenDialog = () => {
         setOpen(!open)
     }
+    
 
     return(
         <>
@@ -58,7 +57,7 @@ const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail
                         </h5>
                         <h5 className={style.itemTemp}>
                             <img className={style.itemIcon} src={bone}/>
-                        {temperaments}
+                        {separatedTemperaments}
                         </h5>
                         <h5 className={style.intemAge}>
                             <img className={style.itemIcon} src={bone}/>{age}
@@ -72,11 +71,8 @@ const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail
                     </div>   
                 </div> 
                 <div className={style.containerButton}>
-                    <Link to = '/dogs'>
-                        <button className={style.button} onClick={handleOpenDialog}>Ver más información</button>
-                    </Link>
+                    <button className={style.button} onClick={handleOpenDialog}>Ver más información</button>
                 </div>
-                <Outlet/>
             </div>
             <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, age, gender, size, temperaments, id/* para detail */}}  />
         </>

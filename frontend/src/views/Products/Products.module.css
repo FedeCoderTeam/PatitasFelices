@@ -1,17 +1,13 @@
 .main {
     display: flex;
     align-items: center;
-    justify-content: center;
     width: 100vw;
 }
 
 .filtersContainer {
-    position: fixed;
-    top: 50%;
-    left: 5%;
-    transform: translateY(-50%);
     width: 18%;
     height: 80vh;
+    margin: 2% 2% 2% 2%;   
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,8 +15,8 @@
 }
 
 .cardSection {
-    margin: 50px 0 60px 18%;
-    width: 80%;
+    width: 100%;
+    padding: 2% 5% 2% 5%;
     display: flex;
     flex-direction: column;
     align-items: center;

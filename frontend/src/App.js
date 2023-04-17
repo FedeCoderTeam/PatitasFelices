@@ -1,4 +1,3 @@
-import Header from './components/Header/Header';
 import { Route, Routes } from 'react-router-dom';
 import Home from './views/Home/Home';
 import About from './views/About/About';
@@ -12,7 +11,6 @@ import Landing from './components/Landing/Landing';
 import Products from './views/Products/Products.jsx';
 import NotFound from './components/NotFound/NotFound';
 import Form from './components/Form/Form';
-import dogDetailCard from './components/Cards/dogDetailCard/dogDetailCard';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import * as dogsAction from '../src/_redux/actions/dogsAction';
 import * as productsAction from '../src/_redux/actions/productsAction';
@@ -54,7 +52,6 @@ function App() {
 				<Route path={'/products'} element={<Products />} />
 				<Route path={'/products/:id'} element={<ProductDetail />} />
 				<Route path={'*'} element={<NotFound />} />
-				<Route path={'/dogs/:id'} element={<dogDetailCard />} />
 			</Routes>
 			{location.pathname !== '/' &&
 				location.pathname !== '/login' &&

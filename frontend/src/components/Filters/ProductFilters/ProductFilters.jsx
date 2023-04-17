@@ -2,18 +2,40 @@ import React from 'react';
 import style from './ProductFilters.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import * as productsAction from "../../../_redux/actions/productsAction.js";
+import SearchProduct from "../../SearchBar/SearchProduct/SearchProduct.jsx"
+
 
 const ProductFilters = () => {
 
     const dispatch = useDispatch();
     const setCategory = useSelector((state) => state.productsReducer.setCategory)
     const setSubCategory = useSelector((state) => state.productsReducer.setSubCategory)
+    const subCategory = useSelector((state) => state.productsReducer.subCategory)
     
+
+    const handleOrder = (event, by) => {
+        dispatch(
+            productsAction.setFilter({
+                sortOrder: event.target.value,
+                sortBy: by,
+            })
+        );
+        dispatch(productsAction.sortAction())
+    }
+
     const handleCategory = (event) => {
         dispatch(productsAction.setFilter({
             setCategory: event.target.value
         }))
+        let num = event.target.value === 'All' 
+            ? 0
+            : event.target.value === "Alimentos" 
+            ? 1 
+            : 2;
+        dispatch(productsAction.getIdSubCategory(num))
+        dispatch(productsAction.getAllsubCategory())
         dispatch(productsAction.filter())
+        dispatch(productsAction.sortAction())
     }
 
     const handleSubCategory = (event) => {
@@ -21,31 +43,46 @@ const ProductFilters = () => {
             setSubCategory: event.target.value
         }))
         dispatch(productsAction.filter())
+        dispatch(productsAction.sortAction())
     }
 
 
     return(
         <div className={style.main}>
             <form action="" className={style.formControl}>
+
                 <div className={style.searchBar}>
-                    {/* aca va la searchBar */}
+
+                    <SearchProduct />
                 </div>
     
                 <div className={style.ordenContainer}>
                     <div className={style.orden}>Ordenar por</div>
                     <div className={style.precio}>
                         <div>Precio</div>
-                        <select name="" id="">
-                            <option value="">-</option>
-                            <option value="menor">Menor Precio</option>
-                            <option value="mayor">Mayor Precio</option>
+                        <select 
+                            name="" 
+                            id=""
+                            onChange={(event) => {
+                                handleOrder(event, 'price');
+                            }}
+                        >
+                            <option selected disabled>Elegir</option>
+                            <option value="asc">Menor Precio</option>
+                            <option value="desc">Mayor Precio</option>
                         </select>
                     </div>
     
                     <div className={style.abc}>
-                        <div>A-Z</div>
-                        <select name="" id="">
-                            <option value="">-</option>
+                        <div>Elegir orden</div>
+                        <select 
+                            name="" 
+                            id=""
+                            onChange={(event) => {
+                                handleOrder(event, 'abc');
+                            }}
+                        >
+                            <option selected disabled>Elegir</option>
                             <option value="asc">Ascendente</option>
                             <option value="desc">Descendente</option>
                         </select>
@@ -68,18 +105,23 @@ const ProductFilters = () => {
                     </div>
                     <div className={style.subCategoria}>
                         <div>Subcategoria</div>
-                        <select name="" id="" 
+                        <select 
+                            name="" 
+                            disabled={!subCategory.length}
+                            id="" 
                             value={setSubCategory} 
                             onChange={(event) => {
                                 handleSubCategory(event);
                             }}>
-                            <option value="All">Todos</option>
-                            <option value="adulto">Adulto</option>
-                            <option value="cachorro">Cachorro</option>
-                            <option value="comederos">Comederos</option>
-                            <option value="collares">Collares</option>
-                            <option value="juguetes">Juguetes</option>
-                            <option value="vestimenta">Vestimenta</option>
+                                <option value="All">Todos</option>
+                            {subCategory?.map((e) => (
+                                <option 
+                                key={e.id}
+                                value={e.name}
+                                >
+                                    {e.name}
+                                </option>
+                            ))}
                         </select>
                     </div>
                 </div>

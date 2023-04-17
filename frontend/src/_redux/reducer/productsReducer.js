@@ -3,12 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     products: [], //filtrado
     allProducts: [], //estado original
+    filtered: [], // el que mantiene el filtro aplicado
     productDetail: {},
-    currentPage: 1,
-    category: [],
     subCategory: [],
+    sortBy: '',
+    sortOrder: '',
     setCategory: "All",
     setSubCategory: "All",
+    setSubCategoryId: 0,
+    currentPage: 1,
 };
 
 export const productsSlice = createSlice({
@@ -18,6 +21,7 @@ export const productsSlice = createSlice({
 		getAllProducts: (state, action) => {
 			state.products = action.payload;
 			state.allProducts = action.payload;
+            state.filtered = action.payload;
 		},
 		getNameProduct: (state, action) => {
 			state.allProducts = action.payload;
@@ -38,6 +42,13 @@ export const productsSlice = createSlice({
             if(action.payload.setSubCategory) {
                 state.setSubCategory = action.payload.setSubCategory
             }
+            if(action.payload.sortOrder && action.payload.sortBy) {
+                return{
+                    ...state,
+                    sortBy: action.payload.sortBy,
+                    sortOrder: action.payload.sortOrder,
+                }
+            }
         },
         filtered: (state) => {
             let filtered = state.allProducts
@@ -49,7 +60,35 @@ export const productsSlice = createSlice({
                 filtered = filtered.filter((el) => el.subCategory.includes(state.setSubCategory))
             }
             state.products = filtered
-            // state.filtered = filtered
+            state.filtered = filtered
+        },
+        sortProduct: (state) => {
+            let ordered = state.products;
+            if (state.sortBy === 'price') {
+                state.sortOrder === 'asc'
+                    ? ordered.sort((a, b) => a.price - b.price)
+                    : ordered.sort((a, b) => b.price - a.price);
+            }
+            if(state.sortBy === 'abc') {
+                state.sortOrder === 'asc'
+                    ? ordered.sort((a, b) => a.name.localeCompare(b.name))
+                    : ordered.sort((a, b) => b.name.localeCompare(a.name));
+            }
+            state.products = ordered;
+        },
+        getSubCategories: (state, action) => {
+            if(state.setSubCategory !== 0) {
+                let filterCategory = action.payload.filter((el) => el.categoryId === state.setSubCategoryId)
+                return {
+                    ...state,
+                    subCategory: filterCategory,
+                }
+            } 
+            state.subCategory = [];
+
+        },
+        idSubCategories: (state, action) => {
+            state.setSubCategoryId = action.payload
         }
 	},
 });
@@ -62,6 +101,9 @@ export const {
     setEmptyDetail,
     setFilters,
     filtered,
+    sortProduct,
+    getSubCategories,
+    idSubCategories,
 } = productsSlice.actions
 
 export default productsSlice.reducer
