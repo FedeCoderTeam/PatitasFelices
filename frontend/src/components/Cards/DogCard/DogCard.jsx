@@ -12,10 +12,11 @@ import {
     ThemeProvider
 } from '@mui/material';
 import {brown} from '@mui/material/colors';
+import {useNavigate} from 'react-router-dom';
 
 
 
-const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail */}) => {
+const DogCard = ({image, name, age, gender, size, temperaments, id, description}) => {
 
     //puede ir aca la funcion para manejar el borrar card
 
@@ -74,7 +75,7 @@ const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail
                     <button className={style.button} onClick={handleOpenDialog}>Ver más información</button>
                 </div>
             </div>
-            <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, age, gender, size, temperaments, id/* para detail */}}  />
+            <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, age, gender, size, temperaments, id, description}}  />
         </>
     )
 }
@@ -82,6 +83,8 @@ const DogCard = ({image, name, age, gender, size, temperaments, id/* para detail
 export default DogCard;
 
 export function DialogDogsDetail(props) {
+
+    const navigate = useNavigate()
 
     const innerTheme = createTheme({
         palette: {
@@ -112,14 +115,19 @@ export function DialogDogsDetail(props) {
             >
                 <DialogContent dividers>
                     <DialogContentText id="alert-dialog-description">
-                        <div>
+                        <div className={style.dogDetail}>
+                            <h3>{props.dog.name}</h3>
+                            <div className={style.avatar}>
+                                <img src={props.dog.image} alt={props.dog.name} />
+                            </div>
+                            <div className={style.description}>
+                                <p>{props.dog.description}</p>
+                            </div>
                         </div>
-                        {/*<Avatar alt={props.dog.name} src={props.dog.image} sx={{width: 300, height: 300}} ></Avatar>*/}
-                        {/*{props.dog.name}*/}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button variant="contained" autoFocus>
+                    <Button variant="contained" onClick={() => navigate('/form') } autoFocus>
                         Completar el formulario
                     </Button>
                 </DialogActions>

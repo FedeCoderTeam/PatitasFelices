@@ -71,6 +71,7 @@ const Dogs = () => {
 									gender={e.gender}
 									size={e.size}
 									temperaments={e.temperaments}
+									description={e.description}
 								/>
 							);
 						})}
