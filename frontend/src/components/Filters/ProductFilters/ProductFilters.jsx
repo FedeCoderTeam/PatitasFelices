@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './ProductFilters.module.css';
+import style from './productFilters.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import * as productsAction from '../../../_redux/actions/productsAction';
 import SearchProduct from '../../SearchBar/SearchProduct/SearchProduct';
