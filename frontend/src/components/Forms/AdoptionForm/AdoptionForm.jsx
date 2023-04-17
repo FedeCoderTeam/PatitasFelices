@@ -1,8 +1,8 @@
 import React from 'react';
-import './Form.css';
+import './adoptionForm.css';
 import upload from './images/upload.png'
 
-const Form = () => {
+const AdoptionForm = () => {
    const handleClick = () => {
 
    }
@@ -49,4 +49,4 @@ const Form = () => {
     )
 }
 
-export default Form
+export default AdoptionForm

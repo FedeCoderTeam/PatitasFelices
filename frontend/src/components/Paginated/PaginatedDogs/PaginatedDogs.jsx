@@ -1,8 +1,8 @@
 import React from 'react';
-import style from './paginadoDogs.module.css';
+import style from './paginatedDogs.module.css';
 import {Pagination, Stack} from '@mui/material';
 
-const PaginadoDogs = ({ dogsPerPage, allDogs, paginado, currentPage }) => {
+const PaginatedDogs = ({ dogsPerPage, allDogs, paginado, currentPage }) => {
 	let pageNumbers = [];
 
 	for (let i = 0; i <= Math.ceil(allDogs / dogsPerPage) - 1; i++) {
@@ -37,4 +37,4 @@ const PaginadoDogs = ({ dogsPerPage, allDogs, paginado, currentPage }) => {
 	);
 };
 
-export default PaginadoDogs;
+export default PaginatedDogs;

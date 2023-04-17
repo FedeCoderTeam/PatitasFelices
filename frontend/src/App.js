@@ -10,8 +10,8 @@ import LoginView from './views/Login/Login.jsx';
 import Landing from './components/Landing/Landing';
 import Products from './views/Products/Products.jsx';
 import NotFound from './components/NotFound/NotFound';
-import Form from './components/Form/Form';
-import ProductDetail from './components/ProductDetail/ProductDetail';
+import AdoptionForm from './components/Forms/AdoptionForm/AdoptionForm';
+import ProductDetail from './components/CardDetail/ProductDetail/ProductDetail';
 import * as dogsAction from '../src/_redux/actions/dogsAction';
 import * as productsAction from '../src/_redux/actions/productsAction';
 import * as authActions from './_redux/actions/authAction';
@@ -47,7 +47,7 @@ function App() {
 				<Route path={'/about'} element={<About />} />
 				<Route path={'/register'} element={<Register />} />
 				<Route path={'/login'} element={<LoginView />} />
-				<Route path={'/form'} element={<Form />} />
+				<Route path={'/form'} element={<AdoptionForm />} />
 				<Route path={'/dogs'} element={<Dogs />} />
 				<Route path={'/products'} element={<Products />} />
 				<Route path={'/products/:id'} element={<ProductDetail />} />

@@ -1,7 +1,7 @@
 import React from 'react';
-import style from './paginadoProducts.module.css';
+import style from './paginatedProducts.module.css';
 
-const PaginadoProducts = ({
+const PaginatedProducts = ({
 	productsPerPage,
 	allProducts,
 	paginado,
@@ -32,4 +32,4 @@ const PaginadoProducts = ({
 	);
 };
 
-export default PaginadoProducts;
+export default PaginatedProducts;

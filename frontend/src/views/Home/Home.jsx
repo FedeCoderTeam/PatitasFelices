@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Header from '../../components/Header/Header';
-import HomeDogSection from '../../components/HomeDogSection/HomeDogSection';
+import HomeDogSection from '../../components/HomeSection/HomeDogSection/HomeDogSection';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import * as dogsAction from "../../_redux/actions/dogsAction.js"
 import './Home.css';
 import { Link } from 'react-router-dom';
-import HomeDonationSection from '../../components/HomeDonationSection/HomeDonationSection';
+import HomeDonationSection from '../../components/HomeSection/HomeDonationSection/HomeDonationSection';
 
 
 

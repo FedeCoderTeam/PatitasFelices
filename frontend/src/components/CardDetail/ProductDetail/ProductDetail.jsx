@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 import {
 	getProductsById,
 	setDetail,
-} from '../../_redux/actions/productsAction';
+} from '../../../_redux/actions/productsAction';
 import { useState } from 'react';
-import style from '../ProductDetail/productDetail.module.css';
+import style from './productDetail.module.css';
 
 function ProductDetail() {
 	const { id } = useParams();
