@@ -22,13 +22,13 @@ const validationSchema = Yup.object().shape({
     state: Yup.array()
         .required('Seleccione una opción.'),
     // 'Excellent', 'Good', 'Bad', 'N/A'
-    otherAnimals: Yup.boolean()
+    otherAnimals: Yup.string()
         .required('Seleccione una opción.'),
     howMany: Yup.string()
         .required('¿Cuáles tenés y cuántos son?'),
-    income: Yup.boolean()
+    income: Yup.string()
         .required('Elige una opción.'),
-    allowance: Yup.boolean()
+    allowance: Yup.string()
         .required('Elige una opción.'),
     image: Yup.string()
         .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida.')
@@ -38,12 +38,15 @@ const validationSchema = Yup.object().shape({
 const AdoptionForm = () => {
 
     const [formData, setFormData] = useState({
-        fullName: '', age: '', phone: '', address: '', email: '', state: '', otherAnimals: '', howMany: '', income: '', allowance: '', image: ''
+        fullName: '', age: '', phone: '', address: '', email: '', state: '', otherAnimals: false, howMany: '', income: '', allowance: '', image: ''
     });
 
-    const handleSubmit = (values) => {
+    const handleSubmit = (values, {setSubmitting}, e) => {
+
+        e.preventDefault()
         setFormData({ ...formData, ...values });
         alert(JSON.stringify(formData, null, 2))
+        setSubmitting(false);
     }
 
     const options = [
@@ -52,13 +55,13 @@ const AdoptionForm = () => {
         { value: "Malo", label: "Malo" },
         { value: "No aplica", label: "No aplica" }
     ];
-
+    console.log(ErrorMessage)
     return (
         <div className='mainContainer-Form'>
             <div className='container-Form'>
-                <Formik initialValues={formData} validationSchema={validationSchema} onSubmit={handleSubmit}>
+                <Formik initialValues={formData} validationSchema={validationSchema} onSubmit={(values) => handleSubmit(values)} >
                     {({
-                        errors, touched }) => (<Form>
+                        errors, touched, values, formikBag }) => (<Form>
                             <h1 className='title-Form'>Formulario de Adopción</h1>
                             <div className='box-Form'>
                                 <div className='containerInputsLeft-Form'>
@@ -88,31 +91,43 @@ const AdoptionForm = () => {
                                     </Field>
                                 </div>
                                 <div className='containerInputsRight-Form'>
-                                    <label htmlFor='otherAnimals'>¿Tenés otros animales?</label>
-                                    <label htmlFor='otherAnimals'>
-                                        <Field name="otherAnimals" as='select'>
-                                            </Field>
-                                    </label>
-                                    <label>
-                                        <Field type='checkbox' name="otherAnimals" value="No" as='checkbox'>No</Field>
-                                    </label>
-                                    <label>¿Cuántos son y cuáles son?</label>
-                                    <input type="text" />
-                                    <label>¿Tiene los medios económicos para substentar los gastos económicos de su mascota?</label>
-                                    <input type="text" />
-                                    <label>¿Consultaste en tu edificio, consorcio o propietario, si están de acuerdo con la adopción?</label>
-                                    <input type="text" />
-                                    <label>Foto de su patio/balcón/espacio al aire libre</label>
+                                    <label htmlFor="otherAnimals">¿Tienes otros animales? Tilde el recuadro si la respuesta es afirmativa. ✔</label>
+                                    <Field type="checkbox" id="otherAnimals" name="otherAnimals" />
+                                    <ErrorMessage name='otherAnimals' />
+                                    {values.otherAnimals && (
+                                        <div>
+                                            <label htmlFor="howMany">¿Cuántos son y qué tipo de animales son?</label>
+                                            <Field type="text" id="howMany" name="howMany" />
+                                            <ErrorMessage name='howMany' />
+                                        </div>
+                                    )}
+                                    <label htmlFor='income'>¿Tiene los medios económicos para substentar los gastos económicos de su mascota?</label>
+                                    <Field name='income' as='select'>
+                                        <option value="all"></option>
+                                        <option value="si">Si</option>
+                                        <option value="no">No</option>
+                                    </Field>
+                                    <ErrorMessage name='income' />
+                                    <label htmlFor='allowance'>¿Consultaste en tu edificio, consorcio o propietario, si están de acuerdo con la adopción?</label>
+                                    <Field as='select' name='allowance'>
+                                        <option value="all"></option>
+                                        <option value="si">Si</option>
+                                        <option value="no">No</option>
+                                    </Field>
+                                    <ErrorMessage name='allowance' />
+                                    <label htmlFor='image'>Foto de su patio/balcón/espacio al aire libre</label>
                                     <div className='containerUpload-Form'>
                                         {/* Esta foto se va a guardar en cloudinary */}
-                                        <input className='upload-Form' type="file" />
+                                        <Field className='upload-Form' name='image' type='file' />
+                                        <ErrorMessage name='image' />
                                     </div>
                                 </div>
                             </div>
                             <div>
                             </div>
                             <div className='containerBtn-Form'>
-                                <button type='submit'>ENVIAR</button>
+                                <button disabled={!Object.values(errors).length > 0} type='submit'>
+                                    ENVIAR</button>
                             </div>
                         </Form>
                     )}
