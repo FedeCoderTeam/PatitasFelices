@@ -5,9 +5,9 @@
     background-size: cover;
     background-attachment: fixed;  
     background-repeat: no-repeat;
-    width: 100vw;
     margin: 0;
     padding: 0;
+    width: 100%;
     padding-bottom: 3.5em;
     padding-top: 3em;
 }
