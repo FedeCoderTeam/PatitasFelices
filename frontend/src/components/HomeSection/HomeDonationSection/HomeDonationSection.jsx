@@ -1,5 +1,5 @@
 import React from 'react';
-import './HomeDonationSection.css';
+import './homeDonationSection.css';
 import dogDonation from './images/dogDonation.png';
 import dogProducts from './images/dogProducts.png';
 import { Link } from 'react-router-dom';
