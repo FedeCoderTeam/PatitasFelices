@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import Home from './views/Home/Home';
 import About from './views/About/About';
 import Footer from './components/Footer/Footer';
@@ -17,12 +17,14 @@ import * as productsAction from '../src/_redux/actions/productsAction';
 import * as authActions from './_redux/actions/authAction';
 import BackDrop from './components/BackDrop/BackDrop';
 
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { useEffect } from 'react';
+import Dashboard from './views/Dashboard/Dashboard';
 
 function App() {
 	const location = useLocation();
 	const dispatch = useDispatch();
+	const selector = useSelector(state => state.authReducer)
 
 	useEffect(() => {
         dispatch(authActions.authUserAction())
@@ -39,7 +41,9 @@ function App() {
 			{location.pathname !== '/' &&
 				location.pathname !== '/login' &&
 				location.pathname !== '/register' &&
-				location.pathname !== '/form' && <Nav />}
+				location.pathname !== '/form' &&
+				(location.pathname !== '/dashboard' || selector.user?.role !== 'Administrador') &&
+				<Nav />}
 
 			<Routes>
 				<Route path={'/'} element={<Landing />} />
@@ -52,11 +56,17 @@ function App() {
 				<Route path={'/products'} element={<Products />} />
 				<Route path={'/products/:id'} element={<ProductDetail />} />
 				<Route path={'*'} element={<NotFound />} />
+				{
+					selector.user?.role === 'Administrador' &&
+					<Route path={'/dashboard/*'} element={<Dashboard />} />
+				}
 			</Routes>
 			{location.pathname !== '/' &&
 				location.pathname !== '/login' &&
 				location.pathname !== '/register' &&
-				location.pathname !== '/form' && <Footer />}
+				location.pathname !== '/form' &&
+				( !location.pathname.includes('/dashboard') || selector.user?.role !== 'Administrador') &&
+				<Footer />}
             <BackDrop/>
 			{/* <Footer/> */}
 		</>
