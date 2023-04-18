@@ -5,12 +5,13 @@ import ProductCard from '../../components/Cards/ProductCard/ProductCard.jsx';
 import * as productsAction from '../../_redux/actions/productsAction.js';
 import PaginatedProducts from '../../components/Paginated/PaginatedProducts/PaginatedProducts.jsx';
 import ProductFilters from '../../components/Filters/ProductFilters/ProductFilters.jsx';
-import style from './Products.module.css';
+import style from './products.module.css';
 
 const Products = () => {
 	const dispatch = useDispatch();
 	const allProducts = useSelector((state) => state.productsReducer.products);
 	let currentPage = useSelector((state) => state.productsReducer.currentPage);
+	
 
 	//----------------------------------------------PAGINADO-------------------------------------------
 	const [productsPerPage] = useState(5);
