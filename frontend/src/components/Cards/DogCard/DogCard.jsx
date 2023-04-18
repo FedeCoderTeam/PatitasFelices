@@ -107,22 +107,28 @@ export function DialogDogsDetail(props) {
             >
                 <DialogContent dividers>
                     <DialogContentText id="alert-dialog-description">
-                        <div className={style.dogDetail}>
-                            <h3>{props.dog.name}</h3>
-                            <div className={style.avatar}>
-                                <img src={props.dog.image} alt={props.dog.name} />
-                            </div>
-                            <div className={style.description}>
-                                <p>{props.dog.description}</p>
+                        <div className= {style.containerLeft}>
+                            <div className={style.dogDetail}>
+                                <h3>{props.dog.name}</h3>
+                                <div className={style.avatar}>
+                                    <img src={props.dog.image} alt={props.dog.name} />
+                                </div>
+                                <div className={style.description}>
+                                    <p>{props.dog.description}</p>
+                                </div>
                             </div>
                         </div>
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button variant="contained" onClick={() => navigate('/form') } autoFocus>
+                        <div className= {style.containerRight}>
+                        </div>
+                        
+                        </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button variant="contained" onClick={() => navigate('/form') } autoFocus>
                         ¡Completa el formulario para adoptarlo!
-                    </Button>
-                </DialogActions>
+                                </Button>
+                            </DialogActions>
+                        
             </Dialog>
         </ThemeProvider>
     </>)
