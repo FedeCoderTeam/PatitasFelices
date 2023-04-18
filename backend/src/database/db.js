@@ -75,8 +75,14 @@ session.belongsTo(user, { foreignKey: 'userId' })
 session.hasOne(cartItem, { foreignKey: 'sessionId' })
 cartItem.belongsTo(session, { foreignKey: 'sessionId' })
 
+user.hasOne(dog, {foreignKey: 'ownerId'})
+dog.belongsTo(user, {foreignKey: 'ownerId'})
+
 requests.belongsToMany(dog, { through: 'Requests_Of_Dogs', })
 dog.belongsToMany(requests, { through: 'Requests_Of_Dogs', })
+
+user.hasOne(requests, { foreignKey: 'requestBy' })
+requests.belongsTo(user, { foreignKey: 'requestBy' })
 
 module.exports = {
 	...sequelize.models,
