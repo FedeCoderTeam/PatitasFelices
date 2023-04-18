@@ -8,22 +8,22 @@ const getAllUsers = async ()=> {
 		],
     });
 
-    if(!data.length) {
-        let allUsers= usersJson.users;
-        for (let i = 0; i < allUsers.length; i++) {
-            let userDb= await user.create({
-                googleId: allUsers[i].googleId,
-                name: allUsers[i].name,
-                last: allUsers[i].last,
-                email: allUsers[i].email,
-                password: allUsers[i].password,
-                image: allUsers[i].image,
-            });
-
-            let roles = await role.findOne({ where: { name: allUsers[i].rol } });
-            await userDb.setRole(roles);
-        }
-    }
+    // if(!data.length) {
+    //     let allUsers= usersJson.users;
+    //     for (let i = 0; i < allUsers.length; i++) {
+    //         let userDb= await user.create({
+    //             googleId: allUsers[i].googleId,
+    //             name: allUsers[i].name,
+    //             last: allUsers[i].last,
+    //             email: allUsers[i].email,
+    //             password: allUsers[i].password,
+    //             image: allUsers[i].image,
+    //         });
+    //
+    //         let roles = await role.findOne({ where: { name: allUsers[i].rol } });
+    //         await userDb.setRole(roles);
+    //     }
+    // }
     return data;
 };
 

@@ -7,6 +7,8 @@ const fileUpload = require('express-fileupload');
 
 const server = express();
 
+require('./database/firebase')
+
 server.name = 'API';
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));

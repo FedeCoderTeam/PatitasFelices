@@ -7,15 +7,17 @@ import {
 } from '../../../_redux/actions/productsAction';
 import { useState } from 'react';
 import style from './productDetail.module.css';
+import ProductCard from '../../Cards/ProductCard/ProductCard';
 
 function ProductDetail() {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 
 	const [count, setCount] = useState(0);
+	const [randomProducts, setRandomProducts] = useState([]);
 
 	const handleClickSuma = () => {
-		if (count < 100) {
+		if (count < productDetail.stock) {
 			setCount(count + 1);
 		}
 	};
@@ -38,6 +40,18 @@ function ProductDetail() {
 		};
 	}, [dispatch, id]);
 
+	useEffect(() => {
+		const fetchData = async () => {
+		  const response = await fetch("http://localhost:3001/products");
+		  const data = await response.json();
+		  const shuffledProducts = data.sort(() => 0.5 - Math.random());
+		  const selectedProducts = shuffledProducts.slice(0, 4);
+		  setRandomProducts(selectedProducts);
+		};
+	
+		fetchData();
+	  }, []);
+
 	return (
 		<div className={style.bodyDetailProduct}>
 			<div className={style.containerProduct}>
@@ -56,9 +70,6 @@ function ProductDetail() {
 						<span className={style.priceSpan}>.00</span>
 					</p>
 					<p className={style.pDeatil}>
-						Id: <span className={style.spanDetail}>{productDetail.id}</span>
-					</p>
-					<p className={style.pDeatil}>
 						Stock:{' '}
 						<span className={style.spanDetail}>{productDetail.stock}</span>
 					</p>
@@ -75,8 +86,21 @@ function ProductDetail() {
 					<button className={style.btnCarritoDetail}>AÑADIR AL CARRITO</button>
 				</div>
 			</div>
-			<h2 className={style.titleMasProductos}>También te pueden interesar</h2>
-			<div className={style.divOtros}>{/* RENDER ALEATORIOS */}</div>
+			<div className={style.containerOtros}>
+				<h2 className={style.titleMasProductos}>También te pueden interesar</h2>
+				<div className={style.divOtros}>
+				{randomProducts.map((product) => (
+					<ProductCard 
+					key={product.id}
+					id={product.id}
+					name={product.name}
+					image={product.image}
+					brand={product.brand}
+					price={product.price}
+					/>
+				))}
+				</div>
+			</div>
 		</div>
 	);
 }

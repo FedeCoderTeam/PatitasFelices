@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     isFetching: false,
-    error: null,
+    isRegisterFetching: false,
     isAuthenticated: false,
     user: null
 }
@@ -14,24 +14,16 @@ export const authSlice = createSlice({
         setIsFetching: (state, action) => {
             state.isFetching = action.payload
         },
-        loginUser: (state, action) => {
-            state.error = action.payload.error
-            state.isAuthenticated = action.payload.authenticated
-            state.user = action.payload.user
+        setIsRegisterFetching: (state, action) => {
+            state.isRegisterFetching = action.payload
         },
-        authUser: (state, action) => {
-            state.error = action.payload.error
-            state.isAuthenticated = action.payload.authenticated
-            state.user = action.payload.user
-        },
-        logoutUser: (state, action) => {
-            state.error = action.payload.error
+        setUser: (state, action) => {
             state.isAuthenticated = action.payload.authenticated
             state.user = action.payload.user
         }
     }
 })
 
-export const { setIsFetching, loginUser, authUser , logoutUser} = authSlice.actions
+export const { setIsFetching, setIsRegisterFetching, setUser} = authSlice.actions
 
 export default authSlice.reducer

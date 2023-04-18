@@ -1,7 +1,8 @@
 const { session} = require ('../../database/db')
-const jwt = require('jsonwebtoken')
+const {getAuth} = require('../../database/firebase')
+const auth = require('firebase/auth')
 
-//En progreso
+
 const logoutUser = async (id, token) => {
     if(!id || !token) throw new Error('Id and token required')
 
@@ -17,4 +18,4 @@ const logoutUser = async (id, token) => {
     }
 }
 
-module.exports= logoutUser;
+module.exports = logoutUser;

@@ -7,6 +7,8 @@ const updateUser= require ('../../controllers/User_Controllers/updateUserControl
 const loginUser= require ('../../controllers/User_Controllers/loginUserController')
 const authUser= require ('../../controllers/User_Controllers/authUserController')
 const logoutUser = require('../../controllers/User_Controllers/logoutUserController')
+const registerUser = require('../../controllers/User_Controllers/registerUserController')
+
 const router= Router();
 
 //GET ALL USERS
@@ -71,7 +73,8 @@ router.post('/login', cors({credentials: true, origin: 'http://localhost:3000'})
 		const result = await loginUser(email, password);
 		res.cookie('token', result.token, {maxAge: 86400000, httpOnly: true, sameSite: 'lax', secure: false}).status(200).json({error: null, ...result})
 	} catch (error) {
-		// res.clearCookie('token').status(401).json({error: error.message, authenticated: false, token: null, user: null})
+		res.clearCookie('token', {httpOnly: true, sameSite: 'lax', secure: false})
+		res.status(401).json({error: error.message, authenticated: false, token: null, user: null})
 	}
 })
 
@@ -82,7 +85,8 @@ router.post('/auth', cors({credentials: true, origin: 'http://localhost:3000'}),
 		let result = await authUser(token);
 		res.status(200).json({error: null, ...result})
 	} catch (error) {
-		res.clearCookie('token', {maxAge: 86400000, httpOnly: true, sameSite: 'lax', secure: false}).status(401).json({error: error.message, authenticated: false, token: null, user: null})
+		res.clearCookie('token', {httpOnly: true, sameSite: 'lax', secure: false})
+		res.status(401).json({error: error.message, authenticated: false, token: null, user: null})
 	}
 })
 
@@ -91,10 +95,21 @@ router.post('/logout', cors({credentials: true, origin: 'http://localhost:3000'}
 	const {id} = req.body
 	try {
 		let result = await logoutUser(id, token)
-		res.clearCookie('token', {maxAge: 86400000, httpOnly: true, sameSite: 'lax', secure: false})
+		res.clearCookie('token', {httpOnly: true, sameSite: 'lax', secure: false})
 		res.status(200).json({error: null, ...result})
 	} catch (error) {
 		console.log(error)
+		res.status(401).json({error: error.message})
 	}
 })
-//CREATE LOGOUT 
+
+router.post('/register', async(req, res) => {
+	const { name, last, email, password } = req.body
+	try {
+		let result = await registerUser(name, last, email, password)
+		res.status(200).json({...result})
+	} catch (error) {
+		console.log(error)
+		res.status(400).json({error: error.message, message: null})
+	}
+})
