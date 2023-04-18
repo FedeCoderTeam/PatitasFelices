@@ -7,6 +7,7 @@ const gendersRoute = require('./Genders_Route/gendersRoute');
 const usersRoute = require('./Users_Routes/usersRoute');
 const rolesRoutes = require('./Roles_Routes/rolesRoutes');
 const subCategoriesRoutes = require('./Sub_Categories_Route/subCategoriesRoutes');
+const cloudinaryRoute = require('./Cloudinary_Route/cloudinaryRoute');
 const router = Router();
 
 router.use('/dogs', dogsRoute);
@@ -17,5 +18,6 @@ router.use('/products', productsRoute);
 router.use('/roles', rolesRoutes);
 router.use('/users', usersRoute);
 router.use('/subcategories', subCategoriesRoutes);
+router.use('/cloudinary', cloudinaryRoute)
 
 module.exports = router;

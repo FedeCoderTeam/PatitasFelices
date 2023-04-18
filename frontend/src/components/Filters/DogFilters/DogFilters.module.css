@@ -17,7 +17,7 @@
     backdrop-filter: blur( 10px );
     -webkit-backdrop-filter: blur( 10px );
     border-radius: 5px;
-    color: #f2f2f2;
+    color: #999999;
 }
 
 .searchBar {
@@ -38,10 +38,13 @@
     border-bottom: 2px solid #666666;
 }
 
-/* .orden {
-    display: flex;
-    align-items: center;
-} */
+.orden {
+    color: #f2f2f2;
+}
+
+.filtro {
+    color: #f2f2f2;
+}
 
 .edad {
     width: 100%;
@@ -50,11 +53,18 @@
     width: 100%;
     border: none;
     border-color: transparent;
+    border-radius: 5px;
     outline: none;
     height: 20px;
     margin-top: 5px;
     background-color: transparent;
-    color: #f2f2f2
+    color: #f2f2f2;
+    height: 30px;
+    cursor: pointer;
+    transition: background-color 200ms linear;
+}
+.edad select:hover {
+    background-color: rgba(70, 70, 70, 0.308);;
 }
 .edad option {
     color: #f2f2f2;
@@ -68,15 +78,22 @@
     width: 100%;
     border: none;
     border-color: transparent;
+    border-radius: 5px;
     outline: none;
     height: 20px;
     margin-top: 5px;
     background-color: transparent;
     color: #f2f2f2;
+    height: 30px;
+    cursor: pointer;
+    transition: background-color 200ms linear;
+}
+.peso select:hover {
+    background-color: rgba(70, 70, 70, 0.308);;
 }
 .peso option {
     color: #f2f2f2;
-    background-color: rgba( 0, 0, 0, 0.8 );;
+    background-color: rgba( 0, 0, 0, 0.8 );
 }
 
 .filtroContainer {
@@ -100,11 +117,18 @@
     width: 100%;
     border: none;
     border-color: transparent;
+    border-radius: 5px;
     outline: none;
     height: 20px;
     margin-top: 5px;
     background-color: transparent;
-    color: #f2f2f2
+    color: #f2f2f2;
+    height: 30px;
+    cursor: pointer;
+    transition: background-color 200ms linear;
+}
+.gender select:hover {
+    background-color: rgba(70, 70, 70, 0.308);;
 }
 .gender option {
     color: #f2f2f2;
@@ -118,11 +142,18 @@
     width: 100%;
     border: none;
     border-color: transparent;
+    border-radius: 5px;
     outline: none;
     height: 20px;
     margin-top: 5px;
     background-color: transparent;
-    color: #f2f2f2
+    color: #f2f2f2;
+    height: 30px;
+    cursor: pointer;
+    transition: background-color 200ms linear;
+}
+.tamaño select:hover {
+    background-color: rgba(70, 70, 70, 0.308);;
 }
 .tamaño option {
     color: #f2f2f2;
@@ -136,11 +167,18 @@
     width: 100%;
     border: none;
     border-color: transparent;
+    border-radius: 5px;
     outline: none;
     height: 20px;
     margin-top: 5px;
     background-color: transparent;
-    color: #f2f2f2
+    color: #f2f2f2;
+    height: 30px;
+    cursor: pointer;
+    transition: background-color 200ms linear;
+}
+.color select:hover {
+    background-color: rgba(70, 70, 70, 0.308);;
 }
 .color option {
     color: #f2f2f2;
@@ -154,11 +192,18 @@
     width: 100%;
     border: none;
     border-color: transparent;
+    border-radius: 5px;
     outline: none;
     height: 20px;
     margin-top: 5px;
     background-color: transparent;
-    color: #f2f2f2
+    color: #f2f2f2;
+    height: 30px;
+    cursor: pointer;
+    transition: background-color 200ms linear;
+}
+.temperamento select:hover {
+    background-color: rgba(70, 70, 70, 0.308);;
 }
 .temperamento option {
     color: #f2f2f2;
