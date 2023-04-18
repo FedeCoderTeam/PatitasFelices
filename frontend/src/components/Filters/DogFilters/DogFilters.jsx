@@ -172,7 +172,7 @@ const DogFilters = (props) => {
 						</select>
 					</div>
 					<div className={style.gender}>
-						<div>Genero</div>
+						<div>Género</div>
 						<select
 							name=""
 							id=""
