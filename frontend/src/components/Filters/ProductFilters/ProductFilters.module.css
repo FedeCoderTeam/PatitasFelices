@@ -18,7 +18,7 @@
     backdrop-filter: blur( 10px );
     -webkit-backdrop-filter: blur( 10px );
     border-radius: 10px;
-    color: #f2f2f2;
+    color: #999999;
 }
 
 .searchBar {
@@ -39,45 +39,40 @@
     border-bottom: 2px solid #666666;
 }
 
+.filter{
+    color: #f2f2f2;
+}
+
 /* .orden {
     display: flex;
     align-items: center;
 } */
 
-.precio {
+.divSelects {
     width: 100%;
 }
-.precio select {
+.selects {
     width: 100%;
     border: none;
     border-color: transparent;
+    border-radius: 5px;
     outline: none;
     height: 20px;
     margin-top: 5px;
     background-color: transparent;
-    color: #f2f2f2
-}
-.precio option {
     color: #f2f2f2;
-    background-color: rgba( 0, 0, 0, 0.8 );;
+    height: 30px;
+    cursor: pointer;
+    transition: background-color 200ms linear;
 }
 
-.abc {
-    width: 100%;
+.selects:hover {
+    background-color: rgba(70, 70, 70, 0.308);;
 }
-.abc select {
-    width: 100%;
-    border: none;
-    border-color: transparent;
-    outline: none;
-    height: 20px;
-    margin-top: 5px;
-    background-color: transparent;
+
+.options {
     color: #f2f2f2;
-}
-.abc option {
-    color: #f2f2f2;
-    background-color: rgba( 0, 0, 0, 0.8 );;
+    background-color: rgba( 0, 0, 0, 0.8 );
 }
 
 .filtroContainer {
@@ -93,39 +88,3 @@
     display: flex;
     align-items: center;
 } */
-
-.categoria {
-    width: 100%;
-}
-.categoria select {
-    width: 100%;
-    border: none;
-    border-color: transparent;
-    outline: none;
-    height: 20px;
-    margin-top: 5px;
-    background-color: transparent;
-    color: #f2f2f2
-}
-.categoria option {
-    color: #f2f2f2;
-    background-color: rgba( 0, 0, 0, 0.8 );;
-}
-
-.subCategoria {
-    width: 100%;
-}
-.subCategoria select {
-    width: 100%;
-    border: none;
-    border-color: transparent;
-    outline: none;
-    height: 20px;
-    margin-top: 5px;
-    background-color: transparent;
-    color: #f2f2f2
-}
-.subCategoria option {
-    color: #f2f2f2;
-    background-color: rgba( 0, 0, 0, 0.8 );;
-}
