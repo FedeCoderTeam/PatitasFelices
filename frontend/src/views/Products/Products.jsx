@@ -11,6 +11,7 @@ const Products = () => {
 	const dispatch = useDispatch();
 	const allProducts = useSelector((state) => state.productsReducer.products);
 	let currentPage = useSelector((state) => state.productsReducer.currentPage);
+	
 
 	//----------------------------------------------PAGINADO-------------------------------------------
 	const [productsPerPage] = useState(5);
