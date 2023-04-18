@@ -1,8 +1,8 @@
 import React, {useRef} from 'react';
 import Google from './Google.png';
 import { Link } from 'react-router-dom';
+import './register.css';
 import {useDispatch} from 'react-redux';
-import './Register.css';
 // import RegisterImg from 'registerImage.png'
 import * as authAction from '../../_redux/actions/authAction'
 
