@@ -1,5 +1,5 @@
 import React from 'react';
-import './AdoptionForm.css';
+import './AdoptionForm.module.css';
 import upload from './images/upload.png';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
