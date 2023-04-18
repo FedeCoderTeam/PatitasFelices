@@ -10,7 +10,7 @@ import LoginView from './views/Login/Login.jsx';
 import Landing from './components/Landing/Landing';
 import Products from './views/Products/Products.jsx';
 import NotFound from './components/NotFound/NotFound';
-import AdoptionForm from './components/Forms/AdoptionForm/AdoptionForm';
+import AdoptionForm from './views/Forms/AdoptionForm/AdoptionForm.jsx';
 import ProductDetail from './components/CardDetail/ProductDetail/ProductDetail';
 import * as dogsAction from '../src/_redux/actions/dogsAction';
 import * as productsAction from '../src/_redux/actions/productsAction';
