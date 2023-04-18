@@ -16,7 +16,7 @@ import {useNavigate} from 'react-router-dom';
 
 
 
-const DogCard = ({image, name, age, gender, size, temperaments, id, description}) => {
+const DogCard = ({image, name, age, weight, color, gender, size, temperaments, id, description}) => {
     
     //puede ir aca la funcion para manejar el borrar card
 
@@ -67,7 +67,7 @@ const DogCard = ({image, name, age, gender, size, temperaments, id, description}
                     <button className={style.button} onClick={handleOpenDialog}>Ver más información</button>
                 </div>
             </div>
-            <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, ageInYears, gender, size,weight, color, temperaments, id, description}}  />
+            <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, ageInYears, gender, size, weight, color, temperaments, id, description}}  />
         </>
     )
 }

@@ -45,7 +45,7 @@ function ProductDetail() {
 		  const response = await fetch("http://localhost:3001/products");
 		  const data = await response.json();
 		  const shuffledProducts = data.sort(() => 0.5 - Math.random());
-		  const selectedProducts = shuffledProducts.slice(0, 3);
+		  const selectedProducts = shuffledProducts.slice(0, 4);
 		  setRandomProducts(selectedProducts);
 		};
 	
@@ -86,11 +86,13 @@ function ProductDetail() {
 					<button className={style.btnCarritoDetail}>AÑADIR AL CARRITO</button>
 				</div>
 			</div>
-			<div>
+			<div className={style.containerOtros}>
 				<h2 className={style.titleMasProductos}>También te pueden interesar</h2>
 				<div className={style.divOtros}>
 				{randomProducts.map((product) => (
 					<ProductCard 
+					key={product.id}
+					id={product.id}
 					name={product.name}
 					image={product.image}
 					brand={product.brand}
