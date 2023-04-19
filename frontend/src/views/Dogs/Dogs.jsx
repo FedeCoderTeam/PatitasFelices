@@ -8,6 +8,9 @@ import PaginatedDogs from '../../components/Paginated/PaginatedDogs/PaginatedDog
 import style from './dogs.module.css';
 
 const Dogs = () => {
+
+	let prueba = useSelector((state)=> state.dogsReducer.maybeAdoptedDog)
+	console.log(prueba);
 	const dispatch = useDispatch();
 	const allDogs = useSelector((state) => state.dogsReducer.dogs);
 	const temperaments = useSelector((state) => state.dogsReducer.temperaments);

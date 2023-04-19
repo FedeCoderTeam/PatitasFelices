@@ -15,6 +15,7 @@ const initialState = {
 	setGender: 'All',
 	setTemperaments: 'All',
 	currentPage: 1,
+	maybeAdoptedDog: {},
 };
 
 export const dogsSlice = createSlice({
@@ -128,6 +129,14 @@ export const dogsSlice = createSlice({
 		setPages: (state, action) => {
 			state.currentPage = action.payload;
 		},
+		setMaybeAdoptedDog: (state, action) => {
+			let dog = state.allDogs.find((el)=>el.id === action.payload)
+			if(!dog){
+				state.maybeAdoptedDog = {};
+			}
+			state.maybeAdoptedDog = dog;
+
+		}
 	},
 });
 
@@ -144,6 +153,7 @@ export const {
 	getDogDetail,
 	setEmptyDetail,
 	setPages,
+	setMaybeAdoptedDog,
 } = dogsSlice.actions;
 
 export default dogsSlice.reducer;

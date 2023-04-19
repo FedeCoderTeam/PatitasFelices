@@ -13,8 +13,8 @@ import {
 } from '@mui/material';
 import {brown} from '@mui/material/colors';
 import {useNavigate} from 'react-router-dom';
-
-
+import { useDispatch } from "react-redux";
+import { setMaybeAdoptedDogs } from "../../../_redux/actions/dogsAction";
 
 const DogCard = ({image, name, age, weight, color, gender, size, temperaments, id, description}) => {
     
@@ -76,6 +76,12 @@ export default DogCard;
 
 export function DialogDogsDetail(props) {
 
+    const dispatch = useDispatch();
+    const handleClick = (id)=>{
+        console.log(id);
+        dispatch(setMaybeAdoptedDogs(id))
+        navigate('/form')
+    }
     const navigate = useNavigate()
 
     const innerTheme = createTheme({
@@ -124,7 +130,7 @@ export function DialogDogsDetail(props) {
                         </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                                <Button variant="contained" onClick={() => navigate('/form') } autoFocus>
+                                <Button variant="contained" onClick={() =>{ handleClick(props.dog.id)} } autoFocus>
                         ¡Completa el formulario para adoptarlo!
                                 </Button>
                             </DialogActions>
