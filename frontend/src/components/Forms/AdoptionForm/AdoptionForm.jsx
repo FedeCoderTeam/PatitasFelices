@@ -19,11 +19,12 @@ const validationSchema = Yup.object().shape({
     email: Yup.string()
         .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 'Ingrese un email válido.')
         .required('El email es obligatorio.'),
-    state: Yup.array()
-        .required('Seleccione una opción.'),
+    state: Yup.string()
+        .oneOf(['Excelente', 'Bueno', 'Malo', 'No aplica'], 'Seleccione una opción.'),
     // 'Excellent', 'Good', 'Bad', 'N/A'
     otherAnimals: Yup.string()
         .required('Seleccione una opción.'),
+    //.oneOf([true], 'Debe aceptar los terminos y condiciones')
     howMany: Yup.string()
         .required('¿Cuáles tenés y cuántos son?'),
     income: Yup.string()
@@ -37,31 +38,20 @@ const validationSchema = Yup.object().shape({
 
 const AdoptionForm = () => {
 
-    const [formData, setFormData] = useState({
+    const initialValues = {
         fullName: '', age: '', phone: '', address: '', email: '', state: '', otherAnimals: false, howMany: '', income: '', allowance: '', image: ''
-    });
-
-    const handleSubmit = (values, {setSubmitting}, e) => {
-
-        e.preventDefault()
-        setFormData({ ...formData, ...values });
-        alert(JSON.stringify(formData, null, 2))
-        setSubmitting(false);
     }
 
-    const options = [
-        { value: "Excelente", label: "Excelente" },
-        { value: "Bueno", label: "Bueno" },
-        { value: "Malo", label: "Malo" },
-        { value: "No aplica", label: "No aplica" }
-    ];
-    console.log(ErrorMessage)
+    const handleSubmit = (values) => {
+        alert(JSON.stringify(values, null, 2))
+    }
+
     return (
         <div className='mainContainer-Form'>
             <div className='container-Form'>
-                <Formik initialValues={formData} validationSchema={validationSchema} onSubmit={(values) => handleSubmit(values)} >
+                <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => handleSubmit(values)} >
                     {({
-                        errors, touched, values, formikBag }) => (<Form>
+                          errors, values}) => (<Form>
                             <h1 className='title-Form'>Formulario de Adopción</h1>
                             <div className='box-Form'>
                                 <div className='containerInputsLeft-Form'>
@@ -83,12 +73,12 @@ const AdoptionForm = () => {
                                     <label htmlFor='state'>¿Cómo se encuentra el estado de tu patio/balcón?</label>
                                     <Field name='state' as='select' >
                                         <option value="all"></option>
-                                        {options.map((option) => {
-                                            return (
-                                                <option key={option.value} value={option.value}> {option.label}</option>
-                                            )
-                                        })}
+                                        <option value="Excelente">Excelente</option>
+                                        <option value="Bueno">Bueno</option>
+                                        <option value="Malo">Malo</option>
+                                        <option value="No aplica">No aplica</option>
                                     </Field>
+                                    <ErrorMessage name='state' />
                                 </div>
                                 <div className='containerInputsRight-Form'>
                                     <label htmlFor="otherAnimals">¿Tienes otros animales? Tilde el recuadro si la respuesta es afirmativa. ✔</label>
@@ -126,8 +116,7 @@ const AdoptionForm = () => {
                             <div>
                             </div>
                             <div className='containerBtn-Form'>
-                                <button disabled={!Object.values(errors).length > 0} type='submit'>
-                                    ENVIAR</button>
+                                <button disabled={Object.keys(errors).length > 0} type='submit'> ENVIAR </button>
                             </div>
                         </Form>
                     )}
