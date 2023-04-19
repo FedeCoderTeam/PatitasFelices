@@ -1,4 +1,39 @@
-.containerRight-HDonationS{
+.mainContainer-HDonationS{
+    width: 1200px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    margin: 0px 0 50px 0;
+}
+
+.donationImage {
+    height: 400px;
+    padding-left: 5%;
+}
+
+.containerRight-HDonationS {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #16343f;
+    padding-left: 8%;
+}
+
+.containerRight-HDonationS h1 {
+    padding: 0;
+    margin: 0;
+    color: #16343f;
+}
+.containerRight-HDonationS span {
+    color: #a65424;
+}
+.containerRight-HDonationS h3 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* .containerRight-HDonationS{
     background-color: #163440;
     padding: 30px;
     border-radius: 6px;
@@ -7,9 +42,6 @@
     background-color: #163440;
     padding: 30px;
     border-radius: 6px;
-}
-.mainContainerHDonationS{
-    text-align: center;
 }
 .containerBoxes-HDonationS{
     display: flex;
@@ -31,4 +63,4 @@
 .containerBtn-HDonationS > button > a {
     text-decoration: none;
     color: white;
-}
+} */

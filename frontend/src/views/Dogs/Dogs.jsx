@@ -57,7 +57,7 @@ const Dogs = () => {
 				</div>
 
 				{!currentDogs.length ? (
-					<h1>No hay ningun perro con las características seleccionadas</h1>
+					<h2>No hay ningun perro con las características seleccionadas</h2>
 				) : (
 					<div className={style.cardsContainer}>
 						{currentDogs?.map((e) => {
