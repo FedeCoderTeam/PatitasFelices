@@ -11,6 +11,7 @@
 }
 
 .happyPaws {
+    width: 300px;
     color: #f2f2f2;
 }
 
@@ -20,9 +21,10 @@
 }
 
 .icons {
-    width: 110px;
+    width: 300px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 30px;
     font-size: 25px;
     color: #f2f2f2;
 }
