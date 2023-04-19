@@ -11,6 +11,7 @@ import {
 	getDogDetail,
 	setEmptyDetail,
 	setPages,
+	setMaybeAdoptedDog,
 } from '../reducer/dogsReducer.js';
 
 const getDogs = () => {
@@ -108,6 +109,11 @@ const setPage = (page) => {
 		dispatch(setPages(page));
 	};
 };
+const setMaybeAdoptedDogs = (id) =>{
+	return(dispatch) =>{
+		dispatch(setMaybeAdoptedDog(id));
+	}
+}
 
 export {
 	getDogs,
@@ -121,4 +127,5 @@ export {
 	getDogsById,
 	setDetail,
 	setPage,
+	setMaybeAdoptedDogs,
 };
