@@ -24,6 +24,7 @@
 
 .link {
     text-decoration: none;
+    text-align: center;
 }
 
 .links{
@@ -36,4 +37,21 @@
 
 .links:hover{
     color: #D9AD77;
+}
+
+.divNav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.imgIcons{
+    width: 19px;
+    height: 19px;
+    transition: transform 200ms linear, background-color 200ms linear, color 200ms linear;
+}
+
+.imgIcons:hover{
+    transform: scale(1.09);
 }

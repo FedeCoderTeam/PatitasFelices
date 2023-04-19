@@ -11,11 +11,11 @@ export default function Header() {
         <div className={style.container}>
 
             <div className = {style.title}>
-                <h1>¡Bienvenido a</h1><h1 className = {style.patitasFelices}>Patitas Felices!</h1>
+                <h1>Un poco sobre</h1><h1 className = {style.patitasFelices}>nosotros</h1>
             </div>
 
             <div className = {style.description}>
-                <p>Aquí podrás conocer a nuestros adorables perros en busca de un hogar. Descubre sus historias y cómo puedes ayudar. </p>
+                <p>Patitas Felices es un refugio para perros que han sido abandonados o que han sufrido algún tipo de maltrato. Les proveemos de atención médica, alimento y un lugar mientras se busca un hogar permanente para cada uno de ellos. </p>
             </div>
 
             <div className = {style.buttonContainer}>

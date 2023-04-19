@@ -17,8 +17,6 @@ import {useNavigate} from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { setMaybeAdoptedDogs } from "../../../_redux/actions/dogsAction";
 
-
-
 const DogCard = ({image, name, age, gender, size, weight, colors, temperaments, id, description}) => {
     
     //puede ir aca la funcion para manejar el borrar card
@@ -80,12 +78,12 @@ export default DogCard;
    
 export function DialogDogsDetail(props) {
 
-        const dispatch = useDispatch();
-        const handleClick = (id)=>{
-            console.log(id);
-            dispatch(setMaybeAdoptedDogs(id))
-            navigate('/form')
-        } 
+    const dispatch = useDispatch();
+    const handleClick = (id)=>{
+        console.log(id);
+        dispatch(setMaybeAdoptedDogs(id))
+        navigate('/form')
+    }
     const navigate = useNavigate()
 
     const innerTheme = createTheme({
