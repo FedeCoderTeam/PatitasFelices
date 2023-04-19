@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import Google from './Google.png';
 import { Link } from 'react-router-dom';
-import './Register.css';
+import './register.css';
 import {useDispatch} from 'react-redux';
 
 // import RegisterImg from 'registerImage.png'
