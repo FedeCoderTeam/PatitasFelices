@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { user , session, role} = require ('../../database/db')
 const jwt = require('jsonwebtoken')
 
@@ -19,10 +20,7 @@ const loginUser = async (email, password) => {
     }
 
     if(findUser.email === email) {
-        const token = jwt.sign({ user: findUser.dataValues}, "MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgHY/fLfFMx4BdEsj49b5SqdlY4Ls\n" +
-            "cHk2Z8ui3fAPwAFQe9YtOnRFCP4A2IbmuXQgTt98HTNV8OAqsFoX9/zG1v8++WDj\n" +
-            "uO+7n2tUY9pvN609L41oKYo0fmo2FVgP5xJMBzuEvHyCU7k9VgOstruEZgDOKxBE\n" +
-            "1r2avOYVGbYCBIzZAgMBAAE", {expiresIn: '6h'})
+        const token = jwt.sign({ user: findUser.dataValues}, process.env.JWT_PRIVATE_KEY, {expiresIn: '6h'})
         const findSession = await session.findOne({where: {userId: findUser.id}})
         if(findSession) {
             await session.update({token: token}, {where: {userId: findUser.id}})

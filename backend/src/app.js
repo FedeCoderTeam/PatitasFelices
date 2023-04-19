@@ -8,6 +8,7 @@ const fileUpload = require('express-fileupload');
 const server = express();
 
 require('./database/firebase')
+// const {eventMail} = require('./config/mailer');
 
 server.name = 'API';
 
@@ -25,6 +26,8 @@ server.use((req, res, next) => {
 });
 
 server.use('/', routes);
+
+// eventMail().then().catch()
 
 server.use((err, req, res, next) => { 
     const status = err.status || 500;
