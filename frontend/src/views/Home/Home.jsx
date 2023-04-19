@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import * as dogsAction from "../../_redux/actions/dogsAction.js"
-import './Home.css';
+import './home.css';
 import { Link } from 'react-router-dom';
 import HomeDonationSection from '../../components/HomeSection/HomeDonationSection/HomeDonationSection';
+
 
 
 

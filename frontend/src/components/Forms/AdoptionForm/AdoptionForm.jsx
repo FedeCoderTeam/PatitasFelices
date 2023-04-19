@@ -1,50 +1,60 @@
 import { useState } from 'react';
+import React from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-// import validate from '../validations/validate'
+import './adoptionForm.css'
 
-const validationSchema = Yup.object().shape({
-    fullName: Yup.string()
-        .min(4, 'El nombre debe tener mínimo 4 caracteres. *')
-        .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
-        .required('El nombre es obligatorio'),
-    age: Yup.number()
-        .min(18, 'La edad tiene que ser mayor a 18 años. *')
-        .required('La edad es obligatoria.'),
-    phone: Yup.number()
-        // .matches(/^(?:(?:\+|00)54|0)? ?9(?:[1-9]\d{7}|[1-9][0-9]{3}-\d{4})$/, 'Ingrese un número válido.')
-        .required('El número de celular es de caracter obligatorio.'),
-    address: Yup.string()
-        .required('La dirección es obligatoria.'),
-    email: Yup.string()
-        .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 'Ingrese un email válido.')
-        .required('El email es obligatorio.'),
-    state: Yup.array()
-        .required('Seleccione una opción.'),
-    // 'Excellent', 'Good', 'Bad', 'N/A'
-    otherAnimals: Yup.string()
-        .required('Seleccione una opción.'),
-    howMany: Yup.string()
-        .required('¿Cuáles tenés y cuántos son?'),
-    income: Yup.string()
-        .required('Elige una opción.'),
-    allowance: Yup.string()
-        .required('Elige una opción.'),
-    image: Yup.string()
-        .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida.')
-        .required('La imagen es obligatoria.')
-});
 
 const AdoptionForm = () => {
-
-    const [formData, setFormData] = useState({
-        fullName: '', age: '', phone: '', address: '', email: '', state: '', otherAnimals: false, howMany: '', income: '', allowance: '', image: ''
+    
+    const validationSchema = Yup.object().shape({
+        fullName: Yup.string()
+            .min(4, 'El nombre debe tener mínimo 4 caracteres. *')
+            .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
+            .required('El nombre es obligatorio'),
+        age: Yup.number()
+            .min(18, 'La edad tiene que ser mayor a 18 años. *')
+            .required('La edad es obligatoria.'),
+        phone: Yup.number()
+            /* .matches(/^+549(11|[2368]\d)([2-9]\d{7})$/, 'Ingrese un número válido.') */
+            .required('El número de celular es de caracter obligatorio.'),
+        address: Yup.string()
+            .required('La dirección es obligatoria.'),
+        email: Yup.string()
+            .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 'Ingrese un email válido.')
+            .required('El email es obligatorio.'),
+        state: Yup.array()
+            .required('Seleccione una opción.'),
+        // 'Excellent', 'Good', 'Bad', 'N/A'
+        otherAnimals: Yup.boolean()
+            .required('Seleccione una opción.'),
+        howMany: Yup.string()
+            .required('¿Cuáles tenés y cuántos son?'),
+        income: Yup.string()
+            .required('Elige una opción.'),
+        allowance: Yup.string()
+            .required('Elige una opción.'),
+        image: Yup.string()
+            .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida.')
+            .required('La imagen es obligatoria.')
     });
 
-    const handleSubmit = (values, {setSubmitting}, e) => {
+    const [formData, setFormData] = useState({
+        fullName: '', 
+        age: '', 
+        phone: '', 
+        address: '', 
+        email: '', 
+        state: '', 
+        otherAnimals: false, 
+        howMany: '', 
+        income: '', 
+        allowance: '', 
+        image: ''
+    });
 
-        e.preventDefault()
-        setFormData({ ...formData, ...values });
+    const handleSubmit = (event, { setSubmitting }) => {
+        setFormData({ ...formData, ...event });
         alert(JSON.stringify(formData, null, 2))
         setSubmitting(false);
     }
@@ -55,11 +65,14 @@ const AdoptionForm = () => {
         { value: "Malo", label: "Malo" },
         { value: "No aplica", label: "No aplica" }
     ];
-    console.log(ErrorMessage)
+    
     return (
         <div className='mainContainer-Form'>
             <div className='container-Form'>
-                <Formik initialValues={formData} validationSchema={validationSchema} onSubmit={(values) => handleSubmit(values)} >
+                <Formik 
+                    initialValues={formData} 
+                    validationSchema={validationSchema} 
+                    onSubmit={handleSubmit} >
                     {({
                         errors, touched, values, formikBag }) => (<Form>
                             <h1 className='title-Form'>Formulario de Adopción</h1>
@@ -72,7 +85,7 @@ const AdoptionForm = () => {
                                     <Field name='age' type='number' />
                                     <ErrorMessage name='age' />
                                     <label htmlFor='phone'>Teléfono</label>
-                                    <Field name='phone' type='number' />
+                                    <Field name='phone' type='text' />
                                     <ErrorMessage name='phone' />
                                     <label htmlFor='text'>Dirección</label>
                                     <Field name='address' type='text' />
@@ -82,7 +95,7 @@ const AdoptionForm = () => {
                                     <ErrorMessage name='email' />
                                     <label htmlFor='state'>¿Cómo se encuentra el estado de tu patio/balcón?</label>
                                     <Field name='state' as='select' >
-                                        <option value="all"></option>
+                                        {/* <option value="all"></option> */}
                                         {options.map((option) => {
                                             return (
                                                 <option key={option.value} value={option.value}> {option.label}</option>
