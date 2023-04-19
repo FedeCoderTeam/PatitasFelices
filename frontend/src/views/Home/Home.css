@@ -6,13 +6,76 @@
     /*margin-bottom: 30px;*/
 }
 
-.mainContainerCardsHDS-Home > h1{
-    text-align: center;
-    /* margin-bottom: -30px; */
-    /*padding: 5px 0;*/
-    /*margin: 0;*/
+.mainContainerCardsHDS-Home {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    /*text-shadow: 0 1px 2px #171717;*/
+.dogSectionContainer {
+    width: 1200px;
+    height: 400px;
+    display: flex;
+    margin: 50px 0 50px 0;
+}
+
+.dogSectionImage {
+    height: 400px;
+}
+
+.dogSectionContainer-LeftSide {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 5%;
+    color: #16343f;
+}
+.dogSectionContainer-LeftSide h1 {
+    padding: 0;
+    margin: 0;
+}
+.dogSectionContainer-LeftSide span {
+    color: #a65424;
+}
+.dogSectionContainer-LeftSide h3 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.containerCardsHDS-Home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 3% 0 0 0 ;
+}
+
+.button {
+    width: 346px;
+    background-color: #a65424;
+    color: #f2f2f2;
+    font-size: 17px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 700;
+    padding: 12.5px 0 12.5px 0;
+    border-color: transparent;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: 
+        background-color 200ms linear,
+        transform 200ms linear;
+}
+
+.button:hover {
+    transform: scale(1.03);
+    background-color: #16343f;
+}
+
+/* .mainContainerCardsHDS-Home > h1{
+    text-align: center;
 }
 .mainContainerCardsHDS-Home > h1 > span{
     color: #A65424;
@@ -41,4 +104,4 @@
 .sectionDonationProducts-Home{
     text-align: center;
     margin-bottom: 80px;
-}
+} */
