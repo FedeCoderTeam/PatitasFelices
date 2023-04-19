@@ -2,6 +2,7 @@ import * as React from 'react';
 import style from './dogCard.module.css';
 import animals from './img/animals.png';
 import bone from './img/bone.png';
+import paw from './img/paw.png';
 import {
     Button,
     createTheme,
@@ -16,7 +17,7 @@ import {useNavigate} from 'react-router-dom';
 
 
 
-const DogCard = ({image, name, age, weight, color, gender, size, temperaments, id, description}) => {
+const DogCard = ({image, name, age, gender, size, weight, colors, temperaments, id, description}) => {
     
     //puede ir aca la funcion para manejar el borrar card
 
@@ -25,7 +26,8 @@ const DogCard = ({image, name, age, weight, color, gender, size, temperaments, i
     //   // agregar dog favorito
     // });
     let ageInYears = age >= 12 ? Math.round (age / 12) : age + " meses";
-    const separatedTemperaments = temperaments.join (", ");
+    const separatedTemperaments = temperaments.join ("/ ");
+    const separatedColors = colors.join ("/ ");
 
     const [open, setOpen] = React.useState(false)
 
@@ -48,17 +50,17 @@ const DogCard = ({image, name, age, weight, color, gender, size, temperaments, i
                             <img className={style.itemIcon} src={bone}/>
                         {name}
                         </h5>
-                        <h5 className={style.itemTemp}>
+                        <h5>
                             <img className={style.itemIcon} src={bone}/>
                         {separatedTemperaments}
                         </h5>
-                        <h5 className={style.intemAge}>
+                        <h5>
                             <img className={style.itemIcon} src={bone}/>{ageInYears}
                         </h5>
-                        <h5 className={style.intemGender}>
+                        <h5>
                             <img className={style.itemIcon} src={bone}/>{gender}
                         </h5>
-                        <h5 className={style.intemSize}>
+                        <h5>
                             <img className={style.itemIcon} src={bone}/>{size}
                         </h5> 
                     </div>   
@@ -67,15 +69,16 @@ const DogCard = ({image, name, age, weight, color, gender, size, temperaments, i
                     <button className={style.button} onClick={handleOpenDialog}>Ver más información</button>
                 </div>
             </div>
-            <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, ageInYears, gender, size, weight, color, temperaments, id, description}}  />
+            <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, ageInYears, gender, size, weight, separatedColors, separatedTemperaments, id, description}}  />
         </>
     )
 }
 
 export default DogCard;
 
-export function DialogDogsDetail(props) {
-
+export function DialogDogsDetail (props) {
+    
+    
     const navigate = useNavigate()
 
     const innerTheme = createTheme({
@@ -103,33 +106,54 @@ export function DialogDogsDetail(props) {
                 open={props.open}
                 onClose={props.handleOpenDialog}
                 aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
+                aria-describedby="alert-dialog-description">        
                 <DialogContent dividers>
-                    <DialogContentText id="alert-dialog-description">
-                        <div className= {style.containerLeft}>
-                            <div className={style.dogDetail}>
-                                <h3>{props.dog.name}</h3>
-                                <div className={style.avatar}>
-                                    <img src={props.dog.image} alt={props.dog.name} />
-                                </div>
-                                <div className={style.description}>
-                                    <p>{props.dog.description}</p>
-                                </div>
+                    <DialogContentText id="alert-dialog-description">                      <div className={style.dogDetail}>
+                            <h3>{props.dog.name}</h3>
+                            <div className={style.avatar}>
+                                <img src={props.dog.image} alt={props.dog.name} />
+                            </div>
+                            <div className={style.description}>
+                                <p>{props.dog.description}</p>
                             </div>
                         </div>
-                        <div className= {style.containerRight}>
+                        <div className= {style.containerInfo}>
+                            <h3> 
+                                <img className={style.itemIcon} src={paw}/>
+                                {props.dog.ageInYears}
+                            </h3>  
+                            <h3> 
+                                <img className={style.itemIcon} src={paw}/>
+                                {props.dog.weight}
+                            </h3> 
+                            <h3> 
+                                <img className={style.itemIcon} src={paw}/>
+                                {props.dog.separatedColors}
+                            </h3> 
+                            <h3>  
+                                <img className={style.itemIcon} src={paw}/>
+                                {props.dog.gender}
+                            </h3> 
+                            <h3> 
+                                <img className={style.itemIcon} src={paw}/> 
+                                {props.dog.size}
+                            </h3> 
+                            <h3> 
+                                <img className={style.itemIcon} src={paw}/>
+                                {props.dog.separatedTemperaments}
+                            </h3>
                         </div>
-                        
-                        </DialogContentText>
-                            </DialogContent>
-                            <DialogActions>
-                                <Button variant="contained" onClick={() => navigate('/form') } autoFocus>
+                    </DialogContentText>
+                </DialogContent>
+                            
+                <DialogActions>
+                    <Button className= {style.formButton} variant="contained" onClick={() => navigate('/form') } autoFocus>
                         ¡Completa el formulario para adoptarlo!
-                                </Button>
-                            </DialogActions>
-                        
+                    </Button>
+                </DialogActions>        
             </Dialog>
         </ThemeProvider>
+        
     </>)
 }
+
