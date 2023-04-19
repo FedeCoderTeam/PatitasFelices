@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import './adoptionForm.css';
 import { getDogsById } from '../../../_redux/actions/dogsAction';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getDogDetail, setMaybeAdoptedDog } from '../../../_redux/reducer/dogsReducer';
 // import validate from '../validations/validate'
 
@@ -65,8 +65,8 @@ const AdoptionForm = () => {
     }
 
     return (
-        <div className='mainContainer-Form'>
-            <div className='container-Form'>
+        <div   className='mainContainer-Form' data-aos="fade-up">
+            <div className='container-Form' >
                 <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => handleSubmit(values)} >
                     {({
                         errors, values }) => (<Form>
@@ -75,7 +75,7 @@ const AdoptionForm = () => {
                                 <div className='containerInputsLeft-Form'>
                                     <label htmlFor='fullName'>Nombre completo de la/el adoptante</label>
                                     <Field name='fullName' type='text' placeholder='EJ: Pepito Juárez' />
-                                    <ErrorMessage name='fullName' />
+                                    <ErrorMessage className='test' name='fullName' />
                                     <label htmlFor='age'>Edad</label>
                                     <Field name='age' type='number' placeholder='EJ: 25' />
                                     <ErrorMessage name='age' />
@@ -88,22 +88,14 @@ const AdoptionForm = () => {
                                     <label htmlFor='email'>Email</label>
                                     <Field name='email' type='email' placeholder='EJ: pepitojuarez1@hotmail/gmail.com' />
                                     <ErrorMessage name='email' />
-                                    <label htmlFor='state'>¿Cómo se encuentra el estado de tu patio/balcón?</label>
-                                    <Field name='state' as='select' >
-                                        <option value="all"></option>
-                                        <option value="Excelente">Excelente</option>
-                                        <option value="Bueno">Bueno</option>
-                                        <option value="Malo">Malo</option>
-                                        <option value="No aplica">No aplica</option>
-                                    </Field>
-                                    <ErrorMessage name='state' />
+
                                 </div>
                                 <div className='containerInputsRight-Form'>
                                     <label htmlFor="otherAnimals">¿Tienes otros animales? Tilde el recuadro si la respuesta es afirmativa. ✔</label>
                                     <Field type="checkbox" id="otherAnimals" name="otherAnimals" />
                                     <ErrorMessage name='otherAnimals' />
                                     {values.otherAnimals && (
-                                        <div>
+                                        <div className='hideInput'>
                                             <label htmlFor="howMany">¿Cuántos son y qué tipo de animales son?</label>
                                             <Field type="text" id="howMany" name="howMany" placeholder='EJ: 2 gatos, 1 perro.' />
                                             <ErrorMessage name='howMany' />
@@ -129,12 +121,25 @@ const AdoptionForm = () => {
                                         <Field className='upload-Form' name='image' type='file' />
                                         <ErrorMessage name='image' />
                                     </div>
+                                    <label htmlFor='state'>¿Cómo se encuentra el estado de tu patio/balcón?</label>
+                                    <Field name='state' as='select' >
+                                        <option value="all"></option>
+                                        <option value="Excelente">Excelente</option>
+                                        <option value="Bueno">Bueno</option>
+                                        <option value="Malo">Malo</option>
+                                        <option value="No aplica">No aplica</option>
+                                    </Field>
+                                    <ErrorMessage name='state' />
                                 </div>
-                            </div>
-                            <div>
                             </div>
                             <div className='containerBtn-Form'>
                                 <button disabled={Object.keys(errors).length > 0} type='submit'> ENVIAR </button>
+                            </div>
+                            <div className='containerGoHome-Form'>
+                                <h3>Aún no sé si estoy listo/a, regresar a</h3>
+                                <Link to="/home" className="goHome-Form">
+                                    <i class="fa-solid fa-house"></i>
+                                </Link>
                             </div>
                         </Form>
                     )}
