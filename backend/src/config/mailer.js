@@ -1,12 +1,15 @@
+require('dotenv').config();
 const nodemailer = require('nodemailer')
+
+const {MAIL_USER, MAIL_PASSWORD} = process.env
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
     auth: {
-        user: 'federiconieto04@gmail.com',
-        pass: 'hiadufqxbuiyprnc',
+        user: MAIL_USER,
+        pass: MAIL_PASSWORD,
     }
 })
 
