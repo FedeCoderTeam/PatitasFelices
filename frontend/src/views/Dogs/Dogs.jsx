@@ -10,7 +10,6 @@ import style from './dogs.module.css';
 const Dogs = () => {
 
 	let prueba = useSelector((state)=> state.dogsReducer.maybeAdoptedDog)
-	console.log(prueba);
 	const dispatch = useDispatch();
 	const allDogs = useSelector((state) => state.dogsReducer.dogs);
 	const temperaments = useSelector((state) => state.dogsReducer.temperaments);
@@ -39,7 +38,7 @@ const Dogs = () => {
     
         
     return(
-        <div className={style.main}>
+        <div data-aos="fade-down" className={style.main}>
             <div className={style.filtersContainer}>
                 <DogFilters
                     allDogs={allDogs}

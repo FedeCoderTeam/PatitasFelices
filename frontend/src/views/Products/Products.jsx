@@ -41,7 +41,7 @@ const Products = () => {
 	]);
 
 	return (
-		<div className={style.main}>
+		<div className={style.main} data-aos="fade-down">
 			<div className={style.filtersContainer}>
 				<ProductFilters />
 			</div>
