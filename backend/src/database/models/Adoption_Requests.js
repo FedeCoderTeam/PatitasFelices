@@ -16,7 +16,7 @@ function requestsModel(database) {
             allowNull: false,
         },
         phone: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.BIGINT,
 				allowNull: false,
         },
         address: {
@@ -39,7 +39,7 @@ function requestsModel(database) {
         moreAnimas_details: {
             type: DataTypes.TEXT,
             allowNull: false,
-            defaultValue: 'Escribe cuántos animales más viven en la casa y qué animales son.',
+            defaultValue: 'No hay detalles',
         },
         proper_income: {
             type: DataTypes.ENUM('Yes', 'No'),
@@ -53,6 +53,11 @@ function requestsModel(database) {
             type: DataTypes.TEXT,
             allowNull: false,
         },
+        status: {
+            type: DataTypes.ENUM("Pending", "Accepted", "Denied"),
+            defaultValue: "Pending",
+            allowNull: false,
+        }
     });
 }
 
