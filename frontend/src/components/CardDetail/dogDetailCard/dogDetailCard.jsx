@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Link } from 'react-router-dom';
 
-
 const dogDetailCard = ({id, name, age, size, weight, image, description,color, gender, temperament}) => {
+
+
     let ageInYears = age >= 12 ? Math.round (age / 12) : age + " meses";
     return (
         <div className={style.dogCardDetail}>

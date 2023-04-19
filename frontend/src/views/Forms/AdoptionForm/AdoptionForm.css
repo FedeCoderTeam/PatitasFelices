@@ -1,0 +1,106 @@
+.mainContainer-Form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./images/formImage.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh
+}
+
+.container-Form {
+    background: rgba(0, 0, 0, 0.55);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    /* width: 85%; */
+    text-align: center;
+    height: 96%;
+    /* margin-top: 20px; */
+}
+
+.title-Form {
+    color: #D9AD77;
+    font-size: 60px;
+    margin-bottom: 60px;
+    margin-top: 60px;
+}
+
+.box-Form {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+
+.containerInputsLeft-Form {
+    display: flex;
+    flex-direction: column;
+    width: 37%;
+}
+
+.containerInputsRight-Form {
+    display: flex;
+    flex-direction: column;
+    width: 37%;
+}
+
+.containerInputsLeft-Form>label {
+    color: #FFFFFF;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.containerInputsRight-Form>label {
+    margin-bottom: 15px;
+    color: #FFFFFF;
+    display: flex;
+}
+
+.containerInputsLeft-Form input {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 40px;
+    padding: 15px;
+}
+
+.containerInputsRight-Form input {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.containerBtn-Form>button {
+    font-size: 16px;
+    padding: 14px;
+    width: 30%;
+    background: #592519;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    /* margin-top: 20px; */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: 
+    background-color 200ms linear,
+    transform 200ms linear;
+}
+.containerBtn-Form>button:hover {
+background-color: #163440;
+transform: scale(1.02);
+}
+.containerUpload-Form{
+    margin-top: 53px;
+}
+
+/* .uploadBtn-Form{
+    font-size: 22px;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 55px;
+} */

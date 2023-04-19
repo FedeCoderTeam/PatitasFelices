@@ -6,12 +6,11 @@
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18); */
     height: 355px;
-    margin: 25px 70px -7px 70px;
     /* display: flex;
     justify-content: center; */
     display: flex;
     /* flex-direction: initial; */
-    width: 12%;
+    width: 33%;
     /* width: 300px; */
 }
 .container-HDS{

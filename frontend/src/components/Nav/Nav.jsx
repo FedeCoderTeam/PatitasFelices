@@ -22,13 +22,22 @@ export default function Nav() {
         <div className={style.containerNav}>
             <div className={style.containerLeft}>
                 <Link to="/home" className={style.link}>
-                    <p className={style.links}>Home</p>
+                    <div className={style.divNav}>
+                        <img className={style.imgIcons} src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681881441/Proyecto%20Final/dog-house_2_rg9isr.png" alt="Home" />
+                        <p className={style.links}>Home</p>
+                    </div>     
                 </Link>
                 <Link to="/products" className={style.link}>
-                    <p className={style.links}>Productos</p>
+                    <div className={style.divNav}>
+                        <img className={style.imgIcons} src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681881811/Proyecto%20Final/dog-food_rdlman.png" alt="Products" />
+                        <p className={style.links}>Productos</p>
+                    </div>
                 </Link>
                 <Link to="/dogs" className={style.link}>
-                    <p className={style.links}>Perros</p>
+                    <div className={style.divNav}>
+                        <img className={style.imgIcons} src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681882026/Proyecto%20Final/clumber-spaniel_hwr8gz.png" alt="Dogs" />
+                        <p className={style.links}>Perros</p>
+                    </div>
                 </Link>
             </div>
             {
@@ -36,10 +45,16 @@ export default function Nav() {
                     ?
                     <div className={style.containerRight}>
                         <Link to="/login" className={style.link}>
-                            <p className={style.links}>Ingresar</p>
+                            <div className={style.divNav}>
+                                <img className={style.imgIcons} src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681882773/Proyecto%20Final/log-in_q497ai.png" alt="Ingresar" />
+                                <p className={style.links}>Ingresar</p>
+                            </div>
                         </Link>
                         <Link to="/register" className={style.link}>
-                            <p className={style.links}>Registrarse</p>
+                            <div className={style.divNav}>
+                                <img className={style.imgIcons} src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681882433/Proyecto%20Final/document_p66epz.png" alt="Registrarse" />
+                                <p className={style.links}>Registrarse</p>
+                            </div>
                         </Link>
                     </div>
                     :

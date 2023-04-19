@@ -1,5 +1,5 @@
 import React from 'react';
-import './homeDogSection.css';
+import './HomeDogSection.css';
 
 const HomeDogSection = ({ image, name, age, gender }) => {
 	return (

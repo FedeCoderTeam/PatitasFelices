@@ -8,6 +8,7 @@ import * as dogsAction from "../../_redux/actions/dogsAction.js"
 import './home.css';
 import { Link } from 'react-router-dom';
 import HomeDonationSection from '../../components/HomeSection/HomeDonationSection/HomeDonationSection';
+import HomeProductSection from '../../components/HomeSection/HomeProductSection/HomeProductSection.jsx';
 
 
 
@@ -32,30 +33,44 @@ const Home = () => {
     return (
         <>
             <Header />
-            <div className='mainContainerCardsHDS-Home'>
-                    <h1 data-aos="fade-down"
-    data-aos-duration="1000">Aquí algunos de nuestros <span>pequeños</span></h1>
-                <div className='containerCardsHDS-Home'>
-                    {currentDogs?.map((e) => {
-                        return (
-                            <HomeDogSection
-                                key={e.id}
-                                id={e.id}
-                                image={e.image}
-                                name={e.name}
-                                age={e.age}
-                                gender={e.gender}
-                                size={e.size}
-                                temperaments={e.temperaments}
-                            />
-                        )
-                    })}
+            <div className='mainContainerCardsHDS-Home' data-aos="fade-down"
+    data-aos-duration="1000">
+                <div className='dogSectionContainer'>
+                    <div className='dogSectionContainer-LeftSide'>
+                        <h1>Nuestros <span>rescatados</span></h1>
+                        <h4>Descubre las conmovedoras historias de nuestros pequeños valientes y encuentra tu compañero</h4>
+                        <h3>¡Adopta a uno de nuestros perritos y cambia su vida para siempre!</h3>
+                        <div>
+                            <Link to='/dogs'><button className='button'>¡Conócelos a todos!</button></Link>
+                        </div>
+                    </div>
+                    <div className='containerCardsHDS-Home'>
+                        {/* {currentDogs?.map((e) => {
+                            return (
+                                <HomeDogSection
+                                    key={e.id}
+                                    id={e.id}
+                                    image={e.image}
+                                    name={e.name}
+                                    age={e.age}
+                                    gender={e.gender}
+                                    size={e.size}
+                                    temperaments={e.temperaments}
+                                />
+                            )
+                        })} */}
+                        <Link to='/dogs'>
+                            <img src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681884590/91540-dog-love_b0o1tw.gif" alt="" className='dogSectionImage'/>
+                        </Link>
+                    </div>
                 </div>
-                <div>
-                    <button><Link to='/dogs'>¡Conócelos a todos!</Link></button>
-                </div>
-                <div className='sectionDonationProducts-Home'>
+                
+                <div className='sectionDonationProducts-Home' data-aos="fade-down" data-aos-duration="1000">
                     <HomeDonationSection />
+                </div>
+
+                <div data-aos="fade-down" data-aos-duration="1000">
+                    <HomeProductSection />
                 </div>
             </div>
         </>
