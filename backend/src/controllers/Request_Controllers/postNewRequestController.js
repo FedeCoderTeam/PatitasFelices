@@ -1,3 +1,4 @@
+// const { aknowledgeAdoptionRequest } = require('../../config/mailer');
 const { requests, dog } = require('../../database/db')
 
 const postNewRequest = async(
@@ -8,7 +9,7 @@ const postNewRequest = async(
     email,
     areas_conditions,
     more_animals,
-    // moreAnimas_details,
+    moreAnimals_details,
     proper_income,
     inHouse_allowance,
     outDoor_image,
@@ -21,7 +22,7 @@ const postNewRequest = async(
         email,
         areas_conditions,
         more_animals,
-        // moreAnimas_details,
+        moreAnimals_details,
         proper_income,
         inHouse_allowance,
         outDoor_image,
@@ -56,13 +57,16 @@ const postNewRequest = async(
                 email: email,
                 areas_conditions: areas_conditions,
                 more_animals: more_animals,
-                // moreAnimas_details: moreAnimas_details,
+                moreAnimals_details: moreAnimals_details,
                 proper_income: proper_income,
                 inHouse_allowance: inHouse_allowance,
                 outDoor_image: outDoor_image,              
             });
             await newRequest.setDog(doguiId);
-    }
+
+        }
+    // // 💥💥💥💥💥💥💥💥💥💥💥💥💥
+    // await aknowledgeAdoptionRequest(name, email);
 };
 
 module.exports= postNewRequest;

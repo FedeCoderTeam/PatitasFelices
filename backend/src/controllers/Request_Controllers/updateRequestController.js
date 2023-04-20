@@ -1,38 +1,39 @@
-const { requests, dog, user } = require ('../../database/db') 
-const updateRequest= async ( 
-    id,
-    status,
-    )=> {
-        try {
-            let requestToUpdate = await requests.findOne({
-                where: {
-                    id: id,
+require('dotenv').config();
+const { requests, dog } = require ("../../database/db")
+const jwt = require('jsonwebtoken')
+
+let updateRequest = async ( id, status, dogId, token) => {
+
+    try {
+        const infoUser = jwt.verify(token, process.env.JWT_PRIVATE_KEY)
+
+        if(infoUser.user.role.name !== 'Administrador') return 'Error al intentar actualizar la solicitud'
+
+        let requestToUpdate = await requests.findOne({ where: { id: id } });
+
+        if(!requestToUpdate) throw new Error(`No se encontró una solicitud con id ${id}`);
+
+        await requestToUpdate.update({
+			status: status,
+		}); 
+
+        if(status === "Accepted") {
+
+            let dogui = await dog.findOne({
+                where: { 
+                    id: dogId,
                 },
-                include: [
-                    { model: dog }
-                ]
-            });
-    
-            if (!requestToUpdate) {
-                throw new Error(`No se encontró una solicitud con id ${id}`);
-            }
-            await requests.update({
-                status: status
-            }, {where: {id: id}})
-            if (status === "Accepted") {
-                let newDogId = await dog.update(
-                    {adopted: true},
-                    {
-                    where: {
-                        id: requestToUpdate.dogId,
-                    },
-                });
-            }
+            }); 
+            
+            await dogui.update({
+                adopted: true
+            }); 
+
             return 'Se modificó correctamente la solicitud';
-        } catch (error) {
-            console.log(error);
-		    return 'Error al intentar actualizar la solicitud';
         }
-    };
+    } catch (error) {
+        return 'Error al intentar actualizar la solicitud';
+    }
+};
 
 module.exports = updateRequest;
