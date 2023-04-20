@@ -76,6 +76,7 @@ const Dogs = () => {
 									temperaments={e.temperaments}
 									description={e.description}
 									colors={e.colors}
+									weight={e.weight}
 								/>
 							);
 						})}
