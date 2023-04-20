@@ -20,7 +20,6 @@ const SearchProduct = () => {
         dispatch(productsAction.getProductsByName(inputProduct))
         setInputProduct("");
     } */
-	console.log(name);
 	return (
 		<>
 			<div className={style.searchBar}>

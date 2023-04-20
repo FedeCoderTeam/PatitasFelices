@@ -77,8 +77,9 @@
 	/* flex-direction: row; */
 }
 
-h5 {
-    display: list-item;
+.divData h3 {
+    /* display: list-item; */
+    display: flex;
     align-items: center;
     font-family: 'Be Vietnam Pro';
     color: #163440;
@@ -89,6 +90,7 @@ h5 {
 
 .itemIcon{
     margin-right: 5px;
+    margin-left: 5px;
     width: 30px;
     height: 30px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
@@ -168,13 +170,15 @@ h5 {
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 7px );
     background-color: #D9AD77;
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 350px;
 }
 .containerInfo > h3 {
     text-align: center;
     font-family: 'Be Vietnam Pro';
     color: #163440; 
+    display: flex;
+    justify-content: center;
 }
 
 

@@ -1,0 +1,30 @@
+.containerCloudinaryFullBtn-AdoptionForm {
+    text-align: center;
+}
+
+.containerCloudinaryFullBtn-AdoptionForm>button {
+    font-size: 16px;
+    padding: 14px;
+    width: 100%;
+    background: #16401a;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    /* margin-top: 20px; */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition:
+        background-color 20ms linear,
+        transform 20ms linear,
+        color 20ms linear;
+}
+
+.containerCloudinaryFullBtn-AdoptionForm>button:hover {
+    transform: scale(1.01);
+    background-color: #1c4d21;
+}
+
+.containerCloudinaryFullBtn-AdoptionForm>button>i {
+    padding-left: 3px;
+}
+

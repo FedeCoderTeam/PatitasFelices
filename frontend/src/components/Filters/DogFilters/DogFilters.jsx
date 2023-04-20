@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchDog from '../../../components/SearchBar/SearchDog/SearchDog';
-import style from './dogFilters.module.css';
+import style from './DogFilters.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import * as dogsAction from '../../../_redux/actions/dogsAction';
 
@@ -73,13 +73,14 @@ const DogFilters = (props) => {
 					<div className={style.edad}>
 						<div>Edad</div>
 						<select
+							defaultValue="1"
 							name=""
 							id=""
 							onChange={(event) => {
 								handleOrder(event, 'age');
 							}}
 						>
-							<option selected disabled>
+							<option value="1" disabled={true}>
 								Elegir orden
 							</option>
 							<option value="asc">Menor a mayor</option>
@@ -90,13 +91,14 @@ const DogFilters = (props) => {
 					<div className={style.peso}>
 						<div>Peso</div>
 						<select
+							defaultValue="1"
 							name=""
 							id=""
 							onChange={(event) => {
 								handleOrder(event, 'weight');
 							}}
 						>
-							<option selected disabled>
+							<option value="1" disabled={true}>
 								Elegir orden
 							</option>
 							<option value="asc">Más liviano a más pesado</option>

@@ -4,36 +4,47 @@ import animals from './img/animals.png';
 import bone from './img/bone.png';
 import paw from './img/paw.png';
 import {
-    Button,
-    createTheme,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    ThemeProvider
+	Button,
+	createTheme,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	ThemeProvider,
 } from '@mui/material';
-import {brown} from '@mui/material/colors';
-import {useNavigate} from 'react-router-dom';
-import { useDispatch } from "react-redux";
-import { setMaybeAdoptedDogs } from "../../../_redux/actions/dogsAction";
+import { brown } from '@mui/material/colors';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setMaybeAdoptedDogs } from '../../../_redux/actions/dogsAction';
 
-const DogCard = ({image, name, age, gender, size, weight, colors, temperaments, id, description}) => {
-    
-    //puede ir aca la funcion para manejar el borrar card
+const DogCard = ({
+	image,
+	name,
+	age,
+	gender,
+	size,
+	weight,
+	colors,
+	temperaments,
+	id,
+	description,
+}) => {
+	//puede ir aca la funcion para manejar el borrar card
+
 
     // const favoriteIcon = document.querySelector('.card .favorite-icon');
     // favoriteIcon.addEventListener('click', function() {
     //   // agregar dog favorito
     // });
-    let ageInYears = age >= 12 ? Math.round (age / 12) : age + " meses";
+    let ageInYears = age >= 12 ? Math.round (age / 12) + "año/s" : age + " mes/es";
     const separatedTemperaments = temperaments.join ("/ ");
     const separatedColors = colors.join ("/ ");
 
-    const [open, setOpen] = React.useState(false)
+	const [open, setOpen] = React.useState(false);
 
-    const handleOpenDialog = () => {
-        setOpen(!open)
-    }
+	const handleOpenDialog = () => {
+		setOpen(!open);
+	};
 
     return(
         <div>
@@ -46,23 +57,23 @@ const DogCard = ({image, name, age, gender, size, weight, colors, temperaments, 
                 </div>
                 <div className={style.divDogInfo}>
                     <div className={style.divData}>
-                        <h5 className={style.itemName}>
+                        <h3 className={style.itemName}>
                             <img className={style.itemIcon} src={bone}/>
                         {name}
-                        </h5>
-                        <h5>
+                        </h3>
+                        <h3>
                             <img className={style.itemIcon} src={bone}/>
                         {separatedTemperaments}
-                        </h5>
-                        <h5>
+                        </h3>
+                        <h3>
                             <img className={style.itemIcon} src={bone}/>{ageInYears}
-                        </h5>
-                        <h5>
+                        </h3>
+                        <h3>
                             <img className={style.itemIcon} src={bone}/>{gender}
-                        </h5>
-                        <h5>
+                        </h3>
+                        <h3>
                             <img className={style.itemIcon} src={bone}/>{size}
-                        </h5> 
+                        </h3> 
                     </div>   
                 </div> 
                 <div className={style.containerButton}>
@@ -75,37 +86,36 @@ const DogCard = ({image, name, age, gender, size, weight, colors, temperaments, 
 }
 
 export default DogCard;
-   
+
 export function DialogDogsDetail(props) {
+	const dispatch = useDispatch();
+	const handleClick = (id) => {
+		dispatch(setMaybeAdoptedDogs(id));
+		navigate('/form');
+	};
+	const navigate = useNavigate();
 
-    const dispatch = useDispatch();
-    const handleClick = (id)=>{
-        console.log(id);
-        dispatch(setMaybeAdoptedDogs(id))
-        navigate('/form')
-    }
-    const navigate = useNavigate()
+	const innerTheme = createTheme({
+		palette: {
+			primary: {
+				main: brown[500],
+			},
+			background: {
+				default: '#163440',
+				paper: '#163440',
+			},
+			text: {
+				...{
+					primary: '#fff',
+					secondary: '#fff',
+				},
+			},
+		},
+	});
+	//props.dog.image name
 
-    const innerTheme = createTheme({
-        palette: {
-            primary: {
-                main: brown[500],
-            },
-            background: {
-                default: '#163440',
-                paper: '#163440'
-            },
-            text: {
-                ...{
-                    primary: '#fff',
-                    secondary: '#fff'
-                }
-            }
-        },
-    });
-    //props.dog.image name
-
-    return(<>
+    return (
+    <>
         <ThemeProvider theme={innerTheme}>
             <Dialog
                 open={props.open}
@@ -129,7 +139,7 @@ export function DialogDogsDetail(props) {
                             </h3>  
                             <h3> 
                                 <img className={style.itemIcon} src={paw}/>
-                                {props.dog.weight}
+                                {props.dog.weight + 'kg'}
                             </h3> 
                             <h3> 
                                 <img className={style.itemIcon} src={paw}/>
@@ -158,6 +168,6 @@ export function DialogDogsDetail(props) {
             </Dialog>
         </ThemeProvider>
         
-    </>)
-}
-
+    </>
+    );
+};

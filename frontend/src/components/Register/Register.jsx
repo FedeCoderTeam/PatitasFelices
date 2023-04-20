@@ -1,33 +1,43 @@
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import Google from './Google.png';
 import { Link } from 'react-router-dom';
 import './register.css';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 // import RegisterImg from 'registerImage.png'
-import * as authAction from '../../_redux/actions/authAction'
-import {userGoogleAction} from '../../_redux/actions/authAction';
+import * as authAction from '../../_redux/actions/authAction';
+import { userGoogleAction } from '../../_redux/actions/authAction';
 
 const Register = () => {
+	const dispatch = useDispatch();
 
-	const dispatch = useDispatch()
-
-	const refName = useRef(null)
-	const refLast = useRef(null)
-	const refEmail = useRef(null)
-	const refPass = useRef(null)
+	const refName = useRef(null);
+	const refLast = useRef(null);
+	const refEmail = useRef(null);
+	const refPass = useRef(null);
 
 	const handleOnRegister = () => {
-		if(!refName.current.value || !refLast.current.value || !refEmail.current.value || !refPass.current.value) {
-			return
+		if (
+			!refName.current.value ||
+			!refLast.current.value ||
+			!refEmail.current.value ||
+			!refPass.current.value
+		) {
+			return;
 		}
-		dispatch(authAction.registerUserAction(refName.current.value, refLast.current.value, refEmail.current.value, refPass.current.value))
-	}
+		dispatch(
+			authAction.registerUserAction(
+				refName.current.value,
+				refLast.current.value,
+				refEmail.current.value,
+				refPass.current.value,
+			),
+		);
+	};
 
 	const handleOnGoogle = () => {
-		dispatch(userGoogleAction())
-
-	}
+		dispatch(userGoogleAction());
+	};
 
 	return (
 		<div className="mainContainer-Register" data-aos="fade-left">
@@ -60,7 +70,11 @@ const Register = () => {
 					</div>
 
 					<div className="containerButton-Register">
-						<button type="submit" className="buttonRegister" onClick={handleOnRegister}>
+						<button
+							type="submit"
+							className="buttonRegister"
+							onClick={handleOnRegister}
+						>
 							Crear cuenta
 						</button>
 					</div>
@@ -79,7 +93,7 @@ const Register = () => {
 
 				<div>
 					<Link to="/home" className="goHome">
-						<i class="fa-solid fa-house"></i>
+						<i className="fa-solid fa-house"></i>
 					</Link>
 				</div>
 			</div>
