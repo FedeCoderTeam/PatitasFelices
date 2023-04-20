@@ -1,68 +1,87 @@
 import { useEffect, useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
 import './adoptionForm.css';
-import { getDogsById } from '../../../_redux/actions/dogsAction';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { getDogDetail, setMaybeAdoptedDog } from '../../../_redux/reducer/dogsReducer';
-// import validate from '../validations/validate'
+import { Link } from 'react-router-dom';
+import { setMaybeAdoptedDog } from '../../../_redux/reducer/dogsReducer';
+import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
 
-const validationSchema = Yup.object().shape({
-    fullName: Yup.string()
-        .min(4, 'El nombre debe tener mínimo 4 caracteres. *')
-        .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
-        .required('El nombre es obligatorio'),
-    age: Yup.number()
-        .min(18, 'La edad tiene que ser mayor a 18 años. *')
-        .required('La edad es obligatoria.'),
-    phone: Yup.string()
-        .matches(/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/, 'Ingrese un número válido.')
-        .required('El número de celular es de caracter obligatorio.'),
-    address: Yup.string()
-        .required('La dirección es obligatoria.'),
-    email: Yup.string()
-        .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 'Ingrese un email válido.')
-        .required('El email es obligatorio.'),
-    state: Yup.string()
-        .oneOf(['Excelente', 'Bueno', 'Malo', 'No aplica'], 'Seleccione una opción.'),
-    // 'Excellent', 'Good', 'Bad', 'N/A'
-    otherAnimals: Yup.string()
-        .required('Seleccione una opción.'),
-    //.oneOf([true], 'Debe aceptar los terminos y condiciones')
-    howMany: Yup.string()
-        .required('Es obligatoria esta información.'),
-    income: Yup.string()
-        .required('Elige una opción.'),
-    allowance: Yup.string()
-        .required('Elige una opción.'),
-    image: Yup.string()
-        .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida.')
-        .required('La imagen es obligatoria.')
-});
 
 
 const AdoptionForm = () => {
 
     const dispatch = useDispatch();
-
     const dogId = useSelector(
         (state) => state.dogsReducer.maybeAdoptedDog,
     );
-    console.log(dogId);
+
+    const [url, setUrl] = useState("");
 
     const initialValues = {
-        fullName: '', age: '', phone: '', address: '', email: '', state: '', otherAnimals: false, howMany: '', income: '', allowance: '', image: ''
+        fullName: '',
+        age: '',
+        phone: '',
+        address: '',
+        email: '',
+        state: '',
+        otherAnimals: false,
+        howMany: '',
+        income: '',
+        allowance: '',
+        image: ''
     }
+
+    const validationSchema = Yup.object().shape({
+        fullName: Yup.string()
+            .min(4, 'El nombre debe tener mínimo 4 caracteres. *')
+            .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
+            .required('El nombre es obligatorio'),
+        age: Yup.number()
+            .min(18, 'La edad tiene que ser mayor a 18 años. *')
+            .required('La edad es obligatoria.'),
+        phone: Yup.string()
+            .matches(/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/, 'Ingrese un número válido.')
+            .required('El número de celular es de caracter obligatorio.'),
+        address: Yup.string()
+            .required('La dirección es obligatoria.'),
+        email: Yup.string()
+            .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 'Ingrese un email válido.')
+            .required('El email es obligatorio.'),
+        state: Yup.string()
+            .oneOf(['Excelente', 'Bueno', 'Malo', 'No aplica'], 'Seleccione una opción.'),
+        otherAnimals: Yup.string()
+            .required('Seleccione una opción.'),
+        //.oneOf([true], 'Debe aceptar los terminos y condiciones')
+        howMany: Yup.string()
+            .required('Es obligatoria esta información.'),
+        income: Yup.string()
+            .required('Elige una opción.'),
+        allowance: Yup.string()
+            .required('Elige una opción.'),
+        image: Yup.string()
+            .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida.')
+            .required('La imagen es obligatoria.')
+    });
+
+    const handleSubmit = (values) => {
+        alert(JSON.stringify(values, null, 2))
+    }
+
+    const formik = useFormik({
+        initialValues,
+        validationSchema,
+        handleSubmit,
+    });
+
     useEffect(() => {
         return () => {
             dispatch(setMaybeAdoptedDog());
         };
     }, [])
 
-    const handleSubmit = (values) => {
-        alert(JSON.stringify(values, null, 2))
-    }
+
+
 
     return (
         <div   className='mainContainer-Form' data-aos="fade-up">
@@ -72,7 +91,6 @@ const AdoptionForm = () => {
                         errors, values }) => (<Form>
                             <h1 className='title-Form'>Formulario de Adopción {dogId.name}</h1>
                             <div className='box-Form'>
-
                                 <div className='containerInputsLeft-Form'>
 
                                     <div className='eachField'>
@@ -165,6 +183,24 @@ const AdoptionForm = () => {
                                     <div className='eachField'>
                                         <label htmlFor='image'>Foto de su patio/balcón/espacio al aire libre</label>
                                         {/* Esta foto se va a guardar en cloudinary */}
+                                        <div className='containerUpload-Form'>
+                                            <label htmlFor='image'>Foto de su patio/balcón/espacio al aire libre</label>
+                                            <div>
+                                                <CloudinaryWidget
+                                                    url={url}
+                                                    setUrl={setUrl}
+                                                />
+                                            </div>
+                                            <div>
+                                                <img
+                                                    src={url}
+                                                    alt={formik.values.title}
+                                                    title={formik.values.title}
+                                                    loading="lazy"
+                                                />
+                                            </div>
+                                            <ErrorMessage name='image' />
+                                        </div>
                                         <Field className='upload-Form' name='image' type='file' />
                                         <ErrorMessage name="image">
                                             {(msg) => <div className="errorMessage">{msg}</div>}
@@ -187,6 +223,7 @@ const AdoptionForm = () => {
 
                                 </div>
                             </div>
+
                             <div className='containerBtn-Form'>
                                 <button disabled={Object.keys(errors).length > 0} type='submit'> ENVIAR </button>
                             </div>
