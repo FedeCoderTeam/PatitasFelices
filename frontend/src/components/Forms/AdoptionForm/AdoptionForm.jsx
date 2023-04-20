@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import './adoptionForm.css';
 import { getDogsById } from '../../../_redux/actions/dogsAction';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getDogDetail, setMaybeAdoptedDog } from '../../../_redux/reducer/dogsReducer';
 // import validate from '../validations/validate'
 
@@ -65,76 +65,136 @@ const AdoptionForm = () => {
     }
 
     return (
-        <div className='mainContainer-Form'>
-            <div className='container-Form'>
+        <div   className='mainContainer-Form' data-aos="fade-up">
+            <div className='container-Form' >
                 <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => handleSubmit(values)} >
                     {({
                         errors, values }) => (<Form>
                             <h1 className='title-Form'>Formulario de Adopción {dogId.name}</h1>
                             <div className='box-Form'>
+
                                 <div className='containerInputsLeft-Form'>
-                                    <label htmlFor='fullName'>Nombre completo de la/el adoptante</label>
-                                    <Field name='fullName' type='text' placeholder='EJ: Pepito Juárez' />
-                                    <ErrorMessage name='fullName' />
-                                    <label htmlFor='age'>Edad</label>
-                                    <Field name='age' type='number' placeholder='EJ: 25' />
-                                    <ErrorMessage name='age' />
-                                    <label htmlFor='phone'>Teléfono</label>
-                                    <Field name='phone' type='number' placeholder='EJ: +54**********' />
-                                    <ErrorMessage name='phone' />
-                                    <label htmlFor='text'>Dirección</label>
-                                    <Field name='address' type='text' placeholder='EJ: Calle Falsa, 123, Springfield' />
-                                    <ErrorMessage name='address' />
-                                    <label htmlFor='email'>Email</label>
-                                    <Field name='email' type='email' placeholder='EJ: pepitojuarez1@hotmail/gmail.com' />
-                                    <ErrorMessage name='email' />
-                                    <label htmlFor='state'>¿Cómo se encuentra el estado de tu patio/balcón?</label>
-                                    <Field name='state' as='select' >
-                                        <option value="all"></option>
-                                        <option value="Excelente">Excelente</option>
-                                        <option value="Bueno">Bueno</option>
-                                        <option value="Malo">Malo</option>
-                                        <option value="No aplica">No aplica</option>
-                                    </Field>
-                                    <ErrorMessage name='state' />
+
+                                    <div className='eachField'>
+                                        <label htmlFor='fullName'>Nombre completo de la/el adoptante</label>
+                                        <Field name='fullName' type='text' placeholder='EJ: Pepito Juárez' />
+                                        <ErrorMessage name="fullName">
+                                        {(msg) => <div className="errorMessage">{msg}</div>}
+                                        </ErrorMessage>
+                                    </div>
+
+                                    <div className='eachField'>
+                                        <label htmlFor='age'>Edad</label>
+                                        <Field name='age' type='number' placeholder='EJ: 25' />
+                                        <ErrorMessage name="age">
+                                        {(msg) => <div className="errorMessage">{msg}</div>}
+                                        </ErrorMessage>
+                                    </div>
+
+                                    <div className='eachField'>
+                                        <label htmlFor='phone'>Teléfono</label>
+                                        <Field name='phone' type='number' placeholder='EJ: +54**********' />
+                                        <ErrorMessage name="phone">
+                                        {(msg) => <div className="errorMessage">{msg}</div>}
+                                        </ErrorMessage>
+                                    </div>
+
+                                    <div className='eachField'>
+                                        <label htmlFor='text'>Dirección</label>
+                                        <Field name='address' type='text' placeholder='EJ: Calle Falsa, 123, Springfield' />
+                                        <ErrorMessage name="address">
+                                        {(msg) => <div className="errorMessage">{msg}</div>}
+                                        </ErrorMessage>
+                                    </div>
+
+                                    <div className='eachField'>
+                                        <label htmlFor='email'>Email</label>
+                                        <Field name='email' type='email' placeholder='EJ: pepitojuarez1@hotmail/gmail.com' />
+                                        <ErrorMessage name="email">
+                                            {(msg) => <div className="errorMessage">{msg}</div>}
+                                        </ErrorMessage>
+                                    </div>
+
                                 </div>
+
                                 <div className='containerInputsRight-Form'>
-                                    <label htmlFor="otherAnimals">¿Tienes otros animales? Tilde el recuadro si la respuesta es afirmativa. ✔</label>
-                                    <Field type="checkbox" id="otherAnimals" name="otherAnimals" />
-                                    <ErrorMessage name='otherAnimals' />
-                                    {values.otherAnimals && (
-                                        <div>
-                                            <label htmlFor="howMany">¿Cuántos son y qué tipo de animales son?</label>
-                                            <Field type="text" id="howMany" name="howMany" placeholder='EJ: 2 gatos, 1 perro.' />
-                                            <ErrorMessage name='howMany' />
+
+                                    <div className='eachField'>
+                                        <label htmlFor="otherAnimals">¿Tienes otros animales? Si la respuesta es sí, ¿cuántos y de qué tipo?</label>
+                                        <div className='otherAnimals-Container'>
+                                            <Field type="checkbox" id="otherAnimals" name="otherAnimals" className='checkbox'/>
+                                            {values.otherAnimals && (
+                                                <div className='hideInput'>
+                                                    {/* <label htmlFor="howMany">¿Cuántos son y qué tipo de animales son?</label> */}
+                                                    <Field type="text" id="howMany" name="howMany" placeholder='EJ: 2 gatos, 1 perro.' />
+                                                    <ErrorMessage name="howMany">
+                                                        {(msg) => <div className="errorMessage">{msg}</div>}
+                                                    </ErrorMessage>
+                                                </div>
+                                            )}
                                         </div>
-                                    )}
-                                    <label htmlFor='income'>¿Tiene los medios económicos para substentar los gastos económicos de su mascota?</label>
-                                    <Field name='income' as='select'>
-                                        <option value="all"></option>
-                                        <option value="si">Si</option>
-                                        <option value="no">No</option>
-                                    </Field>
-                                    <ErrorMessage name='income' />
-                                    <label htmlFor='allowance'>¿Consultaste en tu edificio, consorcio o propietario, si están de acuerdo con la adopción?</label>
-                                    <Field as='select' name='allowance'>
-                                        <option value="all"></option>
-                                        <option value="si">Si</option>
-                                        <option value="no">No</option>
-                                    </Field>
-                                    <ErrorMessage name='allowance' />
-                                    <div className='containerUpload-Form'>
+                                            <ErrorMessage name="otherAnimals">
+                                                {(msg) => <div className="errorMessage">{msg}</div>}
+                                            </ErrorMessage>
+                                    </div>
+
+                                    <div className='eachField'>
+                                        <label htmlFor='income'>¿Tiene los medios económicos para substentar los gastos económicos de su mascota?</label>
+                                        <Field name='income' as='select'>
+                                            <option value="all"></option>
+                                            <option value="si">Si</option>
+                                            <option value="no">No</option>
+                                        </Field>
+                                        <ErrorMessage name="income">
+                                            {(msg) => <div className="errorMessage">{msg}</div>}
+                                        </ErrorMessage>
+                                    </div>
+
+                                    <div className='eachField'>
+                                        <label htmlFor='allowance'>¿Consultaste en tu edificio, consorcio o propietario, si están de acuerdo con la adopción?</label>
+                                        <Field as='select' name='allowance'>
+                                            <option value="all"></option>
+                                            <option value="si">Si</option>
+                                            <option value="no">No</option>
+                                        </Field>
+                                        <ErrorMessage name="allowance">
+                                            {(msg) => <div className="errorMessage">{msg}</div>}
+                                        </ErrorMessage>
+                                    </div>
+
+                                    <div className='eachField'>
                                         <label htmlFor='image'>Foto de su patio/balcón/espacio al aire libre</label>
                                         {/* Esta foto se va a guardar en cloudinary */}
                                         <Field className='upload-Form' name='image' type='file' />
-                                        <ErrorMessage name='image' />
+                                        <ErrorMessage name="image">
+                                            {(msg) => <div className="errorMessage">{msg}</div>}
+                                        </ErrorMessage>
                                     </div>
+
+                                    <div className='eachField'>
+                                        <label htmlFor='state'>¿Cómo se encuentra el estado de tu patio/balcón?</label>
+                                        <Field name='state' as='select' >
+                                            <option value="all"></option>
+                                            <option value="Excelente">Excelente</option>
+                                            <option value="Bueno">Bueno</option>
+                                            <option value="Malo">Malo</option>
+                                            <option value="No aplica">No aplica</option>
+                                        </Field>
+                                        <ErrorMessage name="state">
+                                            {(msg) => <div className="errorMessage">{msg}</div>}
+                                        </ErrorMessage>
+                                    </div>
+
                                 </div>
-                            </div>
-                            <div>
                             </div>
                             <div className='containerBtn-Form'>
                                 <button disabled={Object.keys(errors).length > 0} type='submit'> ENVIAR </button>
+                            </div>
+                            <div className='containerGoHome-Form'>
+                                <h4>Aún no sé si estoy listo/a, regresar a</h4>
+                                <Link to="/home" className="goHome-Form">
+                                    <i class="fa-solid fa-house"></i>
+                                </Link>
                             </div>
                         </Form>
                     )}
