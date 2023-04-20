@@ -28,7 +28,25 @@ const eventMail = async () => {
     })
 }
 
+//             // 💥💥💥💥💥💥💥💥💥💥💥💥💥
+// const aknowledgeAdoptionRequest = async ( email, name) => {
+//     await transporter.sendMail({
+//         from: '"Patitas Felices" <noreply@patitasfelices.com>',
+//         to: {email},
+//         subject: 'Recibimos su solicitud de adopción',
+//         html : `
+//         Hola, ${name}:
+//         Muchas gracias por querer cambiarle la vida a uno de nuestros perritos.
+//         Recibimos su solucitud de adopción y estamos procesándola.
+//         Tan pronto como tengamos una respuesta, nos pondremos en contacto con usted.
+//         Saludos y muy buena jornada.
+//         Equipo de Patitas Felices.
+//         `
+//     })
+// }
+
 module.exports = {
     transporter,
-    eventMail
+    eventMail,
+    // aknowledgeAdoptionRequest
 }
