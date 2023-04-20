@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
         email,
         areas_conditions,
         more_animals,
-        // moreAnimas_details,
+        moreAnimals_details,
         proper_income,
         inHouse_allowance,
         outDoor_image,
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
             email,
             areas_conditions,
             more_animals,
-            // moreAnimas_details,
+            moreAnimals_details,
             proper_income,
             inHouse_allowance,
             outDoor_image,
@@ -48,46 +48,27 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.put('/update/:id', async (req, res) => {
-    let {name,
-        age,
-        phone,
-        address,
-        email,
-        areas_conditions,
-        more_animals,
-        moreAnimas_details,
-        proper_income,
-        inHouse_allowance,
-        outDoor_image,
+router.put('/update', async (req, res) => {
+    let {
+        id,
+        status,
         dogId,
         } = req.body
-    let {id} = req.params;
 
     try {
-        let updateAdopReq= await updateRequest(
+        let updateAdopReq = await updateRequest(
             id,
-            name,
-            age,
-            phone,
-            address,
-            email,
-            areas_conditions,
-            more_animals,
-            moreAnimas_details,
-            proper_income,
-            inHouse_allowance,
-            outDoor_image,
+            status,
             dogId,
             
         );
-        if (updateAdopReq.error) {
-            throw new Error (updateAdopReq.error)
-        } else {
-            res.status(200).json(updateAdopReq)
-        }
+
+        if (updateAdopReq.error) throw new Error (updateAdopReq.error);
+
+        res.status(200).json(updateAdopReq);
+        
     } catch (error) {
-        res.status(404).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
 });
 
