@@ -5,20 +5,20 @@ const mercadopago = require('mercadopago');
 mercadopagoconfig();
 const router = Router();
 
-router.post('/payment', (req, res) => {
-	let prod = req.body;
+router.post('/payment', async (req, res) => {
+	let { id, name, image, description, category, price } = req.body;
 
 	let preference = {
 		items: [
 			{
-				id: prod.id,
-				title: prod.name,
+				id: id,
+				title: name,
 				currency_id: 'ARS',
-				picture_url: prod.image,
-				description: prod.description,
-				category_id: prod.category,
+				picture_url: image,
+				description: description,
+				category_id: category,
 				quantity: 1,
-				unit_price: Number(prod.price),
+				unit_price: Number(price),
 			},
 		],
 
@@ -32,10 +32,17 @@ router.post('/payment', (req, res) => {
 		binary_mode: true,
 	};
 
-	mercadopago.preferences
-		.create(preference)
-		.then((response) => res.status(200).send({ response }))
-		.catch((error) => res.status(400).send({ error: error.message }));
+	try {
+		const response = await mercadopago.preferences.create(preference);
+		res.status(200).json(response);
+	} catch (error) {
+		console.log(error);
+		res.status(400).send({ error: error.message });
+	}
 });
 
+// mercadopago.preferences
+// 	.create(preference)
+// 	.then((response) => res.status(200).send({ response }))
+// 	.catch((error) => res.status(400).send({ error: error.message }));
 module.exports = router;

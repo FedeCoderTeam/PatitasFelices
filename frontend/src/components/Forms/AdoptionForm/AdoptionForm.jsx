@@ -4,11 +4,10 @@ import * as Yup from 'yup';
 import './adoptionForm.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setMaybeAdoptedDog } from '../../../_redux/reducer/dogsReducer';
+import { emptyMaybeAdoptedDogs } from '../../../_redux/actions/dogsAction';
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
 
 const AdoptionForm = () => {
-
     const dispatch = useDispatch();
     const dogId = useSelector(
         (state) => state.dogsReducer.maybeAdoptedDog,
