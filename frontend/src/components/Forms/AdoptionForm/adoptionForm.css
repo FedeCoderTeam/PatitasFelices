@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-image: url('./images/formImage.png'); */
+    background-image: url('./images/formImage.png');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh
