@@ -7,17 +7,15 @@ import { Link } from 'react-router-dom';
 import { setMaybeAdoptedDog } from '../../../_redux/reducer/dogsReducer';
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
 
-
-
 const AdoptionForm = () => {
 
     const dispatch = useDispatch();
     const dogId = useSelector(
         (state) => state.dogsReducer.maybeAdoptedDog,
     );
-
+    
     const [url, setUrl] = useState("");
-
+    
     const initialValues = {
         fullName: '',
         age: '',
@@ -29,7 +27,7 @@ const AdoptionForm = () => {
         howMany: '',
         income: '',
         allowance: '',
-        image: ''
+        image: url,
     }
 
     const validationSchema = Yup.object().shape({
@@ -52,7 +50,6 @@ const AdoptionForm = () => {
             .oneOf(['Excelente', 'Bueno', 'Malo', 'No aplica'], 'Seleccione una opción.'),
         otherAnimals: Yup.string()
             .required('Seleccione una opción.'),
-        //.oneOf([true], 'Debe aceptar los terminos y condiciones')
         howMany: Yup.string()
             .required('Es obligatoria esta información.'),
         income: Yup.string()
@@ -61,17 +58,34 @@ const AdoptionForm = () => {
             .required('Elige una opción.'),
         image: Yup.string()
             .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida.')
-            .required('La imagen es obligatoria.')
+            /* .test('FILE_SIZE', 'imagen demasiado grande', (value) => value && value.size < 1024 * 1024) */
+            /* .required('La imagen es obligatoria') */
     });
 
-    const handleSubmit = (values) => {
+    const handleSubmit = async (values) => {
+        const obj = {
+            fullName: values.fullName,
+            age: values.age,
+            phone: values.phone,
+            address: values.address,
+            email: values.email,
+            state: values.state,
+            otherAnimals: false,
+            howMany: values.howMany,
+            income: values.income,
+            allowance: values.allowance,
+            image: url,
+        }
+        // await dispatch(post(obj))
         alert(JSON.stringify(values, null, 2))
     }
 
     const formik = useFormik({
         initialValues,
         validationSchema,
-        handleSubmit,
+        handleSubmit: () => {
+            console.log(formik.values);
+        },
     });
 
     useEffect(() => {
@@ -80,16 +94,13 @@ const AdoptionForm = () => {
         };
     }, [])
 
-
-
-
     return (
         <div   className='mainContainer-Form' data-aos="fade-up">
             <div className='container-Form' >
                 <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => handleSubmit(values)} >
                     {({
                         errors, values }) => (<Form>
-                            <h1 className='title-Form'>Formulario de Adopción {dogId.name}</h1>
+                            <h1 className='title-Form'>Formulario de Adopción de {dogId.name}</h1>
                             <div className='box-Form'>
                                 <div className='containerInputsLeft-Form'>
 
@@ -121,7 +132,7 @@ const AdoptionForm = () => {
                                         <label htmlFor='text'>Dirección</label>
                                         <Field name='address' type='text' placeholder='EJ: Calle Falsa, 123, Springfield' />
                                         <ErrorMessage name="address">
-                                        {(msg) => <div className="errorMessage">{msg}</div>}
+                                            {(msg) => <div className="errorMessage">{msg}</div>}
                                         </ErrorMessage>
                                     </div>
 
@@ -182,26 +193,24 @@ const AdoptionForm = () => {
 
                                     <div className='eachField'>
                                         <label htmlFor='image'>Foto de su patio/balcón/espacio al aire libre</label>
-                                        {/* Esta foto se va a guardar en cloudinary */}
                                         <div className='containerUpload-Form'>
-                                            <label htmlFor='image'>Foto de su patio/balcón/espacio al aire libre</label>
-                                            <div>
-                                                <CloudinaryWidget
-                                                    url={url}
-                                                    setUrl={setUrl}
-                                                />
-                                            </div>
-                                            <div>
-                                                <img
-                                                    src={url}
-                                                    alt={formik.values.title}
-                                                    title={formik.values.title}
-                                                    loading="lazy"
-                                                />
-                                            </div>
-                                            <ErrorMessage name='image' />
+                                        
+                                                <div>
+                                                    <CloudinaryWidget
+                                                        url={url}
+                                                        setUrl={setUrl}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <img
+                                                        src={url}
+                                                        alt={formik.values.title}
+                                                        title={formik.values.title}
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                            
                                         </div>
-                                        <Field className='upload-Form' name='image' type='file' />
                                         <ErrorMessage name="image">
                                             {(msg) => <div className="errorMessage">{msg}</div>}
                                         </ErrorMessage>
@@ -220,7 +229,6 @@ const AdoptionForm = () => {
                                             {(msg) => <div className="errorMessage">{msg}</div>}
                                         </ErrorMessage>
                                     </div>
-
                                 </div>
                             </div>
 
