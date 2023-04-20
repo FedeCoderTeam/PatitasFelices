@@ -49,19 +49,10 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/update', async (req, res) => {
-    let {
-        id,
-        status,
-        dogId,
-        } = req.body
+    let { id, status, dogId, token } = req.body
 
     try {
-        let updateAdopReq = await updateRequest(
-            id,
-            status,
-            dogId,
-            
-        );
+        let updateAdopReq = await updateRequest(id, status, dogId, token);
 
         if (updateAdopReq.error) throw new Error (updateAdopReq.error);
 

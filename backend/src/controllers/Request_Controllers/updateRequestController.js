@@ -1,10 +1,14 @@
-const { requests, dog } = require ("../../database/db") 
+require('dotenv').config();
+const { requests, dog } = require ("../../database/db")
+const jwt = require('jsonwebtoken')
 
-let updateRequest = async ( id,
-    status,
-    dogId,) => {
+let updateRequest = async ( id, status, dogId, token) => {
 
     try {
+        const infoUser = jwt.verify(token, process.env.JWT_PRIVATE_KEY)
+
+        if(infoUser.user.role.name !== 'Administrador') return 'Error al intentar actualizar la solicitud'
+
         let requestToUpdate = await requests.findOne({ where: { id: id } });
 
         if(!requestToUpdate) throw new Error(`No se encontró una solicitud con id ${id}`);

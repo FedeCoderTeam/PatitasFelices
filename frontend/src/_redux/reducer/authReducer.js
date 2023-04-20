@@ -4,7 +4,8 @@ const initialState = {
     isFetching: false,
     isRegisterFetching: false,
     isAuthenticated: false,
-    user: null
+    user: null,
+    token: '',
 }
 
 export const authSlice = createSlice({
@@ -20,6 +21,7 @@ export const authSlice = createSlice({
         setUser: (state, action) => {
             state.isAuthenticated = action.payload.authenticated
             state.user = action.payload.user
+            state.token = action.payload.token
         }
     }
 })
