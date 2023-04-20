@@ -1,179 +1,172 @@
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@200;400;600;700&display=swap');
 
-
-.containerCard{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 370px;
-    height: 470px;
-    background-color: #D9AD77;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
-    border-radius: 20px;
-    position: relative;
+.containerCard {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 370px;
+	height: 470px;
+	background-color: #d9ad77;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
+	border-radius: 20px;
+	position: relative;
 }
 
-.containerIcon{
-    display: flex;
+.containerIcon {
+	display: flex;
 }
 
 .Icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    margin: 0;
-    width: 49px;
-    height: 49px;
-    cursor: pointer;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	margin: 0;
+	width: 49px;
+	height: 49px;
+	cursor: pointer;
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
 }
 
-.containerImg{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 230px;
-    height: 230px;
-    overflow: hidden;
-    border-radius: 50%;
-    border: 15px solid #163440;
-    /* background-color: #163440; */
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    position: absolute;
-    top: 18px;
+.containerImg {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 230px;
+	height: 230px;
+	overflow: hidden;
+	border-radius: 50%;
+	border: 15px solid #163440;
+	/* background-color: #163440; */
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	position: absolute;
+	top: 18px;
 }
 
-.containerImg img{
-    width: 100%;
-    height: auto;
-    margin-top: 50px;
+.containerImg img {
+	width: 100%;
+	height: auto;
+	margin-top: 50px;
 }
 
-
-.divDogInfo{
-    position: absolute;
-    display: flex;
-    /* align-items: flex-start; */
-    justify-content: space-evenly;
-    /* overflow: scroll; */
-    /* overflow: auto; */
-    width: 330px;
-    height: 125px;
-    bottom: 60px;
-    background: rgba(166, 84, 36, 0.3);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
+.divDogInfo {
+	position: absolute;
+	display: flex;
+	/* align-items: flex-start; */
+	justify-content: space-evenly;
+	/* overflow: scroll; */
+	/* overflow: auto; */
+	width: 330px;
+	height: 125px;
+	bottom: 60px;
+	background: rgba(166, 84, 36, 0.3);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+	border-radius: 20px;
 }
 
 .divData {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-top: 5px;
-    margin-left: 5px;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    overflow: auto;
-    /* flex-direction: row; */
-  }
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	overflow: auto;
+	/* flex-direction: row; */
+}
 
 h5 {
-    display: flex;
-    align-items: center;
-    /* margin-right: 5px; */
-    font-family: 'Be Vietnam Pro';
-    color: #163440;
-    font-weight: 600;
-    font-size: 1em;
-    /* line-height: 15px; */
-  }
+	display: flex;
+	align-items: center;
+	/* margin-right: 5px; */
+	font-family: 'Be Vietnam Pro';
+	color: #163440;
+	font-weight: 600;
+	font-size: 1em;
+	/* line-height: 15px; */
+}
 
 .itemName,
 .itemTemp,
 .intemAge,
 .intemGender,
 .intemSize {
-  /* margin-bottom: 3px; */
-  margin: auto;
+	/* margin-bottom: 3px; */
+	margin: auto;
 }
 
-.itemIcon{
-    margin-right: 5px;
-    width: 30px;
-    height: 30px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
+.itemIcon {
+	margin-right: 5px;
+	width: 30px;
+	height: 30px;
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
 }
 
 .itemName {
-    text-transform: uppercase;
+	text-transform: uppercase;
 }
 
-.containerButton{
-    position: absolute;
-    bottom: 10px;
-    display: flex;
-    justify-content: end;
-    align-items: center;
+.containerButton {
+	position: absolute;
+	bottom: 10px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
 }
 
 .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #163440;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
-    border-radius: 20px;
-    width: 330px;
-    height: 40px;
-    font-family: 'Be Vietnam Pro';
-    text-align: center;
-    cursor: pointer;
-    color: #D9AD77;
-    font-weight: 400;
-    font-size: 19px;
-    /* transition: background-color 200ms linear; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #163440;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+	border-radius: 20px;
+	width: 330px;
+	height: 40px;
+	font-family: 'Be Vietnam Pro';
+	text-align: center;
+	cursor: pointer;
+	color: #d9ad77;
+	font-weight: 400;
+	font-size: 19px;
+	/* transition: background-color 200ms linear; */
 }
 
-.containerRight {
-
+/* .containerRight {
 }
 
-.containerLeft{
-    
+.containerLeft {
 }
 
 .dogDetail {
-
-}
+} */
 
 .dogDetail > h3 {
-    margin: 0;
-    background: #592519;
-    display: inline;
-    padding: 8px 18px;
-    border-radius: 20px;
-    color: #D9AD77;
+	margin: 0;
+	background: #592519;
+	display: inline;
+	padding: 8px 18px;
+	border-radius: 20px;
+	color: #d9ad77;
 }
 
 .dogDetail .avatar {
-    width: 230px;
-    height: 230px;
-    overflow: hidden;
-    border-radius: 50%;
-    border: 15px solid #D9AD77;
-    background-color: #163440;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin: 0 auto;
+	width: 230px;
+	height: 230px;
+	overflow: hidden;
+	border-radius: 50%;
+	border: 15px solid #d9ad77;
+	background-color: #163440;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	margin: 0 auto;
 }
 
 .dogDetail .avatar > img {
-    width: 100%;
-    height: auto;
+	width: 100%;
+	height: auto;
 }
 
-.dogDetail .description {
-
-}
-
+/* .dogDetail .description {
+} */
