@@ -76,7 +76,7 @@ const AdoptionForm = () => {
             allowance: values.allowance,
             image: url,
         }
-        await dispatch(post(obj))
+        // await dispatch(post(obj))
         alert(JSON.stringify(values, null, 2))
     }
 
