@@ -8,7 +8,7 @@ const fileUpload = require('express-fileupload');
 const server = express();
 
 require('./database/firebase')
-// const {eventMail} = require('./config/mailer');
+require('./config/mailer');
 
 server.name = 'API';
 
