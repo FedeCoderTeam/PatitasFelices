@@ -12,6 +12,7 @@ import HomeProductSection from '../../components/HomeSection/HomeProductSection/
 
 
 
+
 const Home = () => {
     //navbar
     //header

@@ -78,8 +78,8 @@ cartItem.belongsTo(session, { foreignKey: 'sessionId' })
 user.hasOne(dog, {foreignKey: 'ownerId'})
 dog.belongsTo(user, {foreignKey: 'ownerId'})
 
-requests.belongsToMany(dog, { through: 'Requests_Of_Dogs', })
-dog.belongsToMany(requests, { through: 'Requests_Of_Dogs', })
+dog.hasMany(requests, { foreignKey: 'dogId', })
+requests.belongsTo(dog, { foreignKey: 'dogId', })
 
 user.hasOne(requests, { foreignKey: 'requestBy' })
 requests.belongsTo(user, { foreignKey: 'requestBy' })

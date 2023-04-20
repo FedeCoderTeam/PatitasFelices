@@ -2,10 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-image: url('./images/formImage.png'); */
+    background-image: url('./images/formImage.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 115vh
+    height: 100vh
 }
 
 .container-Form {
@@ -58,13 +58,6 @@
     display: flex;
 }
 
-.containerInputsRight-Form select {
-    padding: 12px;
-    border: none;
-    border-radius: 4px;
-    margin-bottom: 20px;
-}
-
 .containerInputsLeft-Form input {
     background-color: #FFFFFF;
     border-radius: 5px;
@@ -78,12 +71,7 @@
     border-radius: 5px;
     border: none;
     margin-bottom: 20px;
-    padding: 11px;
-}
-
-.containerBtn-Form {
-    margin-top: 50px;
-    margin-bottom: 15px;
+    padding: 15px;
 }
 
 .containerBtn-Form>button {
@@ -97,32 +85,22 @@
     /* margin-top: 20px; */
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     cursor: pointer;
-    transition:
-        background-color 200ms linear,
-        transform 200ms linear;
+    transition: 
+    background-color 200ms linear,
+    transform 200ms linear;
 }
-
 .containerBtn-Form>button:hover {
-    background-color: #163440;
-    transform: scale(1.02);
+background-color: #163440;
+transform: scale(1.02);
 }
-
-.containerUpload-Form {
+.containerUpload-Form{
     margin-top: 53px;
 }
 
-.goHome-Form {
-    color: #592519;
-    font-size: 30px;
-    transition: color 300ms linear;
-}
-
-.goHome-Form:hover {
-    color: #163440;
-}
-.containerGoHome-Form{
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    color: beige;
-}
+/* .uploadBtn-Form{
+    font-size: 22px;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 55px;
+} */

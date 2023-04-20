@@ -1,5 +1,7 @@
 import {setIsFetching, setIsRegisterFetching, setUser} from '../reducer/authReducer';
 import axios from 'axios';
+import {auth} from '../../firebase'
+import {GoogleAuthProvider, signInWithPopup, signInWithCredential} from 'firebase/auth'
 
 const URL = 'http://localhost:3001'
 
@@ -55,9 +57,38 @@ const registerUserAction = (name, last, email, password) => {
     }
 }
 
+const userGoogleAction = () => {
+    return async function(dispatch) {
+        dispatch(setIsRegisterFetching(true))
+        try {
+            const provider = new GoogleAuthProvider();
+            const userCredential = await signInWithPopup(auth, provider)
+
+            let result = await axios.post(`${URL}/users/google`, {tokenGoogle: userCredential.user?.accessToken}, {withCredentials: true})
+            dispatch(setUser(result.data))
+            dispatch(setIsRegisterFetching(false))
+        } catch (error) {
+            console.log(error.message)
+            dispatch(setIsRegisterFetching(false))
+        }
+    }
+}
+
+const passwordRecoveryAction = (email) => {
+    return async function(dispatch) {
+        try {
+            let result = await axios.post(`${URL}/users/recovery`, {email})
+        } catch (error) {
+
+        }
+    }
+}
+
 export {
     loginUserAction,
     authUserAction,
     logoutUserAction,
-    registerUserAction
+    registerUserAction,
+    userGoogleAction,
+    passwordRecoveryAction
 }

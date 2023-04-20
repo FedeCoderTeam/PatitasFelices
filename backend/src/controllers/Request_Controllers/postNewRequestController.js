@@ -1,0 +1,68 @@
+const { requests, dog } = require('../../database/db')
+
+const postNewRequest = async(
+    name,
+    age,
+    phone,
+    address,
+    email,
+    areas_conditions,
+    more_animals,
+    // moreAnimas_details,
+    proper_income,
+    inHouse_allowance,
+    outDoor_image,
+    dogId,
+   )=> {
+    console.log(name,
+        age,
+        phone,
+        address,
+        email,
+        areas_conditions,
+        more_animals,
+        // moreAnimas_details,
+        proper_income,
+        inHouse_allowance,
+        outDoor_image,
+        dogId)
+        if (
+            !name ||
+            !age ||
+            !phone ||
+            !address ||
+            !email ||
+            !areas_conditions ||
+            more_animals === undefined ||
+            !proper_income ||
+            !inHouse_allowance ||
+            !outDoor_image ||
+            !dogId
+        ) {
+            throw new Error(
+                'Falta completar algún o algunos datos obligatorios',
+            );
+        } else {
+            let doguiId = await dog.findOne({
+                where: {
+                    id: dogId,
+                },
+            });
+            let newRequest = await requests.create({
+                name: name,
+                age: age,
+                phone: phone,
+                address: address,
+                email: email,
+                areas_conditions: areas_conditions,
+                more_animals: more_animals,
+                // moreAnimas_details: moreAnimas_details,
+                proper_income: proper_income,
+                inHouse_allowance: inHouse_allowance,
+                outDoor_image: outDoor_image,              
+            });
+            await newRequest.setDog(doguiId);
+    }
+};
+
+module.exports= postNewRequest;

@@ -1,11 +1,12 @@
 import React, {useRef} from 'react';
 import Google from './Google.png';
 import { Link } from 'react-router-dom';
-import './register.css';
+import './Register.css';
 import {useDispatch} from 'react-redux';
 
 // import RegisterImg from 'registerImage.png'
 import * as authAction from '../../_redux/actions/authAction'
+import {userGoogleAction} from '../../_redux/actions/authAction';
 
 const Register = () => {
 
@@ -21,6 +22,11 @@ const Register = () => {
 			return
 		}
 		dispatch(authAction.registerUserAction(refName.current.value, refLast.current.value, refEmail.current.value, refPass.current.value))
+	}
+
+	const handleOnGoogle = () => {
+		dispatch(userGoogleAction())
+
 	}
 
 	return (
@@ -61,7 +67,7 @@ const Register = () => {
 				</div>
 
 				<div className="containerGoogle-Register">
-					<p>
+					<p onClick={() => handleOnGoogle()}>
 						Registrarse con <img src={Google} alt="Google" />
 					</p>
 				</div>
