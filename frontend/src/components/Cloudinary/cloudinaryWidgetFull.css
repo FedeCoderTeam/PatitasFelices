@@ -1,15 +1,15 @@
-.containerCloudinaryBtn-AdoptionForm {
+.containerCloudinaryFullBtn-AdoptionForm {
     text-align: center;
 }
 
-.containerCloudinaryBtn-AdoptionForm>button {
+.containerCloudinaryFullBtn-AdoptionForm>button {
     font-size: 16px;
     padding: 14px;
     width: 100%;
-    background: #ffffff;
+    background: #16401a;
     border: none;
     border-radius: 5px;
-    color: #939393;
+    color: #ffffff;
     /* margin-top: 20px; */
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     cursor: pointer;
@@ -19,8 +19,11 @@
         color 20ms linear;
 }
 
-.containerCloudinaryBtn-AdoptionForm>button:hover {
-    background-color: #163440;
-    color: #ffffff;
+.containerCloudinaryFullBtn-AdoptionForm>button:hover {
     transform: scale(1.01);
+    background-color: #1c4d21;
+}
+
+.containerCloudinaryFullBtn-AdoptionForm>button>i {
+    padding-left: 3px;
 }
