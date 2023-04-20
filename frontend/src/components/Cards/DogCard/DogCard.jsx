@@ -25,7 +25,7 @@ const DogCard = ({image, name, age, gender, size, weight, colors, temperaments, 
     // favoriteIcon.addEventListener('click', function() {
     //   // agregar dog favorito
     // });
-    let ageInYears = age >= 12 ? Math.round (age / 12) : age + " meses";
+    let ageInYears = age >= 12 ? Math.round (age / 12) + "año/s" : age + " mes/es";
     const separatedTemperaments = temperaments.join ("/ ");
     const separatedColors = colors.join ("/ ");
 
@@ -129,7 +129,7 @@ export function DialogDogsDetail(props) {
                             </h3>  
                             <h3> 
                                 <img className={style.itemIcon} src={paw}/>
-                                {props.dog.weight}
+                                {props.dog.weight + 'kg'}
                             </h3> 
                             <h3> 
                                 <img className={style.itemIcon} src={paw}/>
