@@ -21,6 +21,7 @@ import BackDrop from './components/BackDrop/BackDrop';
 import {useDispatch, useSelector} from 'react-redux';
 import { useEffect } from 'react';
 import Dashboard from './views/Dashboard/Dashboard';
+import CreateProductForm from './components/Forms/CreateProductForm/CreateProductForm';
 
 function App() {
 	const location = useLocation();
@@ -53,6 +54,7 @@ function App() {
 				<Route path={'/register'} element={<Register />} />
 				<Route path={'/login'} element={<LoginView />} />
 				<Route path={'/form'} element={<AdoptionForm />} />
+				<Route path={'/createproduct'} element={<CreateProductForm />} />
 				<Route path={'/dogs'} element={<Dogs />} />
 				<Route path={'/products'} element={<Products />} />
 				<Route path={'/products/:id'} element={<ProductDetail />} />
