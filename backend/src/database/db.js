@@ -43,6 +43,9 @@ const {
 	cartItem,
 	session,
 	requests,
+	order,
+	orderItem,
+	payment
 } = sequelize.models;
 
 dog.belongsToMany(color, { through: 'Dogs_Colors', timestamps: false });
@@ -83,6 +86,21 @@ requests.belongsTo(dog, { foreignKey: 'dogId', })
 
 user.hasOne(requests, { foreignKey: 'requestBy' })
 requests.belongsTo(user, { foreignKey: 'requestBy' })
+
+order.hasMany(orderItem, { foreignKey: 'orderId' })
+orderItem.belongsTo(order, { foreignKey: 'orderId' })
+
+user.hasMany(order, { foreignKey: 'userId' })
+order.belongsTo(user, { foreignKey: 'userId' })
+
+product.hasOne(orderItem, { foreignKey: 'productId' })
+orderItem.belongsTo(product, { foreignKey: 'productId' })
+
+order.hasOne(payment, { foreignKey: 'orderId' })
+payment.belongsTo(order, { foreignKey: 'orderId' })
+
+user.hasMany(payment, { foreignKey: 'userId' })
+payment.belongsTo(user, { foreignKey: 'userId' })
 
 module.exports = {
 	...sequelize.models,
