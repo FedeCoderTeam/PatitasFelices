@@ -13,7 +13,6 @@ const initialState = {
 	setSubCategoryId: 0,
 	currentPage: 1,
 	name: '',
-	linkDePago: '',
 };
 
 export const productsSlice = createSlice({
@@ -114,14 +113,6 @@ export const productsSlice = createSlice({
 
 			state.products = name;
 		},
-
-		setLinkDePago: (state, action) => {
-			state.linkDePago = action.payload.body.init_point;
-		},
-
-		emptyLinkDePago: (state) => {
-			state.linkDePago = '';
-		},
 	},
 });
 
@@ -138,8 +129,6 @@ export const {
 	idSubCategories,
 	getByName,
 	set_name,
-	setLinkDePago,
-	emptyLinkDePago,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

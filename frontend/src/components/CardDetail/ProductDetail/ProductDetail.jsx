@@ -5,7 +5,6 @@ import {
 	getProductsById,
 	setDetail,
 	setLinkDePagos,
-	emptyLinkDePagos,
 } from '../../../_redux/actions/productsAction';
 import { useState } from 'react';
 import style from './productDetail.module.css';
@@ -44,7 +43,6 @@ function ProductDetail() {
 			setIsLoading(false);
 		}, 1000);
 		dispatch(getProductsById(id));
-		dispatch(emptyLinkDePagos());
 		return () => {
 			dispatch(setDetail());
 		};
