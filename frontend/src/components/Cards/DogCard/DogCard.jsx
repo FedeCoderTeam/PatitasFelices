@@ -46,21 +46,21 @@ const DogCard = ({image, name, age, gender, size, weight, colors, temperaments, 
                 </div>
                 <div className={style.divDogInfo}>
                     <div className={style.divData}>
-                        <h5 className={style.itemName}>
+                        <h5 className={style.h5}>
                             <img className={style.itemIcon} src={bone}/>
                         {name}
                         </h5>
-                        <h5>
+                        <h5 className={style.h5}>
                             <img className={style.itemIcon} src={bone}/>
                         {separatedTemperaments}
                         </h5>
-                        <h5>
+                        <h5 className={style.h5}>
                             <img className={style.itemIcon} src={bone}/>{ageInYears}
                         </h5>
-                        <h5>
+                        <h5 className={style.h5}>
                             <img className={style.itemIcon} src={bone}/>{gender}
                         </h5>
-                        <h5>
+                        <h5 className={style.h5}>
                             <img className={style.itemIcon} src={bone}/>{size}
                         </h5> 
                     </div>   

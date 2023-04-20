@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import * as dogsAction from "../../../_redux/actions/dogsAction.js";
-import style from './SearchDog.module.css'
+import style from './searchDog.module.css'
 
 const SearchDog = () => {
 
