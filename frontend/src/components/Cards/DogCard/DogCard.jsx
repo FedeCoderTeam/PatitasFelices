@@ -4,22 +4,33 @@ import animals from './img/animals.png';
 import bone from './img/bone.png';
 import paw from './img/paw.png';
 import {
-    Button,
-    createTheme,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    ThemeProvider
+	Button,
+	createTheme,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	ThemeProvider,
 } from '@mui/material';
-import {brown} from '@mui/material/colors';
-import {useNavigate} from 'react-router-dom';
-import { useDispatch } from "react-redux";
-import { setMaybeAdoptedDogs } from "../../../_redux/actions/dogsAction";
+import { brown } from '@mui/material/colors';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setMaybeAdoptedDogs } from '../../../_redux/actions/dogsAction';
 
-const DogCard = ({image, name, age, gender, size, weight, colors, temperaments, id, description}) => {
-    
-    //puede ir aca la funcion para manejar el borrar card
+const DogCard = ({
+	image,
+	name,
+	age,
+	gender,
+	size,
+	weight,
+	colors,
+	temperaments,
+	id,
+	description,
+}) => {
+	//puede ir aca la funcion para manejar el borrar card
+
 
     // const favoriteIcon = document.querySelector('.card .favorite-icon');
     // favoriteIcon.addEventListener('click', function() {
@@ -29,11 +40,11 @@ const DogCard = ({image, name, age, gender, size, weight, colors, temperaments, 
     const separatedTemperaments = temperaments.join ("/ ");
     const separatedColors = colors.join ("/ ");
 
-    const [open, setOpen] = React.useState(false)
+	const [open, setOpen] = React.useState(false);
 
-    const handleOpenDialog = () => {
-        setOpen(!open)
-    }
+	const handleOpenDialog = () => {
+		setOpen(!open);
+	};
 
     return(
         <>
@@ -75,37 +86,36 @@ const DogCard = ({image, name, age, gender, size, weight, colors, temperaments, 
 }
 
 export default DogCard;
-   
+
 export function DialogDogsDetail(props) {
+	const dispatch = useDispatch();
+	const handleClick = (id) => {
+		dispatch(setMaybeAdoptedDogs(id));
+		navigate('/form');
+	};
+	const navigate = useNavigate();
 
-    const dispatch = useDispatch();
-    const handleClick = (id)=>{
-        console.log(id);
-        dispatch(setMaybeAdoptedDogs(id))
-        navigate('/form')
-    }
-    const navigate = useNavigate()
+	const innerTheme = createTheme({
+		palette: {
+			primary: {
+				main: brown[500],
+			},
+			background: {
+				default: '#163440',
+				paper: '#163440',
+			},
+			text: {
+				...{
+					primary: '#fff',
+					secondary: '#fff',
+				},
+			},
+		},
+	});
+	//props.dog.image name
 
-    const innerTheme = createTheme({
-        palette: {
-            primary: {
-                main: brown[500],
-            },
-            background: {
-                default: '#163440',
-                paper: '#163440'
-            },
-            text: {
-                ...{
-                    primary: '#fff',
-                    secondary: '#fff'
-                }
-            }
-        },
-    });
-    //props.dog.image name
-
-    return(<>
+    return (
+    <>
         <ThemeProvider theme={innerTheme}>
             <Dialog
                 open={props.open}
@@ -158,6 +168,6 @@ export function DialogDogsDetail(props) {
             </Dialog>
         </ThemeProvider>
         
-    </>)
-}
-
+    </>
+    );
+};
