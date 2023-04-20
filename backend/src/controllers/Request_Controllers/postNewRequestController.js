@@ -1,4 +1,4 @@
-// const { aknowledgeAdoptionRequest } = require('../../config/mailer');
+const { event_request_dogs_mail } = require('../../config/mailer');
 const { requests, dog } = require('../../database/db')
 
 const postNewRequest = async(
@@ -15,18 +15,6 @@ const postNewRequest = async(
     outDoor_image,
     dogId,
    )=> {
-    console.log(name,
-        age,
-        phone,
-        address,
-        email,
-        areas_conditions,
-        more_animals,
-        moreAnimals_details,
-        proper_income,
-        inHouse_allowance,
-        outDoor_image,
-        dogId)
         if (
             !name ||
             !age ||
@@ -64,9 +52,8 @@ const postNewRequest = async(
             });
             await newRequest.setDog(doguiId);
 
+            await event_request_dogs_mail(newRequest.email, newRequest.name)
         }
-    // // 💥💥💥💥💥💥💥💥💥💥💥💥💥
-    // await aknowledgeAdoptionRequest(name, email);
 };
 
 module.exports= postNewRequest;

@@ -29,13 +29,13 @@ const eventMail = async () => {
 }
 
 //
-const event_request_dogs_mail = async (emailSolicitud, userObj) => {
+const event_request_dogs_mail = async (emailSolicitud, name) => {
     await transporter.sendMail({
         from: '"Patitas Felices" <noreply@patitasfelices.com>',
         to: `${emailSolicitud}`,
         subject: `Solicitud de adopción #`,
         html : `
-        <b>Hola, ${userObj.name}:</b>
+        <b>Hola, ${name}:</b>
         <b>Muchas gracias por querer cambiar la vida de uno de nuestro perritos</b>
         <b>Hemos recibido tu solitud de adopción y está siendo procesada. A la brevedad, nos pondremos en contacto con usted 
         tan pronto tengamos una respuesta</b>
@@ -55,25 +55,9 @@ const eventRequest_Dogs_Mail_Owner = async (emailOwner, emailSolicitud, dogObj) 
         `
     })
 }
-//             // 💥💥💥💥💥💥💥💥💥💥💥💥💥
-// const aknowledgeAdoptionRequest = async ( email, name) => {
-//     await transporter.sendMail({
-//         from: '"Patitas Felices" <noreply@patitasfelices.com>',
-//         to: {email},
-//         subject: 'Recibimos su solicitud de adopción',
-//         html : `
-//         Hola, ${name}:
-//         Muchas gracias por querer cambiarle la vida a uno de nuestros perritos.
-//         Recibimos su solucitud de adopción y estamos procesándola.
-//         Tan pronto como tengamos una respuesta, nos pondremos en contacto con usted.
-//         Saludos y muy buena jornada.
-//         Equipo de Patitas Felices.
-//         `
-//     })
-// }
 
 module.exports = {
     transporter,
     eventMail,
-    // aknowledgeAdoptionRequest
+    event_request_dogs_mail,
 }
