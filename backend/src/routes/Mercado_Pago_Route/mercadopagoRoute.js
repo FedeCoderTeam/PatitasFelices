@@ -11,7 +11,7 @@ router.post('/payment', (req, res) => {
 	let preference = {
 		items: [
 			{
-				id: 123,
+				id: prod.id,
 				title: prod.name,
 				currency_id: 'ARS',
 				picture_url: prod.image,
