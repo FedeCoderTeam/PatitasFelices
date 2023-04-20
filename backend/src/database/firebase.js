@@ -1,5 +1,5 @@
 require('dotenv').config();
-const firebase = require('firebase/app');
+const {initializeApp} = require('firebase/app');
 const { getAuth } = require('firebase/auth')
 
 const { FIRE_CONFIG_API_KEY, FIRE_CONFIG_AUTH_DOMAIN, FIRE_CONFIG_PROJECT_ID, FIRE_CONFIG_STORAGE_BUCKET, FIRE_CONFIG_MESSAGING_SENDER_ID, FIRE_CONFIG_APP_ID, FIRE_CONFIG_MEASUREMENT_ID } = process.env
@@ -14,6 +14,7 @@ const firebaseConfig = {
     measurementId: FIRE_CONFIG_MEASUREMENT_ID
 }
 
-firebase.initializeApp(firebaseConfig)
+const firebase = initializeApp(firebaseConfig)
+const auth = getAuth(firebase)
 
-module.exports = {firebase, getAuth}
+module.exports = {firebase, getAuth, auth}

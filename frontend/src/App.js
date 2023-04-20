@@ -10,7 +10,8 @@ import LoginView from './views/Login/Login.jsx';
 import Landing from './components/Landing/Landing';
 import Products from './views/Products/Products.jsx';
 import NotFound from './components/NotFound/NotFound';
-import AdoptionForm from './views/Forms/AdoptionForm/AdoptionForm.jsx';
+// import AdoptionForm from './views/Forms/AdoptionForm/AdoptionForm.jsx';
+import AdoptionForm from './components/Forms/AdoptionForm/AdoptionForm'
 import ProductDetail from './components/CardDetail/ProductDetail/ProductDetail';
 import * as dogsAction from '../src/_redux/actions/dogsAction';
 import * as productsAction from '../src/_redux/actions/productsAction';
@@ -20,6 +21,7 @@ import BackDrop from './components/BackDrop/BackDrop';
 import {useDispatch, useSelector} from 'react-redux';
 import { useEffect } from 'react';
 import Dashboard from './views/Dashboard/Dashboard';
+import CreateProductForm from './components/Forms/CreateProductForm/CreateProductForm';
 
 function App() {
 	const location = useLocation();
@@ -52,6 +54,7 @@ function App() {
 				<Route path={'/register'} element={<Register />} />
 				<Route path={'/login'} element={<LoginView />} />
 				<Route path={'/form'} element={<AdoptionForm />} />
+				<Route path={'/createproduct'} element={<CreateProductForm />} />
 				<Route path={'/dogs'} element={<Dogs />} />
 				<Route path={'/products'} element={<Products />} />
 				<Route path={'/products/:id'} element={<ProductDetail />} />

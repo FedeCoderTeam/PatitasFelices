@@ -14,13 +14,16 @@
 }
 
 .divLanding{
-    margin-top: 15em;
-    margin-left: 45em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 60em;
 }
 .titleLanding{
     font-family: 'Be Vietnam Pro', sans-serif;
     font-weight: 300;
-    line-height: 1.05;
+    font-size: 3em;
     letter-spacing: -.015em;
 }
 
@@ -39,7 +42,7 @@
     text-align: center;
     cursor: pointer;
     padding: 17px 30px;
-    color: #D9AD77;
+    color: #ffffff;
     font-size: 20px;
     border: 0;
     border-radius: 5px;
@@ -47,10 +50,10 @@
     font-weight: 600;
     line-height: 30px;
     transition: .5s ease-in-out;
-    width: 12em;
+    width: 15em;
     height: 3em;
 }
 .btnLanding:hover{
-    background-color: #d9ad77b6;
-    color: #163440;
+    background-color: #592519;
+    color: #ffffff;
 }

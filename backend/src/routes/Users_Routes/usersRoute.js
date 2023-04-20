@@ -8,6 +8,8 @@ const loginUser= require ('../../controllers/User_Controllers/loginUserControlle
 const authUser= require ('../../controllers/User_Controllers/authUserController')
 const logoutUser = require('../../controllers/User_Controllers/logoutUserController')
 const registerUser = require('../../controllers/User_Controllers/registerUserController')
+const userGoogle = require('../../controllers/User_Controllers/userGoogleController')
+const recoveryPassword = require('../../controllers/User_Controllers/recoveryPasswordUserController')
 
 const router= Router();
 
@@ -107,6 +109,29 @@ router.post('/register', async(req, res) => {
 	const { name, last, email, password } = req.body
 	try {
 		let result = await registerUser(name, last, email, password)
+		res.status(200).json({...result})
+	} catch (error) {
+		console.log(error)
+		res.status(400).json({error: error.message, message: null})
+	}
+})
+
+router.post('/google', cors({credentials: true, origin: 'http://localhost:3000'}), async(req, res) => {
+	const {tokenGoogle} = req.body
+	try {
+		const result = await userGoogle(tokenGoogle)
+		res.cookie('token', result.token, {maxAge: 86400000, httpOnly: true, sameSite: 'lax', secure: false}).status(200).json({error: null, ...result})
+	} catch (error) {
+		console.log(error)
+		res.clearCookie('token', {httpOnly: true, sameSite: 'lax', secure: false})
+		res.status(401).json({error: error.message, authenticated: false, token: null, user: null})
+	}
+})
+
+router.post('/recovery', async(req, res) => {
+	const {email} = req.body
+	try {
+		const result = await recoveryPassword(email)
 		res.status(200).json({...result})
 	} catch (error) {
 		console.log(error)

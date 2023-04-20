@@ -8,6 +8,9 @@ import PaginatedDogs from '../../components/Paginated/PaginatedDogs/PaginatedDog
 import style from './dogs.module.css';
 
 const Dogs = () => {
+
+	let prueba = useSelector((state)=> state.dogsReducer.maybeAdoptedDog)
+	console.log(prueba);
 	const dispatch = useDispatch();
 	const allDogs = useSelector((state) => state.dogsReducer.dogs);
 	const temperaments = useSelector((state) => state.dogsReducer.temperaments);
@@ -57,7 +60,7 @@ const Dogs = () => {
 				</div>
 
 				{!currentDogs.length ? (
-					<h1>No hay ningun perro con las características seleccionadas</h1>
+					<h2>No hay ningun perro con las características seleccionadas</h2>
 				) : (
 					<div className={style.cardsContainer}>
 						{currentDogs?.map((e) => {

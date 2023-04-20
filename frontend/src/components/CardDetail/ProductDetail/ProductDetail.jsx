@@ -16,6 +16,7 @@ function ProductDetail() {
 
 	const [count, setCount] = useState(0);
 	const [randomProducts, setRandomProducts] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const handleClickSuma = () => {
 		if (count < productDetail.stock) {
@@ -34,8 +35,10 @@ function ProductDetail() {
 	);
 
 	useEffect(() => {
+		setTimeout(()=>{
+			setIsLoading(false);
+		}, 1000)
 		dispatch(getProductsById(id));
-
 		return () => {
 			dispatch(setDetail());
 		};
@@ -49,44 +52,48 @@ function ProductDetail() {
 			const selectedProducts = shuffledProducts.slice(0, 4);
 			setRandomProducts(selectedProducts);
 		};
-
 		fetchData();
 	}, []);
 
 	return (
-		<div className={style.bodyDetailProduct}>
-			<div className={style.containerProduct}>
-				<div className={style.divLeft}>
-					<img
-						className={style.imagenDetail}
-						src={productDetail.image}
-						alt={productDetail.name}
-					/>
-				</div>
-				<div className={style.divRight}>
-					<h1 className={style.titleName}>{productDetail.name}</h1>
-					<h2 className={style.subTitleDescr}>{productDetail.description}</h2>
-					<p className={style.priceDetail}>
-						${productDetail.price}
-						<span className={style.priceSpan}>.00</span>
-					</p>
-					<p className={style.pDeatil}>
-						Stock:{' '}
-						<span className={style.spanDetail}>{productDetail.stock}</span>
-					</p>
-					<div className={style.divCantidad}>
-						<p className={style.pDeatil}>Cantidad: </p>
-						<button className={style.btnRestaSuma} onClick={handleClickResta}>
-							<span className={style.btnSpan}>-</span>
-						</button>
-						<p className={style.contador}>{count}</p>
-						<button className={style.btnRestaSuma} onClick={handleClickSuma}>
-							<span className={style.btnSpan}>+</span>
-						</button>
+		<div className={style.divMain}>
+			{isLoading? (
+				<img className={style.loader} src='https://res.cloudinary.com/dreso9ye9/image/upload/v1681877316/Proyecto%20Final/127157-moody-dog_1_w3qyr5.gif' alt='Cargando...'/>
+			) : (
+			<div className={style.bodyDetailProduct}>
+				<div className={style.containerProduct}>
+					<div className={style.divLeft}>
+						<img
+							className={style.imagenDetail}
+							src={productDetail.image}
+							alt={productDetail.name}
+						/>
 					</div>
-					<button className={style.btnCarritoDetail}>AÑADIR AL CARRITO</button>
+					<div className={style.divRight}>
+						<h1 className={style.titleName}>{productDetail.name}</h1>
+						<h2 className={style.subTitleDescr}>{productDetail.description}</h2>
+						<p className={style.priceDetail}>
+							${productDetail.price}
+							<span className={style.priceSpan}>.00</span>
+						</p>
+						<p className={style.pDeatil}>
+							Stock:{' '}
+							<span className={style.spanDetail}>{productDetail.stock}</span>
+						</p>
+						<div className={style.divCantidad}>
+							<p className={style.pDeatil}>Cantidad: </p>
+							<button className={style.btnRestaSuma} onClick={handleClickResta}>
+								<span className={style.btnSpan}>-</span>
+							</button>
+							<p className={style.contador}>{count}</p>
+							<button className={style.btnRestaSuma} onClick={handleClickSuma}>
+								<span className={style.btnSpan}>+</span>
+							</button>
+						</div>
+						<button className={style.btnCarritoDetail}>AÑADIR AL CARRITO</button>
+					</div>
 				</div>
-				<div>
+        <div>
 					<button
 						onClick={() => {
 							axios
@@ -103,22 +110,23 @@ function ProductDetail() {
 						Comprar
 					</button>
 				</div>
-			</div>
-			<div className={style.containerOtros}>
-				<h2 className={style.titleMasProductos}>También te pueden interesar</h2>
-				<div className={style.divOtros}>
+				<div className={style.containerOtros}>
+					<h2 className={style.titleMasProductos}>También te pueden interesar</h2>
+					<div className={style.divOtros}>
 					{randomProducts.map((product) => (
-						<ProductCard
-							key={product.id}
-							id={product.id}
-							name={product.name}
-							image={product.image}
-							brand={product.brand}
-							price={product.price}
+						<ProductCard 
+						key={product.id}
+						id={product.id}
+						name={product.name}
+						image={product.image}
+						brand={product.brand}
+						price={product.price}
 						/>
 					))}
+					</div>
 				</div>
 			</div>
+			)}
 		</div>
 	);
 }
