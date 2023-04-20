@@ -135,8 +135,7 @@ export const dogsSlice = createSlice({
 				state.maybeAdoptedDog = {};
 			}
 			state.maybeAdoptedDog = dog;
-
-		}
+		},
 	},
 });
 

@@ -113,7 +113,7 @@ const setMaybeAdoptedDogs = (id) =>{
 	return(dispatch) =>{
 		dispatch(setMaybeAdoptedDog(id));
 	}
-}
+};
 
 export {
 	getDogs,

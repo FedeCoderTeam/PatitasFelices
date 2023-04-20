@@ -70,7 +70,7 @@ const DogCard = ({image, name, age, gender, size, weight, colors, temperaments, 
                 </div>
             </div>
             <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, ageInYears, gender, size, weight, separatedColors, separatedTemperaments, id, description}}  />
-        </>
+        </div>
     )
 }
 
