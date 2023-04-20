@@ -5,7 +5,6 @@ import './adoptionForm.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { emptyMaybeAdoptedDogs } from '../../../_redux/actions/dogsAction';
-
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
 
 const AdoptionForm = () => {

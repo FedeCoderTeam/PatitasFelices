@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
-import './cloudinaryWidget.css'
+import './cloudinaryWidgetFull.css'
 
-const CloudinaryWidget = ({ setUrl }) => {
+const CloudinaryWidgetFull = ({ setUrl }) => {
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
 
@@ -20,10 +20,10 @@ const CloudinaryWidget = ({ setUrl }) => {
     }, []);
 
     return(
-        <div className='containerCloudinaryBtn-AdoptionForm' >
-            <button type='button' onClick={() => widgetRef.current.open()}>Adjuntar imagen <i class="fa-solid fa-upload"></i></button>
+        <div className='containerCloudinaryFullBtn-AdoptionForm' >
+            <button type='button' onClick={() => widgetRef.current.open()}>Imagen subida con éxito <i class="fa-solid fa-circle-check"></i></button>
         </div>
     );
 }
 
-export default CloudinaryWidget;
+export default CloudinaryWidgetFull;
