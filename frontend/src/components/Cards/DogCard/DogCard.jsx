@@ -47,7 +47,7 @@ const DogCard = ({
 	};
 
     return(
-        <>
+        <div>
             <div className={style.containerCard}>
                 <div className={style.containerIcon}>
                     <img className={style.Icon} src= {animals} alt='Icono-Favorito'/>
@@ -81,7 +81,7 @@ const DogCard = ({
                 </div>
             </div>
             <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, ageInYears, gender, size, weight, separatedColors, separatedTemperaments, id, description}}  />
-        </>
+        </div>
     )
 }
 

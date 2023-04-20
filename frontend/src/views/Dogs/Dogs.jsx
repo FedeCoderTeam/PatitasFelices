@@ -35,7 +35,7 @@ const Dogs = () => {
 	}, [dispatch, allDogs, range.firts, range.last, currentPage, dogsPerPage]);
 
 	return (
-		<div className={style.main}>
+		<div data-aos="fade-down" className={style.main}>
 			<div className={style.filtersContainer}>
 				<DogFilters
 					allDogs={allDogs}

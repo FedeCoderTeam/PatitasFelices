@@ -58,6 +58,7 @@ function App() {
 				<Route path={'/dogs'} element={<Dogs />} />
 				<Route path={'/products'} element={<Products />} />
 				<Route path={'/products/:id'} element={<ProductDetail />} />
+				{/* <Route path={'/CreateDog'} element={<CreateDog />} /> */}
 				<Route path={'*'} element={<NotFound />} />
 				{
 					selector.user?.role === 'Administrador' &&

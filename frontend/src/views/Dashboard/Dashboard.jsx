@@ -25,6 +25,7 @@ import ViewA from './ViewA';
 import {useEffect} from 'react';
 import ViewB from './ViewB';
 import ViewC from './ViewC';
+import CreateDog from './components/createDog/CreateDog'
 
 const drawerWidth = 240;
 
@@ -185,6 +186,7 @@ export default function Dashboard() {
                             <Route path={'/'} element={<ViewA />} />
                             <Route path={'/viewB'} element={<ViewB />} />
                             <Route path={'/viewC'} element={<ViewC />} />
+                            <Route path={'/viewB/createDog'} element={<CreateDog />} />
                         </Routes>
                     </Typography>
                 </Box>

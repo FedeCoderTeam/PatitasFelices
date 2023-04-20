@@ -40,7 +40,7 @@ const Register = () => {
 	};
 
 	return (
-		<div className="mainContainer-Register">
+		<div className="mainContainer-Register" data-aos="fade-left">
 			<div className="form-Register">
 				<div className="title">
 					<h1>Registrarse</h1>
