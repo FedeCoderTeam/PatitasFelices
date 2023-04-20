@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setMaybeAdoptedDog } from '../../../_redux/reducer/dogsReducer';
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
+import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull';
 
 const AdoptionForm = () => {
 
@@ -76,7 +77,7 @@ const AdoptionForm = () => {
             allowance: values.allowance,
             image: url,
         }
-        await dispatch(post(obj))
+        // await dispatch(post(obj))
         alert(JSON.stringify(values, null, 2))
     }
 
@@ -193,20 +194,37 @@ const AdoptionForm = () => {
 
                                     <div className='eachField'>
                                         <label htmlFor='image'>Foto de su patio/balcón/espacio al aire libre</label>
-                                        <div className='containerUpload-Form'>
                                         
+                                        <div className='containerUpload-Form'>
+                                            {url.length > 0 && (
+                                                <div>
+                                                    <CloudinaryWidgetFull
+                                                            url={url}
+                                                            setUrl={setUrl}
+                                                        />
+                                                </div>
+                                            )}
+                                            {url.length === 0 && (
                                                 <div>
                                                     <CloudinaryWidget
+                                                            url={url}
+                                                            setUrl={setUrl}
+                                                        />
+                                                </div>
+                                            )}
+                                                {/* <div>
+                                                    <CloudinaryWidgetFull
                                                         url={url}
                                                         setUrl={setUrl}
                                                     />
-                                                </div>
-                                                <div>
+                                                </div> */}
+                                                <div className='userImageContainer-AdoptionForm'>
                                                     <img
                                                         src={url}
                                                         alt={formik.values.title}
                                                         title={formik.values.title}
                                                         loading="lazy"
+                                                        className='userImage-AdoptionForm'
                                                     />
                                                 </div>
                                             

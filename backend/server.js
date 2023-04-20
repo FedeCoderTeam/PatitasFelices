@@ -1,3 +1,5 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 const app = require('./src/app');
 const { conn } = require('./src/database/db');
 const dogsTemperaments = require('./src/controllers/Temperaments_Controllers/temperamentsControllers');
