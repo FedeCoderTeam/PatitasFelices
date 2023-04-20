@@ -36,7 +36,7 @@ function requestsModel(database) {
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },
-        moreAnimas_details: {
+        moreAnimals_details: {
             type: DataTypes.TEXT,
             allowNull: false,
             defaultValue: 'No hay detalles',

@@ -8,6 +8,7 @@ import {
 import { useState } from 'react';
 import style from './productDetail.module.css';
 import ProductCard from '../../Cards/ProductCard/ProductCard';
+import axios from 'axios';
 
 function ProductDetail() {
 	const { id } = useParams();
@@ -45,15 +46,14 @@ function ProductDetail() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-		  const response = await fetch("http://localhost:3001/products");
-		  const data = await response.json();
-		  const shuffledProducts = data.sort(() => 0.5 - Math.random());
-		  const selectedProducts = shuffledProducts.slice(0, 4);
-		  setRandomProducts(selectedProducts);
+			const response = await fetch('http://localhost:3001/products');
+			const data = await response.json();
+			const shuffledProducts = data.sort(() => 0.5 - Math.random());
+			const selectedProducts = shuffledProducts.slice(0, 4);
+			setRandomProducts(selectedProducts);
 		};
-		
 		fetchData();
-	  }, []);
+	}, []);
 
 	return (
 		<div className={style.divMain}>
@@ -92,6 +92,23 @@ function ProductDetail() {
 						</div>
 						<button className={style.btnCarritoDetail}>AÑADIR AL CARRITO</button>
 					</div>
+				</div>
+        <div>
+					<button
+						onClick={() => {
+							axios
+								.post(
+									'http://localhost:3001/mercadopago/payment',
+									productDetail,
+								)
+								.then(
+									(res) =>
+										(window.location.href = res.data.response.body.init_point),
+								);
+						}}
+					>
+						Comprar
+					</button>
 				</div>
 				<div className={style.containerOtros}>
 					<h2 className={style.titleMasProductos}>También te pueden interesar</h2>
