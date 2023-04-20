@@ -1,6 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import './adoptionForm.css';
+import { getDogsById } from '../../../_redux/actions/dogsAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getDogDetail, setMaybeAdoptedDog } from '../../../_redux/reducer/dogsReducer';
 // import validate from '../validations/validate'
 
 const validationSchema = Yup.object().shape({
@@ -11,8 +16,8 @@ const validationSchema = Yup.object().shape({
     age: Yup.number()
         .min(18, 'La edad tiene que ser mayor a 18 años. *')
         .required('La edad es obligatoria.'),
-    phone: Yup.number()
-        // .matches(/^(?:(?:\+|00)54|0)? ?9(?:[1-9]\d{7}|[1-9][0-9]{3}-\d{4})$/, 'Ingrese un número válido.')
+    phone: Yup.string()
+        .matches(/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/, 'Ingrese un número válido.')
         .required('El número de celular es de caracter obligatorio.'),
     address: Yup.string()
         .required('La dirección es obligatoria.'),
@@ -26,7 +31,7 @@ const validationSchema = Yup.object().shape({
         .required('Seleccione una opción.'),
     //.oneOf([true], 'Debe aceptar los terminos y condiciones')
     howMany: Yup.string()
-        .required('¿Cuáles tenés y cuántos son?'),
+        .required('Es obligatoria esta información.'),
     income: Yup.string()
         .required('Elige una opción.'),
     allowance: Yup.string()
@@ -36,11 +41,24 @@ const validationSchema = Yup.object().shape({
         .required('La imagen es obligatoria.')
 });
 
+
 const AdoptionForm = () => {
+
+    const dispatch = useDispatch();
+
+    const dogId = useSelector(
+        (state) => state.dogsReducer.maybeAdoptedDog,
+    );
+    console.log(dogId);
 
     const initialValues = {
         fullName: '', age: '', phone: '', address: '', email: '', state: '', otherAnimals: false, howMany: '', income: '', allowance: '', image: ''
     }
+    useEffect(() => {
+        return () => {
+            dispatch(setMaybeAdoptedDog());
+        };
+    }, [])
 
     const handleSubmit = (values) => {
         alert(JSON.stringify(values, null, 2))
@@ -51,24 +69,24 @@ const AdoptionForm = () => {
             <div className='container-Form'>
                 <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => handleSubmit(values)} >
                     {({
-                          errors, values}) => (<Form>
-                            <h1 className='title-Form'>Formulario de Adopción</h1>
+                        errors, values }) => (<Form>
+                            <h1 className='title-Form'>Formulario de Adopción {dogId.name}</h1>
                             <div className='box-Form'>
                                 <div className='containerInputsLeft-Form'>
                                     <label htmlFor='fullName'>Nombre completo de la/el adoptante</label>
-                                    <Field name='fullName' type='text' />
+                                    <Field name='fullName' type='text' placeholder='EJ: Pepito Juárez' />
                                     <ErrorMessage name='fullName' />
                                     <label htmlFor='age'>Edad</label>
-                                    <Field name='age' type='number' />
+                                    <Field name='age' type='number' placeholder='EJ: 25' />
                                     <ErrorMessage name='age' />
                                     <label htmlFor='phone'>Teléfono</label>
-                                    <Field name='phone' type='number' />
+                                    <Field name='phone' type='number' placeholder='EJ: +54**********' />
                                     <ErrorMessage name='phone' />
                                     <label htmlFor='text'>Dirección</label>
-                                    <Field name='address' type='text' />
+                                    <Field name='address' type='text' placeholder='EJ: Calle Falsa, 123, Springfield' />
                                     <ErrorMessage name='address' />
                                     <label htmlFor='email'>Email</label>
-                                    <Field name='email' type='email' />
+                                    <Field name='email' type='email' placeholder='EJ: pepitojuarez1@hotmail/gmail.com' />
                                     <ErrorMessage name='email' />
                                     <label htmlFor='state'>¿Cómo se encuentra el estado de tu patio/balcón?</label>
                                     <Field name='state' as='select' >
@@ -87,7 +105,7 @@ const AdoptionForm = () => {
                                     {values.otherAnimals && (
                                         <div>
                                             <label htmlFor="howMany">¿Cuántos son y qué tipo de animales son?</label>
-                                            <Field type="text" id="howMany" name="howMany" />
+                                            <Field type="text" id="howMany" name="howMany" placeholder='EJ: 2 gatos, 1 perro.' />
                                             <ErrorMessage name='howMany' />
                                         </div>
                                     )}
@@ -105,8 +123,8 @@ const AdoptionForm = () => {
                                         <option value="no">No</option>
                                     </Field>
                                     <ErrorMessage name='allowance' />
-                                    <label htmlFor='image'>Foto de su patio/balcón/espacio al aire libre</label>
                                     <div className='containerUpload-Form'>
+                                        <label htmlFor='image'>Foto de su patio/balcón/espacio al aire libre</label>
                                         {/* Esta foto se va a guardar en cloudinary */}
                                         <Field className='upload-Form' name='image' type='file' />
                                         <ErrorMessage name='image' />

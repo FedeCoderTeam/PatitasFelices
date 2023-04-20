@@ -39,4 +39,14 @@ router.get('/:id', async (req, res) => {
 	}
 });
 
+// router.post('/', async (req, res) => {
+// 	let { newProduct } = req.body;
+
+// 	try {
+
+// 	} catch (error) {
+
+// 	}
+// });
+
 module.exports = router;
