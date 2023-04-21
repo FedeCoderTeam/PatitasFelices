@@ -30,33 +30,34 @@ const UpdateDogForm = () => {
     const validationSchema = Yup.object().shape({
         name: Yup.string()
             .min(4, 'El nombre debe tener mínimo 4 caracteres. *')
-            .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
-            .required('El nombre es obligatorio'),
+            .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z". *')
+            .required('El nombre es obligatorio. *'),
         age: Yup.number()
-            .min(1, 'Debe introducir una edad aproximada en meses. EJ: 33. *')
-            .max(240, '¡WOW!¿Estás seguro que el perro tiene estos meses?')
+            .min(1, 'Debe introducir una edad aproximada en meses. *')
+            .max(240, '¡WOW!¿Estás seguro que el perro tiene estos meses? *')
             // .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
-            .required('La edad es obligatoria'),
+            .required('La edad es obligatoria. *'),
+        size: Yup.string()
+            .oneOf(['Gigante', 'Grande', 'Mediano', 'Pequeño', 'Muy pequeño'], 'El tamaño es obligatorio. *'),
+        weight: Yup.number()
+            .min(1, 'El peso tiene que ser mayor a 1. *')
+            .max(110, '¡WOW!¿Estás seguro que es un perro? *')
+            .required('El peso es obligatorio. *'),
+        gender: Yup.string()
+            .oneOf(['Hembra', 'Macho'], 'El género es obligatorio. *'),
+        castrated: Yup.string()
+            .oneOf(['Yes', 'No'], 'Este campo es obligatorio. *'),
+        colors: Yup.string()
+            .oneOf(['Negro', 'Blanco', 'Gris', 'Marron', 'Dorado', 'Cobrizo', 'Crema'], 'El color es obligatorio. *'),
         description: Yup.string()
-            .min(10, 'La descripción debe tener mínimo 20 caracteres. *')
-            .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
-            .required('La descripción es obligatoria'),
-        price: Yup.number()
-            .min(1, 'El precio tiene que ser mayor a 1. *')
-            .required('El precio es obligatorio.'),
-        stock: Yup.number()
-            .min(0, 'El stock tiene que ser mayor o igual a 0. *')
-            .required('El stock tiene que ser obligatorio.'),
-        brand: Yup.string()
-            .min(2, 'La marca debe tener mínimo 2 caracteres. *')
-            .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
-            .required('La marca es obligatoria'),
-        category: Yup.string()
-            .oneOf(['Alimento', 'Accesorio'], 'Seleccione una opción.'),
-        subCategory: Yup.string()
-            .oneOf(['Adulto', 'Cachorro', 'Comederos', 'Collares', 'Juguetes', 'Vestimenta'], 'Seleccione una opción.'),
+            .required('La descripción es obligatoria. *'),
+        adopted: Yup.string()
+            .oneOf(['Yes', 'No'], 'Este campo es obligatorio. *'),
+        isDisabled: Yup.string()
+            .oneOf(['Yes', 'No'], 'Este campo es obligatorio. *'),
         image: Yup.string()
-            .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida.')
+            .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida. *')
+            .required('La imagen es obligatoria. *'),
     });
 
     
@@ -112,11 +113,11 @@ const UpdateDogForm = () => {
                                         <label className={style.labels} htmlFor="size">Tamaño</label>
                                         <Field className={style.inputSelect} as="select" id="category" name="size">
                                             <option className={style.options} value="all"></option>
-                                            <option className={style.options} value="Alimento">Gigante</option>
-                                            <option className={style.options} value="Accesorio">Grande</option>
-                                            <option className={style.options} value="Alimento">Mediano</option>
-                                            <option className={style.options} value="Alimento">Pequeño</option>
-                                            <option className={style.options} value="Alimento">Muy pequeño</option>
+                                            <option className={style.options} value="Gigante">Gigante</option>
+                                            <option className={style.options} value="Grande">Grande</option>
+                                            <option className={style.options} value="Mediano">Mediano</option>
+                                            <option className={style.options} value="Pequeño">Pequeño</option>
+                                            <option className={style.options} value="Muy pequeño">Muy pequeño</option>
                                         </Field>
                                         <ErrorMessage name='size'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
@@ -135,8 +136,8 @@ const UpdateDogForm = () => {
                                         <label className={style.labels} htmlFor="gender">Género</label>
                                         <Field className={style.inputSelect} as="select" id="category" name="gender">
                                             <option className={style.options} value="all"></option>
-                                            <option className={style.options} value="Alimento">Hembra</option>
-                                            <option className={style.options} value="Accesorio">Macho</option>
+                                            <option className={style.options} value="Hembra">Hembra</option>
+                                            <option className={style.options} value="Macho">Macho</option>
                                         </Field>
                                         <ErrorMessage name='gender'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
@@ -147,8 +148,8 @@ const UpdateDogForm = () => {
                                         <label className={style.labels} htmlFor="castrated">¿Está castrado?</label>
                                         <Field className={style.inputSelect} as="select" id="category" name="castrated">
                                             <option className={style.options} value="all"></option>
-                                            <option className={style.options} value="Alimento">Sí</option>
-                                            <option className={style.options} value="Accesorio">No</option>
+                                            <option className={style.options} value="Yes">Sí</option>
+                                            <option className={style.options} value="No">No</option>
                                         </Field>
                                         <ErrorMessage name='castrated'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
@@ -206,8 +207,8 @@ const UpdateDogForm = () => {
                                         <label className={style.labels} htmlFor="adopted">¿Fue adoptado?</label>
                                         <Field className={style.inputSelect} as="select" id="category" name="adopted">
                                             <option className={style.options} value="all"></option>
-                                            <option className={style.options} value="Alimento">Sí</option>
-                                            <option className={style.options} value="Accesorio">No</option>
+                                            <option className={style.options} value="Yes">Sí</option>
+                                            <option className={style.options} value="No">No</option>
                                         </Field>
                                         <ErrorMessage name='adopted'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
@@ -218,8 +219,8 @@ const UpdateDogForm = () => {
                                         <label className={style.labels} htmlFor="isDisabled">¿El perrito falleció?</label>
                                         <Field className={style.inputSelect} as="select" id="category" name="isDisabled">
                                             <option className={style.options} value="all"></option>
-                                            <option className={style.options} value="Alimento">Sí</option>
-                                            <option className={style.options} value="Accesorio">No</option>
+                                            <option className={style.options} value="Yes">Sí</option>
+                                            <option className={style.options} value="No">No</option>
                                         </Field>
                                         <ErrorMessage name='isDisabled'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
