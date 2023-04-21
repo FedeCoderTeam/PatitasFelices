@@ -138,7 +138,7 @@ export const dogsSlice = createSlice({
 
 		setAdoptionDog: (state, action) => {
 			state.allAdoptions = action.payload
-		}
+		},
 
 		emptyMaybeAdoptedDog: (state) => {
 			state.maybeAdoptedDog = {};
