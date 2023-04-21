@@ -314,6 +314,42 @@
 			"genders": "Macho",
 			"tempers": ["Tierno", "Juguetón", "Compañero", "Vigilante"],
 			"description": "Este barbudito de un pelaje muy suave y brilloso busca familia amorosa. Tiene 1 año aproximadamente, es de tamaño medianito y ya está castrado. Es súper juguetón y guardián, también se lleva bien con otros animales, le gusta salir a pasear y que le hagan mimos. Es muy mimoso."
+		},
+		{
+			"name": "Draco",
+			"age": 24,
+			"size": "Medium",
+			"weight": 20,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1682047730/Pf%20Patitas%20felices/Dogs/Draco_ziozk8.png",
+			"colors": ["Marron"],
+			"genders": "Macho",
+			"tempers": ["Juguetón", "Amigable", "Compañero", "Travieso"],
+			"description": "Una tarde de invierno y mucho frío, estábamos en la plaza y veiamos un perrito que jugaba con todos los perros y, aunque los demás se iban, él se quedaba y esperaba un próximo perro para jugar, esa plaza era su hogar sin embargo, aunque nadie se quedaba con él, siempre estaba contento. Desde que lo rescatamos ha sido muy compañero, es travieso como un niño y se lleva súper bien con otros perros, ama hacer amigos. Está castrado, desparasitado y vacunado."
+		},
+		{
+			"name": "Pache",
+			"age": 96,
+			"size": "Medium",
+			"weight": 16,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1682047730/Pf%20Patitas%20felices/Dogs/Pache_ycsmyw.png",
+			"colors": ["Negro", "Marron"],
+			"genders": "Hembra",
+			"tempers": ["Obediente", "Compañero", "Cariñoso", "Tranquilo"],
+			"description": "Cuando tenía 45 días vimos como una mujer la dejaba en el cantero de una escuela abandonandola, desde ese momento nunca estuvo sola y ella siempre fue muy agradecida. Súper obediente y compañera, le gusta dormir en la cama y que le hagan muchos mimos. Pasea muy bien con y sin correa.Castrada, desparasitada y vacunada."
+		},
+		{
+			"name": "Lulu",
+			"age": 84,
+			"size": "Mini",
+			"weight": 7,
+			"castrated": true,
+			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1682047920/Pf%20Patitas%20felices/Dogs/Marcos_dog_mdypck.png",
+			"colors": ["Blanco"],
+			"genders": "Hembra",
+			"tempers": ["Juguetón", "Alegre", "Cariñoso", "Fiel"],
+			"description": "Lulu es un caniche chiquito muy dulce y cariñoso. Es blanca, con el pelaje suave y rizado, y tiene unas patas largas y delgadas que la hacen ver muy elegante. Tiene una carita muy simpática y expresiva, con unos ojos oscuros y brillantes que siempre están alerta. A pesar de ser pequeña, es muy activa y juguetona, y le encanta pasar tiempo con las personas. Además, es muy inteligente y fácil de entrenar, lo que hace que sea muy obediente y leal a su familia. En general, es una perrita muy hermosa y encantadora, que siempre nos llena de amor y alegría."
 		}
 	]
 }
