@@ -3,6 +3,8 @@ const router = Router();
 const getAllProducts = require('../../controllers/Product_Controllers/productControllers');
 const getProductById = require('../../controllers/Product_Controllers/productIdControllers');
 const productByName = require('../../controllers/Product_Controllers/prodcutNameControllers');
+const productPostControllers = require('../../controllers/Product_Controllers/productPostControllers');
+const productUpdateControllers = require('../../controllers/Product_Controllers/poductUpdateControllers');
 
 router.get('/', async (req, res) => {
 	let { name } = req.query;
@@ -39,14 +41,64 @@ router.get('/:id', async (req, res) => {
 	}
 });
 
-// router.post('/', async (req, res) => {
-// 	let { newProduct } = req.body;
+router.post('/', async (req, res) => {
+	let { name, description, price, stock, brand, image, category, subCategory } =
+		req.body;
 
-// 	try {
+	try {
+		let newProuct = await productPostControllers(
+			name,
+			description,
+			price,
+			stock,
+			brand,
+			image,
+			category,
+			subCategory,
+		);
 
-// 	} catch (error) {
+		if (newProuct.error) throw new Error(newProuct.error);
 
-// 	}
-// });
+		res.status(200).json(newProuct);
+	} catch (error) {
+		res.status(400).json({ error: error.messages });
+	}
+});
+
+router.put('/', async (req, res) => {
+	let {
+		id,
+		name,
+		description,
+		price,
+		image,
+		brand,
+		stock,
+		isDisabled,
+		categoryId,
+		subCategoryId,
+	} = req.body;
+
+	try {
+		let updateProduct = await productUpdateControllers(
+			id,
+			name,
+			description,
+			price,
+			image,
+			brand,
+			stock,
+			isDisabled,
+			categoryId,
+			subCategoryId,
+		);
+
+		if (updateProduct.error) throw new Error(updateProduct.error);
+
+		res.status(200).json(updateProduct);
+	} catch (error) {
+		res.status(400).json({ error: error.message });
+	}
+});
 
 module.exports = router;
