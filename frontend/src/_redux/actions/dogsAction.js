@@ -12,9 +12,7 @@ import {
 	setEmptyDetail,
 	setPages,
 	setMaybeAdoptedDog,
-	setAdoptionDog,
 	emptyMaybeAdoptedDog,
-
 } from '../reducer/dogsReducer.js';
 
 const getDogs = () => {
@@ -22,6 +20,26 @@ const getDogs = () => {
 		try {
 			let dbData = await axios.get('http://localhost:3001/dogs');
 			dispatch(getAllDogs(dbData.data));
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+const postDogs = (newDog) => {
+	return async function () {
+		try {
+			await axios.post('http://localhost:3001/dogs', newDog);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+const updateDogs = (someDog) => {
+	return async function () {
+		try {
+			await axios.put('http://localhost:3001/dogs', someDog);
 		} catch (error) {
 			console.log(error);
 		}
@@ -115,35 +133,15 @@ const setPage = (page) => {
 const setMaybeAdoptedDogs = (id) => {
 	return (dispatch) => {
 		dispatch(setMaybeAdoptedDog(id));
-	}
-};
-
-const postAdoptionDog = (obj) => {
-	return async () => {
-		try {
-			await axios.post('http://localhost:3001/requests', obj )
-		} catch (error) {
-			console.log(error);
-		}
 	};
 };
+
 
 const emptyMaybeAdoptedDogs = () => {
 	return (dispatch) => {
 		dispatch(emptyMaybeAdoptedDog());
 	};
 };
-
-const getAdoptionDog = () => {
-	return async (dispatch) =>{
-		try {
-			let db = await axios.get('http://localhost:3001/requests')
-			dispatch(setAdoptionDog(db.data))
-		} catch (error) {
-			console.log(error);
-		}
-	}
-}
 
 
 export {
@@ -159,7 +157,7 @@ export {
 	setDetail,
 	setPage,
 	setMaybeAdoptedDogs,
-	postAdoptionDog,
-	getAdoptionDog,
 	emptyMaybeAdoptedDogs,
+	postDogs,
+	updateDogs,
 };

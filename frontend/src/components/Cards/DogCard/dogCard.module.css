@@ -3,7 +3,8 @@
 .containerCard {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: top;
+    /* margin-top: 10px; */
 	align-items: center;
 	width: 370px;
 	height: 470px;
@@ -15,17 +16,24 @@
 
 .containerIcon {
 	display: flex;
-}
-
-.Icon {
+    justify-content: right;
+    align-items: flex-end;
     position: absolute;
     top: 10px;
     right: 10px;
-    margin: 0;
+    /* margin: 0; */
+}
+
+.Icon {
     width: 49px;
     height: 49px;
     cursor: pointer;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
+}
+
+.pic {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .containerImg{
@@ -38,8 +46,6 @@
     border-radius: 50%;
     border: 15px solid #163440;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    position: absolute;
-    top: 18px;
 }
 
 .containerImg img{
@@ -50,12 +56,10 @@
 
 
 .divDogInfo{
-    position: absolute;
     display: flex;
-    /* align-items: flex-start; */
-    justify-content: space-evenly;
-    /* overflow: scroll; */
-    /* overflow: auto; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 330px;
     height: 125px;
     bottom: 60px;
@@ -67,12 +71,9 @@
 .divData {
 	display: flex;
 	flex-wrap: wrap;
+    gap: 5px;
 	justify-content: center;
 	align-items: center;
-	margin-top: 5px;
-	margin-left: 5px;
-	margin-bottom: 5px;
-	margin-right: 5px;
 	overflow: auto;
 	/* flex-direction: row; */
 }
@@ -81,12 +82,24 @@
     /* display: list-item; */
     display: flex;
     align-items: center;
+    justify-content: center;
     font-family: 'Be Vietnam Pro';
     color: #163440;
     font-weight: 600;
     font-size: 1em;
-    margin: auto;
+    margin: 5px;
   }
+
+.temps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Be Vietnam Pro';
+    color: #163440;
+    font-weight: 600;
+    font-size: 1em;
+    margin: 5px; 
+}
 
 .itemIcon{
     margin-right: 5px;
@@ -125,11 +138,16 @@
     font-size: 19px;
 }
 
-#alert-dialog-description {
-    width: auto;
-    height: auto;
+.dialogDescription {
     background-color: #163440;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.description {
+    text-align: justify;
 }
 
 .dogDetail > h3 {
@@ -173,12 +191,15 @@
     width: 300px;
     height: 350px;
 }
+
 .containerInfo > h3 {
     text-align: center;
     font-family: 'Be Vietnam Pro';
     color: #163440; 
     display: flex;
     justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
 }
 
 
