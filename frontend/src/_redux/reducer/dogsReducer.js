@@ -135,15 +135,13 @@ export const dogsSlice = createSlice({
 			state.maybeAdoptedDog = dog;
 		},
 
-
 		setAdoptionDog: (state, action) => {
-			state.allAdoptions = action.payload
+			state.allAdoptions = action.payload;
 		},
 
 		emptyMaybeAdoptedDog: (state) => {
 			state.maybeAdoptedDog = {};
 		},
-
 	},
 });
 
