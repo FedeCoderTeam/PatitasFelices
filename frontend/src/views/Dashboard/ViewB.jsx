@@ -1,7 +1,18 @@
+import React from "react";
+import { Link } from 'react-router-dom';
 
-
-export default function ViewB() {
-    return(<>
-        <div>Este es viewB</div>
-    </>)
+const ViewB = () => {
+    return (
+        <div>
+            <section className="containerBtns-ViewB">
+                <div>
+                    <button>a</button>
+                    <Link to='./CreateDog'><button></button>b</Link>
+                </div>
+            </section>
+        </div>
+    )
 }
+
+export default ViewB
+

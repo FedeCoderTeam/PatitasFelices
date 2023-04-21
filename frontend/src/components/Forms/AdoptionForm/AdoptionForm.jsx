@@ -4,34 +4,37 @@ import * as Yup from 'yup';
 import './adoptionForm.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setMaybeAdoptedDog } from '../../../_redux/reducer/dogsReducer';
+import { emptyMaybeAdoptedDogs } from '../../../_redux/actions/dogsAction';
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
+import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull'
+import * as requestAction from '../../../_redux/actions/requestAction';
+import { useNavigate } from 'react-router-dom';
 
 const AdoptionForm = () => {
-
     const dispatch = useDispatch();
     const dogId = useSelector(
         (state) => state.dogsReducer.maybeAdoptedDog,
     );
+    const navigate = useNavigate()
     
     const [url, setUrl] = useState("");
     
     const initialValues = {
-        fullName: '',
+        name: '',
         age: '',
         phone: '',
         address: '',
         email: '',
-        state: '',
-        otherAnimals: false,
-        howMany: '',
-        income: '',
-        allowance: '',
-        image: url,
+        areas_conditions: '',
+        more_animals: false,
+        moreAnimals_details: '',
+        proper_income: '',
+        inHouse_allowance: '',
+        outDoor_image: url,
     }
 
     const validationSchema = Yup.object().shape({
-        fullName: Yup.string()
+        name: Yup.string()
             .min(4, 'El nombre debe tener mínimo 4 caracteres. *')
             .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
             .required('El nombre es obligatorio'),
@@ -46,51 +49,49 @@ const AdoptionForm = () => {
         email: Yup.string()
             .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 'Ingrese un email válido.')
             .required('El email es obligatorio.'),
-        state: Yup.string()
-            .oneOf(['Excelente', 'Bueno', 'Malo', 'No aplica'], 'Seleccione una opción.'),
-        otherAnimals: Yup.string()
+        areas_conditions: Yup.string()
+            .oneOf(['Excellent', 'Good', 'Bad', 'N/A'], 'Seleccione una opción.'),
+        more_animals: Yup.string()
             .required('Seleccione una opción.'),
-        howMany: Yup.string()
+        moreAnimals_details: Yup.string()
             .required('Es obligatoria esta información.'),
-        income: Yup.string()
+        proper_income: Yup.string()
             .required('Elige una opción.'),
-        allowance: Yup.string()
+        inHouse_allowance: Yup.string()
             .required('Elige una opción.'),
-        image: Yup.string()
+        outDoor_image: Yup.string()
             .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida.')
-            /* .test('FILE_SIZE', 'imagen demasiado grande', (value) => value && value.size < 1024 * 1024) */
-            /* .required('La imagen es obligatoria') */
     });
 
-    const handleSubmit = async (values) => {
+    const handleSubmit = (values) => {
         const obj = {
-            fullName: values.fullName,
+            name: values.name,
             age: values.age,
             phone: values.phone,
             address: values.address,
             email: values.email,
-            state: values.state,
-            otherAnimals: false,
-            howMany: values.howMany,
-            income: values.income,
-            allowance: values.allowance,
-            image: url,
+            areas_conditions: values.areas_conditions,
+            more_animals: false,
+            moreAnimals_details: values.moreAnimals_details,
+            proper_income: values.proper_income,
+            inHouse_allowance: values.inHouse_allowance,
+            outDoor_image: url,
+            dogId: dogId.id
         }
-        // await dispatch(post(obj))
-        alert(JSON.stringify(values, null, 2))
+        dispatch(requestAction.postAdoptionDog(obj))
+        alert(JSON.stringify(obj, null, 2)) 
+        navigate('/dogs')
     }
 
     const formik = useFormik({
         initialValues,
         validationSchema,
-        handleSubmit: () => {
-            console.log(formik.values);
-        },
+        handleSubmit,
     });
 
     useEffect(() => {
         return () => {
-            dispatch(setMaybeAdoptedDog());
+            dispatch(emptyMaybeAdoptedDogs());
         };
     }, [])
 
@@ -105,9 +106,9 @@ const AdoptionForm = () => {
                                 <div className='containerInputsLeft-Form'>
 
                                     <div className='eachField'>
-                                        <label htmlFor='fullName'>Nombre completo de la/el adoptante</label>
-                                        <Field name='fullName' type='text' placeholder='EJ: Pepito Juárez' />
-                                        <ErrorMessage name="fullName">
+                                        <label htmlFor='name'>Nombre completo de la/el adoptante</label>
+                                        <Field name='name' type='text' placeholder='EJ: Pepito Juárez' />
+                                        <ErrorMessage name="name">
                                         {(msg) => <div className="errorMessage">{msg}</div>}
                                         </ErrorMessage>
                                     </div>
@@ -149,83 +150,93 @@ const AdoptionForm = () => {
                                 <div className='containerInputsRight-Form'>
 
                                     <div className='eachField'>
-                                        <label htmlFor="otherAnimals">¿Tienes otros animales? Si la respuesta es sí, ¿cuántos y de qué tipo?</label>
-                                        <div className='otherAnimals-Container'>
-                                            <Field type="checkbox" id="otherAnimals" name="otherAnimals" className='checkbox'/>
-                                            {values.otherAnimals && (
+                                        <label htmlFor="more_animals">¿Tienes otros animales? Si la respuesta es sí, ¿cuántos y de qué tipo?</label>
+                                        <div className='more_animals-Container'>
+                                            <Field type="checkbox" id="more_animals" name="more_animals" className='checkbox'/>
+                                            {values.more_animals && (
                                                 <div className='hideInput'>
-                                                    {/* <label htmlFor="howMany">¿Cuántos son y qué tipo de animales son?</label> */}
-                                                    <Field type="text" id="howMany" name="howMany" placeholder='EJ: 2 gatos, 1 perro.' />
-                                                    <ErrorMessage name="howMany">
+                                                    <Field type="text" id="moreAnimals_details" name="moreAnimals_details" placeholder='EJ: 2 gatos, 1 perro.' />
+                                                    <ErrorMessage name="moreAnimals_details">
                                                         {(msg) => <div className="errorMessage">{msg}</div>}
                                                     </ErrorMessage>
                                                 </div>
                                             )}
                                         </div>
-                                            <ErrorMessage name="otherAnimals">
+                                            <ErrorMessage name="more_animals">
                                                 {(msg) => <div className="errorMessage">{msg}</div>}
                                             </ErrorMessage>
                                     </div>
 
                                     <div className='eachField'>
-                                        <label htmlFor='income'>¿Tiene los medios económicos para substentar los gastos económicos de su mascota?</label>
-                                        <Field name='income' as='select'>
+                                        <label htmlFor='proper_income'>¿Tiene los medios económicos para substentar los gastos económicos de su mascota?</label>
+                                        <Field name='proper_income' as='select'>
                                             <option value="all"></option>
-                                            <option value="si">Si</option>
-                                            <option value="no">No</option>
+                                            <option value="Yes">Si</option>
+                                            <option value="No">No</option>
                                         </Field>
-                                        <ErrorMessage name="income">
+                                        <ErrorMessage name="proper_income">
                                             {(msg) => <div className="errorMessage">{msg}</div>}
                                         </ErrorMessage>
                                     </div>
 
                                     <div className='eachField'>
-                                        <label htmlFor='allowance'>¿Consultaste en tu edificio, consorcio o propietario, si están de acuerdo con la adopción?</label>
-                                        <Field as='select' name='allowance'>
+                                        <label htmlFor='inHouse_allowance'>¿Consultaste en tu edificio, consorcio o propietario, si están de acuerdo con la adopción?</label>
+                                        <Field as='select' name='inHouse_allowance'>
                                             <option value="all"></option>
-                                            <option value="si">Si</option>
-                                            <option value="no">No</option>
+                                            <option value="Yes">Si</option>
+                                            <option value="No">No</option>
                                         </Field>
-                                        <ErrorMessage name="allowance">
+                                        <ErrorMessage name="inHouse_allowance">
                                             {(msg) => <div className="errorMessage">{msg}</div>}
                                         </ErrorMessage>
                                     </div>
 
                                     <div className='eachField'>
-                                        <label htmlFor='image'>Foto de su patio/balcón/espacio al aire libre</label>
-                                        <div className='containerUpload-Form'>
+                                        <label htmlFor='outDoor_image'>Foto de su patio/balcón/espacio al aire libre</label>
                                         
+                                        <div className='containerUpload-Form'>
+                                            {url.length > 0 && (
+                                                <div>
+                                                    <CloudinaryWidgetFull
+                                                            url={url}
+                                                            setUrl={setUrl}
+                                                        />
+                                                </div>
+                                            )}
+                                            {url.length === 0 && (
                                                 <div>
                                                     <CloudinaryWidget
-                                                        url={url}
-                                                        setUrl={setUrl}
-                                                    />
+                                                            url={url}
+                                                            setUrl={setUrl}
+                                                        />
                                                 </div>
-                                                <div>
+                                            )}
+                                                <div className='userImageContainer-AdoptionForm'>
                                                     <img
                                                         src={url}
                                                         alt={formik.values.title}
                                                         title={formik.values.title}
                                                         loading="lazy"
+                                                        className='userImage-AdoptionForm'
                                                     />
                                                 </div>
                                             
                                         </div>
-                                        <ErrorMessage name="image">
+                                        <ErrorMessage name="outDoor_image">
                                             {(msg) => <div className="errorMessage">{msg}</div>}
                                         </ErrorMessage>
                                     </div>
 
                                     <div className='eachField'>
-                                        <label htmlFor='state'>¿Cómo se encuentra el estado de tu patio/balcón?</label>
-                                        <Field name='state' as='select' >
+                                        <label htmlFor='areas_conditions'>¿Cómo se encuentra el estado de tu patio/balcón?</label>
+                                        <Field name='areas_conditions' as='select' >
                                             <option value="all"></option>
-                                            <option value="Excelente">Excelente</option>
-                                            <option value="Bueno">Bueno</option>
-                                            <option value="Malo">Malo</option>
-                                            <option value="No aplica">No aplica</option>
+                                            <option value="Excellent">Excelente</option>
+                                            <option value="Good">Bueno</option>
+                                            <option value="Bad">Malo</option>
+                                            <option value='N/A' >No aplica</option>
                                         </Field>
-                                        <ErrorMessage name="state">
+                                        <ErrorMessage name="areas_conditions">
                                             {(msg) => <div className="errorMessage">{msg}</div>}
                                         </ErrorMessage>
                                     </div>
@@ -238,7 +249,7 @@ const AdoptionForm = () => {
                             <div className='containerGoHome-Form'>
                                 <h4>Aún no sé si estoy listo/a, regresar a</h4>
                                 <Link to="/home" className="goHome-Form">
-                                    <i class="fa-solid fa-house"></i>
+                                    <i className="fa-solid fa-house"></i>
                                 </Link>
                             </div>
                         </Form>
@@ -250,3 +261,4 @@ const AdoptionForm = () => {
 }
 
 export default AdoptionForm
+

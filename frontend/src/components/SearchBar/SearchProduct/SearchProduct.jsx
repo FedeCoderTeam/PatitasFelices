@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as productsAction from '../../../_redux/actions/productsAction.js';
-import style from './SearchProduct.module.css';
+import style from './searchProduct.module.css';
 
 const SearchProduct = () => {
 	const dispatch = useDispatch();
@@ -20,7 +20,6 @@ const SearchProduct = () => {
         dispatch(productsAction.getProductsByName(inputProduct))
         setInputProduct("");
     } */
-	console.log(name);
 	return (
 		<>
 			<div className={style.searchBar}>
