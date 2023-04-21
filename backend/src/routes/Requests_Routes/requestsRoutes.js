@@ -27,6 +27,7 @@ router.post('/', async (req, res) => {
         outDoor_image,
         dogId
     } = req.body
+    console.log(req.body);
     try {
         await postNewRequest(
             name,

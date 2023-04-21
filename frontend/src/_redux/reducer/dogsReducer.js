@@ -16,6 +16,7 @@ const initialState = {
 	setTemperaments: 'All',
 	currentPage: 1,
 	maybeAdoptedDog: {},
+	allAdoptions: {},
 };
 
 export const dogsSlice = createSlice({
@@ -135,7 +136,12 @@ export const dogsSlice = createSlice({
 				state.maybeAdoptedDog = {};
 			}
 			state.maybeAdoptedDog = dog;
+		},
+
+		setAdoptionDog: (state, action) => {
+			state.allAdoptions = action.payload
 		}
+
 	},
 });
 
@@ -153,6 +159,7 @@ export const {
 	setEmptyDetail,
 	setPages,
 	setMaybeAdoptedDog,
+	setAdoptionDog,
 } = dogsSlice.actions;
 
 export default dogsSlice.reducer;

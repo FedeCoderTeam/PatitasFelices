@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import './cloudinaryWidget.css'
 
 const CloudinaryWidget = ({ setUrl }) => {
+
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
 
@@ -20,7 +21,7 @@ const CloudinaryWidget = ({ setUrl }) => {
     }, []);
 
     return(
-        <div className='containerBtn-Form' >
+        <div className='containerBtn-Form'>
             <button type='button' onClick={() => widgetRef.current.open()}>Adjuntar imagen</button>
         </div>
     );
