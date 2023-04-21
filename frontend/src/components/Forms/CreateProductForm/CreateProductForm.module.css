@@ -11,7 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0000009a;
+    background-color: #003668f3;
     border-radius: 5px;
 }
 
@@ -93,25 +93,29 @@
     color: #FFFFFF;
     margin-top: 5px;
     display: flex;
-    height: 41px;
     transition: display 200ms linear;
 }
 
 .divImgUser{
     position: relative;
     border-radius: 5px;
-    left: 110%; 
-    bottom: 50%;
+    left: 105%; 
+    bottom: 150%;
     display: none;
     transition: display 200ms linear;
 }
 
 .imgUser{
-    width: 200px;
+    position: absolute;
+    width: 40px;
+    top: 4px;
+    right: 12.5em;
     border-radius: 5px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.containerUploadForm:hover .divImgUser {
+    display: block; 
+}
 
 .containerBtnForm{
     text-align: center;
