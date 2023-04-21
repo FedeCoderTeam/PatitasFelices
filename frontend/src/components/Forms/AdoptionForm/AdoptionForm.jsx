@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { emptyMaybeAdoptedDogs } from '../../../_redux/actions/dogsAction';
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
+import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull'
 import * as dogsAction from '../../../_redux/actions/dogsAction';
 import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull.jsx';
 import { useNavigate } from 'react-router-dom';

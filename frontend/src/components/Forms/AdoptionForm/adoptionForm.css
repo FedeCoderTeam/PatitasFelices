@@ -5,7 +5,7 @@
     background-image: url('./images/formImage.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 115vh
+    height: 100vh
 }
 
 .container-Form {
@@ -78,6 +78,11 @@
     margin-left: 5px;
 }
 
+.more_animals-Container {
+    display: flex;
+    align-items: flex-start;
+}
+
 .otherAnimals-Container {
     display: flex;
     align-items: flex-start;
@@ -109,8 +114,8 @@
 .userImageContainer-AdoptionForm {
     position: relative;
     border-radius: 5px;
-    left: 110%; 
-    bottom: 50%;
+    left: 105%; 
+    bottom: 150%;
     display: none;
     transition: display 200ms linear;
     
