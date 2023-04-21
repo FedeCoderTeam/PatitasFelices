@@ -8,12 +8,15 @@ import { emptyMaybeAdoptedDogs } from '../../../_redux/actions/dogsAction';
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
 import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull'
 import * as dogsAction from '../../../_redux/actions/dogsAction';
+import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const AdoptionForm = () => {
     const dispatch = useDispatch();
     const dogId = useSelector(
         (state) => state.dogsReducer.maybeAdoptedDog,
     );
+    const navigate = useNavigate()
     
     const [url, setUrl] = useState("");
     
@@ -59,7 +62,6 @@ const AdoptionForm = () => {
             .required('Elige una opción.'),
         outDoor_image: Yup.string()
             .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida.')
-            /* .test('FILE_SIZE', 'imagen demasiado grande', (value) => value && value.size < 1024 * 1024) */
             /* .required('La imagen es obligatoria') */
     });
 
@@ -79,7 +81,10 @@ const AdoptionForm = () => {
             dogId: dogId.id
         }
         dispatch(dogsAction.postAdoptionDog(obj))
-        alert(JSON.stringify(obj, null, 2))
+        //console.log(obj);
+        alert(JSON.stringify(obj, null, 2)) 
+        //NO BORRAR, SIRVE PARA TESTEAR
+        navigate('/dogs')
     }
 
     const formik = useFormik({
@@ -154,7 +159,6 @@ const AdoptionForm = () => {
                                             <Field type="checkbox" id="more_animals" name="more_animals" className='checkbox'/>
                                             {values.more_animals && (
                                                 <div className='hideInput'>
-                                                    {/* <label htmlFor="moreAnimals_details">¿Cuántos son y qué tipo de animales son?</label> */}
                                                     <Field type="text" id="moreAnimals_details" name="moreAnimals_details" placeholder='EJ: 2 gatos, 1 perro.' />
                                                     <ErrorMessage name="moreAnimals_details">
                                                         {(msg) => <div className="errorMessage">{msg}</div>}
@@ -211,12 +215,6 @@ const AdoptionForm = () => {
                                                         />
                                                 </div>
                                             )}
-                                                {/* <div>
-                                                    <CloudinaryWidgetFull
-                                                        url={url}
-                                                        setUrl={setUrl}
-                                                    />
-                                                </div> */}
                                                 <div className='userImageContainer-AdoptionForm'>
                                                     <img
                                                         src={url}
