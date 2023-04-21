@@ -20,7 +20,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import {createTheme, ThemeProvider} from '@mui/material';
 import {brown} from '@mui/material/colors';
-import {NavLink, Route, Routes, useLocation, useNavigate} from 'react-router-dom';
+import {NavLink, Route, Routes, useLocation, useNavigate, Link} from 'react-router-dom';
 import ViewA from './ViewA';
 import {useEffect} from 'react';
 import ViewB from './ViewB';
@@ -137,6 +137,8 @@ export default function Dashboard() {
 
     return (
         <ThemeProvider theme={customTheme}>
+            <Link to='/dashboard'><button style={{marginTop: '40px'}}>OLVERA HOME DASHBOARD</button></Link>
+            <Link to='/home'><button style={{marginTop: '40px'}}>VOLVER A HOME</button></Link>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
                 <AppBar position="fixed" open={open}>

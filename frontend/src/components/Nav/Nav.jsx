@@ -39,6 +39,12 @@ export default function Nav() {
                         <p className={style.links}>Perros</p>
                     </div>
                 </Link>
+                <Link to='/dashboard' className={style.link}>
+                    <div className={style.divNav}>
+                        <img className={style.imgIcons} src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681881441/Proyecto%20Final/dog-house_2_rg9isr.png" alt="Home" />
+                        <p className={style.links}>Dashboard</p>
+                    </div>
+                </Link>
             </div>
             {
                 !selector.isAuthenticated
