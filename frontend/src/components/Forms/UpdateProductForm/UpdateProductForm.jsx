@@ -4,28 +4,31 @@ import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
 import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull';
-import style from './CreateProductForm.module.css';
-import * as productsAction from '../../../_redux/actions/productsAction'
-// import validate from '../validations/validate'
+import style from './UpdateProductForm.module.css';
 
-const CreateProductForm = () => {
+const UpdateProductForm = () => {
 
     const dispatch = useDispatch();
 
     const [url, setUrl] = useState("");
 
     const initialValues = {
-        name: '', 
-        description: '', 
-        price: '', 
-        stock: '', 
-        brand: '', 
-        category: '', 
-        subCategory: '', 
-        image: url,
+        id: '',
+		name: '',
+		description: '',
+		price: '',
+		image: url,
+		brand: '',
+		stock: '',
+		isDisabled: false,
+		categoryId: '',
+		subCategoryId: '',
     }
 
     const validationSchema = Yup.object().shape({
+        id: Yup.number()
+            .min(1, 'El id debe ser mayor a 0. *')
+            .required('El id es obligatorio'),
         name: Yup.string()
             .min(4, 'El nombre debe tener mínimo 4 caracteres. *')
             .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
@@ -37,38 +40,41 @@ const CreateProductForm = () => {
         price: Yup.number()
             .min(1, 'El precio tiene que ser mayor a 1. *')
             .required('El precio es obligatorio.'),
-        stock: Yup.number()
-            .min(0, 'El stock tiene que ser mayor o igual a 0. *')
-            .required('El stock tiene que ser obligatorio.'),
+        image: Yup.string()
+            .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida.'),
         brand: Yup.string()
             .min(2, 'La marca debe tener mínimo 2 caracteres. *')
             .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
             .required('La marca es obligatoria'),
-        category: Yup.string()
-            .oneOf(['Alimento', 'Accesorio'], 'Seleccione una opción.'),
-        subCategory: Yup.string()
-            .oneOf(['Adulto', 'Cachorro', 'Comederos', 'Collares', 'Juguetes', 'Vestimenta'], 'Seleccione una opción.'),
-        image: Yup.string()
-            .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida.')
+        stock: Yup.number()
+            .min(0, 'El stock tiene que ser mayor o igual a 0. *')
+            .required('El stock tiene que ser obligatorio.'),
+        isDisabled: Yup.boolean()
+            .required('Este campo es obligatorio.'),
+        categoryId: Yup.number()
+            .oneOf([1, 2], 'Seleccione una opción.'),
+        subCategoryId: Yup.number()
+            .oneOf([1, 2, 3, 4, 5, 6], 'Seleccione una opción.')
     });
 
     
     const handleSubmit = async (values) => {
         const obj = {
-            name: values.name, 
-            description: values.description, 
-            price: values.price, 
-            stock: values.stock, 
-            brand: values.brand, 
-            category: values.category, 
-            subCategory: values.subCategory, 
+            id: values.id,
+            name: values.name,
+            description: values.description,
+            price: values.price,
             image: url,
+            brand: values.brand,
+            stock: values.stock,
+            isDisabled: false,
+            categoryId: Number(values.categoryId),
+            subCategoryId: Number(values.subCategoryId),
         }
-        // dispatch(productsAction.createProduct(obj))
-        alert(JSON.stringify(values, null, 2))
-    }
 
-    
+        alert(JSON.stringify(values, null, 2))
+
+    }
 
     const formik = useFormik({
         initialValues,
@@ -82,9 +88,17 @@ const CreateProductForm = () => {
                 <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => handleSubmit(values)} >
                     {({
                         errors, values }) => (<Form>
-                            <h1 className={style.titleForm}>Crear Producto</h1>
+                            <h1 className={style.titleForm}>Editar Producto</h1>
                             <div className={style.boxForm}>
                                 <div className={style.containerInputsLeftForm}>
+                                    <div className={style.containerInputs}>
+                                        <label className={style.labels} htmlFor='id'>Id del producto</label>
+                                        <Field className={style.inputs} name='id' type='number' placeholder='Ej: 1' />
+                                        <ErrorMessage name='id'>
+                                            {(msg) => <div className={style.errors}>{msg}</div>}
+                                        </ErrorMessage>
+                                    </div>
+
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor='name'>Nombre del producto</label>
                                         <Field className={style.inputs} name='name' type='text' placeholder='Ej: Buzo Cali Azulino' />
@@ -119,7 +133,7 @@ const CreateProductForm = () => {
 
                                 </div>
                                 <div className={style.containerInputsRightForm}>
-                                    <div className={style.containerInputs}>
+                                    <div className={style.containerInputsMarca}>
                                         <label className={style.labels} htmlFor='brand'>Marca del producto</label>
                                         <Field className={style.inputs} name='brand' type='brand' placeholder='Ej: Royal Canin' />
                                         <ErrorMessage name='brand'>
@@ -127,42 +141,39 @@ const CreateProductForm = () => {
                                         </ErrorMessage>
                                     </div>
 
-                                    <div className={style.containerInputs}>
-                                        <label className={style.labels} htmlFor="category">Seleccione una categoria</label>
-                                        <Field className={style.inputSelect} as="select" id="category" name="category">
-                                            <option className={style.options} value="all"></option>
-                                            <option className={style.options} value="Alimento">Alimento</option>
-                                            <option className={style.options} value="Accesorio">Accesorio</option>
+                                    <div className={style.containerInputsMarca}>
+                                        <label className={style.labels} htmlFor="categoryId">Seleccione una categoría</label>
+                                        <Field className={style.inputSelect} as="select" id="categoryId" name="categoryId">
+                                            <option className={style.options} value={Number("1")}>Alimentos</option>
+                                            <option className={style.options} value={Number("2")}>Accesorios</option>
                                         </Field>
-                                        <ErrorMessage name='category'>
+                                        <ErrorMessage name='categoryId'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
                                     </div>
-                                    {values.category && values.category === "Alimento" &&(
-                                    <div className={style.containerInputs}>
-                                        <label className={style.labels} htmlFor="subCategory">Seleccione una subcategoria</label>
-                                        <Field className={style.inputSelect} as="select" id="subCategory" name="subCategory">
-                                            <option className={style.options} value="all"></option>
-                                            <option className={style.options} value="Adulto">Adulto</option>
-                                            <option className={style.options} value="Cachorro">Cachorro</option>
+                                    {values.categoryId && values.categoryId === "1" &&(
+                                    <div className={style.containerInputsMarca}>
+                                        <label className={style.labels} htmlFor="subCategoryId">Seleccione una subcategoría</label>
+                                        <Field className={style.inputSelect} as="select" id="subCategoryId" name="subCategoryId">
+                                            <option className={style.options} value={Number("1")}>Adulto</option>
+                                            <option className={style.options} value={Number("2")}>Cachorro</option>
                                         </Field>
-                                        <ErrorMessage name='subCategory'>
+                                        <ErrorMessage name='subCategoryId'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
                                     </div>
                                     )}
 
-                                    {values.category && values.category === "Accesorio" &&(
-                                    <div className={style.containerInputs}>
-                                        <label className={style.labels} htmlFor="subCategory">Seleccione una subcategoria</label>
-                                        <Field className={style.inputSelect} as="select" id="subCategory" name="subCategory">
-                                            <option className={style.options} value="all"></option>
-                                            <option className={style.options} value="Comederos">Comederos</option>
-                                            <option className={style.options} value="Collares">Collares</option>
-                                            <option className={style.options} value="Juguetes">Juguetes</option>
-                                            <option className={style.options} value="Vestimenta">Vestimenta</option>
+                                    {values.categoryId && values.categoryId === "2" &&(
+                                    <div className={style.containerInputsMarca}>
+                                        <label className={style.labels} htmlFor="subCategoryId">Seleccione una subcategoría</label>
+                                        <Field className={style.inputSelect} as="select" id="subCategoryId" name="subCategoryId">
+                                            <option className={style.options} value={Number("3")}>Comederos</option>
+                                            <option className={style.options} value={Number("4")}>Collares</option>
+                                            <option className={style.options} value={Number("5")}>Juguetes</option>
+                                            <option className={style.options} value={Number("6")}>Vestimenta</option>
                                         </Field>
-                                        <ErrorMessage name='subCategory'>
+                                        <ErrorMessage name='subCategoryId'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
                                     </div>
@@ -208,7 +219,7 @@ const CreateProductForm = () => {
                                 </div>
                             </div>
                             <div className={style.containerBtnForm}>
-                                <button className={style.btnCreate} disabled={Object.keys(errors).length > 0} type='submit'>CREAR</button>
+                                <button className={style.btnCreate} disabled={Object.keys(errors).length > 0} type='submit'>EDITAR</button>
                             </div>
                         </Form>
                     )}
@@ -219,4 +230,4 @@ const CreateProductForm = () => {
     
 }
 
-export default CreateProductForm;
+export default UpdateProductForm;
