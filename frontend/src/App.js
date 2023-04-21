@@ -53,8 +53,8 @@ function App() {
 				<Route path={'/about'} element={<About />} />
 				<Route path={'/register'} element={<Register />} />
 				<Route path={'/login'} element={<LoginView />} />
-				<Route path={'/form'} element={<AdoptionForm />} />
 				<Route path={'/createproduct'} element={<CreateProductForm />} />
+				<Route path={'/form'} element={<AdoptionForm />} />
 				<Route path={'/dogs'} element={<Dogs />} />
 				<Route path={'/products'} element={<Products />} />
 				<Route path={'/products/:id'} element={<ProductDetail />} />

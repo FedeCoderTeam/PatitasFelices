@@ -11,11 +11,11 @@ import * as requestAction from '../../../_redux/actions/requestAction';
 import { useNavigate } from 'react-router-dom';
 
 const AdoptionForm = () => {
-	const dispatch = useDispatch();
-	const dogId = useSelector((state) => state.dogsReducer.maybeAdoptedDog);
-	const navigate = useNavigate();
-
-	const [url, setUrl] = useState('');
+const dispatch = useDispatch();
+const dogId = useSelector((state) => state.dogsReducer.maybeAdoptedDog);
+const navigate = useNavigate();
+  
+const [url, setUrl] = useState('');
 
 	const initialValues = {
 		name: '',
