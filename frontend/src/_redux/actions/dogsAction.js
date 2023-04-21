@@ -13,7 +13,6 @@ import {
 	setPages,
 	setMaybeAdoptedDog,
 	emptyMaybeAdoptedDog,
-
 } from '../reducer/dogsReducer.js';
 
 const getDogs = () => {
@@ -21,6 +20,26 @@ const getDogs = () => {
 		try {
 			let dbData = await axios.get('http://localhost:3001/dogs');
 			dispatch(getAllDogs(dbData.data));
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+const postDogs = (newDog) => {
+	return async function () {
+		try {
+			await axios.post('http://localhost:3001/dogs', newDog);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+const updateDogs = (someDog) => {
+	return async function () {
+		try {
+			await axios.put('http://localhost:3001/dogs', someDog);
 		} catch (error) {
 			console.log(error);
 		}
@@ -114,7 +133,7 @@ const setPage = (page) => {
 const setMaybeAdoptedDogs = (id) => {
 	return (dispatch) => {
 		dispatch(setMaybeAdoptedDog(id));
-	}
+	};
 };
 
 
@@ -139,4 +158,6 @@ export {
 	setPage,
 	setMaybeAdoptedDogs,
 	emptyMaybeAdoptedDogs,
+	postDogs,
+	updateDogs,
 };
