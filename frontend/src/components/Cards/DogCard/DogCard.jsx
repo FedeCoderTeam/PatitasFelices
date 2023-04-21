@@ -25,9 +25,7 @@ const DogCard = ({image, name, age, gender, size, weight, colors, temperaments, 
     // favoriteIcon.addEventListener('click', function() {
     //   // agregar dog favorito
     // });
-    let ageInYears = age >= 12 ? Math.round (age / 12) + "año/s" : age + " mes/es";
-    const separatedTemperaments = temperaments.join ("/ ");
-    const separatedColors = colors.join ("/ ");
+    let ageInYears = age >= 12 ? Math.round (age / 12) + " año/s" : age + " mes/es";
 
     const [open, setOpen] = React.useState(false)
 
@@ -39,37 +37,36 @@ const DogCard = ({image, name, age, gender, size, weight, colors, temperaments, 
         <>
             <div className={style.containerCard}>
                 <div className={style.containerIcon}>
-                    <img className={style.Icon} src= {animals} alt='Icono-Favorito'/>
+                    <img className={style.Icon} src= {animals} alt='Icon-Donate'/>
                 </div>
+                <div className={style.pic}>
                 <div className={style.containerImg}>
-                    <img className={style.img} src={image} alt='Foto-perrito' />
+                    <img src={image} alt='Dog-pic' />
+                </div>
                 </div>
                 <div className={style.divDogInfo}>
                     <div className={style.divData}>
-                        <h3 className={style.itemName}>
-                            <img className={style.itemIcon} src={bone}/>
-                        {name}
-                        </h3>
-                        <h3>
-                            <img className={style.itemIcon} src={bone}/>
-                        {separatedTemperaments}
-                        </h3>
-                        <h3>
-                            <img className={style.itemIcon} src={bone}/>{ageInYears}
-                        </h3>
-                        <h3>
-                            <img className={style.itemIcon} src={bone}/>{gender}
-                        </h3>
-                        <h3>
-                            <img className={style.itemIcon} src={bone}/>{size}
-                        </h3> 
+                        <img className={style.itemIcon} src={bone}/>
+                        <h3 className={style.itemName}>{name}</h3>  
+
+                        <img className={style.itemIcon} src={bone}/>
+                        <h3>{gender}</h3>
+
+                        <img className={style.itemIcon} src={bone}/>
+                        <h3>{size}</h3>
+
+                        <img className={style.itemIcon} src={bone}/>
+                        <h3>{colors.join (" - ")}</h3>
+                    
+                        <img className={style.itemIcon} src={bone}/>
+                        <h3>{temperaments.join (" - ")}</h3>    
                     </div>   
                 </div> 
                 <div className={style.containerButton}>
                     <button className={style.button} onClick={handleOpenDialog}>Ver más información</button>
                 </div>
             </div>
-            <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, ageInYears, gender, size, weight, separatedColors, separatedTemperaments, id, description}}  />
+            <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, ageInYears, gender, size, weight, colors, temperaments, id, description}}  />
         </>
     )
 }
@@ -108,21 +105,27 @@ export function DialogDogsDetail(props) {
     return(<>
         <ThemeProvider theme={innerTheme}>
             <Dialog
+                sx={{"& .MuiDialog-container": {
+                    "& .MuiPaper-root": {
+                      borderRadius:'10px'
+                    },
+                  },}}
                 open={props.open}
                 onClose={props.handleOpenDialog}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description">        
                 <DialogContent dividers>
-                    <DialogContentText id="alert-dialog-description">                      <div className={style.dogDetail}>
+                    <DialogContentText id="alert-dialog-description" className={style.dialogDescription}>                     
+                     <div className={style.dogDetail}>
                             <h3>{props.dog.name}</h3>
                             <div className={style.avatar}>
                                 <img src={props.dog.image} alt={props.dog.name} />
                             </div>
-                            <div className={style.description}>
-                                <p>{props.dog.description}</p>
+                            <div>
+                                <p className={style.description}>{props.dog.description}</p>
                             </div>
-                        </div>
-                        <div className= {style.containerInfo}>
+                    </div>
+                    <div className= {style.containerInfo}>
                             <h3> 
                                 <img className={style.itemIcon} src={paw}/>
                                 {props.dog.ageInYears}
@@ -133,7 +136,7 @@ export function DialogDogsDetail(props) {
                             </h3> 
                             <h3> 
                                 <img className={style.itemIcon} src={paw}/>
-                                {props.dog.separatedColors}
+                                {props.dog.colors.join (' - ')}
                             </h3> 
                             <h3>  
                                 <img className={style.itemIcon} src={paw}/>
@@ -145,7 +148,7 @@ export function DialogDogsDetail(props) {
                             </h3> 
                             <h3> 
                                 <img className={style.itemIcon} src={paw}/>
-                                {props.dog.separatedTemperaments}
+                                {props.dog.temperaments.join (' - ')}
                             </h3>
                         </div>
                         </DialogContentText>
