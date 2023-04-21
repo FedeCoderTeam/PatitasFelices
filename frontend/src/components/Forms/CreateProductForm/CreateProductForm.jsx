@@ -1,16 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
 import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull';
 import style from './CreateProductForm.module.css';
 import * as productsAction from '../../../_redux/actions/productsAction'
-// import validate from '../validations/validate'
+import { useNavigate } from 'react-router-dom';
+
 
 const CreateProductForm = () => {
 
     const dispatch = useDispatch();
+    
+    const navigate = useNavigate();
 
     const [url, setUrl] = useState("");
 
@@ -20,9 +23,9 @@ const CreateProductForm = () => {
         price: '', 
         stock: '', 
         brand: '', 
+        image: url,
         category: '', 
         subCategory: '', 
-        image: url,
     }
 
     const validationSchema = Yup.object().shape({
@@ -45,7 +48,7 @@ const CreateProductForm = () => {
             .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
             .required('La marca es obligatoria'),
         category: Yup.string()
-            .oneOf(['Alimento', 'Accesorio'], 'Seleccione una opción.'),
+            .oneOf(['Alimentos', 'Accesorios'], 'Seleccione una opción.'),
         subCategory: Yup.string()
             .oneOf(['Adulto', 'Cachorro', 'Comederos', 'Collares', 'Juguetes', 'Vestimenta'], 'Seleccione una opción.'),
         image: Yup.string()
@@ -53,22 +56,23 @@ const CreateProductForm = () => {
     });
 
     
-    const handleSubmit = async (values) => {
+    const handleSubmit = (values) => {
         const obj = {
             name: values.name, 
             description: values.description, 
             price: values.price, 
             stock: values.stock, 
             brand: values.brand, 
+            image: url,
             category: values.category, 
             subCategory: values.subCategory, 
-            image: url,
         }
-        // dispatch(productsAction.createProduct(obj))
-        alert(JSON.stringify(values, null, 2))
+        dispatch(productsAction.postProduct(obj))
+        //NO BORRAR, SIRVE PARA TESTEAR
+        //console.log(obj);
+        alert('SE CREO EL PRODUCTO, TOCA ACEPTAR PARA VOLVER A LA DASHBOARD')
+        navigate('/dashboard/viewB')
     }
-
-    
 
     const formik = useFormik({
         initialValues,
@@ -131,14 +135,14 @@ const CreateProductForm = () => {
                                         <label className={style.labels} htmlFor="category">Seleccione una categoria</label>
                                         <Field className={style.inputSelect} as="select" id="category" name="category">
                                             <option className={style.options} value="all"></option>
-                                            <option className={style.options} value="Alimento">Alimento</option>
-                                            <option className={style.options} value="Accesorio">Accesorio</option>
+                                            <option className={style.options} value="Alimentos">Alimentos</option>
+                                            <option className={style.options} value="Accesorios">Accesorios</option>
                                         </Field>
                                         <ErrorMessage name='category'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
                                     </div>
-                                    {values.category && values.category === "Alimento" &&(
+                                    {values.category && values.category === "Alimentos" &&(
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor="subCategory">Seleccione una subcategoria</label>
                                         <Field className={style.inputSelect} as="select" id="subCategory" name="subCategory">
@@ -152,7 +156,7 @@ const CreateProductForm = () => {
                                     </div>
                                     )}
 
-                                    {values.category && values.category === "Accesorio" &&(
+                                    {values.category && values.category === "Accesorios" &&(
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor="subCategory">Seleccione una subcategoria</label>
                                         <Field className={style.inputSelect} as="select" id="subCategory" name="subCategory">
@@ -169,7 +173,7 @@ const CreateProductForm = () => {
                                     )}
 
                                     <div className={style.eachField}>
-                                       
+                                    
                                             <label className={style.labels} htmlFor='image'>Adjunte la imagen de su producto</label>
                                             <div className={style.containerUploadForm}>
                                             

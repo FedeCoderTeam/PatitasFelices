@@ -78,8 +78,12 @@ const AdoptionForm = () => {
             outDoor_image: url,
             dogId: dogId.id
         }
-        dispatch(requestAction.postAdoptionDog(obj))
-        alert(JSON.stringify(obj, null, 2)) 
+        
+        dispatch(dogsAction.postAdoptionDog(obj))
+        //console.log(obj);
+        //alert(JSON.stringify(obj, null, 2)) 
+        //NO BORRAR, SIRVE PARA TESTEAR
+
         navigate('/dogs')
     }
 
