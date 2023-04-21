@@ -11,6 +11,7 @@ const ViewB = () => {
                     </Link>
                     <Link to='./CreateDog'><button>Crear Perro</button></Link>
                     <Link to='./updateDog'><button>Editar Perro</button></Link>
+                    <Link to='./updateProduct'><button>Editar Producto</button></Link>
                 </div>
             </section>
         </div>

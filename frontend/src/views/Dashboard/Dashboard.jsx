@@ -26,8 +26,10 @@ import {useEffect} from 'react';
 import ViewB from './ViewB';
 import ViewC from './ViewC';
 import CreateDog from './components/createDog/CreateDog'
+import UpdateProductForm from '../../components/Forms/UpdateProductForm/UpdateProductForm';
 import CreateProductForm from '../../components/Forms/CreateProductForm/CreateProductForm';
 import UpdateDogForm from '../../components/Forms/UpdateDogForm/UpdateDogForm';
+
 
 
 const drawerWidth = 240;
@@ -192,6 +194,7 @@ export default function Dashboard() {
                             <Route path={'/viewB'} element={<ViewB />} />
                             <Route path={'/viewC'} element={<ViewC />} />
                             <Route path={'/viewB/createDog'} element={<CreateDog />} />
+                            <Route path={'/viewB/updateProduct'} element={<UpdateProductForm />} />
                             <Route path={'/viewB/createProductForm'} element={<CreateProductForm />} />
                             <Route path={'/viewB/updateDog'} element={<UpdateDogForm />} />
                         </Routes>
