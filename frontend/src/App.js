@@ -61,7 +61,7 @@ function App() {
 				{/* <Route path={'/CreateDog'} element={<CreateDog />} /> */}
 				<Route path={'*'} element={<NotFound />} />
 				{
-					selector.user?.role === 'Administrador' &&
+					// selector.user?.role === 'Administrador' &&
 					<Route path={'/dashboard/*'} element={<Dashboard />} />
 				}
 			</Routes>
