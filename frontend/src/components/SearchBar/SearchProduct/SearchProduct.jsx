@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as productsAction from '../../../_redux/actions/productsAction.js';
-import style from './searchProduct.module.css';
+import style from './SearchProduct.module.css';
 
 const SearchProduct = () => {
 	const dispatch = useDispatch();
