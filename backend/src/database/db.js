@@ -11,10 +11,10 @@ const sequelize = new Sequelize(
 		dialect: 'postgres',
 		protocol: 'postgres',
 		logging: false,
-		dialectOptions: {
-			ssl: true,
-			native: true,
-		},
+		// dialectOptions: {
+		// 	ssl: true,
+		// 	native: true,
+		// },
 	},
 );
 const basename = path.basename(__filename);
@@ -45,7 +45,8 @@ const {
 	requests,
 	order,
 	orderItem,
-	payment
+	payment,
+	userVerification
 } = sequelize.models;
 
 dog.belongsToMany(color, { through: 'Dogs_Colors', timestamps: false });
@@ -101,6 +102,9 @@ payment.belongsTo(order, { foreignKey: 'orderId' })
 
 user.hasMany(payment, { foreignKey: 'userId' })
 payment.belongsTo(user, { foreignKey: 'userId' })
+
+user.hasOne(userVerification, { foreignKey: 'userId' })
+userVerification.belongsTo(user, { foreignKey: 'userId' })
 
 module.exports = {
 	...sequelize.models,

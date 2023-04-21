@@ -1,7 +1,4 @@
 const { session} = require ('../../database/db')
-const {getAuth} = require('../../database/firebase')
-const auth = require('firebase/auth')
-
 
 const logoutUser = async (id, token) => {
     if(!id || !token) throw new Error('Id and token required')

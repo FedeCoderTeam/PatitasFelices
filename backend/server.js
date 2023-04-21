@@ -18,7 +18,7 @@ const http = require('http');
 // Syncing all the models at once.
 const server = http.createServer(app);
 
-conn.sync({ force: false }).then(async () => {
+conn.sync({ force: true }).then(async () => {
 	try {
 		await Promise.all([
 			getCategory(),

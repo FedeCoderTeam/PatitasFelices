@@ -8,6 +8,9 @@ function userModel(database) {
             allowNull: false,
             defaultValue: DataTypes.UUIDV4
         },
+        googleId: {
+            type: DataTypes.TEXT,
+        },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -22,9 +25,17 @@ function userModel(database) {
                 isEmail: true
             }
         },
+        password: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+        },
         image: {
             type: DataTypes.TEXT,
             defaultValue: 'https://i.imgur.com/veqwMvk.jpg'
+        },
+        isVerified: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         },
         isDisabled: {
             type: DataTypes.BOOLEAN,

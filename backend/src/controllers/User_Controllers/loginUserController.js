@@ -1,50 +1,52 @@
-require('dotenv').config();
-const { user , session, role} = require ('../../database/db')
-const jwt = require('jsonwebtoken')
-
-const {getAuth} = require('../../database/firebase')
-const auth = require('firebase/auth')
+const { user , session, role, userVerification} = require ('../../database/db')
+const {bcrypt} = require('../../utils/bcrypt');
+const {signToken} = require('../../utils/token');
+const {email_verification} = require('../../utils/email');
 
 const loginUser = async (email, password) => {
-    if(!email || !password) throw new Error('Falta completar algún o algunos datos')
+    if(!email || !password) throw new Error('Some data is missing or incomplete')
+    if (!/\S+@\S+\.\S+/.test(email)) throw new Error('Please enter a valid email address')
 
     const findUser = await user.findOne({where: {email}, include: [{model: role}]})
+    if(!findUser) throw new Error('The email address or password you entered is incorrect')
+    if(findUser.isDisabled) throw new Error('Your account has been disabled. If you believe this is an error, please contact a staff member')
 
-    if(!findUser) throw new Error('No se encuentra en la base de datos')
-    if(findUser.isDisabled) throw new Error('Tu cuenta esta desactivada. Si crees que es un error comunicalo con algun staff.')
+    const comparePassword = await bcrypt.compare(password, findUser.password)
+    if(!comparePassword) throw new Error('The email address or password you entered is incorrect. Please verify your credentials and try again')
 
-    const userFireBase = await auth.signInWithEmailAndPassword(getAuth(), email, password)
-    if(!userFireBase.user.emailVerified) {
-        await auth.sendEmailVerification(userFireBase.user)
-        throw new Error('Tu cuenta no esta verificada, te enviaremos otro mail para que puedas verificar.')
+    if(!findUser.isVerified) {
+        const tokenVerify = await signToken({ user: { id: findUser.id, email: findUser.email } }, process.env.JWT_PRIVATE_KEY_VERIFY, {expiresIn: '600000'})
+        await userVerification.update({token: tokenVerify}, {where: {userId: findUser.id}})
+        await email_verification({name: findUser.name, email: findUser.email}, tokenVerify)
+        throw new Error('Your account is not verified. We will send you an email so you can verify it')
     }
 
-    if(findUser.email === email) {
-        const token = jwt.sign({ user: findUser.dataValues}, process.env.JWT_PRIVATE_KEY, {expiresIn: '6h'})
-        const findSession = await session.findOne({where: {userId: findUser.id}})
-        if(findSession) {
-            await session.update({token: token}, {where: {userId: findUser.id}})
-        } else {
-            await session.create({
-                token: token,
-                userId: findUser.id
-            })
-        }
+    const token = signToken({ user: findUser.dataValues}, process.env.JWT_PRIVATE_KEY_AUTH, {expiresIn: '6h'} )
+    const findSession = await session.findOne({where: {userId: findUser.id}})
 
-        return {
-            authenticated: true,
+    if(findSession) {
+        await session.update({token: token}, {where: {userId: findUser.id}})
+    } else {
+        await session.create({
             token: token,
-            user: {
-                id: findUser.id,
-                name: findUser.name,
-                last: findUser.last,
-                email: findUser.email,
-                image: findUser.image,
-                isVerified: userFireBase.user.emailVerified,
-                role: findUser.role.name
-            }
+            userId: findUser.id
+        })
+    }
+
+    return {
+        authenticated: true,
+        token: token,
+        user: {
+            id: findUser.id,
+            googleId: findUser.googleId,
+            name: findUser.name,
+            last: findUser.last,
+            email: findUser.email,
+            image: findUser.image,
+            isVerified: findUser.isVerified,
+            role: findUser.role.name
         }
-    } else  throw new Error('El email o contraseña no son validos.')
+    }
 }
 
 module.exports= loginUser;

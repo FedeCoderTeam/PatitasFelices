@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { emptyMaybeAdoptedDogs } from '../../../_redux/actions/dogsAction';
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
 import * as dogsAction from '../../../_redux/actions/dogsAction';
+import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull';
 
 const AdoptionForm = () => {
     const dispatch = useDispatch();
@@ -89,7 +90,7 @@ const AdoptionForm = () => {
 
     useEffect(() => {
         return () => {
-            dispatch(setMaybeAdoptedDog());
+            // dispatch(setMaybeAdoptedDog());
         };
     }, [])
 

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import Google from './Google.png';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import './Register.css';
 import {useDispatch} from 'react-redux';
 
@@ -35,8 +35,25 @@ const Register = () => {
 		);
 	};
 
+	const navigate = useNavigate()
+
 	const handleOnGoogle = () => {
-		dispatch(userGoogleAction());
+		// dispatch(userGoogleAction());
+		const width = 500;
+		const height = 600;
+		const top = Math.max((window.screen.availHeight - height) / 2, 0).toString()
+		const left = Math.max((window.screen.availWidth - width) / 2, 0).toString();
+		window.open('http://localhost:3001/auth/google', 'Google Login', `width=${width}, height=${height}, left=${left}, top=${top}`);
+
+		window.addEventListener('message', function (event) {
+			console.log(event)
+			if(event.origin !== 'http://localhost:3001') {
+				return;
+			}
+			if(event.data === 'AUTH_SUCCESS') {
+				navigate('/home')
+			}
+		})
 	};
 
 	return (
