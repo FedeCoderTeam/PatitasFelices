@@ -1,21 +1,24 @@
-.mainContainerCreateDog {
+.mainContainerForm {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #ffffff;
     width: 100%;
     height: 80vh;
+    background-color: #163440;
 }
 
-.containerCreateDog{
+.containerForm{
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #003668f3;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
+    height: 700;
 }
 
-.titleCreateDog{
+.titleForm{
     color: #D9AD77;
     font-size: 2em;
     margin-bottom: 30px;
@@ -23,21 +26,21 @@
     text-align: center;
 }
 
-.boxCreateDog{
+.boxForm{
     display: flex;
     justify-content: center;
     gap: 50px;
     width: 650px;
-    height: 300px;
+    height: 500px;
 }
 
-.containerInputsLeftCreateDog{
+.containerInputsLeftForm{
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.containerInputsRightCreateDog{
+.containerInputsRightForm{
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -47,11 +50,12 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    height: 120px;
 }
 
 .labels{
     color: #ffffff;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -61,8 +65,8 @@
     border: none;
     border-radius: 5px;
     width: 230px;
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .inputs:focus{
@@ -71,11 +75,22 @@
 
 .inputSelect{
     background-color: #ffffff;
-    padding: 5.5px 0 5.5px 10px;
+    padding: 7px 0 7px 10px;
     border: none;
     border-radius: 5px;
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 500;
+    width: 230px;
+}
+
+.inputTextArea {
+    background-color: #ffffff;
+    padding: 8px 0 8px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    width: 230px;
 }
 
 .inputSelect:focus{
@@ -84,15 +99,16 @@
 
 .errors{
     color: #9e1d00;
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 500;
     margin-left: 2px;
 }
 
-.containerUploadCreateDog{
+.containerUploadForm{
     color: #FFFFFF;
     margin-top: 5px;
     display: flex;
+    justify-content: center;
     transition: display 200ms linear;
 }
 
@@ -113,13 +129,14 @@
     border-radius: 5px;
 }
 
-.containerUploadCreateDog:hover .divImgUser {
+.containerUploadForm:hover .divImgUser {
     display: block; 
 }
 
-.containerBtnCreateDog{
+.containerBtnForm{
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .btnCreate{

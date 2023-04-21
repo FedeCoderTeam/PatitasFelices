@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { emptyMaybeAdoptedDogs } from '../../../_redux/actions/dogsAction';
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
 import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull'
-import * as dogsAction from '../../../_redux/actions/dogsAction';
+import * as requestAction from '../../../_redux/actions/requestAction';
 import { useNavigate } from 'react-router-dom';
 
 const AdoptionForm = () => {
@@ -61,7 +61,6 @@ const AdoptionForm = () => {
             .required('Elige una opción.'),
         outDoor_image: Yup.string()
             .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida.')
-            /* .required('La imagen es obligatoria') */
     });
 
     const handleSubmit = (values) => {
@@ -79,10 +78,12 @@ const AdoptionForm = () => {
             outDoor_image: url,
             dogId: dogId.id
         }
+        
         dispatch(dogsAction.postAdoptionDog(obj))
         //console.log(obj);
-        alert(JSON.stringify(obj, null, 2)) 
+        //alert(JSON.stringify(obj, null, 2)) 
         //NO BORRAR, SIRVE PARA TESTEAR
+
         navigate('/dogs')
     }
 
