@@ -81,7 +81,7 @@ const AdoptionForm = () => {
         }
         dispatch(dogsAction.postAdoptionDog(obj))
         //console.log(obj);
-        alert(JSON.stringify(obj, null, 2)) 
+        //alert(JSON.stringify(obj, null, 2)) 
         //NO BORRAR, SIRVE PARA TESTEAR
         navigate('/dogs')
     }

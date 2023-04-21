@@ -6,8 +6,13 @@ const ViewB = () => {
         <div>
             <section className="containerBtns-ViewB">
                 <div>
-                    <button>a</button>
-                    <Link to='./CreateDog'><button></button>b</Link>
+                    <Link to='./createProductForm'>
+                        <button>a</button>
+                    </Link>
+                    <Link to='./CreateDog'>
+                        <button>b</button>
+                    </Link>
+
                 </div>
             </section>
         </div>
