@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
 import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull';
 import style from './CreateProductForm.module.css';
+import * as productsAction from '../../../_redux/actions/productsAction'
 // import validate from '../validations/validate'
 
 const CreateProductForm = () => {
@@ -63,6 +64,7 @@ const CreateProductForm = () => {
             subCategory: values.subCategory, 
             image: url,
         }
+        // dispatch(productsAction.createProduct(obj))
         alert(JSON.stringify(values, null, 2))
     }
 
@@ -71,9 +73,7 @@ const CreateProductForm = () => {
     const formik = useFormik({
         initialValues,
         validationSchema,
-        handleSubmit: () => {
-            console.log(formik.values);
-        },
+        handleSubmit,
     });
 
     return (
@@ -169,7 +169,7 @@ const CreateProductForm = () => {
                                     )}
 
                                     <div className={style.eachField}>
-                                        <div className={style.containerInputImg}>
+                                       
                                             <label className={style.labels} htmlFor='image'>Adjunte la imagen de su producto</label>
                                             <div className={style.containerUploadForm}>
                                             
@@ -203,7 +203,7 @@ const CreateProductForm = () => {
                                             <ErrorMessage name="image">
                                                 {(msg) => <div className={style.errorMessage}>{msg}</div>}
                                             </ErrorMessage>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
