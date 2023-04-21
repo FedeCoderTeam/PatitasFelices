@@ -70,6 +70,7 @@ const ProductFilters = () => {
 					<div className={style.divSelects}>
 						<div>Precio</div>
 						<select
+							defaultValue="1"
 							className={style.selects}
 							name=""
 							id=""
@@ -77,17 +78,22 @@ const ProductFilters = () => {
 								handleOrder(event, 'price');
 							}}
 						>
-							<option className={style.options} selected disabled>
+							<option className={style.options} value="1" disabled={true}>
 								Elegir
 							</option>
-							<option className={style.options} value="asc">Menor Precio</option>
-							<option className={style.options} value="desc">Mayor Precio</option>
+							<option className={style.options} value="asc">
+								Menor Precio
+							</option>
+							<option className={style.options} value="desc">
+								Mayor Precio
+							</option>
 						</select>
 					</div>
 
 					<div className={style.divSelects}>
 						<div>Nombre</div>
 						<select
+							defaultValue="1"
 							className={style.selects}
 							name=""
 							id=""
@@ -95,11 +101,15 @@ const ProductFilters = () => {
 								handleOrder(event, 'abc');
 							}}
 						>
-							<option className={style.options} selected disabled>
+							<option className={style.options} value="1" disabled={true}>
 								Elegir
 							</option>
-							<option className={style.options} value="asc">A - Z</option>
-							<option className={style.options} value="desc">Z - A</option>
+							<option className={style.options} value="asc">
+								A - Z
+							</option>
+							<option className={style.options} value="desc">
+								Z - A
+							</option>
 						</select>
 					</div>
 				</div>
@@ -117,9 +127,15 @@ const ProductFilters = () => {
 								handleCategory(event);
 							}}
 						>
-							<option className={style.options} value="All">Todos</option>
-							<option className={style.options} value="Alimentos">Alimentos</option>
-							<option className={style.options} value="Accesorios">Accesorios</option>
+							<option className={style.options} value="All">
+								Todos
+							</option>
+							<option className={style.options} value="Alimentos">
+								Alimentos
+							</option>
+							<option className={style.options} value="Accesorios">
+								Accesorios
+							</option>
 						</select>
 					</div>
 					<div className={style.divSelects}>
@@ -134,7 +150,9 @@ const ProductFilters = () => {
 								handleSubCategory(event);
 							}}
 						>
-							<option className={style.options} value="All">Todos</option>
+							<option className={style.options} value="All">
+								Todos
+							</option>
 							{subCategory?.map((e) => (
 								<option className={style.options} key={e.id} value={e.name}>
 									{e.name}

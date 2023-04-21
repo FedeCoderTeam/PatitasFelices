@@ -131,16 +131,18 @@ export const dogsSlice = createSlice({
 			state.currentPage = action.payload;
 		},
 		setMaybeAdoptedDog: (state, action) => {
-			let dog = state.allDogs.find((el)=>el.id === action.payload)
-			if(!dog){
-				state.maybeAdoptedDog = {};
-			}
+			let dog = state.allDogs.find((el) => el.id === action.payload);
 			state.maybeAdoptedDog = dog;
 		},
+
 
 		setAdoptionDog: (state, action) => {
 			state.allAdoptions = action.payload
 		}
+
+		emptyMaybeAdoptedDog: (state) => {
+			state.maybeAdoptedDog = {};
+		},
 
 	},
 });
@@ -160,6 +162,7 @@ export const {
 	setPages,
 	setMaybeAdoptedDog,
 	setAdoptionDog,
+	emptyMaybeAdoptedDog,
 } = dogsSlice.actions;
 
 export default dogsSlice.reducer;

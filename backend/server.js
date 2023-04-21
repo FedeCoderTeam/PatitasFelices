@@ -1,4 +1,5 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 const app = require('./src/app');
 const { conn } = require('./src/database/db');
 const dogsTemperaments = require('./src/controllers/Temperaments_Controllers/temperamentsControllers');
@@ -15,7 +16,7 @@ const getAllUsers = require('./src/controllers/User_Controllers/getAllUsersContr
 const http = require('http');
 
 // Syncing all the models at once.
-const server = http.createServer(app)
+const server = http.createServer(app);
 
 conn.sync({ force: false }).then(async () => {
 	try {

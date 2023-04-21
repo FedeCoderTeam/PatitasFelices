@@ -13,6 +13,7 @@ import {
 	setPages,
 	setMaybeAdoptedDog,
 	setAdoptionDog,
+	emptyMaybeAdoptedDog,
 
 } from '../reducer/dogsReducer.js';
 
@@ -111,8 +112,8 @@ const setPage = (page) => {
 		dispatch(setPages(page));
 	};
 };
-const setMaybeAdoptedDogs = (id) =>{
-	return(dispatch) =>{
+const setMaybeAdoptedDogs = (id) => {
+	return (dispatch) => {
 		dispatch(setMaybeAdoptedDog(id));
 	}
 };
@@ -124,8 +125,14 @@ const postAdoptionDog = (obj) => {
 		} catch (error) {
 			console.log(error);
 		}
-	}
-}
+	};
+};
+
+const emptyMaybeAdoptedDogs = () => {
+	return (dispatch) => {
+		dispatch(emptyMaybeAdoptedDog());
+	};
+};
 
 const getAdoptionDog = () => {
 	return async (dispatch) =>{
@@ -154,4 +161,5 @@ export {
 	setMaybeAdoptedDogs,
 	postAdoptionDog,
 	getAdoptionDog,
+	emptyMaybeAdoptedDogs,
 };
