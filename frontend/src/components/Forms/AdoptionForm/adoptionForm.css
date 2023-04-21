@@ -113,9 +113,16 @@
     bottom: 50%;
     display: none;
     transition: display 200ms linear;
+    
 }
+
+.userImageContainer-AdoptionForm img {
+    position: absolute;
+}
+
 .containerUpload-Form:hover .userImageContainer-AdoptionForm {
     display: block;
+    
 }
 .userImage-AdoptionForm {
     width: 200px;
