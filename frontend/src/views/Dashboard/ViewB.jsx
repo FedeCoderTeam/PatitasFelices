@@ -8,6 +8,7 @@ const ViewB = () => {
                 <div>
                     <button>a</button>
                     <Link to='./CreateDog'><button>Crear Perro</button></Link>
+                    <Link to='./updateDog'><button>Editar Perro</button></Link>
                 </div>
             </section>
         </div>

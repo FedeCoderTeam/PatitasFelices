@@ -32,6 +32,11 @@ const UpdateDogForm = () => {
             .min(4, 'El nombre debe tener mínimo 4 caracteres. *')
             .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
             .required('El nombre es obligatorio'),
+        age: Yup.number()
+            .min(1, 'Debe introducir una edad aproximada en meses. EJ: 33. *')
+            .max(240, '¡WOW!¿Estás seguro que el perro tiene estos meses?')
+            // .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
+            .required('La edad es obligatoria'),
         description: Yup.string()
             .min(10, 'La descripción debe tener mínimo 20 caracteres. *')
             .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
@@ -98,14 +103,14 @@ const UpdateDogForm = () => {
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor='age'>Edad (meses)</label>
                                         <Field className={style.inputs} name='age' type='number' placeholder='Ej: 24' />
-                                        <ErrorMessage name='description'>
+                                        <ErrorMessage name='age'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
                                     </div>
 
                                     <div className={style.containerInputs}>
-                                        <label className={style.labels} htmlFor="category">Tamaño</label>
-                                        <Field className={style.inputSelect} as="select" id="category" name="category">
+                                        <label className={style.labels} htmlFor="size">Tamaño</label>
+                                        <Field className={style.inputSelect} as="select" id="category" name="size">
                                             <option className={style.options} value="all"></option>
                                             <option className={style.options} value="Alimento">Gigante</option>
                                             <option className={style.options} value="Accesorio">Grande</option>
@@ -113,39 +118,39 @@ const UpdateDogForm = () => {
                                             <option className={style.options} value="Alimento">Pequeño</option>
                                             <option className={style.options} value="Alimento">Muy pequeño</option>
                                         </Field>
-                                        <ErrorMessage name='category'>
+                                        <ErrorMessage name='size'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
                                     </div>
 
                                     <div className={style.containerInputs}>
-                                        <label className={style.labels} htmlFor='age'>Peso (kg.)</label>
-                                        <Field className={style.inputs} name='age' type='number' placeholder='Ej: 24' />
-                                        <ErrorMessage name='description'>
+                                        <label className={style.labels} htmlFor='weight'>Peso (kg.)</label>
+                                        <Field className={style.inputs} name='weight' type='number' placeholder='Ej: 24' />
+                                        <ErrorMessage name='weight'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
                                     </div>
 
                                     <div className={style.containerInputs}>
-                                        <label className={style.labels} htmlFor="category">Género</label>
-                                        <Field className={style.inputSelect} as="select" id="category" name="category">
+                                        <label className={style.labels} htmlFor="gender">Género</label>
+                                        <Field className={style.inputSelect} as="select" id="category" name="gender">
                                             <option className={style.options} value="all"></option>
                                             <option className={style.options} value="Alimento">Hembra</option>
                                             <option className={style.options} value="Accesorio">Macho</option>
                                         </Field>
-                                        <ErrorMessage name='category'>
+                                        <ErrorMessage name='gender'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
                                     </div>
 
                                     <div className={style.containerInputs}>
-                                        <label className={style.labels} htmlFor="category">¿Está castrado?</label>
-                                        <Field className={style.inputSelect} as="select" id="category" name="category">
+                                        <label className={style.labels} htmlFor="castrated">¿Está castrado?</label>
+                                        <Field className={style.inputSelect} as="select" id="category" name="castrated">
                                             <option className={style.options} value="all"></option>
                                             <option className={style.options} value="Alimento">Sí</option>
                                             <option className={style.options} value="Accesorio">No</option>
                                         </Field>
-                                        <ErrorMessage name='category'>
+                                        <ErrorMessage name='castrated'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
                                     </div>
@@ -155,7 +160,7 @@ const UpdateDogForm = () => {
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor="tempers">Temperamentos</label>
-                                        <Field className={style.inputSelect} as="select" id="category" name="category">
+                                        <Field className={style.inputSelect} as="select" id="category" name="tempers">
                                             <option className={style.options} value="all"></option>
                                             {
                                                 temperaments.map(temper => (
@@ -184,7 +189,7 @@ const UpdateDogForm = () => {
                                             <option className={style.options} value="Cobrizo">Cobrizo</option>
                                             <option className={style.options} value="Crema">Crema</option>
                                         </Field>
-                                        <ErrorMessage name='category'>
+                                        <ErrorMessage name='colors'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
                                     </div>
@@ -198,25 +203,25 @@ const UpdateDogForm = () => {
                                     </div>
 
                                     <div className={style.containerInputs}>
-                                        <label className={style.labels} htmlFor="category">¿Fue adoptado?</label>
-                                        <Field className={style.inputSelect} as="select" id="category" name="category">
+                                        <label className={style.labels} htmlFor="adopted">¿Fue adoptado?</label>
+                                        <Field className={style.inputSelect} as="select" id="category" name="adopted">
                                             <option className={style.options} value="all"></option>
                                             <option className={style.options} value="Alimento">Sí</option>
                                             <option className={style.options} value="Accesorio">No</option>
                                         </Field>
-                                        <ErrorMessage name='category'>
+                                        <ErrorMessage name='adopted'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
                                     </div>
 
                                     <div className={style.containerInputs}>
-                                        <label className={style.labels} htmlFor="category">¿El perrito falleció?</label>
-                                        <Field className={style.inputSelect} as="select" id="category" name="category">
+                                        <label className={style.labels} htmlFor="isDisabled">¿El perrito falleció?</label>
+                                        <Field className={style.inputSelect} as="select" id="category" name="isDisabled">
                                             <option className={style.options} value="all"></option>
                                             <option className={style.options} value="Alimento">Sí</option>
                                             <option className={style.options} value="Accesorio">No</option>
                                         </Field>
-                                        <ErrorMessage name='category'>
+                                        <ErrorMessage name='isDisabled'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
                                     </div>

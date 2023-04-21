@@ -62,7 +62,7 @@
     padding: 8px 0 8px 10px;
     border: none;
     border-radius: 5px;
-    width: 220px;
+    width: 230px;
     font-size: 12px;
     font-weight: 500;
 }
@@ -88,7 +88,7 @@
     border-radius: 5px;
     font-size: 12px;
     font-weight: 500;
-    width: 220px;
+    width: 230px;
 }
 
 .inputSelect:focus{
