@@ -11,8 +11,7 @@ const verifyPasswordResetUser = async (token) => {
 
     return {
         error: null,
-        validate: true,
-        message: 'Granted for password change'
+        message: 'Authorized'
     }
 }
 

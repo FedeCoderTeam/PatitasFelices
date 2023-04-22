@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 
 // import RegisterImg from 'registerImage.png'
 import * as authAction from '../../_redux/actions/authAction';
-import { userGoogleAction } from '../../_redux/actions/authAction';
 
 const Register = () => {
 	const dispatch = useDispatch();

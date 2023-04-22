@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import CloudinaryWidget from '../../../../components/Cloudinary/CloudinaryWidget';
-import CloudinaryWidgetFull from '../../../../components/Cloudinary/CloudinaryWidgetFull';
+import CloudinaryWidget from '../../../../components/Cloudinary/CloudinaryForm/CloudinaryWidget';
+import CloudinaryWidgetFull from '../../../../components/Cloudinary/CloudinaryForm/CloudinaryWidgetFull';
 import style from './CreateDog.module.css';
 import * as dogsAction from '../../../../_redux/actions/dogsAction';
 import { useNavigate } from 'react-router-dom';
 
-const CreateDogForm = () => {
+const CreateDog = () => {
 	const dispatch = useDispatch();
 
 	const navigate = useNavigate();
@@ -355,4 +355,4 @@ const CreateDogForm = () => {
 	);
 };
 
-export default CreateDogForm;
+export default CreateDog;

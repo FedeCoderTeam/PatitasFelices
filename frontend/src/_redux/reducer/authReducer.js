@@ -4,6 +4,7 @@ const initialState = {
     isFetching: false,
     isRegisterFetching: false,
     isAuthenticated: false,
+    statusVerify: 'Pending',
     user: null,
     token: '',
 }
@@ -18,6 +19,9 @@ export const authSlice = createSlice({
         setIsRegisterFetching: (state, action) => {
             state.isRegisterFetching = action.payload
         },
+        setStatusVerify: (state, action) => {
+            state.statusVerify = action.payload
+        },
         setUser: (state, action) => {
             state.isAuthenticated = action.payload.authenticated
             state.user = action.payload.user
@@ -26,6 +30,6 @@ export const authSlice = createSlice({
     }
 })
 
-export const { setIsFetching, setIsRegisterFetching, setUser} = authSlice.actions
+export const { setIsFetching, setIsRegisterFetching, setStatusVerify, setUser} = authSlice.actions
 
 export default authSlice.reducer

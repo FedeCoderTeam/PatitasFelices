@@ -1,32 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import CloudinaryWidget from '../../Cloudinary/CloudinaryForm/CloudinaryWidget';
-import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryForm/CloudinaryWidgetFull';
-import style from './CreateProductForm.module.css';
-import * as productsAction from '../../../_redux/actions/productsAction';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import CloudinaryWidget from '../../../../components/Cloudinary/CloudinaryForm/CloudinaryWidget';
+import CloudinaryWidgetFull from '../../../../components/Cloudinary/CloudinaryForm/CloudinaryWidgetFull';
+import style from './UpdateProductForm.module.css';
 
-const CreateProductForm = () => {
+const UpdateProductForm = () => {
 	const dispatch = useDispatch();
-
-	const navigate = useNavigate();
 
 	const [url, setUrl] = useState('');
 
 	const initialValues = {
+		id: '',
 		name: '',
 		description: '',
 		price: '',
-		stock: '',
-		brand: '',
 		image: url,
-		category: '',
-		subCategory: '',
+		brand: '',
+		stock: '',
+		isDisabled: false,
+		categoryId: '',
+		subCategoryId: '',
 	};
 
 	const validationSchema = Yup.object().shape({
+		id: Yup.number()
+			.min(1, 'El id debe ser mayor a 0. *')
+			.required('El id es obligatorio'),
 		name: Yup.string()
 			.min(4, 'El nombre debe tener mínimo 4 caracteres. *')
 			.matches(
@@ -44,9 +45,10 @@ const CreateProductForm = () => {
 		price: Yup.number()
 			.min(1, 'El precio tiene que ser mayor a 1. *')
 			.required('El precio es obligatorio.'),
-		stock: Yup.number()
-			.min(0, 'El stock tiene que ser mayor o igual a 0. *')
-			.required('El stock tiene que ser obligatorio.'),
+		image: Yup.string().matches(
+			/^.*\.(jpg|jpeg|png)$/i,
+			'Inserte una imagen válida.',
+		),
 		brand: Yup.string()
 			.min(2, 'La marca debe tener mínimo 2 caracteres. *')
 			.matches(
@@ -54,36 +56,32 @@ const CreateProductForm = () => {
 				'Sólo letras de la "A" a la "Z" *',
 			)
 			.required('La marca es obligatoria'),
-		category: Yup.string().oneOf(
-			['Alimentos', 'Accesorios'],
+		stock: Yup.number()
+			.min(0, 'El stock tiene que ser mayor o igual a 0. *')
+			.required('El stock tiene que ser obligatorio.'),
+		isDisabled: Yup.boolean().required('Este campo es obligatorio.'),
+		categoryId: Yup.number().oneOf([1, 2], 'Seleccione una opción.'),
+		subCategoryId: Yup.number().oneOf(
+			[1, 2, 3, 4, 5, 6],
 			'Seleccione una opción.',
-		),
-		subCategory: Yup.string().oneOf(
-			['Adulto', 'Cachorro', 'Comederos', 'Collares', 'Juguetes', 'Vestimenta'],
-			'Seleccione una opción.',
-		),
-		image: Yup.string().matches(
-			/^.*\.(jpg|jpeg|png)$/i,
-			'Inserte una imagen válida.',
 		),
 	});
 
-	const handleSubmit = (values) => {
+	const handleSubmit = async (values) => {
 		const obj = {
+			id: values.id,
 			name: values.name,
 			description: values.description,
 			price: values.price,
-			stock: values.stock,
-			brand: values.brand,
 			image: url,
-			category: values.category,
-			subCategory: values.subCategory,
+			brand: values.brand,
+			stock: values.stock,
+			isDisabled: false,
+			categoryId: Number(values.categoryId),
+			subCategoryId: Number(values.subCategoryId),
 		};
-		dispatch(productsAction.postProduct(obj));
-		//NO BORRAR, SIRVE PARA TESTEAR
-		//console.log(obj);
-		alert('SE CREO EL PRODUCTO, TOCA ACEPTAR PARA VOLVER A LA DASHBOARD');
-		navigate('/dashboard/viewB');
+
+		alert(JSON.stringify(values, null, 2));
 	};
 
 	const formik = useFormik({
@@ -102,9 +100,24 @@ const CreateProductForm = () => {
 				>
 					{({ errors, values }) => (
 						<Form>
-							<h1 className={style.titleForm}>Crear Producto</h1>
+							<h1 className={style.titleForm}>Editar Producto</h1>
 							<div className={style.boxForm}>
 								<div className={style.containerInputsLeftForm}>
+									<div className={style.containerInputs}>
+										<label className={style.labels} htmlFor="id">
+											Id del producto
+										</label>
+										<Field
+											className={style.inputs}
+											name="id"
+											type="number"
+											placeholder="Ej: 1"
+										/>
+										<ErrorMessage name="id">
+											{(msg) => <div className={style.errors}>{msg}</div>}
+										</ErrorMessage>
+									</div>
+
 									<div className={style.containerInputs}>
 										<label className={style.labels} htmlFor="name">
 											Nombre del producto
@@ -166,7 +179,7 @@ const CreateProductForm = () => {
 									</div>
 								</div>
 								<div className={style.containerInputsRightForm}>
-									<div className={style.containerInputs}>
+									<div className={style.containerInputsMarca}>
 										<label className={style.labels} htmlFor="brand">
 											Marca del producto
 										</label>
@@ -181,79 +194,76 @@ const CreateProductForm = () => {
 										</ErrorMessage>
 									</div>
 
-									<div className={style.containerInputs}>
-										<label className={style.labels} htmlFor="category">
-											Seleccione una categoria
+									<div className={style.containerInputsMarca}>
+										<label className={style.labels} htmlFor="categoryId">
+											Seleccione una categoría
 										</label>
 										<Field
 											className={style.inputSelect}
 											as="select"
-											id="category"
-											name="category"
+											id="categoryId"
+											name="categoryId"
 										>
-											<option className={style.options} value="all"></option>
-											<option className={style.options} value="Alimentos">
+											<option className={style.options} value={Number('1')}>
 												Alimentos
 											</option>
-											<option className={style.options} value="Accesorios">
+											<option className={style.options} value={Number('2')}>
 												Accesorios
 											</option>
 										</Field>
-										<ErrorMessage name="category">
+										<ErrorMessage name="categoryId">
 											{(msg) => <div className={style.errors}>{msg}</div>}
 										</ErrorMessage>
 									</div>
-									{values.category && values.category === 'Alimentos' && (
-										<div className={style.containerInputs}>
-											<label className={style.labels} htmlFor="subCategory">
-												Seleccione una subcategoria
+									{values.categoryId && values.categoryId === '1' && (
+										<div className={style.containerInputsMarca}>
+											<label className={style.labels} htmlFor="subCategoryId">
+												Seleccione una subcategoría
 											</label>
 											<Field
 												className={style.inputSelect}
 												as="select"
-												id="subCategory"
-												name="subCategory"
+												id="subCategoryId"
+												name="subCategoryId"
 											>
-												<option className={style.options} value="all"></option>
-												<option className={style.options} value="Adulto">
+												<option className={style.options} value={Number('1')}>
 													Adulto
 												</option>
-												<option className={style.options} value="Cachorro">
+												<option className={style.options} value={Number('2')}>
 													Cachorro
 												</option>
 											</Field>
-											<ErrorMessage name="subCategory">
+											<ErrorMessage name="subCategoryId">
 												{(msg) => <div className={style.errors}>{msg}</div>}
 											</ErrorMessage>
 										</div>
 									)}
 
-									{values.category && values.category === 'Accesorios' && (
-										<div className={style.containerInputs}>
-											<label className={style.labels} htmlFor="subCategory">
-												Seleccione una subcategoria
+									{values.categoryId && values.categoryId === '2' && (
+										<div className={style.containerInputsMarca}>
+											<label className={style.labels} htmlFor="subCategoryId">
+												Seleccione una subcategoría
 											</label>
 											<Field
 												className={style.inputSelect}
 												as="select"
-												id="subCategory"
-												name="subCategory"
+												id="subCategoryId"
+												name="subCategoryId"
 											>
-												<option className={style.options} value="all"></option>
-												<option className={style.options} value="Comederos">
+												<option className={style.options} value={Number('3')}>
 													Comederos
 												</option>
-												<option className={style.options} value="Collares">
+												<option className={style.options} value={Number('4')}>
 													Collares
 												</option>
-												<option className={style.options} value="Juguetes">
+												<option className={style.options} value={Number('5')}>
 													Juguetes
 												</option>
-												<option className={style.options} value="Vestimenta">
+												<option className={style.options} value={Number('6')}>
 													Vestimenta
 												</option>
 											</Field>
-											<ErrorMessage name="subCategory">
+											<ErrorMessage name="subCategoryId">
 												{(msg) => <div className={style.errors}>{msg}</div>}
 											</ErrorMessage>
 										</div>
@@ -296,7 +306,7 @@ const CreateProductForm = () => {
 									disabled={Object.keys(errors).length > 0}
 									type="submit"
 								>
-									CREAR
+									EDITAR
 								</button>
 							</div>
 						</Form>
@@ -307,4 +317,4 @@ const CreateProductForm = () => {
 	);
 };
 
-export default CreateProductForm;
+export default UpdateProductForm;
