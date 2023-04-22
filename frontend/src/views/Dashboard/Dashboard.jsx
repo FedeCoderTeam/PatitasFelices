@@ -18,6 +18,9 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
 import PetsIcon from '@mui/icons-material/Pets';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import GradingIcon from '@mui/icons-material/Grading';
+import HomeIcon from '@mui/icons-material/Home';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { brown } from '@mui/material/colors';
@@ -29,14 +32,17 @@ import {
 	useNavigate,
 	Link,
 } from 'react-router-dom';
-import ViewA from './ViewA';
+import Request from './Admin_request/Request';
 import { useEffect } from 'react';
-import ViewB from './ViewB';
-import DogsGrid from './DogsGrid';
-import CreateDog from './components/createDog/CreateDog';
-import UpdateProductForm from '../../components/Forms/UpdateProductForm/UpdateProductForm';
-import CreateProductForm from '../../components/Forms/CreateProductForm/CreateProductForm';
-import UpdateDogForm from '../../components/Forms/UpdateDogForm/UpdateDogForm';
+import Products from './Admin_products/Products';
+import DogsGrid from './Admin_dogs/DogsGrid';
+import CreateDog from './Admin_dogs/Create_dog/CreateDog';
+import UpdateDogForm from './Admin_dogs/Update_dog/UpdateDogForm';
+import CreateProductForm from './Admin_products/Create_product/CreateProductForm';
+import UpdateProductForm from './Admin_products/Update_Product/UpdateProductForm';
+import Users from './Admin_users/Users';
+import Orders from './Admin_orders/Orders';
+import Home from './Admin_home/Home';
 
 const drawerWidth = 240;
 
@@ -141,9 +147,12 @@ export default function Dashboard() {
 		if (location.pathname === '/dashboard') navigate('./');
 	}, []);
 	const links = [
-		{ name: 'Home', route: '/', icon: <MailIcon /> },
-		{ name: 'viewB', route: '/viewB', icon: <LocalOfferIcon /> },
-		{ name: 'Dogs', route: '/dogs', icon: <PetsIcon /> },
+		{ name: 'Inicio', route: '/', icon: <HomeIcon /> },
+		{ name: 'Solicitudes', route: '/request', icon: <MailIcon /> },
+		{ name: 'Productos', route: '/products', icon: <LocalOfferIcon /> },
+		{ name: 'Perros', route: '/dogs', icon: <PetsIcon /> },
+		{ name: 'Users', route: '/users', icon: <AccountCircleIcon /> },
+		{ name: 'Ordenes', route: '/oders', icon: <GradingIcon /> },
 	];
 
 	return (
@@ -220,19 +229,22 @@ export default function Dashboard() {
 				<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 					<Typography paragraph>
 						<Routes>
-							<Route path={'/'} element={<ViewA />} />
-							<Route path={'/viewB'} element={<ViewB />} />
+							<Route path={'/'} element={<Home />} />
+							<Route path={'/request'} element={<Request />} />
+							<Route path={'/products'} element={<Products />} />
+							<Route
+								path={'/products/createProduct'}
+								element={<CreateProductForm />}
+							/>
+							<Route
+								path={'/products/updateProduct'}
+								element={<UpdateProductForm />}
+							/>
+							<Route path={'/users'} element={<Users />} />
+							<Route path={'/oders'} element={<Orders />} />
 							<Route path={'/dogs'} element={<DogsGrid />} />
 							<Route path={'/dogs/createDog'} element={<CreateDog />} />
 							<Route path={'/dogs/updateDog'} element={<UpdateDogForm />} />
-							<Route
-								path={'/viewB/updateProduct'}
-								element={<UpdateProductForm />}
-							/>
-							<Route
-								path={'/viewB/createProductForm'}
-								element={<CreateProductForm />}
-							/>
 						</Routes>
 					</Typography>
 				</Box>

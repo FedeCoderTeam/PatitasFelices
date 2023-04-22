@@ -8,7 +8,7 @@ import style from './CreateDog.module.css';
 import * as dogsAction from '../../../../_redux/actions/dogsAction';
 import { useNavigate } from 'react-router-dom';
 
-const CreateDogForm = () => {
+const CreateDog = () => {
 	const dispatch = useDispatch();
 
 	const navigate = useNavigate();
@@ -355,4 +355,4 @@ const CreateDogForm = () => {
 	);
 };
 
-export default CreateDogForm;
+export default CreateDog;

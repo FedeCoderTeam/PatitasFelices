@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import CloudinaryWidget from '../../Cloudinary/CloudinaryForm/CloudinaryWidget';
-import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryForm/CloudinaryWidgetFull';
+import CloudinaryWidget from '../../../../components/Cloudinary/CloudinaryWidget';
+import CloudinaryWidgetFull from '../../../../components/Cloudinary/CloudinaryWidgetFull';
 import style from './UpdateDogForm.module.css';
-import * as dogsAction from '../../../_redux/actions/dogsAction';
+import * as dogsAction from '../../../../_redux/actions/dogsAction';
 
 const UpdateDogForm = () => {
 	const dispatch = useDispatch();
