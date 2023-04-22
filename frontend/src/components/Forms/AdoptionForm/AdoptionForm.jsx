@@ -11,11 +11,11 @@ import * as requestAction from '../../../_redux/actions/requestAction';
 import { useNavigate } from 'react-router-dom';
 
 const AdoptionForm = () => {
-const dispatch = useDispatch();
-const dogId = useSelector((state) => state.dogsReducer.maybeAdoptedDog);
-const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const dogId = useSelector((state) => state.dogsReducer.maybeAdoptedDog);
+	const navigate = useNavigate();
 
-const [url, setUrl] = useState('');
+	const [url, setUrl] = useState('');
 
 	const initialValues = {
 		name: '',
@@ -290,8 +290,7 @@ const [url, setUrl] = useState('');
 
 							<div className="containerBtn-Form">
 								<button disabled={Object.keys(errors).length > 0} type="submit">
-									{' '}
-									ENVIAR{' '}
+									ENVIAR
 								</button>
 							</div>
 							<div className="containerGoHome-Form">

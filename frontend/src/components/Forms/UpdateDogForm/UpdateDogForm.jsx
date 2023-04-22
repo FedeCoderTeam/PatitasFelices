@@ -85,7 +85,7 @@ const UpdateDogForm = () => {
 	const formik = useFormik({
 		initialValues,
 		validationSchema,
-		handleSubmit,
+		// handleSubmit,
 	});
 
 	return (
@@ -94,7 +94,7 @@ const UpdateDogForm = () => {
 				<Formik
 					initialValues={initialValues}
 					validationSchema={validationSchema}
-					onSubmit={(values) => handleSubmit(values)}
+					// onSubmit={(values) => handleSubmit(values)}
 				>
 					{({ errors, values }) => (
 						<Form>
