@@ -14,7 +14,7 @@ const AdoptionForm = () => {
 const dispatch = useDispatch();
 const dogId = useSelector((state) => state.dogsReducer.maybeAdoptedDog);
 const navigate = useNavigate();
-  
+
 const [url, setUrl] = useState('');
 
 	const initialValues = {

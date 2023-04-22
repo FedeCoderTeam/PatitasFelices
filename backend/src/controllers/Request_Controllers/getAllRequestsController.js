@@ -1,7 +1,7 @@
 const { dog, requests, user } = require('../../database/db');
 
 const getAllRequests = async()=>{
-    let data= await requests.findAll({
+    let data = await requests.findAll({
         include: [
 			{
 				model: dog,
@@ -19,4 +19,4 @@ const getAllRequests = async()=>{
 	return data;
 }
 
-module.exports= getAllRequests;
+module.exports = getAllRequests;

@@ -17,4 +17,4 @@ const getUserById= async(id)=>{
 	}
 };
 
-module.exports= getUserById;
+module.exports = getUserById;

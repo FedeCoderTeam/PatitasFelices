@@ -11,10 +11,10 @@ const sequelize = new Sequelize(
 		dialect: 'postgres',
 		protocol: 'postgres',
 		logging: false,
-		dialectOptions: {
-			ssl: true,
-			native: true,
-		},
+		// dialectOptions: {
+		// 	ssl: true,
+		// 	native: true,
+		// },
 	},
 );
 const basename = path.basename(__filename);
@@ -45,14 +45,16 @@ const {
 	requests,
 	order,
 	orderItem,
-	payment
+	payment,
+	userVerification,
+	userPasswordReset
 } = sequelize.models;
 
 dog.belongsToMany(color, { through: 'Dogs_Colors', timestamps: false });
 color.belongsToMany(dog, { through: 'Dogs_Colors', timestamps: false });
 
-dog.belongsToMany(temperament, { through: 'Dogs_Temperaments', timestamps: false, });
-temperament.belongsToMany(dog, { through: 'Dogs_Temperaments', timestamps: false, });
+dog.belongsToMany(temperament, { through: 'Dogs_Temperaments', timestamps: false });
+temperament.belongsToMany(dog, { through: 'Dogs_Temperaments', timestamps: false });
 
 gender.hasMany(dog, { foreignKey: 'genderId' });
 dog.belongsTo(gender, { foreignKey: 'genderId' });
@@ -78,8 +80,8 @@ session.belongsTo(user, { foreignKey: 'userId' })
 session.hasOne(cartItem, { foreignKey: 'sessionId' })
 cartItem.belongsTo(session, { foreignKey: 'sessionId' })
 
-user.hasOne(dog, {foreignKey: 'ownerId'})
-dog.belongsTo(user, {foreignKey: 'ownerId'})
+user.hasOne(dog, { foreignKey: 'ownerId'})
+dog.belongsTo(user, { foreignKey: 'ownerId'})
 
 dog.hasMany(requests, { foreignKey: 'dogId', })
 requests.belongsTo(dog, { foreignKey: 'dogId', })
@@ -101,6 +103,12 @@ payment.belongsTo(order, { foreignKey: 'orderId' })
 
 user.hasMany(payment, { foreignKey: 'userId' })
 payment.belongsTo(user, { foreignKey: 'userId' })
+
+user.hasOne(userVerification, { foreignKey: 'userId' })
+userVerification.belongsTo(user, { foreignKey: 'userId' })
+
+user.hasOne(userPasswordReset, { foreignKey: 'userId' })
+userPasswordReset.belongsTo(user, { foreignKey: 'userId' })
 
 module.exports = {
 	...sequelize.models,
