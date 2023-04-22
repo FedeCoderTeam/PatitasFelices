@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
-import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
+import AddIcon from '@mui/icons-material/Add';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -73,9 +73,13 @@ const DogsGrid = () => {
 
 	return (
 		<>
-			{/* <Link to="./CreateDog">
-				<button>Crear Perro</button>
-			</Link> */}
+			<button
+				onClick={() => {
+					navigate('/dashboard/dogs/createDog');
+				}}
+			>
+				<AddIcon />
+			</button>
 			<Box
 				sx={{
 					height: 'auto',
