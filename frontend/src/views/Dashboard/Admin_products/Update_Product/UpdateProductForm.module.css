@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ffffff;
+    background-color: #163440;
     width: 100%;
     
 }
@@ -116,8 +116,8 @@
 .imgUser{
     position: absolute;
     width: 40px;
-    top: 4px;
-    right: 12.5em;
+    top: 1px;
+    right: 11.5em;
     border-radius: 5px;
 }
 
@@ -131,7 +131,7 @@
 }
 
 .btnCreate{
-    margin-top: 20px;
+    margin-top: 50px;
     font-size: 16px;
     padding: 14px;
     width: 30%;
