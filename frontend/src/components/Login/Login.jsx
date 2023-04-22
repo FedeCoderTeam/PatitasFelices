@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import style from './login.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import * as authActions from '../../_redux/actions/authAction';
+import { googleUserAction } from '../../_redux/actions/authAction';
+import Swal from 'sweetalert2';
 
 const Login = () => {
 	const dispatch = useDispatch();
@@ -23,6 +25,28 @@ const Login = () => {
 				)
 			)
 		}
+	};
+
+	const handleOnGoogle = () => {
+		const width = 500;
+		const height = 600;
+		const top = Math.max((window.screen.availHeight - height) / 2, 0).toString()
+		const left = Math.max((window.screen.availWidth - width) / 2, 0).toString();
+		window.open('http://localhost:3001/auth/google', 'Google Login', `width=${width}, height=${height}, left=${left}, top=${top}`);
+
+		window.addEventListener('message', async function (event) {
+			if(event.origin !== 'http://localhost:3001') return;
+			if(event.data.type === 'AUTH_SUCCESS') {
+				dispatch(googleUserAction(event.data.payload));
+				navigate('/home')
+			} else if(event.data.type === 'AUTH_ERROR') {
+				await Swal.fire({
+					title: event.data.payload.error,
+					icon: 'error',
+					timer: 10000
+				})
+			}
+		})
 	};
 
 	if(selector.isAuthenticated) {
@@ -64,7 +88,7 @@ const Login = () => {
 				</div>
 
 				<div className={style.containerGoogleLogin}>
-					<p>
+					<p onClick={() => handleOnGoogle()} >
 						Ingresar con <img src={Google} alt="Google" />
 					</p>
 				</div>

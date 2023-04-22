@@ -1,4 +1,4 @@
-const { user , session, role} = require ('../../database/db')
+const { user, session, role } = require ('../../database/db')
 const { verifyToken } = require('../../utils/token');
 
 const authUser = async (token) => {

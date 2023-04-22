@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Dashboard from './views/Dashboard/Dashboard';
 
-import CreateProductForm from './components/Forms/CreateProductForm/CreateProductForm';
+// import CreateProductForm from './components/Forms/CreateProductForm/CreateProductForm';
 import ConfirmAccount from './components/AuthForms/ConfirmAccount/ConfirmAccount';
 import RequestPasswordReset from './components/AuthForms/RequestPasswordReset/RequestPasswordReset';
 import PasswordReset from './components/AuthForms/PasswordReset/PasswordReset';
