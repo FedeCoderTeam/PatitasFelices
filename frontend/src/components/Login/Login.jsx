@@ -2,12 +2,12 @@ import React, { useRef } from 'react';
 import Google from './Google.png';
 import { Link, useNavigate } from 'react-router-dom';
 import style from './login.module.css';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import * as authActions from '../../_redux/actions/authAction';
 
 const Login = () => {
 	const dispatch = useDispatch();
-	// const selector = useSelector((state) => state.authReducer)
+	const selector = useSelector((state) => state.authReducer)
 	const navigate = useNavigate();
 
 	const refEmail = useRef(null);
@@ -20,10 +20,15 @@ const Login = () => {
 				authActions.loginUserAction(
 					refEmail.current.value,
 					refPass.current.value,
-				),
-			).then(navigate('/home'));
+				)
+			)
 		}
 	};
+
+	if(selector.isAuthenticated) {
+		navigate('/home')
+		return null;
+	}
 
 	return (
 		<div className={style.mainContainerLogin}>
@@ -44,7 +49,7 @@ const Login = () => {
 					</div>
 				</div>
 
-				<div className={style.recuperarContraseña}>
+				<div className={style.recuperarContraseña} onClick={() => navigate('/request-password-reset')}>
 					<p>¿Olvidaste tu contraseña?</p>
 				</div>
 
