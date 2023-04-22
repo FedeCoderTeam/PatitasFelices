@@ -5,26 +5,38 @@ import { useDispatch, useSelector } from 'react-redux';
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
 import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull';
 import style from './UpdateDogForm.module.css';
-import * as productsAction from '../../../_redux/actions/productsAction'
-// import validate from '../validations/validate'
+import * as dogsAction from '../../../_redux/actions/dogsAction'
 
 const UpdateDogForm = () => {
 
     const dispatch = useDispatch();
 
     const temperaments = useSelector((state) => state.dogsReducer.temperaments)
+    const dogToUpdate = useSelector((state) => state.dogsReducer.dogDetail);
+    console.log(dogToUpdate);
+
+    useEffect(() => {
+        return () => {
+            dispatch(dogsAction.setDetail());
+        };
+    }, []);
 
     const [url, setUrl] = useState("");
 
     const initialValues = {
-        name: '', 
-        description: '', 
-        price: '', 
-        stock: '', 
-        brand: '', 
-        category: '', 
-        subCategory: '', 
-        image: url,
+        id: dogToUpdate.id,
+		name: dogToUpdate.name,
+		age: dogToUpdate.age,
+		size: dogToUpdate.size,
+		weight: dogToUpdate.weight,
+		castrated: dogToUpdate.castrated,
+		tempers: dogToUpdate.tempers,
+		colors: dogToUpdate.colors,
+		genders: dogToUpdate.genders,
+		image: dogToUpdate.image,
+		description: dogToUpdate.description,
+		adopted: dogToUpdate.adopted,
+		isDisabled: dogToUpdate.isDisabled,
     }
 
     const validationSchema = Yup.object().shape({
@@ -38,22 +50,22 @@ const UpdateDogForm = () => {
             // .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
             .required('La edad es obligatoria. *'),
         size: Yup.string()
-            .oneOf(['Gigante', 'Grande', 'Mediano', 'Pequeño', 'Muy pequeño'], 'El tamaño es obligatorio. *'),
+            .oneOf(['Giant', 'Large', 'Medium', 'Small', 'Mini'], 'El tamaño es obligatorio. *'),
         weight: Yup.number()
             .min(1, 'El peso tiene que ser mayor a 1. *')
             .max(110, '¡WOW!¿Estás seguro que es un perro? *')
             .required('El peso es obligatorio. *'),
         gender: Yup.string()
             .oneOf(['Hembra', 'Macho'], 'El género es obligatorio. *'),
-        castrated: Yup.string()
+        castrated: Yup.boolean()
             .oneOf(['Yes', 'No'], 'Este campo es obligatorio. *'),
         colors: Yup.string()
             .oneOf(['Negro', 'Blanco', 'Gris', 'Marron', 'Dorado', 'Cobrizo', 'Crema'], 'El color es obligatorio. *'),
         description: Yup.string()
             .required('La descripción es obligatoria. *'),
-        adopted: Yup.string()
+        adopted: Yup.boolean()
             .oneOf(['Yes', 'No'], 'Este campo es obligatorio. *'),
-        isDisabled: Yup.string()
+        isDisabled: Yup.boolean()
             .oneOf(['Yes', 'No'], 'Este campo es obligatorio. *'),
         image: Yup.string()
             .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida. *')
@@ -95,7 +107,7 @@ const UpdateDogForm = () => {
                                 <div className={style.containerInputsLeftForm}>
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor='name'>Nombre</label>
-                                        <Field className={style.inputs} name='name' type='text' placeholder='Ej: Otis' />
+                                        <Field className={style.inputs} value={initialValues.name} name='name' type='text' placeholder='Ej: Otis' />
                                         <ErrorMessage name='name'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
@@ -103,7 +115,7 @@ const UpdateDogForm = () => {
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor='age'>Edad (meses)</label>
-                                        <Field className={style.inputs} name='age' type='number' placeholder='Ej: 24' />
+                                        <Field className={style.inputs} value={initialValues.age} name='age' type='number' placeholder='Ej: 24' />
                                         <ErrorMessage name='age'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
@@ -111,13 +123,13 @@ const UpdateDogForm = () => {
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor="size">Tamaño</label>
-                                        <Field className={style.inputSelect} as="select" id="category" name="size">
+                                        <Field className={style.inputSelect} value={initialValues.size} as="select" id="category" name="size">
                                             <option className={style.options} value="all"></option>
-                                            <option className={style.options} value="Gigante">Gigante</option>
-                                            <option className={style.options} value="Grande">Grande</option>
-                                            <option className={style.options} value="Mediano">Mediano</option>
-                                            <option className={style.options} value="Pequeño">Pequeño</option>
-                                            <option className={style.options} value="Muy pequeño">Muy pequeño</option>
+                                            <option className={style.options} value="Giant">Gigante</option>
+                                            <option className={style.options} value="Large">Grande</option>
+                                            <option className={style.options} value="Medium">Mediano</option>
+                                            <option className={style.options} value="Snall">Pequeño</option>
+                                            <option className={style.options} value="Medium">Muy pequeño</option>
                                         </Field>
                                         <ErrorMessage name='size'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
@@ -126,7 +138,7 @@ const UpdateDogForm = () => {
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor='weight'>Peso (kg.)</label>
-                                        <Field className={style.inputs} name='weight' type='number' placeholder='Ej: 24' />
+                                        <Field className={style.inputs} value={initialValues.weight} name='weight' type='number' placeholder='Ej: 24' />
                                         <ErrorMessage name='weight'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
@@ -134,10 +146,10 @@ const UpdateDogForm = () => {
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor="gender">Género</label>
-                                        <Field className={style.inputSelect} as="select" id="category" name="gender">
+                                        <Field className={style.inputSelect} value={initialValues.genders} as="select" id="category" name="gender">
                                             <option className={style.options} value="all"></option>
-                                            <option className={style.options} value="Hembra">Hembra</option>
-                                            <option className={style.options} value="Macho">Macho</option>
+                                            <option className={style.options} value="1">Hembra</option>
+                                            <option className={style.options} value="2">Macho</option>
                                         </Field>
                                         <ErrorMessage name='gender'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
@@ -146,10 +158,10 @@ const UpdateDogForm = () => {
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor="castrated">¿Está castrado?</label>
-                                        <Field className={style.inputSelect} as="select" id="category" name="castrated">
+                                        <Field className={style.inputSelect} value={initialValues.castrated} as="select" id="category" name="castrated">
                                             <option className={style.options} value="all"></option>
-                                            <option className={style.options} value="Yes">Sí</option>
-                                            <option className={style.options} value="No">No</option>
+                                            <option className={style.options} value={true}>Sí</option>
+                                            <option className={style.options} value={false}>No</option>
                                         </Field>
                                         <ErrorMessage name='castrated'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
@@ -161,26 +173,19 @@ const UpdateDogForm = () => {
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor="tempers">Temperamentos</label>
-                                        <Field className={style.inputSelect} as="select" id="category" name="tempers">
+                                        <Field className={style.inputSelect} value={initialValues.tempers} as="select" id="category" name="tempers">
                                             <option className={style.options} value="all"></option>
                                             {
                                                 temperaments.map(temper => (
                                                     <option className={style.options}>{temper.name}</option>
                                                 ))
                                             }
-                                                {/* {initialValues.tempers.map(temp =>
-                                                    <div>
-                                                        <p>{temp.name}</p>
-                                                    </div>
-                                                )} */}
-                                                {/* <button onClick={() => { handleDelete(temp) }}>X</button> */ }
-                                                
                                         </Field>
                                     </div>
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor="colors">Colores</label>
-                                        <Field className={style.inputSelect} as="select" id="colors" name="colors">
+                                        <Field className={style.inputSelect} value={initialValues.colors} as="select" id="colors" name="colors">
                                             <option className={style.options} value="all"></option>
                                             <option className={style.options} value="Negro">Negro</option>
                                             <option className={style.options} value="Blanco">Blanco</option>
@@ -197,7 +202,7 @@ const UpdateDogForm = () => {
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor="description">Descripción del Perro</label>
-                                        <Field className={style.inputTextArea} type="text" id="description" name="description" />
+                                        <Field className={style.inputTextArea} value={initialValues.description} type="text" id="description" name="description" />
                                         <ErrorMessage name='description'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
@@ -205,10 +210,10 @@ const UpdateDogForm = () => {
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor="adopted">¿Fue adoptado?</label>
-                                        <Field className={style.inputSelect} as="select" id="category" name="adopted">
+                                        <Field className={style.inputSelect} value={initialValues.adopted} as="select" id="category" name="adopted">
                                             <option className={style.options} value="all"></option>
-                                            <option className={style.options} value="Yes">Sí</option>
-                                            <option className={style.options} value="No">No</option>
+                                            <option className={style.options} value={true}>Sí</option>
+                                            <option className={style.options} value={false}>No</option>
                                         </Field>
                                         <ErrorMessage name='adopted'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
@@ -217,10 +222,10 @@ const UpdateDogForm = () => {
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor="isDisabled">¿El perrito falleció?</label>
-                                        <Field className={style.inputSelect} as="select" id="category" name="isDisabled">
+                                        <Field className={style.inputSelect} value={initialValues.isDisabled} as="select" id="category" name="isDisabled">
                                             <option className={style.options} value="all"></option>
-                                            <option className={style.options} value="Yes">Sí</option>
-                                            <option className={style.options} value="No">No</option>
+                                            <option className={style.options} value={true}>Sí</option>
+                                            <option className={style.options} value={false}>No</option>
                                         </Field>
                                         <ErrorMessage name='isDisabled'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
@@ -228,7 +233,7 @@ const UpdateDogForm = () => {
                                     </div>
 
                                     <div className={style.eachField}>
-                                       
+                                    
                                             <label className={style.labels} htmlFor='image'>Adjunte la imagen de su producto</label>
                                             <div className={style.containerUploadForm}>
                                             

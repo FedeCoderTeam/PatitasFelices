@@ -79,7 +79,7 @@ const AdoptionForm = () => {
             dogId: dogId.id
         }
         
-        dispatch(dogsAction.postAdoptionDog(obj))
+        dispatch(requestAction.postAdoptionDog(obj))
         //console.log(obj);
         //alert(JSON.stringify(obj, null, 2)) 
         //NO BORRAR, SIRVE PARA TESTEAR
