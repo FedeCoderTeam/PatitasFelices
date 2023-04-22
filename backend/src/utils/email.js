@@ -28,7 +28,7 @@ const eventRequest_Dogs_Mail_Owner = async (emailOwner, emailSolicitud, dogObj) 
     })
 }
 
-const email_verification = async (user, token, lang = 'es') => {
+const email_account_verification = async (user, token, lang = 'es') => {
     const subject_en = `Account verification for Happy Paws`
     const subject_es = `Verificación de cuenta de Patitas Felices`
 
@@ -48,7 +48,28 @@ const email_verification = async (user, token, lang = 'es') => {
     })
 }
 
+const email_reset_password = async (user, token, lang = 'es') => {
+    const subject_en = `Reset password - Happy Paws`
+    const subject_es = `Recuperar contraseña - Patitas Felices`
+
+    const replacements = {
+        username: user.name,
+        token: token
+    }
+
+    const html_en = await readHTMLFile(__dirname + '/template/email_reset_password_en.html', replacements)
+    const html_es = await readHTMLFile(__dirname + '/template/email_reset_password_es.html', replacements)
+
+    await transporter.sendMail({
+        from: '"Patitas Felices" <noreply@patitasfelices.com>',
+        to: `${user.email}`,
+        subject: lang === 'es' ? subject_es : subject_en,
+        html: lang === 'es' ? html_es : html_en
+    })
+}
+
 module.exports = {
     event_request_dogs_mail,
-    email_verification
+    email_account_verification,
+    email_reset_password
 }

@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
-function userVerificationModel(database) {
-    return database.define('userVerification', {
+function userPasswordResetModel(database) {
+    return database.define('userPasswordReset', {
         id: {
             type: DataTypes.BIGINT,
             primaryKey: true,
@@ -13,11 +13,11 @@ function userVerificationModel(database) {
         },
         expires_at: {
             type: DataTypes.DATE,
-            defaultValue: Date.now() + (10*60*1000)
+            defaultValue: Date.now() + (15*60*1000)
         }
     }, { updatedAt: false });
 }
 
 module.exports = (database) => {
-    userVerificationModel(database)
+    userPasswordResetModel(database)
 }

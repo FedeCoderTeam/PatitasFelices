@@ -39,4 +39,4 @@ const getDogById = async (id) => {
 	}
 };
 
-module.exports= getDogById;
+module.exports = getDogById;

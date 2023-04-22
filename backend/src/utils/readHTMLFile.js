@@ -14,6 +14,4 @@ const readHTMLFile = function (path, replacements) {
     })
 }
 
-module.exports = {
-    readHTMLFile
-}
+module.exports = { readHTMLFile }

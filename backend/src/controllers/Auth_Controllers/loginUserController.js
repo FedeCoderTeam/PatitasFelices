@@ -1,10 +1,10 @@
 const { user , session, role, userVerification} = require ('../../database/db')
-const {bcrypt} = require('../../utils/bcrypt');
-const {signToken} = require('../../utils/token');
-const {email_verification} = require('../../utils/email');
+const { bcrypt } = require('../../utils/bcrypt');
+const { signToken } = require('../../utils/token');
+const { email_account_verification } = require('../../utils/email');
 
 const loginUser = async (email, password) => {
-    if(!email || !password) throw new Error('Some data is missing or incomplete')
+    if(!email || !password) throw new Error('Email and Password are required')
     if (!/\S+@\S+\.\S+/.test(email)) throw new Error('Please enter a valid email address')
 
     const findUser = await user.findOne({where: {email}, include: [{model: role}]})
@@ -17,11 +17,11 @@ const loginUser = async (email, password) => {
     if(!findUser.isVerified) {
         const tokenVerify = await signToken({ user: { id: findUser.id, email: findUser.email } }, process.env.JWT_PRIVATE_KEY_VERIFY, {expiresIn: '600000'})
         await userVerification.update({token: tokenVerify}, {where: {userId: findUser.id}})
-        await email_verification({name: findUser.name, email: findUser.email}, tokenVerify)
+        await email_account_verification({name: findUser.name, email: findUser.email}, tokenVerify)
         throw new Error('Your account is not verified. We will send you an email so you can verify it')
     }
 
-    const token = signToken({ user: findUser.dataValues}, process.env.JWT_PRIVATE_KEY_AUTH, {expiresIn: '6h'} )
+    const token = await signToken({ user: findUser.dataValues}, process.env.JWT_PRIVATE_KEY_AUTH, {expiresIn: '6h'} )
     const findSession = await session.findOne({where: {userId: findUser.id}})
 
     if(findSession) {
@@ -34,6 +34,7 @@ const loginUser = async (email, password) => {
     }
 
     return {
+        error: null,
         authenticated: true,
         token: token,
         user: {

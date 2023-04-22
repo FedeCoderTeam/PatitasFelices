@@ -3,11 +3,11 @@ const passport = require('passport')
 
 const router = Router()
 
-router.get('/google',
+router.get('/',
     passport.authenticate('google', { session: false, scope: ['email', 'profile'] })
 )
 
-router.get('/google/callback',
+router.get('/callback',
     passport.authenticate('google', { session: false, scope: ['profile', 'email'] }),
     async (req, res, next) => {
         try {

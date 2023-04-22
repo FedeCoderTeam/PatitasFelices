@@ -1,10 +1,11 @@
 const { user, userVerification } = require ('../../database/db')
 const { bcrypt, saltRounds } = require('../../utils/bcrypt')
-const {signToken} = require('../../utils/token');
-const {email_verification} = require('../../utils/email');
+const { signToken } = require('../../utils/token');
+const { email_account_verification } = require('../../utils/email');
 
 const registerUser = async (name, last, email, password) => {
-    if(!name || !last || !email || !password) throw new Error('Name, last, email and password are required')
+    if(!name || !last || !email || !password) throw new Error('Name, Last, Email and Password are required')
+    if (!/\S+@\S+\.\S+/.test(email)) throw new Error('Please enter a valid email address')
 
     const existUser = await user.findOne({where: {email}})
 
@@ -20,22 +21,14 @@ const registerUser = async (name, last, email, password) => {
         roleId: 3
     })
 
-    const token = await signToken({user:
-            {
-                id: newUser.id,
-                email: newUser.email
-            }
-    }, process.env.JWT_PRIVATE_KEY_VERIFY, {expiresIn: '600000'})
+    const token = await signToken({user: { id: newUser.id, email: newUser.email }}, process.env.JWT_PRIVATE_KEY_VERIFY, {expiresIn: '600000'})
 
     await userVerification.create({
         token: token,
         userId: newUser.id
     })
 
-    //Evento de enviar un correo para verificación de cuenta
-    await email_verification({name: newUser.name, email: newUser.email}, token)
-    // await eventMail();
-    //...
+    await email_account_verification({name: newUser.name, email: newUser.email}, token)
 
     return {
         error: null,

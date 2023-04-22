@@ -1,13 +1,11 @@
-require('dotenv').config();
 const { user , session, role} = require ('../../database/db')
-const {verifyToken} = require('../../utils/token');
+const { verifyToken } = require('../../utils/token');
 
-//En progreso
 const authUser = async (token) => {
-    if(!token) throw new Error('You need token')
+    if(!token) throw new Error('Token is required')
 
     const findSession = await session.findOne({where: {token: token}})
-    if(!findSession) throw new Error('Your token does not exist')
+    if(!findSession) throw new Error('Your access has been lost. You need to log in again.')
 
     const findUser = await user.findOne({where: {id: findSession.userId}, include: [{model: role}]})
     if(!findUser) throw new Error('Your access has been lost. You need to log in again.')
@@ -16,6 +14,7 @@ const authUser = async (token) => {
     await verifyToken(findSession.token, process.env.JWT_PRIVATE_KEY_AUTH)
 
     return {
+        error: null,
         authenticated: true,
         token: findSession.token,
         user: {
@@ -31,4 +30,4 @@ const authUser = async (token) => {
     }
 }
 
-module.exports= authUser;
+module.exports = authUser;

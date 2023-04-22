@@ -17,4 +17,4 @@ const postNewUser = async ( name, last, email, password, image, roles) => {
 };
 
 
-module.exports= postNewUser;
+module.exports = postNewUser;

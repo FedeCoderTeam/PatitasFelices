@@ -75,4 +75,4 @@ const updateDog = async (
 	}
 };
 
-module.exports= updateDog;
+module.exports = updateDog;

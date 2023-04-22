@@ -9,10 +9,7 @@ const getCategory = require('./src/controllers/Category_Controllers/categoryCont
 const getSubCategory = require('./src/controllers/SubCategory_Controllers/subCategoryControllers');
 const getAllProducts = require('./src/controllers/Product_Controllers/productControllers');
 const getAllDogs = require('./src/controllers/Dogs_Controllers/getAllDogsController');
-const {
-	userRoles,
-} = require('./src/controllers/Roles_Controllers/rolesControlers');
-const getAllUsers = require('./src/controllers/User_Controllers/getAllUsersController');
+const {userRoles} = require('./src/controllers/Roles_Controllers/rolesControlers');
 const http = require('http');
 
 // Syncing all the models at once.
@@ -27,7 +24,6 @@ conn.sync({ force: true }).then(async () => {
 			dogsColors(),
 			dogsGenders(),
 			userRoles(),
-			// getAllUsers(),
 			getAllDogs(),
 			getAllProducts(),
 		]);
