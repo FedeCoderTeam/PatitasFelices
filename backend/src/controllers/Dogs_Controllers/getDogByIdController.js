@@ -31,6 +31,8 @@ const getDogById = async (id) => {
 			temperaments: dogui.temperaments.map((t) => t.name),
 			colors: dogui.colors.map((c) => c.name),
 			gender: genderStr,
+			adopted: dogui.adopted,
+			isDisabled: dogui.isDisabled,
 		};
 
 		return dogui;
@@ -39,4 +41,4 @@ const getDogById = async (id) => {
 	}
 };
 
-module.exports= getDogById;
+module.exports = getDogById;

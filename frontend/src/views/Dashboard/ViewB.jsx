@@ -1,22 +1,22 @@
-import React from "react";
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ViewB = () => {
-    return (
-        <div>
-            <section className="containerBtns-ViewB">
-                <div>
-                 <Link to='./createProductForm'>
-                        <button>a</button>
-                    </Link>
-                    <Link to='./CreateDog'><button>Crear Perro</button></Link>
-                    <Link to='./updateDog'><button>Editar Perro</button></Link>
-                    <Link to='./updateProduct'><button>Editar Producto</button></Link>
-                </div>
-            </section>
-        </div>
-    )
-}
+	return (
+		<div>
+			<section className="containerBtns-ViewB">
+				<div>
+					<Link to="./createProductForm">
+						<button>a</button>
+					</Link>
 
-export default ViewB
+					<Link to="./updateProduct">
+						<button>Editar Producto</button>
+					</Link>
+				</div>
+			</section>
+		</div>
+	);
+};
 
+export default ViewB;
