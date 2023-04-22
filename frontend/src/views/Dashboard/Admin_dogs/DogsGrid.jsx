@@ -5,7 +5,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as dogsAction from '../../_redux/actions/dogsAction';
+import * as dogsAction from '../../../_redux/actions/dogsAction';
 
 const DogsGrid = () => {
 	const allDogs = useSelector((state) => state.dogsReducer.allDogs);

@@ -1,35 +1,38 @@
-import {Route, Routes} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Home from './views/Home/Home';
 import About from './views/About/About';
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 import Register from './components/Register/Register.jsx';
 import Dogs from './views/Dogs/Dogs.jsx';
-import { useLocation } from 'react-router-dom'; 
+import { useLocation } from 'react-router-dom';
 import LoginView from './views/Login/Login.jsx';
 import Landing from './components/Landing/Landing';
 import Products from './views/Products/Products.jsx';
 import NotFound from './components/NotFound/NotFound';
-// import AdoptionForm from './views/Forms/AdoptionForm/AdoptionForm.jsx';
-import AdoptionForm from './components/Forms/AdoptionForm/AdoptionForm'
+import AdoptionForm from './components/Forms/AdoptionForm/AdoptionForm';
 import ProductDetail from './components/CardDetail/ProductDetail/ProductDetail';
 import * as dogsAction from '../src/_redux/actions/dogsAction';
 import * as productsAction from '../src/_redux/actions/productsAction';
 import * as authActions from './_redux/actions/authAction';
 import BackDrop from './components/BackDrop/BackDrop';
 
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Dashboard from './views/Dashboard/Dashboard';
+
 import CreateProductForm from './components/Forms/CreateProductForm/CreateProductForm';
+import ConfirmAccount from './components/AuthForms/ConfirmAccount/ConfirmAccount';
+import RequestPasswordReset from './components/AuthForms/RequestPasswordReset/RequestPasswordReset';
+import PasswordReset from './components/AuthForms/PasswordReset/PasswordReset';
 
 function App() {
 	const location = useLocation();
 	const dispatch = useDispatch();
-	const selector = useSelector(state => state.authReducer)
+	const selector = useSelector((state) => state.authReducer);
 
 	useEffect(() => {
-        dispatch(authActions.authUserAction())
+		dispatch(authActions.authUserAction());
 		dispatch(dogsAction.getDogs());
 		dispatch(dogsAction.getTemperaments());
 		dispatch(dogsAction.getDogsColors());
@@ -44,8 +47,8 @@ function App() {
 				location.pathname !== '/login' &&
 				location.pathname !== '/register' &&
 				location.pathname !== '/form' &&
-				(location.pathname !== '/dashboard' || selector.user?.role !== 'Administrador') &&
-				<Nav />}
+				(location.pathname !== '/dashboard' ||
+					selector.user?.role !== 'Administrador') && <Nav />}
 
 			<Routes>
 				<Route path={'/'} element={<Landing />} />
@@ -53,7 +56,6 @@ function App() {
 				<Route path={'/about'} element={<About />} />
 				<Route path={'/register'} element={<Register />} />
 				<Route path={'/login'} element={<LoginView />} />
-				<Route path={'/createproduct'} element={<CreateProductForm />} />
 				<Route path={'/form'} element={<AdoptionForm />} />
 				<Route path={'/dogs'} element={<Dogs />} />
 				<Route path={'/products'} element={<Products />} />
@@ -64,14 +66,17 @@ function App() {
 					// selector.user?.role === 'Administrador' &&
 					<Route path={'/dashboard/*'} element={<Dashboard />} />
 				}
+				<Route path={'/confirm-account'} element={<ConfirmAccount />} />
+				<Route path={'/request-password-reset'} element={<RequestPasswordReset />} />
+				<Route path={'/password-reset'} element={<PasswordReset />} />
 			</Routes>
 			{location.pathname !== '/' &&
 				location.pathname !== '/login' &&
 				location.pathname !== '/register' &&
 				location.pathname !== '/form' &&
-				( !location.pathname.includes('/dashboard') || selector.user?.role !== 'Administrador') &&
-				<Footer />}
-            <BackDrop/>
+				(!location.pathname.includes('/dashboard') ||
+					selector.user?.role !== 'Administrador') && <Footer />}
+			<BackDrop />
 			{/* <Footer/> */}
 		</>
 	);
