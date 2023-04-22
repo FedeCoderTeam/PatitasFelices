@@ -157,12 +157,6 @@ export default function Dashboard() {
 
 	return (
 		<ThemeProvider theme={customTheme}>
-			<Link to="/dashboard">
-				<button style={{ marginTop: '40px' }}>OLVERA HOME DASHBOARD</button>
-			</Link>
-			<Link to="/home">
-				<button style={{ marginTop: '40px' }}>VOLVER A HOME</button>
-			</Link>
 			<Box sx={{ display: 'flex' }}>
 				<CssBaseline />
 				<AppBar position="fixed" open={open}>

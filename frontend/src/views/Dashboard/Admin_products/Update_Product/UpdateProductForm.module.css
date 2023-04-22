@@ -4,22 +4,25 @@
     align-items: center;
     background-color: #ffffff;
     width: 100%;
-    
+    height: 80vh;
+    background-color: #163440;
 }
 
 .containerForm{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #003668f3;
+    background-color: #0f2630;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
+    height: 700;
 }
 
 .titleForm{
     color: #D9AD77;
     font-size: 2em;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -28,33 +31,35 @@
     justify-content: center;
     gap: 50px;
     width: 650px;
-    height: 380px;
+    height: 500px;
 }
 
 .containerInputsLeftForm{
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
 }
 
 .containerInputsRightForm{
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
 }
 
 .containerInputs{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 5px;
-    height: 130px;
+    height: 92px;
 }
 
 .containerInputsMarca{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 5px;
-    height: 75px;
+    height: 92px;
 }
 
 .labels{
@@ -69,8 +74,8 @@
     border: none;
     border-radius: 5px;
     width: 230px;
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .inputs:focus{
@@ -79,11 +84,12 @@
 
 .inputSelect{
     background-color: #ffffff;
-    padding: 5.5px 0 5.5px 10px;
+    padding: 7px 0 7px 10px;
     border: none;
     border-radius: 5px;
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 500;
+    width: 230px;
 }
 
 .inputSelect:focus{
@@ -116,8 +122,8 @@
 .imgUser{
     position: absolute;
     width: 40px;
-    top: 4px;
-    right: 12.5em;
+    top: 1px;
+    right: 11.5em;
     border-radius: 5px;
 }
 
@@ -128,14 +134,14 @@
 .containerBtnForm{
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .btnCreate{
-    margin-top: 20px;
     font-size: 16px;
     padding: 14px;
     width: 30%;
-    background: #592519;
+    background: #68392f;
     border: none;
     border-radius: 5px;
     color: white;
@@ -147,7 +153,7 @@
 }
 
 .btnCreate:hover{
-    background-color: #163440;
+    background-color: #592518;
     transform: scale(1.02);
 }
 
