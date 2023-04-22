@@ -2,16 +2,18 @@ import { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
 import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull';
 import style from './UpdateDogForm.module.css';
 import * as dogsAction from '../../../_redux/actions/dogsAction';
 
-const UpdateDogForm = () => {
+const UpdateDogForm = (props) => {
 	const dispatch = useDispatch();
 
 	const temperaments = useSelector((state) => state.dogsReducer.temperaments);
 	const dogToUpdate = useSelector((state) => state.dogsReducer.dogDetail);
+	const navigate = useNavigate();
 	console.log(dogToUpdate);
 
 	useEffect(() => {
@@ -31,7 +33,7 @@ const UpdateDogForm = () => {
 		castrated: dogToUpdate.castrated,
 		tempers: dogToUpdate.tempers,
 		colors: dogToUpdate.colors,
-		genders: dogToUpdate.genders,
+		gender: dogToUpdate.gender,
 		image: dogToUpdate.image,
 		description: dogToUpdate.description,
 		adopted: dogToUpdate.adopted,
@@ -82,19 +84,41 @@ const UpdateDogForm = () => {
 			.required('La imagen es obligatoria. *'),
 	});
 
+	const handleSubmit = async (values) => {
+		const obj = {
+			id: values.id,
+			name: values.name,
+			age: values.age,
+			size: values.size,
+			weight: values.weight,
+			castrated: values.castrated,
+			tempers: values.tempers,
+			colors: values.colors,
+			genders: values.genders,
+			image: values.image,
+			description: values.description,
+			adopted: values.adopted,
+			isDisabled: values.isDisabled,
+		};
+		console.log(obj);
+		await dispatch(dogsAction.updateDogs(obj));
+		alert(JSON.stringify(obj, null, 2));
+		navigate('/dashboard/dogs');
+	};
+
 	const formik = useFormik({
 		initialValues,
 		validationSchema,
-		// handleSubmit,
+		handleSubmit,
 	});
 
 	return (
 		<div className={style.mainContainerForm}>
 			<div className={style.containerForm}>
 				<Formik
-					initialValues={initialValues}
+					initialValues={formik.initialValues}
 					validationSchema={validationSchema}
-					// onSubmit={(values) => handleSubmit(values)}
+					onSubmit={formik.handleSubmit}
 				>
 					{({ errors, values }) => (
 						<Form>
@@ -111,6 +135,7 @@ const UpdateDogForm = () => {
 											name="name"
 											type="text"
 											placeholder="Ej: Otis"
+											onChange={formik.handleChange}
 										/>
 										<ErrorMessage name="name">
 											{(msg) => <div className={style.errors}>{msg}</div>}
@@ -127,6 +152,7 @@ const UpdateDogForm = () => {
 											name="age"
 											type="number"
 											placeholder="Ej: 24"
+											onChange={formik.handleChange}
 										/>
 										<ErrorMessage name="age">
 											{(msg) => <div className={style.errors}>{msg}</div>}
@@ -141,8 +167,9 @@ const UpdateDogForm = () => {
 											className={style.inputSelect}
 											value={initialValues.size}
 											as="select"
-											id="category"
+											id="size"
 											name="size"
+											onChange={formik.handleChange}
 										>
 											<option className={style.options} value="all"></option>
 											<option className={style.options} value="Giant">
@@ -154,7 +181,7 @@ const UpdateDogForm = () => {
 											<option className={style.options} value="Medium">
 												Mediano
 											</option>
-											<option className={style.options} value="Snall">
+											<option className={style.options} value="Small">
 												Pequeño
 											</option>
 											<option className={style.options} value="Medium">
@@ -176,6 +203,7 @@ const UpdateDogForm = () => {
 											name="weight"
 											type="number"
 											placeholder="Ej: 24"
+											onChange={formik.handleChange}
 										/>
 										<ErrorMessage name="weight">
 											{(msg) => <div className={style.errors}>{msg}</div>}
@@ -188,16 +216,17 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
-											value={initialValues.genders}
+											value={initialValues.gender}
 											as="select"
-											id="category"
-											name="gender"
+											id="genders"
+											name="genders"
+											onChange={formik.handleChange}
 										>
 											<option className={style.options} value="all"></option>
-											<option className={style.options} value="1">
+											<option className={style.options} value="Hembra">
 												Hembra
 											</option>
-											<option className={style.options} value="2">
+											<option className={style.options} value="Macho">
 												Macho
 											</option>
 										</Field>
@@ -214,8 +243,9 @@ const UpdateDogForm = () => {
 											className={style.inputSelect}
 											value={initialValues.castrated}
 											as="select"
-											id="category"
+											id="castrated"
 											name="castrated"
+											onChange={formik.handleChange}
 										>
 											<option className={style.options} value="all"></option>
 											<option className={style.options} value={true}>
@@ -239,12 +269,13 @@ const UpdateDogForm = () => {
 											className={style.inputSelect}
 											value={initialValues.tempers}
 											as="select"
-											id="category"
+											id="tempers"
 											name="tempers"
+											onChange={formik.handleChange}
 										>
 											<option className={style.options} value="all"></option>
 											{temperaments.map((temper) => (
-												<option className={style.options}>{temper.name}</option>
+												<option className={style.options} value={temper.name}>{temper.name}</option>
 											))}
 										</Field>
 									</div>
@@ -259,6 +290,7 @@ const UpdateDogForm = () => {
 											as="select"
 											id="colors"
 											name="colors"
+											onChange={formik.handleChange}
 										>
 											<option className={style.options} value="all"></option>
 											<option className={style.options} value="Negro">
@@ -298,6 +330,7 @@ const UpdateDogForm = () => {
 											type="text"
 											id="description"
 											name="description"
+											onChange={formik.handleChange}
 										/>
 										<ErrorMessage name="description">
 											{(msg) => <div className={style.errors}>{msg}</div>}
@@ -312,8 +345,9 @@ const UpdateDogForm = () => {
 											className={style.inputSelect}
 											value={initialValues.adopted}
 											as="select"
-											id="category"
+											id="adopted"
 											name="adopted"
+											onChange={formik.handleChange}
 										>
 											<option className={style.options} value="all"></option>
 											<option className={style.options} value={true}>
@@ -336,7 +370,7 @@ const UpdateDogForm = () => {
 											className={style.inputSelect}
 											value={initialValues.isDisabled}
 											as="select"
-											id="category"
+											id="isDisabled"
 											name="isDisabled"
 										>
 											<option className={style.options} value="all"></option>
@@ -354,7 +388,7 @@ const UpdateDogForm = () => {
 
 									<div className={style.eachField}>
 										<label className={style.labels} htmlFor="image">
-											Adjunte la imagen de su producto
+											Adjunte imagen del perro a editar
 										</label>
 										<div className={style.containerUploadForm}>
 											{url.length > 0 && (
@@ -370,7 +404,7 @@ const UpdateDogForm = () => {
 											<div className={style.divImgUser}>
 												<img
 													className={style.imgUser}
-													src={url}
+													src={!url.length ? initialValues.image : url}
 													alt={formik.values.title}
 													title={formik.values.title}
 													loading="lazy"
@@ -378,7 +412,7 @@ const UpdateDogForm = () => {
 											</div>
 										</div>
 										<ErrorMessage name="image">
-											{(msg) => <div className={style.errorMessage}>{msg}</div>}
+											{(msg) => <div className={style.errors}>{msg}</div>}
 										</ErrorMessage>
 									</div>
 								</div>
@@ -389,11 +423,11 @@ const UpdateDogForm = () => {
 									disabled={Object.keys(errors).length > 0}
 									type="submit"
 								>
-									CREAR
+									EDITAR
 								</button>
 							</div>
 						</Form>
-					)}
+					)} 
 				</Formik>
 			</div>
 		</div>

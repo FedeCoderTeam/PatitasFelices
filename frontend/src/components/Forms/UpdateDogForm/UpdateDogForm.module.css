@@ -108,7 +108,7 @@
     color: #FFFFFF;
     margin-top: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     transition: display 200ms linear;
 }
 
