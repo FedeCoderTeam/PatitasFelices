@@ -5,8 +5,8 @@ import './adoptionForm.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { emptyMaybeAdoptedDogs } from '../../../_redux/actions/dogsAction';
-import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
-import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull';
+import CloudinaryWidget from '../../Cloudinary/CloudinaryForm/CloudinaryWidget';
+import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryForm/CloudinaryWidgetFull';
 import * as requestAction from '../../../_redux/actions/requestAction';
 import { useNavigate } from 'react-router-dom';
 

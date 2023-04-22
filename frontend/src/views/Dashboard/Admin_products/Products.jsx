@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ViewB = () => {
+const Products = () => {
 	return (
 		<div>
 			<section className="containerBtns-ViewB">
 				<div>
-					<Link to="./createProductForm">
+					<Link to="./createProduct">
 						<button>a</button>
 					</Link>
 
@@ -19,4 +19,4 @@ const ViewB = () => {
 	);
 };
 
-export default ViewB;
+export default Products;
