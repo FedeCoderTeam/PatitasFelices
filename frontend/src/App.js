@@ -22,6 +22,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import { useEffect } from 'react';
 import Dashboard from './views/Dashboard/Dashboard';
 import CreateProductForm from './components/Forms/CreateProductForm/CreateProductForm';
+import ConfirmAccount from './components/AuthForms/ConfirmAccount/ConfirmAccount';
+import RequestPasswordReset from './components/AuthForms/RequestPasswordReset/RequestPasswordReset';
+import PasswordReset from './components/AuthForms/PasswordReset/PasswordReset';
 
 function App() {
 	const location = useLocation();
@@ -64,6 +67,9 @@ function App() {
 					// selector.user?.role === 'Administrador' &&
 					<Route path={'/dashboard/*'} element={<Dashboard />} />
 				}
+				<Route path={'/confirm-account'} element={<ConfirmAccount />} />
+				<Route path={'/request-password-reset'} element={<RequestPasswordReset />} />
+				<Route path={'/password-reset'} element={<PasswordReset />} />
 			</Routes>
 			{location.pathname !== '/' &&
 				location.pathname !== '/login' &&
