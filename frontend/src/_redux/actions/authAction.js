@@ -172,32 +172,24 @@ const changePasswordAction = (token, currentPassword, newPassword) => {
     }
 }
 
-// const passwordRecoveryAction = (email) => {
-//     return async function(dispatch) {
-//         try {
-//             let result = await axios.post(`${URL}/users/recovery`, {email})
-//         } catch (error) {
-//
-//         }
-//     }
-// }
-
-// const userGoogleAction = () => {
-//     return async function(dispatch) {
-//         dispatch(setIsRegisterFetching(true))
-//         try {
-//             const provider = new GoogleAuthProvider();
-//             const userCredential = await signInWithPopup(auth, provider)
-//
-//             let result = await axios.post(`${URL}/users/google`, {tokenGoogle: userCredential.user?.accessToken}, {withCredentials: true})
-//             dispatch(setUser(result.data))
-//             dispatch(setIsRegisterFetching(false))
-//         } catch (error) {
-//             console.log(error.message)
-//             dispatch(setIsRegisterFetching(false))
-//         }
-//     }
-// }
+const googleUserAction = (payload) => {
+    return async function(dispatch) {
+        dispatch(setIsFetching(true))
+        try {
+            dispatch(setUser(payload))
+            dispatch(setIsFetching(false))
+            await Swal.fire({
+                title: `¡Hola ${payload.user.name}!`,
+                text: 'Ha iniciado sesión correctamente',
+                icon: 'success',
+                timer: 10000
+            })
+        } catch (error) {
+            console.log(error.message)
+            dispatch(setIsFetching(false))
+        }
+    }
+}
 
 export {
     authUserAction,
@@ -208,5 +200,6 @@ export {
     requestPasswordResetAction,
     verifyPasswordResetAction,
     confirmPasswordResetAction,
-    changePasswordAction
+    changePasswordAction,
+    googleUserAction
 }
