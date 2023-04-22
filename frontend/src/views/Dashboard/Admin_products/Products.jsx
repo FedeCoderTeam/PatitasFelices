@@ -66,19 +66,38 @@ const Products = () => {
 	};
 
 	return (
-		<div>
-			<section className="containerBtns-ViewB">
-				<div>
-					<Link to="./createProduct">
-						<button>a</button>
-					</Link>
-
-					<Link to="./updateProduct">
-						<button>Editar Producto</button>
-					</Link>
-				</div>
-			</section>
-		</div>
+		<>
+			<button
+				style={{
+					background: 'none',
+					border: 'none',
+					color: 'white',
+					fontSize: '20px',
+					justifyContent: 'center',
+				}}
+				onClick={() => {
+					navigate('./createProduct');
+				}}
+			>
+				<AddCircleOutlinedIcon
+					style={{
+						fontSize: '30px',
+						color: 'white',
+						marginTop: '10px',
+					}}
+				/>
+			</button>
+			<Box
+				sx={{
+					height: 'auto',
+					width: '100%',
+					alignContent: 'center',
+					marginTop: '20px',
+				}}
+			>
+				<DataGrid rows={rows} columns={columns} />
+			</Box>
+		</>
 	);
 };
 
