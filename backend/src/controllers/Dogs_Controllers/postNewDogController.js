@@ -60,4 +60,4 @@ const postNewDog = async (
 	}
 };
 
-module.exports= postNewDog;
+module.exports = postNewDog;

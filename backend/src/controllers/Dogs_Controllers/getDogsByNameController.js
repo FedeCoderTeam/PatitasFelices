@@ -1,4 +1,4 @@
-const getAllDogs= require('../Dogs_Controllers/getAllDogsController')
+const getAllDogs = require('../Dogs_Controllers/getAllDogsController')
 
 const getDogsByName = async (name) => {
 	let name2 = name.toLowerCase();
@@ -12,4 +12,4 @@ const getDogsByName = async (name) => {
 	}
 };
 
-module.exports= getDogsByName;
+module.exports = getDogsByName;

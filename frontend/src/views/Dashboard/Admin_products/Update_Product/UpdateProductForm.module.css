@@ -1,0 +1,163 @@
+.mainContainerForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #163440;
+    width: 100%;
+    
+}
+
+.containerForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #003668f3;
+    border-radius: 5px;
+}
+
+.titleForm{
+    color: #D9AD77;
+    font-size: 2em;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.boxForm{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    width: 650px;
+    height: 380px;
+}
+
+.containerInputsLeftForm{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.containerInputsRightForm{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.containerInputs{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: 130px;
+}
+
+.containerInputsMarca{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: 75px;
+}
+
+.labels{
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.inputs{
+    background-color: #ffffff;
+    padding: 8px 0 8px 10px;
+    border: none;
+    border-radius: 5px;
+    width: 230px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.inputs:focus{
+    outline: 1px solid #bebebe
+}
+
+.inputSelect{
+    background-color: #ffffff;
+    padding: 5.5px 0 5.5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.inputSelect:focus{
+    outline: 1px solid #bebebe
+}
+
+.errors{
+    color: #9e1d00;
+    font-size: 10px;
+    font-weight: 500;
+    margin-left: 2px;
+}
+
+.containerUploadForm{
+    color: #FFFFFF;
+    margin-top: 5px;
+    display: flex;
+    transition: display 200ms linear;
+}
+
+.divImgUser{
+    position: relative;
+    border-radius: 5px;
+    left: 105%; 
+    bottom: 150%;
+    display: none;
+    transition: display 200ms linear;
+}
+
+.imgUser{
+    position: absolute;
+    width: 40px;
+    top: 1px;
+    right: 11.5em;
+    border-radius: 5px;
+}
+
+.containerUploadForm:hover .divImgUser {
+    display: block; 
+}
+
+.containerBtnForm{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btnCreate{
+    margin-top: 50px;
+    font-size: 16px;
+    padding: 14px;
+    width: 30%;
+    background: #592519;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition:
+        background-color 200ms linear,
+        transform 200ms linear;
+}
+
+.btnCreate:hover{
+    background-color: #163440;
+    transform: scale(1.02);
+}
+
+.divCloudinaryBtn{
+    width: 100%;
+    transition:
+        background-color 300ms linear,
+        transform 300ms linear;
+}
+
+.divCloudinaryBtn:hover{
+    transform: scale(1.02);
+}
