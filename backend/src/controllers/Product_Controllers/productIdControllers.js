@@ -26,6 +26,7 @@ const getProductById = async (id) => {
 			image: productId.image,
 			category: productId.category.name,
 			subCategory: productId.subCategory.name,
+			isDisabled: productId.isDisabled,
 		};
 
 		return productId;

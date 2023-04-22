@@ -1,13 +1,13 @@
 require('dotenv').config();
 const { user, role, session} = require ('../../database/db')
 
-const admin = require('../../config/firebaseAdmin')
+// const admin = require('../../config/firebaseAdmin')
 const jwt = require('jsonwebtoken');
 
 const userGoogle = async (tokenGoogle) => {
     if(!tokenGoogle) throw new Error('You need token of google')
 
-    const userGoogle = await admin.auth().verifyIdToken(tokenGoogle)
+    // const userGoogle = await admin.auth().verifyIdToken(tokenGoogle)
     const findUser = await user.findOne({where: {email: userGoogle.email}, include: [{model: role}]})
     let userCurrent;
     if(!findUser) {

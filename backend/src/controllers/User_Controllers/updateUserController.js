@@ -1,6 +1,6 @@
 const { user, role } = require ('../../database/db')
 
-const updateUser= async(id, googleId, name, last, email, password, image, roles, isVerified, isDisabled)=>{
+const updateUser = async(id, googleId, name, last, email, password, image, roles, isVerified, isDisabled)=>{
     try {
         let userUpdated= await user.findOne({
             where: {id: id}
@@ -35,4 +35,4 @@ const updateUser= async(id, googleId, name, last, email, password, image, roles,
     }
 };
 
-module.exports= updateUser;
+module.exports = updateUser;

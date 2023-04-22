@@ -26,10 +26,10 @@ const getDogs = () => {
 	};
 };
 
-const postDogs = (newDog) => {
+const postDogs = (obj) => {
 	return async function () {
 		try {
-			await axios.post('http://localhost:3001/dogs', newDog);
+			await axios.post('http://localhost:3001/dogs', obj);
 		} catch (error) {
 			console.log(error);
 		}

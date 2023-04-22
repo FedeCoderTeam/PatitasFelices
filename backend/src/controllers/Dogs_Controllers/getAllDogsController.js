@@ -42,6 +42,8 @@ const getAllDogs = async () => {
 			temperaments: el.temperaments.map((t) => t.name),
 			colors: el.colors.map((c) => c.name),
 			gender: genderStr,
+			adopted: el.adopted,
+			isDisabled: el.isDisabled,
 		};
 	});
 

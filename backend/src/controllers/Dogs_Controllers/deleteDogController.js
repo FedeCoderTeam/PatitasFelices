@@ -1,4 +1,4 @@
-const { dog} = require('../../database/db');
+const { dog } = require('../../database/db');
 
 const deleteDog = async (id) => {
 	try {
@@ -18,4 +18,4 @@ const deleteDog = async (id) => {
 	}
 };
 
-module.exports= deleteDog;
+module.exports = deleteDog;

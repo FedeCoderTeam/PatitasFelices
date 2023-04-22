@@ -29,6 +29,7 @@ const getAllProducts = async () => {
 				image: el.image,
 				category: el.category.name,
 				subCategory: el.subCategory.name,
+				isDisabled: el.isDisabled,
 			};
 		});
 
