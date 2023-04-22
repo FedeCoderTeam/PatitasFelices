@@ -10,6 +10,7 @@ const logoutUser = require('../../controllers/User_Controllers/logoutUserControl
 const registerUser = require('../../controllers/User_Controllers/registerUserController')
 const userGoogle = require('../../controllers/User_Controllers/userGoogleController')
 const recoveryPassword = require('../../controllers/User_Controllers/recoveryPasswordUserController')
+const verifyUser = require('../../controllers/User_Controllers/verifyUserController')
 
 const router= Router();
 
@@ -133,6 +134,17 @@ router.post('/recovery', async(req, res) => {
 	try {
 		const result = await recoveryPassword(email)
 		res.status(200).json({...result})
+	} catch (error) {
+		console.log(error)
+		res.status(400).json({error: error.message, message: null})
+	}
+})
+
+router.post('/verify', async (req, res) => {
+	const { token } = req.body
+	try {
+		const result = await verifyUser(token)
+		res.status(200).json(result)
 	} catch (error) {
 		console.log(error)
 		res.status(400).json({error: error.message, message: null})
