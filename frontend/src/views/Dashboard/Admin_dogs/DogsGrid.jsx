@@ -92,13 +92,7 @@ const DogsGrid = () => {
 					marginTop: '20px',
 				}}
 			>
-				<DataGrid
-					rows={rows}
-					columns={columns}
-					// components={{
-					// 	Toolbar: () => CustomToolbar(setCreateRecord),
-					// }}
-				/>
+				<DataGrid rows={rows} columns={columns} />
 			</Box>
 		</>
 	);
