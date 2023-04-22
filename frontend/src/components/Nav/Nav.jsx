@@ -83,8 +83,12 @@ export function AvatarComponent(props) {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
-        dispatch(logoutUserAction(props.selector.user.id))
     };
+
+    const handleLogout = () => {
+        setAnchorElUser(null);
+        dispatch(logoutUserAction(props.selector.user.id))
+    }
 
     return(<>
         <Box sx={{ flexGrow: 0 }}>
@@ -119,7 +123,7 @@ export function AvatarComponent(props) {
                         </ListItemIcon>
                         Settings
                     </MenuItem>
-                    <MenuItem onClick={handleCloseUserMenu}>
+                    <MenuItem onClick={handleLogout}>
                         <ListItemIcon>
                             <Logout fontSize="small" />
                         </ListItemIcon>
