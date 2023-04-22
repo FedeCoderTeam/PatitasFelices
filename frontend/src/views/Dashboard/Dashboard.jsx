@@ -17,6 +17,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
+import PetsIcon from '@mui/icons-material/Pets';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { brown } from '@mui/material/colors';
 import {
@@ -140,8 +142,8 @@ export default function Dashboard() {
 	}, []);
 	const links = [
 		{ name: 'Home', route: '/', icon: <MailIcon /> },
-		{ name: 'viewB', route: '/viewB', icon: <MailIcon /> },
-		{ name: 'Dogs', route: '/dogs', icon: <MailIcon /> },
+		{ name: 'viewB', route: '/viewB', icon: <LocalOfferIcon /> },
+		{ name: 'Dogs', route: '/dogs', icon: <PetsIcon /> },
 	];
 
 	return (
