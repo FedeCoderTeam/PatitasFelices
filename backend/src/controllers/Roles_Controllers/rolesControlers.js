@@ -23,4 +23,4 @@ const userRoles = async () => {
 	}
 };
 
-module.exports = {userRoles};
+module.exports = userRoles;

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Google from './Google.png';
 import {Link, useNavigate} from 'react-router-dom';
 import './Register.css';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 // import RegisterImg from 'registerImage.png'
 import * as authAction from '../../_redux/actions/authAction';

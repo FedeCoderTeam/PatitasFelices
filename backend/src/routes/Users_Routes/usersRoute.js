@@ -5,12 +5,12 @@ const getUserById = require ('../../controllers/User_Controllers/getUserByIdCont
 const postNewUser = require ('../../controllers/User_Controllers/postNewUserController')
 const updateUser = require ('../../controllers/User_Controllers/updateUserController')
 
-const router= Router();
+const router = Router();
 
 //GET ALL USERS
 router.get('/', async(req, res)=> {
     try {
-         let result = await getAllUsers();
+         let result = await getAllUsers()
          res.status(200).json(result)
     } catch (error) {
         console.log(error)
@@ -19,21 +19,20 @@ router.get('/', async(req, res)=> {
 });
 
 //GET USER BY ID
-router.get('/:id', async(req, res)=> {
-    const {id}= req.params
-    try {
+router.get('/:id', async (req, res) => {
+	const { id } = req.params;
+	try {
 		let result = await getUserById(id);
 		if (result.error) throw new Error(result.error);
 		res.status(200).json(result);
 	} catch (error) {
 		res.status(404).json({ error: error.message });
 	}
-})
+});
 
 //CREATE USER (CLIENT)
 router.post('/', async (req, res) => {
-	let { name, last, email, password, image, roles } =
-		req.body;
+	let { name, last, email, password, image, roles } = req.body;
 	try {
 		await postNewUser(name, last, email, password, image, roles);
 		res.status(200).send(`${name} se agregó correctamente`);
@@ -41,7 +40,6 @@ router.post('/', async (req, res) => {
 		res.status(404).json({ error: error.message });
 	}
 });
-
 
 //UPDATE USER (CLIENT)
 router.put('/update/:id', async(req, res)=> {

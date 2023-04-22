@@ -1,5 +1,5 @@
 const { dog, color, gender, temperament } = require('../../database/db');
-const dogsJson = require('../../Json/Dogs.json');
+const createDogsControllers = require('./createDogsControllers');
 
 const getAllDogs = async () => {
 	let data = await dog.findAll({
@@ -19,32 +19,7 @@ const getAllDogs = async () => {
 	});
 
 	if (!data.length) {
-		let alldogs = dogsJson.dogs;
-
-		for (let i = 0; i < alldogs.length; i++) {
-			let dogDb = await dog.create({
-				name: alldogs[i].name,
-				age: alldogs[i].age,
-				size: alldogs[i].size,
-				weight: alldogs[i].weight,
-				castrated: alldogs[i].castrated,
-				image: alldogs[i].image,
-				description: alldogs[i].description,
-			});
-
-			let colors = await color.findAll({ where: { name: alldogs[i].colors } });
-			await dogDb.addColor(colors);
-
-			let genders = await gender.findOne({
-				where: { name: alldogs[i].genders },
-			});
-			await dogDb.setGender(genders);
-
-			let tempers = await temperament.findAll({
-				where: { name: alldogs[i].tempers },
-			});
-			await dogDb.addTemperament(tempers);
-		}
+		data = await createDogsControllers();
 	}
 
 	data = data.map((el) => {
@@ -67,6 +42,8 @@ const getAllDogs = async () => {
 			temperaments: el.temperaments.map((t) => t.name),
 			colors: el.colors.map((c) => c.name),
 			gender: genderStr,
+			adopted: el.adopted,
+			isDisabled: el.isDisabled,
 		};
 	});
 
@@ -74,4 +51,3 @@ const getAllDogs = async () => {
 };
 
 module.exports = getAllDogs;
-

@@ -9,13 +9,13 @@ const getCategory = require('./src/controllers/Category_Controllers/categoryCont
 const getSubCategory = require('./src/controllers/SubCategory_Controllers/subCategoryControllers');
 const getAllProducts = require('./src/controllers/Product_Controllers/productControllers');
 const getAllDogs = require('./src/controllers/Dogs_Controllers/getAllDogsController');
-const {userRoles} = require('./src/controllers/Roles_Controllers/rolesControlers');
+const userRoles = require('./src/controllers/Roles_Controllers/rolesControlers');
 const http = require('http');
 
 // Syncing all the models at once.
 const server = http.createServer(app);
 
-conn.sync({ force: true }).then(async () => {
+conn.sync({ force: false }).then(async () => {
 	try {
 		await Promise.all([
 			getCategory(),
