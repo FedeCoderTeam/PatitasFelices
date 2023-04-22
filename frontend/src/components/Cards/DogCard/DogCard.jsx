@@ -1,13 +1,13 @@
 import * as React from 'react';
 import style from './dogCard.module.css';
 import {
-	Button,
-	createTheme,
-	Dialog,
-	DialogActions,
-	DialogContent,
-	DialogContentText,
-	ThemeProvider,
+    Button,
+    createTheme,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    ThemeProvider
 } from '@mui/material';
 import { brown } from '@mui/material/colors';
 import { useNavigate } from 'react-router-dom';
@@ -19,11 +19,11 @@ const DogCard = ({ image, name, age, gender, size, weight, colors, temperaments,
 	let ageInYears =
 		age >= 12 ? Math.round(age / 12) + ' año/s' : age + ' mes/es';
 
-	const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false)
 
-	const handleOpenDialog = () => {
-		setOpen(!open);
-	};
+    const handleOpenDialog = () => {
+        setOpen(!open)
+    }
 
 	return (
 		<>
@@ -106,14 +106,8 @@ const DogCard = ({ image, name, age, gender, size, weight, colors, temperaments,
 };
 
 export default DogCard;
-
+   
 export function DialogDogsDetail(props) {
-	const dispatch = useDispatch();
-	const handleClick = (id) => {
-		dispatch(setMaybeAdoptedDogs(id));
-		navigate('/form');
-	};
-	const navigate = useNavigate();
 
 	const innerTheme = createTheme({
 		palette: {

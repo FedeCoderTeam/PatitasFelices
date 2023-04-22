@@ -7,7 +7,7 @@ const Products = () => {
 			<section className="containerBtns-ViewB">
 				<div>
 					<Link to="./createProduct">
-						<button>a</button>
+						<button>Crear Producto</button>
 					</Link>
 
 					<Link to="./updateProduct">

@@ -31,7 +31,7 @@ const UpdateDogForm = () => {
 		castrated: dogToUpdate.castrated,
 		tempers: dogToUpdate.tempers,
 		colors: dogToUpdate.colors,
-		genders: dogToUpdate.genders,
+		gender: dogToUpdate.gender,
 		image: dogToUpdate.image,
 		description: dogToUpdate.description,
 		adopted: dogToUpdate.adopted,
@@ -154,7 +154,7 @@ const UpdateDogForm = () => {
 											<option className={style.options} value="Medium">
 												Mediano
 											</option>
-											<option className={style.options} value="Snall">
+											<option className={style.options} value="Small">
 												Pequeño
 											</option>
 											<option className={style.options} value="Medium">
@@ -188,16 +188,16 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
-											value={initialValues.genders}
+											value={initialValues.gender}
 											as="select"
-											id="category"
+											id="gender"
 											name="gender"
 										>
 											<option className={style.options} value="all"></option>
-											<option className={style.options} value="1">
+											<option className={style.options} value="Hembra">
 												Hembra
 											</option>
-											<option className={style.options} value="2">
+											<option className={style.options} value="Macho">
 												Macho
 											</option>
 										</Field>
@@ -370,7 +370,7 @@ const UpdateDogForm = () => {
 											<div className={style.divImgUser}>
 												<img
 													className={style.imgUser}
-													src={url}
+													src={!url.length ? initialValues.image : url}
 													alt={formik.values.title}
 													title={formik.values.title}
 													loading="lazy"
@@ -389,7 +389,7 @@ const UpdateDogForm = () => {
 									disabled={Object.keys(errors).length > 0}
 									type="submit"
 								>
-									CREAR
+									EDITAR
 								</button>
 							</div>
 						</Form>
