@@ -32,7 +32,7 @@ const getDogById = async (id) => {
 			colors: dogui.colors.map((c) => c.name),
 			gender: genderStr,
 			adopted: dogui.adopted,
-			isDisabled: dogui.isDisabled,
+      isDisabled: dogui.isDisabled,
 		};
 
 		return dogui;

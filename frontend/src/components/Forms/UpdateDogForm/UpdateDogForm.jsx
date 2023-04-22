@@ -5,24 +5,37 @@ import { useDispatch, useSelector } from 'react-redux';
 import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
 import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull';
 import style from './UpdateDogForm.module.css';
-// import validate from '../validations/validate'
+import * as dogsAction from '../../../_redux/actions/dogsAction';
 
 const UpdateDogForm = () => {
 	const dispatch = useDispatch();
 
 	const temperaments = useSelector((state) => state.dogsReducer.temperaments);
+	const dogToUpdate = useSelector((state) => state.dogsReducer.dogDetail);
+	console.log(dogToUpdate);
+
+	useEffect(() => {
+		return () => {
+			dispatch(dogsAction.setDetail());
+		};
+	}, []);
 
 	const [url, setUrl] = useState('');
 
 	const initialValues = {
-		name: '',
-		description: '',
-		price: '',
-		stock: '',
-		brand: '',
-		category: '',
-		subCategory: '',
-		image: url,
+		id: dogToUpdate.id,
+		name: dogToUpdate.name,
+		age: dogToUpdate.age,
+		size: dogToUpdate.size,
+		weight: dogToUpdate.weight,
+		castrated: dogToUpdate.castrated,
+		tempers: dogToUpdate.tempers,
+		colors: dogToUpdate.colors,
+		genders: dogToUpdate.genders,
+		image: dogToUpdate.image,
+		description: dogToUpdate.description,
+		adopted: dogToUpdate.adopted,
+		isDisabled: dogToUpdate.isDisabled,
 	};
 
 	const validationSchema = Yup.object().shape({
@@ -39,7 +52,7 @@ const UpdateDogForm = () => {
 			// .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
 			.required('La edad es obligatoria. *'),
 		size: Yup.string().oneOf(
-			['Gigante', 'Grande', 'Mediano', 'Pequeño', 'Muy pequeño'],
+			['Giant', 'Large', 'Medium', 'Small', 'Mini'],
 			'El tamaño es obligatorio. *',
 		),
 		weight: Yup.number()
@@ -50,7 +63,7 @@ const UpdateDogForm = () => {
 			['Hembra', 'Macho'],
 			'El género es obligatorio. *',
 		),
-		castrated: Yup.string().oneOf(
+		castrated: Yup.boolean().oneOf(
 			['Yes', 'No'],
 			'Este campo es obligatorio. *',
 		),
@@ -59,8 +72,8 @@ const UpdateDogForm = () => {
 			'El color es obligatorio. *',
 		),
 		description: Yup.string().required('La descripción es obligatoria. *'),
-		adopted: Yup.string().oneOf(['Yes', 'No'], 'Este campo es obligatorio. *'),
-		isDisabled: Yup.string().oneOf(
+		adopted: Yup.boolean().oneOf(['Yes', 'No'], 'Este campo es obligatorio. *'),
+		isDisabled: Yup.boolean().oneOf(
 			['Yes', 'No'],
 			'Este campo es obligatorio. *',
 		),
@@ -68,21 +81,6 @@ const UpdateDogForm = () => {
 			.matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida. *')
 			.required('La imagen es obligatoria. *'),
 	});
-
-	const handleSubmit = async (values) => {
-		const obj = {
-			name: values.name,
-			description: values.description,
-			price: values.price,
-			stock: values.stock,
-			brand: values.brand,
-			category: values.category,
-			subCategory: values.subCategory,
-			image: url,
-		};
-		// dispatch(productsAction.createProduct(obj))
-		alert(JSON.stringify(values, null, 2));
-	};
 
 	const formik = useFormik({
 		initialValues,
@@ -109,6 +107,7 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputs}
+											value={initialValues.name}
 											name="name"
 											type="text"
 											placeholder="Ej: Otis"
@@ -124,6 +123,7 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputs}
+											value={initialValues.age}
 											name="age"
 											type="number"
 											placeholder="Ej: 24"
@@ -139,24 +139,25 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
+											value={initialValues.size}
 											as="select"
 											id="category"
 											name="size"
 										>
 											<option className={style.options} value="all"></option>
-											<option className={style.options} value="Gigante">
+											<option className={style.options} value="Giant">
 												Gigante
 											</option>
-											<option className={style.options} value="Grande">
+											<option className={style.options} value="Large">
 												Grande
 											</option>
-											<option className={style.options} value="Mediano">
+											<option className={style.options} value="Medium">
 												Mediano
 											</option>
-											<option className={style.options} value="Pequeño">
+											<option className={style.options} value="Snall">
 												Pequeño
 											</option>
-											<option className={style.options} value="Muy pequeño">
+											<option className={style.options} value="Medium">
 												Muy pequeño
 											</option>
 										</Field>
@@ -171,6 +172,7 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputs}
+											value={initialValues.weight}
 											name="weight"
 											type="number"
 											placeholder="Ej: 24"
@@ -186,15 +188,16 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
+											value={initialValues.genders}
 											as="select"
 											id="category"
 											name="gender"
 										>
 											<option className={style.options} value="all"></option>
-											<option className={style.options} value="Hembra">
+											<option className={style.options} value="1">
 												Hembra
 											</option>
-											<option className={style.options} value="Macho">
+											<option className={style.options} value="2">
 												Macho
 											</option>
 										</Field>
@@ -209,15 +212,16 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
+											value={initialValues.castrated}
 											as="select"
 											id="category"
 											name="castrated"
 										>
 											<option className={style.options} value="all"></option>
-											<option className={style.options} value="Yes">
+											<option className={style.options} value={true}>
 												Sí
 											</option>
-											<option className={style.options} value="No">
+											<option className={style.options} value={false}>
 												No
 											</option>
 										</Field>
@@ -233,6 +237,7 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
+											value={initialValues.tempers}
 											as="select"
 											id="category"
 											name="tempers"
@@ -241,12 +246,6 @@ const UpdateDogForm = () => {
 											{temperaments.map((temper) => (
 												<option className={style.options}>{temper.name}</option>
 											))}
-											{/* {initialValues.tempers.map(temp =>
-                                                    <div>
-                                                        <p>{temp.name}</p>
-                                                    </div>
-                                                )} */}
-											{/* <button onClick={() => { handleDelete(temp) }}>X</button> */}
 										</Field>
 									</div>
 
@@ -256,6 +255,7 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
+											value={initialValues.colors}
 											as="select"
 											id="colors"
 											name="colors"
@@ -294,6 +294,7 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputTextArea}
+											value={initialValues.description}
 											type="text"
 											id="description"
 											name="description"
@@ -309,15 +310,16 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
+											value={initialValues.adopted}
 											as="select"
 											id="category"
 											name="adopted"
 										>
 											<option className={style.options} value="all"></option>
-											<option className={style.options} value="Yes">
+											<option className={style.options} value={true}>
 												Sí
 											</option>
-											<option className={style.options} value="No">
+											<option className={style.options} value={false}>
 												No
 											</option>
 										</Field>
@@ -332,15 +334,16 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
+											value={initialValues.isDisabled}
 											as="select"
 											id="category"
 											name="isDisabled"
 										>
 											<option className={style.options} value="all"></option>
-											<option className={style.options} value="Yes">
+											<option className={style.options} value={true}>
 												Sí
 											</option>
-											<option className={style.options} value="No">
+											<option className={style.options} value={false}>
 												No
 											</option>
 										</Field>
