@@ -4,33 +4,22 @@ import animals from './img/animals.png';
 import bone from './img/bone.png';
 import paw from './img/paw.png';
 import {
-	Button,
-	createTheme,
-	Dialog,
-	DialogActions,
-	DialogContent,
-	DialogContentText,
-	ThemeProvider,
+    Button,
+    createTheme,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    ThemeProvider
 } from '@mui/material';
-import { brown } from '@mui/material/colors';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setMaybeAdoptedDogs } from '../../../_redux/actions/dogsAction';
+import {brown} from '@mui/material/colors';
+import {useNavigate} from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { setMaybeAdoptedDogs } from "../../../_redux/actions/dogsAction";
 
-const DogCard = ({
-	image,
-	name,
-	age,
-	gender,
-	size,
-	weight,
-	colors,
-	temperaments,
-	id,
-	description,
-}) => {
-	//puede ir aca la funcion para manejar el borrar card
-
+const DogCard = ({image, name, age, gender, size, weight, colors, temperaments, id, description}) => {
+    
+    //puede ir aca la funcion para manejar el borrar card
 
     // const favoriteIcon = document.querySelector('.card .favorite-icon');
     // favoriteIcon.addEventListener('click', function() {
@@ -38,14 +27,14 @@ const DogCard = ({
     // });
     let ageInYears = age >= 12 ? Math.round (age / 12) + " año/s" : age + " mes/es";
 
-	const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false)
 
-	const handleOpenDialog = () => {
-		setOpen(!open);
-	};
+    const handleOpenDialog = () => {
+        setOpen(!open)
+    }
 
     return(
-        <div>
+        <>
             <div className={style.containerCard}>
                 <div className={style.containerIcon}>
                     <img className={style.Icon} src= {animals} alt='Icon-Donate'/>
@@ -79,41 +68,41 @@ const DogCard = ({
             </div>
             <DialogDogsDetail handleOpenDialog={handleOpenDialog} open={open} dog={{image, name, ageInYears, gender, size, weight, colors, temperaments, id, description}}  />
         </>
-
     )
 }
 
 export default DogCard;
-
+   
 export function DialogDogsDetail(props) {
-	const dispatch = useDispatch();
-	const handleClick = (id) => {
-		dispatch(setMaybeAdoptedDogs(id));
-		navigate('/form');
-	};
-	const navigate = useNavigate();
 
-	const innerTheme = createTheme({
-		palette: {
-			primary: {
-				main: brown[500],
-			},
-			background: {
-				default: '#163440',
-				paper: '#163440',
-			},
-			text: {
-				...{
-					primary: '#fff',
-					secondary: '#fff',
-				},
-			},
-		},
-	});
-	//props.dog.image name
+    const dispatch = useDispatch();
+    const handleClick = (id)=>{
+        console.log(id);
+        dispatch(setMaybeAdoptedDogs(id))
+        navigate('/form')
+    }
+    const navigate = useNavigate()
 
-    return (
-    <>
+    const innerTheme = createTheme({
+        palette: {
+            primary: {
+                main: brown[500],
+            },
+            background: {
+                default: '#163440',
+                paper: '#163440'
+            },
+            text: {
+                ...{
+                    primary: '#fff',
+                    secondary: '#fff'
+                }
+            }
+        },
+    });
+    //props.dog.image name
+
+    return(<>
         <ThemeProvider theme={innerTheme}>
             <Dialog
                 sx={{"& .MuiDialog-container": {
@@ -172,6 +161,6 @@ export function DialogDogsDetail(props) {
             </Dialog>
         </ThemeProvider>
         
-    </>
-    );
-};
+    </>)
+}
+
