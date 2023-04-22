@@ -11,10 +11,10 @@ const sequelize = new Sequelize(
 		dialect: 'postgres',
 		protocol: 'postgres',
 		logging: false,
-		// dialectOptions: {
-		// 	ssl: true,
-		// 	native: true,
-		// },
+		dialectOptions: {
+			ssl: true,
+			native: true,
+		},
 	},
 );
 const basename = path.basename(__filename);
