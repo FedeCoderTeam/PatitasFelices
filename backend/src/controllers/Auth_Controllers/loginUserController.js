@@ -21,7 +21,7 @@ const loginUser = async (email, password) => {
         throw new Error('Your account is not verified. We will send you an email so you can verify it')
     }
 
-    const token = await signToken({ user: findUser.dataValues}, process.env.JWT_PRIVATE_KEY_AUTH, {expiresIn: '6h'} )
+    const token = await signToken({ user: findUser.dataValues}, process.env.JWT_PRIVATE_KEY_AUTH, {expiresIn: '6h'})
     const findSession = await session.findOne({where: {userId: findUser.id}})
 
     if(findSession) {
