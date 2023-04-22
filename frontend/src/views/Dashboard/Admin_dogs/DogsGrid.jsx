@@ -3,7 +3,7 @@ import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as dogsAction from '../../../_redux/actions/dogsAction';
 
@@ -11,6 +11,10 @@ const DogsGrid = () => {
 	const allDogs = useSelector((state) => state.dogsReducer.allDogs);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(dogsAction.getDogs())
+	}, [dispatch]);
 
 	const rows = useMemo(
 		() =>

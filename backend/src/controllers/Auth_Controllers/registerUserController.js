@@ -32,7 +32,7 @@ const registerUser = async (name, last, email, password) => {
 
     return {
         error: null,
-        message: 'Account created, you must verify your email'
+        message: 'AuthForms created, you must verify your email'
     }
 }
 

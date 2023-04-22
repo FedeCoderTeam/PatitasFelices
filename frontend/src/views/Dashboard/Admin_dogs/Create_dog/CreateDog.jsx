@@ -47,7 +47,8 @@ const CreateDog = () => {
 			.min(1, 'El peso tiene que ser mayor a 1. *')
 			.max(100, '¿Estás dando en adopción un perro o chancho?')
 			.required('El peso es obligatorio.'),
-		castrated: Yup.string().required('Este campo es obligatorio.'),
+		castrated: Yup.string()
+			.oneOf(['Yes', 'No'], 'Este campo es obligatorio. *'),
 		image: Yup.string().matches(
 			/^..(jpg|jpeg|png)$/i,
 			'Inserte una imagen válida.',
@@ -95,7 +96,7 @@ const CreateDog = () => {
 		console.log(obj);
 		dispatch(dogsAction.postDogs(obj));
 		alert(JSON.stringify(obj, null, 2));
-		navigate('/dashboard/viewB');
+		navigate('/dashboard/dogs');
 	};
 
 	const formik = useFormik({
@@ -193,6 +194,30 @@ const CreateDog = () => {
 											{(msg) => <div className={style.errors}>{msg}</div>}
 										</ErrorMessage>
 									</div>
+
+									<div className={style.containerInputs}>
+										<label className={style.labels} htmlFor="genders">
+											Seleccione el género
+										</label>
+										<Field
+											className={style.inputSelect}
+											as="select"
+											id="genders"
+											name="genders"
+										>
+											<option className={style.options} defaultValue='all'></option>
+											<option className={style.options} value="Hembra">
+												Hembra
+											</option>
+											<option className={style.options} value="Macho">
+												Macho
+											</option>
+										</Field>
+										<ErrorMessage name="genders">
+											{(msg) => <div className={style.errors}>{msg}</div>}
+										</ErrorMessage>
+									</div>
+
 								</div>
 								<div className={style.containerInputsRightCreateDog}>
 									<div className={style.containerInputs}>
@@ -200,42 +225,21 @@ const CreateDog = () => {
 											¿Está castrado?
 										</label>
 										<Field
-											className={style.inputs}
+											className={style.inputSelect}
+											as='select'
+											id="castrated"
 											name="castrated"
-											type="checkbox"
-										/>
+										>
+											<option className={style.options} value="all"></option>
+											<option className={style.options} value='Yes'>
+												Sí
+											</option>
+											<option className={style.options} value='No'>
+												No
+											</option>
+										</Field>
 										<ErrorMessage name="castrated">
 											{(msg) => <div className={style.errors}>{msg}</div>}
-										</ErrorMessage>
-									</div>
-
-									<div className={style.eachField}>
-										<label className={style.labels} htmlFor="image">
-											Adjunte la imagen del perro
-										</label>
-										<div className={style.containerUploadCreateDog}>
-											{url.length > 0 && (
-												<div>
-													<CloudinaryWidgetFull url={url} setUrl={setUrl} />
-												</div>
-											)}
-											{url.length === 0 && (
-												<div>
-													<CloudinaryWidget url={url} setUrl={setUrl} />
-												</div>
-											)}
-											<div className={style.divImgUser}>
-												<img
-													className={style.imgUser}
-													src={url}
-													alt={formik.values.title}
-													title={formik.values.title}
-													loading="lazy"
-												/>
-											</div>
-										</div>
-										<ErrorMessage name="image">
-											{(msg) => <div className={style.errorMessage}>{msg}</div>}
 										</ErrorMessage>
 									</div>
 
@@ -244,7 +248,7 @@ const CreateDog = () => {
 											Cuenta sobre la historia del perro
 										</label>
 										<Field
-											className={style.inputSelect}
+											className={style.inputTextArea}
 											type="string"
 											id="description"
 											name="description"
@@ -259,7 +263,7 @@ const CreateDog = () => {
 											Seleccione al menos un color
 										</label>
 										<Field
-											className={style.inputSelect}
+											className={style.inputSelectMultiple}
 											as="select"
 											multiple
 											id="colors"
@@ -294,34 +298,11 @@ const CreateDog = () => {
 									</div>
 
 									<div className={style.containerInputs}>
-										<label className={style.labels} htmlFor="genders">
-											Seleccione el género
-										</label>
-										<Field
-											className={style.inputSelect}
-											as="select"
-											id="genders"
-											name="genders"
-										>
-											<option className={style.options} value="all"></option>
-											<option className={style.options} value="Hembra">
-												Hembra
-											</option>
-											<option className={style.options} value="Macho">
-												Macho
-											</option>
-										</Field>
-										<ErrorMessage name="genders">
-											{(msg) => <div className={style.errors}>{msg}</div>}
-										</ErrorMessage>
-									</div>
-
-									<div className={style.containerInputs}>
 										<label className={style.labels} htmlFor="tempers">
-											Seleccione los temperamentos del perro
+											Seleccione los temperamentos
 										</label>
 										<Field
-											className={style.inputSelect}
+											className={style.inputSelectMultiple}
 											as="select"
 											multiple
 											id="tempers"
@@ -334,6 +315,36 @@ const CreateDog = () => {
 										</Field>
 										<ErrorMessage name="tempers">
 											{(msg) => <div className={style.errors}>{msg}</div>}
+										</ErrorMessage>
+									</div>
+
+									<div className={style.eachField}>
+										<label className={style.labels} htmlFor="image">
+											Adjunte la imagen del perro
+										</label>
+										<div className={style.containerUploadCreateDog}>
+											{url.length > 0 && (
+												<div>
+													<CloudinaryWidgetFull url={url} setUrl={setUrl} />
+												</div>
+											)}
+											{url.length === 0 && (
+												<div>
+													<CloudinaryWidget url={url} setUrl={setUrl} />
+												</div>
+											)}
+											<div className={style.divImgUser}>
+												<img
+													className={style.imgUser}
+													src={url}
+													alt={formik.values.title}
+													title={formik.values.title}
+													loading="lazy"
+												/>
+											</div>
+										</div>
+										<ErrorMessage name="image">
+											{(msg) => <div className={style.errorMessage}>{msg}</div>}
 										</ErrorMessage>
 									</div>
 								</div>
