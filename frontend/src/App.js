@@ -15,6 +15,8 @@ import ProductDetail from './components/CardDetail/ProductDetail/ProductDetail';
 import * as dogsAction from '../src/_redux/actions/dogsAction';
 import * as productsAction from '../src/_redux/actions/productsAction';
 import * as authActions from './_redux/actions/authAction';
+import * as requestAction from './_redux/actions/requestAction';
+
 import BackDrop from './components/BackDrop/BackDrop';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,6 +35,7 @@ function App() {
 		dispatch(dogsAction.getDogsColors());
 		dispatch(dogsAction.genders());
 		dispatch(productsAction.getProducts());
+		dispatch(requestAction.getAdoptionDog());
 	}, [dispatch]);
 
 	return (
