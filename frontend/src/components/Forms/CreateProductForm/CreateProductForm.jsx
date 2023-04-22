@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-import CloudinaryWidget from '../../Cloudinary/CloudinaryWidget';
-import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryWidgetFull';
+import CloudinaryWidget from '../../Cloudinary/CloudinaryForm/CloudinaryWidget';
+import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryForm/CloudinaryWidgetFull';
 import style from './CreateProductForm.module.css';
 import * as productsAction from '../../../_redux/actions/productsAction'
 import { useNavigate } from 'react-router-dom';
