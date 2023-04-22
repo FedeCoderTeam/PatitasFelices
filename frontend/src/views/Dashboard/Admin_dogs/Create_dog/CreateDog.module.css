@@ -5,21 +5,24 @@
     background-color: #ffffff;
     width: 100%;
     height: 80vh;
+    background-color: #163440;
 }
 
 .containerCreateDog{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #003668f3;
+    background-color: #0f2630;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
+    height: 700;
 }
 
 .titleCreateDog{
     color: #D9AD77;
     font-size: 2em;
-    margin-bottom: 30px;
-    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -28,7 +31,7 @@
     justify-content: center;
     gap: 50px;
     width: 650px;
-    height: 300px;
+    height: 500px;
 }
 
 .containerInputsLeftCreateDog{
@@ -46,12 +49,18 @@
 .containerInputs{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 5px;
+    height: 92px;
+}
+
+.checkbox {
+    text-align: start;
 }
 
 .labels{
     color: #ffffff;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -61,8 +70,8 @@
     border: none;
     border-radius: 5px;
     width: 230px;
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .inputs:focus{
@@ -71,20 +80,47 @@
 
 .inputSelect{
     background-color: #ffffff;
-    padding: 5.5px 0 5.5px 10px;
+    padding: 7px 0 7px 10px;
     border: none;
     border-radius: 5px;
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 500;
+    width: 230px;
 }
 
 .inputSelect:focus{
     outline: 1px solid #bebebe
 }
 
+.inputSelectMultiple {
+    background-color: #ffffff;
+    padding: 7px 0 7px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    width: 230px;
+    height: 50px;
+}
+
+.inputTextArea {
+    background-color: #ffffff;
+    padding: 8px 0 8px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    width: 230px;
+}
+
+.inputTextArea:focus{
+    outline: 1px solid #bebebe
+}
+
+
 .errors{
     color: #9e1d00;
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 500;
     margin-left: 2px;
 }
@@ -120,13 +156,14 @@
 .containerBtnCreateDog{
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .btnCreate{
     font-size: 16px;
     padding: 14px;
     width: 30%;
-    background: #592519;
+    background: #68392f;
     border: none;
     border-radius: 5px;
     color: white;
@@ -138,6 +175,6 @@
 }
 
 .btnCreate:hover{
-    background-color: #163440;
+    background-color: #592518;
     transform: scale(1.02);
 }
