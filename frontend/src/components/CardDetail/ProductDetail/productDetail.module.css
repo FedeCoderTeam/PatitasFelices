@@ -1,202 +1,221 @@
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@200;400;600;700&display=swap');
 
-.divMain{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url(https://assets.website-files.com/60d11c057f7d152913a39f31/6158e9d4c5ddbe2e9863e810_AdobeStock_195024674_50.jpeg);
-    background-size: cover;
-    background-attachment: fixed;  
-    background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 84.2vh;
+.divMain {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-image: url(https://assets.website-files.com/60d11c057f7d152913a39f31/6158e9d4c5ddbe2e9863e810_AdobeStock_195024674_50.jpeg);
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	min-height: 84.2vh;
 }
 
-.loader{
-    border-radius: 50%;
-    width: 30em;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 1);
-
+.loader {
+	border-radius: 50%;
+	width: 30em;
+	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 1);
 }
 
-.bodyDetailProduct{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-image: url(https://assets.website-files.com/60d11c057f7d152913a39f31/6158e9d4c5ddbe2e9863e810_AdobeStock_195024674_50.jpeg);
-    background-size: cover;
-    background-attachment: fixed;  
-    background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
-    width: 100%;
+.bodyDetailProduct {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-image: url(https://assets.website-files.com/60d11c057f7d152913a39f31/6158e9d4c5ddbe2e9863e810_AdobeStock_195024674_50.jpeg);
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	margin: 0;
+	padding: 0;
+	width: 100%;
 }
 
-.containerProduct{
-    display: flex;
-    background-color: rgba(0, 0, 0, 0.767);
-    background: rgba( 0, 0, 0, 0.8 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 7px );
-    -webkit-backdrop-filter: blur( 10px );
-    border-radius: 14px;
-    width: 50em;
-    margin-top: 3em;
-    margin-bottom: 2em;
-    border-radius: 185px 14px 14px 185px;
+.containerProduct {
+	display: flex;
+	background-color: rgba(0, 0, 0, 0.767);
+	background: rgba(0, 0, 0, 0.8);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(7px);
+	-webkit-backdrop-filter: blur(10px);
+	border-radius: 14px;
+	width: 50em;
+	margin-top: 3em;
+	margin-bottom: 2em;
+	border-radius: 185px 14px 14px 185px;
 }
 
-.divLeft{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff;
-    box-shadow: 2px 2px 2px 2px rgba(0.45, 0.45, 0.45, 0.45);
-    border-radius: 70px;
-    width: 30em;
+.divLeft {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #ffffff;
+	box-shadow: 2px 2px 2px 2px rgba(0.45, 0.45, 0.45, 0.45);
+	border-radius: 70px;
+	width: 30em;
 }
 
-.divRight{
-    margin-left: 2em;
-    margin-right: 1em;
-    text-align: start;
-    width: 70%;
+.divRight {
+	margin-left: 2em;
+	margin-right: 1em;
+	text-align: start;
+	width: 70%;
 }
 
-.imagenDetail{
-    width: 12em;
+.imagenDetail {
+	width: 12em;
 }
 
-.titleName{
-    font-family: 'Be Vietnam Pro', sans-serif;
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 2em;
-    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.55);
+.titleName {
+	font-family: 'Be Vietnam Pro', sans-serif;
+	color: #ffffff;
+	font-weight: 500;
+	font-size: 2em;
+	text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.55);
 }
 
-.subTitleDescr{
-    font-family: 'Be Vietnam Pro', sans-serif;
-    color: #b3b3b393;
-    font-weight: 300;
-    font-size: 1em;
+.subTitleDescr {
+	font-family: 'Be Vietnam Pro', sans-serif;
+	color: #b3b3b393;
+	font-weight: 300;
+	font-size: 1em;
 }
 
-.priceDetail{
-    font-family: 'Be Vietnam Pro', sans-serif;
-    color: #D9AD77;
-    font-weight: 500;
-    font-size: 1.5em;
-    line-height: 10px;
-    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.616);
+.priceDetail {
+	font-family: 'Be Vietnam Pro', sans-serif;
+	color: #d9ad77;
+	font-weight: 500;
+	font-size: 1.5em;
+	line-height: 10px;
+	text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.616);
 }
 
-.priceSpan{
-    font-family: 'Be Vietnam Pro', sans-serif;
-    color: #b3b3b393;
-    font-weight: 300;
-    font-size: .7em;
+.priceSpan {
+	font-family: 'Be Vietnam Pro', sans-serif;
+	color: #b3b3b393;
+	font-weight: 300;
+	font-size: 0.7em;
 }
 
-.pDeatil{
-    font-family: 'Be Vietnam Pro', sans-serif;
-    color: #BABABA;
-    font-weight: 300;
-    font-size: 1.3em;
+.pDeatil {
+	font-family: 'Be Vietnam Pro', sans-serif;
+	color: #bababa;
+	font-weight: 300;
+	font-size: 1.3em;
 }
 
-.spanDetail{
-    font-family: 'Be Vietnam Pro', sans-serif;
-    color: #D9AD77;
-    font-weight: 300;
-    font-size: 1em;
+.spanDetail {
+	font-family: 'Be Vietnam Pro', sans-serif;
+	color: #d9ad77;
+	font-weight: 300;
+	font-size: 1em;
 }
 
-.divCantidad{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    height: 20px;
+.divCantidad {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	height: 20px;
 }
 
-.contador{
-    font-family: 'Be Vietnam Pro', sans-serif;
-    color: #D9AD77;
-    font-weight: 300;
-    font-size: 1.36em;
+.contador {
+	font-family: 'Be Vietnam Pro', sans-serif;
+	color: #d9ad77;
+	font-weight: 300;
+	font-size: 1.36em;
 }
-.btnRestaSuma{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 35px;
-    height: 30px;
-    border-radius: 5px;
-    border: none;
-    background: #163440;
-    transition: transform 200ms linear, background-color 200ms linear, color 200ms linear;
-    cursor: pointer;
-}
-
-.btnRestaSuma:hover{
-    transform: scale(1.06);
-    background-color: #1634409d;
+.btnRestaSuma {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 35px;
+	height: 30px;
+	border-radius: 5px;
+	border: none;
+	background: #163440;
+	transition: transform 200ms linear, background-color 200ms linear,
+		color 200ms linear;
+	cursor: pointer;
 }
 
-.btnSpan{
-    text-align: center;
-    font-family: 'Be Vietnam Pro', sans-serif;
-    font-weight: 300;
-    color: #ffffff;
-    font-size: 2em;
+.btnRestaSuma:hover {
+	transform: scale(1.06);
+	background-color: #1634409d;
 }
 
-.btnCarritoDetail{
-    font-family: 'Be Vietnam Pro', sans-serif;
-    text-align: center;
-    font-weight: 500;
-    font-size: .9em;
-    color: #ffffff;
-    margin-top: 4em;
-    margin-bottom: 30px;
-    width: 100%;
-    height: 40px;
-    background: #163440;
-    border-radius: 5px;
-    border: none;
-    transition: transform 200ms linear, background-color 200ms linear, color 200ms linear;
-    cursor: pointer;
+.btnSpan {
+	text-align: center;
+	font-family: 'Be Vietnam Pro', sans-serif;
+	font-weight: 300;
+	color: #ffffff;
+	font-size: 2em;
 }
 
-.btnCarritoDetail:hover{
-    transform: scale(1.03);
+.btnCarritoDetail {
+	font-family: 'Be Vietnam Pro', sans-serif;
+	text-align: center;
+	font-weight: 500;
+	font-size: 0.9em;
+	color: #ffffff;
+	margin-top: 4em;
+	margin-bottom: 30px;
+	width: 100%;
+	height: 40px;
+	background: #163440;
+	border-radius: 5px;
+	border: none;
+	transition: transform 200ms linear, background-color 200ms linear,
+		color 200ms linear;
+	cursor: pointer;
 }
 
-.containerOtros{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
+.btnCarritoDetail:hover {
+	transform: scale(1.03);
 }
 
-.titleMasProductos{
-    font-family: 'Be Vietnam Pro', sans-serif;
-    text-align: center;
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 1.7em;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.801);
+.containerOtros {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 30px;
 }
 
-.divOtros{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
+.titleMasProductos {
+	font-family: 'Be Vietnam Pro', sans-serif;
+	text-align: center;
+	color: #ffffff;
+	font-weight: 700;
+	font-size: 1.7em;
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.801);
 }
 
+.divOtros {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+}
+
+.btnBuy {
+	width: 346px;
+	background-color: #a65424;
+	color: #f2f2f2;
+	font-size: 17px;
+	font-family: 'Be Vietnam Pro', sans-serif;
+	font-weight: 700;
+	padding: 12.5px 0 12.5px 0;
+	border-color: transparent;
+	border-radius: 5px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	cursor: pointer;
+	transition: background-color 200ms linear, transform 200ms linear;
+}
+
+.btnBuy:hover {
+	transform: scale(1.03);
+}
