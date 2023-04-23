@@ -41,7 +41,8 @@ const Login = () => {
 			}
 		}, 500)
 
-		googleWindow.addEventListener('message', async function (event) {
+		window.addEventListener('message', async function (event) {
+			console.log(event)
 			if(event.origin !== 'http://localhost:3001') return;
 			if(event.data.type === 'AUTH_SUCCESS') {
 				dispatch(googleUserAction(event.data.payload));
@@ -94,7 +95,7 @@ const Login = () => {
 					</button>
 				</div>
 
-				<div className={style.containerGoogleLogin} onClick={() => handleOnGoogle()}>
+				<div className={style.containerGoogleLogin} onClick={handleOnGoogle}>
 					<p>
 						Ingresar con <img src={Google} alt="Google" />
 					</p>
