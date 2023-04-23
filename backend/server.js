@@ -11,7 +11,6 @@ const userRoles = require('./src/controllers/Roles_Controllers/rolesControlers')
 const https = require('https');
 
 // Syncing all the models at once.
-const server = https.createServer(app);
 
 conn.sync({ force: false }).then(async () => {
 	try {
@@ -26,7 +25,7 @@ conn.sync({ force: false }).then(async () => {
 			getAllProducts(),
 		]);
 
-		server.listen(3001, () => {
+		app.listen(3001, () => {
 			console.log('%s listening at 3001'); // eslint-disable-line no-console
 		});
 	} catch (error) {
