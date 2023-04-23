@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import style from '../Nav/nav.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -21,7 +21,7 @@ export default function Nav() {
 	return (
 		<div className={style.containerNav}>
 			<div className={style.containerLeft}>
-				<Link to="/home" className={style.link}>
+				<NavLink to="/home" className={`${style.link} ${location.pathname === '/home' ? style.active : ''}`}>
 					<div className={style.divNav}>
 						<img
 							className={style.imgIcons}
@@ -30,8 +30,8 @@ export default function Nav() {
 						/>
 						<p className={style.links}>Home</p>
 					</div>
-				</Link>
-				<Link to="/products" className={style.link}>
+				</NavLink>
+				<NavLink to="/products" className={`${style.link} ${location.pathname === '/products' ? style.active : ''}`}>
 					<div className={style.divNav}>
 						<img
 							className={style.imgIcons}
@@ -40,8 +40,8 @@ export default function Nav() {
 						/>
 						<p className={style.links}>Productos</p>
 					</div>
-				</Link>
-				<Link to="/dogs" className={style.link}>
+				</NavLink>
+				<NavLink to="/dogs" className={`${style.link} ${location.pathname === '/dogs' ? style.active : ''}`}>
 					<div className={style.divNav}>
 						<img
 							className={style.imgIcons}
@@ -50,7 +50,7 @@ export default function Nav() {
 						/>
 						<p className={style.links}>Perros</p>
 					</div>
-				</Link>
+				</NavLink>
 				{selector.user?.role === 'Administrador' && (
 					<Link to="/dashboard" className={style.link}>
 						<div className={style.divNav}>
@@ -88,9 +88,9 @@ export default function Nav() {
 					</Link>
 				</div>
 			) : (
-				<>
+				<div className={style.containerRight}>
 					<AvatarComponent selector={selector} />
-				</>
+				</div>
 			)}
 		</div>
 	);
@@ -107,15 +107,18 @@ export function AvatarComponent(props) {
 
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
-		dispatch(logoutUserAction(props.selector.user.id));
 	};
+
+	const handleLogout = () => {
+		dispatch(logoutUserAction(props.selector.user.id));
+	}
 
 	return (
 		<>
 			<Box sx={{ flexGrow: 0 }}>
 				<Tooltip title="Mi cuenta">
 					<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-						<Avatar alt={props.selector.user.name} />
+						<Avatar alt={props.selector.user.name} src={props.selector.user.image} />
 					</IconButton>
 				</Tooltip>
 				<Menu
@@ -144,7 +147,7 @@ export function AvatarComponent(props) {
 						</ListItemIcon>
 						Settings
 					</MenuItem>
-					<MenuItem onClick={handleCloseUserMenu}>
+					<MenuItem onClick={(event) => {handleCloseUserMenu(event); handleLogout()}}>
 						<ListItemIcon>
 							<Logout fontSize="small" />
 						</ListItemIcon>
