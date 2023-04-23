@@ -18,7 +18,6 @@ const router = Router()
 
 router.post('/', cors({credentials: true, origin: 'https://patitas-felices.vercel.app'}), async (req, res) => {
     const { tkn_usr } = req.cookies
-    console.log(tkn_usr)
     try {
         let result = await authUser(tkn_usr);
         res.status(200).json(result)
