@@ -6,6 +6,7 @@ import CloudinaryWidget from '../../../../components/Cloudinary/CloudinaryForm/C
 import CloudinaryWidgetFull from '../../../../components/Cloudinary/CloudinaryForm/CloudinaryWidgetFull';
 import style from './UpdateDogForm.module.css';
 import * as dogsAction from '../../../../_redux/actions/dogsAction';
+import { Link } from 'react-router-dom';
 
 const UpdateDogForm = () => {
 	const dispatch = useDispatch();
@@ -98,7 +99,12 @@ const UpdateDogForm = () => {
 				>
 					{({ errors, values }) => (
 						<Form>
-							<h1 className={style.titleForm}>Editar Perro</h1>
+							<div>
+								<Link to='/dashboard/dogs'>
+									<button className={style.goBackBtn}><i class="fa-solid fa-arrow-left"></i></button>
+								</Link>
+								<h1 className={style.titleForm}>Editar Perro</h1>
+							</div>
 							<div className={style.boxForm}>
 								<div className={style.containerInputsLeftForm}>
 									<div className={style.containerInputs}>

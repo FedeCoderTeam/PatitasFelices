@@ -18,6 +18,21 @@
     height: 700;
 }
 
+.goBackBtn {
+    color: #68392f;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    margin: 10px 0px 0px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 200ms linear, color 200ms linear;
+}
+.goBackBtn:hover {
+    background-color: rgb(11, 26, 32);
+    color: #D9AD77;
+}
+
 .titleForm{
     color: #D9AD77;
     font-size: 2em;
