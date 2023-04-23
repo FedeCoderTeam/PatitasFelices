@@ -3,7 +3,7 @@ import axios from 'axios';
 // import {GoogleAuthProvider, signInWithPopup, signInWithCredential} from 'firebase/auth'
 import Swal from 'sweetalert2';
 
-const URL = 'http://localhost:3001'
+const URL = 'https://patitas-felices.onrender.com'
 
 const authUserAction = () => {
     return async function (dispatch) {

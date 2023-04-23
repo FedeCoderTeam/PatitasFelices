@@ -14,10 +14,12 @@ import {
 	set_name,
 } from '../reducer/productsReducer.js';
 
+const URL = 'https://patitas-felices.onrender.com'
+
 const getProducts = () => {
 	return async function (dispatch) {
 		try {
-			let dbData = await axios.get('http://localhost:3001/products');
+			let dbData = await axios.get(`${URL}/products`);
 			dispatch(getAllProducts(dbData.data));
 		} catch (error) {
 			console.log(error);
@@ -29,7 +31,7 @@ const getProductsByName = (name) => {
 	return async function (dispatch) {
 		try {
 			const dbData = await axios.get(
-				`http://localhost:3001/products?name=${name}`,
+				`${URL}/products?name=${name}`,
 			);
 			dispatch(getNameProduct(dbData.data));
 		} catch (error) {
@@ -41,7 +43,7 @@ const getProductsByName = (name) => {
 const getProductsById = (id) => {
 	return async function (dispatch) {
 		try {
-			const dbData = await axios.get(`http://localhost:3001/products/${id}`);
+			const dbData = await axios.get(`${URL}/products/${id}`);
 			dispatch(getProductDetail(dbData.data));
 		} catch (error) {
 			console.log(error);
@@ -52,7 +54,7 @@ const getProductsById = (id) => {
 const getAllsubCategory = () => {
 	return async function (dispatch) {
 		try {
-			const db = await axios.get('http://localhost:3001/subcategories');
+			const db = await axios.get(`${URL}/subcategories`);
 			dispatch(getSubCategories(db.data));
 		} catch (error) {
 			console.log(error);
@@ -75,7 +77,7 @@ const getName = () => {
 const postProduct = (obj) => {
 	return async () => {
 		try {
-			await axios.post('http://localhost:3001/products', obj)
+			await axios.post(`${URL}/products`, obj)
 		} catch (error) {
 			console.log(error);
 		}
@@ -85,7 +87,7 @@ const postProduct = (obj) => {
 const updateProduct = (obj) => {
 	return async () => {
 		try {
-			await axios.put('http://localhost:3001/products', obj)
+			await axios.put(`${URL}/products`, obj)
 		} catch (error) {
 			
 		}
@@ -132,7 +134,7 @@ const setLinkDePagos = (productDetail) => {
 	return async function () {
 		try {
 			let link = await axios.post(
-				'http://localhost:3001/mercadopago/payment',
+				`${URL}/mercadopago/payment`,
 				productDetail,
 			);
 			window.location.href = link.data.body.init_point;

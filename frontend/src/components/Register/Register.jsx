@@ -42,7 +42,7 @@ const Register = () => {
 		const height = 600;
 		const top = Math.max((window.screen.availHeight - height) / 2, 0).toString()
 		const left = Math.max((window.screen.availWidth - width) / 2, 0).toString();
-		window.open('http://localhost:3001/auth/google', 'Google Login', `width=${width}, height=${height}, left=${left}, top=${top}`);
+		window.open('https://patitas-felices.onrender.com/auth/google', 'Google Login', `width=${width}, height=${height}, left=${left}, top=${top}`);
 
 		window.addEventListener('message', async function (event) {
 			if(event.origin !== 'http://localhost:3001') return;

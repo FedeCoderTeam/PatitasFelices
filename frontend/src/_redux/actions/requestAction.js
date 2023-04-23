@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { setAdoptionDog } from '../reducer/requestReducer.js';
 
+const URL = 'https://patitas-felices.onrender.com'
+
 const postAdoptionDog = (obj) => {
 	return async () => {
 		try {
-			await axios.post('http://localhost:3001/requests', obj);
+			await axios.post(`${URL}/requests`, obj);
 		} catch (error) {
 			console.log(error);
 		}
@@ -14,7 +16,7 @@ const postAdoptionDog = (obj) => {
 const updateAdoptionDog = (obj) => {
 	return async () => {
 		try {
-			await axios.put('http://localhost:3001/requests', obj);
+			await axios.put(`${URL}/requests`, obj);
 		} catch (error) {
 			console.log(error);
 		}
@@ -24,7 +26,7 @@ const updateAdoptionDog = (obj) => {
 const getAdoptionDog = () => {
 	return async (dispatch) => {
 		try {
-			let db = await axios.get('http://localhost:3001/requests');
+			let db = await axios.get(`${URL}/requests`);
 			dispatch(setAdoptionDog(db.data));
 		} catch (error) {
 			console.log(error);
