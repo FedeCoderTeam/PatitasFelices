@@ -6,7 +6,7 @@ mercadopagoconfig();
 const router = Router();
 
 router.post('/payment', async (req, res) => {
-	let { id, name, image, description, category, price } = req.body;
+	let { id, name, image, description, category, quantity, price } = req.body;
 
 	let preference = {
 		items: [
@@ -17,7 +17,7 @@ router.post('/payment', async (req, res) => {
 				picture_url: image,
 				description: description,
 				category_id: category,
-				quantity: 1,
+				quantity: quantity,
 				unit_price: Number(price),
 			},
 		],
@@ -40,9 +40,4 @@ router.post('/payment', async (req, res) => {
 		res.status(400).send({ error: error.message });
 	}
 });
-
-// mercadopago.preferences
-// 	.create(preference)
-// 	.then((response) => res.status(200).send({ response }))
-// 	.catch((error) => res.status(400).send({ error: error.message }));
 module.exports = router;

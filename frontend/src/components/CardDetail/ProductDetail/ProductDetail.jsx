@@ -34,8 +34,20 @@ function ProductDetail() {
 		(state) => state.productsReducer.productDetail,
 	);
 
+	console.log(productDetail);
+
 	const handlerClick = () => {
-		dispatch(setLinkDePagos(productDetail));
+		let buy = {
+			id: productDetail.id,
+			name: productDetail.name,
+			image: productDetail.image,
+			description: productDetail.description,
+			category: productDetail.category,
+			quantity: count,
+			price: productDetail.price,
+		};
+
+		dispatch(setLinkDePagos(buy));
 	};
 
 	useEffect(() => {
@@ -106,13 +118,20 @@ function ProductDetail() {
 									<span className={style.btnSpan}>+</span>
 								</button>
 							</div>
-							<button className={style.btnCarritoDetail}>
+							<button disabled={count <= 0} className={style.btnCarritoDetail}>
 								AÑADIR AL CARRITO
 							</button>
 						</div>
 					</div>
 					<div>
-						<button onClick={() => handlerClick()}>Comprar</button>
+						<button
+							disabled={count <= 0}
+							onClick={() => handlerClick()}
+							className={style.btnBuy}
+							style={count <= 0 ? { background: 'grey' } : {}}
+						>
+							Comprar
+						</button>
 					</div>
 					<div className={style.containerOtros}>
 						<h2 className={style.titleMasProductos}>
