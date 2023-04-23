@@ -20,7 +20,7 @@ server.use(morgan('dev'));
 server.use(passport.initialize())
 server.use(fileUpload());
 server.use((req, res, next) => {
-	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Origin', 'https://patitas-felices.vercel.app');
 	res.header('Access-Control-Allow-Credentials', 'true');
 	res.header(
 		'Access-Control-Allow-Headers',
