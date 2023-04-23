@@ -6,6 +6,7 @@ import CloudinaryWidget from '../../../../components/Cloudinary/CloudinaryForm/C
 import CloudinaryWidgetFull from '../../../../components/Cloudinary/CloudinaryForm/CloudinaryWidgetFull';
 import style from './UpdateProductForm.module.css';
 import * as productsAction from '../../../../_redux/actions/productsAction';
+import { Link } from 'react-router-dom';
 
 const UpdateProductForm = () => {
 
@@ -100,7 +101,12 @@ const UpdateProductForm = () => {
                 <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => handleSubmit(values)} >
                     {({
                         errors, values }) => (<Form>
-                            <h1 className={style.titleForm}>Editar Producto</h1>
+                            <div>
+                                <Link to='/dashboard/products'>
+									<button className={style.goBackBtn}><i class="fa-solid fa-arrow-left"></i></button>
+								</Link>
+                                <h1 className={style.titleForm}>Editar Producto</h1>
+                            </div>
                             <div className={style.boxForm}>
                                 <div className={style.containerInputsLeftForm}>
                                     <div className={style.containerInputs}>

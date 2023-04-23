@@ -7,6 +7,7 @@ import CloudinaryWidgetFull from '../../../../components/Cloudinary/CloudinaryFo
 import style from './CreateDog.module.css';
 import * as dogsAction from '../../../../_redux/actions/dogsAction';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const CreateDog = () => {
 	const dispatch = useDispatch();
@@ -115,7 +116,12 @@ const CreateDog = () => {
 				>
 					{({ errors }) => (
 						<Form>
-							<h1 className={style.titleCreateDog}>Ingresar Perro</h1>
+							<div>
+								<Link to='/dashboard/dogs'>
+									<button className={style.goBackBtn}><i class="fa-solid fa-arrow-left"></i></button>
+								</Link>
+								<h1 className={style.titleCreateDog}>Ingresar Perro</h1>
+							</div>
 							<div className={style.boxCreateDog}>
 								<div className={style.containerInputsLeftCreateDog}>
 									<div className={style.containerInputs}>
