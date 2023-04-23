@@ -63,14 +63,15 @@ function App() {
 				<Route path={'/dogs'} element={<Dogs />} />
 				<Route path={'/products'} element={<Products />} />
 				<Route path={'/products/:id'} element={<ProductDetail />} />
-				{/* <Route path={'/CreateDog'} element={<CreateDog />} /> */}
 				<Route path={'*'} element={<NotFound />} />
-				{
-					// selector.user?.role === 'Administrador' &&
+				{selector.user?.role === 'Administrador' && (
 					<Route path={'/dashboard/*'} element={<Dashboard />} />
-				}
+				)}
 				<Route path={'/confirm-account'} element={<ConfirmAccount />} />
-				<Route path={'/request-password-reset'} element={<RequestPasswordReset />} />
+				<Route
+					path={'/request-password-reset'}
+					element={<RequestPasswordReset />}
+				/>
 				<Route path={'/password-reset'} element={<PasswordReset />} />
 			</Routes>
 			{location.pathname !== '/' &&

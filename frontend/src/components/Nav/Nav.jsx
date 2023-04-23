@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import style from '../Nav/nav.module.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
@@ -14,6 +15,7 @@ import { Settings, Logout } from '@mui/icons-material';
 import { logoutUserAction } from '../../_redux/actions/authAction';
 
 export default function Nav() {
+	const location = useLocation();
 	const selector = useSelector((state) => state.authReducer);
 
 	return (
@@ -49,16 +51,18 @@ export default function Nav() {
 						<p className={style.links}>Perros</p>
 					</div>
 				</Link>
-				<Link to="/dashboard" className={style.link}>
-					<div className={style.divNav}>
-						<img
-							className={style.imgIcons}
-							src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681881441/Proyecto%20Final/dog-house_2_rg9isr.png"
-							alt="Home"
-						/>
-						<p className={style.links}>Admin</p>
-					</div>
-				</Link>
+				{selector.user?.role === 'Administrador' && (
+					<Link to="/dashboard" className={style.link}>
+						<div className={style.divNav}>
+							<img
+								className={style.imgIcons}
+								src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681881441/Proyecto%20Final/dog-house_2_rg9isr.png"
+								alt="Home"
+							/>
+							<p className={style.links}>Admin</p>
+						</div>
+					</Link>
+				)}
 			</div>
 			{!selector.isAuthenticated ? (
 				<div className={style.containerRight}>
