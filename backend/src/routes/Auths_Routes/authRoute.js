@@ -45,11 +45,11 @@ router.post('/login', cors({credentials: true, origin: 'https://patitas-felices.
     let { email, password } = req.body
     try {
         const result = await loginUser(email, password);
-        res.cookie('tkn_usr', result.token, { maxAge: 86400000, hostOnly:false, httpOnly: false, sameSite: 'none', secure: false })
+        res.cookie('tkn_usr', result.token, { maxAge: 86400000, hostOnly:false, httpOnly: true, sameSite: 'none', secure: true })
         res.status(200).json(result)
     } catch (error) {
         // console.log(error)
-        res.clearCookie('tkn_usr', { hostOnly:false, httpOnly: false, sameSite: 'none', secure: false })
+        res.clearCookie('tkn_usr', { hostOnly:false, httpOnly: true, sameSite: 'none', secure: true })
         res.status(401).json({error: error.message, authenticated: false, token: null, user: null})
     }
 })
@@ -59,7 +59,7 @@ router.post('/logout', cors({credentials: true, origin: 'https://patitas-felices
     const { tkn_usr } = req.cookies
     try {
         let result = await logoutUser(id, tkn_usr)
-        res.clearCookie('tkn_usr', { hostOnly:false, httpOnly: false, sameSite: 'none', secure: false })
+        res.clearCookie('tkn_usr', { hostOnly:false, httpOnly: true, sameSite: 'none', secure: true })
         res.status(200).json(result)
     } catch (error) {
         // console.log(error)
@@ -131,7 +131,7 @@ router.get('/google/callback',
     async (req, res, next) => {
         try {
             const result = await googleUser(req.user)
-            res.cookie('tkn_usr', result.token, { maxAge: 86400000,  hostOnly:false, httpOnly: false, sameSite: 'none', secure: false })
+            res.cookie('tkn_usr', result.token, { maxAge: 86400000, hostOnly:false, httpOnly: true, sameSite: 'none', secure: true })
             res.send(`
                 <html>
                     <body>
