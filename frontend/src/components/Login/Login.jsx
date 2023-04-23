@@ -3,8 +3,7 @@ import Google from './Google.png';
 import { Link, useNavigate } from 'react-router-dom';
 import style from './login.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import * as authActions from '../../_redux/actions/authAction';
-import { googleUserAction } from '../../_redux/actions/authAction';
+import { loginUserAction, googleUserAction, setShowOverlayAction } from '../../_redux/actions/authAction';
 import Swal from 'sweetalert2';
 
 const Login = () => {
@@ -19,7 +18,7 @@ const Login = () => {
 		if (!refEmail.current.value || !refPass.current.value) {
 		} else {
 			dispatch(
-				authActions.loginUserAction(
+				loginUserAction(
 					refEmail.current.value,
 					refPass.current.value,
 				)
@@ -32,9 +31,17 @@ const Login = () => {
 		const height = 600;
 		const top = Math.max((window.screen.availHeight - height) / 2, 0).toString()
 		const left = Math.max((window.screen.availWidth - width) / 2, 0).toString();
-		window.open('http://localhost:3001/auth/google', 'Google Login', `width=${width}, height=${height}, left=${left}, top=${top}`);
+		const googleWindow = window.open('http://localhost:3001/auth/google', 'Google Login', `width=${width}, height=${height}, left=${left}, top=${top}`);
 
-		window.addEventListener('message', async function (event) {
+		dispatch(setShowOverlayAction(true))
+		const checkWindowClosed = setInterval(() => {
+			if(googleWindow.closed) {
+				clearInterval(checkWindowClosed)
+				dispatch(setShowOverlayAction(false))
+			}
+		}, 500)
+
+		googleWindow.addEventListener('message', async function (event) {
 			if(event.origin !== 'http://localhost:3001') return;
 			if(event.data.type === 'AUTH_SUCCESS') {
 				dispatch(googleUserAction(event.data.payload));
@@ -87,8 +94,8 @@ const Login = () => {
 					</button>
 				</div>
 
-				<div className={style.containerGoogleLogin}>
-					<p onClick={() => handleOnGoogle()} >
+				<div className={style.containerGoogleLogin} onClick={() => handleOnGoogle()}>
+					<p>
 						Ingresar con <img src={Google} alt="Google" />
 					</p>
 				</div>

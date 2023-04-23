@@ -1,6 +1,5 @@
-import {setIsFetching, setIsRegisterFetching, setStatusVerify, setUser} from '../reducer/authReducer';
+import {setIsFetching, setIsRegisterFetching, setShowOverlay, setStatusVerify, setUser} from '../reducer/authReducer';
 import axios from 'axios';
-// import {GoogleAuthProvider, signInWithPopup, signInWithCredential} from 'firebase/auth'
 import Swal from 'sweetalert2';
 
 const URL = 'http://localhost:3001'
@@ -191,6 +190,12 @@ const googleUserAction = (payload) => {
     }
 }
 
+const setShowOverlayAction = (payload) => {
+    return function (dispatch) {
+        dispatch(setShowOverlay(payload))
+    }
+}
+
 export {
     authUserAction,
     registerUserAction,
@@ -201,5 +206,6 @@ export {
     verifyPasswordResetAction,
     confirmPasswordResetAction,
     changePasswordAction,
-    googleUserAction
+    googleUserAction,
+    setShowOverlayAction
 }

@@ -27,6 +27,7 @@ import Dashboard from './views/Dashboard/Dashboard';
 import ConfirmAccount from './components/AuthForms/ConfirmAccount/ConfirmAccount';
 import RequestPasswordReset from './components/AuthForms/RequestPasswordReset/RequestPasswordReset';
 import PasswordReset from './components/AuthForms/PasswordReset/PasswordReset';
+import Overlay from './components/Overlay/Overlay';
 
 function App() {
 	const location = useLocation();
@@ -68,10 +69,7 @@ function App() {
 					<Route path={'/dashboard/*'} element={<Dashboard />} />
 				)}
 				<Route path={'/confirm-account'} element={<ConfirmAccount />} />
-				<Route
-					path={'/request-password-reset'}
-					element={<RequestPasswordReset />}
-				/>
+				<Route path={'/request-password-reset'} element={<RequestPasswordReset />} />
 				<Route path={'/password-reset'} element={<PasswordReset />} />
 			</Routes>
 			{location.pathname !== '/' &&
@@ -81,6 +79,7 @@ function App() {
 				(!location.pathname.includes('/dashboard') ||
 					selector.user?.role !== 'Administrador') && <Footer />}
 			<BackDrop />
+			<Overlay />
 			{/* <Footer/> */}
 		</>
 	);
