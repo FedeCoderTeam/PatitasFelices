@@ -29,6 +29,7 @@ import RequestPasswordReset from './components/AuthForms/RequestPasswordReset/Re
 import PasswordReset from './components/AuthForms/PasswordReset/PasswordReset';
 import Overlay from './components/Overlay/Overlay';
 import Cart from './components/Carts/Cart/Cart';
+import TestComponent from './components/testComponent/TestComponent';
 
 function App() {
 	const location = useLocation();
@@ -61,6 +62,7 @@ function App() {
 					selector.user?.role !== 'Administrador') && <Nav />}
 			<Routes>
 				<Route path={'/'} element={<Landing />} />
+				<Route path={'/testComponent'} element={<TestComponent />} />
 				<Route path={'/home'} element={<Home />} />
 				<Route path={'/about'} element={<About />} />
 				<Route path={'/register'} element={<Register />} />
