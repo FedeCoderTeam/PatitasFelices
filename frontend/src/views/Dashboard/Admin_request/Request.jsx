@@ -82,14 +82,7 @@ const Request = () => {
 
 	return (
 		<>
-			<button className={style.buttonAdd}
-				// onClick={() => {
-				// 	navigate('./createProduct');
-				// }}
-			>
-				<AddIcon />
-				Agregar Request
-			</button>
+			
 			<Box
 				sx={{
 					height: 'auto',

@@ -35,11 +35,14 @@
     transition: color 200ms linear;
 }
 
-.links:hover{
+/* .links:hover{
     color: #D9AD77;
-}
+} */
 
 .active div p {
+    color: #D9AD77;
+}
+.active div i {
     color: #D9AD77;
 }
 
@@ -48,6 +51,18 @@
     justify-content: center;
     align-items: center;
     gap: 8px;
+}
+
+.divNav i {
+    color: white;
+    transition: color linear 200ms;
+}
+
+.divNav:hover i {
+    color: #D9AD77;
+}
+.divNav:hover .links {
+    color: #D9AD77;
 }
 
 .imgIcons{

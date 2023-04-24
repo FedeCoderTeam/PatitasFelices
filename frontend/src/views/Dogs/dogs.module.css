@@ -13,7 +13,7 @@
 
 .filtersContainer {
     position: fixed;
-    /* top: 50%; */
+    top: 50%;
     left: 5%;
     transform: translateY(-50%);
     width: 18%;
