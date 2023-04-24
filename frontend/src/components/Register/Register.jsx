@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import Google from './Google.png';
-import {Link, useNavigate} from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import './Register.css';
 import { useDispatch } from 'react-redux';
 
 // import RegisterImg from 'registerImage.png'
-import {registerUserAction, googleUserAction, setShowOverlayAction} from '../../_redux/actions/authAction';
+import { registerUserAction, googleUserAction, setShowOverlayAction } from '../../_redux/actions/authAction';
 import Swal from 'sweetalert2';
 
 const Register = () => {
@@ -35,7 +35,7 @@ const Register = () => {
 		);
 	};
 
-	const navigate = useNavigate()
+	// const navigate = useNavigate()
 
 	const handleOnGoogle = () => {
 		const width = 500;
@@ -46,7 +46,7 @@ const Register = () => {
 
 		dispatch(setShowOverlayAction(true))
 		const checkWindowClosed = setInterval(() => {
-			if(googleWindow.closed) {
+			if (googleWindow.closed) {
 				clearInterval(checkWindowClosed)
 				dispatch(setShowOverlayAction(false))
 			}
@@ -54,11 +54,11 @@ const Register = () => {
 
 		window.addEventListener('message', async function (event) {
 			console.log(event)
-			if(event.origin !== 'http://localhost:3001') return;
-			if(event.data.type === 'AUTH_SUCCESS') {
+			if (event.origin !== 'http://localhost:3001') return;
+			if (event.data.type === 'AUTH_SUCCESS') {
 				dispatch(googleUserAction(event.data.payload));
-				navigate('/home')
-			} else if(event.data.type === 'AUTH_ERROR') {
+				redirect('/home')
+			} else if (event.data.type === 'AUTH_ERROR') {
 				await Swal.fire({
 					title: event.data.payload.error,
 					icon: 'error',
@@ -104,7 +104,7 @@ const Register = () => {
 							className="buttonRegister"
 							onClick={handleOnRegister}
 						>
-							Crear cuenta
+							<Link to='/home'>Crear cuenta</Link>
 						</button>
 					</div>
 				</div>
@@ -126,7 +126,7 @@ const Register = () => {
 					</Link>
 				</div>
 			</div>
-		</div>
+		</div >
 	);
 };
 
