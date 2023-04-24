@@ -92,7 +92,8 @@
 .hideInput {
     display: flex;
     flex-direction: column;
-    width: 394px;
+    width: 360px;
+    margin-left: 7px;
 }
 
 .containerUpload-Form label {
