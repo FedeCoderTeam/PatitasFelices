@@ -46,7 +46,7 @@ function ProductDetail() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const response = await fetch('http://localhost:3001/products');
+			const response = await fetch('https://patitas-felices.vercel.app/products');
 			const data = await response.json();
 			const shuffledProducts = data.sort(() => 0.5 - Math.random());
 			const selectedProducts = shuffledProducts.slice(0, 4);
