@@ -138,7 +138,7 @@ function ProductDetail() {
 									<span className={style.btnSpan}>+</span>
 								</button>
 							</div>
-							<button className={style.btnCarritoDetail} onClick={() => addProduct(count)}>
+							<button disabled={count <= 0} style={count <= 0 ? { background: 'grey' } : {}} className={style.btnCarritoDetail} onClick={() => addProduct(count)}>
 								AÑADIR AL CARRITO
 							</button>
 						</div>

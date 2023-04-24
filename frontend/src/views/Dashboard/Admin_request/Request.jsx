@@ -1,9 +1,10 @@
 import Box from '@mui/material/Box';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
-import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
+import AddIcon from '@mui/icons-material/Add';
 import { useSelector } from 'react-redux';
 import React, { useMemo } from 'react';
+import style from './requestGrid.module.css';
 // import { useNavigate } from 'react-router-dom';
 // import * as requestAction from '../../../_redux/actions/productsAction';
 
@@ -81,26 +82,7 @@ const Request = () => {
 
 	return (
 		<>
-			<button
-				style={{
-					background: 'none',
-					border: 'none',
-					color: 'white',
-					fontSize: '20px',
-					justifyContent: 'center',
-				}}
-				// onClick={() => {
-				// 	navigate('./createProduct');
-				// }}
-			>
-				<AddCircleOutlinedIcon
-					style={{
-						fontSize: '30px',
-						color: 'white',
-						marginTop: '10px',
-					}}
-				/>
-			</button>
+			
 			<Box
 				sx={{
 					height: 'auto',

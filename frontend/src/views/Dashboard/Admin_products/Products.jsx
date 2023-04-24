@@ -1,11 +1,13 @@
 import Box from '@mui/material/Box';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
-import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
+import AddIcon from '@mui/icons-material/Add';
+// import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as productsAction from '../../../_redux/actions/productsAction';
+import style from './productGrid.module.css';
 
 const Products = () => {
 	const dispatch = useDispatch();
@@ -68,24 +70,13 @@ const Products = () => {
 	return (
 		<>
 			<button
-				style={{
-					background: 'none',
-					border: 'none',
-					color: 'white',
-					fontSize: '20px',
-					justifyContent: 'center',
-				}}
+				className={style.buttonAdd}
 				onClick={() => {
 					navigate('./createProduct');
 				}}
 			>
-				<AddCircleOutlinedIcon
-					style={{
-						fontSize: '30px',
-						color: 'white',
-						marginTop: '10px',
-					}}
-				/>
+				<AddIcon />
+				Agregar Producto
 			</button>
 			<Box
 				sx={{

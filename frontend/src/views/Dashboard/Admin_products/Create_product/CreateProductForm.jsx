@@ -7,6 +7,7 @@ import CloudinaryWidgetFull from '../../../../components/Cloudinary/CloudinaryFo
 import style from './CreateProductForm.module.css';
 import * as productsAction from '../../../../_redux/actions/productsAction';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const CreateProductForm = () => {
 	const dispatch = useDispatch();
@@ -102,7 +103,12 @@ const CreateProductForm = () => {
 				>
 					{({ errors, values }) => (
 						<Form>
-							<h1 className={style.titleForm}>Crear Producto</h1>
+							<div>
+								<Link to='/dashboard/products'>
+									<button className={style.goBackBtn}><i class="fa-solid fa-arrow-left"></i></button>
+								</Link>
+								<h1 className={style.titleForm}>Crear Producto</h1>
+							</div>
 							<div className={style.boxForm}>
 								<div className={style.containerInputsLeftForm}>
 									<div className={style.containerInputs}>
