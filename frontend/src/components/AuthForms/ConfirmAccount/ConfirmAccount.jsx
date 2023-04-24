@@ -17,7 +17,7 @@ const ConfirmAccount = () => {
     }, [dispatch])
 
     return (
-        <div style={{minHeight: 'calc(100vh - 172)'}} >
+        <div style={{minHeight: 'calc(100vh - 172px)'}} >
         </div>
     );
 };
