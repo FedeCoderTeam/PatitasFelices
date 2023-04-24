@@ -46,14 +46,18 @@ const Dogs = () => {
 			</div>
 
 			<div className={style.cardSection}>
-				<div className={style.paginatedContainer}>
-					<PaginatedDogs
-						dogsPerPage={dogsPerPage}
-						allDogs={allDogs?.length}
-						paginado={paginado}
-						currentPage={currentPage}
-					/>
-				</div>
+				{!currentDogs.length ? (
+					''
+				) : (
+					<div className={style.paginatedContainer}>
+						<PaginatedDogs
+							dogsPerPage={dogsPerPage}
+							allDogs={allDogs?.length}
+							paginado={paginado}
+							currentPage={currentPage}
+						/>
+					</div>
+				)}
 
 				{!currentDogs.length ? (
 					<h2>No hay ningun perro con las características seleccionadas</h2>

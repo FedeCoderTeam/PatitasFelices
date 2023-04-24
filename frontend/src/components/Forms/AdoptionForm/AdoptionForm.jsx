@@ -9,6 +9,7 @@ import CloudinaryWidget from '../../Cloudinary/CloudinaryForm/CloudinaryWidget';
 import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryForm/CloudinaryWidgetFull';
 import * as requestAction from '../../../_redux/actions/requestAction';
 import { useNavigate } from 'react-router-dom';
+import useToast from '../../../hooks/useToast'
 
 const AdoptionForm = () => {
 	const dispatch = useDispatch();
@@ -16,6 +17,8 @@ const AdoptionForm = () => {
 	const navigate = useNavigate();
 
 	const [url, setUrl] = useState('');
+
+	const { success } = useToast();
 
 	const initialValues = {
 		name: '',
@@ -60,9 +63,9 @@ const AdoptionForm = () => {
 			'Seleccione una opción.',
 		),
 		more_animals: Yup.string().required('Seleccione una opción.'),
-		moreAnimals_details: Yup.string().required(
-			'Es obligatoria esta información.',
-		),
+		moreAnimals_details: Yup.string()
+		// .required('Es obligatoria esta información.')
+		,
 		proper_income: Yup.string().required('Elige una opción.'),
 		inHouse_allowance: Yup.string().required('Elige una opción.'),
 		outDoor_image: Yup.string().matches(
@@ -79,7 +82,7 @@ const AdoptionForm = () => {
 			address: values.address,
 			email: values.email,
 			areas_conditions: values.areas_conditions,
-			more_animals: false,
+			more_animals: values.more_animals === 'Yes' ? true : false,
 			moreAnimals_details: values.moreAnimals_details,
 			proper_income: values.proper_income,
 			inHouse_allowance: values.inHouse_allowance,
@@ -87,8 +90,12 @@ const AdoptionForm = () => {
 			dogId: dogId.id,
 		};
 		dispatch(requestAction.postAdoptionDog(obj));
-		alert(JSON.stringify(obj, null, 2));
-		navigate('/dogs');
+		success(`¡Solicitud de adopción de ${initialValues.name} enviada!`, {
+			duration: 2000
+		});
+		setTimeout(() => {
+			navigate('/dogs');
+		}, 2000);
 	};
 
 	const formik = useFormik({
@@ -184,17 +191,18 @@ const AdoptionForm = () => {
 											de qué tipo?
 										</label>
 										<div className="more_animals-Container">
-											<Field
-												type="checkbox"
-												id="more_animals"
-												name="more_animals"
-												className="checkbox"
-											/>
-											{values.more_animals && (
+											<Field name="more_animals" as="select">
+												<option value=""></option>
+												<option value='Yes'>Si</option>
+												<option value='No'>No</option>
+											</Field>
+											{/* {values.more_animals !== false && ( */}
 												<div className="hideInput">
 													<Field
+														disabled = {values.more_animals === 'No' || values.more_animals === ''}
 														type="text"
 														id="moreAnimals_details"
+														value={values.more_animals !== 'Yes' ? '' : values.moreAnimals_details}
 														name="moreAnimals_details"
 														placeholder="EJ: 2 gatos, 1 perro."
 													/>
@@ -202,7 +210,7 @@ const AdoptionForm = () => {
 														{(msg) => <div className="errorMessage">{msg}</div>}
 													</ErrorMessage>
 												</div>
-											)}
+											{/* )} */}
 										</div>
 										<ErrorMessage name="more_animals">
 											{(msg) => <div className="errorMessage">{msg}</div>}

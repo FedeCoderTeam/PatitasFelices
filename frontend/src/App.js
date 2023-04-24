@@ -27,6 +27,8 @@ import Dashboard from './views/Dashboard/Dashboard';
 import ConfirmAccount from './components/AuthForms/ConfirmAccount/ConfirmAccount';
 import RequestPasswordReset from './components/AuthForms/RequestPasswordReset/RequestPasswordReset';
 import PasswordReset from './components/AuthForms/PasswordReset/PasswordReset';
+import Overlay from './components/Overlay/Overlay';
+import Cart from './components/Carts/Cart/Cart';
 
 function App() {
 	const location = useLocation();
@@ -41,7 +43,12 @@ function App() {
 		dispatch(dogsAction.genders());
 		dispatch(productsAction.getProducts());
 		dispatch(requestAction.getAdoptionDog());
+		dispatch(authActions.getUsers());
 	}, [dispatch]);
+
+	if(localStorage.getItem('products')) {
+		if(JSON.parse(localStorage.getItem('products')).length) dispatch(productsAction.setItemsAction(JSON.parse(localStorage.getItem('products'))))
+	}
 
 	return (
 		<>
@@ -50,9 +57,8 @@ function App() {
 				location.pathname !== '/login' &&
 				location.pathname !== '/register' &&
 				location.pathname !== '/form' &&
-				(location.pathname !== '/dashboard' ||
+				(!location.pathname.includes('/dashboard') ||
 					selector.user?.role !== 'Administrador') && <Nav />}
-
 			<Routes>
 				<Route path={'/'} element={<Landing />} />
 				<Route path={'/home'} element={<Home />} />
@@ -81,6 +87,8 @@ function App() {
 				(!location.pathname.includes('/dashboard') ||
 					selector.user?.role !== 'Administrador') && <Footer />}
 			<BackDrop />
+			<Overlay />
+			<Cart />
 			{/* <Footer/> */}
 		</>
 	);

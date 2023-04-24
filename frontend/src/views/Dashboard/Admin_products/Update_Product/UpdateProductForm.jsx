@@ -6,6 +6,7 @@ import CloudinaryWidget from '../../../../components/Cloudinary/CloudinaryForm/C
 import CloudinaryWidgetFull from '../../../../components/Cloudinary/CloudinaryForm/CloudinaryWidgetFull';
 import style from './UpdateProductForm.module.css';
 import * as productsAction from '../../../../_redux/actions/productsAction';
+import { Link } from 'react-router-dom';
 
 const UpdateProductForm = () => {
 
@@ -13,7 +14,8 @@ const UpdateProductForm = () => {
 
     const [url, setUrl] = useState("");
 
-    const productToUpdate = useSelector((state) => state.productsReducer.productDetail)
+    const productToUpdate = useSelector((state) => state.productsReducer.productDetail);
+    
 
     useEffect(() =>{
         return () => {
@@ -21,66 +23,40 @@ const UpdateProductForm = () => {
         };
     }, []);
 
+    
     const initialValues = {
         id: productToUpdate.id,
-		name: productToUpdate.name,
-		description: productToUpdate.description,
-		price: productToUpdate.price,
-		image: productToUpdate.image,
-		brand: productToUpdate.brand,
-		stock: productToUpdate.stock,
-		isDisabled: productToUpdate.isDisabled,
-		category: productToUpdate.category,
-		subCategory: productToUpdate.subCategory,
+        name: productToUpdate.name,
+        description: productToUpdate.description,
+        price: productToUpdate.price,
+        image: productToUpdate.image,
+        brand: productToUpdate.brand,
+        stock: productToUpdate.stock,
+        isDisabled: productToUpdate.isDisabled,
+        category: productToUpdate.category,
+        subCategory: productToUpdate.subCategory,
     }
 
-    console.log(initialValues);
-
-    const validationSchema = Yup.object().shape({
-        id: Yup.number()
-            .min(1, 'El id debe ser mayor a 0. *')
-            .required('El id es obligatorio'),
-        name: Yup.string()
-            .min(4, 'El nombre debe tener mínimo 4 caracteres. *')
-            .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
-            .required('El nombre es obligatorio'),
-        description: Yup.string()
-            .min(10, 'La descripción debe tener mínimo 20 caracteres. *')
-            .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
-            .required('La descripción es obligatoria'),
-        price: Yup.number()
-            .min(1, 'El precio tiene que ser mayor a 1. *')
-            .required('El precio es obligatorio.'),
-        image: Yup.string()
-            .matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida.'),
-        brand: Yup.string()
-            .min(2, 'La marca debe tener mínimo 2 caracteres. *')
-            .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
-            .required('La marca es obligatoria'),
-        stock: Yup.number()
-            .min(0, 'El stock tiene que ser mayor o igual a 0. *')
-            .required('El stock tiene que ser obligatorio.'),
-        isDisabled: Yup.boolean()
-            .required('Este campo es obligatorio.'),
-        category: Yup.string()
-            .oneOf(["Alimentos", "Accesorios"], 'Seleccione una opción.'),
-        subCategory: Yup.string()
-            .oneOf(["Adulto", "Cachorro", "Comederos", "Collares", "Juguetes", "Vestimenta"], 'Seleccione una opción.')
-    });
-
-    
     const handleSubmit = async (values) => {
+
         const obj = {
-            id: values.id,
-            name: values.name,
-            description: values.description,
-            price: values.price,
-            image: values.image,
-            brand: values.brand,
-            stock: values.stock,
-            isDisabled: values.isDisabled,
-            categoryId: values.category === "Alimentos" ? values.category = 1 : values.category === "Accesorios" ? values.category = 2 : values.category,
-            subCategoryId: values.subCategory === "Adulto" ? values.subCategory = 1 : values.subCategory === "Cachorro" ? values.subCategory = 2 : values.subCategory === "Comederos" ? values.subCategory = 3 : values.subCategory === "Collares" ? values.subCategory = 4 : values.subCategory === "Juguetes" ? values.subCategory = 5 : values.subCategory === "Vestimenta" ? values.subCategory = 6 : values.subCategory,
+            id: initialValues.id,
+            name: values.name ? values.name : initialValues.name,
+            description: values.description ? values.description : initialValues.description,
+            price: values.price ? values.price : initialValues.price,
+            image: values.image ? values.image : initialValues.image,
+            brand: values.brand ? values.brand : initialValues.brand,
+            stock: values.stock ? values.stock : initialValues.stock,
+            isDisabled: values.isDisabled ? values.isDisabled : initialValues.isDisabled,
+            categoryId: values.category ? (values.category === "Alimentos" ? 1 : 2) : initialValues.category === "Alimentos" ? 1 : 2,
+            subCategoryId: values.subCategory 
+            ? (values.subCategory === "Adulto" ? 1 : 
+            (values.subCategory === "Cachorro" ? 2 :
+            (values.subCategory === "Comederos" ? 3 : 
+            (values.subCategory === "Collares" ? 4 : 
+            (values.subCategory === "Juguetes" ? 5 : 
+            (values.subCategory === "Vestimenta" ? 6 : initialValues.subCategory))))))
+            : initialValues.subCategory,
         }
 
         dispatch(productsAction.updateProduct(obj))
@@ -90,30 +66,98 @@ const UpdateProductForm = () => {
 
     const formik = useFormik({
         initialValues,
-        validationSchema,
         handleSubmit,
     });
 
     return (
         <div className={style.mainContainerForm}>
+            <div className={style.containerInitials}>
+                <h3 className={style.titleCardInitial}>Valores iniciales</h3>
+                <div className={style.subtitlesContainer}>
+                    <div className={style.subtitlesContainerLeft}>
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Id: </h3>
+                            <h4 className={style.spanCardInitial}>{initialValues.id}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Name: </h3>
+                            <h4>{initialValues.name}</h4>
+                        </div>
+
+                        <div className={style.descriptionField}>
+                            <h3 className={style.subtitleCardInitial}>Descripción: </h3>
+                            <h4>{initialValues.description}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Precio: </h3>
+                            <h4>{initialValues.price}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Marca: </h3>
+                            <h4>{initialValues.brand}</h4>
+                        </div>
+
+                    </div>
+
+                    <div className={style.subtitlesContainerRight}>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Stock: </h3>
+                            <h4>{initialValues.stock}</h4>
+                        </div>
+                        
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Descontinuado: </h3>
+                            <h4>{initialValues.isDisabled}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Categoría: </h3>
+                            <h4>{initialValues.category}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Subcategoría: </h3>
+                            <h4>{initialValues.subCategory}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                        <h3 className={style.subtitleCardInitial}>Imagen: </h3>
+                            <div className={style.imgContainer}>
+                                <img className={style.imgCardInitial} src={initialValues.image}/>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
             <div className={style.containerForm}>
-                <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => handleSubmit(values)} >
+                <Formik initialValues={initialValues} onSubmit={(values) => handleSubmit(values)} >
                     {({
                         errors, values }) => (<Form>
-                            <h1 className={style.titleForm}>Editar Producto</h1>
+                            <div>
+                                <Link to='/dashboard/products'>
+									<button className={style.goBackBtn}><i class="fa-solid fa-arrow-left"></i></button>
+								</Link>
+                                <h1 className={style.titleForm}>Editar Producto</h1>
+                            </div>
                             <div className={style.boxForm}>
                                 <div className={style.containerInputsLeftForm}>
-                                    <div className={style.containerInputs}>
+                                    {/* <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor='id'>Id del producto</label>
-                                        <Field className={style.inputs} value={initialValues.id} name='id' type='number' placeholder='Ej: 1' />
+                                        <Field className={style.inputs} value={values.id} name='id' type='number' placeholder='Ej: 1' />
                                         <ErrorMessage name='id'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
-                                    </div>
+                                    </div> */}
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor='name'>Nombre del producto</label>
-                                        <Field className={style.inputs} value={initialValues.name} name='name' type='text' placeholder='Ej: Buzo Cali Azulino' />
+                                        <Field className={style.inputs} value={values.name} name='name' type='text' placeholder='Ej: Buzo Cali Azulino' />
                                         <ErrorMessage name='name'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
@@ -121,7 +165,7 @@ const UpdateProductForm = () => {
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor='description'>Descripción</label>
-                                        <Field className={style.inputs} value={initialValues.description} name='description' type='text' placeholder='Ej: Alimento para perros adultos pequeños. Desde los 18 meses.' />
+                                        <Field className={style.inputs} value={values.description} name='description' type='text' placeholder='Ej: Alimento para perros adultos pequeños. Desde los 18 meses.' />
                                         <ErrorMessage name='description'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
@@ -129,7 +173,7 @@ const UpdateProductForm = () => {
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor='price'>Precio</label>
-                                        <Field className={style.inputs} value={initialValues.price} name='price' type='number' placeholder='Ej: 2000' />
+                                        <Field className={style.inputs} value={values.price} name='price' type='number' placeholder='Ej: 2000' />
                                         <ErrorMessage name='price'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
@@ -137,7 +181,7 @@ const UpdateProductForm = () => {
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor='stock'>Stock</label>
-                                        <Field className={style.inputs} value={initialValues.stock} name='stock' type='number' placeholder='Ej: 10' />
+                                        <Field className={style.inputs} value={values.stock} name='stock' type='number' placeholder='Ej: 10' />
                                         <ErrorMessage name='stock'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
@@ -147,15 +191,15 @@ const UpdateProductForm = () => {
                                 <div className={style.containerInputsRightForm}>
                                     <div className={style.containerInputsMarca}>
                                         <label className={style.labels} htmlFor='brand'>Marca del producto</label>
-                                        <Field className={style.inputs} value={initialValues.brand} name='brand' type='brand' placeholder='Ej: Royal Canin' />
+                                        <Field defaultValue={initialValues.brand} className={style.inputs} value={values.brand} name='brand' type='brand' placeholder='Ej: Royal Canin' />
                                         <ErrorMessage name='brand'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
                                     </div>
 
                                     <div className={style.containerInputsMarca}>
-                                        <label className={style.labels} htmlFor="isDisabled">¿Hay stock?</label>
-                                        <Field className={style.inputSelect} value={initialValues.isDisabled} as="select" id="isDisabled" name="isDisabled">
+                                        <label className={style.labels} htmlFor="isDisabled">¿Descontinuado?</label>
+                                        <Field defaultValue={initialValues.isDisabled} className={style.inputSelect} value={values.isDisabled} as="select" id="isDisabled" name="isDisabled">
                                             <option className={style.options} value="true">Sí</option>
                                             <option className={style.options} value="false">No</option>
                                         </Field>
@@ -166,7 +210,7 @@ const UpdateProductForm = () => {
 
                                     <div className={style.containerInputsMarca}>
                                         <label className={style.labels} htmlFor="category">Seleccione una categoría</label>
-                                        <Field className={style.inputSelect} value={initialValues.category} as="select" id="category" name="category">
+                                        <Field className={style.inputSelect} value={values.category} as="select" id="category" name="category">
                                             <option className={style.options} value="Alimentos">Alimentos</option>
                                             <option className={style.options} value="Accesorios">Accesorios</option>
                                         </Field>
@@ -174,10 +218,10 @@ const UpdateProductForm = () => {
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
                                     </div>
-                                    {initialValues.category && initialValues.category === "Alimentos" &&(
+                                    {values.category && values.category === "Alimentos" &&(
                                         <div className={style.containerInputsMarca}>
                                             <label className={style.labels} htmlFor="subCategory">Seleccione una subcategoría</label>
-                                            <Field className={style.inputSelect} value={initialValues.subCategory} as="select" id="subCategory" name="subCategory">
+                                            <Field className={style.inputSelect} value={values.subCategory} as="select" id="subCategory" name="subCategory">
                                                 <option className={style.options} value="Adulto">Adulto</option>
                                                 <option className={style.options} value="Cachorro">Cachorro</option>
                                             </Field>
@@ -187,10 +231,10 @@ const UpdateProductForm = () => {
                                         </div>
                                     )}
 
-                                    {initialValues.category && initialValues.category === "Accesorios" &&(
+                                    {values.category && values.category === "Accesorios" &&(
                                         <div className={style.containerInputsMarca}>
                                             <label className={style.labels} htmlFor="subCategory">Seleccione una subcategoría</label>
-                                            <Field className={style.inputSelect} value={initialValues.subCategory} as="select" id="subCategory" name="subCategory">
+                                            <Field className={style.inputSelect} value={values.subCategory} as="select" id="subCategory" name="subCategory">
                                                 <option className={style.options} value="Comederos">Comederos</option>
                                                 <option className={style.options} value="Collares">Collares</option>
                                                 <option className={style.options} value="Juguetes">Juguetes</option>
@@ -226,7 +270,7 @@ const UpdateProductForm = () => {
                                                 <div className={style.divImgUser}>
                                                     <img
                                                         className={style.imgUser}
-                                                        src={!url.length ? initialValues.image : url}
+                                                        src={!url.length ? values.image : url}
                                                         alt={formik.values.title}
                                                         title={formik.values.title}
                                                         loading="lazy"
@@ -248,6 +292,7 @@ const UpdateProductForm = () => {
                     )}
                 </Formik>
             </div>
+            
         </div>
     )
     
