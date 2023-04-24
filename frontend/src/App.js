@@ -42,6 +42,7 @@ function App() {
 		dispatch(dogsAction.genders());
 		dispatch(productsAction.getProducts());
 		dispatch(requestAction.getAdoptionDog());
+		dispatch(authActions.getUsers());
 	}, [dispatch]);
 
 	return (
@@ -66,11 +67,14 @@ function App() {
 				<Route path={'/products/:id'} element={<ProductDetail />} />
 				<Route path={'*'} element={<NotFound />} />
 				{
-				// selector.user?.role === 'Administrador' && 
+					// selector.user?.role === 'Administrador' &&
 					<Route path={'/dashboard/*'} element={<Dashboard />} />
 				}
 				<Route path={'/confirm-account'} element={<ConfirmAccount />} />
-				<Route path={'/request-password-reset'} element={<RequestPasswordReset />} />
+				<Route
+					path={'/request-password-reset'}
+					element={<RequestPasswordReset />}
+				/>
 				<Route path={'/password-reset'} element={<PasswordReset />} />
 			</Routes>
 			{location.pathname !== '/' &&
