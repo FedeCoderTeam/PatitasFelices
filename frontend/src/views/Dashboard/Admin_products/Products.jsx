@@ -69,7 +69,8 @@ const Products = () => {
 
 	return (
 		<>
-			<button className={style.buttonAdd}
+			<button
+				className={style.buttonAdd}
 				onClick={() => {
 					navigate('./createProduct');
 				}}
