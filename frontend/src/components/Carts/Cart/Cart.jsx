@@ -13,8 +13,6 @@ const Cart = ({ cartItems, addToCart, removeFromCart }) => {
         dispatch(setLinkDePagos(shoppingCart.items));
     }
 
-    console.log(shoppingCart.items)
-
     return (
         <Drawer anchor={'right'} open={shoppingCart.isOpen} onClose={() => dispatch(setOpenAction())}>
             <div className={'wrapper'}>
