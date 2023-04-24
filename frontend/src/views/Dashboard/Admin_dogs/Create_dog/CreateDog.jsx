@@ -8,6 +8,7 @@ import style from './CreateDog.module.css';
 import * as dogsAction from '../../../../_redux/actions/dogsAction';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import useToast from '../../../../hooks/useToast';
 
 const CreateDog = () => {
 	const dispatch = useDispatch();
@@ -15,6 +16,8 @@ const CreateDog = () => {
 	const navigate = useNavigate();
 
 	const [url, setUrl] = useState('');
+
+	const { success } = useToast();
 
 	const temperaments = useSelector((state) => state.dogsReducer.temperaments);
 
@@ -96,8 +99,12 @@ const CreateDog = () => {
 		};
 		console.log(obj);
 		dispatch(dogsAction.postDogs(obj));
-		alert(JSON.stringify(obj, null, 2));
-		navigate('/dashboard/dogs');
+		success(`¡Perro ingresado exitosamente!`, {
+			duration: 2000
+		});
+		setTimeout(() => {
+			navigate('/dashboard/dogs');
+		}, 2000);
 	};
 
 	const formik = useFormik({

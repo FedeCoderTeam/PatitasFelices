@@ -7,16 +7,21 @@ import CloudinaryWidgetFull from '../../../../components/Cloudinary/CloudinaryFo
 import style from './UpdateProductForm.module.css';
 import * as productsAction from '../../../../_redux/actions/productsAction';
 import { Link } from 'react-router-dom';
+import useToast from '../../../../hooks/useToast';
+import { useNavigate } from 'react-router-dom';
 
 const UpdateProductForm = () => {
 
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
     const [url, setUrl] = useState("");
 
     const productToUpdate = useSelector((state) => state.productsReducer.productDetail);
-    
 
+    const { success } = useToast();
+    
     useEffect(() =>{
         return () => {
             dispatch(productsAction.setDetail());
@@ -60,7 +65,12 @@ const UpdateProductForm = () => {
         }
 
         dispatch(productsAction.updateProduct(obj))
-        alert(JSON.stringify(values, null, 2))
+        success(`¡Producto editado exitosamente!`, {
+			duration: 2000
+		});
+		setTimeout(() => {
+			navigate('/dashboard/products');
+		}, 2000);
 
     }
 
