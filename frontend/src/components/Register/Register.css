@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap%27');
 
-.mainContainer-Register{
+.mainContainer-Register {
     background-image: url(https://images5.alphacoders.com/466/466957.jpg);
     background-position: 20%;
     background-repeat: no-repeat;
@@ -13,7 +13,8 @@
     font-family: 'Be Vietnam Pro', sans-serif;
     color: #592519;
 }
-.form-Register{
+
+.form-Register {
     background: rgba(242, 242, 242, 1);
     display: flex;
     flex-direction: column;
@@ -34,6 +35,7 @@
     padding: 0;
     margin: 0;
 }
+
 .title h1 {
     margin: 0;
     padding: 0;
@@ -62,6 +64,7 @@
     height: 82px;
     margin-bottom: 24px;
 }
+
 .nombre input {
     background-color: #D9D9D9;
     padding: 16px 0 16px 10px;
@@ -69,6 +72,7 @@
     border-radius: 5px;
     width: 166.5px;
 }
+
 .nombre label {
     color: #592519;
     font-size: 18px;
@@ -84,6 +88,7 @@
     height: 82px;
     margin-bottom: 24px;
 }
+
 .apellido input {
     background-color: #D9D9D9;
     padding: 16px 0 16px 10px;
@@ -91,6 +96,7 @@
     border-radius: 5px;
     width: 166.5px;
 }
+
 .apellido label {
     color: #592519;
     font-size: 18px;
@@ -106,6 +112,7 @@
     height: 82px;
     margin-bottom: 24px;
 }
+
 .email input {
     background-color: #D9D9D9;
     padding: 16px 0 16px 0px;
@@ -113,6 +120,7 @@
     border-radius: 5px;
     width: 376px;
 }
+
 .email label {
     color: #592519;
     font-size: 18px;
@@ -128,6 +136,7 @@
     height: 82px;
     margin-bottom: 24px;
 }
+
 .contraseña input {
     background-color: #D9D9D9;
     padding: 16px 0 16px 0px;
@@ -135,6 +144,7 @@
     border-radius: 5px;
     width: 376px;
 }
+
 .contraseña label {
     color: #592519;
     font-size: 18px;
@@ -154,10 +164,16 @@
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    transition: 
+    transition:
         background-color 200ms linear,
         transform 200ms linear;
 }
+
+.buttonRegister>a {
+    text-decoration: none;
+    color: white;
+}
+
 .buttonRegister:hover {
     background-color: #163440;
     transform: scale(1.02);
@@ -174,11 +190,13 @@
     height: 48px;
     transition: background-color 200ms linear;
 }
+
 .containerGoogle-Register p {
     display: flex;
     gap: 6px;
     font-weight: 500;
 }
+
 .containerGoogle-Register:hover {
     background-color: #D9D9D9;
 }
@@ -196,6 +214,7 @@
     font-size: 30px;
     transition: color 300ms linear;
 }
+
 .goHome:hover {
     color: #163440;
 }
