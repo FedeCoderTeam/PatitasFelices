@@ -10,13 +10,18 @@ import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
-import { Divider, ListItemIcon } from '@mui/material';
+import {Badge, Divider, ListItemIcon} from '@mui/material';
 import { Settings, Logout } from '@mui/icons-material';
 import { logoutUserAction } from '../../_redux/actions/authAction';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import {setOpenAction} from '../../_redux/actions/productsAction';
 
 export default function Nav() {
 	const location = useLocation();
+
+	const dispatch = useDispatch()
 	const selector = useSelector((state) => state.authReducer);
+	const shoppingCart = useSelector(state => state.productsReducer.shoppingCart)
 
 	return (
 		<div className={style.containerNav}>
@@ -89,6 +94,11 @@ export default function Nav() {
 				</div>
 			) : (
 				<div className={style.containerRight}>
+					<IconButton arial-label={'primary'} onClick={() => dispatch(setOpenAction())} >
+						<Badge badgeContent={shoppingCart.items.length} color={'primary'} >
+							<ShoppingCartIcon />
+						</Badge>
+					</IconButton>
 					<AvatarComponent selector={selector} />
 				</div>
 			)}

@@ -11,7 +11,7 @@ import {
 	getSubCategories,
 	idSubCategories,
 	getByName,
-	set_name,
+	set_name, setOpen, setItems,
 } from '../reducer/productsReducer.js';
 
 const getProducts = () => {
@@ -128,12 +128,12 @@ const sortAction = () => {
 	};
 };
 
-const setLinkDePagos = (productDetail) => {
+const setLinkDePagos = (items) => {
 	return async function () {
 		try {
 			let link = await axios.post(
 				'http://localhost:3001/mercadopago/payment',
-				productDetail,
+				items,
 			);
 			window.location.href = link.data.body.init_point;
 		} catch (error) {
@@ -141,6 +141,19 @@ const setLinkDePagos = (productDetail) => {
 		}
 	};
 };
+
+const setOpenAction = () => {
+	return function (dispatch) {
+		dispatch(setOpen())
+	}
+}
+
+const setItemsAction = () => {
+	return function (dispatch) {
+		const items = localStorage.getItem('products')
+		dispatch(setItems(JSON.parse(items)))
+	}
+}
 
 export {
 	getProducts,
@@ -158,4 +171,6 @@ export {
 	setLinkDePagos,
 	postProduct,
 	updateProduct,
+	setOpenAction,
+	setItemsAction
 };
