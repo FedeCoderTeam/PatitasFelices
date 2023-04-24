@@ -20,6 +20,12 @@ export default function Nav() {
 
 	return (
 		<div className={style.containerNav}>
+			<div className={style.logoContainer}>
+				<Link to='/home'>
+					<img className={style.logo} src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682299697/Logo_yiz4g6.png" alt="" />
+				</Link>
+			</div>
+
 			<div className={style.containerLeft}>
 				<NavLink to="/home" className={`${style.link} ${location.pathname === '/home' ? style.active : ''}`}>
 					<div className={style.divNav}>
@@ -91,7 +97,7 @@ export function AvatarComponent(props) {
 
 	return (
 		<>
-			<Box sx={{ flexGrow: 0 }}>
+			<Box sx={{ flexGrow: 0 }} width={'244px'} textAlign={'end'}>
 				<Tooltip title="Mi cuenta">
 					<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 						<Avatar alt={props.selector.user.name} src={props.selector.user.image} />
