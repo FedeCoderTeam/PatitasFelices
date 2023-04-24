@@ -30,7 +30,7 @@ export default function Nav() {
 				<NavLink to="/home" className={`${style.link} ${location.pathname === '/home' ? style.active : ''}`}>
 					<div className={style.divNav}>
 						<i class="fa-solid fa-house"></i>
-						<p className={style.links}>Home</p>
+						<p className={style.links}>Inicio</p>
 					</div>
 				</NavLink>
 				<NavLink to="/products" className={`${style.link} ${location.pathname === '/products' ? style.active : ''}`}>

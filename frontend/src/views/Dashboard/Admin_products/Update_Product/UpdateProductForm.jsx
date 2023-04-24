@@ -40,7 +40,7 @@ const UpdateProductForm = () => {
     const handleSubmit = async (values) => {
 
         const obj = {
-            id: values.id ? values.id : initialValues.id,
+            id: initialValues.id,
             name: values.name ? values.name : initialValues.name,
             description: values.description ? values.description : initialValues.description,
             price: values.price ? values.price : initialValues.price,
@@ -51,11 +51,11 @@ const UpdateProductForm = () => {
             categoryId: values.category ? (values.category === "Alimentos" ? 1 : 2) : initialValues.category === "Alimentos" ? 1 : 2,
             subCategoryId: values.subCategory 
             ? (values.subCategory === "Adulto" ? 1 : 
-               (values.subCategory === "Cachorro" ? 2 :
-               (values.subCategory === "Comederos" ? 3 : 
-               (values.subCategory === "Collares" ? 4 : 
-               (values.subCategory === "Juguetes" ? 5 : 
-               (values.subCategory === "Vestimenta" ? 6 : initialValues.subCategory))))))
+            (values.subCategory === "Cachorro" ? 2 :
+            (values.subCategory === "Comederos" ? 3 : 
+            (values.subCategory === "Collares" ? 4 : 
+            (values.subCategory === "Juguetes" ? 5 : 
+            (values.subCategory === "Vestimenta" ? 6 : initialValues.subCategory))))))
             : initialValues.subCategory,
         }
 
@@ -72,20 +72,66 @@ const UpdateProductForm = () => {
     return (
         <div className={style.mainContainerForm}>
             <div className={style.containerInitials}>
-                <div className={style.imgContainer}>
-                    <img className={style.imgCardInitial} src={initialValues.image}/>
-                </div>
+                <h3 className={style.titleCardInitial}>Valores iniciales</h3>
                 <div className={style.subtitlesContainer}>
-                    <h2 className={style.titleCardInitial}>Valores iniciales</h2>
-                    <h3 className={style.subtitleCardInitial}>Id: <span className={style.spanCardInitial}>{initialValues.id}</span></h3>
-                    <h3 className={style.subtitleCardInitial}>Name: <span>{initialValues.name}</span></h3>
-                    <h3 className={style.subtitleCardInitial}>Descripción: <span>{initialValues.description}</span></h3>
-                    <h3 className={style.subtitleCardInitial}>Precio: <span>{initialValues.price}</span></h3>
-                    <h3 className={style.subtitleCardInitial}>Marca: <span>{initialValues.brand}</span></h3>
-                    <h3 className={style.subtitleCardInitial}>Stock: <span>{initialValues.stock}</span></h3>
-                    <h3 className={style.subtitleCardInitial}>Descontinuado: <span>{initialValues.isDisabled}</span></h3>
-                    <h3 className={style.subtitleCardInitial}>Categoría: <span>{initialValues.category}</span></h3>
-                    <h3 className={style.subtitleCardInitial}>Subcategoría: <span>{initialValues.subCategory}</span></h3>
+                    <div className={style.subtitlesContainerLeft}>
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Id: </h3>
+                            <h4 className={style.spanCardInitial}>{initialValues.id}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Name: </h3>
+                            <h4>{initialValues.name}</h4>
+                        </div>
+
+                        <div className={style.descriptionField}>
+                            <h3 className={style.subtitleCardInitial}>Descripción: </h3>
+                            <h4>{initialValues.description}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Precio: </h3>
+                            <h4>{initialValues.price}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Marca: </h3>
+                            <h4>{initialValues.brand}</h4>
+                        </div>
+
+                    </div>
+
+                    <div className={style.subtitlesContainerRight}>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Stock: </h3>
+                            <h4>{initialValues.stock}</h4>
+                        </div>
+                        
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Descontinuado: </h3>
+                            <h4>{initialValues.isDisabled}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Categoría: </h3>
+                            <h4>{initialValues.category}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Subcategoría: </h3>
+                            <h4>{initialValues.subCategory}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                        <h3 className={style.subtitleCardInitial}>Imagen: </h3>
+                            <div className={style.imgContainer}>
+                                <img className={style.imgCardInitial} src={initialValues.image}/>
+                            </div>
+                        </div>
+                        
+                    </div>
                 </div>
                 
             </div>
@@ -101,13 +147,13 @@ const UpdateProductForm = () => {
                             </div>
                             <div className={style.boxForm}>
                                 <div className={style.containerInputsLeftForm}>
-                                    <div className={style.containerInputs}>
+                                    {/* <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor='id'>Id del producto</label>
                                         <Field className={style.inputs} value={values.id} name='id' type='number' placeholder='Ej: 1' />
                                         <ErrorMessage name='id'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
-                                    </div>
+                                    </div> */}
 
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor='name'>Nombre del producto</label>
@@ -152,7 +198,7 @@ const UpdateProductForm = () => {
                                     </div>
 
                                     <div className={style.containerInputsMarca}>
-                                        <label className={style.labels} htmlFor="isDisabled">¿No hay stock?</label>
+                                        <label className={style.labels} htmlFor="isDisabled">¿Descontinuado?</label>
                                         <Field defaultValue={initialValues.isDisabled} className={style.inputSelect} value={values.isDisabled} as="select" id="isDisabled" name="isDisabled">
                                             <option className={style.options} value="true">Sí</option>
                                             <option className={style.options} value="false">No</option>
