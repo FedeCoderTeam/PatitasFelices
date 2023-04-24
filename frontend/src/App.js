@@ -28,6 +28,7 @@ import ConfirmAccount from './components/AuthForms/ConfirmAccount/ConfirmAccount
 import RequestPasswordReset from './components/AuthForms/RequestPasswordReset/RequestPasswordReset';
 import PasswordReset from './components/AuthForms/PasswordReset/PasswordReset';
 import Overlay from './components/Overlay/Overlay';
+import Cart from './components/Carts/Cart/Cart';
 
 function App() {
 	const location = useLocation();
@@ -44,6 +45,10 @@ function App() {
 		dispatch(requestAction.getAdoptionDog());
 		dispatch(authActions.getUsers());
 	}, [dispatch]);
+
+	if(localStorage.getItem('products')) {
+		if(JSON.parse(localStorage.getItem('products')).length) dispatch(productsAction.setItemsAction(JSON.parse(localStorage.getItem('products'))))
+	}
 
 	return (
 		<>
@@ -85,6 +90,7 @@ function App() {
 					selector.user?.role !== 'Administrador') && <Footer />}
 			<BackDrop />
 			<Overlay />
+			<Cart />
 			{/* <Footer/> */}
 		</>
 	);

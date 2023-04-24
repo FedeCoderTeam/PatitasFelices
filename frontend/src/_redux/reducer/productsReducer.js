@@ -13,6 +13,10 @@ const initialState = {
 	setSubCategoryId: 0,
 	currentPage: 1,
 	name: '',
+	shoppingCart: {
+		isOpen: false,
+		items: []
+	}
 };
 
 export const productsSlice = createSlice({
@@ -113,6 +117,12 @@ export const productsSlice = createSlice({
 
 			state.products = name;
 		},
+		setOpen:(state) => {
+			state.shoppingCart.isOpen = !state.shoppingCart.isOpen
+		},
+		setItems:(state, action) => {
+			state.shoppingCart.items = action.payload
+		}
 	},
 });
 
@@ -129,6 +139,8 @@ export const {
 	idSubCategories,
 	getByName,
 	set_name,
+	setOpen,
+	setItems
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
 	getProductsById,
-	setDetail,
+	setDetail, setItemsAction,
 	setLinkDePagos,
 } from '../../../_redux/actions/productsAction';
 import { useState } from 'react';
@@ -34,22 +34,6 @@ function ProductDetail() {
 		(state) => state.productsReducer.productDetail,
 	);
 
-	console.log(productDetail);
-
-	const handlerClick = () => {
-		let buy = {
-			id: productDetail.id,
-			name: productDetail.name,
-			image: productDetail.image,
-			description: productDetail.description,
-			category: productDetail.category,
-			quantity: count,
-			price: productDetail.price,
-		};
-
-		dispatch(setLinkDePagos(buy));
-	};
-
 	useEffect(() => {
 		setTimeout(() => {
 			setIsLoading(false);
@@ -70,6 +54,42 @@ function ProductDetail() {
 		};
 		fetchData();
 	}, []);
+
+	const addProduct = (quantity) => {
+		if(!localStorage.getItem('products')) localStorage.setItem('products', JSON.stringify([]))
+		const getProductLocal = localStorage.getItem('products')
+		const products = JSON.parse(getProductLocal)
+
+		const productExist = products.find(p => p.id === productDetail.id)
+
+		if(productExist) {
+			const max = productDetail.stock - productExist.quantity
+			const qtyAdd = quantity > max ? max : quantity;
+			if(qtyAdd > 0) {
+				productExist.quantity += qtyAdd;
+			} else {
+				//Usar con alert bonito
+				alert('no puedes agregar mas producto')
+			}
+		}
+		else {
+			products.push({
+				id: productDetail.id,
+				name: productDetail.name,
+				image: productDetail.image,
+				description: productDetail.description,
+				category: productDetail.category,
+				quantity: quantity,
+				price: productDetail.price,
+			})
+		}
+
+		const productUpdated = JSON.stringify(products)
+
+		localStorage.setItem('products', productUpdated)
+		setCount(0)
+		dispatch(setItemsAction())
+	}
 
 	return (
 		<div className={style.divMain}>
@@ -118,20 +138,10 @@ function ProductDetail() {
 									<span className={style.btnSpan}>+</span>
 								</button>
 							</div>
-							<button disabled={count <= 0} className={style.btnCarritoDetail}>
+							<button disabled={count <= 0} style={count <= 0 ? { background: 'grey' } : {}} className={style.btnCarritoDetail} onClick={() => addProduct(count)}>
 								AÑADIR AL CARRITO
 							</button>
 						</div>
-					</div>
-					<div>
-						<button
-							disabled={count <= 0}
-							onClick={() => handlerClick()}
-							className={style.btnBuy}
-							style={count <= 0 ? { background: 'grey' } : {}}
-						>
-							Comprar
-						</button>
 					</div>
 					<div className={style.containerOtros}>
 						<h2 className={style.titleMasProductos}>

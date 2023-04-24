@@ -6,21 +6,21 @@ mercadopagoconfig();
 const router = Router();
 
 router.post('/payment', async (req, res) => {
-	let { id, name, image, description, category, quantity, price } = req.body;
+	let cart = req.body;
 
 	let preference = {
-		items: [
-			{
-				id: id,
-				title: name,
+		items: cart.map((product) => {
+			return {
+				id: product.id,
+				title: product.name,
 				currency_id: 'ARS',
-				picture_url: image,
-				description: description,
-				category_id: category,
-				quantity: quantity,
-				unit_price: Number(price),
-			},
-		],
+				picture_url: product.image,
+				description: product.description,
+				category_id: product.category,
+				quantity: product.quantity,
+				unit_price: Number(product.price),
+			};
+		}),
 
 		back_urls: {
 			success: 'http://localhost:3000/home',
