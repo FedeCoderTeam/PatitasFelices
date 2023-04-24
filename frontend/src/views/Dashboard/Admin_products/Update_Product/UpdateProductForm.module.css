@@ -167,3 +167,33 @@
 .divCloudinaryBtn:hover{
     transform: scale(1.02);
 }
+
+.containerInitials{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0f2630;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    height: 675px;
+}
+
+.imgCardInitial{
+    width: 30em;
+}
+
+.subtitlesContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 500px;
+}
+
+.titleCardInitial{
+    text-align: center;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1.5em;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.55);
+}
