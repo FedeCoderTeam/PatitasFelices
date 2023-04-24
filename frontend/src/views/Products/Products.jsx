@@ -11,7 +11,6 @@ const Products = () => {
 	const dispatch = useDispatch();
 	const allProducts = useSelector((state) => state.productsReducer.products);
 	let currentPage = useSelector((state) => state.productsReducer.currentPage);
-	
 
 	//----------------------------------------------PAGINADO-------------------------------------------
 	const [productsPerPage] = useState(5);
@@ -46,14 +45,19 @@ const Products = () => {
 				<ProductFilters />
 			</div>
 			<div className={style.cardSection}>
-				<div className={style.paginatedContainer}>
-					<PaginatedProducts
-						productsPerPage={productsPerPage}
-						allProducts={allProducts?.length}
-						paginado={paginado}
-						currentPage={currentPage}
-					/>
-				</div>
+				{!currentProducts.length ? (
+					''
+				) : (
+					<div className={style.paginatedContainer}>
+						<PaginatedProducts
+							productsPerPage={productsPerPage}
+							allProducts={allProducts?.length}
+							paginado={paginado}
+							currentPage={currentPage}
+						/>
+					</div>
+				)}
+
 				{!currentProducts.length ? (
 					<h1>No hay ningún producto</h1>
 				) : (

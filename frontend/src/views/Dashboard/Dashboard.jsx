@@ -173,48 +173,36 @@ export default function Dashboard() {
 						>
 							<MenuIcon />
 						</IconButton>
-						{
-							location.pathname === '/dashboard/' && (
-								<Typography variant="h6" noWrap component="div">
-									Administrador
-								</Typography>
-							)
-						}
-						{
-							location.pathname === '/dashboard/request' && (
-								<Typography variant="h6" noWrap component="div">
-									Peticiones
-								</Typography>
-							)
-						}
-						{
-							location.pathname === '/dashboard/products' && (
-								<Typography variant="h6" noWrap component="div">
-									Productos
-								</Typography>
-							)
-						}
-						{
-							location.pathname === '/dashboard/dogs' && (
-								<Typography variant="h6" noWrap component="div">
-									Perros
-								</Typography>
-							)
-						}
-						{
-							location.pathname === '/dashboard/users' && (
-								<Typography variant="h6" noWrap component="div">
-									Usuarios
-								</Typography>
-							)
-						}
-						{
-							location.pathname === '/dashboard/oders' && (
-								<Typography variant="h6" noWrap component="div">
-									Órdenes
-								</Typography>
-							)
-						}
+						{location.pathname === '/dashboard/' && (
+							<Typography variant="h6" noWrap component="div">
+								Administrador
+							</Typography>
+						)}
+						{location.pathname === '/dashboard/request' && (
+							<Typography variant="h6" noWrap component="div">
+								Peticiones
+							</Typography>
+						)}
+						{location.pathname === '/dashboard/products' && (
+							<Typography variant="h6" noWrap component="div">
+								Productos
+							</Typography>
+						)}
+						{location.pathname === '/dashboard/dogs' && (
+							<Typography variant="h6" noWrap component="div">
+								Perros
+							</Typography>
+						)}
+						{location.pathname === '/dashboard/users' && (
+							<Typography variant="h6" noWrap component="div">
+								Usuarios
+							</Typography>
+						)}
+						{location.pathname === '/dashboard/oders' && (
+							<Typography variant="h6" noWrap component="div">
+								Órdenes
+							</Typography>
+						)}
 					</Toolbar>
 				</AppBar>
 				<Drawer variant="permanent" open={open}>
@@ -259,7 +247,7 @@ export default function Dashboard() {
 						))}
 					</List>
 				</Drawer>
-				<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+				<Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: '72px' }}>
 					<Typography paragraph>
 						<Routes>
 							<Route path={'/'} element={<Home />} />

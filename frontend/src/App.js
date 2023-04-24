@@ -52,9 +52,8 @@ function App() {
 				location.pathname !== '/login' &&
 				location.pathname !== '/register' &&
 				location.pathname !== '/form' &&
-				(location.pathname !== '/dashboard' ||
+				(!location.pathname.includes('/dashboard') ||
 					selector.user?.role !== 'Administrador') && <Nav />}
-
 			<Routes>
 				<Route path={'/'} element={<Landing />} />
 				<Route path={'/home'} element={<Home />} />
@@ -66,10 +65,9 @@ function App() {
 				<Route path={'/products'} element={<Products />} />
 				<Route path={'/products/:id'} element={<ProductDetail />} />
 				<Route path={'*'} element={<NotFound />} />
-				{
-					// selector.user?.role === 'Administrador' &&
+				{selector.user?.role === 'Administrador' && (
 					<Route path={'/dashboard/*'} element={<Dashboard />} />
-				}
+				)}
 				<Route path={'/confirm-account'} element={<ConfirmAccount />} />
 				<Route
 					path={'/request-password-reset'}
