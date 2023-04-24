@@ -8,7 +8,7 @@ export default function Footer() {
 			<Link to='/home' className={style.logoContainer}>
 				<div className={style.happyPaws}>
 					<img className={style.logo} src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682299697/Logo_yiz4g6.png" alt=""/>
-					<h1>Happy Paws</h1>
+					<h1>Patitas Felices</h1>
 				</div>
 			</Link>
 
