@@ -7,11 +7,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const CartItem = ({ item, handleAddProduct, handleSubtractProduct, handleRemoveProduct }) => {
     return(<>
-        <div className={`${style.cartItem} ${style.wrapper}`}>
             <div className={style.productImage}>
                 <img src={item.image} alt={item.title} />
             </div>
-            <div>
+        <div className={`${style.cartItem} ${style.wrapper}`}>
+            <div className={style.dataContainer}>
                 <div className={style.title}>
                     <h3>{item.name}</h3>
                     <Fab size={'small'} color={'error'} aria-label={'delete'} onClick={() => handleRemoveProduct(item)}>
@@ -19,9 +19,9 @@ const CartItem = ({ item, handleAddProduct, handleSubtractProduct, handleRemoveP
                     </Fab>
                 </div>
                 <div className={style.information}>
-                    <p>Price: ${item.price}</p>
-                    <p>Quantity: {item.quantity}</p>
-                    <p>Total: ${(item.quantity * item.price).toFixed(2)}</p>
+                    <p>Precio: <span>${item.price}</span></p>
+                    <p>Cantidad: <span className={style.productQuantity}>{item.quantity}</span></p>
+                    <p>Total: <span>${(item.quantity * item.price).toFixed(2)}</span></p>
                 </div>
                 <div className={style.buttons}>
                         <Button
