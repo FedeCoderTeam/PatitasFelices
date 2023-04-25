@@ -45,11 +45,12 @@ function App() {
 		dispatch(productsAction.getProducts());
 		dispatch(requestAction.getAdoptionDog());
 		dispatch(authActions.getUsers());
+		if(localStorage.getItem('products')) {
+			if(JSON.parse(localStorage.getItem('products')).length) dispatch(productsAction.setItemsAction(JSON.parse(localStorage.getItem('products'))))
+		}
 	}, [dispatch]);
 
-	if(localStorage.getItem('products')) {
-		if(JSON.parse(localStorage.getItem('products')).length) dispatch(productsAction.setItemsAction(JSON.parse(localStorage.getItem('products'))))
-	}
+
 
 	return (
 		<>

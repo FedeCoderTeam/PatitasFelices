@@ -9,6 +9,7 @@ import {
 import { useState } from 'react';
 import style from './productDetail.module.css';
 import ProductCard from '../../Cards/ProductCard/ProductCard';
+import Swal from 'sweetalert2';
 
 function ProductDetail() {
 	const { id } = useParams();
@@ -69,18 +70,18 @@ function ProductDetail() {
 				productExist.quantity += qtyAdd;
 			} else {
 				//Usar con alert bonito
-				alert('no puedes agregar mas producto')
+				Swal.fire({
+					title: `Error`,
+					text: 'No podes agregar mas productos',
+					icon: 'error',
+					timer: 3000,
+				}).then(() => {})
 			}
 		}
-		else {
+ 		else {
 			products.push({
 				id: productDetail.id,
-				name: productDetail.name,
-				image: productDetail.image,
-				description: productDetail.description,
-				category: productDetail.category,
-				quantity: quantity,
-				price: productDetail.price,
+				quantity: quantity
 			})
 		}
 
