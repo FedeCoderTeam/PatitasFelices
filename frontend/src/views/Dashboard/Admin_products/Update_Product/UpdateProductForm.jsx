@@ -42,6 +42,46 @@ const UpdateProductForm = () => {
         subCategory: productToUpdate.subCategory,
     }
 
+    console.log(initialValues);
+
+    const validationSchema = Yup.object().shape({
+		name: Yup.string()
+			.min(4, 'El nombre debe tener mínimo 4 caracteres. *')
+			.matches(
+				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
+				'Sólo letras de la "A" a la "Z". *',
+			)
+			.required('El nombre es obligatorio. *'),
+		description: Yup.string()
+			.min(10, 'La descripción debe tener mínimo 10 caracteres. *')
+			.matches(
+				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
+				'Sólo letras de la "A" a la "Z". *',
+			)
+			.required('La descripción es obligatoria. *'),
+		price: Yup.number()
+			.min(1, 'El precio debe ser mayor a 1')
+            .required('El precio es obligatorio. *'),
+		brand: Yup.string()
+			.min(4, 'La marca debe tener mínimo 5 caracteres. *')
+			.required('La marca es obligatoria. *'),
+		stock: Yup.number()
+			.min(0, 'El stock debe ser mayor o igual a 0')
+            .required('El stock es obligatorio'),
+		isDisabled: Yup.boolean()
+            .required('Este campo es obligatorio. *'),
+		category: Yup.string().oneOf(
+			['Alimentos', 'Accesorios'],
+			'La categoría es obligatoria. *',
+		),
+		subCategory: Yup.string().oneOf(
+			['Adulto', 'Cachorro', 'Comederos', 'Collares', 'Juguetes', 'Vestimenta'],
+			'La subcategoría es obligatoria. *',
+		),
+		image: Yup.string()
+			.matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida. *'),
+	});
+
     const handleSubmit = async (values) => {
 
         const obj = {
@@ -49,7 +89,7 @@ const UpdateProductForm = () => {
             name: values.name ? values.name : initialValues.name,
             description: values.description ? values.description : initialValues.description,
             price: values.price ? values.price : initialValues.price,
-            image: values.image ? values.image : initialValues.image,
+            image: values.image,
             brand: values.brand ? values.brand : initialValues.brand,
             stock: values.stock ? values.stock : initialValues.stock,
             isDisabled: values.isDisabled ? values.isDisabled : initialValues.isDisabled,
@@ -76,6 +116,7 @@ const UpdateProductForm = () => {
 
     const formik = useFormik({
         initialValues,
+        validationSchema,
         handleSubmit,
     });
 
@@ -146,7 +187,7 @@ const UpdateProductForm = () => {
                 
             </div>
             <div className={style.containerForm}>
-                <Formik initialValues={initialValues} onSubmit={(values) => handleSubmit(values)} >
+                <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => handleSubmit(values)} >
                     {({
                         errors, values }) => (<Form>
                             <div>
@@ -209,9 +250,9 @@ const UpdateProductForm = () => {
 
                                     <div className={style.containerInputsMarca}>
                                         <label className={style.labels} htmlFor="isDisabled">¿Descontinuado?</label>
-                                        <Field defaultValue={initialValues.isDisabled} className={style.inputSelect} value={values.isDisabled} as="select" id="isDisabled" name="isDisabled">
-                                            <option className={style.options} value="true">Sí</option>
-                                            <option className={style.options} value="false">No</option>
+                                        <Field defaultValue="false" className={style.inputSelect} value={values.isDisabled} as="select" id="isDisabled" name="isDisabled">
+                                            <option className={style.options} value={true}>Sí</option>
+                                            <option className={style.options} value={false}>No</option>
                                         </Field>
                                         <ErrorMessage name='isDisabled'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
