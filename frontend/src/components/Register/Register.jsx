@@ -5,7 +5,7 @@ import './Register.css';
 import { useDispatch } from 'react-redux';
 
 // import RegisterImg from 'registerImage.png'
-import {registerUserAction, googleUserAction, setShowOverlayAction} from '../../_redux/actions/authAction';
+import { registerUserAction, googleUserAction, setShowOverlayAction } from '../../_redux/actions/authAction';
 import Swal from 'sweetalert2';
 
 const Register = () => {
@@ -103,7 +103,7 @@ const Register = () => {
 							className="buttonRegister"
 							onClick={handleOnRegister}
 						>
-							Crear cuenta
+							<Link to='/home'>Crear cuenta</Link>
 						</button>
 					</div>
 				</div>
