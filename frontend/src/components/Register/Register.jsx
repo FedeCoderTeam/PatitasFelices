@@ -5,7 +5,7 @@ import './Register.css';
 import { useDispatch } from 'react-redux';
 
 // import RegisterImg from 'registerImage.png'
-import {registerUserAction, googleUserAction, setShowOverlayAction} from '../../_redux/actions/authAction';
+import { registerUserAction, googleUserAction, setShowOverlayAction } from '../../_redux/actions/authAction';
 import Swal from 'sweetalert2';
 
 const Register = () => {
@@ -53,7 +53,6 @@ const Register = () => {
 		}, 500)
 
 		window.addEventListener('message', async function (event) {
-			console.log(event)
 			if(event.origin !== 'http://localhost:3001') return;
 			if(event.data.type === 'AUTH_SUCCESS') {
 				dispatch(googleUserAction(event.data.payload));
@@ -104,7 +103,7 @@ const Register = () => {
 							className="buttonRegister"
 							onClick={handleOnRegister}
 						>
-							Crear cuenta
+							<Link to='/home'>Crear cuenta</Link>
 						</button>
 					</div>
 				</div>

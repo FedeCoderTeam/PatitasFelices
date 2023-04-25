@@ -8,6 +8,7 @@ import style from './CreateProductForm.module.css';
 import * as productsAction from '../../../../_redux/actions/productsAction';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import useToast from '../../../../hooks/useToast';
 
 const CreateProductForm = () => {
 	const dispatch = useDispatch();
@@ -15,6 +16,8 @@ const CreateProductForm = () => {
 	const navigate = useNavigate();
 
 	const [url, setUrl] = useState('');
+
+	const { success } = useToast();
 
 	const initialValues = {
 		name: '',
@@ -83,8 +86,12 @@ const CreateProductForm = () => {
 		dispatch(productsAction.postProduct(obj));
 		//NO BORRAR, SIRVE PARA TESTEAR
 		//console.log(obj);
-		alert('SE CREO EL PRODUCTO, TOCA ACEPTAR PARA VOLVER A LA DASHBOARD');
-		navigate('/dashboard/viewB');
+		success(`¡Producto creado exitosamente!`, {
+			duration: 2000
+		});
+		setTimeout(() => {
+			navigate('/dashboard/products');
+		}, 2000);
 	};
 
 	const formik = useFormik({

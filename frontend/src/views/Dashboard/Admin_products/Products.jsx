@@ -4,7 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 // import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as productsAction from '../../../_redux/actions/productsAction';
 import style from './productGrid.module.css';
@@ -13,6 +13,10 @@ const Products = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const allProducts = useSelector((state) => state.productsReducer.allProducts);
+
+	useEffect(() => {
+		dispatch(productsAction.getProducts())
+	}, [dispatch]);
 
 	const rows = useMemo(
 		() =>

@@ -6,7 +6,7 @@
     padding-bottom: 20px;
 }
 
-.cartItem div {
+.cartItem div:not(:first-child) {
     flex: 1;
 }
 
@@ -17,7 +17,22 @@
 }
 
 .cartItem img {
-    max-width: 80px;
-    object-fit: cover;
-    margin-left: 40px;
+    max-width: 8vw;
+    object-fit: contain;
+}
+
+.productImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title h3 {
+    flex: 0 0 15em;
 }

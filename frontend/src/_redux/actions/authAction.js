@@ -209,7 +209,7 @@ const googleUserAction = (payload) => {
 			dispatch(setIsFetching(false));
 			await Swal.fire({
 				title: `¡Hola ${payload.user.name}!`,
-				text: 'Ha iniciado sesión correctamente',
+				text: 'Has iniciado sesión correctamente',
 				icon: 'success',
 				timer: 10000,
 			});
