@@ -64,8 +64,8 @@ const Dogs = () => {
 				) : (
 					<div className={style.cardsContainer}>
 						{currentDogs?.map((e) => {
-							return (
-								<DogCard
+							return (e.isDisabled === false && e.adopted === false)
+							&& 	<DogCard
 									key={e.id}
 									id={e.id}
 									image={e.image}
@@ -78,7 +78,6 @@ const Dogs = () => {
 									colors={e.colors}
 									weight={e.weight}
 								/>
-							);
 						})}
 					</div>
 				)}

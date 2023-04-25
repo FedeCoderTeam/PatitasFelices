@@ -25,7 +25,9 @@ const Products = () => {
 	//-------------------------------------------------------------------------------------------------
 	useEffect(() => {
 		setCurrentProducts(allProducts.slice(range.firts, range.last));
-
+		console.log(allProducts);
+		//isDisbled
+		//stock
 		setRange({
 			firts: (currentPage - 1) * productsPerPage,
 			last: currentPage * productsPerPage,
@@ -63,8 +65,8 @@ const Products = () => {
 				) : (
 					<div className={style.cardsContainer}>
 						{currentProducts?.map((e) => {
-							return (
-								<ProductCard
+							return (e.isDisabled === false && e.stock >= 1
+							&&  <ProductCard
 									key={e.id}
 									id={e.id}
 									image={e.image}
