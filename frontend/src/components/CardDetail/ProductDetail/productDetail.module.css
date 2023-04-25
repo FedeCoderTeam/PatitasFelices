@@ -185,6 +185,20 @@
 	margin-bottom: 30px;
 }
 
+.divTitleMasProductos{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.767);
+	background: rgba(0, 0, 0, 0.8);
+	backdrop-filter: blur(7px);
+	-webkit-backdrop-filter: blur(10px);
+	border-radius: 14px;
+	width: 100%;
+	margin-top: 60px;
+	margin-bottom: 85px;
+}
+
 .titleMasProductos {
 	font-family: 'Be Vietnam Pro', sans-serif;
 	text-align: center;
