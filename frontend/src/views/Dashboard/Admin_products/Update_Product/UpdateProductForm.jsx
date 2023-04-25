@@ -63,21 +63,19 @@ const UpdateProductForm = () => {
 			.min(1, 'El precio debe ser mayor a 1')
             .required('El precio es obligatorio. *'),
 		brand: Yup.string()
-			.min(4, 'La marca debe tener mínimo 5 caracteres. *')
+			.min(4, 'La marca debe tener mínimo 4 caracteres. *')
 			.required('La marca es obligatoria. *'),
 		stock: Yup.number()
 			.min(0, 'El stock debe ser mayor o igual a 0')
-            .required('El stock es obligatorio'),
+            .required('El stock es obligatorio. *'),
 		isDisabled: Yup.boolean()
             .required('Este campo es obligatorio. *'),
-		category: Yup.string().oneOf(
-			['Alimentos', 'Accesorios'],
-			'La categoría es obligatoria. *',
-		),
-		subCategory: Yup.string().oneOf(
-			['Adulto', 'Cachorro', 'Comederos', 'Collares', 'Juguetes', 'Vestimenta'],
-			'La subcategoría es obligatoria. *',
-		),
+		category: Yup.string()
+            .oneOf(['Alimentos', 'Accesorios'])
+            .required('Seleccione una categoría. *'),
+		subCategory: Yup.string()
+            .oneOf(['Adulto', 'Cachorro', 'Comederos', 'Collares', 'Juguetes', 'Vestimenta'])
+            .required('Seleccione una subcategoría. *'),
 		image: Yup.string()
 			.matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida. *'),
 	});
@@ -89,7 +87,7 @@ const UpdateProductForm = () => {
             name: values.name ? values.name : initialValues.name,
             description: values.description ? values.description : initialValues.description,
             price: values.price ? values.price : initialValues.price,
-            image: values.image,
+            image: url,
             brand: values.brand ? values.brand : initialValues.brand,
             stock: values.stock ? values.stock : initialValues.stock,
             isDisabled: values.isDisabled ? values.isDisabled : initialValues.isDisabled,
@@ -162,7 +160,7 @@ const UpdateProductForm = () => {
                         
                         <div className={style.eachField}>
                             <h3 className={style.subtitleCardInitial}>Descontinuado: </h3>
-                            <h4>{initialValues.isDisabled}</h4>
+                            <h4>{initialValues.isDisabled + ""}</h4>
                         </div>
 
                         <div className={style.eachField}>
@@ -176,7 +174,6 @@ const UpdateProductForm = () => {
                         </div>
 
                         <div className={style.eachField}>
-                        <h3 className={style.subtitleCardInitial}>Imagen: </h3>
                             <div className={style.imgContainer}>
                                 <img className={style.imgCardInitial} src={initialValues.image}/>
                             </div>
@@ -198,17 +195,9 @@ const UpdateProductForm = () => {
                             </div>
                             <div className={style.boxForm}>
                                 <div className={style.containerInputsLeftForm}>
-                                    {/* <div className={style.containerInputs}>
-                                        <label className={style.labels} htmlFor='id'>Id del producto</label>
-                                        <Field className={style.inputs} value={values.id} name='id' type='number' placeholder='Ej: 1' />
-                                        <ErrorMessage name='id'>
-                                            {(msg) => <div className={style.errors}>{msg}</div>}
-                                        </ErrorMessage>
-                                    </div> */}
-
                                     <div className={style.containerInputs}>
                                         <label className={style.labels} htmlFor='name'>Nombre del producto</label>
-                                        <Field className={style.inputs} value={values.name} name='name' type='text' placeholder='Ej: Buzo Cali Azulino' />
+                                        <Field className={style.inputs} defaultValue={initialValues.name} value={values.name} name='name' type='text' placeholder='Ej: Buzo Cali Azulino' />
                                         <ErrorMessage name='name'>
                                             {(msg) => <div className={style.errors}>{msg}</div>}
                                         </ErrorMessage>
