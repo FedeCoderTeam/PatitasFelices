@@ -34,26 +34,26 @@ export default function Nav() {
 			<div className={style.containerLeft}>
 				<NavLink to="/home" className={`${style.link} ${location.pathname === '/home' ? style.active : ''}`}>
 					<div className={style.divNav}>
-						<i class="fa-solid fa-house"></i>
+						<i className="fa-solid fa-house"></i>
 						<p className={style.links}>Inicio</p>
 					</div>
 				</NavLink>
 				<NavLink to="/products" className={`${style.link} ${location.pathname === '/products' ? style.active : ''}`}>
 					<div className={style.divNav}>
-						<i class="fa-solid fa-bone"></i>
+						<i className="fa-solid fa-bone"></i>
 						<p className={style.links}>Productos</p>
 					</div>
 				</NavLink>
 				<NavLink to="/dogs" className={`${style.link} ${location.pathname === '/dogs' ? style.active : ''}`}>
 					<div className={style.divNav}>
-						<i class="fa-solid fa-paw"></i>
+						<i className="fa-solid fa-paw"></i>
 						<p className={style.links}>Perros</p>
 					</div>
 				</NavLink>
 				{selector.user?.role === 'Administrador' && (
 					<Link to="/dashboard" className={style.link}>
 						<div className={style.divNav}>
-							<i class="fa-sharp fa-solid fa-screwdriver-wrench"></i>
+							<i className="fa-sharp fa-solid fa-screwdriver-wrench"></i>
 							<p className={style.links}>Admin</p>
 						</div>
 					</Link>
@@ -63,13 +63,13 @@ export default function Nav() {
 				<div className={style.containerRight}>
 					<Link to="/login" className={style.link}>
 						<div className={style.divNav}>
-							<i class="fa-solid fa-right-to-bracket"></i>
+							<i className="fa-solid fa-right-to-bracket"></i>
 							<p className={style.links}>Ingresar</p>
 						</div>
 					</Link>
 					<Link to="/register" className={style.link}>
 						<div className={style.divNav}>
-							<i class="fa-solid fa-user-plus"></i>
+							<i className="fa-solid fa-user-plus"></i>
 							<p className={style.links}>Registrarse</p>
 						</div>
 					</Link>
@@ -77,7 +77,7 @@ export default function Nav() {
 			) : (
 				<div className={style.containerRight}>
 					<IconButton arial-label={'primary'} onClick={() => dispatch(setOpenAction())} >
-						<Badge badgeContent={shoppingCart.items.length} color={'primary'} >
+						<Badge badgeContent={shoppingCart.items.reduce((total, item) => total + item.quantity, 0)} color={'primary'} >
 							<ShoppingCartIcon />
 						</Badge>
 					</IconButton>
