@@ -7,6 +7,8 @@ import CloudinaryWidgetFull from '../../../../components/Cloudinary/CloudinaryFo
 import style from './UpdateDogForm.module.css';
 import * as dogsAction from '../../../../_redux/actions/dogsAction';
 import { Link } from 'react-router-dom';
+import useToast from '../../../../hooks/useToast';
+import { useNavigate } from 'react-router-dom';
 
 const UpdateDogForm = () => {
 	const dispatch = useDispatch();
@@ -14,6 +16,9 @@ const UpdateDogForm = () => {
 	const temperaments = useSelector((state) => state.dogsReducer.temperaments);
 	const dogToUpdate = useSelector((state) => state.dogsReducer.dogDetail);
 	console.log(dogToUpdate);
+
+	const navigate = useNavigate();
+	const { success } = useToast();
 
 	useEffect(() => {
 		return () => {
@@ -30,7 +35,7 @@ const UpdateDogForm = () => {
 		size: dogToUpdate.size,
 		weight: dogToUpdate.weight,
 		castrated: dogToUpdate.castrated,
-		tempers: dogToUpdate.tempers,
+		tempers: dogToUpdate.temperaments,
 		colors: dogToUpdate.colors,
 		gender: dogToUpdate.gender,
 		image: dogToUpdate.image,
@@ -60,42 +65,159 @@ const UpdateDogForm = () => {
 			.min(1, 'El peso tiene que ser mayor a 1. *')
 			.max(110, '¡WOW!¿Estás seguro que es un perro? *')
 			.required('El peso es obligatorio. *'),
-		gender: Yup.string().oneOf(
+		genders: Yup.string().oneOf(
 			['Hembra', 'Macho'],
 			'El género es obligatorio. *',
 		),
-		castrated: Yup.boolean().oneOf(
-			['Yes', 'No'],
-			'Este campo es obligatorio. *',
-		),
-		colors: Yup.string().oneOf(
-			['Negro', 'Blanco', 'Gris', 'Marron', 'Dorado', 'Cobrizo', 'Crema'],
-			'El color es obligatorio. *',
-		),
+		// castrated: Yup.boolean()
+		// 	.required('Este campo es obligatorio. *'),
+		colors: Yup.array()
+			.of(
+				Yup.string().oneOf([
+					'Negro',
+					'Blanco',
+					'Gris',
+					'Marron',
+					'Dorado',
+					'Cobrizo',
+					'Crema',
+				]),
+			)
+			.min(1, 'Seleccione por lo menos un color'),
+		temperaments: Yup.array()
+			.of(Yup.string().oneOf([temperaments.map((inst) => inst.name)]))
+			.min(1, 'Seleccione por lo menos un color'),
 		description: Yup.string().required('La descripción es obligatoria. *'),
-		adopted: Yup.boolean().oneOf(['Yes', 'No'], 'Este campo es obligatorio. *'),
-		isDisabled: Yup.boolean().oneOf(
-			['Yes', 'No'],
-			'Este campo es obligatorio. *',
-		),
+		adopted: Yup.boolean()
+			.required('Este campo es obligatorio. *'),
+		isDisabled: Yup.boolean()
+			.required('Este campo es obligatorio. *'),
 		image: Yup.string()
-			.matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida. *')
-			.required('La imagen es obligatoria. *'),
+			.matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida. *'),
 	});
+
+	const handleSubmit = async (values) => {
+
+        const obj = {
+            id: initialValues.id,
+			name: values.name,
+			age: values.age,
+			size: values.size,
+			weight: values.weight,
+			castrated: values.castrated,
+			tempers: values.tempers,
+			colors: values.colors,
+			genders: values.gender,
+			image: values.image,
+			description: values.description,
+			adopted: values.adopted,
+			isDisabled: values.isDisabled,
+        }
+
+        dispatch(dogsAction.updateDogs(obj))
+        success(`Perro editado exitosamente!`, {
+			duration: 2000
+		});
+		setTimeout(() => {
+			navigate('/dashboard/dogs');
+		}, 2000);
+
+    }
+
 
 	const formik = useFormik({
 		initialValues,
 		validationSchema,
-		// handleSubmit,
+		handleSubmit,
 	});
 
-	return (
+	return (	
 		<div className={style.mainContainerForm}>
+
+			<div className={style.containerInitials}>
+                <h3 className={style.titleCardInitial}>Valores iniciales</h3>
+                <div className={style.subtitlesContainer}>
+                    <div className={style.subtitlesContainerLeft}>
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Id: </h3>
+                            <h4 className={style.spanCardInitial}>{initialValues.id}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Name: </h3>
+                            <h4>{initialValues.name}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Edad (meses): </h3>
+                            <h4>{initialValues.age}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Tamaño: </h3>
+                            <h4>{initialValues.size}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Peso (kg.): </h3>
+                            <h4>{initialValues.weight}</h4>
+                        </div>
+
+						<div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Genero: </h3>
+                            <h4>{initialValues.gender}</h4>
+                        </div>
+
+						<div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>¿Está castrado?: </h3>
+                            <h4>{initialValues.castrated}</h4>
+                        </div>
+
+                    </div>
+
+                    <div className={style.subtitlesContainerRight}>
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Temperamentos: </h3>
+                            <h4>{initialValues.tempers + ""}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Colores: </h3>
+                            <h4>{initialValues.colors + ""}</h4>
+                        </div>
+
+						<div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>Descripción del perro: </h3>
+                            <h4>{initialValues.description}</h4>
+                        </div>
+
+						<div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>¿Fue adoptado?: </h3>
+                            <h4>{initialValues.adopted}</h4>
+                        </div>
+
+						<div className={style.eachField}>
+                            <h3 className={style.subtitleCardInitial}>¿El perrito falleció?: </h3>
+                            <h4>{initialValues.isDisabled}</h4>
+                        </div>
+
+                        <div className={style.eachField}>
+                        <h3 className={style.subtitleCardInitial}>Imagen: </h3>
+                            <div className={style.imgContainer}>
+                                <img className={style.imgCardInitial} src={initialValues.image}/>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+
 			<div className={style.containerForm}>
 				<Formik
 					initialValues={initialValues}
 					validationSchema={validationSchema}
-					// onSubmit={(values) => handleSubmit(values)}
+					onSubmit={(values) => handleSubmit(values)}
 				>
 					{({ errors, values }) => (
 						<Form>
@@ -113,7 +235,7 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputs}
-											value={initialValues.name}
+											value={values.name}
 											name="name"
 											type="text"
 											placeholder="Ej: Otis"
@@ -129,7 +251,7 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputs}
-											value={initialValues.age}
+											value={values.age}
 											name="age"
 											type="number"
 											placeholder="Ej: 24"
@@ -145,7 +267,7 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
-											value={initialValues.size}
+											value={values.size}
 											as="select"
 											id="category"
 											name="size"
@@ -178,7 +300,7 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputs}
-											value={initialValues.weight}
+											value={values.weight}
 											name="weight"
 											type="number"
 											placeholder="Ej: 24"
@@ -194,7 +316,7 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
-											value={initialValues.gender}
+											value={values.gender}
 											as="select"
 											id="gender"
 											name="gender"
@@ -218,9 +340,9 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
-											value={initialValues.castrated}
+											value={values.castrated}
 											as="select"
-											id="category"
+											id="castrated"
 											name="castrated"
 										>
 											<option className={style.options} value="all"></option>
@@ -243,9 +365,10 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
-											value={initialValues.tempers}
+											value={values.tempers}
+											multiple
 											as="select"
-											id="category"
+											id="tempers"
 											name="tempers"
 										>
 											<option className={style.options} value="all"></option>
@@ -261,7 +384,8 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
-											value={initialValues.colors}
+											value={values.colors}
+											multiple
 											as="select"
 											id="colors"
 											name="colors"
@@ -300,7 +424,7 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputTextArea}
-											value={initialValues.description}
+											value={values.description}
 											type="text"
 											id="description"
 											name="description"
@@ -316,9 +440,9 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
-											value={initialValues.adopted}
+											value={values.adopted}
 											as="select"
-											id="category"
+											id="adopted"
 											name="adopted"
 										>
 											<option className={style.options} value="all"></option>
@@ -340,16 +464,16 @@ const UpdateDogForm = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
-											value={initialValues.isDisabled}
+											value={values.isDisabled}
 											as="select"
-											id="category"
+											id="isDisabled"
 											name="isDisabled"
 										>
 											<option className={style.options} value="all"></option>
-											<option className={style.options} value={true}>
+											<option className={style.options} value='true'>
 												Sí
 											</option>
-											<option className={style.options} value={false}>
+											<option className={style.options} value='false'>
 												No
 											</option>
 										</Field>
@@ -376,7 +500,7 @@ const UpdateDogForm = () => {
 											<div className={style.divImgUser}>
 												<img
 													className={style.imgUser}
-													src={!url.length ? initialValues.image : url}
+													src={!url.length ? values.image : url}
 													alt={formik.values.title}
 													title={formik.values.title}
 													loading="lazy"
