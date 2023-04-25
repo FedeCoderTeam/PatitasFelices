@@ -9,6 +9,7 @@ import './Home.css';
 import { Link } from 'react-router-dom';
 import HomeDonationSection from '../../components/HomeSection/HomeDonationSection/HomeDonationSection';
 import HomeProductSection from '../../components/HomeSection/HomeProductSection/HomeProductSection.jsx';
+import HomeReviewSection from '../../components/HomeSection/HomeReviewSection/HomeReviewSection';
 
 
 
@@ -71,6 +72,10 @@ const Home = () => {
 
                 <div data-aos="fade-down" data-aos-duration="1000">
                     <HomeProductSection />
+                </div>
+
+                <div data-aos="fade-down" data-aos-duration="1000">
+                    <HomeReviewSection/>
                 </div>
             </div>
         </>
