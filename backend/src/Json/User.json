@@ -1,12 +1,16 @@
 {
-    "id": "3582aecb-815e-4e40-b298-bda0d3ad1e5b",
-    "googleId": "100792125050560287673",
-    "name": "Nacho",
-    "last": "Morales",
-    "email": "happypawspf2023@gmail.com",
-    "password": "$2b$10$ZnWOl54VYkvxN51mzSipcuE7dkEIA57VKAT/AIvS7C.xy.2lkNkJ2",
-    "image": "https://lh3.googleusercontent.com/a/AGNmyxbELCP2oNNJBrPRL0umun3XGKIqjHmak-X12XmG=s96-c",
-    "isVerified": "true",
-    "isDisabled": "false",
-    "roleId": "1"
+	"users": [
+    
+      {"id": "3582aecb-815e-4e40-b298-bda0d3ad1e5b",
+      "googleId": 100792125050560287673,
+      "name": "Nacho",
+      "last": "Morales",
+      "email": "happypawspf2023@gmail.com",
+      "password": "$2b$10$ZnWOl54VYkvxN51mzSipcuE7dkEIA57VKAT/AIvS7C.xy.2lkNkJ2",
+      "image": "https://lh3.googleusercontent.com/a/AGNmyxbELCP2oNNJBrPRL0umun3XGKIqjHmak-X12XmG=s96-c",
+      "isVerified": true,
+      "isDisabled": false,
+      "roleId": 1
+      }
+    ]
   }
