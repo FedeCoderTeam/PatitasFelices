@@ -1,17 +1,73 @@
 import Box from '@mui/material/Box';
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
-import AddIcon from '@mui/icons-material/Add';
-import { useSelector } from 'react-redux';
-import React, { useMemo } from 'react';
+import SaveIcon from '@mui/icons-material/Save';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import { useSelector, useDispatch } from 'react-redux';
+import React, { useMemo, useState, useEffect } from 'react';
+import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import style from './requestGrid.module.css';
-// import { useNavigate } from 'react-router-dom';
-// import * as requestAction from '../../../_redux/actions/productsAction';
+import * as requestAction from '../../../_redux/actions/requestAction';
 
 const Request = () => {
-	// const dispatch = useDispatch();
-	// const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const allRequest = useSelector((state) => state.requestReducer.allAdoptions);
+
+	let [edit, setEdit] = useState(null);
+	let [editRow, setEditRow] = useState(null);
+	let [change, setChange] = useState('');
+	const statusOptions = ['Pendiente', 'Aceptada', 'Denegada'];
+
+	useEffect(() => {
+		dispatch(requestAction.getAdoptionDog());
+	}, [dispatch]);
+
+	const renderSelect = (params) => (
+		<Select
+			value={params.value}
+			onChange={(event) => {
+				const value = event.target.value;
+				params.api.setEditCellValue({
+					id: params.id,
+					field: 'col13',
+					value,
+				});
+				setChange(value);
+			}}
+			sx={{ minWidth: 120 }}
+		>
+			{statusOptions.map((option) => (
+				<MenuItem key={option} value={option}>
+					{option}
+				</MenuItem>
+			))}
+		</Select>
+	);
+
+	let handleEditClick = (row) => {
+		setEdit(true);
+		setEditRow(row);
+	};
+
+	let saveChange = (row, change) => {
+		let obj = {
+			id: row.id,
+			status:
+				change === 'Pendiente'
+					? 'Pending'
+					: change === 'Aceptada'
+					? 'Accepted'
+					: 'Denied',
+			dogId: row.col12,
+		};
+
+		if (row.col13 !== change) {
+			dispatch(requestAction.updateAdoptionDog(obj));
+		}
+
+		setEdit(false);
+		setEditRow(null);
+	};
 
 	const rows = useMemo(
 		() =>
@@ -30,7 +86,12 @@ const Request = () => {
 					col10: request.inHouse_allowance,
 					col11: request.outDoor_image,
 					col12: request.dogId,
-					col13: request.status,
+					col13:
+						request.status === 'Pending'
+							? 'Pendiente'
+							: request.status === 'Accepted'
+							? 'Aceptada'
+							: 'Denegada',
 					col14: new Date(request.createdAt)
 						.toLocaleDateString()
 						.replace(/\//g, '-'),
@@ -39,21 +100,33 @@ const Request = () => {
 		[allRequest],
 	);
 
+	let bgOnEdit = {
+		bg: (params) => (params.row.id === editRow?.id ? style.green : ''),
+	};
+
 	const columns = [
 		{
 			field: 'actions',
 			type: 'actions',
-			headerName: 'Actions',
+			headerName: 'Acciones',
 			width: 80,
 			cellClassName: 'actions',
 			getActions: ({ row }) => {
 				return [
 					<GridActionsCellItem
-						key={row.id + 0}
+						key={row.id}
 						icon={<EditIcon />}
 						label="Edit"
-						// onClick={() => handleEditClick(row)}
+						onClick={() => handleEditClick(row)}
 						color="inherit"
+					/>,
+					<GridActionsCellItem
+						key={row.id}
+						icon={<SaveIcon />}
+						label="Save"
+						onClick={() => saveChange(row, change)}
+						color="inherit"
+						disabled={!edit}
 					/>,
 				];
 			},
@@ -71,18 +144,21 @@ const Request = () => {
 		{ field: 'col10', headerName: '¿Permisos?', width: 100 },
 		{ field: 'col11', headerName: 'Imagen patio/balcón', width: 100 },
 		{ field: 'col12', headerName: 'Id perro', width: 100 },
-		{ field: 'col13', headerName: 'Solicitud', width: 120 },
+		{
+			field: 'col13',
+			headerName: 'Solicitud',
+			width: 120,
+			editable: edit,
+			cellClassName: bgOnEdit.bg,
+			valueGetter: (params) => params.row.col13,
+			valueOptions: statusOptions,
+			renderEditCell: renderSelect,
+		},
 		{ field: 'col14', headerName: 'Creación', width: 100 },
 	];
 
-	// const handleEditClick = (row) => {
-	// 	dispatch(productsAction.getProductsById(row.id));
-	// 	navigate('./updateProduct');
-	// };
-
 	return (
 		<>
-			
 			<Box
 				sx={{
 					height: 'auto',

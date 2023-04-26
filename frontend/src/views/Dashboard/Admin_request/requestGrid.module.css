@@ -1,15 +1,19 @@
-.buttonAdd{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #37ba54;
-    border: none;
-    border-radius: 4px;
-    margin-top: 11px;
-    padding: 6px;
-    cursor: pointer;
+.buttonAdd {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	background: #37ba54;
+	border: none;
+	border-radius: 4px;
+	margin-top: 11px;
+	padding: 6px;
+	cursor: pointer;
 }
-.buttonAdd:hover{
-    background-color: #57ec78;
-    transition: 500ms
+.buttonAdd:hover {
+	background-color: #57ec78;
+	transition: 500ms;
+}
+
+.green {
+	background-color: #592519;
 }
