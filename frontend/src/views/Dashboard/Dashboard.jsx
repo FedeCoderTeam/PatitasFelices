@@ -152,14 +152,14 @@ export default function Dashboard() {
 		{ name: 'Productos', route: '/products', icon: <LocalOfferIcon /> },
 		{ name: 'Perros', route: '/dogs', icon: <PetsIcon /> },
 		{ name: 'Users', route: '/users', icon: <AccountCircleIcon /> },
-		{ name: 'Ordenes', route: '/oders', icon: <GradingIcon /> },
+		{ name: 'Ordenes', route: '/orders', icon: <GradingIcon /> },
 	];
 
 	return (
 		<ThemeProvider theme={customTheme}>
 			<Box sx={{ display: 'flex' }}>
 				<CssBaseline />
-				<AppBar position="fixed" open={open} >
+				<AppBar position="fixed" open={open}>
 					<Toolbar>
 						<IconButton
 							color="inherit"
@@ -262,7 +262,7 @@ export default function Dashboard() {
 								element={<UpdateProductForm />}
 							/>
 							<Route path={'/users'} element={<Users />} />
-							<Route path={'/oders'} element={<Orders />} />
+							<Route path={'/orders'} element={<Orders />} />
 							<Route path={'/dogs'} element={<DogsGrid />} />
 							<Route path={'/dogs/createDog'} element={<CreateDog />} />
 							<Route path={'/dogs/updateDog'} element={<UpdateDogForm />} />
