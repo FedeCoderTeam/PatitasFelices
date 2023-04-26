@@ -233,6 +233,13 @@ const getUsers = () => {
 	};
 };
 
+const updateUser = () => {
+	return async function () {
+		let newRole = await axios.get(`${URL}/users`);
+		return newRole;
+	};
+};
+
 export {
 	authUserAction,
 	registerUserAction,
@@ -246,4 +253,5 @@ export {
 	googleUserAction,
 	setShowOverlayAction,
 	getUsers,
+	updateUser,
 };
