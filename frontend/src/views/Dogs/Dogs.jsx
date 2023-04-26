@@ -36,13 +36,15 @@ const Dogs = () => {
 
 	return (
 		<div data-aos="fade-down" className={style.main}>
-			<div className={style.filtersContainer}>
-				<DogFilters
-					allDogs={allDogs}
-					temperaments={temperaments}
-					colors={colors}
-					gender={gender}
-				/>
+			<div className={style.filtersBox}>
+				<div className={style.filtersContainer}>
+					<DogFilters
+						allDogs={allDogs}
+						temperaments={temperaments}
+						colors={colors}
+						gender={gender}
+					/>
+				</div>
 			</div>
 
 			<div className={style.cardSection}>
