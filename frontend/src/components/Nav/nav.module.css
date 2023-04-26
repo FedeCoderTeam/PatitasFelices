@@ -31,6 +31,12 @@
     margin-right: 40px;
 }
 
+.user {
+    display: flex;
+    gap: 1em;
+    margin-right: 40px;
+}
+
 .link {
     text-decoration: none;
     text-align: center;
