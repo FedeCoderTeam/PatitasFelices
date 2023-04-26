@@ -1,12 +1,77 @@
-import Box from '@mui/material/Box';
+import React, { useMemo, useState, useEffect } from 'react';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
+import Box from '@mui/material/Box';
 import EditIcon from '@mui/icons-material/Edit';
+import SaveIcon from '@mui/icons-material/Save';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import style from './User.module.css';
+import * as authActions from '../../../_redux/actions/authAction';
 
 const Users = () => {
+	const dispatch = useDispatch();
 	const allUsers = useSelector((state) => state.authReducer.users);
+
+	let [edit, setEdit] = useState(false);
+	let [editRow, setEditRow] = useState(null);
+	let [change, setChange] = useState('');
+	const rolesOptions = ['Administrador', 'Moderador', 'Usuario'];
+
+	useEffect(() => {
+		dispatch(authActions.getUsers());
+	}, [dispatch]);
+
+	const renderSelect = (params) => (
+		<Select
+			value={params.value}
+			onChange={(event) => {
+				const value = event.target.value;
+				params.api.setEditCellValue({
+					id: params.id,
+					field: 'col9',
+					value,
+				});
+				setChange(value);
+				console.log(change);
+			}}
+			sx={{ minWidth: 120 }}
+		>
+			{rolesOptions.map((option) => (
+				<MenuItem key={option} value={option}>
+					{option}
+				</MenuItem>
+			))}
+		</Select>
+	);
+
+	let handleEditClick = (row) => {
+		setEdit(true);
+		setEditRow(row);
+		console.log('Vamoa editar?');
+	};
+
+	let saveChange = (row, change) => {
+		let obj = {
+			id: row.id,
+			image: row.col6,
+			isDisabled: false,
+			roleId: change === 'Aministrador' ? 1 : change === 'Usuario' ? 3 : 2,
+		};
+
+		console.log(obj);
+
+		if (row.col9 !== change) {
+			console.log('Se edito');
+
+			dispatch(authActions.updateUser(obj));
+		} else {
+			console.log('No se edito');
+		}
+
+		setEdit(false);
+		setEditRow(null);
+	};
 
 	const rows = useMemo(
 		() =>
@@ -21,12 +86,15 @@ const Users = () => {
 					col6: user.image,
 					col7: user.isVerified,
 					col8: user.isDisabled,
-					col9: user.roleId,
-					col10: user.role.name,
+					col9: user.role.name,
 				};
 			}),
 		[allUsers],
 	);
+
+	let bgOnEdit = {
+		bg: (params) => (params.row.id === editRow?.id ? style.brown : ''),
+	};
 
 	const columns = [
 		{
@@ -41,7 +109,16 @@ const Users = () => {
 						key={row.id}
 						icon={<EditIcon />}
 						label="Edit"
+						onClick={() => handleEditClick(row)}
 						color="inherit"
+					/>,
+					<GridActionsCellItem
+						key={row.id}
+						icon={<SaveIcon />}
+						label="Save"
+						onClick={() => saveChange(row, change)}
+						color="inherit"
+						disabled={!edit}
 					/>,
 				];
 			},
@@ -55,8 +132,16 @@ const Users = () => {
 		{ field: 'col6', headerName: 'Imagen', width: 150 },
 		{ field: 'col7', headerName: 'Verificado', width: 150 },
 		{ field: 'col8', headerName: 'Desactivado', width: 150 },
-		{ field: 'col9', headerName: 'Rol id', width: 150 },
-		{ field: 'col10', headerName: 'Rol', width: 150 },
+		{
+			field: 'col9',
+			headerName: 'Rol',
+			width: 150,
+			editable: edit,
+			cellClassName: bgOnEdit.bg,
+			valueGetter: (params) => params.row.col9,
+			valueOptions: rolesOptions,
+			renderEditCell: renderSelect,
+		},
 	];
 
 	return (

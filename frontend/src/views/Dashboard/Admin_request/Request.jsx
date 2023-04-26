@@ -1,11 +1,11 @@
+import React, { useMemo, useState, useEffect } from 'react';
+import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { useSelector, useDispatch } from 'react-redux';
-import React, { useMemo, useState, useEffect } from 'react';
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import style from './requestGrid.module.css';
 import * as requestAction from '../../../_redux/actions/requestAction';
 
@@ -13,7 +13,7 @@ const Request = () => {
 	const dispatch = useDispatch();
 	const allRequest = useSelector((state) => state.requestReducer.allAdoptions);
 
-	let [edit, setEdit] = useState(null);
+	let [edit, setEdit] = useState(false);
 	let [editRow, setEditRow] = useState(null);
 	let [change, setChange] = useState('');
 	const statusOptions = ['Pendiente', 'Aceptada', 'Denegada'];
@@ -101,7 +101,7 @@ const Request = () => {
 	);
 
 	let bgOnEdit = {
-		bg: (params) => (params.row.id === editRow?.id ? style.green : ''),
+		bg: (params) => (params.row.id === editRow?.id ? style.brown : ''),
 	};
 
 	const columns = [
