@@ -11,9 +11,10 @@ import {createTheme, Dialog, DialogContent, ThemeProvider,} from '@mui/material'
 import { brown } from '@mui/material/colors';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
+import ReviewCard from '../../Cards/ReviewCard/ReviewCard';
 
 
-const HomeReviewSection = () => {
+const HomeReviewSection = ({ id, rating, comment, userId }) => {
     const { t } = useTranslation()
     const [showModal, setShowModal] = useState(false);
 
@@ -37,7 +38,7 @@ const HomeReviewSection = () => {
 				<h1>{t('home.section.review.yourOpinionMattersToUs')} <span>{t('home.section.review.shareIt')}</span></h1>
                 <div className={style.carousel}>
                     <i className="fa-solid fa-chevron-left"></i>
-                    <div className={style.reviewCard}>
+                    {/* <div className={style.reviewCard}>
                         <div className={style.userImg}>
                             <img src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682440997/Messi_chiquito_nzv8n5.jpg" alt="" />
                         </div>
@@ -57,7 +58,8 @@ const HomeReviewSection = () => {
                             </div>
                             
                         </div>
-                    </div>
+                    </div> */}
+                    <ReviewCard/>
                     <i className="fa-solid fa-chevron-right"></i>
                 </div>
                     {
@@ -67,6 +69,10 @@ const HomeReviewSection = () => {
                     <button onClick={handleOpenReview} className='button'>{t('home.section.review.comment')}</button>
 			</div>
 		</div>
+
+        <div>
+
+        </div>
         <ReviewDetail
         handleOpenReview={handleOpenReview}
         showModal={showModal}
