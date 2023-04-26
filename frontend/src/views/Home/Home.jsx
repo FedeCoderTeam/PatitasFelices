@@ -4,16 +4,13 @@ import HomeDogSection from '../../components/HomeSection/HomeDogSection/HomeDogS
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import * as dogsAction from "../../_redux/actions/dogsAction.js"
+import * as dogsAction from '../../_redux/actions/dogsAction.js';
 import './Home.css';
 import { Link } from 'react-router-dom';
 import HomeDonationSection from '../../components/HomeSection/HomeDonationSection/HomeDonationSection';
-import HomeProductSection from '../../components/HomeSection/HomeProductSection/HomeProductSection.jsx';
+import HomeProductSection from '../../components/HomeSection/HomeProductSection/HomeProductSection';
 import HomeReviewSection from '../../components/HomeSection/HomeReviewSection/HomeReviewSection';
 import {useTranslation} from 'react-i18next';
-
-
-
 
 const Home = () => {
     //navbar
@@ -36,8 +33,11 @@ const Home = () => {
     return (
         <>
             <Header />
-            <div className='mainContainerCardsHDS-Home' data-aos="fade-down"
-    data-aos-duration="1000">
+            <div
+                className='mainContainerCardsHDS-Home'
+                data-aos="fade-down"
+                data-aos-duration="1000"
+            >
                 <div className='dogSectionContainer'>
                     <div className='dogSectionContainer-LeftSide'>
                         <h1>{t('home.section.dog.our')} <span>{t('home.section.dog.rescues')}</span></h1>
@@ -62,26 +62,34 @@ const Home = () => {
                                 />
                             )
                         })} */}
-                        <Link to='/dogs'>
-                            <img src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681884590/91540-dog-love_b0o1tw.gif" alt="" className='dogSectionImage'/>
-                        </Link>
-                    </div>
-                </div>
-                
-                <div className='sectionDonationProducts-Home' data-aos="fade-down" data-aos-duration="1000">
-                    <HomeDonationSection />
-                </div>
+						<Link to="/dogs">
+							<img
+								src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681884590/91540-dog-love_b0o1tw.gif"
+								alt=""
+								className="dogSectionImage"
+							/>
+						</Link>
+					</div>
+				</div>
 
-                <div data-aos="fade-down" data-aos-duration="1000">
-                    <HomeProductSection />
-                </div>
+				<div
+					className="sectionDonationProducts-Home"
+					data-aos="fade-down"
+					data-aos-duration="1000"
+				>
+					<HomeDonationSection />
+				</div>
 
-                <div data-aos="fade-down" data-aos-duration="1000">
-                    <HomeReviewSection/>
-                </div>
-            </div>
-        </>
-    )
-}
+				<div data-aos="fade-down" data-aos-duration="1000">
+					<HomeProductSection />
+				</div>
+
+				<div data-aos="fade-down" data-aos-duration="1000">
+					<HomeReviewSection />
+				</div>
+			</div>
+		</>
+	);
+};
 
 export default Home;

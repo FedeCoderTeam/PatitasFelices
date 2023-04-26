@@ -18,7 +18,7 @@ const HomeProductSection = () => {
 			<div className="containerBoxes-HProductS">
 				<div className="containerRight-HProductS">
 					<Link to='/products'>
-						<img src='https://res.cloudinary.com/dreso9ye9/image/upload/v1681883549/pet-food_ppr8jo.png' alt="dogProduct" className='productImage'/>
+						<img src='https://res.cloudinary.com/dreso9ye9/image/upload/v1682451588/53902-online-shopping-and-delivery_mcqxa0.gif' alt="dogProduct" className='productImage'/>
 					</Link>
 				</div>
 			</div>

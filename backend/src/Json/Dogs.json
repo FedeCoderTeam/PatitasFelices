@@ -20,7 +20,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314777/Pf%20Patitas%20felices/Dogs/4_kfyqh4.png",
 			"colors": ["Blanco", "Negro"],
 			"genders": "Macho",
-			"tempers": ["Digno", "Independiente", "Leal", "Dócil"],
+			"tempers": ["Tranquilo", "Independiente", "Leal", "Dócil"],
 			"description": "Pepe ha sido inseparable de Nina desde que la calle los unió, yendo de acá para allá buscando comida. Se quedaron en la casa de un vecino que aunque poco tenía, la mitad de su comida se la daba a ellos. Lamentablemente este señor falleció y otra vez empezaron a ir de un lado a otro en busca de comida. Ellos son adultos ya, merecen el calor de un hogar y la tranquilidad de tener un plato de comida todos los días. Es blanco y negro, tiene 7 años, está desparasitado, castrado y es de tamaño pequeño a mediano. Es muy tranquilo de carácter y compañero, le gusta salir a pasear con correa. Nos encantaría que alguna familia elija tanto a Pepe y como a Nina juntos, pero en caso de no lograrlo se dan en adopción por separado."
 		},
 		{
@@ -32,7 +32,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314770/Pf%20Patitas%20felices/Dogs/6_qmjpax.png",
 			"colors": ["Cobrizo", "Negro"],
 			"genders": "Macho",
-			"tempers": ["Divertido", "Audaz", "Robusto", "Luchador"]
+			"tempers": ["Divertido", "Extrovertido", "Activo", "Compañero"]
 		},
 		{
 			"name": "Tomy",
@@ -43,7 +43,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314776/Pf%20Patitas%20felices/Dogs/2_f5m1kk.png",
 			"colors": ["Negro"],
 			"genders": "Macho",
-			"tempers": ["Payaso", "Travieso", "Astuto", "Veloz"],
+			"tempers": ["Juguetón", "Travieso", "Astuto", "Activo"],
 			"description": "Es de tamaño mediano, raza mestiza, de contextura delgado pero fuerte y atlético. Muy sociable, juguetón, travieso. Ideal para familia, con o sin niños que le dediquen tiempo y atención. Es bueno, astuto y sumiso. Pasea con collar y correa sin problemas. Hace caso cuando se le da una orden. Rescatado en un estado casi de agonía, tirado en un cordón cuneta, moribundo y con enfermedades graves, estuvo internado tres días y en recuperación por 3 meses. Fue atacado por otros perros y en uno de esos ataques le cortaron parte de una de sus orejitas. Hoy es un perro muy bueno, gracioso, amigable, alegre y muy cariñoso. Listo para dar mucho amor y alegría al hogar."
 		},
 		{
@@ -55,7 +55,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314777/Pf%20Patitas%20felices/Dogs/3_ukgio1.png",
 			"colors": ["Marron", "Blanco", "Negro"],
 			"genders": "Macho",
-			"tempers": ["Encantador", "Atletico", "Familiar", "Dócil"],
+			"tempers": ["Encantador", "Activo", "Compañero", "Dócil"],
 			"description": "Este pequeñín de mirada que enamora llego al refugio con muchísimo miedo hacia las personas y también a los perros. De a poquito fue avanzando y comenzando a tomar confianza, cada día daba un pasito más. Es de tamaño pequeño, tiene 1 año aproximadamente, está castrado y desparasitado. Es muy tranquilo, dócil, cariñoso cuando toma confianza, se lleva bien con otros animales y sale a pasear con correa, aún le tiene miedo a algunos ruidos fuertes pero continuamos sacándolo todos los días para que se acostumbre y pierda su miedo.Buscamos una familia amorosa y con paciencia que le dé mucho amor. Se porta muy bien pero es muy asustadizo."
 		},
 		{
@@ -67,7 +67,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314769/Pf%20Patitas%20felices/Dogs/5_wxkrlg.png",
 			"colors": ["Marron", "Negro"],
 			"genders": "Macho",
-			"tempers": ["Enérgico", "Cariñoso", "Tierno", "Sociable"],
+			"tempers": ["Activo", "Cariñoso", "Tierno", "Sociable"],
 			"description": "Este peludito de 7 años aproximadamente está buscando familia amorosa que le haga conocer el calor de un hogar, ya que su “familia” lo tenía en la calle, en pésimas condiciones. Si no hubiéramos llegado probablemente no hubiera sobrevivido mucho tiempo más. Hoy después de meses de su rescate está muchísimo mejor, más animado y  enérgico, además de ser muy cariñoso y sociable, ama salir a pasear, que le hagan mimitos y tiene una mirada que enamora. Se entrega castrado y desparasitado, su tamaño es mediano."
 		},
 		{
@@ -79,7 +79,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314769/Pf%20Patitas%20felices/Dogs/9_owgo9h.png",
 			"colors": ["Blanco", "Negro"],
 			"genders": "Hembra",
-			"tempers": ["Acertivo", "Sensible", "Refinado", "Despreocupado"]
+			"tempers": ["Encantador", "Tierno", "Refinado", "Tranquilo"]
 		},
 		{
 			"name": "Pasha",
@@ -90,7 +90,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314769/Pf%20Patitas%20felices/Dogs/7_h5a69w.png",
 			"colors": ["Blanco", "Marron"],
 			"genders": "Hembra",
-			"tempers": ["Astuto", "Bullicioso", "Sociable", "Compañero"]
+			"tempers": ["Astuto", "Salvaje", "Sociable", "Compañero"]
 		},
 		{
 			"name": "Nube",
@@ -101,7 +101,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314769/Pf%20Patitas%20felices/Dogs/8_iaopz2.png",
 			"colors": ["Blanco"],
 			"genders": "Hembra",
-			"tempers": ["Orgulloso", "Dominante", "Cariñoso", "Alegre"]
+			"tempers": ["Inteligente", "Terco", "Cariñoso", "Alegre"]
 		},
 		{
 			"name": "Delfi",
@@ -112,7 +112,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681320991/Pf%20Patitas%20felices/Dogs/22_is3qq3.png",
 			"colors": ["Negro", "Marron"],
 			"genders": "Hembra",
-			"tempers": ["Inteligente", "Fiel", "Firme", "Vigilante"]
+			"tempers": ["Inteligente", "Leal", "Protector", "Vigilante"]
 		},
 		{
 			"name": "Clara",
@@ -123,7 +123,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681320991/Pf%20Patitas%20felices/Dogs/28_ooc0zi.png",
 			"colors": ["Dorado"],
 			"genders": "Hembra",
-			"tempers": ["Juguetón", "Ansioso", "Rápido", "Tolerante"]
+			"tempers": ["Juguetón", "Salvaje", "Activo", "Paciente"]
 		},
 		{
 			"name": "Pini",
@@ -134,7 +134,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681320992/Pf%20Patitas%20felices/Dogs/26_fd6hri.png",
 			"colors": ["Negro"],
 			"genders": "Macho",
-			"tempers": ["Astuto", "Reflexivo", "Diligente", "Estable"]
+			"tempers": ["Astuto", "Inteligente", "Entrenable", "Tranquilo"]
 		},
 		{
 			"name": "Duki",
@@ -145,7 +145,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681320991/Pf%20Patitas%20felices/Dogs/25_t30qyi.png",
 			"colors": ["Blanco", "Negro", "Marron"],
 			"genders": "Macho",
-			"tempers": ["Gran corazón", "Suspicaz", "Sociable", "Tranquilo"],
+			"tempers": ["Amigable", "Astuto", "Sociable", "Tranquilo"],
 			"description": "No saben lo pequeñísimo que es de tamaño, además de lo bueno que es, cuando lo encontramos estaba muy lastimado, casi no se movía porque otros perros lo habían mordido, pero en poquito tiempo se recuperó muy bien. Está desparasitado y castrado. Es súper tranquilo, compañero y mimoso, además se lleva bien con otros perros. Es ideal para departamento. ¿Le das a un hogar a Duki para que no vuelva a sufrir en la calle?"
 		},
 		{
@@ -169,7 +169,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314775/Pf%20Patitas%20felices/Dogs/20_duyhh4.png",
 			"colors": ["Marron"],
 			"genders": "Macho",
-			"tempers": ["Generoso", "Enérgico", "Juguetón", "De buen carácter"],
+			"tempers": ["Tierno", "Activo", "Juguetón", "Compañero"],
 			"description": "Moca tiene 2 años, está desparasitado, vacunado y castrado. Es de tamaño mediano pero bien robusto, además de tener un color marmolado hermoso, es enérgico, le gusta jugar y salir a pasear. El fue adoptado y devuelto por qué tenía mucha energía, necesita una familia que lo haga jugar, pase tiempo con él y que lo saqué a pasear. Es muy cariñoso y bueno! Necesita patio cerrado."
 		},
 		{
@@ -181,7 +181,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314775/Pf%20Patitas%20felices/Dogs/19_osq6ph.png",
 			"colors": ["Negro", "Blanco"],
 			"genders": "Macho",
-			"tempers": ["Ágil", "Intrépido", "Animado", "Burbujeante"]
+			"tempers": ["Alegre", "Extrovertido", "Cariñoso", "Activo"]
 		},
 		{
 			"name": "Roma",
@@ -193,10 +193,10 @@
 			"colors": ["Blanco", "Crema"],
 			"genders": "Hembra",
 			"tempers": [
-				"Orientado a la gente",
-				"Inquisitivo",
-				"Territorial",
-				"Decidido"
+				"Compañero",
+				"Curioso",
+				"Obediente",
+				"Inteligente"
 			]
 		},
 		{
@@ -208,7 +208,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314773/Pf%20Patitas%20felices/Dogs/18_wkin6a.png",
 			"colors": ["Negro", "Marron", "Blanco"],
 			"genders": "Hembra",
-			"tempers": ["Voluntarioso", "Obediente", "Responsable", "Vigilante"],
+			"tempers": ["Entrenable", "Obediente", "Dócil", "Vigilante"],
 			"description": "Una madraza! A ella la encontramos en las vías del tren con sus 8 cachorros, súper bebés y nunca los dejo de cuidar. Cuando llegaron hubo que hacerles análisis a todos y fue un proceso largo. Sus cachorritos fueron ya dados en adopción (menos Cala y Kappi que aún esperan) y por fin Sara está lista. Es la perra más buena de este mundo, es agradecida y mimosa, buena, obediente, juguetona, guardiana, se lleva bien con absolutamente todos, sabe pasear con correa y va siempre al lado de uno. Está desparasitada y castrada."
 		},
 		{
@@ -220,7 +220,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681320991/Pf%20Patitas%20felices/Dogs/23_rosgax.png",
 			"colors": ["Negro", "Blanco"],
 			"genders": "Macho",
-			"tempers": ["Diligente", "Inquisitivo", "Adaptable", "Ágil"]
+			"tempers": ["Diligente", "Curioso", "Adaptable", "Alegre"]
 		},
 		{
 			"name": "Kappi",
@@ -231,7 +231,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314772/Pf%20Patitas%20felices/Dogs/17_djxmkx.png",
 			"colors": ["Negro", "Blanco"],
 			"genders": "Macho",
-			"tempers": ["Aventurero", "Salvaje", "Juguetón", "Enérgico"],
+			"tempers": ["Aventurero", "Salvaje", "Juguetón", "Activo"],
 			"description": "El es un hijo de Sara. Lo habíamos dado en adopción a sus 45 días y de casualidad un día salimos a pasear a los demás perros nos encontramos con un perro que no paraba de cruzar la calle y los autos le tocaban bocina, nos sorprendió mucho lo parecido que era a un hijo de Sara, nos acercamos y definitivamente ERA EL! Después de 3 meses adoptado, estaba en la calle perdido y sus adoptantes nunca nos avisaron. Tiene 5 meses, está desparasitado y pronto será castrado. Es de tamaño mediano, super energético y juguetón porque es muy cachorro aún, ama las pelotas y los peluches! Se lleva más que bien con otros perros, es bastante sumiso, y además pasea con correa muy tranquilo. Buscamos una familia responsable para que nunca más esté en la calle."
 		},
 		{
@@ -243,7 +243,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314769/Pf%20Patitas%20felices/Dogs/10_vgu9l6.png",
 			"colors": ["Negro", "Marron"],
 			"genders": "Macho",
-			"tempers": ["Alegre", "Valiente", "Protector", "Adaptable"]
+			"tempers": ["Alegre", "Activo", "Protector", "Adaptable"]
 		},
 		{
 			"name": "Nina",
@@ -254,7 +254,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314772/Pf%20Patitas%20felices/Dogs/12_p3st7g.png",
 			"colors": ["Blanco", "Marron"],
 			"genders": "Hembra",
-			"tempers": ["Vivaz", "Sociable", "Astuto", "Diligente"],
+			"tempers": ["Activo", "Sociable", "Astuto", "Diligente"],
 			"description": "Nina ha sido inseparable de Pepe desde que la calle los unió, yendo de acá para allá buscando comida. Se quedaron en la casa de un vecino que aunque poco tenía, la mitad de su comida se la daba a ellos. Lamentablemente este señor falleció y otra vez empezaron a ir de un lado a otro en busca de comida. Ellos son adultos ya, merecen el calor de un hogar y la tranquilidad de tener un plato de comida todos los días. Es marroncita, tiene 8 años está desparasitada y castrada y es de tamaño mediano. Es muy tranquila de carácter y compañera, le gusta salir a pasear con correa. Nos encantaría que alguna familia elija tanto a Nina y como a Pepe juntos, pero en caso de no lograrlo se dan en adopción por separado."
 		},
 		{
@@ -266,7 +266,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314771/Pf%20Patitas%20felices/Dogs/11_araodx.png",
 			"colors": ["Blanco"],
 			"genders": "Hembra",
-			"tempers": ["Como un gato", "Atletico", "Travieso", "Suspicaz"]
+			"tempers": ["Independiente", "Activo", "Travieso", "Astuto"]
 		},
 		{
 			"name": "Greta",
@@ -277,7 +277,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681582371/Pf%20Patitas%20felices/Dogs/14_sg6gaj.png",
 			"colors": ["Marron", "Dorado"],
 			"genders": "Hembra",
-			"tempers": ["Estable", "Gran corazón", "Tolerante", "Compañero"],
+			"tempers": ["Tranquilo", "Amigable", "Paciente", "Compañero"],
 			"description": "Ella apareció en el barrio Marqués de Sobremonte. Nunca nadie se interesó en ella. No es muy fotogénica. pero es realmente muy buena y cariñosa. Tiene 10 meses, está desparasitada, vacunada y castrada. Es de tamaño mediano tirando a pequeño. Muy dócil, compañera y juguetona, se lleva muy bien con otros perros."
 		},
 		{
@@ -289,7 +289,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314773/Pf%20Patitas%20felices/Dogs/15_pfyn8j.png",
 			"colors": ["Negro"],
 			"genders": "Macho",
-			"tempers": ["Brillante", "Tranquilo", "Compañero", "Astuto"],
+			"tempers": ["Encantador", "Tranquilo", "Compañero", "Astuto"],
 			"description": "Este grandulón hermoso había sido abandonado y se instaló en una obra en construcción en el barrio Cofico. Los vecinos lo alimentaban y ya se había convertido en un perro comunitario. Caminanaba por las calles, viendo quién le daba un poco de comida, pero todas las noches volvía a dormir al mismo lugar. Cuando la obra estuvo lista, lo empezaron a correr. Los que lo tomaron como hogar por 8 meses, lo corrieron y estaba día y noche, al sol y a la lluvia, durmiendo en la puerta. La vida de Rodo comenzó a cambiar, con unos días de cuidado su pelo se puso brillante, cambió el cuerpo y la energía. Tiene 6 años aproximadamente, está desparasitado y castrado, es de tamaño mediano pero robusto, muy compañero y tranquilo. Ama que le hagan mucho mimos y salir a pasear con correa al lado de uno. Se lleva bien con otros animales. Es ideal para todo tipo de hogar: jóvenes, adultos, o para ser hermano de algún otro perrito o gatito."
 		},
 		{
@@ -301,7 +301,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1681314775/Pf%20Patitas%20felices/Dogs/16_ta54hn.png",
 			"colors": ["Negro", "Blanco"],
 			"genders": "Hembra",
-			"tempers": ["Tierno", "Reservado", "Cauteloso", "Compañero"]
+			"tempers": ["Tierno", "Calmado", "Astuto", "Compañero"]
 		},
 		{
 			"name": "Spoke",
@@ -348,7 +348,7 @@
 			"image": "https://res.cloudinary.com/nacho-morales/image/upload/v1682047920/Pf%20Patitas%20felices/Dogs/Marcos_dog_mdypck.png",
 			"colors": ["Blanco"],
 			"genders": "Hembra",
-			"tempers": ["Juguetón", "Alegre", "Cariñoso", "Fiel"],
+			"tempers": ["Juguetón", "Alegre", "Cariñoso", "Leal"],
 			"description": "Lulu es un caniche chiquito muy dulce y cariñoso. Es blanca, con el pelaje suave y rizado, y tiene unas patas largas y delgadas que la hacen ver muy elegante. Tiene una carita muy simpática y expresiva, con unos ojos oscuros y brillantes que siempre están alerta. A pesar de ser pequeña, es muy activa y juguetona, y le encanta pasar tiempo con las personas. Además, es muy inteligente y fácil de entrenar, lo que hace que sea muy obediente y leal a su familia. En general, es una perrita muy hermosa y encantadora, que siempre nos llena de amor y alegría."
 		}
 	]

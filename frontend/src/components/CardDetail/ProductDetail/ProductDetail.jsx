@@ -35,26 +35,24 @@ function ProductDetail() {
 		(state) => state.productsReducer.productDetail,
 	);
 
+	const allProducts = useSelector((state) => state.productsReducer.products);
+
 	useEffect(() => {
 		setTimeout(() => {
 			setIsLoading(false);
 		}, 1000);
+		const getRandomProducts = () => {
+			const products = allProducts.filter((product) => product.id !== id);
+			const randomProducts = products.sort(() => 0.5 - Math.random());;
+			const selectedProducts = randomProducts.slice(0, 4);
+			setRandomProducts(selectedProducts);
+		  };
 		dispatch(getProductsById(id));
+		getRandomProducts()
 		return () => {
 			dispatch(setDetail());
 		};
-	}, [dispatch, id]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const response = await fetch('http://localhost:3001/products');
-			const data = await response.json();
-			const shuffledProducts = data.sort(() => 0.5 - Math.random());
-			const selectedProducts = shuffledProducts.slice(0, 4);
-			setRandomProducts(selectedProducts);
-		};
-		fetchData();
-	}, []);
+	}, [allProducts, dispatch, id]);
 
 	const addProduct = (quantity) => {
 		if(!localStorage.getItem('products')) localStorage.setItem('products', JSON.stringify([]))
@@ -145,9 +143,11 @@ function ProductDetail() {
 						</div>
 					</div>
 					<div className={style.containerOtros}>
-						<h2 className={style.titleMasProductos}>
-							También te pueden interesar
-						</h2>
+						<div className={style.divTitleMasProductos}>
+							<h2 className={style.titleMasProductos}>
+								También te pueden interesar
+							</h2>
+						</div>
 						<div className={style.divOtros}>
 							{randomProducts.map((product) => (
 								<ProductCard

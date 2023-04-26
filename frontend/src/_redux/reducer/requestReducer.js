@@ -4,22 +4,20 @@ const initialState = {
 	allAdoptions: [],
 };
 
-
 export const requestSlice = createSlice({
 	name: 'request',
 	initialState,
 	reducers: {
+		setAdoptionDog: (state, action) => {
+			if (typeof action.payload === 'string') {
+				state.allAdoptions = [];
+			}
 
-        setAdoptionDog: (state, action) => {
-            state.allAdoptions = action.payload
-        },
-    }
+			state.allAdoptions = action.payload;
+		},
+	},
 });
 
-export const {
-
-            setAdoptionDog,
-
-        } = requestSlice.actions;
+export const { setAdoptionDog } = requestSlice.actions;
 
 export default requestSlice.reducer;

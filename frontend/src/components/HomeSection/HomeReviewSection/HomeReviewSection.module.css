@@ -93,3 +93,10 @@
     padding-bottom: 0;
     color: #592518;
 }
+
+.errorMessage {
+    font-size: 14px;
+    color: rgb(202, 0, 0);
+    font-weight: 500;
+    margin-left: 5px;
+}
