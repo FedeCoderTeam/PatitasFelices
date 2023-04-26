@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import HomeDonationSection from '../../components/HomeSection/HomeDonationSection/HomeDonationSection';
 import HomeProductSection from '../../components/HomeSection/HomeProductSection/HomeProductSection.jsx';
 import HomeReviewSection from '../../components/HomeSection/HomeReviewSection/HomeReviewSection';
+import {useTranslation} from 'react-i18next';
 
 
 
@@ -19,6 +20,7 @@ const Home = () => {
     //header
     //cards
     // const [dogsPerPage] = useState(7);
+    const { t } = useTranslation()
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -38,11 +40,11 @@ const Home = () => {
     data-aos-duration="1000">
                 <div className='dogSectionContainer'>
                     <div className='dogSectionContainer-LeftSide'>
-                        <h1>Nuestros <span>rescatados</span></h1>
-                        <h4>Descubre las conmovedoras historias de nuestros pequeños valientes y encuentra tu compañero</h4>
-                        <h3>¡Adopta a uno de nuestros perritos y cambia su vida para siempre!</h3>
+                        <h1>{t('home.section.dog.our')} <span>{t('home.section.dog.rescues')}</span></h1>
+                        <h4>{t('home.section.dog.text1')}</h4>
+                        <h3>{t('home.section.dog.text2')}</h3>
                         <div>
-                            <Link to='/dogs'><button className='button'>¡Conócelos a todos!</button></Link>
+                            <Link to='/dogs'><button className='button'>{t('home.section.dog.meetThemAll')}</button></Link>
                         </div>
                     </div>
                     <div className='containerCardsHDS-Home'>

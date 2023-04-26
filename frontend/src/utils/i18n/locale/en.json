@@ -1,0 +1,60 @@
+{
+  "main": {
+    "title": "Happy Paws"
+  },
+  "landing": {
+    "welcomeTo": "Welcome to",
+    "happyPaws": "Happy Paws!",
+    "join": "Join"
+  },
+  "nav": {
+    "links": {
+      "home": "Home",
+      "product": "Products",
+      "dog": "Dogs"
+    },
+    "account": {
+      "settings": "Settings",
+      "logout": "Logout"
+    }
+  },
+  "footer": {
+    "copyright": "Copyright \u00A9 2023 Happy Paws"
+  },
+  "home": {
+    "header": {
+      "about": "A little about",
+      "us":"us",
+      "description": "Happy Paws is a shelter for dogs that have been abandoned or have suffered some type of abuse. We provide them with medical attention, food and a place while we look for a permanent home for each one of them.",
+      "discoverThem": "Discover them"
+    },
+    "section": {
+      "dog": {
+        "our": "Our",
+        "rescues": "rescues",
+        "text1": "Discover the moving stories of our brave little ones and find your partner",
+        "text2": "Adopt one of our puppies and change his life forever!",
+        "meetThemAll": "Get to know them all!"
+      },
+      "donation": {
+        "helpUsTo": "Help us to",
+        "help": "help",
+        "text1": "Your donation will provide them with food, medical care and a temporary home",
+        "text2": "Even the smallest help can make a difference in their lives!",
+        "donate": "Donate!"
+      },
+      "product": {
+        "checkOutOur": "Check out our",
+        "products": "products",
+        "text1": "Did you know that you can help homeless puppies while shopping for items for your pet?",
+        "text2": "Every purchase you make helps the homeless puppies at our shelter.",
+        "purchaseNow": "Purchase now!"
+      },
+      "review": {
+        "yourOpinionMattersToUs": "Your opinion matters to us,",
+        "shareIt": "share it",
+        "comment": "Comment!"
+      }
+    }
+  }
+}

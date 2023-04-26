@@ -1,8 +1,10 @@
 import React from 'react';
 import style from './HomeReviewSection.module.css';
 import { Link } from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 
 const HomeReviewSection = ({ image, name, age, gender }) => {
+    const { t } = useTranslation()
 	return (
 		<div className={style.mainContainer}>
 
@@ -17,9 +19,9 @@ const HomeReviewSection = ({ image, name, age, gender }) => {
 			</div>
 
 			<div className={style.containerRight}>
-				<h1>Tu opinión nos importa, <span>compártela</span></h1>
+				<h1>{t('home.section.review.yourOpinionMattersToUs')} <span>{t('home.section.review.shareIt')}</span></h1>
                 <div className={style.carousel}>
-                    <i class="fa-solid fa-chevron-left"></i>
+                    <i className="fa-solid fa-chevron-left"></i>
                     <div className={style.reviewCard}>
                         <div className={style.userImg}>
                             <img src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682440997/Messi_chiquito_nzv8n5.jpg" alt="" />
@@ -28,11 +30,11 @@ const HomeReviewSection = ({ image, name, age, gender }) => {
                         <div className={style.reviewInfo}>
                             <h2>Messi Chiquito</h2>
                             <div className={style.stars}>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star-half-stroke"></i>
+                                <i className="fa-solid fa-star"></i>
+                                <i className="fa-solid fa-star"></i>
+                                <i className="fa-solid fa-star"></i>
+                                <i className="fa-solid fa-star"></i>
+                                <i className="fa-solid fa-star-half-stroke"></i>
                             </div>
 
                             <div className={style.comentary}>
@@ -41,10 +43,10 @@ const HomeReviewSection = ({ image, name, age, gender }) => {
                             
                         </div>
                     </div>
-                    <i class="fa-solid fa-chevron-right"></i>
+                    <i className="fa-solid fa-chevron-right"></i>
                 </div>
 
-				<Link to="/donation"><button className='button'>¡Comentar!</button></Link>
+				<Link to="/donation"><button className='button'>{t('home.section.review.comment')}</button></Link>
 			</div>
 
 		</div>

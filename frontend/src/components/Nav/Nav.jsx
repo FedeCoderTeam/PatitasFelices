@@ -15,13 +15,21 @@ import { Settings, Logout } from '@mui/icons-material';
 import { logoutUserAction } from '../../_redux/actions/authAction';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {setOpenAction} from '../../_redux/actions/productsAction';
+import i18n from '../../utils/i18n/i18n'
+import {useTranslation} from 'react-i18next';
 
 export default function Nav() {
 	const location = useLocation();
 
+	const { t } = useTranslation()
+
 	const dispatch = useDispatch()
 	const selector = useSelector((state) => state.authReducer);
 	const shoppingCart = useSelector(state => state.productsReducer.shoppingCart)
+
+	const handleLangChange = async (e) => {
+		await i18n.changeLanguage(e.target.value)
+	}
 
 	return (
 		<div className={style.containerNav}>
@@ -35,19 +43,19 @@ export default function Nav() {
 				<NavLink to="/home" className={`${style.link} ${location.pathname === '/home' ? style.active : ''}`}>
 					<div className={style.divNav}>
 						<i className="fa-solid fa-house"></i>
-						<p className={style.links}>Inicio</p>
+						<p className={style.links}>{t('nav.links.home')}</p>
 					</div>
 				</NavLink>
 				<NavLink to="/products" className={`${style.link} ${location.pathname === '/products' ? style.active : ''}`}>
 					<div className={style.divNav}>
 						<i className="fa-solid fa-bone"></i>
-						<p className={style.links}>Productos</p>
+						<p className={style.links}>{t('nav.links.product')}</p>
 					</div>
 				</NavLink>
 				<NavLink to="/dogs" className={`${style.link} ${location.pathname === '/dogs' ? style.active : ''}`}>
 					<div className={style.divNav}>
 						<i className="fa-solid fa-paw"></i>
-						<p className={style.links}>Perros</p>
+						<p className={style.links}>{t('nav.links.dog')}</p>
 					</div>
 				</NavLink>
 				{selector.user?.role === 'Administrador' && (
@@ -76,6 +84,10 @@ export default function Nav() {
 				</div>
 			) : (
 				<div className={style.containerRight}>
+					<select onChange={handleLangChange}>
+						<option value={'es'}>Español</option>
+						<option value={'en'}>English</option>
+					</select>
 					<IconButton arial-label={'primary'} onClick={() => dispatch(setOpenAction())} >
 						<Badge badgeContent={shoppingCart.items.reduce((total, item) => total + item.quantity, 0)} color={'primary'} >
 							<ShoppingCartIcon />
