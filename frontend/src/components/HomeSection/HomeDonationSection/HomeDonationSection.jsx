@@ -3,8 +3,16 @@ import './HomeDonationSection.css';
 // import dogDonation from './images/dogDonation.png';
 // import dogProducts from './images/dogProducts.png';
 import { Link } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+// import { setLinkDonation } from '../../../_redux/actions/productsAction';
 
 const HomeDonationSection = () => {
+    // const dispatch = useDispatch();
+
+//     const handleOnBuy = () => {
+//         dispatch(setLinkDonation());
+//     }
+
 	return (
 		<div className="mainContainer-HDonationS">
 
@@ -24,7 +32,6 @@ const HomeDonationSection = () => {
 				<h3>¡Incluso la ayuda más pequeña puede marcar la diferencia en sus vidas!</h3>
 				<Link to="/donation"><button className='button'>¡Donar!</button></Link>
 			</div>
-
 		</div>
 	);
 };
