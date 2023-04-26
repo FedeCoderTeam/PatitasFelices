@@ -27,6 +27,7 @@
 .close{
     cursor: pointer;
     color: #c1996b;
+    width: 5%;
 }
 
 .btnClean {

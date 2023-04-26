@@ -19,6 +19,10 @@ const Cart = () => {
         dispatch(setLinkDePagos(cartItems));
     }
 
+    const handleCloseCart = () => {
+        dispatch(setOpenAction())
+    }
+
     const handleAddProduct = (product) => {
         const getProductLocal = localStorage.getItem('products')
         const products = JSON.parse(getProductLocal)
@@ -70,7 +74,7 @@ const Cart = () => {
     return (
         <Drawer anchor={'right'} open={shoppingCart.isOpen}>
             <div className={style.wrapper}>
-                <h1 className={style.close}><i class="fa-solid fa-xmark" onClick={(onclose=() => dispatch(setOpenAction()))}></i></h1>
+                <h1 className={style.close}><i class="fa-solid fa-xmark" onClick={handleCloseCart}></i></h1>
                 <h2>Carro de compra</h2>
                 {cartItems.length === 0 ? <p>No hay nada en el carrito.</p> : null}
                 {cartItems.map((item) => (
