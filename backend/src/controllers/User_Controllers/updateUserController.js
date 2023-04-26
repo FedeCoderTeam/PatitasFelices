@@ -1,37 +1,29 @@
 const { user, role } = require ('../../database/db')
 
-const updateUser = async(id, googleId, name, last, email, password, image, roles, isVerified, isDisabled)=>{
+const updateUser = async(id, password, image, isDisabled, roleId)=>{
+    console.log(id, password, image, isDisabled, roleId)
     try {
         let userUpdated= await user.findOne({
             where: {id: id}
         });
-        if(!userUpdated){
-            throw new Error (`No se encontró un usuario con id ${id}`);
-        }
+        if(!userUpdated) throw new Error (`No se encontró un usuario con id ${id}`);
+        
             await userUpdated.update({
-                name: name,
-                last: last,
-                email: email,
-                password: password,
-                image: image,
-                isVerified: isVerified,
-                isDisabled: isDisabled,
+                password: !password ? userUpdated.password : password,
+                image: !image ? userUpdated.image : image,
+                isDisabled: !isDisabled ? userUpdated.isDisabled : isDisabled,
             });
-            if (roles) {
-                let newRoles = await role.findOne({
+            if (roleId) {
+                let newRole = await role.findOne({
                     where: {
-                        name: roles,
+                        id: roleId,
                     },
                 });
-                if(newRoles){
-                await userUpdated.setRole(newRoles);
-            }
-        }
-
+                await userUpdated.setRole(newRole)
+            };
         return 'Se modificó correctamente al usuario';   
     } catch (error) {
-		console.log(error);
-		return 'Error al intentar actualizar el usuario';
+		return 'Error al intentar actualizar el usuario'
     }
 };
 

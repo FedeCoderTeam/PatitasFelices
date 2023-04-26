@@ -41,12 +41,11 @@ router.post('/', async (req, res) => {
 	}
 });
 
-//UPDATE USER (CLIENT)
-router.put('/update/:id', async(req, res)=> {
-    let { googleId, name, last, email, password, image, roles, isVerified, isDisabled } = req.body;
-	let {id}= req.params
+//UPDATE USER
+router.put('/', async(req, res)=> {
+    let { id, password, image, isDisabled, roleId } = req.body;
     try {
-        let userUpdated= await updateUser(id, googleId, name, last, email, password, image, roles, isVerified, isDisabled);
+        let userUpdated= await updateUser(id, password, image, isDisabled, roleId);
         if (userUpdated.error) {
 			throw new Error(userUpdated.error);
 		} else {
