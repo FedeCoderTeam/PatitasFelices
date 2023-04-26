@@ -1,0 +1,60 @@
+{
+  "main": {
+    "title": "Patitas Felices"
+  },
+  "landing": {
+    "welcomeTo": "¡Bienvenidos a",
+    "happyPaws": "Patitas Felices!",
+    "join": "Ingresar"
+  },
+  "nav": {
+    "links": {
+      "home": "Inicio",
+      "product": "Productos",
+      "dog": "Perros"
+    },
+    "account": {
+      "settings": "Configuraciones",
+      "logout": "Cerrar sesión"
+    }
+  },
+  "footer": {
+    "copyright": "Copyright \u00A9 2023 Patitas Felices"
+  },
+  "home": {
+    "header": {
+      "about": "Un poco sobre",
+      "us":"nosotros",
+      "description": "Patitas Felices es un refugio para perros que han sido abandonados o que han sufrido algún tipo de maltrato. Les proveemos de atención médica, alimento y un lugar mientras se busca un hogar permanente para cada uno de ellos.",
+      "discoverThem": "Conócelos"
+    },
+    "section": {
+      "dog": {
+        "our": "Nuestros",
+        "rescues": "rescatados",
+        "text1": "Descubre las conmovedoras historias de nuestros pequeños valientes y encuentra tu compañero",
+        "text2": "¡Adopta a uno de nuestros perritos y cambia su vida para siempre!",
+        "meetThemAll": "¡Conócelos a todos!"
+      },
+      "donation": {
+        "helpUsTo": "Ayudanos a",
+        "help": "ayudar",
+        "text1": "Tu donación les proveerá de alimento, atención médica y un hogar temporal",
+        "text2": "¡Incluso la ayuda más pequeña puede marcar la diferencia en sus vidas!",
+        "donate": "¡Donar!"
+      },
+      "product": {
+        "checkOutOur": "Mira nuestros",
+        "products": "productos",
+        "text1": "¿Sabías que puedes ayudar a los perritos sin hogar mientras compras artículos para tu mascota?",
+        "text2": "Cada compra que realizas ayuda a los perritos sin hogar en nuestro refugio.",
+        "purchaseNow": "¡Comprar!"
+      },
+      "review": {
+        "yourOpinionMattersToUs": "Tu opinión nos importa,",
+        "shareIt": "compártela",
+        "comment": "¡Comentar!"
+      }
+    }
+  }
+}

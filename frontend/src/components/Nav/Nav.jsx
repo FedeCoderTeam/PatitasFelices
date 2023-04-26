@@ -14,19 +14,27 @@ import { Badge, Divider, ListItemIcon } from '@mui/material';
 import { Settings, Logout } from '@mui/icons-material';
 import { logoutUserAction } from '../../_redux/actions/authAction';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import StarIcon from '@mui/icons-material/Star';
 import { setOpenAction } from '../../_redux/actions/productsAction';
+import i18n from '../../utils/i18n/i18n'
+import {useTranslation} from 'react-i18next';
+import StarIcon from '@mui/icons-material/Star';
 import { red } from '@mui/material/colors';
 import { grey } from '@mui/material/colors';
 
 export default function Nav() {
 	const location = useLocation();
 
-	const dispatch = useDispatch();
+	const { t } = useTranslation()
+
+	const dispatch = useDispatch()
 	const selector = useSelector((state) => state.authReducer);
 	const shoppingCart = useSelector(
 		(state) => state.productsReducer.shoppingCart,
 	);
+
+	const handleLangChange = async (e) => {
+		await i18n.changeLanguage(e.target.value)
+	}
 
 	return (
 		<div className={style.containerNav}>
@@ -49,7 +57,7 @@ export default function Nav() {
 				>
 					<div className={style.divNav}>
 						<i className="fa-solid fa-house"></i>
-						<p className={style.links}>Inicio</p>
+						<p className={style.links}>{t('nav.links.home')}</p>
 					</div>
 				</NavLink>
 				<NavLink
@@ -60,7 +68,7 @@ export default function Nav() {
 				>
 					<div className={style.divNav}>
 						<i className="fa-solid fa-bone"></i>
-						<p className={style.links}>Productos</p>
+						<p className={style.links}>{t('nav.links.product')}</p>
 					</div>
 				</NavLink>
 				<NavLink
@@ -71,7 +79,7 @@ export default function Nav() {
 				>
 					<div className={style.divNav}>
 						<i className="fa-solid fa-paw"></i>
-						<p className={style.links}>Perros</p>
+						<p className={style.links}>{t('nav.links.dog')}</p>
 					</div>
 				</NavLink>
 				{selector.user?.role === 'Administrador' && (
@@ -100,6 +108,10 @@ export default function Nav() {
 				</div>
 			) : (
 				<div className={style.containerRight}>
+					<select onChange={handleLangChange}>
+						<option value={'es'}>Español</option>
+						<option value={'en'}>English</option>
+					</select>
 					<IconButton
 						arial-label={'primary'}
 						onClick={() => dispatch(setOpenAction())}
