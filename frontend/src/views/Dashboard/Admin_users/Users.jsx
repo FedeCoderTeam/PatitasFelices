@@ -33,7 +33,6 @@ const Users = () => {
 					value,
 				});
 				setChange(value);
-				console.log(change);
 			}}
 			sx={{ minWidth: 120 }}
 		>
@@ -48,15 +47,15 @@ const Users = () => {
 	let handleEditClick = (row) => {
 		setEdit(true);
 		setEditRow(row);
-		console.log('Vamoa editar?');
 	};
 
 	let saveChange = (row, change) => {
 		let obj = {
-			id: row.id,
+			id: allUsers[row.id - 1].id,
+			password: row.col5,
 			image: row.col6,
 			isDisabled: false,
-			roleId: change === 'Aministrador' ? 1 : change === 'Usuario' ? 3 : 2,
+			roleId: change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3,
 		};
 
 		console.log(obj);
@@ -64,7 +63,7 @@ const Users = () => {
 		if (row.col9 !== change) {
 			console.log('Se edito');
 
-			dispatch(authActions.updateUser(obj));
+			console.log(dispatch(authActions.updateUser(obj)));
 		} else {
 			console.log('No se edito');
 		}

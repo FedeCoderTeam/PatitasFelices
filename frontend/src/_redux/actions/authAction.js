@@ -233,10 +233,14 @@ const getUsers = () => {
 	};
 };
 
-const updateUser = () => {
-	return async function () {
-		let newRole = await axios.get(`${URL}/users`);
-		return newRole;
+const updateUser = (obj) => {
+	return async () => {
+		try {
+			let newRole = await axios.put(`${URL}/users`, obj);
+			return newRole.data;
+		} catch (error) {
+			console.log(error);
+		}
 	};
 };
 
