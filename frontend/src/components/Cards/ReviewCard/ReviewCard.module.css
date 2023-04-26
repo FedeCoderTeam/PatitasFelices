@@ -1,0 +1,43 @@
+.reviewCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 550px;
+    height: 200px;
+    padding: 15px 30px 15px 30px;
+    border-radius: 5px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: ease-in-out 0.2s;
+}
+.reviewCard:hover {
+    transform: scale(1.01);
+}
+
+.userImg img{
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 30px;
+}
+
+.stars i {
+    color: goldenrod;
+}
+
+.comentary {
+    height: fit-content;
+    width: 370px;
+    display: flex;
+    align-items: start;
+}
+
+.reviewInfo {
+    display: flex;
+    flex-direction: column;
+}
+.reviewInfo h2 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    color: #592518;
+}
