@@ -11,7 +11,8 @@ const rolesRoutes = require('./Roles_Routes/rolesRoutes');
 const subCategoriesRoutes = require('./Sub_Categories_Route/subCategoriesRoutes');
 const cloudinaryRoute = require('./Cloudinary_Route/cloudinaryRoute');
 const mercadopagoRoute = require('./Mercado_Pago_Route/mercadopagoRoute');
-const requestsRoutes = require ('../routes/Requests_Routes/requestsRoutes')
+const requestsRoutes = require ('../routes/Requests_Routes/requestsRoutes');
+const reviewsRoutes = require ('../routes/Reviews_Routes/reviewsRoutes')
 
 const router = Router();
 
@@ -27,5 +28,6 @@ router.use('/subcategories', subCategoriesRoutes);
 router.use('/mercadopago', mercadopagoRoute);
 router.use('/cloudinary', cloudinaryRoute)
 router.use('/requests', requestsRoutes);
+router.use('/reviews', reviewsRoutes);
 
 module.exports = router;

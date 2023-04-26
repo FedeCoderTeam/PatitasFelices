@@ -47,7 +47,8 @@ const {
 	orderItem,
 	payment,
 	userVerification,
-	userPasswordReset
+	userPasswordReset,
+	reviews
 } = sequelize.models;
 
 dog.belongsToMany(color, { through: 'Dogs_Colors', timestamps: false });
@@ -109,6 +110,9 @@ userVerification.belongsTo(user, { foreignKey: 'userId' })
 
 user.hasOne(userPasswordReset, { foreignKey: 'userId' })
 userPasswordReset.belongsTo(user, { foreignKey: 'userId' })
+
+user.hasMany(reviews, { foreignKey: 'userId' })
+reviews.belongsTo(user, { foreignKey: 'userId' })
 
 module.exports = {
 	...sequelize.models,
