@@ -50,10 +50,10 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
-	let { id, status, dogId, token } = req.body;
+	let { id, status, dogId } = req.body;
 
 	try {
-		let updateAdopReq = await updateRequest(id, status, dogId, token);
+		let updateAdopReq = await updateRequest(id, status, dogId);
 
 		if (updateAdopReq.error) throw new Error(updateAdopReq.error);
 

@@ -41,7 +41,7 @@ const DogCard = ({
 				<div className={style.containerIcon}>
 					<img 
 						className={style.Icon} 
-						src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682183872/Iconos/animals_sbkckp.png'} 
+						src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/perro_hjswvs.png'} 
 						alt="Icon-Donate" />
 				</div>
 				<div className={style.pic}>
@@ -53,35 +53,35 @@ const DogCard = ({
 					<div className={style.divData}>
 						<img 
 							className={style.itemIcon} 
-							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682183872/Iconos/bone_lvvycj.png'} 
+							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/hueso_hiygob.png'} 
 							alt='image not found' 
 						/>
 						<h3 className={style.itemName}>{name}</h3>
 
 						<img 
 							className={style.itemIcon} 
-							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682183872/Iconos/bone_lvvycj.png'} 
+							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/hueso_hiygob.png'} 
 							alt='image not found' 
 						/>
 						<h3>{gender}</h3>
 
 						<img 
 							className={style.itemIcon} 
-							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682183872/Iconos/bone_lvvycj.png'} 
+							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/hueso_hiygob.png'} 
 							alt='image not found' 
 						/>
 						<h3>{size}</h3>
 
 						<img 
 							className={style.itemIcon} 
-							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682183872/Iconos/bone_lvvycj.png'} 
+							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/hueso_hiygob.png'} 
 							alt='image not found' 
 						/>
 						<h3>{colors.join(' - ')}</h3>
 
 						<img 
 							className={style.itemIcon} 
-							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682183872/Iconos/bone_lvvycj.png'} 
+							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/hueso_hiygob.png'} 
 							alt='image not found' 
 						/>
 						<h3>{temperaments.join(' - ')}</h3>
@@ -175,7 +175,7 @@ export function DialogDogsDetail(props) {
 								<h3>
 									<img 
 										className={style.itemIcon} 
-										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682183872/Iconos/paw_xeopgw.png'} 
+										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
 
 									/>
 									{props.dog.ageInYears}
@@ -183,7 +183,7 @@ export function DialogDogsDetail(props) {
 								<h3>
 									<img 
 										className={style.itemIcon} 
-										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682183872/Iconos/paw_xeopgw.png'} 
+										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
 
 									/>
 									{props.dog.weight + 'kg'}
@@ -191,7 +191,7 @@ export function DialogDogsDetail(props) {
 								<h3>
 									<img 
 										className={style.itemIcon} 
-										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682183872/Iconos/paw_xeopgw.png'} 
+										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
 
 									/>
 									{props.dog.colors.join(' - ')}
@@ -199,7 +199,7 @@ export function DialogDogsDetail(props) {
 								<h3>
 									<img 
 										className={style.itemIcon} 
-										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682183872/Iconos/paw_xeopgw.png'} 
+										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
 
 									/>
 									{props.dog.gender}
@@ -207,7 +207,7 @@ export function DialogDogsDetail(props) {
 								<h3>
 									<img 
 										className={style.itemIcon} 
-										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682183872/Iconos/paw_xeopgw.png'} 
+										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
 
 									/>
 									{props.dog.size}
@@ -215,7 +215,7 @@ export function DialogDogsDetail(props) {
 								<h3>
 									<img 
 										className={style.itemIcon} 
-										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682183872/Iconos/paw_xeopgw.png'} 
+										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
 
 									/>
 									{props.dog.temperaments.join(' - ')}

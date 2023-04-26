@@ -114,7 +114,7 @@
 
 .errors{
     color: #9e1d00;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 500;
     margin-left: 2px;
 }
@@ -170,7 +170,6 @@
 
 .btnCreate:hover{
     background-color: #592518;
-    transform: scale(1.02);
 }
 
 .divCloudinaryBtn{
@@ -178,10 +177,6 @@
     transition:
         background-color 300ms linear,
         transform 300ms linear;
-}
-
-.divCloudinaryBtn:hover{
-    transform: scale(1.02);
 }
 
 .containerInitials{

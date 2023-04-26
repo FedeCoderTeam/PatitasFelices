@@ -3,16 +3,9 @@ import './HomeDonationSection.css';
 // import dogDonation from './images/dogDonation.png';
 // import dogProducts from './images/dogProducts.png';
 import { Link } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
-// import { setLinkDonation } from '../../../_redux/actions/productsAction';
+import {useTranslation} from 'react-i18next';
 
 const HomeDonationSection = () => {
-    // const dispatch = useDispatch();
-
-//     const handleOnBuy = () => {
-//         dispatch(setLinkDonation());
-//     }
-
 	return (
 		<div className="mainContainer-HDonationS">
 
@@ -27,10 +20,10 @@ const HomeDonationSection = () => {
 			</div>
 
 			<div className='containerRight-HDonationS'>
-				<h1>Ayudanos a <span>ayudar</span></h1>
-				<h4>Tu donación les proveerá de alimento, atención médica y un hogar temporal</h4>
-				<h3>¡Incluso la ayuda más pequeña puede marcar la diferencia en sus vidas!</h3>
-				<Link to="/donation"><button className='button'>¡Donar!</button></Link>
+				<h1>{t('home.section.donation.helpUsTo')} <span>{t('home.section.donation.help')}</span></h1>
+				<h4>{t('home.section.donation.text1')}</h4>
+				<h3>{t('home.section.donation.text2')}</h3>
+				<Link to="/donation"><button className='button'>{t('home.section.donation.donate')}</button></Link>
 			</div>
 		</div>
 	);

@@ -108,7 +108,7 @@ const UpdateDogForm = () => {
 			tempers: values.tempers,
 			colors: values.colors,
 			genders: values.gender,
-			image: values.image,
+			image: url,
 			description: values.description,
 			adopted: values.adopted,
 			isDisabled: values.isDisabled,
@@ -170,7 +170,7 @@ const UpdateDogForm = () => {
 
 						<div className={style.eachField}>
                             <h3 className={style.subtitleCardInitial}>¿Está castrado?: </h3>
-                            <h4>{initialValues.castrated}</h4>
+                            <h4>{initialValues.castrated + ""}</h4>
                         </div>
 
                     </div>
@@ -193,16 +193,15 @@ const UpdateDogForm = () => {
 
 						<div className={style.eachField}>
                             <h3 className={style.subtitleCardInitial}>¿Fue adoptado?: </h3>
-                            <h4>{initialValues.adopted}</h4>
+                            <h4>{initialValues.adopted + ""}</h4>
                         </div>
 
 						<div className={style.eachField}>
                             <h3 className={style.subtitleCardInitial}>¿El perrito falleció?: </h3>
-                            <h4>{initialValues.isDisabled}</h4>
+                            <h4>{initialValues.isDisabled + ""}</h4>
                         </div>
 
                         <div className={style.eachField}>
-                        <h3 className={style.subtitleCardInitial}>Imagen: </h3>
                             <div className={style.imgContainer}>
                                 <img className={style.imgCardInitial} src={initialValues.image}/>
                             </div>

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as dogsAction from '../../../_redux/actions/dogsAction';
-import style from './dogsGrid.module.css'
+import style from './dogsGrid.module.css';
 
 const DogsGrid = () => {
 	const allDogs = useSelector((state) => state.dogsReducer.allDogs);
@@ -14,7 +14,7 @@ const DogsGrid = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(dogsAction.getDogs())
+		dispatch(dogsAction.getDogs());
 	}, [dispatch]);
 
 	const rows = useMemo(
@@ -78,7 +78,8 @@ const DogsGrid = () => {
 
 	return (
 		<>
-			<button className={style.buttonAdd}
+			<button
+				className={style.buttonAdd}
 				onClick={() => {
 					navigate('/dashboard/dogs/createDog');
 				}}
