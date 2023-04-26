@@ -9,11 +9,11 @@ export const requestSlice = createSlice({
 	initialState,
 	reducers: {
 		setAdoptionDog: (state, action) => {
-			if (typeof action.payload === 'string') {
-				state.allAdoptions = [];
+			if (typeof action.payload === 'object') {
+				state.allAdoptions = action.payload;
 			}
 
-			state.allAdoptions = action.payload;
+			state.allAdoptions = [];
 		},
 	},
 });

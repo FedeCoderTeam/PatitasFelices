@@ -1,34 +1,35 @@
-const { user, role } = require ('../../database/db')
-const usersJson= require ('../../Json/User.json')
+const { user, role } = require('../../database/db');
+const usersJson = require('../../Json/User.json');
 
-const getAllUsers = async ()=> {
-    let allUsers= await user.findAll({
-        include: [
-            { model: role },
-        ]
-    });
+const getAllUsers = async () => {
+	let allUsers = await user.findAll({
+		include: [{ model: role }],
+	});
 
-    if(!allUsers.length) {
-        let userPatitas= usersJson.users[0]
-        let happyPaws= await user.create({
-            id: userPatitas.id,
-            googleId: userPatitas.googleId,
-            name: userPatitas.name,
-            last: userPatitas.last,
-            email: userPatitas.email,
-            password: userPatitas.password,
-            image: userPatitas.image,
-            isVerified: userPatitas.isVerified,
-            isDisabled: userPatitas.isDisabled,
-        });
-        let rol= await role.findOne({
-            where: {
-                id: userPatitas.roleId
-            }
-        });
-        await happyPaws.setRole(rol)      
-    }
-    return allUsers
+	if (!allUsers.length) {
+		let newUsers = usersJson.users;
+
+		for (let i = 0; i < newUsers.length; i++) {
+			let newUser = await user.create({
+				id: newUsers[i].id,
+				googleId: newUsers[i].googleId,
+				name: newUsers[i].name,
+				last: newUsers[i].last,
+				email: newUsers[i].email,
+				password: newUsers[i].password,
+				image: newUsers[i].image,
+				isVerified: newUsers[i].isVerified,
+				isDisabled: newUsers[i].isDisabled,
+			});
+			let rol = await role.findOne({
+				where: {
+					id: newUsers[i].roleId,
+				},
+			});
+			await newUser.setRole(rol);
+		}
+	}
+	return allUsers;
 };
 
-module.exports= getAllUsers;
+module.exports = getAllUsers;
