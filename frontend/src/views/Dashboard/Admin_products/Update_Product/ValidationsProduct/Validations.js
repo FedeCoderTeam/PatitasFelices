@@ -1,7 +1,7 @@
 export default function validation(input) {
 	let errors = {};
-	let regexName = /^[a-zA-ZñÑ\s]{4,}$/;
-    let regexDescription = /^[a-zA-ZñÑ\s]{10,}$/;
+	let regexName = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s,.]{4,}$/;
+    let regexDescription = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s,.]{10,}$/;
 	let regexStock = /^[1-9][0-9]*$/;
 	let regexUrl = /^.*\.(jpg|jpeg|png)$/i;
 

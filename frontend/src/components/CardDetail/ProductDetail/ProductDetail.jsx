@@ -45,7 +45,7 @@ function ProductDetail() {
 			setIsLoading(false);
 		}, 1500);
 		const getRandomProducts = () => {
-			const products = allProducts.filter((product) => product.id !== id);
+			const products = allProducts.filter((product) => product.id !== Number(id));
 			const randomProducts = products.sort(() => 0.5 - Math.random());;
 			const selectedProducts = randomProducts.slice(0, 4);
 			setRandomProducts(selectedProducts);
@@ -109,6 +109,9 @@ function ProductDetail() {
 				<div className={style.bodyDetailProduct} data-aos="fade-down">
 					<div className={style.containerProduct}>
 						<div className={style.divLeft}>
+							<Link className={style.links} to='/products'>
+								<i class="fa-solid fa-arrow-right fa-rotate-180"></i>
+							</Link>
 							<img
 								className={style.imagenDetail}
 								src={productDetail.image}
