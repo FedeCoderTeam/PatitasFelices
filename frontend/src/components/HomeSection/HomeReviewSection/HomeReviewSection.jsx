@@ -1,6 +1,5 @@
 import React from 'react';
 import style from './HomeReviewSection.module.css';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import * as Yup from 'yup';
@@ -24,6 +23,8 @@ const HomeReviewSection = () => {
     const handleOpenReview = () => {
         setShowModal(!showModal)
     }
+
+
 	return (
         <>
 		<div className={style.mainContainer}>
@@ -69,9 +70,9 @@ export default HomeReviewSection;
 export function ReviewDetail (props) {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const { success } = useToast();
     const token = useSelector((state) => state.authReducer.token)
+    
 
     const innerTheme = createTheme({
 		palette: {
@@ -109,12 +110,11 @@ export function ReviewDetail (props) {
             comment: values.comment,
             rating: values.rating
         } 
-        console.log(obj);
         dispatch(reviewsAction.postReviews(obj)) 
-        success('Tu comentario se enviada correctamente', {
+        success('Tu comentario se ha enviada correctamente', {
             duration: 2000
 		});
-        navigate('/home')
+        props.handleOpenReview()
     }
     
     const formik = useFormik({
@@ -143,6 +143,7 @@ export function ReviewDetail (props) {
                         <DialogContent dividers>
                         <form
                             onSubmit={formik.handleSubmit}
+
                             >
                                 <div>
                                     <label htmlFor="comment">Comentario</label>
