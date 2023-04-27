@@ -11,9 +11,16 @@
     "links": {
       "home": "Home",
       "product": "Products",
-      "dog": "Dogs"
+      "dog": "Dogs",
+      "signUp": "Sign up",
+      "signIn": "Sign in"
+    },
+    "cart": {
+      "myCart": "My cart"
     },
     "account": {
+      "myAccount": "My account",
+      "myComments": "My comments",
       "settings": "Settings",
       "logout": "Logout"
     }
@@ -55,6 +62,20 @@
         "shareIt": "share it",
         "comment": "Comment"
       }
+    }
+  },
+  "cart": {
+    "cart": "Cart",
+    "nothingCart": "No items in cart.",
+    "price": "Price",
+    "quantity": "Quantity",
+    "checkout": "Checkout",
+    "clearCart": "Clear cart",
+    "alert": {
+      "addProduct": "Product added to cart",
+      "addProductWarning": "You can't add more products",
+      "removeProduct": "Product successfully removed",
+      "removeAllProduct": "You have successfully removed all products from the cart"
     }
   }
 }

@@ -1,23 +1,22 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import {
-	getProductsById,
-	setDetail, setItemsAction,
-	setLinkDePagos,
-} from '../../../_redux/actions/productsAction';
+import {Link, useParams} from 'react-router-dom';
+import { getProductsById, setDetail, setItemsAction } from '../../../_redux/actions/productsAction';
 import { useState } from 'react';
 import style from './productDetail.module.css';
 import ProductCard from '../../Cards/ProductCard/ProductCard';
+import useToast from '../../../hooks/useToast';
 import Swal from 'sweetalert2';
 
 function ProductDetail() {
 	const { id } = useParams();
 	const dispatch = useDispatch();
+	const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated)
 
 	const [count, setCount] = useState(0);
 	const [randomProducts, setRandomProducts] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const toast = useToast()
 
 	const handleClickSuma = () => {
 		if (count < productDetail.stock) {
@@ -55,6 +54,15 @@ function ProductDetail() {
 	}, [allProducts, dispatch, id]);
 
 	const addProduct = (quantity) => {
+		if(!isAuthenticated) {
+			Swal.fire({
+				title: 'Inicia sesión para agregar productos al carrito',
+				html: `Por favor inicia sesión en tu cuenta o regístrate para agregar productos al carrito. Haz clic aquí para <a href='/login'>iniciar sesión</a> o <a href='/register'>registrarte</a>. ¡Gracias por elegirnos!`,
+				timer: 10000,
+				icon: 'info'
+			})
+			return;
+		}
 		if(!localStorage.getItem('products')) localStorage.setItem('products', JSON.stringify([]))
 		const getProductLocal = localStorage.getItem('products')
 		const products = JSON.parse(getProductLocal)
@@ -67,13 +75,7 @@ function ProductDetail() {
 			if(qtyAdd > 0) {
 				productExist.quantity += qtyAdd;
 			} else {
-				//Usar con alert bonito
-				Swal.fire({
-					title: `Error`,
-					text: 'No podes agregar mas productos',
-					icon: 'error',
-					timer: 3000,
-				}).then(() => {})
+				toast.warning('No podes agregar mas productos', {duration: 2000})
 			}
 		}
  		else {
@@ -88,6 +90,7 @@ function ProductDetail() {
 		localStorage.setItem('products', productUpdated)
 		setCount(0)
 		dispatch(setItemsAction())
+		toast.success('Producto agregado al carrito', {duration: 4000})
 	}
 
 	return (

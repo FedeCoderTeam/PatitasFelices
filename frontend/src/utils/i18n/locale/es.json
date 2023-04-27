@@ -11,11 +11,18 @@
     "links": {
       "home": "Inicio",
       "product": "Productos",
-      "dog": "Perros"
+      "dog": "Perros",
+      "signUp": "Registrarse",
+      "signIn": "Ingresar"
+    },
+    "cart": {
+      "myCart": "Mi carrito"
     },
     "account": {
-      "settings": "Configuraciones",
-      "logout": "Cerrar sesión"
+      "myAccount": "Mi cuenta",
+      "myComments": "Mis comentarios",
+      "settings": "Ajustes",
+      "logout": "Salir"
     }
   },
   "footer": {
@@ -55,6 +62,20 @@
         "shareIt": "compártela",
         "comment": "¡Comentar!"
       }
+    }
+  },
+  "cart": {
+    "cart": "Carrito",
+    "nothingCart": "No hay nada en el carrito.",
+    "price": "Precio",
+    "quantity": "Cantidad",
+    "checkout": "Finalizar compra",
+    "clearCart": "Limpiar carrito",
+    "alert": {
+      "addProduct": "Producto agregado al carrito",
+      "addProductWarning": "No podes agregar mas productos",
+      "removeProduct": "Producto eliminado correctamente",
+      "removeAllProduct": "Has eliminado a todos los productos del carrito correctamente"
     }
   }
 }
