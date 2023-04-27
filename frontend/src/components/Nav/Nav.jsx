@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import style from '../Nav/nav.module.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,17 +9,18 @@ import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
 import {Badge, Button, Divider, Fab, ListItemIcon} from '@mui/material';
 import { Settings, Logout } from '@mui/icons-material';
 import { logoutUserAction } from '../../_redux/actions/authAction';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { setOpenAction } from '../../_redux/actions/productsAction';
+import {setItemsAction, setOpenAction} from '../../_redux/actions/productsAction';
 import i18n from '../../utils/i18n/i18n'
 import {useTranslation} from 'react-i18next';
 import StarIcon from '@mui/icons-material/Star';
 import { red } from '@mui/material/colors';
 import { grey } from '@mui/material/colors';
+import useToast from '../../hooks/useToast';
+
 
 export default function Nav() {
 	const location = useLocation();
@@ -40,7 +41,7 @@ export default function Nav() {
 		switch (lang) {
 			case 'es':
 				return <img
-					src="https://flagcdn.com/w320/es.png"
+					src="https://flagcdn.com/w320/ar.png"
 					width="45"
 					height="30"
 					alt={lang}/>
@@ -127,13 +128,13 @@ export default function Nav() {
 					<Link to="/login" className={style.link}>
 						<div className={style.divNav}>
 							<i className="fa-solid fa-right-to-bracket"></i>
-							<p className={style.links}>Ingresar</p>
+							<p className={style.links}>{t('nav.links.signIn')}</p>
 						</div>
 					</Link>
 					<Link to="/register" className={style.link}>
 						<div className={style.divNav}>
 							<i className="fa-solid fa-user-plus"></i>
-							<p className={style.links}>Registrarse</p>
+							<p className={style.links}>{t('nav.links.signUp')}</p>
 						</div>
 					</Link>
 				</div>
@@ -161,9 +162,9 @@ export default function Nav() {
 							<MenuItem selected={i18n.language==='en'} onClick={() => {handleCloseLang(); handleLangChange('en')}}>{getFlag('en')} English</MenuItem>
 						</Menu>
 					</div>
-					<Tooltip title={'Mi carro'}>
+					<Tooltip title={t('nav.cart.myCart')}>
 						<Fab size={'small'} sx={{backgroundColor:'#163440', color: '#FFF', ':hover': { backgroundColor: '#D9AD77' }}} onClick={() => dispatch(setOpenAction())}>
-							<Badge badgeContent={shoppingCart.items.reduce((total, item) => total + item.quantity,0,)} color={'primary'}>
+							<Badge badgeContent={shoppingCart.items.length}  color={'error'}>
 								<ShoppingCartIcon />
 							</Badge>
 						</Fab>
@@ -178,6 +179,8 @@ export default function Nav() {
 export function AvatarComponent(props) {
 	const dispatch = useDispatch();
 
+	const { t } = useTranslation()
+
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 
 	const handleOpenUserMenu = (event) => {
@@ -190,12 +193,14 @@ export function AvatarComponent(props) {
 
 	const handleLogout = () => {
 		dispatch(logoutUserAction(props.selector.user.id));
+		localStorage.setItem('products', JSON.stringify([]))
+		dispatch(setItemsAction())
 	};
 
 	return (
 		<>
 			<Box sx={{ flexGrow: 0 }} textAlign={'end'}>
-				<Tooltip title="Mi cuenta">
+				<Tooltip title={t('nav.account.myAccount')}>
 					<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 						<Avatar
 							alt={props.selector.user.name}
@@ -232,14 +237,14 @@ export function AvatarComponent(props) {
 							<StarIcon fontSize="small" color="warning" textDecoration/>
 						</ListItemIcon>
 						<Link to={'/myreviews'} className={style.myReviews}>
-							Mis comentarios
+							{t('nav.account.myComments')}
 						</Link>
 					</MenuItem>
 					<MenuItem onClick={handleCloseUserMenu}>
 						<ListItemIcon>
 							<Settings fontSize="small" sx={{ color: grey[900] }} />
 						</ListItemIcon>
-						Ajustes
+						{t('nav.account.settings')}
 					</MenuItem>
 					<MenuItem
 						onClick={(event) => {
@@ -250,7 +255,7 @@ export function AvatarComponent(props) {
 						<ListItemIcon>
 							<Logout fontSize="small" sx={{ color: red[500] }} />
 						</ListItemIcon>
-						Salir
+						{t('nav.account.logout')}
 					</MenuItem>
 				</Menu>
 			</Box>

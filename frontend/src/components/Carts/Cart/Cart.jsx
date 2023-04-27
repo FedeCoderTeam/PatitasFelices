@@ -3,10 +3,13 @@ import { Drawer } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { setItemsAction, setLinkDePagos, setOpenAction } from '../../../_redux/actions/productsAction';
 import style from './cart.module.css';
-import Swal from 'sweetalert2';
+import useToast from '../../../hooks/useToast';
+import {useTranslation} from 'react-i18next';
 
 const Cart = () => {
     const dispatch = useDispatch()
+    const toast = useToast()
+    const { t } = useTranslation()
 
     const shoppingCart = useSelector(state => state.productsReducer.shoppingCart)
     const allProducts = useSelector(state => state.productsReducer.allProducts)
@@ -64,19 +67,23 @@ const Cart = () => {
         const productUpdated = JSON.stringify(products.filter(p => p.id !== product.id))
         localStorage.setItem('products', productUpdated)
         dispatch(setItemsAction())
+        toast.error(t('cart.alert.removeProduct'), {duration: 4000})
     }
 
     const handleRemoveAllProducts = () => {
-        localStorage.setItem('products', JSON.stringify([]))
-        dispatch(setItemsAction())
+        if(localStorage.getItem('products') && JSON.parse(localStorage.getItem('products')).length) {
+            localStorage.setItem('products', JSON.stringify([]))
+            dispatch(setItemsAction())
+            toast.error(t('cart.alert.removeAllProduct'), {duration: 4000})
+        }
     }
 
     return (
         <Drawer anchor={'right'} open={shoppingCart.isOpen}>
             <div className={style.wrapper}>
                 <h1 className={style.close}><i class="fa-solid fa-xmark" onClick={handleCloseCart}></i></h1>
-                <h2>Carrito</h2>
-                {cartItems.length === 0 ? <p>No hay nada en el carrito.</p> : null}
+                <h2>{t('cart.cart')}</h2>
+                {cartItems.length === 0 ? <p>{t('cart.nothingCart')}</p> : null}
                 {cartItems.map((item) => (
                     <CartItem
                         key={item.id}
@@ -88,8 +95,8 @@ const Cart = () => {
                 ))}
                     <h2>Total: ${calculateTotal(cartItems).toFixed(2)}</h2>
                 <div className={style.containerBtn}>
-                    <button className={style.btnComprar} onClick={handleOnBuy} >Finalizar compra</button>
-                    <button className={style.btnClean} onClick={handleRemoveAllProducts}>Limpiar carrito</button>
+                    <button className={style.btnComprar} onClick={handleOnBuy} >{t('cart.checkout')}</button>
+                    <button className={style.btnClean} onClick={handleRemoveAllProducts}>{t('cart.clearCart')}</button>
                 </div>
             </div>
         </Drawer>

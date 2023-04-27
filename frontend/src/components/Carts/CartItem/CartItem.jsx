@@ -4,8 +4,10 @@ import style from './CartItem.module.css'
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import {useTranslation} from 'react-i18next';
 
 const CartItem = ({ item, handleAddProduct, handleSubtractProduct, handleRemoveProduct }) => {
+    const { t } = useTranslation()
     return(<>
             <div className={style.productImage}>
                 <img src={item.image} alt={item.title} />
@@ -19,8 +21,8 @@ const CartItem = ({ item, handleAddProduct, handleSubtractProduct, handleRemoveP
                     </Fab>
                 </div>
                 <div className={style.information}>
-                    <p>Precio: <span>${item.price}</span></p>
-                    <p>Cantidad: <span className={style.productQuantity}>{item.quantity}</span></p>
+                    <p>{t('cart.price')}: <span>${item.price}</span></p>
+                    <p>{t('cart.quantity')}: <span className={style.productQuantity}>{item.quantity}</span></p>
                     <p>Total: <span>${(item.quantity * item.price).toFixed(2)}</span></p>
                 </div>
                 <div className={style.buttons}>
