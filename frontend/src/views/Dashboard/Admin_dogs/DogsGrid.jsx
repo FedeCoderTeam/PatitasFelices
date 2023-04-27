@@ -40,7 +40,10 @@ const DogsGrid = () => {
 
 	const handleEditClick = (row) => {
 		dispatch(dogsAction.getDogsById(row.id));
-		navigate('./updateDog');
+		setTimeout(() => {
+			navigate('./updateDog');
+		}, 630);
+		
 	};
 
 	const columns = [
