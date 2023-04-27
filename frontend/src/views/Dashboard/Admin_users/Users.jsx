@@ -8,10 +8,12 @@ import MenuItem from '@mui/material/MenuItem';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './User.module.css';
 import * as authActions from '../../../_redux/actions/authAction';
+import useToast from '../../../hooks/useToast';
 
 const Users = () => {
 	const dispatch = useDispatch();
 	const allUsers = useSelector((state) => state.authReducer.users);
+	const { success, error } = useToast();
 
 	let [edit, setEdit] = useState(false);
 	let [editRow, setEditRow] = useState(null);
@@ -27,13 +29,13 @@ const Users = () => {
 			value={params.value}
 			onChange={(event) => {
 				const value = event.target.value;
+				setChange(value);
+
 				params.api.setEditCellValue({
 					id: params.id,
 					field: 'col9',
 					value,
 				});
-				setChange(value);
-				console.log(change);
 			}}
 			sx={{ minWidth: 120 }}
 		>
@@ -45,32 +47,42 @@ const Users = () => {
 		</Select>
 	);
 
+	const successNotify = () => {
+		success('Solicitud modificada', { duration: 2000 });
+	};
+
+	const cancelNotify = () => {
+		error('Edición cancelada', { duration: 2000 });
+	};
+
 	let handleEditClick = (row) => {
 		setEdit(true);
 		setEditRow(row);
-		console.log('Vamoa editar?');
 	};
 
-	let saveChange = (row, change) => {
+	let saveChange = (row) => {
 		let obj = {
-			id: row.id,
+			id: allUsers[row.id - 1].id,
+			password: row.col5,
 			image: row.col6,
 			isDisabled: false,
-			roleId: change === 'Aministrador' ? 1 : change === 'Usuario' ? 3 : 2,
+			roleId: change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3,
 		};
 
-		console.log(obj);
-
-		if (row.col9 !== change) {
-			console.log('Se edito');
-
+		if (row.col9 !== change && change !== '') {
 			dispatch(authActions.updateUser(obj));
+			successNotify();
+		} else if (row.col9 === change && change !== '') {
+			dispatch(authActions.updateUser(obj));
+
+			successNotify();
 		} else {
-			console.log('No se edito');
+			cancelNotify();
 		}
 
 		setEdit(false);
 		setEditRow(null);
+		setChange('');
 	};
 
 	const rows = useMemo(
@@ -129,7 +141,11 @@ const Users = () => {
 		{ field: 'col3', headerName: 'Apellido', width: 130 },
 		{ field: 'col4', headerName: 'Email', width: 240 },
 		{ field: 'col5', headerName: 'Contraseña', width: 150 },
-		{ field: 'col6', headerName: 'Imagen', width: 150 },
+		{
+			field: 'col6',
+			headerName: 'Imagen',
+			width: 150,
+		},
 		{ field: 'col7', headerName: 'Verificado', width: 150 },
 		{ field: 'col8', headerName: 'Desactivado', width: 150 },
 		{
@@ -151,7 +167,7 @@ const Users = () => {
 			<Box
 				sx={{
 					height: 'auto',
-					width: '100%',
+					width: 'auto',
 					alignContent: 'center',
 					marginTop: '20px',
 				}}

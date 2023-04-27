@@ -8,15 +8,17 @@ import MenuItem from '@mui/material/MenuItem';
 import { useSelector, useDispatch } from 'react-redux';
 import style from './requestGrid.module.css';
 import * as requestAction from '../../../_redux/actions/requestAction';
+import useToast from '../../../hooks/useToast';
 
 const Request = () => {
 	const dispatch = useDispatch();
 	const allRequest = useSelector((state) => state.requestReducer.allAdoptions);
+	const { success, error } = useToast();
 
 	let [edit, setEdit] = useState(false);
 	let [editRow, setEditRow] = useState(null);
 	let [change, setChange] = useState('');
-	const statusOptions = ['Pendiente', 'Aceptada', 'Denegada'];
+	const statusOptions = ['Pending', 'Accepted', 'Denied'];
 
 	useEffect(() => {
 		dispatch(requestAction.getAdoptionDog());
@@ -27,12 +29,12 @@ const Request = () => {
 			value={params.value}
 			onChange={(event) => {
 				const value = event.target.value;
+				setChange(value);
 				params.api.setEditCellValue({
 					id: params.id,
 					field: 'col13',
 					value,
 				});
-				setChange(value);
 			}}
 			sx={{ minWidth: 120 }}
 		>
@@ -44,6 +46,14 @@ const Request = () => {
 		</Select>
 	);
 
+	const successNotify = () => {
+		success('Solicitud modificada', { duration: 2000 });
+	};
+
+	const cancelNotify = () => {
+		error('Edición cancelada', { duration: 2000 });
+	};
+
 	let handleEditClick = (row) => {
 		setEdit(true);
 		setEditRow(row);
@@ -53,20 +63,29 @@ const Request = () => {
 		let obj = {
 			id: row.id,
 			status:
-				change === 'Pendiente'
+				change === 'Pending'
 					? 'Pending'
-					: change === 'Aceptada'
+					: change === 'Accepted'
 					? 'Accepted'
-					: 'Denied',
+					: change === 'Denied'
+					? 'Denied'
+					: row.col13,
 			dogId: row.col12,
 		};
 
-		if (row.col13 !== change) {
+		if (row.col13 !== change && change !== '') {
 			dispatch(requestAction.updateAdoptionDog(obj));
+			successNotify();
+		} else if (row.col13 === change && change !== '') {
+			dispatch(requestAction.updateAdoptionDog(obj));
+			successNotify();
+		} else {
+			cancelNotify();
 		}
 
 		setEdit(false);
 		setEditRow(null);
+		setChange('');
 	};
 
 	const rows = useMemo(
@@ -86,12 +105,7 @@ const Request = () => {
 					col10: request.inHouse_allowance,
 					col11: request.outDoor_image,
 					col12: request.dogId,
-					col13:
-						request.status === 'Pending'
-							? 'Pendiente'
-							: request.status === 'Accepted'
-							? 'Aceptada'
-							: 'Denegada',
+					col13: request.status,
 					col14: new Date(request.createdAt)
 						.toLocaleDateString()
 						.replace(/\//g, '-'),

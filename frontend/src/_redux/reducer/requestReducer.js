@@ -9,8 +9,10 @@ export const requestSlice = createSlice({
 	initialState,
 	reducers: {
 		setAdoptionDog: (state, action) => {
-			if (typeof action.payload === 'object') {
-				state.allAdoptions = action.payload;
+			if (action.payload !== 'No hay solicitudes de adopción') {
+				return {
+					allAdoptions: action.payload,
+				};
 			}
 
 			state.allAdoptions = [];
