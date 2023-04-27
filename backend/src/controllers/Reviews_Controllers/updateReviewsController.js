@@ -1,27 +1,25 @@
 const { reviews }= require ('../../database/db')
+const { verifyToken } = require('../../utils/token');
 // const jwt = require('jsonwebtoken')
 
-const updateReview= async(id, rating, comment)=> {
-    console.log(id, rating, comment);
-    try {
-        // const infoUser = jwt.verify(token, process.env.JWT_PRIVATE_KEY_AUTH)
+const updateReview = async(token, id, comment, rating)=> {
 
-        // if(infoUser.user.role.name !== 'Usuario') return 'Error al intentar actualizar la revisión'
+    if(!token || !id || !comment || !rating) throw new Error ('Token, id, comment and rating are required')
 
-        let reviewToUpdate = await reviews.findOne({ where: { id: id } });
+    const decoded = verifyToken(token, process.env.JWT_PRIVATE_KEY_AUTH)
 
-        console.log(reviewToUpdate)
+    let reviewToUpdate = await reviews.findOne({ where: { id: id, userId: decoded.user.id } });
 
-        if(!reviewToUpdate) throw new Error(`No se encontró una revisión con id ${id}`);
+    if(!reviewToUpdate) throw new Error(`No se encontró una revisión con el id ${id}`);
 
-        await reviewToUpdate.update({
-			rating: rating,
-            comment:comment
-		});
-        return 'Se modificó correctamente la revisión'
-    } catch (error) {
-        return 'Error al intentar actualizar la revisión';
+    await reviewToUpdate.update({
+        rating: rating,
+        comment:comment
+    }, {where: {id: id, userId: decoded.user.id}});
+    return {
+        error: null,
+        message: 'Se modificó correctamente la revisión'
     }
 };
 
-module.exports= {updateReview};
+module.exports = { updateReview };

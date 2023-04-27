@@ -1,14 +1,15 @@
 const { reviews, user } = require ('../../database/db')
+const { verifyToken } = require('../../utils/token');
 
-const postNewReview= async( rating, comment, userId )=>{
+const postNewReview = async (token, comment, rating)=>{
     
-    if(!rating || !comment || !userId){
-        throw new Error ('Falta completar alguno de los datos obligatorios')
-    }
+    if(!token || !comment || !rating) throw new Error ('Token, comment and rating are required')
 
-    let usuarId= await user.findOne({
+    const decoded = await verifyToken(token, process.env.JWT_PRIVATE_KEY_AUTH)
+
+    const findUser = await user.findOne({
         where: {
-            id: userId
+            id: decoded.user.id
         },
     });
 
@@ -17,7 +18,12 @@ const postNewReview= async( rating, comment, userId )=>{
         comment: comment,
     });
 
-    await newReview.setUser(usuarId);
+    await newReview.setUser(findUser);
+
+    return {
+        error: null,
+        message: 'La revisión se generó correctamente'
+    }
 }
 
-module.exports= {postNewReview};
+module.exports = { postNewReview };
