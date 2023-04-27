@@ -12,6 +12,7 @@ import Products from './views/Products/Products.jsx';
 import NotFound from './components/NotFound/NotFound';
 import AdoptionForm from './components/Forms/AdoptionForm/AdoptionForm';
 import ProductDetail from './components/CardDetail/ProductDetail/ProductDetail';
+import MyReviews from './views/MyReviews/MyReviews';
 import Donation from './views/Donation/Donation';
 import * as dogsAction from '../src/_redux/actions/dogsAction';
 import * as productsAction from '../src/_redux/actions/productsAction';
@@ -60,6 +61,7 @@ function App() {
 			{location.pathname !== '/' &&
 				location.pathname !== '/login' &&
 				location.pathname !== '/register' &&
+				location.pathname !== '/request-password-reset' &&
 				location.pathname !== '/form' &&
 				(!location.pathname.includes('/dashboard') ||
 					selector.user?.role !== 'Administrador') && <Nav />}
@@ -72,6 +74,7 @@ function App() {
 				<Route path={'/login'} element={<LoginView />} />
 				<Route path={'/form'} element={<AdoptionForm />} />
 				<Route path={'/dogs'} element={<Dogs />} />
+				<Route path={'/myreviews'} element={<MyReviews />} />
 				<Route path={'/products'} element={<Products />} />
 				<Route path={'/products/:id'} element={<ProductDetail />} />
 				<Route path={'/donation'} element={<Donation />} />
@@ -89,9 +92,10 @@ function App() {
 			{location.pathname !== '/' &&
 				location.pathname !== '/login' &&
 				location.pathname !== '/register' &&
+				location.pathname !== '/request-password-reset' &&
 				location.pathname !== '/form' &&
 				(!location.pathname.includes('/dashboard') || 
-					selector.user?.role !== 'Administrador') || !location.pathname.includes('/donation') && <Footer /> }
+					selector.user?.role !== 'Administrador') && <Footer /> }
 				
 			<BackDrop />
 			<Overlay />

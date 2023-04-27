@@ -13,9 +13,11 @@ let updateRequest = async (id, status, dogId) => {
 		if (!requestToUpdate)
 			throw new Error(`No se encontró una solicitud con id ${id}`);
 
-		await requestToUpdate.update({
-			status: status,
-		});
+		if (status === 'Accepted' || status === 'Denied' || status === 'Pending') {
+			await requestToUpdate.update({
+				status: status,
+			});
+		}
 
 		if (status === 'Accepted') {
 			let dogui = await dog.findOne({

@@ -38,9 +38,22 @@ const DogsGrid = () => {
 		[allDogs],
 	);
 
+	let ImageCell = ({ value }) => {
+		return (
+			<img
+				src={value}
+				alt="Imagen"
+				style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+			/>
+		);
+	};
+
 	const handleEditClick = (row) => {
 		dispatch(dogsAction.getDogsById(row.id));
-		navigate('./updateDog');
+		setTimeout(() => {
+			navigate('./updateDog');
+		}, 630);
+		
 	};
 
 	const columns = [
@@ -73,7 +86,12 @@ const DogsGrid = () => {
 		{ field: 'col8', headerName: 'Genero', width: 120 },
 		{ field: 'col9', headerName: '¿Adoptado?', width: 150 },
 		{ field: 'col10', headerName: '¿Muerto?', width: 140 },
-		{ field: 'col11', headerName: 'Imagen', width: 220 },
+		{
+			field: 'col11',
+			headerName: 'Imagen',
+			width: 220,
+			renderCell: (params) => <ImageCell value={params.value} />,
+		},
 	];
 
 	return (
