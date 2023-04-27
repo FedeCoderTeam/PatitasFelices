@@ -9,8 +9,6 @@ const getAllReviews= async()=> {
 		]},
     );
 
-    console.log(info)
-
     if (!info.length) {
         return "No hay revisiones aún"
     }

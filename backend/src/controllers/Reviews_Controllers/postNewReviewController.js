@@ -1,6 +1,7 @@
 const { reviews, user } = require ('../../database/db')
 
 const postNewReview= async( rating, comment, userId )=>{
+    
     if(!rating || !comment || !userId){
         throw new Error ('Falta completar alguno de los datos obligatorios')
     }

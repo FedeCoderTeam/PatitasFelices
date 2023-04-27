@@ -1,9 +1,8 @@
 import React from 'react';
 import style from './HomeReviewSection.module.css';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
@@ -12,9 +11,13 @@ import { brown } from '@mui/material/colors';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import ReviewCard from '../../Cards/ReviewCard/ReviewCard';
+import useToast from '../../../hooks/useToast';
+import * as reviewsAction from '../../../_redux/actions/reviewsAction'
+import { useFormik } from 'formik';
 
 
-const HomeReviewSection = ({ id, rating, comment, userId }) => {
+
+const HomeReviewSection = () => {
     const { t } = useTranslation()
     const [showModal, setShowModal] = useState(false);
 
@@ -38,27 +41,6 @@ const HomeReviewSection = ({ id, rating, comment, userId }) => {
 				<h1>{t('home.section.review.yourOpinionMattersToUs')} <span>{t('home.section.review.shareIt')}</span></h1>
                 <div className={style.carousel}>
                     <i className="fa-solid fa-chevron-left"></i>
-                    {/* <div className={style.reviewCard}>
-                        <div className={style.userImg}>
-                            <img src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682440997/Messi_chiquito_nzv8n5.jpg" alt="" />
-                        </div>
-
-                        <div className={style.reviewInfo}>
-                            <h2>Messi Chiquito</h2>
-                            <div className={style.stars}>
-                                <i className="fa-solid fa-star"></i>
-                                <i className="fa-solid fa-star"></i>
-                                <i className="fa-solid fa-star"></i>
-                                <i className="fa-solid fa-star"></i>
-                                <i className="fa-solid fa-star-half-stroke"></i>
-                            </div>
-
-                            <div className={style.comentary}>
-                                <h4>Es admirable la calidad humana y dedicación de todo el equipo de Patitas Felices, sin duda los perritos están muy agradecidos con ellos. Hola cocu, te mando un saludo a vo y al momo. Fulvo.</h4>
-                            </div>
-                            
-                        </div>
-                    </div> */}
                     <ReviewCard/>
                     <i className="fa-solid fa-chevron-right"></i>
                 </div>
@@ -88,6 +70,8 @@ export function ReviewDetail (props) {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { success } = useToast();
+    const token = useSelector((state) => state.authReducer.token)
 
     const innerTheme = createTheme({
 		palette: {
@@ -109,25 +93,36 @@ export function ReviewDetail (props) {
 
     const initialValues = {
         comment: '',
-        rating: '',
+        rating: 1,
     }
 
     const validationSchema = Yup.object().shape({
         comment: Yup.string()
-        .max(300, 'El comentario no puede superar los 300 caracteres')
+        .max(130, 'El comentario no puede superar los 130 caracteres')
         .required('El comentario es obligatorio'),
         rating: Yup.number()
-        .required('La puntuación es obligatoria')
     })
 
-    const handleSubmit = ( { resetForm } ) => {
-        resetForm();
+    const handleSubmit = ( values ) => {
+        const obj = {
+            token: token,
+            comment: values.comment,
+            rating: values.rating
+        } 
+        console.log(obj);
+        dispatch(reviewsAction.postReviews(obj)) 
+        success('Tu comentario se enviada correctamente', {
+            duration: 2000
+		});
+        navigate('/home')
     }
+    
+    const formik = useFormik({
+        initialValues,
+        validationSchema,
+        onSubmit: handleSubmit
+    })
 
-    const handleClick = () => {
-        dispatch();
-        navigate('/home');
-    };
     return(
         <>
             <div>
@@ -146,49 +141,41 @@ export function ReviewDetail (props) {
                         aria-describedby="alert-dialog-description"
                     >
                         <DialogContent dividers>
-                        <Formik
-                            initialValues={initialValues}
-                            validationSchema={validationSchema}
-                            handleSubmit={handleSubmit}
+                        <form
+                            onSubmit={formik.handleSubmit}
                             >
-                            {({ errors }) => (
-                            <Form>
                                 <div>
                                     <label htmlFor="comment">Comentario</label>
-                                    <Field
+                                    <textarea
                                         name='comment'
-                                        as='textarea'
                                         placeholder='Deja tu comentario...'
+                                        value={formik.values.comment}
+                                        onChange={(event)=>{
+                                            formik.handleChange(event);
+                                        }}
                                         />
-                                    <ErrorMessage name="comment" >
-                                        {(msg) => <div className="errorMessage">{msg}</div> }
-                                    </ErrorMessage>
+                                        {(formik.touched.comment && formik.errors.comment) && <div>{formik.errors.comment}</div> }
                                 </div>
                                 <div>
                                     <label htmlFor="rating">Puntuación</label>
-
-                                    <Stack spacing={1}>
-                                        <Rating name="size-small" defaultValue={2} size="small" />
-                                        <Rating name="size-medium" defaultValue={2} />
-                                        <Rating name="size-large" defaultValue={2} size="large" />
+                                    <Stack>
+                                        <Rating 
+                                            name="rating"
+                                            value={formik.values.rating} 
+                                            onChange={formik.handleChange}
+                                            initialRating={formik.values.rating}
+                                            />
                                     </Stack>
-
-                                    <ErrorMessage name="rating" >
-                                        {(msg) => <div className="errorMessage">{msg}</div>}
-                                    </ErrorMessage>
                                 </div>
                                 <div>
                                     <button
-                                    onClick={handleClick}
+                                    disabled={!formik.isValid}
                                     type="submit"
-                                    disabled={Object.keys(errors).length > 0}>Enviar Reseña!</button>
+                                    >Enviar Reseña!</button>
                                 </div>
-                            </Form>
-                            )}
-                        </Formik>
+                        </form>
                         </DialogContent>
                     </Dialog>
-
                 </ThemeProvider>
             </div>
         </>
