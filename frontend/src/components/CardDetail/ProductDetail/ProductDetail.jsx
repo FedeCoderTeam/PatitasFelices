@@ -39,7 +39,7 @@ function ProductDetail() {
 	useEffect(() => {
 		setTimeout(() => {
 			setIsLoading(false);
-		}, 1000);
+		}, 1500);
 		const getRandomProducts = () => {
 			const products = allProducts.filter((product) => product.id !== id);
 			const randomProducts = products.sort(() => 0.5 - Math.random());;
@@ -98,11 +98,11 @@ function ProductDetail() {
 			{isLoading ? (
 				<img
 					className={style.loader}
-					src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681877316/Proyecto%20Final/127157-moody-dog_1_w3qyr5.gif"
+					src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682557985/71390-shopping-cart-loader_egwna9.gif"
 					alt="Cargando..."
 				/>
 			) : (
-				<div className={style.bodyDetailProduct}>
+				<div className={style.bodyDetailProduct} data-aos="fade-down">
 					<div className={style.containerProduct}>
 						<div className={style.divLeft}>
 							<img
