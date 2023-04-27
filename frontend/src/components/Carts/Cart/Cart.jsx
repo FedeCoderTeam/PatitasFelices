@@ -75,7 +75,7 @@ const Cart = () => {
         <Drawer anchor={'right'} open={shoppingCart.isOpen}>
             <div className={style.wrapper}>
                 <h1 className={style.close}><i class="fa-solid fa-xmark" onClick={handleCloseCart}></i></h1>
-                <h2>Carro de compra</h2>
+                <h2>Carrito</h2>
                 {cartItems.length === 0 ? <p>No hay nada en el carrito.</p> : null}
                 {cartItems.map((item) => (
                     <CartItem
