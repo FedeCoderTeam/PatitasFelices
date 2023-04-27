@@ -30,6 +30,10 @@ function ProductDetail() {
 		}
 	};
 
+	const handleClick = () =>{
+        window.scrollTo(0, 0);
+    }
+
 	const productDetail = useSelector(
 		(state) => state.productsReducer.productDetail,
 	);
@@ -151,7 +155,7 @@ function ProductDetail() {
 								También te pueden interesar
 							</h2>
 						</div>
-						<div className={style.divOtros}>
+						<div onClick={handleClick} className={style.divOtros}>
 							{randomProducts.map((product) => (
 								<ProductCard
 									key={product.id}
