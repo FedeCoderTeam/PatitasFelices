@@ -83,3 +83,8 @@
 .imgIcons:hover{
     transform: scale(1.09);
 }
+
+.myReviews {
+    text-decoration: none;
+    color: black;
+}

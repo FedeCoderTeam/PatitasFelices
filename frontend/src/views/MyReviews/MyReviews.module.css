@@ -1,0 +1,12 @@
+.main {
+    width: 100vw;
+    min-height: calc(100vh - 172px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main img {
+    height: 500px;
+}
