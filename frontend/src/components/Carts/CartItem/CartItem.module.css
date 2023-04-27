@@ -10,16 +10,22 @@
     flex: 1;
 }
 
-.information,
-.buttons {
+.information {
     display: flex;
     justify-content: space-between;
 }
 
-.information > p > span {
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+.information>p>span {
     color: green;
 }
-.information > p > .productQuantity{
+
+.information>p>.productQuantity {
     color: #c1996b;
 }
 

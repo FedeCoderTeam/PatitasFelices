@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import style from '../Nav/nav.module.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
-import { Badge, Divider, ListItemIcon } from '@mui/material';
+import {Badge, Button, Divider, Fab, ListItemIcon} from '@mui/material';
 import { Settings, Logout } from '@mui/icons-material';
 import { logoutUserAction } from '../../_redux/actions/authAction';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -32,9 +32,40 @@ export default function Nav() {
 		(state) => state.productsReducer.shoppingCart,
 	);
 
-	const handleLangChange = async (e) => {
-		await i18n.changeLanguage(e.target.value)
+	const handleLangChange = (lang) => {
+		i18n.changeLanguage(lang).then()
 	}
+
+	const getFlag = (lang) => {
+		switch (lang) {
+			case 'es':
+				return <img
+					src="https://flagcdn.com/w320/es.png"
+					width="45"
+					height="30"
+					alt={lang}/>
+			case 'en':
+				return <img
+					src="https://flagcdn.com/w320/us.png"
+					width="45"
+					height="30"
+					alt={lang}/>
+			default:
+				return <img
+					src="https://www.otherworldproject.com/wiki/images/9/96/Unknown_flag.png"
+					width="40"
+					height="25"
+					alt={'default'}/>
+		}
+	}
+
+	const [anchorElLang, setAnchorElLang] = React.useState(null);
+	const handleOpenLang = (event) => {
+		setAnchorElLang(event.currentTarget);
+	};
+	const handleCloseLang = () => {
+		setAnchorElLang(null);
+	};
 
 	return (
 		<div className={style.containerNav}>
@@ -107,25 +138,36 @@ export default function Nav() {
 					</Link>
 				</div>
 			) : (
-				<div className={style.containerRight}>
-					<select onChange={handleLangChange}>
-						<option value={'es'}>Español</option>
-						<option value={'en'}>English</option>
-					</select>
-					<IconButton
-						arial-label={'primary'}
-						onClick={() => dispatch(setOpenAction())}
-					>
-						<Badge
-							badgeContent={shoppingCart.items.reduce(
-								(total, item) => total + item.quantity,
-								0,
-							)}
-							color={'primary'}
-						>
-							<ShoppingCartIcon />
-						</Badge>
-					</IconButton>
+				<div className={style.user}>
+					<div>
+						<Button onClick={handleOpenLang}>
+							{getFlag(i18n.language)}
+						</Button>
+						<Menu sx={{ mt: '45px' }}
+							  id="menu-appbar"
+							  anchorEl={anchorElLang}
+							  anchorOrigin={{
+								  vertical: 'top',
+								  horizontal: 'right',
+							  }}
+							  keepMounted
+							  transformOrigin={{
+								  vertical: 'top',
+								  horizontal: 'right',
+							  }}
+							  open={Boolean(anchorElLang)}
+							  onClose={handleCloseLang}>
+							<MenuItem selected={i18n.language==='es'} onClick={() => {handleCloseLang(); handleLangChange('es')}}>{getFlag('es')} Español</MenuItem>
+							<MenuItem selected={i18n.language==='en'} onClick={() => {handleCloseLang(); handleLangChange('en')}}>{getFlag('en')} English</MenuItem>
+						</Menu>
+					</div>
+					<Tooltip title={'Mi carro'}>
+						<Fab size={'small'} sx={{backgroundColor:'#163440', color: '#FFF', ':hover': { backgroundColor: '#D9AD77' }}} onClick={() => dispatch(setOpenAction())}>
+							<Badge badgeContent={shoppingCart.items.reduce((total, item) => total + item.quantity,0,)} color={'primary'}>
+								<ShoppingCartIcon />
+							</Badge>
+						</Fab>
+					</Tooltip>
 					<AvatarComponent selector={selector} />
 				</div>
 			)}
@@ -152,7 +194,7 @@ export function AvatarComponent(props) {
 
 	return (
 		<>
-			<Box sx={{ flexGrow: 0 }} width={'244px'} textAlign={'end'}>
+			<Box sx={{ flexGrow: 0 }} textAlign={'end'}>
 				<Tooltip title="Mi cuenta">
 					<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 						<Avatar

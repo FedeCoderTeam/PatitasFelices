@@ -68,7 +68,10 @@ const Products = () => {
 
 	const handleEditClick = (row) => {
 		dispatch(productsAction.getProductsById(row.id));
-		navigate('./updateProduct');
+		setTimeout(() => {
+			navigate('./updateProduct');
+		}, 630);
+		
 	};
 
 	return (

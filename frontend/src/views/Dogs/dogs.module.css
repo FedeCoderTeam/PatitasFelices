@@ -1,32 +1,31 @@
 .main {
     display: flex;
-    align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
     min-height: calc(100vh - 172px);
     background-image: url('https://assets.website-files.com/60d11c057f7d152913a39f31/6158e9d4c5ddbe2e9863e810_AdobeStock_195024674_50.jpeg');
     background-size: cover;
-    background-attachment: fixed;  
+    background-attachment: fixed;
     background-repeat: no-repeat;
+    padding-top: 60px;
+}
+
+.filtersBox{
+    margin-top: 125px;
+    margin-bottom: 60px;
 }
 
 .filtersContainer {
-    position: fixed;
-    /* top: 50%; */
-    left: 5%;
-    transform: translateY(-50%);
-    width: 18%;
-    height: 80vh;
+    position: sticky;
+    top: 5%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .cardSection {
-    margin: 50px 0 60px 18%;
-    width: 80%;
+    margin: 50px 0 60px 0;
+    width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -13,8 +13,8 @@ const Products = () => {
 	let currentPage = useSelector((state) => state.productsReducer.currentPage);
 
 	//----------------------------------------------PAGINADO-------------------------------------------
-	const [productsPerPage] = useState(5);
-	const [range, setRange] = useState({ firts: 0, last: 5 });
+	const [productsPerPage] = useState(7);
+	const [range, setRange] = useState({ firts: 0, last: 7 });
 	const [currentProducts, setCurrentProducts] = useState(
 		allProducts.slice(range.firts, range.last),
 	);
@@ -43,8 +43,10 @@ const Products = () => {
 
 	return (
 		<div className={style.main} data-aos="fade-down">
-			<div className={style.filtersContainer}>
-				<ProductFilters />
+			<div className={style.filtersBox}>
+				<div className={style.filtersContainer}>
+					<ProductFilters />
+				</div>
 			</div>
 			<div className={style.cardSection}>
 				{!currentProducts.length ? (

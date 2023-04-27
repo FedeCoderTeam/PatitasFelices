@@ -26,7 +26,6 @@ const HomeDonationSection = () => {
 				<h3>{t('home.section.donation.text2')}</h3>
 				<Link to="/donation"><button className='button'>{t('home.section.donation.donate')}</button></Link>
 			</div>
-
 		</div>
 	);
 };
