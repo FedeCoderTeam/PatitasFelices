@@ -93,7 +93,7 @@ function App() {
 				location.pathname !== '/register' &&
 				location.pathname !== '/form' &&
 				(!location.pathname.includes('/dashboard') || 
-					selector.user?.role !== 'Administrador') || !location.pathname.includes('/donation') && <Footer /> }
+					selector.user?.role !== 'Administrador') && <Footer /> }
 				
 			<BackDrop />
 			<Overlay />
