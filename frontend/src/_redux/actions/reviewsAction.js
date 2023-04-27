@@ -12,6 +12,19 @@ const getReviews = () => {
 	};
 };
 
+const postReviews = (obj) => {
+	return async function () {
+		try {
+			await axios.post('http://localhost:3001/reviews', obj)
+		} catch (error) {
+			console.log(error);
+		}
+	}
+}
+
+
+
 export {
     getReviews,
+	postReviews,
 }
