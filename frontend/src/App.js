@@ -61,6 +61,7 @@ function App() {
 			{location.pathname !== '/' &&
 				location.pathname !== '/login' &&
 				location.pathname !== '/register' &&
+				location.pathname !== '/request-password-reset' &&
 				location.pathname !== '/form' &&
 				(!location.pathname.includes('/dashboard') ||
 					selector.user?.role !== 'Administrador') && <Nav />}
@@ -91,6 +92,7 @@ function App() {
 			{location.pathname !== '/' &&
 				location.pathname !== '/login' &&
 				location.pathname !== '/register' &&
+				location.pathname !== '/request-password-reset' &&
 				location.pathname !== '/form' &&
 				(!location.pathname.includes('/dashboard') || 
 					selector.user?.role !== 'Administrador') && <Footer /> }
