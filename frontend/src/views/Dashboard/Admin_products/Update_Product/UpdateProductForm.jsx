@@ -56,14 +56,14 @@ const UpdateProductForm = () => {
             input.image &&
             input.brand &&
             input.stock &&
-            input.isDisabled &&
+            // input.isDisabled &&
             input.category &&
             input.subCategory &&
             (input.name !== productToUpdate.name ||
                 input.description !== productToUpdate.description ||
                 Number(input.price) !== productToUpdate.price ||
                 input.image !== productToUpdate.image ||
-                input.isDisabled !== productToUpdate.isDisabled ||
+                // input.isDisabled !== productToUpdate.isDisabled ||
                 input.category !== productToUpdate.category ||
                 input.subCategory !== productToUpdate.subCategory
             )
@@ -202,7 +202,6 @@ const UpdateProductForm = () => {
                             <div className={style.containerInputsMarca}>
                                 <label className={style.labels} htmlFor="isDisabled">¿Descontinuado?</label>
                                     <select 
-                                        defaultValue="false" 
                                         className={style.inputSelect} 
                                         value={input.isDisabled} 
                                         id="isDisabled" 
