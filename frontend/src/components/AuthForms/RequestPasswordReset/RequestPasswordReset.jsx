@@ -1,12 +1,13 @@
 import React, { useRef } from 'react';
 import {Link} from 'react-router-dom';
-import './RequestPasswordReset.css';
+import style from './RequestPasswordReset.module.css';
 import { useDispatch } from 'react-redux';
 import { requestPasswordResetAction } from '../../../_redux/actions/authAction';
+import { useNavigate } from 'react-router-dom';
 
 const RequestPasswordReset = () => {
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const refEmail = useRef(null);
 
     const handleOnRequestPasswordReset = () => {
@@ -15,23 +16,27 @@ const RequestPasswordReset = () => {
     };
 
     return (
-        <div className="mainContainer-Register" data-aos="fade-left">
-            <div className="form-Register">
-                <div className="title">
+        <div className={style.mainContainerRecover} data-aos="fade-left">
+            <div className={style.formRecover}>
+                <div className={style.title}>
                     <h1>Recuperar cuenta</h1>
                 </div>
 
-                <div className="containerInputs-Register">
+                <div className={style.containerInputsRecover}>
 
-                    <div className="email">
+                    <div className={style.email}>
                         <label>Email</label>
                         <input type="email" ref={refEmail} />
                     </div>
 
-                    <div className="containerButton-Register">
+                    <div className={style.remeberPassword} onClick={() => navigate('/login')}>
+                        <p>¿Recordaste tu contraseña?</p>
+                    </div>
+
+                    <div className={style.containerButtonRecover}>
                         <button
                             type="submit"
-                            className="buttonRegister"
+                            className={style.buttonRecover}
                             onClick={handleOnRequestPasswordReset}
                         >
                             Recuperar cuenta
@@ -40,7 +45,7 @@ const RequestPasswordReset = () => {
                 </div>
 
                 <div>
-                    <Link to="/home" className="goHome">
+                    <Link to="/home" className={style.goHome}>
                         <i className="fa-solid fa-house"></i>
                     </Link>
                 </div>
