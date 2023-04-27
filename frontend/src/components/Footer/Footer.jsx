@@ -5,10 +5,15 @@ import {useTranslation} from 'react-i18next';
 
 export default function Footer() {
 	const { t } = useTranslation()
+
+	const handleClick = () =>{
+        window.scrollTo(0, 0);
+    }
+
 	return (
 		<div className={style.mainContainer}>
 			<Link to='/home' className={style.logoContainer}>
-				<div className={style.happyPaws}>
+				<div onClick={handleClick} className={style.happyPaws}>
 					<img className={style.logo} src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682299697/Logo_yiz4g6.png" alt=""/>
 					<h1>{t('main.title')}</h1>
 				</div>
