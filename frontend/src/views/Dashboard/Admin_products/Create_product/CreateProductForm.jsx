@@ -34,14 +34,14 @@ const CreateProductForm = () => {
 		name: Yup.string()
 			.min(4, 'Debe tener mínimo 4 caracteres. *')
 			.matches(
-				/^[a-zA-ZñÑ\s]+$/,
+				/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s,.]+$/,
 				'Sólo letras de la "A" a la "Z" *',
 			)
 			.required('El nombre es obligatorio'),
 		description: Yup.string()
 			.min(10, 'Debe tener mínimo 10 caracteres. *')
 			.matches(
-				/^^[a-zA-ZñÑ\s]+$/,
+				/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s,.]+$/,
 				'Sólo letras de la "A" a la "Z" *',
 			)
 			.required('La descripción es obligatoria'),
@@ -54,7 +54,7 @@ const CreateProductForm = () => {
 		brand: Yup.string()
 			.min(2, 'Debe tener mínimo 2 caracteres. *')
 			.matches(
-				/^[a-zA-ZñÑ\s]+$/,
+				/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s,.]+$/,
 				'Sólo letras de la "A" a la "Z" *',
 			)
 			.required('La marca es obligatoria'),
