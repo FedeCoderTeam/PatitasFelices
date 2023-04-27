@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
 	isFetching: false,
 	isRegisterFetching: false,
+	isSuccess: false,
 	isAuthenticated: false,
 	statusVerify: 'Pending',
 	showOverlay: false,
@@ -24,6 +25,9 @@ export const authSlice = createSlice({
 		setStatusVerify: (state, action) => {
 			state.statusVerify = action.payload;
 		},
+		setIsSuccess: (state, action) => {
+			state.isSuccess = action.payload
+		},
 		setShowOverlay: (state, action) => {
 			state.showOverlay = action.payload;
 		},
@@ -42,6 +46,7 @@ export const {
 	setIsFetching,
 	setIsRegisterFetching,
 	setStatusVerify,
+	setIsSuccess,
 	setUser,
 	setShowOverlay,
 	getAllUsers,

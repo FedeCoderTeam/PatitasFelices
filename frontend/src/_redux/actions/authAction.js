@@ -5,9 +5,11 @@ import {
 	setStatusVerify,
 	setUser,
 	getAllUsers,
+	setIsSuccess,
 } from '../reducer/authReducer';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import {useNavigate} from 'react-router-dom';
 
 const URL = 'http://localhost:3001';
 
@@ -28,7 +30,7 @@ const authUserAction = () => {
 	};
 };
 
-const registerUserAction = (name, last, email, password) => {
+const registerUserAction = (name, last, email, password, setIsSuccess) => {
 	return async function (dispatch) {
 		dispatch(setIsRegisterFetching(true));
 		try {
@@ -40,6 +42,7 @@ const registerUserAction = (name, last, email, password) => {
 				icon: 'success',
 				timer: 10000,
 			});
+			setIsSuccess(true)
 		} catch (error) {
 			dispatch(setIsRegisterFetching(false));
 			await Swal.fire({

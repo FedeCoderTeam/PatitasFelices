@@ -63,14 +63,15 @@
     justify-content: space-between;
     height: 82px;
     margin-bottom: 24px;
+    width: 49%;
 }
 
 .nombre input {
-    background-color: #D9D9D9;
-    padding: 16px 0 16px 10px;
-    border: none;
-    border-radius: 5px;
-    width: 166.5px;
+    /*background-color: #D9D9D9;*/
+    /*padding: 16px 0 16px 10px;*/
+    /*border: none;*/
+    /*border-radius: 5px;*/
+    /*width: 166.5px;*/
 }
 
 .nombre label {
@@ -87,14 +88,15 @@
     justify-content: space-between;
     height: 82px;
     margin-bottom: 24px;
+    width: 49%;
 }
 
 .apellido input {
-    background-color: #D9D9D9;
-    padding: 16px 0 16px 10px;
-    border: none;
-    border-radius: 5px;
-    width: 166.5px;
+    /*background-color: #D9D9D9;*/
+    /*padding: 16px 0 16px 10px;*/
+    /*border: none;*/
+    /*border-radius: 5px;*/
+    /*width: 166.5px;*/
 }
 
 .apellido label {
@@ -111,14 +113,15 @@
     justify-content: space-between;
     height: 82px;
     margin-bottom: 24px;
+    width: 100%;
 }
 
 .email input {
-    background-color: #D9D9D9;
-    padding: 16px 0 16px 10px;
-    border: none;
-    border-radius: 5px;
-    width: 366px;
+    /*background-color: #D9D9D9;*/
+    /*padding: 16px 0 16px 10px;*/
+    /*border: none;*/
+    /*border-radius: 5px;*/
+    /*width: 100%;*/
 }
 
 .email label {
@@ -135,14 +138,15 @@
     justify-content: space-between;
     height: 82px;
     margin-bottom: 24px;
+    width: 100%;
 }
 
 .contraseña input {
-    background-color: #D9D9D9;
-    padding: 16px 0 16px 10px;
-    border: none;
-    border-radius: 5px;
-    width: 366px;
+    /*background-color: #D9D9D9;*/
+    /*padding: 16px 0 16px 10px;*/
+    /*border: none;*/
+    /*border-radius: 5px;*/
+    /*width: 366px;*/
 }
 
 .contraseña label {
@@ -221,6 +225,10 @@
 
 .goHome:hover {
     color: #163440;
+}
+
+.containerButtonRegister {
+    position: relative;
 }
 
 /* .form-Register > h1{
