@@ -63,8 +63,8 @@ const UpdateDogForm = () => {
 			input.gender &&
 			input.image &&
 			input.description &&
-			input.adopted &&
-			input.isDisabled &&
+			// input.adopted &&
+			// input.isDisabled &&
 			(input.name !== dogToUpdate.name ||
 				input.age !== dogToUpdate.age ||
 				input.size !== dogToUpdate.size ||
@@ -73,9 +73,9 @@ const UpdateDogForm = () => {
 				input.tempers !== dogToUpdate.tempers ||
 				input.colors !== dogToUpdate.colors ||
 				input.gender !== dogToUpdate.gender ||
-				input.description !== dogToUpdate.description ||
-				input.adopted !== dogToUpdate.adopted ||
-				input.isDisabled !== dogToUpdate.isDisabled
+				input.description !== dogToUpdate.description
+				// input.adopted !== dogToUpdate.adopted ||
+				// input.isDisabled !== dogToUpdate.isDisabled
 			)
 		){
 			let obj ={
