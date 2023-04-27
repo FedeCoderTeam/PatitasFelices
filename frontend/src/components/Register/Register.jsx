@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Google from './Google.png';
 import {Link, useNavigate} from 'react-router-dom';
-import './Register.css';
+import style from './Register.module.css';
 import { useDispatch } from 'react-redux';
 
 // import RegisterImg from 'registerImage.png'
@@ -68,39 +68,39 @@ const Register = () => {
 	};
 
 	return (
-		<div className="mainContainer-Register" data-aos="fade-left">
-			<div className="form-Register">
-				<div className="title">
+		<div className={style.mainContainerRegister} data-aos="fade-left">
+			<div className={style.formRegister}>
+				<div className={style.title}>
 					<h1>Registrarse</h1>
 				</div>
 
-				<div className="containerInputs-Register">
-					<div className="personalInfo">
-						<div className="nombre">
+				<div className={style.containerInputsRegister}>
+					<div className={style.personalInfo}>
+						<div className={style.nombre}>
 							<label>Nombre</label>
 							<input type="text" ref={refName} />
 						</div>
 
-						<div className="apellido">
+						<div className={style.apellido}>
 							<label>Apellido</label>
 							<input type="text" ref={refLast} />
 						</div>
 					</div>
 
-					<div className="email">
+					<div className={style.email}>
 						<label>Email</label>
 						<input type="email" ref={refEmail} />
 					</div>
 
-					<div className="contraseña">
+					<div className={style.contraseña}>
 						<label>Contraseña</label>
 						<input type="password" ref={refPass} />
 					</div>
 
-					<div className="containerButton-Register">
+					<div className={style.containerButtonRegister}>
 						<button
 							type="submit"
-							className="buttonRegister"
+							className={style.buttonRegister}
 							onClick={handleOnRegister}
 						>
 							<Link to='/home'>Crear cuenta</Link>
@@ -108,19 +108,19 @@ const Register = () => {
 					</div>
 				</div>
 
-				<div className="containerGoogle-Register" onClick={() => handleOnGoogle()}>
+				<div className={style.containerGoogleRegister} onClick={() => handleOnGoogle()}>
 					<p>
 						Registrarse con <img src={Google} alt="Google" />
 					</p>
 				</div>
 
-				<div className="siCuenta">
+				<div className={style.siCuenta}>
 					<p>¿Ya tienes una cuenta? </p>
 					<Link to="/login">Ingresa</Link>
 				</div>
 
 				<div>
-					<Link to="/home" className="goHome">
+					<Link to="/home" className={style.goHome}>
 						<i className="fa-solid fa-house"></i>
 					</Link>
 				</div>

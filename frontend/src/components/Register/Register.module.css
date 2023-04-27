@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap%27');
 
-.mainContainer-Register {
+.mainContainerRegister {
     background-image: url(https://images5.alphacoders.com/466/466957.jpg);
     background-position: 20%;
     background-repeat: no-repeat;
@@ -14,7 +14,7 @@
     color: #592519;
 }
 
-.form-Register {
+.formRegister {
     background: rgba(242, 242, 242, 1);
     display: flex;
     flex-direction: column;
@@ -41,7 +41,7 @@
     padding: 0;
 }
 
-.containerInputs-Register {
+.containerInputsRegister {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -115,10 +115,10 @@
 
 .email input {
     background-color: #D9D9D9;
-    padding: 16px 0 16px 0px;
+    padding: 16px 0 16px 10px;
     border: none;
     border-radius: 5px;
-    width: 376px;
+    width: 366px;
 }
 
 .email label {
@@ -139,10 +139,10 @@
 
 .contraseña input {
     background-color: #D9D9D9;
-    padding: 16px 0 16px 0px;
+    padding: 16px 0 16px 10px;
     border: none;
     border-radius: 5px;
-    width: 376px;
+    width: 366px;
 }
 
 .contraseña label {
@@ -179,7 +179,7 @@
     transform: scale(1.02);
 }
 
-.containerGoogle-Register {
+.containerGoogleRegister {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -191,17 +191,17 @@
     transition: background-color 200ms linear;
 }
 
-.containerGoogle-Register p {
+.containerGoogleRegister p {
     display: flex;
     gap: 6px;
     font-weight: 500;
 }
 
-.containerGoogle-Register:hover {
+.containerGoogleRegister:hover {
     background-color: #D9D9D9;
 }
 
-.containerGoogle-Register img {
+.containerGoogleRegister img {
     height: 22px;
 }
 
