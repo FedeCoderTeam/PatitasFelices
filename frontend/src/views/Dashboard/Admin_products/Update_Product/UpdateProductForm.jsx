@@ -20,8 +20,6 @@ const UpdateProductForm = () => {
 
     let productToUpdate = useSelector((state) => state.productsReducer.productDetail);
 
-    console.log(productToUpdate);
-
     const { success } = useToast();
     
     useEffect(() =>{
@@ -43,8 +41,6 @@ const UpdateProductForm = () => {
         category: productToUpdate?.category,
         subCategory: productToUpdate?.subCategory,
     })
-
-    console.log(input);
 
     let [errors, setErrors] = useState({});
 
