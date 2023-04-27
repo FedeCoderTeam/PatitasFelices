@@ -201,6 +201,10 @@
     background-color: #D9D9D9;
 }
 
+.containerGoogle-Register img {
+    height: 22px;
+}
+
 .siCuenta {
     display: flex;
     align-items: center;
