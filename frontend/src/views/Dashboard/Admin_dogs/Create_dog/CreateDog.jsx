@@ -36,9 +36,9 @@ const CreateDog = () => {
 
 	const validationSchema = Yup.object().shape({
 		name: Yup.string()
-			.min(4, 'El nombre debe tener mínimo 4 caracteres. *')
+			.min(4, 'Debe tener mínimo 4 caracteres. *')
 			.matches(
-				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
+				/^[a-zA-ZñÑ\s]+$/,
 				'Sólo letras de la "A" a la "Z" *',
 			)
 			.required('El nombre es obligatorio'),
@@ -48,7 +48,7 @@ const CreateDog = () => {
 			.required('La edad es obligatoria'),
 		size: Yup.string().required('El tamaño es obligatorio'),
 		weight: Yup.number()
-			.min(1, 'El peso tiene que ser mayor a 1. *')
+			.min(1, 'Tiene que ser mayor a 1. *')
 			.max(100, '¿Estás dando en adopción un perro o chancho?')
 			.required('El peso es obligatorio.'),
 		castrated: Yup.string()
@@ -59,9 +59,9 @@ const CreateDog = () => {
 		),
 		// .required('La imagen es obligatoria.'),
 		description: Yup.string()
-			.min(10, 'La descripción debe tener mínimo 20 caracteres. *')
+			.min(10, 'Debe tener mínimo 10 caracteres. *')
 			.matches(
-				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
+				/^[a-zA-ZñÑ\s]+$/,
 				'Sólo letras de la "A" a la "Z" *',
 			)
 			.required('La descripción es obligatoria'),
