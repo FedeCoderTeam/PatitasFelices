@@ -229,9 +229,11 @@ export function AvatarComponent(props) {
 						}}
 					>
 						<ListItemIcon>
-							<StarIcon fontSize="small" color="warning" />
+							<StarIcon fontSize="small" color="warning" textDecoration/>
 						</ListItemIcon>
-						Mis comentarios
+						<Link to={'/myreviews'} className={style.myReviews}>
+							Mis comentarios
+						</Link>
 					</MenuItem>
 					<MenuItem onClick={handleCloseUserMenu}>
 						<ListItemIcon>
