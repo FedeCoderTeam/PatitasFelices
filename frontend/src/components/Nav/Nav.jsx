@@ -9,56 +9,67 @@ import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import {Badge, Button, Divider, Fab, ListItemIcon} from '@mui/material';
+import { Badge, Button, Divider, Fab, ListItemIcon } from '@mui/material';
 import { Settings, Logout } from '@mui/icons-material';
 import { logoutUserAction } from '../../_redux/actions/authAction';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import {setItemsAction, setOpenAction} from '../../_redux/actions/productsAction';
-import i18n from '../../utils/i18n/i18n'
-import {useTranslation} from 'react-i18next';
+import {
+	setItemsAction,
+	setOpenAction,
+} from '../../_redux/actions/productsAction';
+import i18n from '../../utils/i18n/i18n';
+import { useTranslation } from 'react-i18next';
 import StarIcon from '@mui/icons-material/Star';
 import { red } from '@mui/material/colors';
 import { grey } from '@mui/material/colors';
-import useToast from '../../hooks/useToast';
-
+import useToast from '../../utils/hooks/useToast';
 
 export default function Nav() {
 	const location = useLocation();
 
-	const { t } = useTranslation()
+	const { t } = useTranslation();
 
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 	const selector = useSelector((state) => state.authReducer);
 	const shoppingCart = useSelector(
 		(state) => state.productsReducer.shoppingCart,
 	);
 
 	const handleLangChange = (lang) => {
-		i18n.changeLanguage(lang).then()
-	}
+		i18n.changeLanguage(lang).then();
+	};
 
 	const getFlag = (lang) => {
 		switch (lang) {
 			case 'es':
-				return <img
-					src="https://flagcdn.com/w320/ar.png"
-					width="45"
-					height="30"
-					alt={lang}/>
+				return (
+					<img
+						src="https://flagcdn.com/w320/ar.png"
+						width="45"
+						height="30"
+						alt={lang}
+					/>
+				);
 			case 'en':
-				return <img
-					src="https://flagcdn.com/w320/us.png"
-					width="45"
-					height="30"
-					alt={lang}/>
+				return (
+					<img
+						src="https://flagcdn.com/w320/us.png"
+						width="45"
+						height="30"
+						alt={lang}
+					/>
+				);
 			default:
-				return <img
-					src="https://www.otherworldproject.com/wiki/images/9/96/Unknown_flag.png"
-					width="40"
-					height="25"
-					alt={'default'}/>
+				return (
+					<img
+						src="https://www.otherworldproject.com/wiki/images/9/96/Unknown_flag.png"
+						width="40"
+						height="25"
+						alt={'default'}
+					/>
+				);
 		}
-	}
+	};
 
 	const [anchorElLang, setAnchorElLang] = React.useState(null);
 	const handleOpenLang = (event) => {
@@ -152,30 +163,54 @@ export default function Nav() {
 			) : (
 				<div className={style.user}>
 					<div>
-						<Button onClick={handleOpenLang}>
-							{getFlag(i18n.language)}
-						</Button>
-						<Menu sx={{ mt: '45px' }}
-							  id="menu-appbar"
-							  anchorEl={anchorElLang}
-							  anchorOrigin={{
-								  vertical: 'top',
-								  horizontal: 'right',
-							  }}
-							  keepMounted
-							  transformOrigin={{
-								  vertical: 'top',
-								  horizontal: 'right',
-							  }}
-							  open={Boolean(anchorElLang)}
-							  onClose={handleCloseLang}>
-							<MenuItem selected={i18n.language==='es'} onClick={() => {handleCloseLang(); handleLangChange('es')}}>{getFlag('es')} Español</MenuItem>
-							<MenuItem selected={i18n.language==='en'} onClick={() => {handleCloseLang(); handleLangChange('en')}}>{getFlag('en')} English</MenuItem>
+						<Button onClick={handleOpenLang}>{getFlag(i18n.language)}</Button>
+						<Menu
+							sx={{ mt: '45px' }}
+							id="menu-appbar"
+							anchorEl={anchorElLang}
+							anchorOrigin={{
+								vertical: 'top',
+								horizontal: 'right',
+							}}
+							keepMounted
+							transformOrigin={{
+								vertical: 'top',
+								horizontal: 'right',
+							}}
+							open={Boolean(anchorElLang)}
+							onClose={handleCloseLang}
+						>
+							<MenuItem
+								selected={i18n.language === 'es'}
+								onClick={() => {
+									handleCloseLang();
+									handleLangChange('es');
+								}}
+							>
+								{getFlag('es')} Español
+							</MenuItem>
+							<MenuItem
+								selected={i18n.language === 'en'}
+								onClick={() => {
+									handleCloseLang();
+									handleLangChange('en');
+								}}
+							>
+								{getFlag('en')} English
+							</MenuItem>
 						</Menu>
 					</div>
 					<Tooltip title={t('nav.cart.myCart')}>
-						<Fab size={'small'} sx={{backgroundColor:'#163440', color: '#FFF', ':hover': { backgroundColor: '#D9AD77' }}} onClick={() => dispatch(setOpenAction())}>
-							<Badge badgeContent={shoppingCart.items.length}  color={'error'}>
+						<Fab
+							size={'small'}
+							sx={{
+								backgroundColor: '#163440',
+								color: '#FFF',
+								':hover': { backgroundColor: '#D9AD77' },
+							}}
+							onClick={() => dispatch(setOpenAction())}
+						>
+							<Badge badgeContent={shoppingCart.items.length} color={'error'}>
 								<ShoppingCartIcon />
 							</Badge>
 						</Fab>
@@ -190,7 +225,7 @@ export default function Nav() {
 export function AvatarComponent(props) {
 	const dispatch = useDispatch();
 
-	const { t } = useTranslation()
+	const { t } = useTranslation();
 
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -204,8 +239,8 @@ export function AvatarComponent(props) {
 
 	const handleLogout = () => {
 		dispatch(logoutUserAction(props.selector.user.id));
-		localStorage.setItem('products', JSON.stringify([]))
-		dispatch(setItemsAction())
+		localStorage.setItem('products', JSON.stringify([]));
+		dispatch(setItemsAction());
 	};
 
 	return (
@@ -245,7 +280,7 @@ export function AvatarComponent(props) {
 						}}
 					>
 						<ListItemIcon>
-							<StarIcon fontSize="small" color="warning" textDecoration/>
+							<StarIcon fontSize="small" color="warning" textDecoration />
 						</ListItemIcon>
 						<Link to={'/myreviews'} className={style.myReviews}>
 							{t('nav.account.myComments')}

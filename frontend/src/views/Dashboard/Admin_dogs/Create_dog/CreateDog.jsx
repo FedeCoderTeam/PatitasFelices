@@ -8,7 +8,7 @@ import style from './CreateDog.module.css';
 import * as dogsAction from '../../../../_redux/actions/dogsAction';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import useToast from '../../../../hooks/useToast';
+import useToast from '../../../../utils/hooks/useToast';
 
 const CreateDog = () => {
 	const dispatch = useDispatch();
@@ -51,8 +51,10 @@ const CreateDog = () => {
 			.min(1, 'Tiene que ser mayor a 1. *')
 			.max(100, '¿Estás dando en adopción un perro o chancho?')
 			.required('El peso es obligatorio.'),
-		castrated: Yup.string()
-			.oneOf(['Yes', 'No'], 'Este campo es obligatorio. *'),
+		castrated: Yup.string().oneOf(
+			['Yes', 'No'],
+			'Este campo es obligatorio. *',
+		),
 		image: Yup.string().matches(
 			/^..(jpg|jpeg|png)$/i,
 			'Inserte una imagen válida.',
@@ -100,7 +102,7 @@ const CreateDog = () => {
 		console.log(obj);
 		dispatch(dogsAction.postDogs(obj));
 		success(`¡Perro ingresado exitosamente!`, {
-			duration: 2000
+			duration: 2000,
 		});
 		setTimeout(() => {
 			navigate('/dashboard/dogs');
@@ -124,8 +126,10 @@ const CreateDog = () => {
 					{({ errors }) => (
 						<Form>
 							<div>
-								<Link to='/dashboard/dogs'>
-									<button className={style.goBackBtn}><i class="fa-solid fa-arrow-left"></i></button>
+								<Link to="/dashboard/dogs">
+									<button className={style.goBackBtn}>
+										<i class="fa-solid fa-arrow-left"></i>
+									</button>
 								</Link>
 								<h1 className={style.titleCreateDog}>Ingresar Perro</h1>
 							</div>
@@ -218,7 +222,10 @@ const CreateDog = () => {
 											id="genders"
 											name="genders"
 										>
-											<option className={style.options} defaultValue='all'></option>
+											<option
+												className={style.options}
+												defaultValue="all"
+											></option>
 											<option className={style.options} value="Hembra">
 												Hembra
 											</option>
@@ -230,7 +237,6 @@ const CreateDog = () => {
 											{(msg) => <div className={style.errors}>{msg}</div>}
 										</ErrorMessage>
 									</div>
-
 								</div>
 								<div className={style.containerInputsRightCreateDog}>
 									<div className={style.containerInputs}>
@@ -239,15 +245,15 @@ const CreateDog = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
-											as='select'
+											as="select"
 											id="castrated"
 											name="castrated"
 										>
 											<option className={style.options} value="all"></option>
-											<option className={style.options} value='Yes'>
+											<option className={style.options} value="Yes">
 												Sí
 											</option>
-											<option className={style.options} value='No'>
+											<option className={style.options} value="No">
 												No
 											</option>
 										</Field>

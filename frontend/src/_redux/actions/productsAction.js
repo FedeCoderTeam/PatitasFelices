@@ -11,7 +11,9 @@ import {
 	getSubCategories,
 	idSubCategories,
 	getByName,
-	set_name, setOpen, setItems,
+	set_name,
+	setOpen,
+	setItems,
 } from '../reducer/productsReducer.js';
 
 const getProducts = () => {
@@ -75,7 +77,7 @@ const getName = () => {
 const postProduct = (obj) => {
 	return async () => {
 		try {
-			await axios.post('http://localhost:3001/products', obj)
+			await axios.post('http://localhost:3001/products', obj);
 		} catch (error) {
 			console.log(error);
 		}
@@ -85,12 +87,11 @@ const postProduct = (obj) => {
 const updateProduct = (obj) => {
 	return async () => {
 		try {
-			await axios.put('http://localhost:3001/products', obj)
-		} catch (error) {
-			
-		}
-	}
-}
+			console.log('Llegue a redux');
+			await axios.put('http://localhost:3001/products', obj);
+		} catch (error) {}
+	};
+};
 
 const setName = (name) => {
 	return (dispatch) => {
@@ -128,33 +129,18 @@ const sortAction = () => {
 	};
 };
 
-const setLinkDePagos = (items) => {
-	return async function () {
-		// console.log(items);
-		try {
-			let link = await axios.post(
-				'http://localhost:3001/mercadopago/payment',
-				items,
-			);
-			window.location.href = link.data.body.init_point;
-		} catch (error) {
-			console.log(error);
-		}
+const setOpenAction = () => {
+	return function (dispatch) {
+		dispatch(setOpen());
 	};
 };
 
-const setOpenAction = () => {
-	return function (dispatch) {
-		dispatch(setOpen())
-	}
-}
-
 const setItemsAction = () => {
 	return function (dispatch) {
-		const items = localStorage.getItem('products')
-		dispatch(setItems(JSON.parse(items)))
-	}
-}
+		const items = localStorage.getItem('products');
+		dispatch(setItems(JSON.parse(items)));
+	};
+};
 
 export {
 	getProducts,
@@ -169,7 +155,6 @@ export {
 	getIdSubCategory,
 	getName,
 	setName,
-	setLinkDePagos,
 	postProduct,
 	updateProduct,
 	setOpenAction,

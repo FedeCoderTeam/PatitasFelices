@@ -8,7 +8,7 @@ import style from './CreateProductForm.module.css';
 import * as productsAction from '../../../../_redux/actions/productsAction';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import useToast from '../../../../hooks/useToast';
+import useToast from '../../../../utils/hooks/useToast';
 
 const CreateProductForm = () => {
 	const dispatch = useDispatch();
@@ -87,7 +87,7 @@ const CreateProductForm = () => {
 		//NO BORRAR, SIRVE PARA TESTEAR
 		//console.log(obj);
 		success(`¡Producto creado exitosamente!`, {
-			duration: 2000
+			duration: 2000,
 		});
 		setTimeout(() => {
 			navigate('/dashboard/products');
@@ -111,8 +111,10 @@ const CreateProductForm = () => {
 					{({ errors, values }) => (
 						<Form>
 							<div>
-								<Link to='/dashboard/products'>
-									<button className={style.goBackBtn}><i class="fa-solid fa-arrow-left"></i></button>
+								<Link to="/dashboard/products">
+									<button className={style.goBackBtn}>
+										<i class="fa-solid fa-arrow-left"></i>
+									</button>
 								</Link>
 								<h1 className={style.titleForm}>Crear Producto</h1>
 							</div>
