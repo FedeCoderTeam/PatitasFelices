@@ -8,7 +8,7 @@ import style from './CreateDog.module.css';
 import * as dogsAction from '../../../../_redux/actions/dogsAction';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import useToast from '../../../../hooks/useToast';
+import useToast from '../../../../utils/hooks/useToast';
 
 const CreateDog = () => {
 	const dispatch = useDispatch();
@@ -36,9 +36,9 @@ const CreateDog = () => {
 
 	const validationSchema = Yup.object().shape({
 		name: Yup.string()
-			.min(4, 'El nombre debe tener mínimo 4 caracteres. *')
+			.min(4, 'Debe tener mínimo 4 caracteres. *')
 			.matches(
-				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
+				/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s,.]+$/,
 				'Sólo letras de la "A" a la "Z" *',
 			)
 			.required('El nombre es obligatorio'),
@@ -48,20 +48,22 @@ const CreateDog = () => {
 			.required('La edad es obligatoria'),
 		size: Yup.string().required('El tamaño es obligatorio'),
 		weight: Yup.number()
-			.min(1, 'El peso tiene que ser mayor a 1. *')
+			.min(1, 'Tiene que ser mayor a 1. *')
 			.max(100, '¿Estás dando en adopción un perro o chancho?')
 			.required('El peso es obligatorio.'),
-		castrated: Yup.string()
-			.oneOf(['Yes', 'No'], 'Este campo es obligatorio. *'),
+		castrated: Yup.string().oneOf(
+			['Yes', 'No'],
+			'Este campo es obligatorio. *',
+		),
 		image: Yup.string().matches(
 			/^..(jpg|jpeg|png)$/i,
 			'Inserte una imagen válida.',
 		),
 		// .required('La imagen es obligatoria.'),
 		description: Yup.string()
-			.min(10, 'La descripción debe tener mínimo 20 caracteres. *')
+			.min(10, 'Debe tener mínimo 10 caracteres. *')
 			.matches(
-				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
+				/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s,.]+$/,
 				'Sólo letras de la "A" a la "Z" *',
 			)
 			.required('La descripción es obligatoria'),
@@ -100,7 +102,7 @@ const CreateDog = () => {
 		console.log(obj);
 		dispatch(dogsAction.postDogs(obj));
 		success(`¡Perro ingresado exitosamente!`, {
-			duration: 2000
+			duration: 2000,
 		});
 		setTimeout(() => {
 			navigate('/dashboard/dogs');
@@ -124,8 +126,10 @@ const CreateDog = () => {
 					{({ errors }) => (
 						<Form>
 							<div>
-								<Link to='/dashboard/dogs'>
-									<button className={style.goBackBtn}><i class="fa-solid fa-arrow-left"></i></button>
+								<Link to="/dashboard/dogs">
+									<button className={style.goBackBtn}>
+										<i class="fa-solid fa-arrow-left"></i>
+									</button>
 								</Link>
 								<h1 className={style.titleCreateDog}>Ingresar Perro</h1>
 							</div>
@@ -218,7 +222,10 @@ const CreateDog = () => {
 											id="genders"
 											name="genders"
 										>
-											<option className={style.options} defaultValue='all'></option>
+											<option
+												className={style.options}
+												defaultValue="all"
+											></option>
 											<option className={style.options} value="Hembra">
 												Hembra
 											</option>
@@ -230,7 +237,6 @@ const CreateDog = () => {
 											{(msg) => <div className={style.errors}>{msg}</div>}
 										</ErrorMessage>
 									</div>
-
 								</div>
 								<div className={style.containerInputsRightCreateDog}>
 									<div className={style.containerInputs}>
@@ -239,15 +245,15 @@ const CreateDog = () => {
 										</label>
 										<Field
 											className={style.inputSelect}
-											as='select'
+											as="select"
 											id="castrated"
 											name="castrated"
 										>
 											<option className={style.options} value="all"></option>
-											<option className={style.options} value='Yes'>
+											<option className={style.options} value="Yes">
 												Sí
 											</option>
-											<option className={style.options} value='No'>
+											<option className={style.options} value="No">
 												No
 											</option>
 										</Field>

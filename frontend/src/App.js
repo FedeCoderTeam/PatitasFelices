@@ -14,10 +14,12 @@ import AdoptionForm from './components/Forms/AdoptionForm/AdoptionForm';
 import ProductDetail from './components/CardDetail/ProductDetail/ProductDetail';
 import MyReviews from './views/MyReviews/MyReviews';
 import Donation from './views/Donation/Donation';
+import Success from './components/Modals/Success';
 import * as dogsAction from '../src/_redux/actions/dogsAction';
 import * as productsAction from '../src/_redux/actions/productsAction';
 import * as authActions from './_redux/actions/authAction';
 import * as requestAction from './_redux/actions/requestAction';
+import * as reviewsAction from './_redux/actions/reviewsAction';
 
 import BackDrop from './components/BackDrop/BackDrop';
 
@@ -33,7 +35,6 @@ import Overlay from './components/Overlay/Overlay';
 import Cart from './components/Carts/Cart/Cart';
 import TestComponent from './components/testComponent/TestComponent';
 
-
 function App() {
 	const location = useLocation();
 	const dispatch = useDispatch();
@@ -48,12 +49,16 @@ function App() {
 		dispatch(productsAction.getProducts());
 		dispatch(requestAction.getAdoptionDog());
 		dispatch(authActions.getUsers());
-		if(localStorage.getItem('products')) {
-			if(JSON.parse(localStorage.getItem('products')).length) dispatch(productsAction.setItemsAction(JSON.parse(localStorage.getItem('products'))))
+		dispatch(reviewsAction.getReviews());
+		if (localStorage.getItem('products')) {
+			if (JSON.parse(localStorage.getItem('products')).length)
+				dispatch(
+					productsAction.setItemsAction(
+						JSON.parse(localStorage.getItem('products')),
+					),
+				);
 		}
 	}, [dispatch]);
-
-
 
 	return (
 		<>
@@ -63,6 +68,7 @@ function App() {
 				location.pathname !== '/register' &&
 				location.pathname !== '/request-password-reset' &&
 				location.pathname !== '/form' &&
+				location.pathname !== '/products/success' &&
 				(!location.pathname.includes('/dashboard') ||
 					selector.user?.role !== 'Administrador') && <Nav />}
 			<Routes>
@@ -78,6 +84,9 @@ function App() {
 				<Route path={'/products'} element={<Products />} />
 				<Route path={'/products/:id'} element={<ProductDetail />} />
 				<Route path={'/donation'} element={<Donation />} />
+
+				<Route path={'/products/success'} element={<Success />} />
+
 				<Route path={'*'} element={<NotFound />} />
 				{selector.user?.role === 'Administrador' && (
 					<Route path={'/dashboard/*'} element={<Dashboard />} />
@@ -94,10 +103,12 @@ function App() {
 				location.pathname !== '/register' &&
 				location.pathname !== '/request-password-reset' &&
 				location.pathname !== '/form' &&
-				(!location.pathname.includes('/dashboard') || 
-					selector.user?.role !== 'Administrador') && <Footer /> }
-				
-			<BackDrop />
+				location.pathname !== '/products/success' &&
+				(!location.pathname.includes('/dashboard'),
+				!location.pathname.includes('/donation') ||
+					selector.user?.role !== 'Administrador') && <Footer />}
+
+			{location.pathname !== '/products/success' && <BackDrop />}
 			<Overlay />
 			<Cart />
 			{/* <Footer/> */}

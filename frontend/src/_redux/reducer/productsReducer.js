@@ -15,8 +15,8 @@ const initialState = {
 	name: '',
 	shoppingCart: {
 		isOpen: false,
-		items: []
-	}
+		items: [],
+	},
 };
 
 export const productsSlice = createSlice({
@@ -117,12 +117,13 @@ export const productsSlice = createSlice({
 
 			state.products = name;
 		},
-		setOpen:(state) => {
-			state.shoppingCart.isOpen = !state.shoppingCart.isOpen
+		setOpen: (state) => {
+			state.shoppingCart.isOpen = !state.shoppingCart.isOpen;
 		},
-		setItems:(state, action) => {
-			state.shoppingCart.items = action.payload
-		}
+
+		setItems: (state, action) => {
+			state.shoppingCart.items = action.payload;
+		},
 	},
 });
 
@@ -140,7 +141,7 @@ export const {
 	getByName,
 	set_name,
 	setOpen,
-	setItems
+	setItems,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
