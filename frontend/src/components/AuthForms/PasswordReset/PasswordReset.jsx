@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {Link, useNavigate, useSearchParams} from 'react-router-dom';
-import './PasswordReset.css';
+import './passwordReset.css';
 import {useDispatch, useSelector} from 'react-redux';
 import { verifyPasswordResetAction, confirmPasswordResetAction } from '../../../_redux/actions/authAction';
 

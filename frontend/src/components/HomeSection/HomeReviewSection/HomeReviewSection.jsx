@@ -110,6 +110,7 @@ export function ReviewDetail (props) {
             comment: values.comment,
             rating: values.rating
         } 
+        console.log(obj);
         dispatch(reviewsAction.postReviews(obj)) 
         success('Tu comentario se ha enviada correctamente', {
             duration: 2000
