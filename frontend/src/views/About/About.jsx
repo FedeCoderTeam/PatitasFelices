@@ -1,7 +1,7 @@
 import React from 'react';
 import AboutImage from './images/AboutImage.jpg';
 import style from './about.module.css';
-import Typewriter from 'typewriter-effect/dist/core';
+// import Typewriter from 'typewriter-effect/dist/core';
 
 
 const About = () => {
