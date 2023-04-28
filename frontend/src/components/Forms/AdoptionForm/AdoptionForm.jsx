@@ -107,7 +107,7 @@ const AdoptionForm = () => {
 		return () => {
 			dispatch(emptyMaybeAdoptedDogs());
 		};
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<div className="mainContainer-Form" data-aos="fade-up">
