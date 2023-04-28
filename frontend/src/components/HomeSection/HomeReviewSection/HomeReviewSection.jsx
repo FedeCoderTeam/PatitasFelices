@@ -135,15 +135,15 @@ export function ReviewDetail(props) {
 		rating: Yup.number(),
 	});
 
-	const handleSubmit = (values) => {
-		const obj = {
-			token: token,
-			comment: values.comment,
-			rating: values.rating,
-		};
-		dispatch(reviewsAction.postReviews(obj));
-		success('Tu comentario se ha enviada correctamente', {
-			duration: 2000,
+    const handleSubmit = ( values ) => {
+        const obj = {
+            token: token,
+            comment: values.comment,
+            rating: values.rating
+        };      
+        dispatch(reviewsAction.postReviews(obj)) 
+        success('Tu comentario se ha enviada correctamente', {
+            duration: 2000
 		});
 		props.handleOpenReview();
 	};
