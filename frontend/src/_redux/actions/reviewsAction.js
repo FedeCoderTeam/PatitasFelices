@@ -22,9 +22,20 @@ const postReviews = (obj) => {
 	}
 }
 
+const updateReviews = (obj) => {
+	return async function () {
+		try {
+			await axios.put('http://localhost:3001/reviews', obj)
+		} catch (error) {
+			console.log(error);
+		}
+	}
+}
+
 
 
 export {
     getReviews,
 	postReviews,
+	updateReviews,
 }

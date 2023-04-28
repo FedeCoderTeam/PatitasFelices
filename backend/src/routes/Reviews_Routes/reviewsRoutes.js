@@ -30,6 +30,7 @@ router.put('/', async (req, res) => {
 		let result = await updateReview(token, id, comment, rating);
 		res.status(200).json(result);
 	} catch (error) {
+		
 		res.status(400).json({ error: error.message, message: null });
 	}
 });

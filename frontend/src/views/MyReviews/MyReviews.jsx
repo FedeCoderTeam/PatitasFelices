@@ -17,10 +17,10 @@ const MyReviews = () => {
             <h3>¡No dudes en hacerlo!</h3>
             <img src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682482076/84807-not-found-alt_ejlqme.gif" alt="" />
             <button onClick={handleOpenReview} className={style.buttonComment}>¡Comentar!</button>
-            <ReviewDetail
-            handleOpenReview={handleOpenReview}
-            showModal={showModal}
-        />
+                <ReviewDetail
+                handleOpenReview={handleOpenReview}
+                showModal={showModal}
+            />
         </div>
     )
 }
