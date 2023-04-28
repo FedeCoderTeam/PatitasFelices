@@ -1,20 +1,18 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Google from './Google.png';
 import {Link, useNavigate} from 'react-router-dom';
 import style from './Register.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import * as Yup from 'yup'
-
-// import RegisterImg from 'registerImage.png'
 import { registerUserAction, googleUserAction, setShowOverlayAction } from '../../_redux/actions/authAction';
 import Swal from 'sweetalert2';
 import {useFormik} from 'formik';
 import {Button, CircularProgress, createTheme, TextField, ThemeProvider} from '@mui/material';
-import Box from '@mui/material/Box';
 
 const Register = () => {
 	const dispatch = useDispatch()
-	const isRegisterFetching = useSelector(state => state.authReducer.isRegisterFetching)
+	const isFetching = useSelector(state => state.authReducer.isFetching)
+	const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated)
 	const navigate = useNavigate()
 
 	const handleOnGoogle = () => {
@@ -78,6 +76,7 @@ const Register = () => {
 			.matches(/^\S+$/, 'Cannot contain spaces')
 			.required('Password is required')
 	})
+
 	const [isSuccess, setIsSuccess] = useState(false)
 	const handleOnSubmit = (values) => {
 		dispatch(
@@ -101,7 +100,6 @@ const Register = () => {
 		onSubmit: handleOnSubmit
 	})
 
-
 	const theme = createTheme({
 		palette: {
 			primary: {
@@ -117,6 +115,12 @@ const Register = () => {
 		}
 	})
 
+	useEffect(() => {
+		if(isAuthenticated) {
+			navigate('/home')
+		}
+	}, [isAuthenticated, navigate])
+
 	return (
 		<div className={style.mainContainerRegister} data-aos="fade-left">
 			<div className={style.formRegister}>
@@ -130,6 +134,7 @@ const Register = () => {
 							<div className={style.nombre}>
 								<ThemeProvider theme={theme}>
 									<TextField
+										disabled={isFetching}
 										name={'name'}
 										label={'Name'}
 										variant={'filled'}
@@ -144,6 +149,7 @@ const Register = () => {
 							<div className={style.apellido}>
 								<ThemeProvider theme={theme}>
 									<TextField
+										disabled={isFetching}
 										name={'last'}
 										label={'Last'}
 										variant={'filled'}
@@ -159,6 +165,7 @@ const Register = () => {
 						<div className={style.email}>
 							<ThemeProvider theme={theme}>
 								<TextField
+									disabled={isFetching}
 									fullWidth={true}
 									name={'email'}
 									label={'Email'}
@@ -174,6 +181,7 @@ const Register = () => {
 						<div className={style.contraseña}>
 							<ThemeProvider theme={theme}>
 								<TextField
+									disabled={isFetching}
 									fullWidth={true}
 									name={'password'}
 									label={'Password'}
@@ -189,8 +197,8 @@ const Register = () => {
 
 						<div className={style.containerButtonRegister}>
 							<ThemeProvider theme={theme}>
-								<Button disabled={isRegisterFetching} fullWidth={true} type="submit" color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >Crear cuenta</Button>
-								{isRegisterFetching && (<CircularProgress size={24} sx={{
+								<Button disabled={isFetching} fullWidth={true} type="submit" color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >Crear cuenta</Button>
+								{isFetching && (<CircularProgress size={24} sx={{
 									color: '#D9AD77',
 									position: 'absolute',
 									top: '50%',

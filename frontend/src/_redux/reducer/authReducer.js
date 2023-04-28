@@ -2,8 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	isFetching: false,
-	isRegisterFetching: false,
-	isSuccess: false,
+	isFetchingAuth: false,
 	isAuthenticated: false,
 	statusVerify: 'Pending',
 	showOverlay: false,
@@ -19,14 +18,11 @@ export const authSlice = createSlice({
 		setIsFetching: (state, action) => {
 			state.isFetching = action.payload;
 		},
-		setIsRegisterFetching: (state, action) => {
-			state.isRegisterFetching = action.payload;
+		setIsFetchingAuth: (state, action) => {
+			state.isFetchingAuth = action.payload;
 		},
 		setStatusVerify: (state, action) => {
 			state.statusVerify = action.payload;
-		},
-		setIsSuccess: (state, action) => {
-			state.isSuccess = action.payload
 		},
 		setShowOverlay: (state, action) => {
 			state.showOverlay = action.payload;
@@ -44,9 +40,8 @@ export const authSlice = createSlice({
 
 export const {
 	setIsFetching,
-	setIsRegisterFetching,
+	setIsFetchingAuth,
 	setStatusVerify,
-	setIsSuccess,
 	setUser,
 	setShowOverlay,
 	getAllUsers,
