@@ -20,6 +20,13 @@
     width: 82%;
     font-size: 20px;
     color: mistyrose;
+    background: rgba(93, 92, 92, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(156, 114, 35, 0.37);
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 39px;
 }
 
 .containerDescription>h3 {
@@ -31,7 +38,6 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    /* margin-bottom: 70px; */
     margin-top: 50px;
     flex-direction: column;
     align-items: center;
@@ -43,21 +49,12 @@
     font-size: 30px;
 }
 
-/* .sectionMercadoPago>div>input {
-    padding: 7px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 4px;
-    text-align: center;
-} */
-
-.containerInputButton{
+.containerInputButton {
     display: flex;
     width: 50%;
     gap: 30px;
     margin-top: 20px;
     justify-content: center;
-    /* align-items: center; */
 }
 
 .containerInputButton>div>button:hover {
@@ -65,11 +62,11 @@
     color: #ffffff;
 }
 
-.containerInputButton > div{
+.containerInputButton>div {
     width: 11em;
 }
 
-.containerInputButton > div > button{
+.containerInputButton>div>button {
     display: flex;
     padding: 7px;
     font-size: 20px;
@@ -85,7 +82,8 @@
     width: 100%;
     justify-content: center;
 }
-.containerInputButton > input {
+
+.containerInputButton>input {
     padding: 7px;
     border: none;
     border-radius: 4px;
@@ -113,7 +111,6 @@
     background-color: #a65424;
     font-family: 'Be Vietnam Pro', sans-serif;
     font-weight: 700;
-    /* border-color: transparent; */
     border: none;
     border-radius: 5px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
