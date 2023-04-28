@@ -22,7 +22,7 @@
 }
 
 .stars i {
-    color: goldenrod;
+    color: #f5c34b;
 }
 
 .comentary {
@@ -30,6 +30,7 @@
     width: 370px;
     display: flex;
     align-items: start;
+    padding-left: 5px;
 }
 .comentary h4 {
     margin: 10px 0px 0px 0px;

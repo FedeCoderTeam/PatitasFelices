@@ -18,6 +18,8 @@ import ReviewCard from '../../Cards/ReviewCard/ReviewCard';
 import useToast from '../../../utils/hooks/useToast';
 import * as reviewsAction from '../../../_redux/actions/reviewsAction';
 import { useFormik } from 'formik';
+import { Player } from '@lottiefiles/react-lottie-player';
+import ReviewGuy from '../../../utils/animations/ReviewGuy.json'
 
 
 const HomeReviewSection = () => {
@@ -48,9 +50,10 @@ const HomeReviewSection = () => {
 					<div className={style.containerBoxes}>
 						<div className={style.containerLeft}>
 							<Link to="/donation">
-								<img
-									src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682436574/24491-review-animation_pzthnp.gif"
-									alt="dogDonation"
+							<Player
+									autoplay
+									loop
+									src={ReviewGuy}
 									className={style.reviewImage}
 								/>
 							</Link>
