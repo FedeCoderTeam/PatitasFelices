@@ -22,6 +22,11 @@ import { useFormik } from 'formik';
 const HomeReviewSection = () => {
 	const { t } = useTranslation();
 	const [showModal, setShowModal] = useState(false);
+    const allReviews = useSelector((state) => state.reviewsReducer.reviews);
+
+    const handleOpenReview = () => {
+        setShowModal(!showModal)
+    }
 
 	const handleOpenReview = () => {
 		setShowModal(!showModal);
@@ -61,9 +66,42 @@ const HomeReviewSection = () => {
 				</div>
 			</div>
 
-			<div></div>
-			<ReviewDetail handleOpenReview={handleOpenReview} showModal={showModal} />
-		</>
+			<div className={style.containerRight}>
+				<h1>{t('home.section.review.yourOpinionMattersToUs')} <span>{t('home.section.review.shareIt')}</span></h1>
+                <div className={style.carousel}>
+                    <i className="fa-solid fa-chevron-left"></i>
+                    {/* {allReviews?.map((e) => {
+                        return (
+                            <ReviewCard 
+                                id = {e.id}
+                                rating = {e.rating}
+                                comment = {e.comment}
+                                name = {e.user?.name}
+                                last = {e.user?.last}
+                                image = {e.user?.image}
+                            />
+                        )
+                    })} */}
+                    <ReviewCard/>
+                    <i className="fa-solid fa-chevron-right"></i>
+                </div>
+                    {
+                    /* FALTA HACER LOGICA DE QUE SI ESTA LOGEADO,
+                    PUEDA COMENTAR SINO QUE SE REGISTRE PREVIO A COMENTAR */
+                    }
+                    <button onClick={handleOpenReview} className='button'>{t('home.section.review.comment')}</button>
+			</div>
+		</div>
+
+        <div>
+
+        </div>
+        <ReviewDetail
+        handleOpenReview={handleOpenReview}
+        showModal={showModal}
+        />
+    </>
+
 	);
 };
 

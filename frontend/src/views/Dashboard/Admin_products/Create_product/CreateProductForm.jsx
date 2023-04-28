@@ -32,29 +32,29 @@ const CreateProductForm = () => {
 
 	const validationSchema = Yup.object().shape({
 		name: Yup.string()
-			.min(4, 'El nombre debe tener mínimo 4 caracteres. *')
+			.min(4, 'Debe tener mínimo 4 caracteres. *')
 			.matches(
-				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
+				/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s,.]+$/,
 				'Sólo letras de la "A" a la "Z" *',
 			)
 			.required('El nombre es obligatorio'),
 		description: Yup.string()
-			.min(10, 'La descripción debe tener mínimo 20 caracteres. *')
+			.min(10, 'Debe tener mínimo 10 caracteres. *')
 			.matches(
-				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
+				/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s,.]+$/,
 				'Sólo letras de la "A" a la "Z" *',
 			)
 			.required('La descripción es obligatoria'),
 		price: Yup.number()
-			.min(1, 'El precio tiene que ser mayor a 1. *')
+			.min(1, 'Tiene que ser mayor a 1. *')
 			.required('El precio es obligatorio.'),
 		stock: Yup.number()
-			.min(0, 'El stock tiene que ser mayor o igual a 0. *')
+			.min(0, 'Tiene que ser mayor o igual a 0. *')
 			.required('El stock tiene que ser obligatorio.'),
 		brand: Yup.string()
-			.min(2, 'La marca debe tener mínimo 2 caracteres. *')
+			.min(2, 'Debe tener mínimo 2 caracteres. *')
 			.matches(
-				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
+				/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s,.]+$/,
 				'Sólo letras de la "A" a la "Z" *',
 			)
 			.required('La marca es obligatoria'),

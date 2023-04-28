@@ -19,6 +19,7 @@ import * as dogsAction from '../src/_redux/actions/dogsAction';
 import * as productsAction from '../src/_redux/actions/productsAction';
 import * as authActions from './_redux/actions/authAction';
 import * as requestAction from './_redux/actions/requestAction';
+import * as reviewsAction from './_redux/actions/reviewsAction';
 
 import BackDrop from './components/BackDrop/BackDrop';
 
@@ -48,6 +49,7 @@ function App() {
 		dispatch(productsAction.getProducts());
 		dispatch(requestAction.getAdoptionDog());
 		dispatch(authActions.getUsers());
+		dispatch(reviewsAction.getReviews());
 		if (localStorage.getItem('products')) {
 			if (JSON.parse(localStorage.getItem('products')).length)
 				dispatch(
@@ -102,8 +104,8 @@ function App() {
 				location.pathname !== '/request-password-reset' &&
 				location.pathname !== '/form' &&
 				location.pathname !== '/products/success' &&
-				location.pathname !== '/products/denied' &&
-				(!location.pathname.includes('/dashboard') ||
+				(!location.pathname.includes('/dashboard'),
+				!location.pathname.includes('/donation') ||
 					selector.user?.role !== 'Administrador') && <Footer />}
 
 			{location.pathname !== '/products/success' && <BackDrop />}

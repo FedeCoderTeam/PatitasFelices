@@ -36,6 +36,10 @@ function ProductDetail() {
 		}
 	};
 
+	const handleClick = () => {
+		window.scrollTo(0, 0);
+	};
+
 	const productDetail = useSelector(
 		(state) => state.productsReducer.productDetail,
 	);
@@ -47,7 +51,9 @@ function ProductDetail() {
 			setIsLoading(false);
 		}, 1500);
 		const getRandomProducts = () => {
-			const products = allProducts.filter((product) => product.id !== id);
+			const products = allProducts.filter(
+				(product) => product.id !== Number(id),
+			);
 			const randomProducts = products.sort(() => 0.5 - Math.random());
 			const selectedProducts = randomProducts.slice(0, 4);
 			setRandomProducts(selectedProducts);
@@ -111,6 +117,9 @@ function ProductDetail() {
 				<div className={style.bodyDetailProduct} data-aos="fade-down">
 					<div className={style.containerProduct}>
 						<div className={style.divLeft}>
+							<Link className={style.links} to="/products">
+								<i class="fa-solid fa-arrow-right fa-rotate-180"></i>
+							</Link>
 							<img
 								className={style.imagenDetail}
 								src={productDetail.image}
@@ -162,7 +171,7 @@ function ProductDetail() {
 								También te pueden interesar
 							</h2>
 						</div>
-						<div className={style.divOtros}>
+						<div onClick={handleClick} className={style.divOtros}>
 							{randomProducts.map((product) => (
 								<ProductCard
 									key={product.id}

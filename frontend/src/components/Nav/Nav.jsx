@@ -125,6 +125,17 @@ export default function Nav() {
 						<p className={style.links}>{t('nav.links.dog')}</p>
 					</div>
 				</NavLink>
+				<NavLink
+					to="/donation"
+					className={`${style.link} ${
+						location.pathname === '/donation' ? style.active : ''
+					}`}
+				>
+					<div className={style.divNav}>
+						<i class="fa-solid fa-heart-circle-plus"></i>
+						<p className={style.links}>{t('nav.links.donate')}</p>
+					</div>
+				</NavLink>
 				{selector.user?.role === 'Administrador' && (
 					<Link to="/dashboard" className={style.link}>
 						<div className={style.divNav}>
