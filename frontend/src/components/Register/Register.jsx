@@ -1,40 +1,18 @@
-import React, { useRef } from 'react';
+import React, {useEffect, useState} from 'react';
 import Google from './Google.png';
 import {Link, useNavigate} from 'react-router-dom';
 import style from './Register.module.css';
-import { useDispatch } from 'react-redux';
-
-// import RegisterImg from 'registerImage.png'
+import {useDispatch, useSelector} from 'react-redux';
+import * as Yup from 'yup'
 import { registerUserAction, googleUserAction, setShowOverlayAction } from '../../_redux/actions/authAction';
 import Swal from 'sweetalert2';
+import {useFormik} from 'formik';
+import {Button, CircularProgress, createTheme, TextField, ThemeProvider} from '@mui/material';
 
 const Register = () => {
-	const dispatch = useDispatch();
-
-	const refName = useRef(null);
-	const refLast = useRef(null);
-	const refEmail = useRef(null);
-	const refPass = useRef(null);
-
-	const handleOnRegister = () => {
-		if (
-			!refName.current.value ||
-			!refLast.current.value ||
-			!refEmail.current.value ||
-			!refPass.current.value
-		) {
-			return;
-		}
-		dispatch(
-			registerUserAction(
-				refName.current.value,
-				refLast.current.value,
-				refEmail.current.value,
-				refPass.current.value,
-			),
-		);
-	};
-
+	const dispatch = useDispatch()
+	const isFetching = useSelector(state => state.authReducer.isFetching)
+	const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated)
 	const navigate = useNavigate()
 
 	const handleOnGoogle = () => {
@@ -67,6 +45,82 @@ const Register = () => {
 		})
 	};
 
+	const initialValues = {
+		name: '',
+		last: '',
+		email: '',
+		password: ''
+	}
+
+	const validationSchema = Yup.object({
+		name: Yup
+			.string()
+			.min(2, 'Your name must have a minimum of 2 characters')
+			.max(32, 'Your name must have a maximum of 32 characters')
+			.matches(/^[a-zA-Z]+( [a-zA-Z]+){0,3}$/, 'Your name is wrong')
+			.required('Name is required'),
+		last: Yup
+			.string()
+			.min(2, 'Your name must have a minimum of 2 characters')
+			.max(32, 'Your name must have a maximum of 32 characters')
+			.matches(/^[a-zA-Z]+( [a-zA-Z]+){0,3}$/, 'Your last is wrong')
+			.required('Name is required'),
+		email: Yup
+			.string()
+			.email('Enter a valid email')
+			.required('Email is required'),
+		password: Yup
+			.string()
+			.min(6, 'Password should be of minimum 6 characters length')
+			.max(32, 'Password should be of minimum 32 characters length')
+			.matches(/^\S+$/, 'Cannot contain spaces')
+			.required('Password is required')
+	})
+
+	const [isSuccess, setIsSuccess] = useState(false)
+	const handleOnSubmit = (values) => {
+		dispatch(
+			registerUserAction(
+				values.name,
+				values.last,
+				values.email,
+				values.password,
+				setIsSuccess
+			),
+		).then(() => {
+			if(isSuccess) {
+				navigate('/home')
+			}
+		})
+	}
+
+	const formik = useFormik({
+		initialValues: initialValues,
+		validationSchema: validationSchema,
+		onSubmit: handleOnSubmit
+	})
+
+	const theme = createTheme({
+		palette: {
+			primary: {
+				main: '#163440'
+			},
+			secondary: {
+				main: '#592519'
+			},
+			action: {
+				disabledBackground: '#244e6b',
+				disabled: '#fff'
+			}
+		}
+	})
+
+	useEffect(() => {
+		if(isAuthenticated) {
+			navigate('/home')
+		}
+	}, [isAuthenticated, navigate])
+
 	return (
 		<div className={style.mainContainerRegister} data-aos="fade-left">
 			<div className={style.formRegister}>
@@ -75,37 +129,86 @@ const Register = () => {
 				</div>
 
 				<div className={style.containerInputsRegister}>
-					<div className={style.personalInfo}>
-						<div className={style.nombre}>
-							<label>Nombre</label>
-							<input type="text" ref={refName} />
+					<form onSubmit={formik.handleSubmit}>
+						<div className={style.personalInfo}>
+							<div className={style.nombre}>
+								<ThemeProvider theme={theme}>
+									<TextField
+										disabled={isFetching}
+										name={'name'}
+										label={'Name'}
+										variant={'filled'}
+										value={formik.values.name}
+										onChange={formik.handleChange}
+										error={formik.touched.name && Boolean(formik.errors.name)}
+										helperText={formik.touched.name && formik.errors.name}
+									/>
+								</ThemeProvider>
+							</div>
+
+							<div className={style.apellido}>
+								<ThemeProvider theme={theme}>
+									<TextField
+										disabled={isFetching}
+										name={'last'}
+										label={'Last'}
+										variant={'filled'}
+										value={formik.values.last}
+										onChange={formik.handleChange}
+										error={formik.touched.last && Boolean(formik.errors.last)}
+										helperText={formik.touched.last && formik.errors.last}
+									/>
+								</ThemeProvider>
+							</div>
 						</div>
 
-						<div className={style.apellido}>
-							<label>Apellido</label>
-							<input type="text" ref={refLast} />
+						<div className={style.email}>
+							<ThemeProvider theme={theme}>
+								<TextField
+									disabled={isFetching}
+									fullWidth={true}
+									name={'email'}
+									label={'Email'}
+									variant={'filled'}
+									value={formik.values.email}
+									onChange={formik.handleChange}
+									error={formik.touched.email && Boolean(formik.errors.email)}
+									helperText={formik.touched.email && formik.errors.email}
+								/>
+							</ThemeProvider>
 						</div>
-					</div>
 
-					<div className={style.email}>
-						<label>Email</label>
-						<input type="email" ref={refEmail} />
-					</div>
+						<div className={style.contraseña}>
+							<ThemeProvider theme={theme}>
+								<TextField
+									disabled={isFetching}
+									fullWidth={true}
+									name={'password'}
+									label={'Password'}
+									type={'password'}
+									variant={'filled'}
+									value={formik.values.password}
+									onChange={formik.handleChange}
+									error={formik.touched.password && Boolean(formik.errors.password)}
+									helperText={formik.touched.password && formik.errors.password}
+								/>
+							</ThemeProvider>
+						</div>
 
-					<div className={style.contraseña}>
-						<label>Contraseña</label>
-						<input type="password" ref={refPass} />
-					</div>
-
-					<div className={style.containerButtonRegister}>
-						<button
-							type="submit"
-							className={style.buttonRegister}
-							onClick={handleOnRegister}
-						>
-							<Link to='/home'>Crear cuenta</Link>
-						</button>
-					</div>
+						<div className={style.containerButtonRegister}>
+							<ThemeProvider theme={theme}>
+								<Button disabled={isFetching} fullWidth={true} type="submit" color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >Crear cuenta</Button>
+								{isFetching && (<CircularProgress size={24} sx={{
+									color: '#D9AD77',
+									position: 'absolute',
+									top: '50%',
+									left: '50%',
+									marginTop: '-12px',
+									marginLeft: '-12px',
+								}}></CircularProgress>)}
+							</ThemeProvider>
+						</div>
+					</form>
 				</div>
 
 				<div className={style.containerGoogleRegister} onClick={() => handleOnGoogle()}>
