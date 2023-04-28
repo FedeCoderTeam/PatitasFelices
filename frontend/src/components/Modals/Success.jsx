@@ -42,7 +42,7 @@ const Success = () => {
 			dispatch(setItemsAction());
 			navigate('/products');
 		}, 2000);
-	}, [cartItems, dispatch]);
+	}, [cartItems, dispatch, navigate]);
 
 	return (
 		<div

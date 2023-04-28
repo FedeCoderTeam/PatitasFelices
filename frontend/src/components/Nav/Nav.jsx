@@ -22,7 +22,6 @@ import { useTranslation } from 'react-i18next';
 import StarIcon from '@mui/icons-material/Star';
 import { red } from '@mui/material/colors';
 import { grey } from '@mui/material/colors';
-import useToast from '../../utils/hooks/useToast';
 
 export default function Nav() {
 	const location = useLocation();

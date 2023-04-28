@@ -22,11 +22,7 @@ import { useFormik } from 'formik';
 const HomeReviewSection = () => {
 	const { t } = useTranslation();
 	const [showModal, setShowModal] = useState(false);
-    const allReviews = useSelector((state) => state.reviewsReducer.reviews);
-
-    const handleOpenReview = () => {
-        setShowModal(!showModal)
-    }
+	// const allReviews = useSelector((state) => state.reviewsReducer.reviews);
 
 	const handleOpenReview = () => {
 		setShowModal(!showModal);
@@ -34,17 +30,36 @@ const HomeReviewSection = () => {
 
 	return (
 		<>
-			<div className={style.mainContainer}>
-				<div className={style.containerBoxes}>
-					<div className={style.containerLeft}>
-						<Link to="/donation">
-							<img
-								src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682436574/24491-review-animation_pzthnp.gif"
-								alt="dogDonation"
-								className={style.reviewImage}
-							/>
-						</Link>
-						<div className="containerBtn-HDonationS"></div>
+			<div>
+				<div className={style.mainContainer}>
+					<div className={style.containerBoxes}>
+						<div className={style.containerLeft}>
+							<Link to="/donation">
+								<img
+									src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682436574/24491-review-animation_pzthnp.gif"
+									alt="dogDonation"
+									className={style.reviewImage}
+								/>
+							</Link>
+							<div className="containerBtn-HDonationS"></div>
+						</div>
+					</div>
+
+					<div className={style.containerRight}>
+						<h1>
+							{t('home.section.review.yourOpinionMattersToUs')}{' '}
+							<span>{t('home.section.review.shareIt')}</span>
+						</h1>
+						<div className={style.carousel}>
+							<i className="fa-solid fa-chevron-left"></i>
+							<ReviewCard />
+							<i className="fa-solid fa-chevron-right"></i>
+						</div>
+						{/* FALTA HACER LOGICA DE QUE SI ESTA LOGEADO,
+                    PUEDA COMENTAR SINO QUE SE REGISTRE PREVIO A COMENTAR */}
+						<button onClick={handleOpenReview} className="button">
+							{t('home.section.review.comment')}
+						</button>
 					</div>
 				</div>
 
@@ -55,22 +70,7 @@ const HomeReviewSection = () => {
 					</h1>
 					<div className={style.carousel}>
 						<i className="fa-solid fa-chevron-left"></i>
-						<ReviewCard />
-						<i className="fa-solid fa-chevron-right"></i>
-					</div>
-					{/* FALTA HACER LOGICA DE QUE SI ESTA LOGEADO,
-                    PUEDA COMENTAR SINO QUE SE REGISTRE PREVIO A COMENTAR */}
-					<button onClick={handleOpenReview} className="button">
-						{t('home.section.review.comment')}
-					</button>
-				</div>
-			</div>
-
-			<div className={style.containerRight}>
-				<h1>{t('home.section.review.yourOpinionMattersToUs')} <span>{t('home.section.review.shareIt')}</span></h1>
-                <div className={style.carousel}>
-                    <i className="fa-solid fa-chevron-left"></i>
-                    {/* {allReviews?.map((e) => {
+						{/* {allReviews?.map((e) => {
                         return (
                             <ReviewCard 
                                 id = {e.id}
@@ -82,26 +82,19 @@ const HomeReviewSection = () => {
                             />
                         )
                     })} */}
-                    <ReviewCard/>
-                    <i className="fa-solid fa-chevron-right"></i>
-                </div>
-                    {
-                    /* FALTA HACER LOGICA DE QUE SI ESTA LOGEADO,
-                    PUEDA COMENTAR SINO QUE SE REGISTRE PREVIO A COMENTAR */
-                    }
-                    <button onClick={handleOpenReview} className='button'>{t('home.section.review.comment')}</button>
+						<ReviewCard />
+						<i className="fa-solid fa-chevron-right"></i>
+					</div>
+					{/* FALTA HACER LOGICA DE QUE SI ESTA LOGEADO,
+                    PUEDA COMENTAR SINO QUE SE REGISTRE PREVIO A COMENTAR */}
+					<button onClick={handleOpenReview} className="button">
+						{t('home.section.review.comment')}
+					</button>
+				</div>
 			</div>
-		</div>
 
-        <div>
-
-        </div>
-        <ReviewDetail
-        handleOpenReview={handleOpenReview}
-        showModal={showModal}
-        />
-    </>
-
+			<ReviewDetail handleOpenReview={handleOpenReview} showModal={showModal} />
+		</>
 	);
 };
 
