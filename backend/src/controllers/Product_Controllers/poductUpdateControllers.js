@@ -11,7 +11,21 @@ const productUpdateControllers = async (
 	isDisabled,
 	categoryId,
 	subCategoryId,
+	quantity,
 ) => {
+	console.log(
+		id,
+		name,
+		description,
+		price,
+		image,
+		brand,
+		stock,
+		isDisabled,
+		categoryId,
+		subCategoryId,
+		quantity,
+	);
 	try {
 		let productToUpdate = await product.findOne({
 			where: {
@@ -21,13 +35,15 @@ const productUpdateControllers = async (
 
 		if (!productToUpdate) throw new Error(`No product found with id ${id}`);
 
+		let newSotck = stock - quantity;
+
 		await productToUpdate.update({
 			name: name,
 			description: description,
 			price: price,
 			image: image,
 			brand: brand,
-			stock: stock,
+			stock: newSotck,
 			isDisabled: isDisabled,
 			categoryId: categoryId,
 			subCategoryId: subCategoryId,

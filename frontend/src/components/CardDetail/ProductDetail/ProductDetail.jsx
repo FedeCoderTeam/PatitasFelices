@@ -1,22 +1,28 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {Link, useParams} from 'react-router-dom';
-import { getProductsById, setDetail, setItemsAction } from '../../../_redux/actions/productsAction';
+import { useParams } from 'react-router-dom';
+import {
+	getProductsById,
+	setDetail,
+	setItemsAction,
+} from '../../../_redux/actions/productsAction';
 import { useState } from 'react';
 import style from './productDetail.module.css';
 import ProductCard from '../../Cards/ProductCard/ProductCard';
-import useToast from '../../../hooks/useToast';
+import useToast from '../../../utils/hooks/useToast';
 import Swal from 'sweetalert2';
 
 function ProductDetail() {
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated)
+	const isAuthenticated = useSelector(
+		(state) => state.authReducer.isAuthenticated,
+	);
 
 	const [count, setCount] = useState(0);
 	const [randomProducts, setRandomProducts] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	const toast = useToast()
+	const toast = useToast();
 
 	const handleClickSuma = () => {
 		if (count < productDetail.stock) {
@@ -42,56 +48,56 @@ function ProductDetail() {
 		}, 1500);
 		const getRandomProducts = () => {
 			const products = allProducts.filter((product) => product.id !== id);
-			const randomProducts = products.sort(() => 0.5 - Math.random());;
+			const randomProducts = products.sort(() => 0.5 - Math.random());
 			const selectedProducts = randomProducts.slice(0, 4);
 			setRandomProducts(selectedProducts);
-		  };
+		};
 		dispatch(getProductsById(id));
-		getRandomProducts()
+		getRandomProducts();
 		return () => {
 			dispatch(setDetail());
 		};
 	}, [allProducts, dispatch, id]);
 
 	const addProduct = (quantity) => {
-		if(!isAuthenticated) {
+		if (!isAuthenticated) {
 			Swal.fire({
 				title: 'Inicia sesión para agregar productos al carrito',
 				html: `Por favor inicia sesión en tu cuenta o regístrate para agregar productos al carrito. Haz clic aquí para <a href='/login'>iniciar sesión</a> o <a href='/register'>registrarte</a>. ¡Gracias por elegirnos!`,
 				timer: 10000,
-				icon: 'info'
-			})
+				icon: 'info',
+			});
 			return;
 		}
-		if(!localStorage.getItem('products')) localStorage.setItem('products', JSON.stringify([]))
-		const getProductLocal = localStorage.getItem('products')
-		const products = JSON.parse(getProductLocal)
+		if (!localStorage.getItem('products'))
+			localStorage.setItem('products', JSON.stringify([]));
+		const getProductLocal = localStorage.getItem('products');
+		const products = JSON.parse(getProductLocal);
 
-		const productExist = products.find(p => p.id === productDetail.id)
+		const productExist = products.find((p) => p.id === productDetail.id);
 
-		if(productExist) {
-			const max = productDetail.stock - productExist.quantity
+		if (productExist) {
+			const max = productDetail.stock - productExist.quantity;
 			const qtyAdd = quantity > max ? max : quantity;
-			if(qtyAdd > 0) {
+			if (qtyAdd > 0) {
 				productExist.quantity += qtyAdd;
 			} else {
-				toast.warning('No podes agregar mas productos', {duration: 2000})
+				toast.warning('No podes agregar mas productos', { duration: 2000 });
 			}
-		}
- 		else {
+		} else {
 			products.push({
 				id: productDetail.id,
-				quantity: quantity
-			})
+				quantity: quantity,
+			});
 		}
 
-		const productUpdated = JSON.stringify(products)
+		const productUpdated = JSON.stringify(products);
 
-		localStorage.setItem('products', productUpdated)
-		setCount(0)
-		dispatch(setItemsAction())
-		toast.success('Producto agregado al carrito', {duration: 4000})
-	}
+		localStorage.setItem('products', productUpdated);
+		setCount(0);
+		dispatch(setItemsAction());
+		toast.success('Producto agregado al carrito', { duration: 4000 });
+	};
 
 	return (
 		<div className={style.divMain}>
@@ -140,7 +146,12 @@ function ProductDetail() {
 									<span className={style.btnSpan}>+</span>
 								</button>
 							</div>
-							<button disabled={count <= 0} style={count <= 0 ? { background: 'grey' } : {}} className={style.btnCarritoDetail} onClick={() => addProduct(count)}>
+							<button
+								disabled={count <= 0}
+								style={count <= 0 ? { background: 'grey' } : {}}
+								className={style.btnCarritoDetail}
+								onClick={() => addProduct(count)}
+							>
 								AÑADIR AL CARRITO
 							</button>
 						</div>
