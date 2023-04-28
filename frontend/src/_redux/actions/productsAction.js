@@ -130,6 +130,7 @@ const sortAction = () => {
 
 const setLinkDePagos = (items) => {
 	return async function () {
+		// console.log(items);
 		try {
 			let link = await axios.post(
 				'http://localhost:3001/mercadopago/payment',
@@ -141,19 +142,6 @@ const setLinkDePagos = (items) => {
 		}
 	};
 };
-
-// const setLinkDonation = () => {
-// 	return async function () {
-// 		try {
-// 			let link = await axios.post(
-// 				'http://localhost:3001/mercadopago/payment',
-// 			);
-// 			window.location.href = link.data.body.init_point;
-// 		} catch (error) {
-// 			console.log(error);
-// 		}
-// 	};
-// };
 
 const setOpenAction = () => {
 	return function (dispatch) {
@@ -186,5 +174,4 @@ export {
 	updateProduct,
 	setOpenAction,
 	setItemsAction,
-	// setLinkDonation
 };

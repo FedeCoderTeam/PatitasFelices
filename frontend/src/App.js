@@ -94,9 +94,9 @@ function App() {
 				location.pathname !== '/register' &&
 				location.pathname !== '/request-password-reset' &&
 				location.pathname !== '/form' &&
-				(!location.pathname.includes('/dashboard') || 
-					selector.user?.role !== 'Administrador') && <Footer /> }
-				
+				(!location.pathname.includes('/dashboard'), !location.pathname.includes('/donation') || 
+					selector.user?.role !== 'Administrador') && <Footer />
+					}
 			<BackDrop />
 			<Overlay />
 			<Cart />
