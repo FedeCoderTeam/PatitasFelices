@@ -23,7 +23,12 @@ const DogsGrid = () => {
 				return {
 					id: dog.id,
 					col1: dog.name,
-					col2: `${dog.age < 12 ? dog.age : dog.age / 12} años`,
+					col2:
+						dog.age < 12
+							? `${dog.age} meses`
+							: dog.age / 12 > 1
+							? `${dog.age / 12} años`
+							: `${dog.age / 12} año`,
 					col3:
 						dog.size === 'Giant'
 							? 'Gigante'
