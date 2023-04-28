@@ -1,6 +1,112 @@
-.video{
+.video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     position: fixed;
+}
+
+.mainContainer {
+    display: flex;
+    text-align: center;
+    margin-top: 70px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.containerDescription {
+    position: relative;
+    display: flex;
+    width: 50%;
+    font-size: 20px;
+    color: mistyrose;
+}
+
+.sectionMercadoPago {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 70px;
+    margin-top: 50px;
+}
+
+.sectionMercadoPago>div>h3 {
+    color: mistyrose;
+    margin-bottom: 1em;
+}
+
+.sectionMercadoPago>div {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sectionMercadoPago>div>input {
+    padding: 7px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 4px;
+}
+
+.sectionMercadoPago>div>button {
+    padding: 7px 10px 7px 10px;
+    background-color: #009ee3;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 700;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: background-color 100ms linear, transform 100ms linear;
+    width: 100%;
+}
+
+.sectionMercadoPago>div>button:hover {
+    background-color: #0077aa;
+    color: #ffffff;
+}
+
+.sectionBuyProducts {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.sectionBuyProducts>div>h3 {
+    color: mistyrose;
+    margin-bottom: 1em;
+}
+
+.sectionBuyProducts>div {
+    width: 50%;
+}
+
+.sectionBuyProducts>div>button {
+    padding: 7px;
+    width: 100%;
+    background-color: #a65424;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 700;
+    border-color: transparent;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: background-color 100ms linear, transform 100ms linear;
+}
+
+.sectionBuyProducts>div>button:hover {
+    background-color: #592519;
+    color: #ffffff;
+}
+
+.sectionBuyProducts>div>button>a {
+    text-decoration: none;
+    color: #f2f2f2;
+}
+
+.containerSections {
+    width: 50%;
 }
