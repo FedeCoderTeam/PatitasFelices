@@ -42,20 +42,6 @@ const Home = () => {
 						</div>
 					</div>
 					<div className="containerCardsHDS-Home">
-						{/* {currentDogs?.map((e) => {
-                            return (
-                                <HomeDogSection
-                                    key={e.id}
-                                    id={e.id}
-                                    image={e.image}
-                                    name={e.name}
-                                    age={e.age}
-                                    gender={e.gender}
-                                    size={e.size}
-                                    temperaments={e.temperaments}
-                                />
-                            )
-                        })} */}
 						<Link to="/dogs">
 							<img
 								src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681884590/91540-dog-love_b0o1tw.gif"
@@ -82,20 +68,6 @@ const Home = () => {
 					<HomeReviewSection />
 				</div>
 
-				<div>
-					{allReviews?.map((e) => {
-						return (
-							<ReviewCard
-								id={e.id}
-								rating={e.rating}
-								comment={e.comment}
-								name={e.user?.name}
-								last={e.user?.last}
-								image={e.user?.image}
-							/>
-						);
-					})}
-				</div>
 			</div>
 		</>
 	);
