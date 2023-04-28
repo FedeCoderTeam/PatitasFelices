@@ -48,3 +48,9 @@
     transform: scale(1.03);
     background-color: #16343f;
 }
+
+.reviewNotFound {
+    height: 500px;
+    margin: 0;
+    padding: 0;
+}

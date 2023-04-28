@@ -11,6 +11,8 @@ import style from './productDetail.module.css';
 import ProductCard from '../../Cards/ProductCard/ProductCard';
 import useToast from '../../../utils/hooks/useToast';
 import Swal from 'sweetalert2';
+import { Player } from '@lottiefiles/react-lottie-player';
+import ShoppingCart from '../../../utils/animations/ShoppingCart.json'
 
 function ProductDetail() {
 	const { id } = useParams();
