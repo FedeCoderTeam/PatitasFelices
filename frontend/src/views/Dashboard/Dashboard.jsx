@@ -21,6 +21,7 @@ import PetsIcon from '@mui/icons-material/Pets';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import GradingIcon from '@mui/icons-material/Grading';
 import HomeIcon from '@mui/icons-material/Home';
+import ReviewsIcon from '@mui/icons-material/Reviews';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { brown } from '@mui/material/colors';
@@ -43,6 +44,7 @@ import UpdateProductForm from './Admin_products/Update_Product/UpdateProductForm
 import Users from './Admin_users/Users';
 import Orders from './Admin_orders/Orders';
 import Home from './Admin_home/Home';
+import Reviews from './Amin_reviews/Reviews';
 
 const drawerWidth = 240;
 
@@ -151,8 +153,9 @@ export default function Dashboard() {
 		{ name: 'Solicitudes', route: '/request', icon: <MailIcon /> },
 		{ name: 'Productos', route: '/products', icon: <LocalOfferIcon /> },
 		{ name: 'Perros', route: '/dogs', icon: <PetsIcon /> },
-		{ name: 'Users', route: '/users', icon: <AccountCircleIcon /> },
-		{ name: 'Ordenes', route: '/orders', icon: <GradingIcon /> },
+		{ name: 'Usuarios', route: '/users', icon: <AccountCircleIcon /> },
+		{ name: 'Compras y donaciones', route: '/orders', icon: <GradingIcon /> },
+		{ name: 'Comentarios', route: '/reviews', icon: <ReviewsIcon /> },
 	];
 
 	return (
@@ -198,9 +201,14 @@ export default function Dashboard() {
 								Usuarios
 							</Typography>
 						)}
-						{location.pathname === '/dashboard/oders' && (
+						{location.pathname === '/dashboard/orders' && (
 							<Typography variant="h6" noWrap component="div">
-								Órdenes
+								Compras y donaciones
+							</Typography>
+						)}
+						{location.pathname === '/dashboard/reviews' && (
+							<Typography variant="h6" noWrap component="div">
+								Comentarios
 							</Typography>
 						)}
 					</Toolbar>
@@ -266,6 +274,7 @@ export default function Dashboard() {
 							<Route path={'/dogs'} element={<DogsGrid />} />
 							<Route path={'/dogs/createDog'} element={<CreateDog />} />
 							<Route path={'/dogs/updateDog'} element={<UpdateDogForm />} />
+							<Route path={'/reviews'} element={<Reviews />} />
 						</Routes>
 					</Typography>
 				</Box>
