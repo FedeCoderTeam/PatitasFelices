@@ -82,7 +82,10 @@ const AdoptionForm = () => {
 			email: values.email,
 			areas_conditions: values.areas_conditions,
 			more_animals: values.more_animals === 'Yes' ? true : false,
-			moreAnimals_details: values.moreAnimals_details,
+			moreAnimals_details:
+				values.moreAnimals_details === ''
+					? 'No hay detalles'
+					: values.moreAnimals_details,
 			proper_income: values.proper_income,
 			inHouse_allowance: values.inHouse_allowance,
 			outDoor_image: url,

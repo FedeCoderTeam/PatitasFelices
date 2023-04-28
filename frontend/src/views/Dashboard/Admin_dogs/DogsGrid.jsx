@@ -23,15 +23,24 @@ const DogsGrid = () => {
 				return {
 					id: dog.id,
 					col1: dog.name,
-					col2: dog.age,
-					col3: dog.size,
-					col4: dog.weight,
-					col5: dog.castrated,
+					col2: `${dog.age < 12 ? dog.age : dog.age / 12} años`,
+					col3:
+						dog.size === 'Giant'
+							? 'Gigante'
+							: dog.size === 'Large'
+							? 'Grande'
+							: dog.size === 'Medium'
+							? 'Mediano'
+							: dog.size === 'Small'
+							? 'Pequeño'
+							: 'Mini',
+					col4: `${dog.weight}kg`,
+					col5: dog.castrated === true ? 'Si' : 'No',
 					col6: dog.temperaments,
 					col7: dog.colors,
 					col8: dog.gender,
-					col9: dog.adopted,
-					col10: dog.isDisabled,
+					col9: dog.adopted === true ? 'Si' : 'No',
+					col10: dog.isDisabled === true ? 'Si' : 'No',
 					col11: dog.image,
 				};
 			}),
@@ -53,7 +62,6 @@ const DogsGrid = () => {
 		setTimeout(() => {
 			navigate('./updateDog');
 		}, 630);
-		
 	};
 
 	const columns = [
