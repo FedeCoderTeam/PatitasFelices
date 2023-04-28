@@ -76,7 +76,10 @@ const Dogs = () => {
 				)}
 
 				{!currentDogs.length ? (
-					<h2>No hay ningun perro con las características seleccionadas</h2>
+					<div className={style.noDogs}>
+						<h2>No hay ningún perro con estas características.</h2>
+						<div><iframe src="https://giphy.com/embed/kC21HpDLCD7ASL8MsC" width="100%" height="100%" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
+					</div>
 				) : (
 					<div className={style.cardsContainer}>
 						{currentDogs?.map((e) => {
