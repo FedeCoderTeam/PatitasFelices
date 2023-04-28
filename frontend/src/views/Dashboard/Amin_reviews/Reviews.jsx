@@ -5,6 +5,7 @@ import React, { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as reviewsAction from '../../../_redux/actions/reviewsAction';
 import Star from '@mui/icons-material/Star';
+import { yellow } from '@mui/material/colors';
 
 // import StarIcon from '@material-ui/icons/Star';
 
@@ -48,7 +49,7 @@ const Reviews = () => {
 	let StarCell = ({ value }) => {
 		let stars = [];
 		for (let i = 0; i < value; i++) {
-			stars.push(<Star key={i} />);
+			stars.push(<Star key={i} sx={{ color: "#ffd700"}} />);
 		}
 		return <div>{stars}</div>
 	}
