@@ -1,26 +1,30 @@
 const { Router } = require('express');
-const { getAllReviews }= require('../../controllers/Reviews_Controllers/getAllReviewsController')
-const { postNewReview }= require ('../../controllers/Reviews_Controllers/postNewReviewController');
-const { updateReview }= require ('../../controllers/Reviews_Controllers/updateReviewsController')
+const getAllReviews = require('../../controllers/Reviews_Controllers/getAllReviewsController');
+const {
+	postNewReview,
+} = require('../../controllers/Reviews_Controllers/postNewReviewController');
+const {
+	updateReview,
+} = require('../../controllers/Reviews_Controllers/updateReviewsController');
 
 const router = Router();
 
 router.get('/', async (req, res) => {
 	try {
 		let info = await getAllReviews();
-        res.status(200).json(info)
+		res.status(200).json(info);
 	} catch (error) {
-		res.status(400).json({error: error.message})
+		res.status(400).json({ error: error.message });
 	}
 });
 
 router.post('/', async (req, res) => {
-	let { token, comment, rating } = req.body
+	let { token, comment, rating } = req.body;
 	try {
 		let result = await postNewReview(token, comment, rating);
-        res.status(200).json(result)
+		res.status(200).json(result);
 	} catch (error) {
-        res.status(404).json({ error: error.message, message: null });
+		res.status(404).json({ error: error.message, message: null });
 	}
 });
 

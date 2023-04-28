@@ -22,7 +22,7 @@ import { useFormik } from 'formik';
 const HomeReviewSection = () => {
 	const { t } = useTranslation();
 	const [showModal, setShowModal] = useState(false);
-	// const allReviews = useSelector((state) => state.reviewsReducer.reviews);
+	const allReviews = useSelector((state) => state.reviewsReducer.reviews);
 
 	const handleOpenReview = () => {
 		setShowModal(!showModal);
@@ -71,17 +71,17 @@ const HomeReviewSection = () => {
 					<div className={style.carousel}>
 						<i className="fa-solid fa-chevron-left"></i>
 						{/* {allReviews?.map((e) => {
-                        return (
-                            <ReviewCard 
-                                id = {e.id}
-                                rating = {e.rating}
-                                comment = {e.comment}
-                                name = {e.user?.name}
-                                last = {e.user?.last}
-                                image = {e.user?.image}
-                            />
-                        )
-                    })} */}
+							return (
+								<ReviewCard
+									id={e.id}
+									rating={e.rating}
+									comment={e.comment}
+									name={e.user?.name}
+									last={e.user?.last}
+									image={e.user?.image}
+								/>
+							);
+						})} */}
 						<ReviewCard />
 						<i className="fa-solid fa-chevron-right"></i>
 					</div>
