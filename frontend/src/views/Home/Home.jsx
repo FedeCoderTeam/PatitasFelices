@@ -18,7 +18,7 @@ const Home = () => {
 	// const [dogsPerPage] = useState(7);
 	const { t } = useTranslation();
 	const allReviews = useSelector((state) => state.reviewsReducer.reviews);
-
+	// console.log(allReviews);
 	return (
 		<>
 			<Header />
