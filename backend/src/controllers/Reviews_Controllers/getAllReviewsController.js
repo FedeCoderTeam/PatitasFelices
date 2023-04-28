@@ -1,18 +1,37 @@
-const { reviews, user } = require ('../../database/db')
+const { reviews, user } = require('../../database/db');
+const reviewsJson = require('../../Json/Reviews.json');
 
 const getAllReviews = async () => {
-    let info= await reviews.findAll({
-        include: [
-            {
-				model: user,
-			},
-		]},
-    );
+	try {
+		let info = await reviews.findAll({
+			include: [
+				{
+					model: user,
+				},
+			],
+		});
 
-    if (!info.length) {
-        return "No hay revisiones aún"
-    }
-    return info;
-}
+		if (!info.length) {
+			let review = reviewsJson.reviews;
 
-module.exports= { getAllReviews };
+			for (let i = 0; i < review.length; i++) {
+				let jsonReview = await reviews.create({
+					rating: review[i].rating,
+					comment: review[i].comment,
+				});
+
+				let userComent = await user.findOne({
+					where: { id: review[i].userId },
+				});
+
+				await jsonReview.setUser(userComent);
+			}
+		}
+
+		return info;
+	} catch (error) {
+		return error;
+	}
+};
+
+module.exports = getAllReviews;
