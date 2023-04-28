@@ -11,6 +11,7 @@ import HomeDonationSection from '../../components/HomeSection/HomeDonationSectio
 import HomeProductSection from '../../components/HomeSection/HomeProductSection/HomeProductSection';
 import HomeReviewSection from '../../components/HomeSection/HomeReviewSection/HomeReviewSection';
 import {useTranslation} from 'react-i18next';
+import ReviewCard from '../../components/Cards/ReviewCard/ReviewCard';
 
 const Home = () => {
     //navbar
@@ -20,16 +21,14 @@ const Home = () => {
     const { t } = useTranslation()
 
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(dogsAction.getDogs())
-        dispatch(dogsAction.getTemperaments())
-    }, [dispatch])
     const allDogs = useSelector((state) => state.dogsReducer.allDogs)
+    const allReviews = useSelector((state) => state.reviewsReducer.reviews)
     const [currentPage, setCurrentPage] = useState(1);
     const [dogsPerPage] = useState(3);
     const indexOfLastDog = currentPage * dogsPerPage
     const indexOfFirstDog = indexOfLastDog - dogsPerPage;
     const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog)
+    console.log(allReviews);
     return (
         <>
             <Header />
@@ -87,6 +86,21 @@ const Home = () => {
 				<div data-aos="fade-down" data-aos-duration="1000">
 					<HomeReviewSection />
 				</div>
+
+                <div>
+                    {allReviews?.map((e) => {
+                        return (
+                            <ReviewCard 
+                                id = {e.id}
+                                rating = {e.rating}
+                                comment = {e.comment}
+                                name = {e.user?.name}
+                                last = {e.user?.last}
+                                image = {e.user?.image}
+                            />
+                        )
+                    })}
+                </div>
 			</div>
 		</>
 	);
