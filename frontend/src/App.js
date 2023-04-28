@@ -101,6 +101,7 @@ function App() {
 			<Overlay />
 			<Cart />
 			{/* <Footer/> */}
+			
 		</>
 	);
 }
