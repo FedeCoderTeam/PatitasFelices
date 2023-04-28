@@ -25,15 +25,16 @@ export default function Footer() {
 
 			<div className={style.icons}>
 				<div className={style.instagram}>
-					<a href="https://www.instagram.com" className={style.instagram} target="_blank"><i className="fa-brands fa-instagram" id="social-icon"></i></a>
+					<a href="https://www.instagram.com/milagrosperrunos_/" className={style.instagram} target="_blank"><i className="fa-brands fa-instagram" id="social-icon"></i></a>
 				</div>
 
 				<div className={style.facebook}>
 					<a href="https://www.facebook.com/profile.php?id=100075872331290" target="_blank" className={style.facebook}><i className="fa-brands fa-facebook-square" id="social-icon"></i></a>
 				</div>
 
+				
 				<div className={style.whatsapp}>
-					<a href="https://www.whatsapp.com" className={style.whatsapp} target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+					<Link to="https://wa.me/5493517039524" className={style.whatsapp} target="_blank"><i class="fa-brands fa-whatsapp"></i></Link>
 				</div>
 
 				<div className={style.mail}>
