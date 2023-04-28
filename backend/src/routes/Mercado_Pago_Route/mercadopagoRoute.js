@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { mercadopagoconfig } = require('../../config/mercadoPago');
 const mercadopago = require('mercadopago');
+const updateStock = require('../../controllers/Product_Controllers/poductUpdateControllers');
 
 mercadopagoconfig();
 const router = Router();
@@ -23,7 +24,7 @@ router.post('/payment', async (req, res) => {
 		}),
 
 		back_urls: {
-			success: 'http://localhost:3000/home',
+			success: 'http://localhost:3000/products/success',
 			failure: '',
 			pending: '',
 		},
@@ -40,4 +41,34 @@ router.post('/payment', async (req, res) => {
 		res.status(400).send({ error: error.message });
 	}
 });
+
+// router.get('/payment/success', async (req, res) => {
+// 	try {
+// 		const paymentId = req.query.payment_id;
+// 		const paymentInfo = await mercadopago.payment.get(paymentId);
+// 		const products = paymentInfo.body.items;
+
+// 		// Actualizar el stock de productos
+// 		for (const product of products) {
+// 			await updateStock(
+// 				product.id,
+// 				product.name,
+// 				product.description,
+// 				product.unit_price,
+// 				product.picture_url,
+// 				null,
+// 				product.quantity * -1, // restar la cantidad comprada al stock
+// 				null,
+// 				product.category_id,
+// 				null,
+// 			);
+// 		}
+
+// 		res.render('paymentSuccess');
+// 	} catch (error) {
+// 		console.log(error);
+// 		res.render('paymentError');
+// 	}
+// });
+
 module.exports = router;

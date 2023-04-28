@@ -9,7 +9,7 @@ import CloudinaryWidget from '../../Cloudinary/CloudinaryForm/CloudinaryWidget';
 import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryForm/CloudinaryWidgetFull';
 import * as requestAction from '../../../_redux/actions/requestAction';
 import { useNavigate } from 'react-router-dom';
-import useToast from '../../../hooks/useToast'
+import useToast from '../../../utils/hooks/useToast';
 
 const AdoptionForm = () => {
 	const dispatch = useDispatch();
@@ -63,9 +63,8 @@ const AdoptionForm = () => {
 			'Seleccione una opción.',
 		),
 		more_animals: Yup.string().required('Seleccione una opción.'),
-		moreAnimals_details: Yup.string()
+		moreAnimals_details: Yup.string(),
 		// .required('Es obligatoria esta información.')
-		,
 		proper_income: Yup.string().required('Elige una opción.'),
 		inHouse_allowance: Yup.string().required('Elige una opción.'),
 		outDoor_image: Yup.string().matches(
@@ -91,7 +90,7 @@ const AdoptionForm = () => {
 		};
 		dispatch(requestAction.postAdoptionDog(obj));
 		success(`¡Solicitud de adopción de ${initialValues.name} enviada!`, {
-			duration: 2000
+			duration: 2000,
 		});
 		setTimeout(() => {
 			navigate('/dogs');
@@ -108,7 +107,7 @@ const AdoptionForm = () => {
 		return () => {
 			dispatch(emptyMaybeAdoptedDogs());
 		};
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<div className="mainContainer-Form" data-aos="fade-up">
@@ -193,23 +192,30 @@ const AdoptionForm = () => {
 										<div className="more_animals-Container">
 											<Field name="more_animals" as="select">
 												<option value=""></option>
-												<option value='Yes'>Si</option>
-												<option value='No'>No</option>
+												<option value="Yes">Si</option>
+												<option value="No">No</option>
 											</Field>
 											{/* {values.more_animals !== false && ( */}
-												<div className="hideInput">
-													<Field
-														disabled = {values.more_animals === 'No' || values.more_animals === ''}
-														type="text"
-														id="moreAnimals_details"
-														value={values.more_animals !== 'Yes' ? '' : values.moreAnimals_details}
-														name="moreAnimals_details"
-														placeholder="EJ: 2 gatos, 1 perro."
-													/>
-													<ErrorMessage name="moreAnimals_details">
-														{(msg) => <div className="errorMessage">{msg}</div>}
-													</ErrorMessage>
-												</div>
+											<div className="hideInput">
+												<Field
+													disabled={
+														values.more_animals === 'No' ||
+														values.more_animals === ''
+													}
+													type="text"
+													id="moreAnimals_details"
+													value={
+														values.more_animals !== 'Yes'
+															? ''
+															: values.moreAnimals_details
+													}
+													name="moreAnimals_details"
+													placeholder="EJ: 2 gatos, 1 perro."
+												/>
+												<ErrorMessage name="moreAnimals_details">
+													{(msg) => <div className="errorMessage">{msg}</div>}
+												</ErrorMessage>
+											</div>
 											{/* )} */}
 										</div>
 										<ErrorMessage name="more_animals">

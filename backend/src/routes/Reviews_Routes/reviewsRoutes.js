@@ -7,33 +7,31 @@ const router = Router();
 
 router.get('/', async (req, res) => {
 	try {
-		let info= await getAllReviews();
+		let info = await getAllReviews();
         res.status(200).json(info)
 	} catch (error) {
-		res.status(400).json({error: error.mesage})
+		res.status(400).json({error: error.message})
 	}
 });
 
 router.post('/', async (req, res) => {
-	let { rating, comment, userId } = req.body
+	let { token, comment, rating } = req.body
 	try {
-		let result= await postNewReview(rating, comment, userId);
-        res.status(200).send('La revisión se generó correctamente')
+		let result = await postNewReview(token, comment, rating);
+        res.status(200).json(result)
 	} catch (error) {
-        res.status(404).json({ error: error.message });
+        res.status(404).json({ error: error.message, message: null });
 	}
 });
 
 router.put('/', async (req, res) => {
-	let { id, rating, comment } = req.body;
+	let { token, id, comment, rating } = req.body;
 	try {
-		let result = await updateReview(id, rating, comment);
-
-		if (updateReview.error) throw new Error(updateReview.error);
-
+		let result = await updateReview(token, id, comment, rating);
 		res.status(200).json(result);
 	} catch (error) {
-		res.status(400).json({ error: error.message });
+		
+		res.status(400).json({ error: error.message, message: null });
 	}
 });
 

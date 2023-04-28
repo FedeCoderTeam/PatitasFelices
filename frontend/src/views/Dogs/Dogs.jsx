@@ -21,12 +21,16 @@ const Dogs = () => {
 	const [currentDogs, setCurrentDogs] = useState(
 		allDogs.slice(range.firts, range.last),
 	);
+	const [isLoading, setIsLoading] = useState(true);
 	const paginado = (pageNumber) => {
 		dispatch(dogsAction.setPage(pageNumber));
 	};
 	//---------------------------------------------------------------------------------------------------------------
 
 	useEffect(() => {
+		setTimeout(() => {
+			setIsLoading(false);
+		}, 1500);
 		setCurrentDogs(allDogs?.slice(range.firts, range.last));
 		setRange({
 			firts: (currentPage - 1) * dogsPerPage,
@@ -36,6 +40,16 @@ const Dogs = () => {
 
 	return (
 		<div data-aos="fade-down" className={style.main}>
+			{isLoading ? (
+				<div className={style.loaderContainer}>
+					<img
+						className={style.loader}
+						src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681877316/Proyecto%20Final/127157-moody-dog_1_w3qyr5.gif"
+						alt="Cargando..."
+					/>
+				</div>
+			) : (
+			<>
 			<div className={style.filtersBox}>
 				<div className={style.filtersContainer}>
 					<DogFilters
@@ -47,7 +61,7 @@ const Dogs = () => {
 				</div>
 			</div>
 
-			<div className={style.cardSection}>
+			<div className={style.cardSection} data-aos="fade-down">
 				{!currentDogs.length ? (
 					''
 				) : (
@@ -84,6 +98,8 @@ const Dogs = () => {
 					</div>
 				)}
 			</div>
+			</>
+			)}
 		</div>
 	);
 };

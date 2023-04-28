@@ -1,6 +1,6 @@
 const { reviews, user } = require ('../../database/db')
 
-const getAllReviews= async()=> {
+const getAllReviews = async () => {
     let info= await reviews.findAll({
         include: [
             {
@@ -15,4 +15,4 @@ const getAllReviews= async()=> {
     return info;
 }
 
-module.exports= {getAllReviews};
+module.exports= { getAllReviews };

@@ -1,26 +1,64 @@
 import style from './ReviewCard.module.css';
 import * as React from 'react';
 
-const ReviewCard = ({ rating, comment, userId, id }) => {
+const ReviewCard = ({ id, rating, comment, name, last, image }) => {
 	return (
 		<>
-			<div className={style.reviewCard}>
+			<div className={style.reviewCard} key={id}>
                 <div className={style.userImg}>
-                    <img src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682440997/Messi_chiquito_nzv8n5.jpg" alt="" />
+                    <img src={image} alt="" />
                 </div>
 
                 <div className={style.reviewInfo}>
-                    <h2>Messi Chiquito</h2>
+                    <h2>{name} {last}</h2>
                     <div className={style.stars}>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star-half-stroke"></i>
+                        {
+                            rating === 4 ? (
+                                <>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-regular fa-star"></i>
+                                </>
+                            ) : (rating === 3 ? (
+                                <>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-regular fa-star"></i>
+                                    <i class="fa-sharp fa-regular fa-star"></i>
+                                </>
+                            ) : (rating === 2 ? (
+                                <>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-regular fa-star"></i>
+                                    <i class="fa-sharp fa-regular fa-star"></i>
+                                    <i class="fa-sharp fa-regular fa-star"></i>
+                                </>
+                            ) : (rating === 1 ? (
+                                <>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-regular fa-star"></i>
+                                    <i class="fa-sharp fa-regular fa-star"></i>
+                                    <i class="fa-sharp fa-regular fa-star"></i>
+                                    <i class="fa-sharp fa-regular fa-star"></i>
+                                </>
+                            ) : (
+                                <>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </>
+                            ))))
+                        }
                     </div>
 
                     <div className={style.comentary}>
-                        <h4>Es admirable la calidad humana y dedicación de todo el equipo de Patitas Felices, sin duda los perritos están muy agradecidos con ellos. Hola cocu, te mando un saludo a vo y al momo. Fulvo.</h4>
+                        <h4>{comment}</h4>
                     </div>
                             
                 </div>

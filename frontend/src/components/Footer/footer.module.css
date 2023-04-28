@@ -52,19 +52,58 @@
     margin-right: 40px;
 }
 
-.icons i {
+.icons a {
+    color: #f2f2f2;
+    text-decoration: none;
     transition: 
         color 200ms linear,
 }
 
-@keyframes icons {
+@keyframes iconsIg {
     0% {transform: rotate(0deg); color: #ffffff}
     
-    100% {transform: rotate(360deg); color: #A65424}
+    100% {transform: rotate(360deg); color: #bd2860}
 }
 
-.icons i:hover {
-    color: #A65424;
+@keyframes iconsFb {
+    0% {transform: rotate(0deg); color: #ffffff}
+    
+    100% {transform: rotate(360deg); color: #1f77e2}
+}
+
+@keyframes iconsWs {
+    0% {transform: rotate(0deg); color: #ffffff}
+    
+    100% {transform: rotate(360deg); color: #00e778}
+}
+
+@keyframes iconsMail {
+    0% {transform: rotate(0deg); color: #ffffff}
+    
+    100% {transform: rotate(360deg); color: #c6231a}
+}
+
+
+.instagram:hover {
+    color: #bd2860;
     cursor: pointer;
-    animation: icons 0.8s;
+    animation: iconsIg 0.8s;
+}
+
+.facebook:hover {
+    color: #1f77e2;
+    cursor: pointer;
+    animation: iconsFb 0.8s;
+}
+
+.whatsapp:hover {
+    color: #00e778;
+    cursor: pointer;
+    animation: iconsWs 0.8s;
+}
+
+.mail:hover {
+    color: #c6231a;
+    cursor: pointer;
+    animation: iconsMail 0.8s;
 }
