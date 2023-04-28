@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './User.module.css';
 import * as authActions from '../../../_redux/actions/authAction';
-import useToast from '../../../hooks/useToast';
+import useToast from '../../../utils/hooks/useToast';
 
 const Users = () => {
 	const dispatch = useDispatch();

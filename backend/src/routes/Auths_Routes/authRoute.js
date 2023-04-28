@@ -69,10 +69,11 @@ router.post('/logout', cors({credentials: true, origin: 'http://localhost:3000'}
     }
 })
 
-router.post('/verify-account', async (req, res) => {
+router.post('/verify-account', cors({credentials: true, origin: 'http://localhost:3000'}), async (req, res) => {
     const { token } = req.body
     try {
         const result = await verifyUser(token)
+        res.cookie('tkn_usr', result.token, {maxAge: 86400000, hostOnly:false, httpOnly: true, sameSite: 'lax', secure: true})
         res.status(200).json(result)
     } catch (error) {
         // console.log(error)

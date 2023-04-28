@@ -32,35 +32,3 @@
     margin-top: 0;
     padding-top: 0;
 }
-
-/* .containerRight-HDonationS{
-    background-color: #163440;
-    padding: 30px;
-    border-radius: 6px;
-}
-.containerLeft-HDonationS{
-    background-color: #163440;
-    padding: 30px;
-    border-radius: 6px;
-}
-.containerBoxes-HDonationS{
-    display: flex;
-    gap: 50px;
-}
-.containerBtn-HDonationS > button{
-    padding: 11px;
-    background-color: #A65424;
-    border-radius: 4px;
-    border: none;
-    color: #FFFFFF;
-    width: 97%;
-    margin-top: 5px;
-}
-.containerBtn-HDonationS > button:hover{
-    transform: scale(1.03);
-    transition: 500ms;
-}
-.containerBtn-HDonationS > button > a {
-    text-decoration: none;
-    color: white;
-} */

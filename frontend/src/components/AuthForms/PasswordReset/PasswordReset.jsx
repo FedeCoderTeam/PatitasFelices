@@ -15,24 +15,28 @@ const PasswordReset = () => {
 
     useEffect(() => {
         if(token) {
-            dispatch(verifyPasswordResetAction(token))
+            dispatch(verifyPasswordResetAction(token)).then(() => {
+                if(statusVerify === 'Unauthorized') {
+                    navigate('/login')
+                }
+            })
         } else {
             navigate('/login')
         }
-    }, [dispatch])
+
+    }, [dispatch, statusVerify, navigate])
 
     const refPass = useRef(null);
     const refRepeatPass = useRef(null);
 
-    if(statusVerify === 'Unauthorized' || statusVerify === 'Authorized') {
-        navigate('/login')
-        return null;
-    }
+
 
     const handleOnConfirmPasswordReset = () => {
         if (!refPass.current.value || !refRepeatPass.current.value) return;
         if(refPass.current.value === refRepeatPass.current.value) {
-            dispatch(confirmPasswordResetAction(token, refPass.current.value));
+            dispatch(confirmPasswordResetAction(token, refPass.current.value)).then(() => {
+                navigate('/login')
+            })
         }
     };
 
