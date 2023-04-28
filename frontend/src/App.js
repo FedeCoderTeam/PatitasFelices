@@ -104,8 +104,8 @@ function App() {
 				location.pathname !== '/request-password-reset' &&
 				location.pathname !== '/form' &&
 				location.pathname !== '/products/success' &&
-				(!location.pathname.includes('/dashboard'),
-				!location.pathname.includes('/donation') ||
+				location.pathname !== '/donation' &&
+				(!location.pathname.includes('/dashboard') ||
 					selector.user?.role !== 'Administrador') && <Footer />}
 
 			{location.pathname !== '/products/success' && <BackDrop />}
