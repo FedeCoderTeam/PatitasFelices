@@ -3,18 +3,24 @@
     margin-bottom: 100px;
     margin-left: 100px;
 }
+
 .title > h2 {
     text-align: center;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
 }
 .containerStory{
-    text-align: center;
     display: flex;
     justify-content: center;
     width: 90%;
     align-items: center;
+    margin-bottom: 135px;
 }
 .containerStory > p {
     width: 70%;
+    font-size: 21px;
+    margin-left: 30px;
 }
 .mainContainer{
     display: flex;

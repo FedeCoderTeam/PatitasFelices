@@ -1,16 +1,25 @@
 import React from 'react';
 import AboutImage from './images/AboutImage.jpg';
 import style from './about.module.css';
-import Typewriter from 'typewriter-effect/dist/core';
+import Typewriter from 'typewriter-effect';
 
 
 const About = () => {
     return (
         <>
             <div className={style.title}>
-                <h2>¡Nuestro equipo de Patitas Felices!</h2>
+                <h2>
+                <Typewriter 
+                    options={{
+                        autoStart: true,
+                        loop: true,
+                        delay:200,
+                        strings: ["¡Nuestro equipo de Patitas Felices!"]
+                    }}
+                />
+                </h2>
             </div>
-            <div className={style.description}>
+            <div className={style.description} data-aos="fade-down">
                 <div className={style.containerStory}>
                 <div>
                     <img src={AboutImage} alt="AboutImage" />
