@@ -106,58 +106,60 @@ const Login = () => {
 				<div className={style.title}>
 					<h1>Ingresar</h1>
 				</div>
-				<div className={style.containerInputsLogin}>
-					<div className={style.emailForm}>
-						<ThemeProvider theme={theme}>
-							<TextField
-								disabled={isFetching}
-								fullWidth={true}
-								name={'email'}
-								label={'Email'}
-								variant={'filled'}
-								value={formik.values.email}
-								onChange={formik.handleChange}
-								error={formik.touched.email && Boolean(formik.errors.email)}
-								helperText={formik.touched.email && formik.errors.email}
-							/>
-						</ThemeProvider>
+				<form onSubmit={formik.handleSubmit}>
+					<div className={style.containerInputsLogin}>
+						<div className={style.emailForm}>
+							<ThemeProvider theme={theme}>
+								<TextField
+									disabled={isFetching}
+									fullWidth={true}
+									name={'email'}
+									label={'Email'}
+									variant={'filled'}
+									value={formik.values.email}
+									onChange={formik.handleChange}
+									error={formik.touched.email && Boolean(formik.errors.email)}
+									helperText={formik.touched.email && formik.errors.email}
+								/>
+							</ThemeProvider>
+						</div>
+
+						<div className={style.contraseñaForm}>
+							<ThemeProvider theme={theme}>
+								<TextField
+									disabled={isFetching}
+									fullWidth={true}
+									name={'password'}
+									label={'Password'}
+									type={'password'}
+									variant={'filled'}
+									value={formik.values.password}
+									onChange={formik.handleChange}
+									error={formik.touched.password && Boolean(formik.errors.password)}
+									helperText={formik.touched.password && formik.errors.password}
+								/>
+							</ThemeProvider>
+						</div>
 					</div>
 
-					<div className={style.contraseñaForm}>
+					<div className={style.recuperarContraseña} onClick={() => navigate('/request-password-reset')}>
+						<p>¿Olvidaste tu contraseña?</p>
+					</div>
+
+					<div className={style.containerButtonLogin}>
 						<ThemeProvider theme={theme}>
-							<TextField
-								disabled={isFetching}
-								fullWidth={true}
-								name={'password'}
-								label={'Password'}
-								type={'password'}
-								variant={'filled'}
-								value={formik.values.password}
-								onChange={formik.handleChange}
-								error={formik.touched.password && Boolean(formik.errors.password)}
-								helperText={formik.touched.password && formik.errors.password}
-							/>
+							<Button disabled={isFetching} fullWidth={true} type={'submit'} color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >Ingresar</Button>
+							{isFetching && (<CircularProgress size={24} sx={{
+								color: '#D9AD77',
+								position: 'absolute',
+								top: '50%',
+								left: '50%',
+								marginTop: '-12px',
+								marginLeft: '-12px',
+							}}></CircularProgress>)}
 						</ThemeProvider>
 					</div>
-				</div>
-
-				<div className={style.recuperarContraseña} onClick={() => navigate('/request-password-reset')}>
-					<p>¿Olvidaste tu contraseña?</p>
-				</div>
-
-				<div className={style.containerButtonLogin}>
-					<ThemeProvider theme={theme}>
-						<Button onClick={formik.handleSubmit} disabled={isFetching} fullWidth={true} type="submit" color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >Ingresar</Button>
-						{isFetching && (<CircularProgress size={24} sx={{
-							color: '#D9AD77',
-							position: 'absolute',
-							top: '50%',
-							left: '50%',
-							marginTop: '-12px',
-							marginLeft: '-12px',
-						}}></CircularProgress>)}
-					</ThemeProvider>
-				</div>
+				</form>
 
 				<div className={style.containerGoogleLogin} onClick={handleOnGoogle}>
 					<p>

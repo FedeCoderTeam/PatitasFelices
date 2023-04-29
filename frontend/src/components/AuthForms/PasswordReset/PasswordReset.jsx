@@ -82,8 +82,7 @@ const PasswordReset = () => {
                     <h1>Restablecer su contraseña</h1>
                 </div>
 
-                <div className={style.containerInputsPassword}>
-
+                <form className={style.containerInputsPassword} onSubmit={formik.handleSubmit}>
                     <div className={style.password}>
                         <ThemeProvider theme={theme}>
                             <TextField
@@ -120,7 +119,7 @@ const PasswordReset = () => {
 
                     <div className={style.containerButtonPasswordReset}>
                         <ThemeProvider theme={theme}>
-                            <Button onClick={formik.handleSubmit} disabled={isFetching} fullWidth={true} type="submit" color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >Enviar</Button>
+                            <Button disabled={isFetching} fullWidth={true} type={'submit'} color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >Enviar</Button>
                             {isFetching && (<CircularProgress size={24} sx={{
                                 color: '#D9AD77',
                                 position: 'absolute',
@@ -131,7 +130,7 @@ const PasswordReset = () => {
                             }}></CircularProgress>)}
                         </ThemeProvider>
                     </div>
-                </div>
+                </form>
 
                 <div>
                     <Link to="/home" className={style.goHome}>
