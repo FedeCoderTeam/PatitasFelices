@@ -53,6 +53,22 @@ export const dogsSlice = createSlice({
 		},
 
 		setFilters: (state, action) => {
+			if(action.payload.setColor && 
+				action.payload.setSize && 
+				action.payload.setTemperaments && 
+				action.payload.setGender && 
+				action.payload.sortOrder === "" &&
+				action.payload.sortBy === "" ) {
+					return{
+						...state,
+						setColor: action.payload.setColor,
+						setSize: action.payload.setSize,
+						setTemperaments: action.payload.setTemperaments,
+						setGender: action.payload.setGender,
+						sortOrder: action.payload.sortOrder,
+						sortBy: action.payload.sortBy
+					}
+				}
 			if (action.payload.setColor) {
 				return {
 					...state,

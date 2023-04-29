@@ -57,7 +57,18 @@ const ProductFilters = () => {
 		dispatch(productsAction.filter());
 		dispatch(productsAction.sortAction());
 	};
-
+	const handleRefresh = (e) => {
+		e.preventDefault();
+		dispatch(productsAction.setFilter({
+			sortOrder:"",
+			sortBy:"",
+			setCategory: "All",
+			setSubCategory: "All",
+		}))
+		dispatch(productsAction.filter())
+		dispatch(productsAction.sortAction());
+		dispatch(productsAction.setPage(1))
+	}
 	return (
 		<div className={style.main}>
 			<form action="" className={style.formControl}>
@@ -78,7 +89,7 @@ const ProductFilters = () => {
 								handleOrder(event, 'price');
 							}}
 						>
-							<option className={style.options} value="1" disabled={true}>
+							<option className={style.options} value="1" >
 								Elegir
 							</option>
 							<option className={style.options} value="asc">
@@ -101,7 +112,7 @@ const ProductFilters = () => {
 								handleOrder(event, 'abc');
 							}}
 						>
-							<option className={style.options} value="1" disabled={true}>
+							<option className={style.options} value="1" >
 								Elegir
 							</option>
 							<option className={style.options} value="asc">
@@ -159,6 +170,12 @@ const ProductFilters = () => {
 								</option>
 							))}
 						</select>
+					</div>
+					<div>
+						<button
+						className={style.btnProduct}
+						onClick={(e) => handleRefresh(e)}
+						>REINICIAR FILTROS</button>
 					</div>
 				</div>
 			</form>
