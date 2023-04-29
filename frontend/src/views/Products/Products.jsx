@@ -39,6 +39,7 @@ const Products = () => {
 	]);
 
 	return (
+		
 		<div className={style.main} data-aos="fade-down">
 			<div className={style.filtersBox}>
 				<div className={style.filtersContainer}>

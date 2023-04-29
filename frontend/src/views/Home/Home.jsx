@@ -8,6 +8,8 @@ import HomeProductSection from '../../components/HomeSection/HomeProductSection/
 import HomeReviewSection from '../../components/HomeSection/HomeReviewSection/HomeReviewSection';
 import { useTranslation } from 'react-i18next';
 import ReviewCard from '../../components/Cards/ReviewCard/ReviewCard';
+import { Player } from '@lottiefiles/react-lottie-player';
+import GirlAndDog from '../../utils/animations/GirlAndDogHome.json'
 
 const Home = () => {
 	//navbar
@@ -42,25 +44,12 @@ const Home = () => {
 						</div>
 					</div>
 					<div className="containerCardsHDS-Home">
-						{/* {currentDogs?.map((e) => {
-                            return (
-                                <HomeDogSection
-                                    key={e.id}
-                                    id={e.id}
-                                    image={e.image}
-                                    name={e.name}
-                                    age={e.age}
-                                    gender={e.gender}
-                                    size={e.size}
-                                    temperaments={e.temperaments}
-                                />
-                            )
-                        })} */}
 						<Link to="/dogs">
-							<img
-								src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681884590/91540-dog-love_b0o1tw.gif"
-								alt=""
-								className="dogSectionImage"
+							<Player
+								autoplay
+								loop
+								src={GirlAndDog}
+								className='dogSectionImage'
 							/>
 						</Link>
 					</div>
@@ -82,20 +71,6 @@ const Home = () => {
 					<HomeReviewSection />
 				</div>
 
-				<div>
-					{allReviews?.map((e) => {
-						return (
-							<ReviewCard
-								id={e.id}
-								rating={e.rating}
-								comment={e.comment}
-								name={e.user?.name}
-								last={e.user?.last}
-								image={e.user?.image}
-							/>
-						);
-					})}
-				</div>
 			</div>
 		</>
 	);

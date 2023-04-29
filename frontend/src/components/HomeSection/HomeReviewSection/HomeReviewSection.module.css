@@ -7,7 +7,7 @@
 }
 
 .reviewImage {
-	height: 500px;
+	width: 550px;
 	padding-left: 5%;
 }
 
@@ -18,7 +18,7 @@
 	justify-content: center;
 	align-items: center;
 	color: #16343f;
-	padding-left: 3%;
+	padding-left: 0%;
 }
 
 .containerRight h1 {
@@ -40,14 +40,17 @@
 	gap: 20px;
 }
 
-.carousel i {
+.arrows {
 	color: #a65424;
 	font-size: 20px;
 	cursor: pointer;
 	transition: ease-in-out 0.2s;
+	border-radius: 5px;
+	padding: 2px 6px 2px 6px;
 }
-.carousel i:hover {
+.arrows:hover {
 	color: #16343f;
+	background-color: rgba(0, 0, 0, 0.185);
 }
 
 .reviewCard {

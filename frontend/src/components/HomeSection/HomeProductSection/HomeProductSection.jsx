@@ -2,6 +2,8 @@ import React from 'react';
 import './homeProductSection.css';
 import { Link } from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
+import { Player } from '@lottiefiles/react-lottie-player';
+import GirlShopping from '../../../utils/animations/GirlShoppingHomeSection.json'
 
 const HomeProductSection = () => {
 	const { t } = useTranslation()
@@ -23,7 +25,12 @@ const HomeProductSection = () => {
 			<div className="containerBoxes-HProductS">
 				<div className="containerRight-HProductS">
 					<Link onClick={handleClick} to='/products'>
-						<img src='https://res.cloudinary.com/dreso9ye9/image/upload/v1682451588/53902-online-shopping-and-delivery_mcqxa0.gif' alt="dogProduct" className='productImage'/>
+						<Player
+								autoplay
+								loop
+								src={GirlShopping}
+								className='productImage'
+							/>
 					</Link>
 				</div>
 			</div>

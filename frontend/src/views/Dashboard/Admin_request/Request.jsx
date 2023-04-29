@@ -18,7 +18,7 @@ const Request = () => {
 	let [edit, setEdit] = useState(false);
 	let [editRow, setEditRow] = useState(null);
 	let [change, setChange] = useState('');
-	const statusOptions = ['Pending', 'Accepted', 'Denied'];
+	const statusOptions = ['Pendiente', 'Aceptada', 'Denegada'];
 
 	useEffect(() => {
 		dispatch(requestAction.getAdoptionDog());
@@ -63,11 +63,11 @@ const Request = () => {
 		let obj = {
 			id: row.id,
 			status:
-				change === 'Pending'
+				change === 'Pendiente'
 					? 'Pending'
-					: change === 'Accepted'
+					: change === 'Aceptada'
 					? 'Accepted'
-					: change === 'Denied'
+					: change === 'Denegada'
 					? 'Denied'
 					: row.col13,
 			dogId: row.col12,
@@ -98,14 +98,27 @@ const Request = () => {
 					col3: request.phone,
 					col4: request.address,
 					col5: request.email,
-					col6: request.areas_conditions,
-					col7: request.more_animals,
+					col6:
+						request.areas_conditions === 'Excellent'
+							? 'Excelente'
+							: request.areas_conditions === 'Good'
+							? 'Buena'
+							: request.areas_conditions === 'Bad'
+							? 'Mala'
+							: 'N/A',
+					col7: request.more_animals === true ? 'Si' : 'No',
 					col8: request.moreAnimals_details,
-					col9: request.proper_income,
-					col10: request.inHouse_allowance,
+					col9: request.proper_income === 'Yes' ? 'Si' : 'No',
+					col10: request.inHouse_allowance === 'Yes' ? 'Si' : 'No',
 					col11: request.outDoor_image,
 					col12: request.dogId,
-					col13: request.status,
+
+					col13:
+						request.status === 'Pending'
+							? 'Pendiente'
+							: request.status === 'Accepted'
+							? 'Aceptada'
+							: 'Denegada',
 					col14: new Date(request.createdAt)
 						.toLocaleDateString()
 						.replace(/\//g, '-'),

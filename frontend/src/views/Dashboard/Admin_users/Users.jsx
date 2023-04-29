@@ -96,8 +96,8 @@ const Users = () => {
 					col4: user.email,
 					col5: user.password,
 					col6: user.image,
-					col7: user.isVerified,
-					col8: user.isDisabled,
+					col7: user.isVerified === true ? 'Si' : 'No',
+					col8: user.isDisabled === true ? 'Si' : 'No',
 					col9: user.role.name,
 				};
 			}),

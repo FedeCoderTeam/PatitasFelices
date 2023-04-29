@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './HomeReviewSection.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -18,11 +18,26 @@ import ReviewCard from '../../Cards/ReviewCard/ReviewCard';
 import useToast from '../../../utils/hooks/useToast';
 import * as reviewsAction from '../../../_redux/actions/reviewsAction';
 import { useFormik } from 'formik';
+import { Player } from '@lottiefiles/react-lottie-player';
+import ReviewGuy from '../../../utils/animations/ReviewGuy.json'
+
 
 const HomeReviewSection = () => {
 	const { t } = useTranslation();
 	const [showModal, setShowModal] = useState(false);
-	// const allReviews = useSelector((state) => state.reviewsReducer.reviews);
+	const allReviews = useSelector((state) => state.reviewsReducer.reviews);
+
+	const [currentIndex, setCurrentIndex] = useState(0);
+	
+
+	useEffect(() => {
+		// Cambiar el índice de la tarjeta que se muestra cada 10 segundos
+		const timer = setTimeout(() => {
+			setCurrentIndex((currentIndex + 1) % allReviews.length);
+		}, 6000);
+
+		return () => clearTimeout(timer);
+	}, [currentIndex, allReviews.length]);
 
 	const handleOpenReview = () => {
 		setShowModal(!showModal);
@@ -35,9 +50,10 @@ const HomeReviewSection = () => {
 					<div className={style.containerBoxes}>
 						<div className={style.containerLeft}>
 							<Link to="/donation">
-								<img
-									src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682436574/24491-review-animation_pzthnp.gif"
-									alt="dogDonation"
+							<Player
+									autoplay
+									loop
+									src={ReviewGuy}
 									className={style.reviewImage}
 								/>
 							</Link>
@@ -51,9 +67,29 @@ const HomeReviewSection = () => {
 							<span>{t('home.section.review.shareIt')}</span>
 						</h1>
 						<div className={style.carousel}>
-							<i className="fa-solid fa-chevron-left"></i>
-							<ReviewCard />
-							<i className="fa-solid fa-chevron-right"></i>
+							<div className={style.arrows}>
+								<i className="fa-solid fa-chevron-left" 
+								onClick={() =>
+									setCurrentIndex(
+										currentIndex > 0 ? currentIndex - 1 : allReviews.length - 1
+									)
+								}></i>
+							</div>
+							<ReviewCard
+								data-aos="fade-right" data-aos-duration="1000"
+								id={allReviews[currentIndex]?.id}
+								rating={allReviews[currentIndex]?.rating}
+								comment={allReviews[currentIndex]?.comment}
+								name={allReviews[currentIndex]?.user?.name}
+								last={allReviews[currentIndex]?.user?.last}
+								image={allReviews[currentIndex]?.user?.image}
+							/>
+							<div className={style.arrows}>
+								<i className="fa-solid fa-chevron-right"
+								onClick={() =>
+									setCurrentIndex((currentIndex + 1) % allReviews.length)
+								}></i>
+							</div>
 						</div>
 						{/* FALTA HACER LOGICA DE QUE SI ESTA LOGEADO,
                     PUEDA COMENTAR SINO QUE SE REGISTRE PREVIO A COMENTAR */}
@@ -61,35 +97,6 @@ const HomeReviewSection = () => {
 							{t('home.section.review.comment')}
 						</button>
 					</div>
-				</div>
-
-				<div className={style.containerRight}>
-					<h1>
-						{t('home.section.review.yourOpinionMattersToUs')}{' '}
-						<span>{t('home.section.review.shareIt')}</span>
-					</h1>
-					<div className={style.carousel}>
-						<i className="fa-solid fa-chevron-left"></i>
-						{/* {allReviews?.map((e) => {
-                        return (
-                            <ReviewCard 
-                                id = {e.id}
-                                rating = {e.rating}
-                                comment = {e.comment}
-                                name = {e.user?.name}
-                                last = {e.user?.last}
-                                image = {e.user?.image}
-                            />
-                        )
-                    })} */}
-						<ReviewCard />
-						<i className="fa-solid fa-chevron-right"></i>
-					</div>
-					{/* FALTA HACER LOGICA DE QUE SI ESTA LOGEADO,
-                    PUEDA COMENTAR SINO QUE SE REGISTRE PREVIO A COMENTAR */}
-					<button onClick={handleOpenReview} className="button">
-						{t('home.section.review.comment')}
-					</button>
 				</div>
 			</div>
 
