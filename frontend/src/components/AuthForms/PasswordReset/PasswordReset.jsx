@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {Link, useNavigate, useSearchParams} from 'react-router-dom';
-import './PasswordReset.css';
+import style from './PasswordReset.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import { verifyPasswordResetAction, confirmPasswordResetAction } from '../../../_redux/actions/authAction';
 import * as Yup from "yup";
@@ -27,7 +27,6 @@ const PasswordReset = () => {
         } else {
             navigate('/login')
         }
-
     }, [dispatch, statusVerify, navigate])
 
     const initialValues = {
@@ -77,15 +76,15 @@ const PasswordReset = () => {
     })
 
     return (
-        <div className="mainContainer-Register" data-aos="fade-left">
-            <div className="form-Register">
-                <div className="title">
-                    <h1>Elige una contraseña nueva</h1>
+        <div className={style.mainContainerPasswordReset} data-aos="fade-left">
+            <div className={style.formPasswordReset}>
+                <div className={style.title}>
+                    <h1>Restablecer su contraseña</h1>
                 </div>
 
-                <div className="containerInputs-Register">
+                <div className={style.containerInputsPassword}>
 
-                    <div className="contraseña">
+                    <div className={style.password}>
                         <ThemeProvider theme={theme}>
                             <TextField
                                 disabled={isFetching}
@@ -102,13 +101,13 @@ const PasswordReset = () => {
                         </ThemeProvider>
                     </div>
 
-                    <div className="contraseña">
+                    <div className={style.confirmPassword}>
                         <ThemeProvider theme={theme}>
                             <TextField
                                 disabled={isFetching}
                                 fullWidth={true}
                                 name={'confirmPassword'}
-                                label={'Confirm Password'}
+                                label={'Confirm password'}
                                 type={'password'}
                                 variant={'filled'}
                                 value={formik.values.confirmPassword}
@@ -119,7 +118,7 @@ const PasswordReset = () => {
                         </ThemeProvider>
                     </div>
 
-                    <div className="containerButton-Register">
+                    <div className={style.containerButtonPasswordReset}>
                         <ThemeProvider theme={theme}>
                             <Button onClick={formik.handleSubmit} disabled={isFetching} fullWidth={true} type="submit" color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >Enviar</Button>
                             {isFetching && (<CircularProgress size={24} sx={{
@@ -135,7 +134,7 @@ const PasswordReset = () => {
                 </div>
 
                 <div>
-                    <Link to="/home" className="goHome">
+                    <Link to="/home" className={style.goHome}>
                         <i className="fa-solid fa-house"></i>
                     </Link>
                 </div>
