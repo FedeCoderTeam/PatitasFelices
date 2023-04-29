@@ -1,5 +1,4 @@
 import React from 'react';
-import SearchDog from '../../../components/SearchBar/SearchDog/SearchDog';
 import style from './DogFilters.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import * as dogsAction from '../../../_redux/actions/dogsAction';
@@ -61,6 +60,20 @@ const DogFilters = (props) => {
 		dispatch(dogsAction.sortAction());
 	};
 
+	const handleRefresh = (e) => {
+		e.preventDefault();
+		dispatch(dogsAction.setFilter({
+			sortOrder:"",
+			sortBy:"",
+			setColor: "All",
+			setTemperaments: "All",
+			setSize: "All",
+			setGender: "All",
+		}))
+		dispatch(dogsAction.filter())
+		dispatch(dogsAction.sortAction());
+		dispatch(dogsAction.setPage(1))
+	}
 	return (
 		<div className={style.main}>
 			<form action="" className={style.formControl}>
@@ -190,6 +203,12 @@ const DogFilters = (props) => {
 								</option>
 							))}
 						</select>
+					</div>
+					<div>
+						<button
+						className={style.btnProduct}
+						onClick={(e) => handleRefresh(e)}
+						>REINICIAR FILTROS</button>
 					</div>
 				</div>
 			</form>

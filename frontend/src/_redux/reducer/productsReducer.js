@@ -41,6 +41,18 @@ export const productsSlice = createSlice({
 			state.productDetail = {};
 		},
 		setFilters: (state, action) => {
+			if(action.payload.setCategory &&
+				action.payload.setSubCategory &&
+				action.payload.sortOrder === "" &&
+				action.payload.sortBy === "" ) {
+					return {
+						...state,
+						setCategory: action.payload.setCategory,
+						setSubCategory: action.payload.setSubCategory,
+						sortOrder: action.payload.sortOrder,
+						sortBy: action.payload
+					}
+				}
 			if (action.payload.setCategory) {
 				state.setCategory = action.payload.setCategory;
 			}
@@ -51,7 +63,9 @@ export const productsSlice = createSlice({
 				return {
 					...state,
 					sortBy: action.payload.sortBy,
-					sortOrder: action.payload.sortOrder,
+					sortOrder: action.payload.sortOrder === "1"
+					? "" 
+					: action.payload.sortOrder, 
 				};
 			}
 		},
