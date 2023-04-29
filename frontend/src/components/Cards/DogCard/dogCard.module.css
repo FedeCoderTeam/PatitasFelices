@@ -1,82 +1,128 @@
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@200;400;600;700&display=swap');
 
 .containerCard {
+    /* flex-basis: calc (50% - 10px); */
 	display: flex;
-	flex-direction: column;
-	justify-content: top;
-    /* margin-top: 10px; */
-	align-items: center;
-	width: 370px;
-	height: 470px;
+	flex-direction: row;
+	align-items: flex-end;
+	width: 500px;
+	height: 300px;
 	background-color: #d9ad77;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
-	border-radius: 20px;
+	border-radius: 10px;
 	position: relative;
+    padding: 15px;
+    box-sizing: border-box;
+    transition: transform .6s ease;
+}
+.containerCard:hover {
+    transform: scale(1.07);
+    z-index: 1;
+    position: relative;
 }
 
 .containerIcon {
 	display: flex;
-    justify-content: right;
+    justify-content: center;
     align-items: flex-end;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 25px;
+    right: 25px;
+    border-radius: 10px;
     /* margin: 0; */
 }
 
 .Icon {
-    width: 49px;
-    height: 49px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
+    position: relative;
+    display: inline-block;
 }
+.Icon:hover::before {
+    content: attr(title);
+    /* text-decoration-color: #D9AD77; */
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px;
+    background-color: #333;
+    color: #fff;
+    font-size: 14px;
+    opacity: 0.8;
+    border-radius: 10px;
+  }
 
 .pic {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    box-sizing: border-box;
+    margin-right: 15px;
 }
 
 .containerImg{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 230px;
-    height: 230px;
+    width: 170px;
+    height: 200px;
+    float: left;
     overflow: hidden;
-    border-radius: 50%;
-    border: 15px solid #163440;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border: 12px solid #163440;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
 
 .containerImg img{
     width: 100%;
     height: auto;
-    margin-top: 50px;
+    margin-top: 0px;
 }
-
 
 .divDogInfo{
     display: flex;
+    flex: 1;
+    flex-shrink: 1;
+    padding-left: 10px;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 330px;
-    height: 125px;
-    bottom: 60px;
+    justify-content: space-evenly;
+    width: 200px;
+    height: 100%;
+    /* bottom: 60px; */
+    cursor: pointer;
     background: rgba(166, 84, 36, 0.3);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
+    border-radius: 10px;
 }
+.divDogInfo:hover::before {
+    content: attr(title);
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px;
+    background-color: #333;   
+    color: #fff;
+    font-size: 14px;
+    opacity: 0.8;
+    border-radius: 4px;
+    display: none;
+  }
+  /* .divDogInfo::after{
+    
+  } */
 
 .divData {
 	display: flex;
 	flex-wrap: wrap;
     gap: 5px;
-	justify-content: center;
+	justify-content: left;
 	align-items: center;
 	overflow: auto;
+    margin-top: 5px;
 	/* flex-direction: row; */
 }
+
 
 .divData h3 {
     /* display: list-item; */
@@ -109,11 +155,26 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
 }
 
-.itemName {
+.divDataName {
 	text-transform: uppercase;
+    display: flex;
+	flex-wrap: wrap;
+    /* margin: 5px; */
+    /* gap: 5px; */
+	justify-content: center;
+	align-items: center;
+    color: #592519;
+    font-weight: 800;
+    font-size: 1.2em;
+    background: rgba(166, 84, 36, 0.3);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    /* margin-top: 15px; */
 }
 
-.containerButton{
+/* .containerButton{
     position: absolute;
     bottom: 10px;
     display: flex;
@@ -127,7 +188,7 @@
     align-items: center;
     background: #163440;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
-    border-radius: 20px;
+    border-radius: 10px;
     width: 330px;
     height: 40px;
     font-family: 'Be Vietnam Pro';
@@ -136,7 +197,7 @@
     color: #D9AD77;
     font-weight: 400;
     font-size: 19px;
-}
+} */
 
 .dialogDescription {
     background-color: #163440;
