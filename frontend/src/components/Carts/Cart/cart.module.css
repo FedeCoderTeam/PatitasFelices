@@ -28,6 +28,10 @@
     width: 5%;
 }
 
+.total {
+    text-align: center;
+}
+
 .btnClean {
     font-family: 'Be Vietnam Pro', sans-serif;
     text-align: center;
