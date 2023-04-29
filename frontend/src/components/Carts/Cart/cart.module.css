@@ -4,9 +4,7 @@
 }
 
 .wrapper h2{
-    text-align: center;
     margin-bottom: 50px;
-    text-decoration: underline;
 }
 
 .btnComprar {
@@ -28,6 +26,10 @@
     cursor: pointer;
     color: #c1996b;
     width: 5%;
+}
+
+.total {
+    text-align: center;
 }
 
 .btnClean {

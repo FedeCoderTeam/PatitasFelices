@@ -6,6 +6,7 @@ const URL = 'http://localhost:3001';
 
 const authUserAction = () => {
 	return async function (dispatch) {
+		dispatch(setIsFetchingAuth(true));
 		dispatch(setIsFetching(true));
 		try {
 			let result = await axios.post(
@@ -14,8 +15,10 @@ const authUserAction = () => {
 				{ withCredentials: true },
 			);
 			dispatch(setUser(result.data));
+			dispatch(setIsFetchingAuth(false));
 			dispatch(setIsFetching(false));
 		} catch (error) {
+			dispatch(setIsFetchingAuth(false));
 			dispatch(setIsFetching(false));
 		}
 	};
@@ -150,13 +153,16 @@ const requestPasswordResetAction = (email) => {
 
 const verifyPasswordResetAction = (token) => {
 	return async function (dispatch) {
+		dispatch(setIsFetching(true))
 		try {
 			const result = await axios.post(`${URL}/auth/verify-password-reset`, {
 				token,
 			});
 			dispatch(setStatusVerify(result.data.message));
+			dispatch(setIsFetching(false))
 		} catch (error) {
 			dispatch(setStatusVerify(error.response.data.message));
+			dispatch(setIsFetching(false))
 			await Swal.fire({
 				title: error.response.data.error,
 				icon: 'error',
@@ -167,7 +173,8 @@ const verifyPasswordResetAction = (token) => {
 };
 
 const confirmPasswordResetAction = (token, password) => {
-	return async function () {
+	return async function (dispatch) {
+		dispatch(setIsFetching(true))
 		try {
 			const result = await axios.post(`${URL}/auth/password-reset`, {
 				token,
@@ -178,7 +185,9 @@ const confirmPasswordResetAction = (token, password) => {
 				icon: 'success',
 				timer: 5000,
 			});
+			dispatch(setIsFetching(false))
 		} catch (error) {
+			dispatch(setIsFetching(false))
 			await Swal.fire({
 				title: error.response.data.error,
 				icon: 'error',

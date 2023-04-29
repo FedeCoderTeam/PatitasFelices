@@ -13,6 +13,7 @@
     font-family: 'Be Vietnam Pro', sans-serif;
     color: #592519;
 }
+
 .formLogin {
     background: rgba(242, 242, 242, 1);
     display: flex;
@@ -32,7 +33,7 @@
     color: #592519;
     font-size: 25px;
     padding: 0;
-    margin: 0;
+    margin: 0 0 30px 0;
 }
 
 .title h1 {
@@ -46,16 +47,10 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 316px;
-    height: 188px;
+    height: 180px;
 }
 
 .emailForm {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    height: 82px;
-    margin-bottom: 24px;
     width: 100%;
 }
 
@@ -84,6 +79,8 @@
 .recuperarContraseña {
     font-size: 14px;
     cursor: pointer;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .ingresarBoton {
@@ -152,5 +149,6 @@
 
 .containerButtonLogin {
     position: relative;
+    width: 316px;
 }
 
