@@ -249,7 +249,7 @@ export function AvatarComponent(props) {
 					<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 						<Avatar
 							alt={props.selector.user.name}
-							src={props.selector.user.image}
+							src={props.selector.user ? props.selector.user.image : ''}
 						/>
 					</IconButton>
 				</Tooltip>
