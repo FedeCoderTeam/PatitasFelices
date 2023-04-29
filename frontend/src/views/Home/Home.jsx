@@ -8,6 +8,8 @@ import HomeProductSection from '../../components/HomeSection/HomeProductSection/
 import HomeReviewSection from '../../components/HomeSection/HomeReviewSection/HomeReviewSection';
 import { useTranslation } from 'react-i18next';
 import ReviewCard from '../../components/Cards/ReviewCard/ReviewCard';
+import { Player } from '@lottiefiles/react-lottie-player';
+import GirlAndDog from '../../utils/animations/GirlAndDogHome.json'
 
 const Home = () => {
 	//navbar
@@ -16,7 +18,7 @@ const Home = () => {
 	// const [dogsPerPage] = useState(7);
 	const { t } = useTranslation();
 	const allReviews = useSelector((state) => state.reviewsReducer.reviews);
-
+	// console.log(allReviews);
 	return (
 		<>
 			<Header />
@@ -43,10 +45,11 @@ const Home = () => {
 					</div>
 					<div className="containerCardsHDS-Home">
 						<Link to="/dogs">
-							<img
-								src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681884590/91540-dog-love_b0o1tw.gif"
-								alt=""
-								className="dogSectionImage"
+							<Player
+								autoplay
+								loop
+								src={GirlAndDog}
+								className='dogSectionImage'
 							/>
 						</Link>
 					</div>

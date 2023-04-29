@@ -34,7 +34,9 @@ export default function Footer() {
 
 				
 				<div className={style.whatsapp}>
-					<Link to="https://wa.me/5493517039524" className={style.whatsapp} target="_blank"><i class="fa-brands fa-whatsapp"></i></Link>
+
+					<Link to="https://wa.me/5493517039524" className={style.whatsapp} target="_blank"><i className="fa-brands fa-whatsapp"></i></Link>
+
 				</div>
 
 				<div className={style.mail}>

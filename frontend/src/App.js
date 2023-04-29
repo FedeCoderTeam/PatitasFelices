@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Home from './views/Home/Home';
+// import About from './views/About/About'; 
 import About from './views/About/About';
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
@@ -84,7 +85,7 @@ function App() {
 				<Route path={'/products'} element={<Products />} />
 				<Route path={'/products/:id'} element={<ProductDetail />} />
 				<Route path={'/donation'} element={<Donation />} />
-
+				<Route path={'/about'} element={<About />} />
 				<Route path={'/products/success'} element={<Success />} />
 
 				<Route path={'*'} element={<NotFound />} />
@@ -112,6 +113,7 @@ function App() {
 			<Overlay />
 			<Cart />
 			{/* <Footer/> */}
+			
 		</>
 	);
 }
