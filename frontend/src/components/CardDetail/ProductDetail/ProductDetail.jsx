@@ -24,6 +24,7 @@ function ProductDetail() {
 	const [count, setCount] = useState(0);
 	const [randomProducts, setRandomProducts] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [currentIndex, setCurrentIndex] = useState(0);
 	const toast = useToast();
 
 	const handleClickSuma = () => {
@@ -38,10 +39,6 @@ function ProductDetail() {
 		}
 	};
 
-	const handleClick = () => {
-		window.scrollTo(0, 0);
-	};
-
 	const productDetail = useSelector(
 		(state) => state.productsReducer.productDetail,
 	);
@@ -52,16 +49,7 @@ function ProductDetail() {
 		setTimeout(() => {
 			setIsLoading(false);
 		}, 1500);
-		const getRandomProducts = () => {
-			const products = allProducts.filter(
-				(product) => product.id !== Number(id),
-			);
-			const randomProducts = products.sort(() => 0.5 - Math.random());
-			const selectedProducts = randomProducts.slice(0, 4);
-			setRandomProducts(selectedProducts);
-		};
 		dispatch(getProductsById(id));
-		getRandomProducts();
 		return () => {
 			dispatch(setDetail());
 		};
@@ -173,8 +161,16 @@ function ProductDetail() {
 								También te pueden interesar
 							</h2>
 						</div>
-						<div onClick={handleClick} className={style.divOtros}>
-							{randomProducts.map((product) => (
+						<div className={style.divOtros}>
+							<div className={style.arrows}>
+									<i className="fa-solid fa-chevron-left" 
+									onClick={() =>
+										setCurrentIndex(
+											currentIndex > 0 ? (currentIndex - 1) % allProducts.length : currentIndex
+										)
+									}></i>
+							</div>
+							{allProducts.slice(currentIndex + 1, currentIndex + 4).map((product) => (
 								<ProductCard
 									key={product.id}
 									id={product.id}
@@ -184,6 +180,12 @@ function ProductDetail() {
 									price={product.price}
 								/>
 							))}
+							<div className={style.arrows}>
+								<i className="fa-solid fa-chevron-right"
+								onClick={() =>
+									setCurrentIndex((currentIndex + 4) % allProducts.length)
+								}></i>
+							</div>
 						</div>
 					</div>
 				</div>

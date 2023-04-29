@@ -213,7 +213,7 @@
 	backdrop-filter: blur(7px);
 	-webkit-backdrop-filter: blur(10px);
 	border-radius: 14px;
-	width: 100%;
+	width: 88em;
 	margin-top: 60px;
 	margin-bottom: 85px;
 }
@@ -251,6 +251,20 @@
 
 .btnBuy:hover {
 	transform: scale(1.03);
+}
+
+.arrows {
+	color: #ffffff;
+	font-size: 30px;
+	cursor: pointer;
+	transition: ease-in-out 0.2s;
+	border-radius: 5px;
+	padding: 2px 10px 2px 10px;
+	background-color: rgba(0, 0, 0, 0.425);
+}
+.arrows:hover {
+	color: #a65424;
+	background-color: rgba(0, 0, 0, 0.425);
 }
 
 
