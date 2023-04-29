@@ -72,7 +72,7 @@ const RequestPasswordReset = () => {
                     <h1>Recuperar cuenta</h1>
                 </div>
 
-                <div className={style.containerInputsRecover}>
+                <form className={style.containerInputsRecover} onSubmit={formik.handleSubmit}>
 
                     <div className={style.email}>
                         <ThemeProvider theme={theme}>
@@ -96,7 +96,7 @@ const RequestPasswordReset = () => {
 
                     <div className={style.containerButtonRecover}>
                         <ThemeProvider theme={theme}>
-                            <Button onClick={formik.handleSubmit} disabled={isFetching} fullWidth={true} type="submit" color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >Recuperar cuenta</Button>
+                            <Button disabled={isFetching} fullWidth={true} type="submit" color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >Recuperar cuenta</Button>
                             {isFetching && (<CircularProgress size={24} sx={{
                                 color: '#D9AD77',
                                 position: 'absolute',
@@ -107,7 +107,7 @@ const RequestPasswordReset = () => {
                             }}></CircularProgress>)}
                         </ThemeProvider>
                     </div>
-                </div>
+                </form>
 
                 <div>
                     <Link to="/home" className={style.goHome}>
