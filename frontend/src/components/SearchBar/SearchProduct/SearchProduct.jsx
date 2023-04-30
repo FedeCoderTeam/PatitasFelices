@@ -6,37 +6,36 @@ import style from './SearchProduct.module.css';
 const SearchProduct = () => {
 	const dispatch = useDispatch();
 	let name = useSelector((state) => state.productsReducer.name);
-
+  
 	const handlerSetName = (event) => {
-		dispatch(productsAction.setName({ name: event }));
+	  const regex = /^[a-zA-Z]+$/;
+	  if (regex.test(event) || event === "") {
+		dispatch(productsAction.setName({ name: event}));
+	  }
 	};
-
+  
 	const handleGetName = () => {
-		dispatch(productsAction.getName());
-		dispatch(productsAction.setPage(1));
+	  dispatch(productsAction.getName());
+	  dispatch(productsAction.setPage(1));
 	};
-
-	/* const handleOnClick = () => {
-        dispatch(productsAction.getProductsByName(inputProduct))
-        setInputProduct("");
-    } */
+  
 	return (
-		<>
-			<div className={style.searchBar}>
-				<input
-					className={style.input}
-					autoComplete="off"
-					type="text"
-					placeholder="Search..."
-					value={name}
-					onChange={(event) => {
-						handlerSetName(event.target.value);
-						handleGetName();
-					}}
-				/>
-			</div>
-		</>
+	  <>
+		<div className={style.searchBar}>
+		  <input
+			className={style.input}
+			autoComplete="off"
+			type="text"
+			placeholder="Search..."
+			value={name}
+			onChange={(event) => {
+			  handlerSetName(event.target.value);
+			  handleGetName();
+			}}
+		  />
+		</div>
+	  </>
 	);
-};
-
-export default SearchProduct;
+  };
+  
+  export default SearchProduct;
