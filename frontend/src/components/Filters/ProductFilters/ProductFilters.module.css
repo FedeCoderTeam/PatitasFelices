@@ -102,6 +102,11 @@
     align-items: center;
 }
 
+
+.focus {
+    box-shadow: 0 0 2px #ca925d;
+}
+
 /* .filtro {
     display: flex;
     align-items: center;
