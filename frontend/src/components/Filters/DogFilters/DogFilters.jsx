@@ -128,6 +128,7 @@ const DogFilters = (props) => {
 							name=""
 							id=""
 							value={setSize}
+							className={`${setSize !== 'All' ? style.focus : ''}`}
 							onChange={(event) => {
 								handleSize(event);
 							}}
@@ -147,6 +148,7 @@ const DogFilters = (props) => {
 							name=""
 							id=""
 							value={setColor}
+							className={`${setColor !== 'All' ? style.focus : ''}`}
 							onChange={(event) => {
 								handleColor(event);
 							}}
@@ -170,6 +172,7 @@ const DogFilters = (props) => {
 							name=""
 							id=""
 							value={setTemp}
+							className={`${setTemp !== 'All' ? style.focus : ''}`}
 							onChange={(event) => {
 								handleTemperaments(event);
 							}}
@@ -192,6 +195,7 @@ const DogFilters = (props) => {
 							name=""
 							id=""
 							value={setGender}
+							className={`${setGender !== 'All' ? style.focus : ''}`}
 							onChange={(event) => {
 								handleGender(event);
 							}}

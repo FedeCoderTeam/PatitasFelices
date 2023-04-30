@@ -130,7 +130,7 @@ const ProductFilters = () => {
 					<div className={style.divSelects}>
 						<div>Categoria</div>
 						<select
-							className={style.selects}
+							className={`${style.selects} ${setCategory !== 'All' ? style.focus : ''}`}
 							name=""
 							id=""
 							value={setCategory}
@@ -152,7 +152,7 @@ const ProductFilters = () => {
 					<div className={style.divSelects}>
 						<div>Subcategoria</div>
 						<select
-							className={style.selects}
+							className={`${style.selects} ${setSubCategory !== 'All' ? style.focus : ''}`}
 							name=""
 							disabled={!subCategory.length}
 							id=""
