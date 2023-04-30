@@ -8,7 +8,7 @@ const SearchProduct = () => {
 	let name = useSelector((state) => state.productsReducer.name);
   
 	const handlerSetName = (event) => {
-	  const regex = /^[a-zA-Z]+$/;
+	  const regex = /^[a-zA-Z\sñÑáéíóúÁÉÍÓÚ]*$/;
 	  if (regex.test(event) || event === "") {
 		dispatch(productsAction.setName({ name: event}));
 	  }
