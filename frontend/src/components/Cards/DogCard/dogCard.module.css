@@ -16,7 +16,7 @@
     transition: transform .6s ease;
 }
 .containerCard:hover {
-    transform: scale(1.07);
+    transform: scale(1.02);
     z-index: 1;
     position: relative;
 }

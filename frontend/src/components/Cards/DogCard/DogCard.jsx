@@ -174,7 +174,7 @@ export function DialogDogsDetail(props) {
 					sx={{
 						'& .MuiDialog-container': {
 							'& .MuiPaper-root': {
-								borderRadius: '10px',
+								borderRadius: '5px',
 							},
 						},
 					}}
