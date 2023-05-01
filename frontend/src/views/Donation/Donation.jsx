@@ -38,9 +38,9 @@ const Donation = () => {
             <div>
                 <video
                     className={style.video}
-                    autoplay="true"
-                    muted="true"
-                    loop="true"
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
                     src={video}
                 ></video>
             </div>
@@ -60,7 +60,7 @@ const Donation = () => {
                                 <input
                                     name="donation"
                                     type="number"
-                                    value={donation[0].price}
+                                    value={donation[0].price || ''}
                                     placeholder="Ingresa tu monto aquí"
                                     onChange={(e) => {
                                         handleDonation(e);

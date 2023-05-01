@@ -10,6 +10,7 @@ import style from './Products.module.css';
 const Products = () => {
 	const dispatch = useDispatch();
 	const allProducts = useSelector((state) => state.productsReducer.products);
+	const categories = useSelector(state => state.productsReducer.categories)
 	let currentPage = useSelector((state) => state.productsReducer.currentPage);
 
 	//----------------------------------------------PAGINADO-------------------------------------------
@@ -19,7 +20,7 @@ const Products = () => {
 		allProducts.slice(range.firts, range.last),
 	);
 	const paginado = (pageNumber) => {
-		dispatch(productsAction.setPage(pageNumber));
+		dispatch(productsAction.setPageAction(pageNumber));
 	};
 
 	//-------------------------------------------------------------------------------------------------
@@ -43,7 +44,7 @@ const Products = () => {
 		<div className={style.main} data-aos="fade-down">
 			<div className={style.filtersBox}>
 				<div className={style.filtersContainer}>
-					<ProductFilters />
+					<ProductFilters categories={categories} />
 				</div>
 			</div>
 			<div className={style.cardSection}>

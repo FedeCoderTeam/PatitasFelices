@@ -16,7 +16,7 @@ const SearchProduct = () => {
   
 	const handleGetName = () => {
 	  dispatch(productsAction.getName());
-	  dispatch(productsAction.setPage(1));
+	  dispatch(productsAction.setPageAction(1));
 	};
   
 	return (

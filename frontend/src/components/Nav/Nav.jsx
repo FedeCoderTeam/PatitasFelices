@@ -131,7 +131,7 @@ export default function Nav() {
 					}`}
 				>
 					<div className={style.divNav}>
-						<i class="fa-solid fa-heart-circle-plus"></i>
+						<i className="fa-solid fa-heart-circle-plus"></i>
 						<p className={style.links}>{t('nav.links.donate')}</p>
 					</div>
 				</NavLink>
