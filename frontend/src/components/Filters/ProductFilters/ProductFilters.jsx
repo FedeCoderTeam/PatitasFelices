@@ -128,7 +128,7 @@ const ProductFilters = () => {
 				<div className={style.filtroContainer}>
 					<div className={style.filter}>Filtrar por</div>
 					<div className={style.divSelects}>
-						<div>Categoria</div>
+						<div>Categoría</div>
 						<select
 							className={`${style.selects} ${setCategory !== 'All' ? style.focus : ''}`}
 							name=""
@@ -150,7 +150,7 @@ const ProductFilters = () => {
 						</select>
 					</div>
 					<div className={style.divSelects}>
-						<div>Subcategoria</div>
+						<div>Subcategoría</div>
 						<select
 							className={`${style.selects} ${setSubCategory !== 'All' ? style.focus : ''}`}
 							name=""

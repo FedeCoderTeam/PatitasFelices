@@ -33,7 +33,7 @@
     "header": {
       "about": "Un poco sobre",
       "us":"nosotros",
-      "description": "Patitas Felices es un refugio para perros que han sido abandonados o que han sufrido algún tipo de maltrato. Les proveemos de atención médica, alimento y un lugar mientras se busca un hogar permanente para cada uno de ellos.",
+      "description": "Patitas Felices es un refugio para perros que han sido abandonados o que han sufrido algún tipo de maltrato. Les proveemos atención médica, alimento y un lugar mientras se busca un hogar permanente para cada uno de ellos.",
       "discoverThem": "Conoce más"
     },
     "section": {
@@ -45,7 +45,7 @@
         "meetThemAll": "¡Conócelos a todos!"
       },
       "donation": {
-        "helpUsTo": "Ayudanos a",
+        "helpUsTo": "Ayúdanos a",
         "help": "ayudar",
         "text1": "Tu donación les proveerá de alimento, atención médica y un hogar temporal",
         "text2": "¡Incluso la ayuda más pequeña puede marcar la diferencia en sus vidas!",
@@ -74,9 +74,9 @@
     "clearCart": "Limpiar carrito",
     "alert": {
       "addProduct": "Producto agregado al carrito",
-      "addProductWarning": "No podes agregar mas productos",
+      "addProductWarning": "No puedes agregar más productos",
       "removeProduct": "Producto eliminado correctamente",
-      "removeAllProduct": "Has eliminado a todos los productos del carrito correctamente"
+      "removeAllProduct": "Has eliminado todos los productos del carrito correctamente"
     }
   }
 }
