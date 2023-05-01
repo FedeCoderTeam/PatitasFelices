@@ -13,6 +13,7 @@ import { brown } from '@mui/material/colors';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setMaybeAdoptedDogs } from '../../../_redux/actions/dogsAction';
+import { useTranslation } from 'react-i18next';
 
 const DogCard = ({
 	image,
@@ -148,6 +149,8 @@ export function DialogDogsDetail(props) {
 		navigate('/form');
 	};
 	const navigate = useNavigate();
+	const { t } = useTranslation();
+
 
 	const innerTheme = createTheme({
 		palette: {
@@ -257,7 +260,7 @@ export function DialogDogsDetail(props) {
 							}}
 							autoFocus
 						>
-							¡Completa el formulario para adoptarlo!
+							{t('dogCard.toAdopt')}
 						</Button>
 					</DialogActions>
 				</Dialog>

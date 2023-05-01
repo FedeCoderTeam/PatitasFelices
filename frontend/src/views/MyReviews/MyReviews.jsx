@@ -6,6 +6,7 @@ import { ReviewDetail } from '../../components/HomeSection/HomeReviewSection/Hom
 import { Player } from '@lottiefiles/react-lottie-player';
 import ReviewNotFound from '../../utils/animations/ReviewNotFound.json'
 import ReviewCard from '../../components/Cards/ReviewCard/ReviewCard';
+import { t } from 'i18next';
 
 const MyReviews = () => {
 
@@ -18,15 +19,15 @@ const MyReviews = () => {
 
     return (
         <div className={style.main}>
-            <h4>Aun no has hecho ningún comentario.</h4>
-            <h3>¡No dudes en hacerlo!</h3>
+            <h4>{t('reviews.comment')}</h4>
+            <h3>{t('reviews.noDoubt')}</h3>
             <Player
 				autoplay
 				loop
 				src={ReviewNotFound}
 				className={style.reviewNotFound}
 			/>
-            <button onClick={handleOpenReview} className={style.buttonComment}>¡Comentar!</button>
+            <button onClick={handleOpenReview} className={style.buttonComment}>{t('reviews.send')}</button>
                 <ReviewDetail
                 handleOpenReview={handleOpenReview}
                 showModal={showModal}

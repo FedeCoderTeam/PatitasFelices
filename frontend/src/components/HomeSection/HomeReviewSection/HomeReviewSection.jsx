@@ -111,6 +111,8 @@ export function ReviewDetail(props) {
 	const dispatch = useDispatch();
 	const { success } = useToast();
 	const token = useSelector((state) => state.authReducer.token);
+	const { t } = useTranslation();
+
 
 	const innerTheme = createTheme({
 		palette: {
@@ -181,7 +183,7 @@ export function ReviewDetail(props) {
 						<DialogContent dividers>
 							<form onSubmit={formik.handleSubmit}>
 								<div>
-									<label htmlFor="comment">Comentario</label>
+									<label htmlFor="comment">{t('HomeReview.comment')}</label>
 									<textarea
 										name="comment"
 										placeholder="Deja tu comentario..."
@@ -195,7 +197,7 @@ export function ReviewDetail(props) {
 									)}
 								</div>
 								<div>
-									<label htmlFor="rating">Puntuación</label>
+									<label htmlFor="rating">{t('HomeReview.rating')}</label>
 									<Stack>
 										<Rating
 											name="rating"
@@ -207,7 +209,7 @@ export function ReviewDetail(props) {
 								</div>
 								<div>
 									<button disabled={!formik.isValid} type="submit">
-										Enviar Reseña!
+										{t('HomeReview.send')}
 									</button>
 								</div>
 							</form>
