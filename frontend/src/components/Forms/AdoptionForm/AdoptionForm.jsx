@@ -48,28 +48,28 @@ const AdoptionForm = () => {
 		phone: Yup.string()
 			.matches(
 				/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/,
-				'Ingrese un número válido.',
+				'Ingresa un número válido.',
 			)
 			.required('El número de celular es de caracter obligatorio.'),
 		address: Yup.string().required('La dirección es obligatoria.'),
 		email: Yup.string()
 			.matches(
 				/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-				'Ingrese un email válido.',
+				'Ingresa un email válido.',
 			)
 			.required('El email es obligatorio.'),
 		areas_conditions: Yup.string().oneOf(
 			['Excellent', 'Good', 'Bad', 'N/A'],
-			'Seleccione una opción.',
+			'Selecciona una opción.',
 		),
-		more_animals: Yup.string().required('Seleccione una opción.'),
+		more_animals: Yup.string().required('Selecciona una opción.'),
 		moreAnimals_details: Yup.string(),
 		// .required('Es obligatoria esta información.')
 		proper_income: Yup.string().required('Elige una opción.'),
 		inHouse_allowance: Yup.string().required('Elige una opción.'),
 		outDoor_image: Yup.string().matches(
 			/^.*\.(jpg|jpeg|png)$/i,
-			'Inserte una imagen válida.',
+			'Inserta una imagen válida.',
 		),
 	});
 
@@ -228,8 +228,8 @@ const AdoptionForm = () => {
 
 									<div className="eachField">
 										<label htmlFor="proper_income">
-											¿Tiene los medios económicos para substentar los gastos
-											económicos de su mascota?
+											¿Tienes los medios económicos para sustentar los gastos
+											económicos de tu mascota?
 										</label>
 										<Field name="proper_income" as="select">
 											<option value="all"></option>
@@ -258,7 +258,7 @@ const AdoptionForm = () => {
 
 									<div className="eachField">
 										<label htmlFor="outDoor_image">
-											Foto de su patio/balcón/espacio al aire libre
+											Foto de tu patio/balcón/espacio al aire libre
 										</label>
 
 										<div className="containerUpload-Form">
@@ -311,7 +311,7 @@ const AdoptionForm = () => {
 								</button>
 							</div>
 							<div className="containerGoHome-Form">
-								<h4>Aún no sé si estoy listo/a, regresar a</h4>
+								<h4>Aun no sé si estoy listo/a, regresar a</h4>
 								<Link to="/home" className="goHome-Form">
 									<i className="fa-solid fa-house"></i>
 								</Link>

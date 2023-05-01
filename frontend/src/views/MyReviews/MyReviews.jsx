@@ -18,7 +18,7 @@ const MyReviews = () => {
 
     return (
         <div className={style.main}>
-            <h4>Aún no has hecho ningún comentario</h4>
+            <h4>Aun no has hecho ningún comentario.</h4>
             <h3>¡No dudes en hacerlo!</h3>
             <Player
 				autoplay
