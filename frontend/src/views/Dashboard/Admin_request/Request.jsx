@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import style from './requestGrid.module.css';
 import * as requestAction from '../../../_redux/actions/requestAction';
 import useToast from '../../../utils/hooks/useToast';
+import { Link } from 'react-router-dom';
 
 const Request = () => {
 	const dispatch = useDispatch();
@@ -186,6 +187,14 @@ const Request = () => {
 
 	return (
 		<>
+			<div className={style.containerBtnNav}>
+				<Link to="/dashboard/" style={{ textDecoration: 'none' }}>
+					<button className={style.btnBackHomeDash}>Home Dashboard</button>
+				</Link>
+				<Link to="/home" style={{ textDecoration: 'none' }}>
+					<button className={style.btnBackHome}>Home Principal</button>
+				</Link>
+			</div>
 			<Box
 				sx={{
 					height: 'auto',
