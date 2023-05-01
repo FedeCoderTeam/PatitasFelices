@@ -84,7 +84,7 @@
     font-size: 20px;
     background-color: white;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    transition: 0.2s ease-in-out;
+    transition: 0.1s ease-in-out;
     cursor: pointer;
 }
 
