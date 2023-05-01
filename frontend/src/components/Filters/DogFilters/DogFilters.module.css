@@ -1,13 +1,15 @@
 .btnProduct{
     font-family: 'Be Vietnam Pro', sans-serif;
+    width: 280px;
     text-align: center;
     cursor: pointer;
     padding: 10px 25px;
+    margin-top: 20px;
     color: #ffff;
     font-size: 15px;
     border: 0;
     border-radius: 5px;
-    background-color: #163440;
+    background-color: rgba(70, 70, 70, 0.308);
     font-weight: 400;
     transition: transform 200ms linear, background-color 200ms linear, color 200ms linear;
     width: 100%;
@@ -15,7 +17,8 @@
 }
 
 .btnProduct:hover{
-    transform: scale(1.06);
+    transform: scale(1.01);
+    background-color: rgba(70, 70, 70, 0.493);;
 }
 
 .formControl {

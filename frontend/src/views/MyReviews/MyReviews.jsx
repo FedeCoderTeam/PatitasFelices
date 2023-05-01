@@ -19,8 +19,9 @@ const MyReviews = () => {
 
     return (
         <div className={style.main}>
-            <h4>{t('reviews.comment')}</h4>
-            <h3>{t('reviews.noDoubt')}</h3>
+
+            <h4 className={style.noReviewsSubtitle}>{t('reviews.comment')}</h4>
+            <h3 className={style.noReviewsTitle}>{t('reviews.noDoubt')}</h3>
             <Player
 				autoplay
 				loop
@@ -33,19 +34,23 @@ const MyReviews = () => {
                 showModal={showModal}
             />
             <div className={style.cardReviewContainer}>
-                <ReviewCard
-                    data-aos="fade-right" data-aos-duration="1000"
-                    id={allReviews?.id}
-                    rating={allReviews?.rating}
-                    comment={allReviews?.comment}
-                    name={allReviews?.user?.name}
-                    last={allReviews?.user?.last}
-                    image={allReviews?.user?.image}
-                />
-                <div className={style.buttonsContainer}>
-                    <button className={style.editButton}><i class="fa-solid fa-pen"></i></button>
-                    <button className={style.deleteButton}><i class="fa-solid fa-trash"></i></button>
-                </div>
+                {allReviews?.map((e) => (
+                    <div className={style.eachCard}>
+                        <ReviewCard
+                            data-aos="fade-right" data-aos-duration="1000"
+                            id={e.id}
+                            rating={e.rating}
+                            comment={e.comment}
+                            name={e.user?.name}
+                            last={e.user?.last}
+                            // image={e.user?.image}
+                        />
+                        <div className={style.buttonsContainer}>
+                            <button className={style.editButton}><i class="fa-solid fa-pen"></i></button>
+                            <button className={style.deleteButton}><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     )

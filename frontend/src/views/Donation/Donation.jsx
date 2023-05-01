@@ -47,7 +47,7 @@ const Donation = () => {
                     src={video}
                 ></video>
             </div>
-            <div className={style.mainContainer}>
+            <div className={style.mainContainer} data-aos="fade-right" data-aos-duration="1000">
                 <div className={style.containerDescription}>
                     <h2>
                         {t('donation.text')}
