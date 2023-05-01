@@ -3,9 +3,12 @@ import style from './ProductFilters.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import * as productsAction from '../../../_redux/actions/productsAction';
 import SearchProduct from '../../SearchBar/SearchProduct/SearchProduct';
+import { useTranslation } from 'react-i18next';
+
 
 const ProductFilters = () => {
 	const dispatch = useDispatch();
+	const { t } = useTranslation();
 	const setCategory = useSelector((state) => state.productsReducer.setCategory);
 	const setSubCategory = useSelector(
 		(state) => state.productsReducer.setSubCategory,
@@ -77,9 +80,9 @@ const ProductFilters = () => {
 				</div>
 
 				<div className={style.ordenContainer}>
-					<div className={style.filter}>Ordenar por</div>
+					<div className={style.filter}>{t('dogFilters.orderby')}</div>
 					<div className={style.divSelects}>
-						<div>Precio</div>
+						<div>{t('prodFilters.price')}</div>
 						<select
 							defaultValue="1"
 							className={style.selects}
@@ -90,19 +93,19 @@ const ProductFilters = () => {
 							}}
 						>
 							<option className={style.options} value="1" >
-								Elegir
+							{t('prodFilters.choose')}
 							</option>
 							<option className={style.options} value="asc">
-								Menor Precio
+							{t('prodFilters.cheap')}
 							</option>
 							<option className={style.options} value="desc">
-								Mayor Precio
+							{t('prodFilters.expens')}
 							</option>
 						</select>
 					</div>
 
 					<div className={style.divSelects}>
-						<div>Nombre</div>
+						<div>{t('prodFilters.name')}</div>
 						<select
 							defaultValue="1"
 							className={style.selects}
@@ -113,7 +116,7 @@ const ProductFilters = () => {
 							}}
 						>
 							<option className={style.options} value="1" >
-								Elegir
+							{t('prodFilters.choose')}
 							</option>
 							<option className={style.options} value="asc">
 								A - Z
@@ -126,9 +129,9 @@ const ProductFilters = () => {
 				</div>
 
 				<div className={style.filtroContainer}>
-					<div className={style.filter}>Filtrar por</div>
+					<div className={style.filter}>{t('dogFilters.filterBy')}</div>
 					<div className={style.divSelects}>
-						<div>Categoría</div>
+						<div>{t('prodFilters.category')}</div>
 						<select
 							className={`${style.selects} ${setCategory !== 'All' ? style.focus : ''}`}
 							name=""
@@ -139,18 +142,18 @@ const ProductFilters = () => {
 							}}
 						>
 							<option className={style.options} value="All">
-								Todos
+								{t('dogFilters.all')}
 							</option>
 							<option className={style.options} value="Alimentos">
-								Alimentos
+							{t('prodFilters.food')}
 							</option>
 							<option className={style.options} value="Accesorios">
-								Accesorios
+							{t('prodFilters.accessory')}
 							</option>
 						</select>
 					</div>
 					<div className={style.divSelects}>
-						<div>Subcategoría</div>
+						<div>{t('prodFilters.subcateg')}</div>
 						<select
 							className={`${style.selects} ${setSubCategory !== 'All' ? style.focus : ''}`}
 							name=""
@@ -162,7 +165,7 @@ const ProductFilters = () => {
 							}}
 						>
 							<option className={style.options} value="All">
-								Todos
+								{t('dogFilters.all')}
 							</option>
 							{subCategory?.map((e) => (
 								<option className={style.options} key={e.id} value={e.name}>
@@ -175,7 +178,7 @@ const ProductFilters = () => {
 						<button
 						className={style.btnProduct}
 						onClick={(e) => handleRefresh(e)}
-						>REINICIAR FILTROS</button>
+						>{t('dogFilters.reset')}</button>
 					</div>
 				</div>
 			</form>
