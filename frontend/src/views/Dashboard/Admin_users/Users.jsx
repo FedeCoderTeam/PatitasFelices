@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './User.module.css';
 import * as authActions from '../../../_redux/actions/authAction';
 import useToast from '../../../utils/hooks/useToast';
+import { Link } from 'react-router-dom';
 
 const Users = () => {
 	const dispatch = useDispatch();
@@ -162,7 +163,16 @@ const Users = () => {
 
 	return (
 		<>
-			<h2>Usuarios</h2>
+			{/* <h2>Usuarios</h2> */}
+
+			<div className={style.containerBtnNav}>
+				<Link to="/dashboard/" style={{ textDecoration: 'none' }}>
+					<button className={style.btnBackHomeDash}>Home Dashboard</button>
+				</Link>
+				<Link to="/home" style={{ textDecoration: 'none' }}>
+					<button className={style.btnBackHome}>Home Principal</button>
+				</Link>
+			</div>
 
 			<Box
 				sx={{

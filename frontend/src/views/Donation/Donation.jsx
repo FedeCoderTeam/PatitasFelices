@@ -44,7 +44,7 @@ const Donation = () => {
                     src={video}
                 ></video>
             </div>
-            <div className={style.mainContainer}>
+            <div className={style.mainContainer} data-aos="fade-right" data-aos-duration="1000">
                 <div className={style.containerDescription}>
                     <h2>
                         Patitas Felices es una organización sin fines de lucro que se financia y mantiene gracias al trabajo incansable de nuestros voluntarios, la venta de productos para perros y las donaciones que recibimos de la comunidad. Todo tipo de ayuda es de vital importancia para que el refugio perdure en el tiempo. Te invitamos a que colabores con nuestra causa de la manera en que puedas hacerlo.

@@ -49,7 +49,7 @@ const HomeReviewSection = () => {
 				<div className={style.mainContainer}>
 					<div className={style.containerBoxes}>
 						<div className={style.containerLeft}>
-							<Link to="/donation">
+							<Link to="/myreviews">
 							<Player
 									autoplay
 									loop
