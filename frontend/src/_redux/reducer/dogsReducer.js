@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
 	dogs: [], // el que se puede filtrar
@@ -8,32 +8,97 @@ const initialState = {
 	temperaments: [],
 	colors: [],
 	genders: [],
-	sortBy: '',
-	sortOrder: '',
-	setSize: 'All',
-	setColor: 'All',
-	setGender: 'All',
-	setTemperaments: 'All',
 	currentPage: 1,
 	maybeAdoptedDog: {},
+	sort: {
+		age: 'asc',
+		weight: ''
+	},
+	filter: {
+		size: 'All',
+		color: 'All',
+		gender: 'All',
+		temperament: 'All'
+	}
 };
 
 export const dogsSlice = createSlice({
 	name: 'dogs',
 	initialState,
 	reducers: {
+		setPage: (state, action) => {
+			state.currentPage = action.payload;
+		},
+
+		setSort: (state, action) => {
+			state.sort.age = action.payload.age
+			state.sort.weight = action.payload.weight
+		},
+
+		setFilter: (state, action) => {
+			if(action.payload.size) {
+				state.filter.size = action.payload.size
+			}
+			if(action.payload.color) {
+				state.filter.color = action.payload.color
+			}
+			if(action.payload.gender) {
+				state.filter.gender = action.payload.gender
+			}
+			if(action.payload.temperament) {
+				state.filter.temperament = action.payload.temperament
+			}
+		},
+
+		sort: (state) => {
+			const { age, weight } = state.sort
+			const sortedDogs = [...state.dogs]
+			sortedDogs.sort((a, b) => a.id - b.id)
+
+			if(age === 'asc') {
+				sortedDogs.sort((a, b) => a.age - b.age)
+			} else if(age === 'desc') {
+				sortedDogs.sort((a, b) => b.age - a.age)
+			}
+
+			if(weight === 'asc') {
+				sortedDogs.sort((a, b) => a.weight - b.weight)
+			} else if(weight === 'desc') {
+				sortedDogs.sort((a, b) => b.weight - a.weight)
+			}
+
+			state.dogs = sortedDogs
+		},
+
+		filter: (state) => {
+			let filtered = state.allDogs;
+
+			if (state.filter.size !== 'All') {
+				filtered = filtered.filter((el) => el.size === state.filter.size);
+			}
+
+			if (state.filter.color !== 'All') {
+				filtered = filtered.filter((el) => el.colors.includes(state.filter.color));
+			}
+
+			if (state.filter.gender !== 'All') {
+				filtered = filtered.filter((el) => el.gender === state.filter.gender);
+			}
+
+			if (state.filter.temperament !== 'All') {
+				filtered = filtered.filter((el) =>
+					el.temperaments.includes(state.filter.temperament),
+				);
+			}
+
+			state.dogs = filtered;
+			state.filtered = filtered;
+		},
+
 		getAllDogs: (state, action) => {
 			state.dogs = action.payload;
 			state.allDogs = action.payload;
 			state.filtered = action.payload;
-		},
-
-		getDogDetail: (state, action) => {
-			state.dogDetail = action.payload;
-		},
-
-		setEmptyDetail: (state) => {
-			state.dogDetail = {};
 		},
 
 		getAllTemperaments: (state, action) => {
@@ -52,123 +117,38 @@ export const dogsSlice = createSlice({
 			state.genders = action.payload;
 		},
 
-		setFilters: (state, action) => {
-			if(action.payload.setColor && 
-				action.payload.setSize && 
-				action.payload.setTemperaments && 
-				action.payload.setGender && 
-				action.payload.sortOrder === "" &&
-				action.payload.sortBy === "" ) {
-					return{
-						...state,
-						setColor: action.payload.setColor,
-						setSize: action.payload.setSize,
-						setTemperaments: action.payload.setTemperaments,
-						setGender: action.payload.setGender,
-						sortOrder: action.payload.sortOrder,
-						sortBy: action.payload.sortBy
-					}
-				}
-			if (action.payload.setColor) {
-				return {
-					...state,
-					setColor: action.payload.setColor,
-				};
-			}
-			if (action.payload.setSize) {
-				return {
-					...state,
-					setSize: action.payload.setSize,
-				};
-			}
-			if (action.payload.setTemperaments) {
-				return {
-					...state,
-					setTemperaments: action.payload.setTemperaments,
-				};
-			}
-			if (action.payload.setGender) {
-				return {
-					...state,
-					setGender: action.payload.setGender,
-				};
-			}
-			if (action.payload.sortOrder && action.payload.sortBy) {
-				return {
-					...state,
-					sortBy: action.payload.sortBy,
-					sortOrder: action.payload.sortOrder,
-				};
-			}
+		getDogDetail: (state, action) => {
+			state.dogDetail = action.payload;
 		},
 
-		filtered: (state) => {
-			let filtered = state.allDogs;
-
-			if (state.setColor !== 'All') {
-				filtered = filtered.filter((el) => el.colors.includes(state.setColor));
-			}
-
-			if (state.setTemperaments !== 'All') {
-				filtered = filtered.filter((el) =>
-					el.temperaments.includes(state.setTemperaments),
-				);
-			}
-
-			if (state.setSize !== 'All') {
-				filtered = filtered.filter((el) => el.size === state.setSize);
-			}
-
-			if (state.setGender !== 'All') {
-				filtered = filtered.filter((el) => el.gender === state.setGender);
-			}
-
-			state.dogs = filtered;
-			state.filtered = filtered;
+		setEmptyDetail: (state) => {
+			state.dogDetail = {};
 		},
 
-		sortDogs: (state) => {
-			let ordered = state.dogs;
-			if (state.sortBy === 'age') {
-				state.sortOrder === 'asc'
-					? ordered.sort((a, b) => a.age - b.age)
-					: ordered.sort((a, b) => b.age - a.age);
-			}
-			if (state.sortBy === 'weight') {
-				state.sortOrder === 'asc'
-					? ordered.sort((a, b) => a.weight - b.weight)
-					: ordered.sort((a, b) => b.weight - a.weight);
-			}
-			state.dogs = ordered;
-		},
-
-		setPages: (state, action) => {
-			state.currentPage = action.payload;
-		},
 		setMaybeAdoptedDog: (state, action) => {
-			let dog = state.allDogs.find((el) => el.id === action.payload);
-			state.maybeAdoptedDog = dog;
+			state.maybeAdoptedDog = state.allDogs.find((el) => el.id === action.payload);
 		},
 
 		emptyMaybeAdoptedDog: (state) => {
 			state.maybeAdoptedDog = {};
 		},
+
 	},
 });
 
 export const {
+	setPage,
+	setSort,
+	setFilter,
+	sort,
+	filter,
 	getAllDogs,
 	getAllTemperaments,
 	getAllDogsColors,
-	setSort,
-	sortDogs,
 	getNameDog,
-	setFilters,
-	filtered,
 	getGenders,
 	getDogDetail,
 	setEmptyDetail,
-	setPages,
 	setMaybeAdoptedDog,
 	emptyMaybeAdoptedDog,
 } = dogsSlice.actions;

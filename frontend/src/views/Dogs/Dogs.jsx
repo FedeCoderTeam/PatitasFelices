@@ -12,7 +12,7 @@ const Dogs = () => {
 	const allDogs = useSelector((state) => state.dogsReducer.dogs);
 	const temperaments = useSelector((state) => state.dogsReducer.temperaments);
 	const colors = useSelector((state) => state.dogsReducer.colors);
-	const gender = useSelector((state) => state.dogsReducer.genders);
+	const genders = useSelector((state) => state.dogsReducer.genders);
 	let currentPage = useSelector((state) => state.dogsReducer.currentPage);
 
 	//----------------------------------------PAGINADO---------------------------------------------------------------
@@ -56,7 +56,7 @@ const Dogs = () => {
 						allDogs={allDogs}
 						temperaments={temperaments}
 						colors={colors}
-						gender={gender}
+						genders={genders}
 					/>
 				</div>
 			</div>
