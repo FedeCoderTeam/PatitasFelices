@@ -25,7 +25,6 @@ function ProductDetail() {
 	);
 
 	const [count, setCount] = useState(0);
-	const [randomProducts, setRandomProducts] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const toast = useToast();
@@ -166,14 +165,11 @@ function ProductDetail() {
 						</div>
 						<div className={style.divOtros}>
 							<div onClick={() =>
-										setCurrentIndex(
-											currentIndex > 0
-											  ? (currentIndex - 1) % allProducts.length
-											  : currentIndex)
-									} className={style.arrows}>
+										setCurrentIndex(currentIndex > 0 && currentIndex - 1)
+									} className={style.arrowLeft}>
 									<i className="fa-solid fa-chevron-left" ></i>
 							</div>
-							{allProducts.length > 0 && allProducts.slice(currentIndex + 1, currentIndex + 4).map((product) => (
+							{allProducts.length > 0 && allProducts.slice(currentIndex, currentIndex + 3).map((product) => (
 								<ProductCard
 									key={product.id}
 									id={product.id}
@@ -185,7 +181,7 @@ function ProductDetail() {
 							))}
 							<div onClick={() =>
 									setCurrentIndex((currentIndex + 1) % allProducts.length)
-								} className={style.arrows}>
+								} className={style.arrowRight}>
 								<i className="fa-solid fa-chevron-right"></i>
 							</div>
 						</div>
