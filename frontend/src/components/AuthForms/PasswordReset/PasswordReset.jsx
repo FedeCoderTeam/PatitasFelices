@@ -79,7 +79,7 @@ const PasswordReset = () => {
         <div className={style.mainContainerPasswordReset} data-aos="fade-left">
             <div className={style.formPasswordReset}>
                 <div className={style.title}>
-                    <h1>Restablecer su contraseña</h1>
+                    <h1>Restablecer contraseña</h1>
                 </div>
 
                 <form className={style.containerInputsPassword} onSubmit={formik.handleSubmit}>

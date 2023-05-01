@@ -162,15 +162,15 @@ function ProductDetail() {
 							</h2>
 						</div>
 						<div className={style.divOtros}>
-							<div className={style.arrows}>
-									<i className="fa-solid fa-chevron-left" 
-									onClick={() =>
+							<div onClick={() =>
 										setCurrentIndex(
-											currentIndex > 0 ? (currentIndex - 1) % allProducts.length : currentIndex
-										)
-									}></i>
+											currentIndex > 0
+											  ? (currentIndex - 1) % allProducts.length
+											  : currentIndex)
+									} className={style.arrows}>
+									<i className="fa-solid fa-chevron-left" ></i>
 							</div>
-							{allProducts.slice(currentIndex + 1, currentIndex + 4).map((product) => (
+							{allProducts.length > 0 && allProducts.slice(currentIndex + 1, currentIndex + 4).map((product) => (
 								<ProductCard
 									key={product.id}
 									id={product.id}
@@ -180,11 +180,10 @@ function ProductDetail() {
 									price={product.price}
 								/>
 							))}
-							<div className={style.arrows}>
-								<i className="fa-solid fa-chevron-right"
-								onClick={() =>
-									setCurrentIndex((currentIndex + 4) % allProducts.length)
-								}></i>
+							<div onClick={() =>
+									setCurrentIndex((currentIndex + 1) % allProducts.length)
+								} className={style.arrows}>
+								<i className="fa-solid fa-chevron-right"></i>
 							</div>
 						</div>
 					</div>

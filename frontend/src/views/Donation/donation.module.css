@@ -3,6 +3,9 @@
     height: 100%;
     object-fit: cover;
     position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -9999;
 }
 
 .mainContainer {
