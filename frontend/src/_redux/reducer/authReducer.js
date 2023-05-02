@@ -9,6 +9,7 @@ const initialState = {
 	user: null,
 	token: '',
 	users: [],
+	userDetail: {},
 };
 
 export const authSlice = createSlice({
@@ -35,6 +36,9 @@ export const authSlice = createSlice({
 		getAllUsers: (state, action) => {
 			state.users = action.payload;
 		},
+		getUserDetail: (state, action) => {
+			state.userDetail = action.payload;
+		},
 	},
 });
 
@@ -45,6 +49,7 @@ export const {
 	setUser,
 	setShowOverlay,
 	getAllUsers,
+	getUserDetail,
 } = authSlice.actions;
 
 export default authSlice.reducer;
