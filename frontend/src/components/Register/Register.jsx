@@ -129,7 +129,7 @@ const Register = () => {
 		<div className={style.mainContainerRegister} data-aos="fade-left">
 			<div className={style.formRegister}>
 				<div className={style.title}>
-					<h1>{t('nav.signUp')}</h1>
+					<h1>{t('nav.links.signUp')}</h1>
 				</div>
 
 				<div className={style.containerInputsRegister}>
