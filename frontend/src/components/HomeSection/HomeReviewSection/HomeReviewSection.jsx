@@ -171,7 +171,7 @@ export function ReviewDetail(props) {
 						sx={{
 							'& .MuiDialog-container': {
 								'& .MuiPaper-root': {
-									borderRadius: '10px',
+									borderRadius: '5px',
 								},
 							},
 						}}
@@ -180,23 +180,10 @@ export function ReviewDetail(props) {
 						aria-labelledby="alert-dialog-title"
 						aria-describedby="alert-dialog-description"
 					>
-						<DialogContent dividers>
+						<DialogContent dividers className={style.dialogContainer}>
 							<form onSubmit={formik.handleSubmit}>
-								<div>
-									<label htmlFor="comment">{t('HomeReview.comment')}</label>
-									<textarea
-										name="comment"
-										placeholder="Deja tu comentario..."
-										value={formik.values.comment}
-										onChange={(event) => {
-											formik.handleChange(event);
-										}}
-									/>
-									{formik.touched.comment && formik.errors.comment && (
-										<div>{formik.errors.comment}</div>
-									)}
-								</div>
-								<div>
+								
+								<div className={style.ratingSectionDialog}>
 									<label htmlFor="rating">{t('HomeReview.rating')}</label>
 									<Stack>
 										<Rating
@@ -207,11 +194,28 @@ export function ReviewDetail(props) {
 										/>
 									</Stack>
 								</div>
-								<div>
-									<button disabled={!formik.isValid} type="submit">
+
+								<div className={style.commentSectionDialog}>
+									<label htmlFor="comment">{t('HomeReview.comment')}</label>
+									<textarea
+										name="comment"
+										placeholder="Escribe aquí..."
+										value={formik.values.comment}
+										onChange={(event) => {
+											formik.handleChange(event);
+										}}
+									/>
+									{formik.touched.comment && formik.errors.comment && (
+										<div>{formik.errors.comment}</div>
+									)}
+								</div>
+
+								<div className={style.buttonDialogContainer}>
+									<button className={style.buttonDialog} disabled={!formik.isValid} type="submit">
 										{t('HomeReview.send')}
 									</button>
 								</div>
+
 							</form>
 						</DialogContent>
 					</Dialog>
