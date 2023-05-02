@@ -19,7 +19,7 @@ const getAllDogs = async () => {
 	});
 
 	if (!data.length) {
-		data = await createDogsControllers();
+		await createDogsControllers();
 	}
 
 	data = data.map((el) => {

@@ -12,7 +12,6 @@ import ProductCard from '../../Cards/ProductCard/ProductCard';
 import useToast from '../../../utils/hooks/useToast';
 import Swal from 'sweetalert2';
 import { useTranslation } from 'react-i18next';
-
 // import { Player } from '@lottiefiles/react-lottie-player';
 // import ShoppingCart from '../../../utils/animations/ShoppingCart.json'
 
@@ -126,8 +125,10 @@ function ProductDetail() {
 								{productDetail.description}
 							</h2>
 							<p className={style.priceDetail}>
-								${productDetail.price}
-								<span className={style.priceSpan}>.00</span>
+								{Number(productDetail.price).toLocaleString('es-AR', {
+									style: 'currency',
+									currency: 'ARS',
+								})}
 							</p>
 							<p className={style.pDeatil}>
 								Stock:{' '}
@@ -166,6 +167,7 @@ function ProductDetail() {
 							</h2>
 						</div>
 						<div className={style.divOtros}>
+
 							<div onClick={() =>
 										setCurrentIndex(currentIndex > 0 && currentIndex - 1)
 									} className={style.arrowLeft}>

@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Home from './views/Home/Home';
-// import About from './views/About/About'; 
+// import About from './views/About/About';
 import About from './views/About/About';
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
@@ -16,11 +16,13 @@ import ProductDetail from './components/CardDetail/ProductDetail/ProductDetail';
 import MyReviews from './views/MyReviews/MyReviews';
 import Donation from './views/Donation/Donation';
 import Success from './components/Modals/Success';
+import SuccessDonation from './components/Modals/SuccessDonation';
 import * as dogsAction from '../src/_redux/actions/dogsAction';
 import * as productsAction from '../src/_redux/actions/productsAction';
 import * as authActions from './_redux/actions/authAction';
 import * as requestAction from './_redux/actions/requestAction';
 import * as reviewsAction from './_redux/actions/reviewsAction';
+import * as mercadopagoAction from './_redux/actions/mercadopagoAction';
 
 import BackDrop from './components/BackDrop/BackDrop';
 
@@ -51,7 +53,10 @@ function App() {
 		dispatch(requestAction.getAdoptionDog());
 		dispatch(authActions.getUsers());
 		dispatch(reviewsAction.getReviews());
+		dispatch(mercadopagoAction.getOrders());
+		dispatch(mercadopagoAction.getPurchases());
 		dispatch(productsAction.getCategoriesAction());
+
 		if (localStorage.getItem('products')) {
 			if (JSON.parse(localStorage.getItem('products')).length)
 				dispatch(
@@ -72,6 +77,7 @@ function App() {
 				location.pathname !== '/password-reset' &&
 				location.pathname !== '/form' &&
 				location.pathname !== '/products/success' &&
+				location.pathname !== '/donation/success_donation' &&
 				(!location.pathname.includes('/dashboard') ||
 					selector.user?.role !== 'Administrador') && <Nav />}
 			<Routes>
@@ -89,6 +95,10 @@ function App() {
 				<Route path={'/donation'} element={<Donation />} />
 				<Route path={'/about'} element={<About />} />
 				<Route path={'/products/success'} element={<Success />} />
+				<Route
+					path={'/donation/success_donation'}
+					element={<SuccessDonation />}
+				/>
 
 				<Route path={'*'} element={<NotFound />} />
 				{selector.user?.role === 'Administrador' && (
@@ -108,15 +118,16 @@ function App() {
 				location.pathname !== '/password-reset' &&
 				location.pathname !== '/form' &&
 				location.pathname !== '/products/success' &&
-				location.pathname !== '/donation' &&
+				location.pathname !== '/products' &&
+				location.pathname !== '/donation/success_donation' &&
 				(!location.pathname.includes('/dashboard') ||
 					selector.user?.role !== 'Administrador') && <Footer />}
 
-			{location.pathname !== '/products/success' && <BackDrop />}
+			{location.pathname !== '/products/success' &&
+				location.pathname !== '/donation/success_donation' && <BackDrop />}
 			<Overlay />
 			<Cart />
 			{/* <Footer/> */}
-			
 		</>
 	);
 }

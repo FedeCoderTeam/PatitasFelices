@@ -105,11 +105,15 @@ order.belongsTo(user, { foreignKey: 'userId' });
 product.hasOne(orderItem, { foreignKey: 'productId' });
 orderItem.belongsTo(product, { foreignKey: 'productId' });
 
+//VER SI USAMOS ESTO
+// *********************************************************//
+
 order.hasOne(payment, { foreignKey: 'orderId' });
 payment.belongsTo(order, { foreignKey: 'orderId' });
 
 user.hasMany(payment, { foreignKey: 'userId' });
 payment.belongsTo(user, { foreignKey: 'userId' });
+// *********************************************************//
 
 user.hasOne(userVerification, { foreignKey: 'userId' });
 userVerification.belongsTo(user, { foreignKey: 'userId' });

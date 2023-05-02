@@ -13,19 +13,6 @@ const productUpdateControllers = async (
 	subCategoryId,
 	quantity,
 ) => {
-	console.log(
-		id,
-		name,
-		description,
-		price,
-		image,
-		brand,
-		stock,
-		isDisabled,
-		categoryId,
-		subCategoryId,
-		quantity,
-	);
 	try {
 		let productToUpdate = await product.findOne({
 			where: {

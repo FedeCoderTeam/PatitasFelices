@@ -5,7 +5,6 @@ import Typewriter from 'typewriter-effect';
 import { useTranslation } from 'react-i18next';
 
 
-
 const About = () => {
 	const { t } = useTranslation();
 
@@ -36,4 +35,4 @@ const About = () => {
     )
 }
 
-export default About
+export default About;

@@ -6,35 +6,37 @@ import { setLinkDePagos } from '../../_redux/actions/mercadopagoAction';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-
 const Donation = () => {
 	const { t } = useTranslation();
-    const [donation, setDonation] = useState([
+  const [donation, setDonation] = useState([
         {
             id: 1,
             name: 'Donacion',
             image: 'zazaazaza.png',
-            description: 'donacion',
-            category: 'donacion',
+            description: 'Donacion',
+            category: 'Donacion',
             quantity: 1,
             price: null,
         },
     ]);
 
-    const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-    const handleDonation = (e) => {
-        let donation2 = donation.map((el) => {
-            return {
-                ...el,
-                price: e.target.value,
-            };
-        });
-        setDonation(donation2);
-    };
-    const handleClick = async () => {
-        dispatch(setLinkDePagos(donation));
-    };
+	const handleDonation = (e) => {
+		let donation2 = donation.map((el) => {
+			return {
+				...el,
+				price: e.target.value,
+			};
+		});
+		setDonation(donation2);
+	};
+
+	const handleClick = async () => {
+		localStorage.setItem('donation', JSON.stringify(donation));
+
+		dispatch(setLinkDePagos(donation));
+	};
 
     return (
         <>

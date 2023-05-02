@@ -89,7 +89,6 @@ const postProduct = (obj) => {
 const updateProduct = (obj) => {
 	return async () => {
 		try {
-			console.log('Llegue a redux');
 			await axios.put('http://localhost:3001/products', obj);
 		} catch (error) {}
 	};

@@ -40,8 +40,6 @@ const productPostControlers = async (
 			},
 		});
 
-		console.log(addCategories);
-
 		await newProduct.setCategory(addCategories);
 
 		let addSubCategories = await subCategory.findOne({

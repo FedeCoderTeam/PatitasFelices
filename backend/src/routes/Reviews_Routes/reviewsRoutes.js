@@ -6,6 +6,7 @@ const {
 const {
 	updateReview,
 } = require('../../controllers/Reviews_Controllers/updateReviewsController');
+const deleteReview = require('../../controllers/Reviews_Controllers/deleteReviewControllers');
 
 const router = Router();
 
@@ -34,7 +35,17 @@ router.put('/', async (req, res) => {
 		let result = await updateReview(token, id, comment, rating);
 		res.status(200).json(result);
 	} catch (error) {
-		
+		res.status(400).json({ error: error.message, message: null });
+	}
+});
+
+router.delete('/', async (req, res) => {
+	let { id } = req.body;
+	try {
+		let reviewDelete = await deleteReview(id);
+		if (reviewDelete.error) throw new Error(reviewDelete.error);
+		res.status(200).json(reviewDelete);
+	} catch (error) {
 		res.status(400).json({ error: error.message, message: null });
 	}
 });

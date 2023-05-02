@@ -112,7 +112,14 @@ const Cart = () => {
 						handleRemoveProduct={handleRemoveProduct}
 					/>
 				))}
-				<h2 className={style.total}>Total: ${calculateTotal(cartItems).toLocaleString('es-ES', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</h2>
+
+				<h2 className={style.total}>
+					Total:
+					{`${Number(calculateTotal(cartItems)).toLocaleString('es-AR', {
+						style: 'currency',
+						currency: 'ARS',
+					})}`}
+				</h2>
 				<div className={style.containerBtn}>
 					<button className={style.btnComprar} onClick={handleOnBuy}>
 						{t('cart.checkout')}
