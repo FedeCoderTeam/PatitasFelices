@@ -119,6 +119,7 @@ function App() {
 				location.pathname !== '/form' &&
 				location.pathname !== '/products/success' &&
 				location.pathname !== '/products' &&
+				location.pathname !== '/donation' &&
 				location.pathname !== '/donation/success_donation' &&
 				(!location.pathname.includes('/dashboard') ||
 					selector.user?.role !== 'Administrador') && <Footer />}
