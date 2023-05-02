@@ -1,4 +1,4 @@
-const { reviews } = require('../../db');
+const { reviews } = require('../../database/db');
 
 let deleteReview = async (id) => {
 	try {
