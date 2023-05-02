@@ -1,11 +1,9 @@
-const { category } = require('../../database/db');
+const { category, subCategory } = require('../../database/db');
 const categoryJson = require('../../Json/Categories.json');
 
 const getCategory = async () => {
 	try {
-		let categories = await category.findAll({
-			attributes: ['id', 'name'],
-		});
+		let categories = await category.findAll({include: subCategory});
 
 		if (!categories.length) {
 			let allCategories = categoryJson.category;

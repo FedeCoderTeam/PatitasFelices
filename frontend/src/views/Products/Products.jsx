@@ -6,10 +6,15 @@ import * as productsAction from '../../_redux/actions/productsAction.js';
 import PaginatedProducts from '../../components/Paginated/PaginatedProducts/PaginatedProducts.jsx';
 import ProductFilters from '../../components/Filters/ProductFilters/ProductFilters.jsx';
 import style from './Products.module.css';
+import { useTranslation } from 'react-i18next';
+
 
 const Products = () => {
 	const dispatch = useDispatch();
+	const { t } = useTranslation();
+	
 	const allProducts = useSelector((state) => state.productsReducer.products);
+	const categories = useSelector(state => state.productsReducer.categories)
 	let currentPage = useSelector((state) => state.productsReducer.currentPage);
 
 	//----------------------------------------------PAGINADO-------------------------------------------
@@ -19,7 +24,7 @@ const Products = () => {
 		allProducts.slice(range.firts, range.last),
 	);
 	const paginado = (pageNumber) => {
-		dispatch(productsAction.setPage(pageNumber));
+		dispatch(productsAction.setPageAction(pageNumber));
 	};
 
 	//-------------------------------------------------------------------------------------------------
@@ -43,7 +48,7 @@ const Products = () => {
 		<div className={style.main} data-aos="fade-down">
 			<div className={style.filtersBox}>
 				<div className={style.filtersContainer}>
-					<ProductFilters />
+					<ProductFilters categories={categories} />
 				</div>
 			</div>
 			<div className={style.cardSection}>
@@ -61,7 +66,7 @@ const Products = () => {
 				)}
 
 				{!currentProducts.length ? (
-					<h1>No hay ningún producto</h1>
+					<h1>{t('product.noProduct')}</h1>
 				) : (
 					<div className={style.cardsContainer}>
 						{currentProducts?.map((e) => {

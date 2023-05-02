@@ -51,6 +51,7 @@ function App() {
 		dispatch(requestAction.getAdoptionDog());
 		dispatch(authActions.getUsers());
 		dispatch(reviewsAction.getReviews());
+		dispatch(productsAction.getCategoriesAction());
 		if (localStorage.getItem('products')) {
 			if (JSON.parse(localStorage.getItem('products')).length)
 				dispatch(

@@ -10,9 +10,12 @@ import CloudinaryWidgetFull from '../../Cloudinary/CloudinaryForm/CloudinaryWidg
 import * as requestAction from '../../../_redux/actions/requestAction';
 import { useNavigate } from 'react-router-dom';
 import useToast from '../../../utils/hooks/useToast';
+import { useTranslation } from 'react-i18next';
 
 const AdoptionForm = () => {
 	const dispatch = useDispatch();
+	const { t } = useTranslation();
+
 	const dogId = useSelector((state) => state.dogsReducer.maybeAdoptedDog);
 	const navigate = useNavigate();
 
@@ -36,40 +39,40 @@ const AdoptionForm = () => {
 
 	const validationSchema = Yup.object().shape({
 		name: Yup.string()
-			.min(4, 'El nombre debe tener mínimo 4 caracteres. *')
+			.min(4, t('yupAdop.val1'))
 			.matches(
 				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
-				'Sólo letras de la "A" a la "Z" *',
+				t('yupAdop.val2'),
 			)
-			.required('El nombre es obligatorio'),
+			.required(t('yupAdop.val3')),
 		age: Yup.number()
-			.min(18, 'La edad tiene que ser mayor a 18 años. *')
-			.required('La edad es obligatoria.'),
+			.min(18, t('yupAdop.val4'))
+			.required(t('yupAdop.val5')),
 		phone: Yup.string()
 			.matches(
 				/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/,
-				'Ingresa un número válido.',
+				t('yupAdop.val6'),
 			)
-			.required('El número de celular es de caracter obligatorio.'),
-		address: Yup.string().required('La dirección es obligatoria.'),
+			.required(t('yupAdop.val7')),
+		address: Yup.string().required(t('yupAdop.val8')),
 		email: Yup.string()
 			.matches(
 				/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-				'Ingresa un email válido.',
+				t('yupAdop.val9'),
 			)
-			.required('El email es obligatorio.'),
+			.required(t('yupAdop.val10')),
 		areas_conditions: Yup.string().oneOf(
 			['Excellent', 'Good', 'Bad', 'N/A'],
-			'Selecciona una opción.',
+			t('yupAdop.val11'),
 		),
-		more_animals: Yup.string().required('Selecciona una opción.'),
+		more_animals: Yup.string().required(t('yupAdop.val11')),
 		moreAnimals_details: Yup.string(),
 		// .required('Es obligatoria esta información.')
-		proper_income: Yup.string().required('Elige una opción.'),
+		proper_income: Yup.string().required(t('yupAdop.val12')),
 		inHouse_allowance: Yup.string().required('Elige una opción.'),
 		outDoor_image: Yup.string().matches(
 			/^.*\.(jpg|jpeg|png)$/i,
-			'Inserta una imagen válida.',
+			t('yupAdop.val13'),
 		),
 	});
 
@@ -84,7 +87,7 @@ const AdoptionForm = () => {
 			more_animals: values.more_animals === 'Yes' ? true : false,
 			moreAnimals_details:
 				values.moreAnimals_details === ''
-					? 'No hay detalles'
+					? t('adopForm.nodetail')
 					: values.moreAnimals_details,
 			proper_income: values.proper_income,
 			inHouse_allowance: values.inHouse_allowance,
@@ -92,7 +95,7 @@ const AdoptionForm = () => {
 			dogId: dogId.id,
 		};
 		dispatch(requestAction.postAdoptionDog(obj));
-		success(`¡Solicitud de adopción de ${initialValues.name} enviada!`, {
+		success(t('adopForm.sent') + `${initialValues.name}`, {
 			duration: 2000,
 		});
 		setTimeout(() => {
@@ -123,13 +126,13 @@ const AdoptionForm = () => {
 					{({ errors, values }) => (
 						<Form>
 							<h1 className="title-Form">
-								Formulario de Adopción de {dogId.name}
+								{t('adopForm.title') + `${dogId.name}`} 
 							</h1>
 							<div className="box-Form">
 								<div className="containerInputsLeft-Form">
 									<div className="eachField">
 										<label htmlFor="name">
-											Nombre completo de la/el adoptante
+											{t('adopForm.name')}
 										</label>
 										<Field
 											name="name"
@@ -142,7 +145,7 @@ const AdoptionForm = () => {
 									</div>
 
 									<div className="eachField">
-										<label htmlFor="age">Edad</label>
+										<label htmlFor="age">{t('adopForm.age')}</label>
 										<Field name="age" type="number" placeholder="EJ: 25" />
 										<ErrorMessage name="age">
 											{(msg) => <div className="errorMessage">{msg}</div>}
@@ -150,7 +153,7 @@ const AdoptionForm = () => {
 									</div>
 
 									<div className="eachField">
-										<label htmlFor="phone">Teléfono</label>
+										<label htmlFor="phone">{t('adopForm.phone')}</label>
 										<Field
 											name="phone"
 											type="number"
@@ -162,7 +165,7 @@ const AdoptionForm = () => {
 									</div>
 
 									<div className="eachField">
-										<label htmlFor="text">Dirección</label>
+										<label htmlFor="text">{t('adopForm.address')}</label>
 										<Field
 											name="address"
 											type="text"
@@ -189,14 +192,13 @@ const AdoptionForm = () => {
 								<div className="containerInputsRight-Form">
 									<div className="eachField">
 										<label htmlFor="more_animals">
-											¿Tienes otros animales? Si la respuesta es sí, ¿cuántos y
-											de qué tipo?
+											{t('adopForm.quest1')}
 										</label>
 										<div className="more_animals-Container">
 											<Field name="more_animals" as="select">
 												<option value=""></option>
-												<option value="Yes">Si</option>
-												<option value="No">No</option>
+												<option value="Yes">{t('adopForm.yes')}</option>
+												<option value="No">{t('adopForm.no')}</option>
 											</Field>
 											{/* {values.more_animals !== false && ( */}
 											<div className="hideInput">
@@ -213,7 +215,7 @@ const AdoptionForm = () => {
 															: values.moreAnimals_details
 													}
 													name="moreAnimals_details"
-													placeholder="EJ: 2 gatos, 1 perro."
+													placeholder={t('adopForm.placeholder')}
 												/>
 												<ErrorMessage name="moreAnimals_details">
 													{(msg) => <div className="errorMessage">{msg}</div>}
@@ -228,13 +230,12 @@ const AdoptionForm = () => {
 
 									<div className="eachField">
 										<label htmlFor="proper_income">
-											¿Tienes los medios económicos para sustentar los gastos
-											económicos de tu mascota?
+											{t('adopForm.quest2')}
 										</label>
 										<Field name="proper_income" as="select">
 											<option value="all"></option>
-											<option value="Yes">Si</option>
-											<option value="No">No</option>
+											<option value="Yes">{t('adopForm.yes')}</option>
+											<option value="No">{t('adopForm.no')}</option>
 										</Field>
 										<ErrorMessage name="proper_income">
 											{(msg) => <div className="errorMessage">{msg}</div>}
@@ -243,13 +244,12 @@ const AdoptionForm = () => {
 
 									<div className="eachField">
 										<label htmlFor="inHouse_allowance">
-											¿Consultaste en tu edificio, consorcio o propietario, si
-											están de acuerdo con la adopción?
+											{t('adopForm.quest3')}
 										</label>
 										<Field as="select" name="inHouse_allowance">
 											<option value="all"></option>
-											<option value="Yes">Si</option>
-											<option value="No">No</option>
+											<option value="Yes">{t('adopForm.yes')}</option>
+											<option value="No">{t('adopForm.no')}</option>
 										</Field>
 										<ErrorMessage name="inHouse_allowance">
 											{(msg) => <div className="errorMessage">{msg}</div>}
@@ -258,7 +258,7 @@ const AdoptionForm = () => {
 
 									<div className="eachField">
 										<label htmlFor="outDoor_image">
-											Foto de tu patio/balcón/espacio al aire libre
+											{t('adopForm.quest4')}
 										</label>
 
 										<div className="containerUpload-Form">
@@ -289,14 +289,14 @@ const AdoptionForm = () => {
 
 									<div className="eachField">
 										<label htmlFor="areas_conditions">
-											¿Cómo se encuentra el estado de tu patio/balcón?
+											{t('adopForm.quest5')}
 										</label>
 										<Field name="areas_conditions" as="select">
 											<option value="all"></option>
-											<option value="Excellent">Excelente</option>
-											<option value="Good">Bueno</option>
-											<option value="Bad">Malo</option>
-											<option value="N/A">No aplica</option>
+											<option value="Excellent">{t('adopForm.excellent')}</option>
+											<option value="Good">{t('adopForm.good')}</option>
+											<option value="Bad">{t('adopForm.bad')}</option>
+											<option value="N/A">{t('adopForm.n/a')}</option>
 										</Field>
 										<ErrorMessage name="areas_conditions">
 											{(msg) => <div className="errorMessage">{msg}</div>}
@@ -307,11 +307,11 @@ const AdoptionForm = () => {
 
 							<div className="containerBtn-Form">
 								<button disabled={Object.keys(errors).length > 0} type="submit">
-									ENVIAR
+								{t('adopForm.send')}
 								</button>
 							</div>
 							<div className="containerGoHome-Form">
-								<h4>Aun no sé si estoy listo/a, regresar a</h4>
+								<h4>{t('adopForm.ready')}</h4>
 								<Link to="/home" className="goHome-Form">
 									<i className="fa-solid fa-house"></i>
 								</Link>

@@ -13,6 +13,7 @@ const cloudinaryRoute = require('./Cloudinary_Route/cloudinaryRoute');
 const mercadopagoRoute = require('./Mercado_Pago_Route/mercadopagoRoute');
 const requestsRoutes = require ('../routes/Requests_Routes/requestsRoutes');
 const reviewsRoutes = require ('../routes/Reviews_Routes/reviewsRoutes')
+const getCategory = require('./Categories_Routes/categoriesRoutes')
 
 const router = Router();
 
@@ -29,5 +30,6 @@ router.use('/mercadopago', mercadopagoRoute);
 router.use('/cloudinary', cloudinaryRoute)
 router.use('/requests', requestsRoutes);
 router.use('/reviews', reviewsRoutes);
+router.use('/categories', getCategory)
 
 module.exports = router;

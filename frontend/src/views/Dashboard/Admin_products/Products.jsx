@@ -7,6 +7,7 @@ import React, { useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as productsAction from '../../../_redux/actions/productsAction';
 import style from './productGrid.module.css';
+import { Link } from 'react-router-dom';
 
 const Products = () => {
 	const dispatch = useDispatch();
@@ -92,6 +93,14 @@ const Products = () => {
 
 	return (
 		<>
+			<div className={style.containerBtnNav}>
+				<Link to="/dashboard/" style={{ textDecoration: 'none' }}>
+					<button className={style.btnBackHomeDash}>Home Dashboard</button>
+				</Link>
+				<Link to="/home" style={{ textDecoration: 'none' }}>
+					<button className={style.btnBackHome}>Home Principal</button>
+				</Link>
+			</div>
 			<button
 				className={style.buttonAdd}
 				onClick={() => {

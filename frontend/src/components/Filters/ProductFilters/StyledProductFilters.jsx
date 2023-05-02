@@ -6,20 +6,30 @@ const CustomSelect = styled(Select)`
   margin-top: 2px;
   margin-bottom: 5px;
   transition: all 0.1s linear;
+
+  .Mui-disabled {
+    color: rgb(115, 115, 115) !important;
+    -webkit-text-fill-color: rgb(115, 115, 115) !important;
+  }
+
   .MuiSelect-select {
     color: #f2f2f2;
   }
+
   .MuiSelect-icon {
     color: #f2f2f2
   }
+
   .MuiOutlinedInput-notchedOutline {
-    border-color: ${props => (props.age !== '' && props.weight !== '' && props.size !== 'All' && props.colorprops !== 'All' && props.temperament !== 'All' && props.gender !== 'All') ? `rgba(202,146,93,0.39)` : `` }
+    border-color: ${props => (props.price !== '' && props.nameprops !== '' && props.category !== 'All' && props.subcategory !== 'All') ? `rgba(202, 146, 93, 0.39)` : ``}
   }
+
   &:hover {
     background-color: rgba(70, 70, 70, 0.308);
   }
+
   &:hover fieldset {
-    border-color: rgba(202,146,93,0.39) !important;
+    border-color: rgba(202, 146, 93, 0.39) !important;
   }
 `
 const CustomMenuItem  = styled(MenuItem)`
