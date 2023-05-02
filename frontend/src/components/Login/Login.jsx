@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import * as Yup from 'yup';
 import {useFormik} from 'formik';
 import {Button, CircularProgress, createTheme, TextField, ThemeProvider} from '@mui/material';
+import { useTranslation } from 'react-i18next';
+
 
 
 const Login = () => {
@@ -15,6 +17,8 @@ const Login = () => {
 	const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated)
 	const isFetching = useSelector(state => state.authReducer.isFetching)
 	const navigate = useNavigate();
+	const { t } = useTranslation();
+
 
 	const handleOnGoogle = () => {
 		const width = 500;
@@ -104,7 +108,7 @@ const Login = () => {
 		<div className={style.mainContainerLogin}>
 			<div className={style.formLogin}>
 				<div className={style.title}>
-					<h1>Ingresar</h1>
+					<h1>{t('login.enter')}</h1>
 				</div>
 				<form onSubmit={formik.handleSubmit}>
 					<div className={style.containerInputsLogin}>
@@ -143,12 +147,12 @@ const Login = () => {
 					</div>
 
 					<div className={style.recuperarContraseña} onClick={() => navigate('/request-password-reset')}>
-						<p>¿Olvidaste tu contraseña?</p>
+						<p>{t('login.forget')}</p>
 					</div>
 
 					<div className={style.containerButtonLogin}>
 						<ThemeProvider theme={theme}>
-							<Button disabled={isFetching} fullWidth={true} type={'submit'} color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >Ingresar</Button>
+							<Button disabled={isFetching} fullWidth={true} type={'submit'} color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >{t('login.enter')}</Button>
 							{isFetching && (<CircularProgress size={24} sx={{
 								color: '#D9AD77',
 								position: 'absolute',
@@ -163,13 +167,13 @@ const Login = () => {
 
 				<div className={style.containerGoogleLogin} onClick={handleOnGoogle}>
 					<p>
-						Ingresar con <img src={Google} alt="Google" />
+					{t('login.enter2')} <img src={Google} alt="Google" />
 					</p>
 				</div>
 
 				<div className={style.noCuenta}>
-					<p>¿No tienes cuenta? </p>
-					<Link to="/register">Regístrate</Link>
+					<p>{t('login.quest1')}</p>
+					<Link to="/register">{t('login.signup')}</Link>
 				</div>
 
 				<div>

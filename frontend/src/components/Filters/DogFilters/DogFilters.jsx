@@ -5,9 +5,13 @@ import { filterAction, setFilterAction, setPageAction, setSortAction, sortAction
 import { createTheme, InputLabel, ThemeProvider } from '@mui/material';
 import { CustomMenuItem, CustomSelect } from './StyledDogFilters';
 import Divider from '@mui/material/Divider';
+import { useTranslation } from 'react-i18next';
+
 
 const DogFilters = (props) => {
 	const dispatch = useDispatch();
+	const { t } = useTranslation();
+
 
 	const sortState = useSelector(state => state.dogsReducer.sort)
 	const filterState = useSelector(state => state.dogsReducer.filter)
@@ -63,10 +67,10 @@ const DogFilters = (props) => {
                 </div> */}
 
 				<div className={style.ordenContainer}>
-					<div className={style.orden}>Ordenar por</div>
+					<div className={style.orden}>{t('dogFilters.orderby')}</div>
 					<div className={style.edad}>
 						<ThemeProvider theme={theme}>
-							<InputLabel id={'sort-age-label'} sx={{color: '#999999'}} >Edad</InputLabel>
+							<InputLabel id={'sort-age-label'} sx={{color: '#999999'}} >{t('dogFilters.age')}</InputLabel>
 							<CustomSelect
 								labelId={'sort-age-label'}
 								name={'age'}
@@ -87,16 +91,16 @@ const DogFilters = (props) => {
 									getContentAnchorEl: null
 								}}
 							>
-								<CustomMenuItem disabled value={''}>Elegir orden</CustomMenuItem>
-								<CustomMenuItem value={'asc'}>Menor a Mayor</CustomMenuItem>
-								<CustomMenuItem value={'desc'}>Mayor a Menor</CustomMenuItem>
+								<CustomMenuItem disabled value={''}>{t('dogFilters.chooseOrder')}</CustomMenuItem>
+								<CustomMenuItem value={'asc'}>{t('dogFilters.lessToMore')}</CustomMenuItem>
+								<CustomMenuItem value={'desc'}>{t('dogFilters.moreToLess')}</CustomMenuItem>
 							</CustomSelect>
 						</ThemeProvider>
 					</div>
 
 					<div className={style.peso}>
 						<ThemeProvider theme={theme}>
-							<InputLabel id={'sort-weight-label'} sx={{color: '#999999'}} >Peso</InputLabel>
+							<InputLabel id={'sort-weight-label'} sx={{color: '#999999'}} >{t('dogFilters.weight')}</InputLabel>
 							<CustomSelect
 								labelId={'sort-weight-label'}
 								name={'weight'}
@@ -117,19 +121,19 @@ const DogFilters = (props) => {
 									getContentAnchorEl: null
 								}}
 							>
-								<CustomMenuItem disabled value={''}>Elegir orden</CustomMenuItem>
-								<CustomMenuItem value={'asc'}>Más liviano a más pesado</CustomMenuItem>
-								<CustomMenuItem value={'desc'}>Más pesado a más liviano</CustomMenuItem>
+								<CustomMenuItem disabled value={''}>{t('dogFilters.chooseOrder')}</CustomMenuItem>
+								<CustomMenuItem value={'asc'}>{t('dogFilters.thinToFat')}</CustomMenuItem>
+								<CustomMenuItem value={'desc'}>{t('dogFilters.fatToThin')}</CustomMenuItem>
 							</CustomSelect>
 						</ThemeProvider>
 					</div>
 				</div>
 				<Divider sx={{width: '100%', height: '2px', backgroundColor: '#666666'}} />
 				<div className={style.filtroContainer}>
-					<div className={style.filtro}>Filtrar por</div>
+					<div className={style.filtro}>{t('dogFilters.filterBy')}</div>
 					<div className={style.tamaño}>
 						<ThemeProvider theme={theme}>
-							<InputLabel id={'filter-size-label'} sx={{color: '#999999'}} >Tamaño</InputLabel>
+							<InputLabel id={'filter-size-label'} sx={{color: '#999999'}} >{t('dogFilters.size')}</InputLabel>
 							<CustomSelect
 								labelId={'filter-size-label'}
 								name={'size'}
@@ -149,12 +153,12 @@ const DogFilters = (props) => {
 									getContentAnchorEl: null
 								}}
 							>
-								<CustomMenuItem value={'All'}>Todos</CustomMenuItem>
-								<CustomMenuItem value={'Giant'}>Gigante</CustomMenuItem>
-								<CustomMenuItem value={'Large'}>Grande</CustomMenuItem>
-								<CustomMenuItem value={'Medium'}>Mediano</CustomMenuItem>
-								<CustomMenuItem value={'Small'}>Pequeño</CustomMenuItem>
-								<CustomMenuItem value={'Mini'}>Muy Pequeño</CustomMenuItem>
+								<CustomMenuItem value={'All'}>{t('dogFilters.all')}</CustomMenuItem>
+								<CustomMenuItem value={'Giant'}>{t('dogFilters.giant')}</CustomMenuItem>
+								<CustomMenuItem value={'Large'}>{t('dogFilters.large')}</CustomMenuItem>
+								<CustomMenuItem value={'Medium'}>{t('dogFilters.medium')}</CustomMenuItem>
+								<CustomMenuItem value={'Small'}>{t('dogFilters.small')}</CustomMenuItem>
+								<CustomMenuItem value={'Mini'}>M{t('dogFilters.mini')}</CustomMenuItem>
 							</CustomSelect>
 						</ThemeProvider>
 					</div>
@@ -181,7 +185,7 @@ const DogFilters = (props) => {
 									getContentAnchorEl: null
 								}}
 							>
-								<CustomMenuItem value={'All'}>Todos</CustomMenuItem>
+								<CustomMenuItem value={'All'}>{t('dogFilters.all')}</CustomMenuItem>
 								{props.colors.map(color => (
 									<CustomMenuItem key={color.id} value={color.name}>
 										{color.name}
@@ -193,7 +197,7 @@ const DogFilters = (props) => {
 
 					<div className={style.temperamento}>
 						<ThemeProvider theme={theme}>
-							<InputLabel id={'filter-temperament-label'} sx={{color: '#999999'}} >Temperamento</InputLabel>
+							<InputLabel id={'filter-temperament-label'} sx={{color: '#999999'}} >{t('dogFilters.temper')}</InputLabel>
 							<CustomSelect
 								labelId={'filter-temperament-label'}
 								name={'temperament'}
@@ -224,7 +228,7 @@ const DogFilters = (props) => {
 					</div>
 					<div className={style.gender}>
 						<ThemeProvider theme={theme}>
-							<InputLabel id={'filter-gender-label'} sx={{color: '#999999'}} >Género</InputLabel>
+							<InputLabel id={'filter-gender-label'} sx={{color: '#999999'}} >{t('dogFilters.gender')}</InputLabel>
 							<CustomSelect
 								labelId={'filter-gender-label'}
 								name={'gender'}
@@ -244,7 +248,7 @@ const DogFilters = (props) => {
 									getContentAnchorEl: null
 								}}
 							>
-								<CustomMenuItem value={'All'}>Todos</CustomMenuItem>
+								<CustomMenuItem value={'All'}>{t('dogFilters.all')}</CustomMenuItem>
 								{props.genders.map(gender => (
 									<CustomMenuItem key={gender.id} value={gender.name}>
 										{gender.name}
@@ -259,7 +263,7 @@ const DogFilters = (props) => {
 						className={style.btnProduct}
 						type={'button'}
 						onClick={handleRefresh}
-					>REINICIAR FILTROS</button>
+					>{t('dogFilters.reset')}</button>
 			</form>
 		</div>
 	);

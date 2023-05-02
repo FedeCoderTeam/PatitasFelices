@@ -228,7 +228,10 @@
 }
 
 .divOtros {
+	position: relative;
 	display: flex;
+	height: 400px;
+	width: 1250px;
 	justify-content: center;
 	align-items: center;
 	gap: 30px;
@@ -253,16 +256,34 @@
 	transform: scale(1.03);
 }
 
-.arrows {
+.arrowLeft {
+	position: absolute;
+	left: 0px;
 	color: #ffffff;
 	font-size: 30px;
 	cursor: pointer;
 	transition: ease-in-out 0.2s;
 	border-radius: 5px;
 	padding: 2px 10px 2px 10px;
+	background-color: rgba(0, 0, 0, 0.699);
+}
+.arrowLeft:hover {
+	color: #a65424;
 	background-color: rgba(0, 0, 0, 0.425);
 }
-.arrows:hover {
+
+.arrowRight {
+	position: absolute;
+	right: 0px;
+	color: #ffffff;
+	font-size: 30px;
+	cursor: pointer;
+	transition: ease-in-out 0.2s;
+	border-radius: 5px;
+	padding: 2px 10px 2px 10px;
+	background-color: rgba(0, 0, 0, 0.699);
+}
+.arrowRight:hover {
 	color: #a65424;
 	background-color: rgba(0, 0, 0, 0.425);
 }

@@ -7,6 +7,7 @@ import React, { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as dogsAction from '../../../_redux/actions/dogsAction';
 import style from './dogsGrid.module.css';
+import { Link } from 'react-router-dom';
 
 const DogsGrid = () => {
 	const allDogs = useSelector((state) => state.dogsReducer.allDogs);
@@ -109,6 +110,14 @@ const DogsGrid = () => {
 
 	return (
 		<>
+			<div className={style.containerBtnNav}>
+				<Link to="/dashboard/" style={{ textDecoration: 'none' }}>
+					<button className={style.btnBackHomeDash}>Home Dashboard</button>
+				</Link>
+				<Link to="/home" style={{ textDecoration: 'none' }}>
+					<button className={style.btnBackHome}>Home Principal</button>
+				</Link>
+			</div>
 			<button
 				className={style.buttonAdd}
 				onClick={() => {
