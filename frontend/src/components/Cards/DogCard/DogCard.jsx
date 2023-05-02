@@ -26,9 +26,6 @@ const DogCard = ({
 	id,
 	description,
 }) => {
-	let ageInYears =
-		age >= 12 ? Math.round(age / 12) + ' año/s' : age + ' mes/es';
-
 	const [open, setOpen] = React.useState(false);
 
 	const handleOpenDialog = () => {
@@ -63,21 +60,24 @@ const DogCard = ({
 							className={style.itemIcon} 
 							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/hueso_hiygob.png'} 
 							alt='bone' 
-						/>{gender}</h3>
+						/>{gender}
+						</h3>
 					</div>	
 					<div className={style.divData}>
 						<h3><img 
 							className={style.itemIcon} 
 							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/hueso_hiygob.png'} 
 							alt='bone' 
-						/>{size}</h3>
+						/>{size}
+						</h3>
 					</div>
 					<div className={style.divData}>
 						<h3><img 
 							className={style.itemIcon} 
 							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/hueso_hiygob.png'} 
 							alt='bone' 
-						/>{colors.join(' - ')}</h3>
+						/>{colors.join(' - ')}
+						</h3>
 					</div>
 					<div className={style.divData}>
 						<h3><img 
@@ -85,39 +85,10 @@ const DogCard = ({
 							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/hueso_hiygob.png'} 
 							alt='bone' 
 						/> 
-						{temperaments.join(' - ')}</h3>
+						{temperaments.join(' - ')}
+						</h3>
 					</div>
 				</div>
-				{/* <div className={style.containerButton}>
-					<button className={style.button} onClick={handleOpenDialog}>
-						Ver más información
-					</button>
-				</div> */}
-				{/* CONST dogInfo = [
-{
-Img: ‘https://……’,
-element: name 
-},
-{
-Img: ‘https://……’,
-element: gender 
-},
-{
-Img: ‘https://……’,
-element: temperaments 
-},
-{
-Img: ‘https://……’,
-element: colors 
-}
-]
-{dogInfo.map((object)=>
-<div>
-	<img src={object.img}/>
-	<h3>{object.element}</h3>
-</div>
-);
-} */}
 			</div>
 			<DialogDogsDetail
 				handleOpenDialog={handleOpenDialog}
@@ -125,7 +96,7 @@ element: colors
 				dog={{
 					image,
 					name,
-					ageInYears,
+					age,
 					gender,
 					size,
 					weight,
