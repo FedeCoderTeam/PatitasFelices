@@ -2,6 +2,7 @@ const { user, role, session } = require ('../../database/db')
 const { signToken } = require('../../utils/token');
 const { bcrypt, saltRounds} = require('../../utils/bcrypt');
 const { generatorPassword } = require('../../utils/generatorPassword')
+const { email_google } = require('../../utils/email');
 
 const googleUser = async (profile) => {
     const googleId = profile.id
@@ -55,6 +56,8 @@ const googleUser = async (profile) => {
         else await session.create({token: token, userId: newUser.id})
 
         const userinfo = await user.findOne({where: {id: newUser.id}, include: [{model: role}]})
+
+        await email_google({name: newUser.name, email: newUser.email})
 
         return {
             error: null,

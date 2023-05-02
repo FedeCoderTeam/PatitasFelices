@@ -250,7 +250,8 @@ export function AvatarComponent(props) {
 					<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 						<Avatar
 							alt={props.selector.user.name}
-							src={props.selector.user ? props.selector.user.image : ''}
+							src={props.selector.user.image}
+							imgProps={{ referrerPolicy: "no-referrer" }}
 						/>
 					</IconButton>
 				</Tooltip>
@@ -280,7 +281,7 @@ export function AvatarComponent(props) {
 						}}
 					>
 						<ListItemIcon>
-							<StarIcon fontSize="small" color="warning" textDecoration />
+							<StarIcon fontSize="small" color="warning" />
 						</ListItemIcon>
 						<Link to={'/myreviews'} className={style.myReviews}>
 							{t('nav.account.myComments')}
