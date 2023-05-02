@@ -18,6 +18,7 @@ const DogFilters = (props) => {
 
 	const handleRefresh = () => {
 		dispatch(setFilterAction('All', 'All', 'All', 'All'))
+		dispatch(setSortAction('asc', ''))
 		dispatch(filterAction());
 		dispatch(sortAction());
 		dispatch(setPageAction(1))
@@ -127,7 +128,7 @@ const DogFilters = (props) => {
 						</ThemeProvider>
 					</div>
 				</div>
-				<Divider sx={{width: '100%', backgroundColor: '#fff'}} />
+				<Divider sx={{width: '100%', height: '2px', backgroundColor: '#666666'}} />
 				<div className={style.filtroContainer}>
 					<div className={style.filtro}>{t('dogFilters.filterBy')}</div>
 					<div className={style.tamaño}>
@@ -171,7 +172,7 @@ const DogFilters = (props) => {
 								value={filterState.color}
 								onChange={handleFilter}
 								fullWidth
-								colorProps={filterState.color}
+								colorprops={filterState.color}
 								MenuProps={{
 									anchorOrigin: {
 										vertical: "top",

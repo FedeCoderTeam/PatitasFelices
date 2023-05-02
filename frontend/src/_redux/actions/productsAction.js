@@ -1,19 +1,20 @@
 import axios from 'axios';
 import {
+	setPage,
+	setSort,
+	setFilter,
+	sort,
+	filter,
 	getAllProducts,
 	getNameProduct,
 	getProductDetail,
-	setPages,
 	setEmptyDetail,
-	setFilters,
-	filtered,
-	sortProduct,
 	getSubCategories,
 	idSubCategories,
 	getByName,
 	set_name,
 	setOpen,
-	setItems,
+	setItems, getCategories,
 } from '../reducer/productsReducer.js';
 
 const getProducts = () => {
@@ -21,6 +22,7 @@ const getProducts = () => {
 		try {
 			let dbData = await axios.get('http://localhost:3001/products');
 			dispatch(getAllProducts(dbData.data));
+			dispatch(sort())
 		} catch (error) {
 			console.log(error);
 		}
@@ -99,9 +101,9 @@ const setName = (name) => {
 	};
 };
 
-const setPage = (page) => {
+const setPageAction = (page) => {
 	return (dispatch) => {
-		dispatch(setPages(page));
+		dispatch(setPage(page));
 	};
 };
 
@@ -111,21 +113,21 @@ const setDetail = () => {
 	};
 };
 
-const setFilter = (set) => {
+const setFilterAction = (category, subCategory) => {
 	return function (dispatch) {
-		dispatch(setFilters(set));
+		dispatch(setFilter({category, subCategory}));
 	};
 };
 
-const filter = () => {
+const filterAction = () => {
 	return function (dispatch) {
-		dispatch(filtered());
+		dispatch(filter());
 	};
 };
 
 const sortAction = () => {
 	return function (dispatch) {
-		dispatch(sortProduct());
+		dispatch(sort());
 	};
 };
 
@@ -142,15 +144,33 @@ const setItemsAction = () => {
 	};
 };
 
+const setSortAction = (price, name) => {
+	return function (dispatch) {
+		dispatch(setSort({price, name}))
+	}
+}
+
+const getCategoriesAction = () =>  {
+	return async function(dispatch) {
+		try {
+			let dbData = await axios.get('http://localhost:3001/categories');
+			dispatch(getCategories(dbData.data));
+		} catch (error) {
+			console.log(error);
+		}
+	}
+}
+
 export {
 	getProducts,
 	getProductsByName,
 	getProductsById,
-	setPage,
+	setPageAction,
 	setDetail,
-	setFilter,
-	filter,
+	setFilterAction,
+	filterAction,
 	sortAction,
+	setSortAction,
 	getAllsubCategory,
 	getIdSubCategory,
 	getName,
@@ -159,4 +179,5 @@ export {
 	updateProduct,
 	setOpenAction,
 	setItemsAction,
+	getCategoriesAction
 };

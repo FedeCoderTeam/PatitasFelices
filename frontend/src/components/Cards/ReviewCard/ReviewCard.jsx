@@ -15,43 +15,43 @@ const ReviewCard = ({ id, rating, comment, name, last, image }) => {
                         {
                             rating === 4 ? (
                                 <>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
-                                    <i class="fa-sharp fa-regular fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-regular fa-star"></i>
                                 </>
                             ) : (rating === 3 ? (
                                 <>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
-                                    <i class="fa-sharp fa-regular fa-star"></i>
-                                    <i class="fa-sharp fa-regular fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-regular fa-star"></i>
+                                    <i className="fa-sharp fa-regular fa-star"></i>
                                 </>
                             ) : (rating === 2 ? (
                                 <>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
-                                    <i class="fa-sharp fa-regular fa-star"></i>
-                                    <i class="fa-sharp fa-regular fa-star"></i>
-                                    <i class="fa-sharp fa-regular fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-regular fa-star"></i>
+                                    <i className="fa-sharp fa-regular fa-star"></i>
+                                    <i className="fa-sharp fa-regular fa-star"></i>
                                 </>
                             ) : (rating === 1 ? (
                                 <>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
-                                    <i class="fa-sharp fa-regular fa-star"></i>
-                                    <i class="fa-sharp fa-regular fa-star"></i>
-                                    <i class="fa-sharp fa-regular fa-star"></i>
-                                    <i class="fa-sharp fa-regular fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-regular fa-star"></i>
+                                    <i className="fa-sharp fa-regular fa-star"></i>
+                                    <i className="fa-sharp fa-regular fa-star"></i>
+                                    <i className="fa-sharp fa-regular fa-star"></i>
                                 </>
                             ) : (
                                 <>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
-                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
                                 </>
                             ))))
                         }
