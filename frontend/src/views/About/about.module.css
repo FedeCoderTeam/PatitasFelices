@@ -4,6 +4,10 @@
     margin-left: 100px;
 }
 
+.main{
+    background-image: linear-gradient(to right top, #834915, #805329, #7c5b3c, #776350, #726b64);
+}
+
 .title > h2 {
     text-align: center;
     font-family: 'Be Vietnam Pro', sans-serif;
@@ -31,4 +35,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: linear-gradient(to top, #8e6035, #b97e75, #d1a7b1, #e2d3e0, #ffffff);
 }
