@@ -27,8 +27,18 @@ const About = () => {
                 <div>
                     <img src={AboutImage} alt="AboutImage" />
                 </div>
-                    <p>{t('about.text')}
-                    </p>
+                <p>
+                <Typewriter 
+                    options={{
+                        autoStart: true,
+                        loop: false,
+                        delay:30,
+                        strings: [t('about.text')]
+                    }}
+                />
+                </p>
+                    {/* <p>{t('about.text')}
+                    </p> */}
                 </div>
             </div>
         </>
