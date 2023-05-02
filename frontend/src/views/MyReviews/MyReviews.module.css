@@ -61,14 +61,13 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 60px;
-    margin-top: 30px;
     width: 1600px;
 }
 
 .eachCard {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 15px;
 }
 
 .buttonsContainer {
