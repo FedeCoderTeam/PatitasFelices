@@ -13,7 +13,6 @@ const Reviews = () => {
 	const allReviews = useSelector((state) => state.reviewsReducer.reviews);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	console.log(allReviews);
 
 	useEffect(() => {
 		dispatch(reviewsAction.getReviews());
@@ -49,18 +48,18 @@ const Reviews = () => {
 	let StarCell = ({ value }) => {
 		let stars = [];
 		for (let i = 0; i < value; i++) {
-			stars.push(<Star key={i} sx={{ color: "#ffd700"}} />);
+			stars.push(<Star key={i} sx={{ color: '#ffd700' }} />);
 		}
-		return <div>{stars}</div>
-	}
+		return <div>{stars}</div>;
+	};
 
 	const columns = [
 		{ field: 'id', headerName: 'Id', width: 80 },
-		{ 
-			field: 'col1', 
-			headerName: 'Puntaje', 
-			width: 150, 
-			renderCell: (params) => <StarCell value={params.value} />, 
+		{
+			field: 'col1',
+			headerName: 'Puntaje',
+			width: 150,
+			renderCell: (params) => <StarCell value={params.value} />,
 		},
 		{ field: 'col2', headerName: 'Comentario', width: 250 },
 		{ field: 'col3', headerName: 'Nombre', width: 150 },

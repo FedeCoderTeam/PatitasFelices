@@ -95,20 +95,6 @@ router.put('/', async (req, res) => {
 			quantity,
 		);
 
-		console.log(
-			id,
-			name,
-			description,
-			price,
-			image,
-			brand,
-			stock,
-			isDisabled,
-			categoryId,
-			subCategoryId,
-			quantity,
-		);
-
 		if (updateProduct.error) throw new Error(updateProduct.error);
 
 		res.status(200).json(updateProduct);

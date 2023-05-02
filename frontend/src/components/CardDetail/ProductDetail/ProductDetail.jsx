@@ -12,7 +12,7 @@ import ProductCard from '../../Cards/ProductCard/ProductCard';
 import useToast from '../../../utils/hooks/useToast';
 import Swal from 'sweetalert2';
 import { Player } from '@lottiefiles/react-lottie-player';
-import ShoppingCart from '../../../utils/animations/ShoppingCart.json'
+import ShoppingCart from '../../../utils/animations/ShoppingCart.json';
 
 function ProductDetail() {
 	const { id } = useParams();
@@ -122,8 +122,10 @@ function ProductDetail() {
 								{productDetail.description}
 							</h2>
 							<p className={style.priceDetail}>
-								${productDetail.price}
-								<span className={style.priceSpan}>.00</span>
+								{Number(productDetail.price).toLocaleString('es-AR', {
+									style: 'currency',
+									currency: 'ARS',
+								})}
 							</p>
 							<p className={style.pDeatil}>
 								Stock:{' '}
@@ -163,28 +165,36 @@ function ProductDetail() {
 						</div>
 						<div className={style.divOtros}>
 							<div className={style.arrows}>
-									<i className="fa-solid fa-chevron-left" 
+								<i
+									className="fa-solid fa-chevron-left"
 									onClick={() =>
 										setCurrentIndex(
-											currentIndex > 0 ? (currentIndex - 1) % allProducts.length : currentIndex
+											currentIndex > 0
+												? (currentIndex - 1) % allProducts.length
+												: currentIndex,
 										)
-									}></i>
+									}
+								></i>
 							</div>
-							{allProducts.slice(currentIndex + 1, currentIndex + 4).map((product) => (
-								<ProductCard
-									key={product.id}
-									id={product.id}
-									name={product.name}
-									image={product.image}
-									brand={product.brand}
-									price={product.price}
-								/>
-							))}
+							{allProducts
+								.slice(currentIndex + 1, currentIndex + 4)
+								.map((product) => (
+									<ProductCard
+										key={product.id}
+										id={product.id}
+										name={product.name}
+										image={product.image}
+										brand={product.brand}
+										price={product.price}
+									/>
+								))}
 							<div className={style.arrows}>
-								<i className="fa-solid fa-chevron-right"
-								onClick={() =>
-									setCurrentIndex((currentIndex + 4) % allProducts.length)
-								}></i>
+								<i
+									className="fa-solid fa-chevron-right"
+									onClick={() =>
+										setCurrentIndex((currentIndex + 4) % allProducts.length)
+									}
+								></i>
 							</div>
 						</div>
 					</div>
