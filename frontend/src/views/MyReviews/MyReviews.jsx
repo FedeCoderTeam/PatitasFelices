@@ -31,21 +31,18 @@ const MyReviews = () => {
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Si, eliminar !',
 			cancelButtonText: 'No, cancelar',
-			}).then((result) => {
+			}).then( async (result) => {
 			if (result.isConfirmed) {
 				dispatch(reviewsAction.deleteReview(id))
-				Swal.fire(
+				await Swal.fire(
 				'Eliminado!',
 				'Tu comentario se ha borrado con éxito.',
 				'success',
 				)
+                dispatch(reviewsAction.getReviews())
 			}
 			})
 		}
-
-	useEffect(() => {
-		dispatch(reviewsAction.getReviews())
-	}, [dispatch, allReviews]);
 
     return (
         <>

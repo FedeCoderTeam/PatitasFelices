@@ -10,7 +10,6 @@ export const reviewsSlice = createSlice({
     reducers: {
         getAllReviews: (state, action) => {
             state.reviews = action.payload.reverse()
-            console.log(action.payload.reverse());
         },
         getDeleteReview: (state, action) => {
             state.reviews = state.reviews.filter(review => review.id !== action.payload)
