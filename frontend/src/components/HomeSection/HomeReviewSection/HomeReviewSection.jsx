@@ -26,7 +26,6 @@ const HomeReviewSection = () => {
 	const { t } = useTranslation();
 	const [showModal, setShowModal] = useState(false);
 	const allReviews = useSelector((state) => state.reviewsReducer.reviews);
-
 	const [currentIndex, setCurrentIndex] = useState(0);
 	
 
@@ -35,7 +34,7 @@ const HomeReviewSection = () => {
 		const timer = setTimeout(() => {
 			setCurrentIndex((currentIndex + 1) % allReviews.length);
 		}, 6000);
-
+		
 		return () => clearTimeout(timer);
 	}, [currentIndex, allReviews.length]);
 

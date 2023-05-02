@@ -1,7 +1,11 @@
 import style from './ReviewCard.module.css';
 import * as React from 'react';
+import { useLocation } from 'react-router-dom';
 
 const ReviewCard = ({ id, rating, comment, name, last, image, handleOpenReview, handleDeleteReview }) => {
+
+    const location = useLocation();
+    
 	return (
 		<>
 			<div className={style.reviewCard} key={id}>
@@ -60,10 +64,10 @@ const ReviewCard = ({ id, rating, comment, name, last, image, handleOpenReview, 
                     <div className={style.comentary}>
                         <h4>{comment}</h4>
                     </div>
-                    <div className={style.buttonsContainer}>
+                    {location.pathname !== '/myreviews' ? "" : <div className={style.buttonsContainer}>
                         <button onClick={handleOpenReview} className={style.editButton}><i className="fa-solid fa-pen"></i></button>
                         <button value={id} onClick={handleDeleteReview} className={style.deleteButton}><i className="fa-solid fa-trash"></i></button>
-                    </div>
+                    </div>}
                 </div>
             </div>
 		</>

@@ -38,16 +38,14 @@ const MyReviews = () => {
 				'Eliminado!',
 				'Tu comentario se ha borrado con éxito.',
 				'success',
-				).then(() => {
-					window.location.reload();
-				});
+				)
 			}
 			})
 		}
 
 	useEffect(() => {
-		dispatch(reviewsAction.deleteReview())
-	}, [dispatch]);
+		dispatch(reviewsAction.getReviews())
+	}, [dispatch, allReviews]);
 
     return (
         <>
