@@ -92,9 +92,21 @@ const Dogs = () => {
 									id={e.id}
 									image={e.image}
 									name={e.name}
-									age={e.age}
+									age={e.age < 12
+										? `${e.age} meses`
+										: e.age / 12 > 1
+										? `${e.age / 12} años`
+										: `${e.age / 12} año`}
 									gender={e.gender}
-									size={e.size}
+									size={e.size=== 'Giant'
+									? 'Gigante'
+									: e.size === 'Large'
+									? 'Grande'
+									: e.size === 'Medium'
+									? 'Mediano'
+									: e.size === 'Small'
+									? 'Pequeño'
+									: 'Mini'}
 									temperaments={e.temperaments}
 									description={e.description}
 									colors={e.colors}
