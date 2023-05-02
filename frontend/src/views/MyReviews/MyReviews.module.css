@@ -88,14 +88,3 @@
     cursor: pointer;
 }
 
-.deleteButton:hover {
-    color: #f2f2f2;
-    background-color: #ad313a;
-    transform: scale(1.03);
-}
-
-.editButton:hover {
-    color: #f2f2f2;
-    background-color: #16343f;
-    transform: scale(1.03);
-}
