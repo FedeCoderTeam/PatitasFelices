@@ -201,7 +201,7 @@ const Register = () => {
 
 						<div className={style.containerButtonRegister}>
 							<ThemeProvider theme={theme}>
-								<Button disabled={isFetching} fullWidth={true} type="submit" color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >{1('register.create')}</Button>
+								<Button disabled={isFetching} fullWidth={true} type="submit" color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >{t('register.create')}</Button>
 								{isFetching && (<CircularProgress size={24} sx={{
 									color: '#D9AD77',
 									position: 'absolute',
