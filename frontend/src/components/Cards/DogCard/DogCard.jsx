@@ -13,6 +13,7 @@ import { brown } from '@mui/material/colors';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setMaybeAdoptedDogs } from '../../../_redux/actions/dogsAction';
+import { useTranslation } from 'react-i18next';
 
 const DogCard = ({
 	image,
@@ -38,60 +39,86 @@ const DogCard = ({
 	return (
 		<>
 			<div className={style.containerCard}>
-				<div className={style.containerIcon}>
-					<img 
-						className={style.Icon} 
-						src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/perro_hjswvs.png'} 
-						alt="Icon-Donate" />
-				</div>
+				<a href='http://localhost:3000/donation'>
+					<div className={style.containerIcon}>
+						<img className={style.Icon} 
+							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/perro_hjswvs.png'} 
+							alt="Icon-Donate" 
+							title='Donar'
+						/>
+					</div>
+				</a>
 				<div className={style.pic}>
+					<h3 className={style.divDataName}>
+						{name}
+					</h3>
 					<div className={style.containerImg}>
-						<img src={image} alt="Dog-pic" />
+						<img src={image} 
+							alt="Dog-pic" 
+						/>
 					</div>
 				</div>
-				<div className={style.divDogInfo}>
+				<div className={style.divDogInfo} onClick={handleOpenDialog} title='Más Información'>
 					<div className={style.divData}>
-						<img 
+						<h3><img 
 							className={style.itemIcon} 
 							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/hueso_hiygob.png'} 
-							alt='image not found' 
-						/>
-						<h3 className={style.itemName}>{name}</h3>
-
-						<img 
+							alt='bone' 
+						/>{gender}</h3>
+					</div>	
+					<div className={style.divData}>
+						<h3><img 
 							className={style.itemIcon} 
 							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/hueso_hiygob.png'} 
-							alt='image not found' 
-						/>
-						<h3>{gender}</h3>
-
-						<img 
+							alt='bone' 
+						/>{size}</h3>
+					</div>
+					<div className={style.divData}>
+						<h3><img 
 							className={style.itemIcon} 
 							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/hueso_hiygob.png'} 
-							alt='image not found' 
-						/>
-						<h3>{size}</h3>
-
-						<img 
+							alt='bone' 
+						/>{colors.join(' - ')}</h3>
+					</div>
+					<div className={style.divData}>
+						<h3><img 
 							className={style.itemIcon} 
 							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/hueso_hiygob.png'} 
-							alt='image not found' 
-						/>
-						<h3>{colors.join(' - ')}</h3>
-
-						<img 
-							className={style.itemIcon} 
-							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/hueso_hiygob.png'} 
-							alt='image not found' 
-						/>
-						<h3>{temperaments.join(' - ')}</h3>
+							alt='bone' 
+						/> 
+						{temperaments.join(' - ')}</h3>
 					</div>
 				</div>
-				<div className={style.containerButton}>
+				{/* <div className={style.containerButton}>
 					<button className={style.button} onClick={handleOpenDialog}>
 						Ver más información
 					</button>
-				</div>
+				</div> */}
+				{/* CONST dogInfo = [
+{
+Img: ‘https://……’,
+element: name 
+},
+{
+Img: ‘https://……’,
+element: gender 
+},
+{
+Img: ‘https://……’,
+element: temperaments 
+},
+{
+Img: ‘https://……’,
+element: colors 
+}
+]
+{dogInfo.map((object)=>
+<div>
+	<img src={object.img}/>
+	<h3>{object.element}</h3>
+</div>
+);
+} */}
 			</div>
 			<DialogDogsDetail
 				handleOpenDialog={handleOpenDialog}
@@ -122,6 +149,8 @@ export function DialogDogsDetail(props) {
 		navigate('/form');
 	};
 	const navigate = useNavigate();
+	const { t } = useTranslation();
+
 
 	const innerTheme = createTheme({
 		palette: {
@@ -148,7 +177,7 @@ export function DialogDogsDetail(props) {
 					sx={{
 						'& .MuiDialog-container': {
 							'& .MuiPaper-root': {
-								borderRadius: '10px',
+								borderRadius: '5px',
 							},
 						},
 					}}
@@ -231,7 +260,7 @@ export function DialogDogsDetail(props) {
 							}}
 							autoFocus
 						>
-							¡Completa el formulario para adoptarlo!
+							{t('dogCard.toAdopt')}
 						</Button>
 					</DialogActions>
 				</Dialog>

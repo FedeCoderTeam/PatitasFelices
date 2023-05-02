@@ -1,5 +1,25 @@
 .main{
-    height: 80%;
+    height: 100%;
+}
+
+.btnProduct{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    width: 280px;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px 25px;
+    color: #ffff;
+    font-size: 15px;
+    border: 0;
+    border-radius: 5px;
+    background-color: rgba(70, 70, 70, 0.308);
+    font-weight: 400;
+    transition: transform 200ms linear, background-color 200ms linear, color 200ms linear;
+}
+
+.btnProduct:hover{
+    transform: scale(1.01);
+    background-color: rgba(70, 70, 70, 0.493);;
 }
 
 .formControl {
@@ -17,7 +37,6 @@
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     backdrop-filter: blur( 10px );
     -webkit-backdrop-filter: blur( 10px );
-    border-radius: 5px;
     color: #999999;
 }
 
@@ -26,7 +45,6 @@
     width: 100%;
     display: flex;
     align-items: center;
-    border-bottom: 2px solid #666666;
 }
 
 .ordenContainer {
@@ -36,43 +54,18 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    border-bottom: 2px solid #666666;
 }
 
 .filter{
     color: #f2f2f2;
 }
 
-/* .orden {
-    display: flex;
-    align-items: center;
-} */
-
 .divSelects {
     width: 100%;
-}
-.selects {
-    width: 100%;
-    border: none;
-    border-color: transparent;
-    border-radius: 5px;
-    outline: none;
-    height: 20px;
-    margin-top: 5px;
-    background-color: transparent;
-    color: #f2f2f2;
-    height: 30px;
-    cursor: pointer;
-    transition: background-color 200ms linear;
 }
 
 .selects:hover {
     background-color: rgba(70, 70, 70, 0.308);;
-}
-
-.options {
-    color: #f2f2f2;
-    background-color: rgba( 0, 0, 0, 0.8 );
 }
 
 .filtroContainer {
@@ -82,6 +75,11 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+}
+
+
+.focus {
+    box-shadow: 0 0 2px #ca925d;
 }
 
 /* .filtro {

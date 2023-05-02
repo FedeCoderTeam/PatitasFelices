@@ -1,16 +1,17 @@
 import axios from 'axios';
 import {
+	setPage,
+	setSort,
+	setFilter,
+	sort,
+	filter,
+	getAllDogs,
 	getAllTemperaments,
 	getAllDogsColors,
-	getAllDogs,
-	sortDogs,
 	getNameDog,
-	setFilters,
-	filtered,
 	getGenders,
 	getDogDetail,
 	setEmptyDetail,
-	setPages,
 	setMaybeAdoptedDog,
 	emptyMaybeAdoptedDog,
 } from '../reducer/dogsReducer.js';
@@ -20,6 +21,7 @@ const getDogs = () => {
 		try {
 			let dbData = await axios.get('http://localhost:3001/dogs');
 			dispatch(getAllDogs(dbData.data));
+			dispatch(sort())
 		} catch (error) {
 			console.log(error);
 		}
@@ -109,27 +111,22 @@ const getDogsColors = () => {
 
 const sortAction = () => {
 	return function (dispatch) {
-		dispatch(sortDogs());
+		dispatch(sort());
 	};
 };
 
-const setFilter = (set) => {
+const filterAction = () => {
 	return function (dispatch) {
-		dispatch(setFilters(set));
+		dispatch(filter());
 	};
 };
 
-const filter = () => {
-	return function (dispatch) {
-		dispatch(filtered());
-	};
-};
-
-const setPage = (page) => {
+const setPageAction = (page) => {
 	return (dispatch) => {
-		dispatch(setPages(page));
+		dispatch(setPage(page));
 	};
 };
+
 const setMaybeAdoptedDogs = (id) => {
 	return (dispatch) => {
 		dispatch(setMaybeAdoptedDog(id));
@@ -143,6 +140,18 @@ const emptyMaybeAdoptedDogs = () => {
 	};
 };
 
+const setSortAction = (age, weight) => {
+	return function (dispatch) {
+		dispatch(setSort({age, weight}))
+	}
+}
+
+const setFilterAction = (size, color, gender, temperament) => {
+	return function (dispatch) {
+		dispatch(setFilter({size, color, gender, temperament}))
+	}
+}
+
 
 export {
 	getDogs,
@@ -150,7 +159,6 @@ export {
 	getDogsColors,
 	sortAction,
 	getDogsByName,
-	setFilter,
 	genders,
 	filter,
 	getDogsById,
@@ -160,4 +168,8 @@ export {
 	emptyMaybeAdoptedDogs,
 	postDogs,
 	updateDogs,
+	setSortAction,
+	setFilterAction,
+	setPageAction,
+	filterAction
 };

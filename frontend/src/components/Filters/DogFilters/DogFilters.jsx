@@ -1,65 +1,63 @@
 import React from 'react';
-import SearchDog from '../../../components/SearchBar/SearchDog/SearchDog';
 import style from './DogFilters.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import * as dogsAction from '../../../_redux/actions/dogsAction';
+import { filterAction, setFilterAction, setPageAction, setSortAction, sortAction } from '../../../_redux/actions/dogsAction';
+import { createTheme, InputLabel, ThemeProvider } from '@mui/material';
+import { CustomMenuItem, CustomSelect } from './StyledDogFilters';
+import Divider from '@mui/material/Divider';
+import { useTranslation } from 'react-i18next';
+
 
 const DogFilters = (props) => {
 	const dispatch = useDispatch();
-	const setTemp = useSelector((state) => state.dogsReducer.setTemperaments);
-	const setColor = useSelector((state) => state.dogsReducer.setColor);
-	const setSize = useSelector((state) => state.dogsReducer.setSize);
-	const setGender = useSelector((state) => state.dogsReducer.setGender);
+	const { t } = useTranslation();
 
-	const handleOrder = (event, by) => {
-		dispatch(
-			dogsAction.setFilter({
-				sortOrder: event.target.value,
-				sortBy: by,
-			}),
-		);
-		dispatch(dogsAction.sortAction());
-	};
 
-	const handleColor = (event) => {
-		dispatch(
-			dogsAction.setFilter({
-				setColor: event.target.value,
-			}),
-		);
-		dispatch(dogsAction.filter());
-		dispatch(dogsAction.sortAction());
-	};
+	const sortState = useSelector(state => state.dogsReducer.sort)
+	const filterState = useSelector(state => state.dogsReducer.filter)
 
-	const handleTemperaments = (event) => {
-		dispatch(
-			dogsAction.setFilter({
-				setTemperaments: event.target.value,
-			}),
-		);
-		dispatch(dogsAction.filter());
-		dispatch(dogsAction.sortAction());
-	};
+	const handleRefresh = () => {
+		dispatch(setFilterAction('All', 'All', 'All', 'All'))
+		dispatch(setSortAction('asc', ''))
+		dispatch(filterAction());
+		dispatch(sortAction());
+		dispatch(setPageAction(1))
+	}
 
-	const handleSize = (event) => {
-		dispatch(
-			dogsAction.setFilter({
-				setSize: event.target.value,
-			}),
-		);
-		dispatch(dogsAction.filter());
-		dispatch(dogsAction.sortAction());
-	};
+	const handleSort = (event) => {
+		const { name, value } = event.target
+		if(name === 'age') {
+			dispatch(setSortAction(value, ''))
+		}
+		if(name === 'weight') {
+			dispatch(setSortAction('', value))
+		}
+		dispatch(sortAction())
+	}
 
-	const handleGender = (event) => {
-		dispatch(
-			dogsAction.setFilter({
-				setGender: event.target.value,
-			}),
-		);
-		dispatch(dogsAction.filter());
-		dispatch(dogsAction.sortAction());
-	};
+	const handleFilter = (event) => {
+		const { name, value } = event.target
+		if(name === 'size') {
+			dispatch(setFilterAction(value, null, null, null))
+		} else if(name === 'color') {
+			dispatch(setFilterAction(null, value, null, null))
+		} else if(name === 'gender') {
+			dispatch(setFilterAction(null, null, value, null))
+		} else if(name === 'temperament') {
+			dispatch(setFilterAction(null, null, null, value))
+		}
+		dispatch(filterAction());
+		dispatch(sortAction());
+		dispatch(setPageAction(1))
+	}
+
+	const theme = createTheme({
+		palette: {
+			primary: {
+				main: 'rgba(202,146,93,0.39)'
+			}
+		},
+	})
 
 	return (
 		<div className={style.main}>
@@ -69,129 +67,203 @@ const DogFilters = (props) => {
                 </div> */}
 
 				<div className={style.ordenContainer}>
-					<div className={style.orden}>Ordenar por</div>
+					<div className={style.orden}>{t('dogFilters.orderby')}</div>
 					<div className={style.edad}>
-						<div>Edad</div>
-						<select
-							defaultValue="1"
-							name=""
-							id=""
-							onChange={(event) => {
-								handleOrder(event, 'age');
-							}}
-						>
-							<option value="1" disabled={true}>
-								Elegir orden
-							</option>
-							<option value="asc">Menor a mayor</option>
-							<option value="desc">Mayor a menor</option>
-						</select>
+						<ThemeProvider theme={theme}>
+							<InputLabel id={'sort-age-label'} sx={{color: '#999999'}} >{t('dogFilters.age')}</InputLabel>
+							<CustomSelect
+								labelId={'sort-age-label'}
+								name={'age'}
+								value={sortState.age}
+								onChange={handleSort}
+								displayEmpty
+								fullWidth
+								age={sortState.age}
+								MenuProps={{
+									anchorOrigin: {
+										vertical: "top",
+										horizontal: "right"
+									},
+									transformOrigin: {
+										vertical: "top",
+										horizontal: "left"
+									},
+									getContentAnchorEl: null
+								}}
+							>
+								<CustomMenuItem disabled value={''}>{t('dogFilters.chooseOrder')}</CustomMenuItem>
+								<CustomMenuItem value={'asc'}>{t('dogFilters.lessToMore')}</CustomMenuItem>
+								<CustomMenuItem value={'desc'}>{t('dogFilters.moreToLess')}</CustomMenuItem>
+							</CustomSelect>
+						</ThemeProvider>
 					</div>
 
 					<div className={style.peso}>
-						<div>Peso</div>
-						<select
-							defaultValue="1"
-							name=""
-							id=""
-							onChange={(event) => {
-								handleOrder(event, 'weight');
-							}}
-						>
-							<option value="1" disabled={true}>
-								Elegir orden
-							</option>
-							<option value="asc">Más liviano a más pesado</option>
-							<option value="desc">Más pesado a más liviano</option>
-						</select>
+						<ThemeProvider theme={theme}>
+							<InputLabel id={'sort-weight-label'} sx={{color: '#999999'}} >{t('dogFilters.weight')}</InputLabel>
+							<CustomSelect
+								labelId={'sort-weight-label'}
+								name={'weight'}
+								value={sortState.weight}
+								onChange={handleSort}
+								displayEmpty
+								fullWidth
+								weight={sortState.weight}
+								MenuProps={{
+									anchorOrigin: {
+										vertical: "top",
+										horizontal: "right"
+									},
+									transformOrigin: {
+										vertical: "top",
+										horizontal: "left"
+									},
+									getContentAnchorEl: null
+								}}
+							>
+								<CustomMenuItem disabled value={''}>{t('dogFilters.chooseOrder')}</CustomMenuItem>
+								<CustomMenuItem value={'asc'}>{t('dogFilters.thinToFat')}</CustomMenuItem>
+								<CustomMenuItem value={'desc'}>{t('dogFilters.fatToThin')}</CustomMenuItem>
+							</CustomSelect>
+						</ThemeProvider>
 					</div>
 				</div>
-
+				<Divider sx={{width: '100%', height: '2px', backgroundColor: '#666666'}} />
 				<div className={style.filtroContainer}>
-					<div className={style.filtro}>Filtrar por</div>
+					<div className={style.filtro}>{t('dogFilters.filterBy')}</div>
 					<div className={style.tamaño}>
-						<div>Tamaño</div>
-						<select
-							name=""
-							id=""
-							value={setSize}
-							onChange={(event) => {
-								handleSize(event);
-							}}
-						>
-							<option value="All">Todos</option>
-							<option value="Giant">Gigante</option>
-							<option value="Large">Grande</option>
-							<option value="Medium">Mediano</option>
-							<option value="Small">Pequeño</option>
-							<option value="Mini">Muy Pequeño</option>
-						</select>
+						<ThemeProvider theme={theme}>
+							<InputLabel id={'filter-size-label'} sx={{color: '#999999'}} >{t('dogFilters.size')}</InputLabel>
+							<CustomSelect
+								labelId={'filter-size-label'}
+								name={'size'}
+								value={filterState.size}
+								onChange={handleFilter}
+								fullWidth
+								size={filterState.size}
+								MenuProps={{
+									anchorOrigin: {
+										vertical: "top",
+										horizontal: "right"
+									},
+									transformOrigin: {
+										vertical: "top",
+										horizontal: "left"
+									},
+									getContentAnchorEl: null
+								}}
+							>
+								<CustomMenuItem value={'All'}>{t('dogFilters.all')}</CustomMenuItem>
+								<CustomMenuItem value={'Giant'}>{t('dogFilters.giant')}</CustomMenuItem>
+								<CustomMenuItem value={'Large'}>{t('dogFilters.large')}</CustomMenuItem>
+								<CustomMenuItem value={'Medium'}>{t('dogFilters.medium')}</CustomMenuItem>
+								<CustomMenuItem value={'Small'}>{t('dogFilters.small')}</CustomMenuItem>
+								<CustomMenuItem value={'Mini'}>M{t('dogFilters.mini')}</CustomMenuItem>
+							</CustomSelect>
+						</ThemeProvider>
 					</div>
 
 					<div className={style.color}>
-						<div>Color</div>
-						<select
-							name=""
-							id=""
-							value={setColor}
-							onChange={(event) => {
-								handleColor(event);
-							}}
-						>
-							<option value="All">Todos</option>
-							{props.colors.map((name) => (
-								<option
-									key={name.id}
-									value={name.name}
-									// style={getStyles(name.id, color, theme)}
-								>
-									{name.name}
-								</option>
-							))}
-						</select>
+						<ThemeProvider theme={theme}>
+							<InputLabel id={'filter-color-label'} sx={{color: '#999999'}} >Color</InputLabel>
+							<CustomSelect
+								labelId={'filter-color-label'}
+								name={'color'}
+								value={filterState.color}
+								onChange={handleFilter}
+								fullWidth
+								colorprops={filterState.color}
+								MenuProps={{
+									anchorOrigin: {
+										vertical: "top",
+										horizontal: "right"
+									},
+									transformOrigin: {
+										vertical: "top",
+										horizontal: "left"
+									},
+									getContentAnchorEl: null
+								}}
+							>
+								<CustomMenuItem value={'All'}>{t('dogFilters.all')}</CustomMenuItem>
+								{props.colors.map(color => (
+									<CustomMenuItem key={color.id} value={color.name}>
+										{color.name}
+									</CustomMenuItem>
+								))}
+							</CustomSelect>
+						</ThemeProvider>
 					</div>
 
 					<div className={style.temperamento}>
-						<div>Temperamento</div>
-						<select
-							name=""
-							id=""
-							value={setTemp}
-							onChange={(event) => {
-								handleTemperaments(event);
-							}}
-						>
-							<option value="All">Todos</option>
-							{props.temperaments.map((name) => (
-								<option
-									key={name.id}
-									value={name.name}
-									// style={getStyles(name.id, temp, theme)}
-								>
-									{name.name}
-								</option>
-							))}
-						</select>
+						<ThemeProvider theme={theme}>
+							<InputLabel id={'filter-temperament-label'} sx={{color: '#999999'}} >{t('dogFilters.temper')}</InputLabel>
+							<CustomSelect
+								labelId={'filter-temperament-label'}
+								name={'temperament'}
+								value={filterState.temperament}
+								onChange={handleFilter}
+								fullWidth
+								temperament={filterState.temperament}
+								MenuProps={{
+									anchorOrigin: {
+										vertical: "top",
+										horizontal: "right"
+									},
+									transformOrigin: {
+										vertical: "top",
+										horizontal: "left"
+									},
+									getContentAnchorEl: null
+								}}
+							>
+								<CustomMenuItem value={'All'}>Todos</CustomMenuItem>
+								{props.temperaments.map(temp => (
+									<CustomMenuItem key={temp.id} value={temp.name}>
+										{temp.name}
+									</CustomMenuItem>
+								))}
+							</CustomSelect>
+						</ThemeProvider>
 					</div>
 					<div className={style.gender}>
-						<div>Género</div>
-						<select
-							name=""
-							id=""
-							value={setGender}
-							onChange={(event) => {
-								handleGender(event);
-							}}
-						>
-							<option value="All">Todos</option>
-							{props.gender.map((name) => (
-								<option key={name.id} value={name.name}>
-									{name.name}
-								</option>
-							))}
-						</select>
+						<ThemeProvider theme={theme}>
+							<InputLabel id={'filter-gender-label'} sx={{color: '#999999'}} >{t('dogFilters.gender')}</InputLabel>
+							<CustomSelect
+								labelId={'filter-gender-label'}
+								name={'gender'}
+								value={filterState.gender}
+								gender={filterState.gender}
+								onChange={handleFilter}
+								fullWidth
+								MenuProps={{
+									anchorOrigin: {
+										vertical: "top",
+										horizontal: "right"
+									},
+									transformOrigin: {
+										vertical: "top",
+										horizontal: "left"
+									},
+									getContentAnchorEl: null
+								}}
+							>
+								<CustomMenuItem value={'All'}>{t('dogFilters.all')}</CustomMenuItem>
+								{props.genders.map(gender => (
+									<CustomMenuItem key={gender.id} value={gender.name}>
+										{gender.name}
+									</CustomMenuItem>
+								))}
+							</CustomSelect>
+						</ThemeProvider>
 					</div>
 				</div>
+
+					<button
+						className={style.btnProduct}
+						type={'button'}
+						onClick={handleRefresh}
+					>{t('dogFilters.reset')}</button>
 			</form>
 		</div>
 	);

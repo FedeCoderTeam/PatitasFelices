@@ -33,7 +33,7 @@
     "header": {
       "about": "Un poco sobre",
       "us":"nosotros",
-      "description": "Patitas Felices es un refugio para perros que han sido abandonados o que han sufrido algún tipo de maltrato. Les proveemos de atención médica, alimento y un lugar mientras se busca un hogar permanente para cada uno de ellos.",
+      "description": "Patitas Felices es un refugio para perros que han sido abandonados o que han sufrido algún tipo de maltrato. Les proveemos atención médica, alimento y un lugar mientras se busca un hogar permanente para cada uno de ellos.",
       "discoverThem": "Conoce más"
     },
     "section": {
@@ -45,7 +45,7 @@
         "meetThemAll": "¡Conócelos a todos!"
       },
       "donation": {
-        "helpUsTo": "Ayudanos a",
+        "helpUsTo": "Ayúdanos a",
         "help": "ayudar",
         "text1": "Tu donación les proveerá de alimento, atención médica y un hogar temporal",
         "text2": "¡Incluso la ayuda más pequeña puede marcar la diferencia en sus vidas!",
@@ -56,7 +56,8 @@
         "products": "productos",
         "text1": "¿Sabías que puedes ayudar a los perritos sin hogar mientras compras artículos para tu mascota?",
         "text2": "Cada compra que realizas ayuda a los perritos sin hogar en nuestro refugio.",
-        "purchaseNow": "¡Comprar!"
+        "purchaseNow": "¡Comprar!",
+        "noProduct": "No hay ningún producto"
       },
       "review": {
         "yourOpinionMattersToUs": "Tu opinión nos importa,",
@@ -74,9 +75,149 @@
     "clearCart": "Limpiar carrito",
     "alert": {
       "addProduct": "Producto agregado al carrito",
-      "addProductWarning": "No podes agregar mas productos",
+      "addProductWarning": "No puedes agregar más productos",
       "removeProduct": "Producto eliminado correctamente",
-      "removeAllProduct": "Has eliminado a todos los productos del carrito correctamente"
+      "removeAllProduct": "Has eliminado todos los productos del carrito correctamente"
     }
+  },
+  "dogFilters": {
+    "orderby": "Ordenar por",
+    "age": "Edad",
+    "chooseOrder": "Elegir orden",
+    "lessToMore": "Menor a Mayor",
+    "moreToLess": "Mayor a Menor",
+    "weight": "Peso",
+    "thinToFat": "Más liviano a más pesado",
+    "fatToThin": "Más pesado a más liviano",
+    "filterBy": "Filtrar por",
+    "size": "Tamaño",
+    "all": "Todos",
+    "giant": "Gigante",
+    "large": "Grande",
+    "medium": "Mediano",
+    "small": "Pequeño",
+    "mini": "Muy pequeño",
+    "temper": "Temperamento",
+    "gender": "Género",
+    "reset": "REINICIAR FILTROS"
+  },
+  "prodFilters": {
+    "price": "Precio",
+    "choose": "Elegir",
+    "cheap": "Menor Precio",
+    "expens": "Mayor Precio",
+    "name": "Nombre",
+    "category": "Categoría",
+    "food": "Alimentos",
+    "accessory": "Accesorios",
+    "subcateg": "Subcategoría"
+  },
+  "productDetail": {
+    "fireTitle": "Inicia sesión para agregar productos al carrito",
+    "fireHtml1": "Por favor inicia sesión en tu cuenta o regístrate para agregar productos al carrito. Haz clic aquí para ",
+    "fireHtml2": "<a href='/login'>iniciar sesión</a>",
+    "fireHtml3": " o ",
+    "fireHtml4": "<a href='/register'>registrarte</a>",
+    "fireHtml5": "¡Gracias por elegirnos!",
+    "toastWarn": "No puedes agregar mas productos",
+    "toastSuccess": "Producto agregado al carrito",
+    "quant": "Cantidad:",
+    "addCart": "AÑADIR AL CARRITO",
+    "alsoInter": "También te puede interesar"
+  },
+  "dogCard": {
+    "toAdopt": "¡Completa el formulario para adoptarlo!"
+  },
+  "cloudWidg": {
+    "attach": "Adjuntar imagen"
+  },
+  "cloudWidgFull": {
+    "attachSuccess": "Imagen subida con éxito"
+  },
+  "yupAdop": {
+    "val1": "El nombre debe tener mínimo 4 caracteres. *",
+    "val2": "Solo letras de la 'A' a la 'Z' *",
+    "val3": "El nombre es obligatorio",
+    "val4": "La edad tiene que ser mayor a 18 años. *",
+    "val5": "La edad es obligatoria.",
+    "val6": "Ingresa un número válido.",
+    "val7": "El número de celular es de caracter obligatorio.",
+    "val8": "La dirección es obligatoria.",
+    "val9": "Ingresa un email válido.",
+    "val10": "El email es obligatorio.",
+    "val11": "Selecciona una opción.",
+    "val12": "Elige una opción.",
+    "val13": "Inserta una imagen válida."
+  },
+  "adopForm": {
+    "nodetail": "No hay detalles",
+    "sent": "Solicitud de adopción enviada: ",
+    "title": "Formulario de Adopción de ",
+    "name": "Nombre completo de la/el adoptante",
+    "age": "Edad",
+    "phone": "Teléfono",
+    "address": "Dirección",
+    "quest1": "¿Tienes otros animales? Si la respuesta es sí, ¿cuántos y de qué tipo?",
+    "yes": "Si",
+    "no": "No",
+    "placeholder": "EJ: 2 gatos, 1 perro.",
+    "quest2": "¿Tienes los medios económicos para sustentar los gastos económicos de tu mascota?",
+    "quest3": "¿Consultaste en tu edificio, consorcio o propietario, si están de acuerdo con la adopción?",
+    "quest4": "Foto de tu patio/balcón/espacio al aire libre",
+    "quest5": "¿Cómo se encuentra el estado de tu patio/balcón?",
+    "excellent": "Excelente",
+    "good": "Bueno",
+    "bad": "Malo",
+    "n/a": "No aplica",
+    "send": "ENVIAR",
+    "ready": "Aun no sé si estoy listo/a, regresar a"
+  },
+  "HomeReview": {
+    "comment": "Comentario",
+    "rating": "Puntuación",
+    "send": "Enviar reseña"
+  },
+  "login": {
+    "enter": "Ingresar",
+    "forget": "¿Olvidaste tu contraseña?",
+    "enter2": "Ingresar con ",
+    "quest1": "¿No tienes cuenta?",
+    "signup": "Regístrate"
+  },
+  "navi": {
+    "sp": "Español",
+    "en": "Inglés"
+  },
+  "e404": {
+    "lost": "¿Estás perdido?",
+    "home": "Vamos a casa"
+  },
+  "register": {
+    "create": "Crear cuenta",
+    "regis": "Registrarse con ",
+    "haveOne": "¿Ya tienes una cuenta? "
+  },
+  "about": {
+    "writer": "¡Nuestro equipo de Patitas Felices!",
+    "text": "Patitas Felices nació hace muchos años por la buena predisposición de una mujer en la ciudad de Córdoba, Argentina. Nuestra heroína se llama Karina. Ella rescataba a los perros de la calle que encontraba en su barrio: los alimentaba, curaba sus heridas y una vez que se encontraban sanos y fuertes, los daba en adopción responsable. En marzo de 2020, al decretarse la cuarentena obligatoria a causa de la pandemia por el COVID-19, un vecino de Karina quedó varado lejos de su casa. Como ella vivía muy cerca, pasados unos días del inicio de la cuarentena, él le pidió si podía ir a ver a sus dos perras. Cuando Karina llegó a la casa, la situación de las perras era terrible. Estaban tristes, solas y hambrientas. Ese día nació el refugio. Karina se comprometió a cuidar a estas dos perras a cambio de llevar otro perrito callejero a ese lugar. En su casa no cabía otro perro. Así, ella y el dueño de la casa aunaron fuerzas. Las vecinas se enternecieron y también empezaron a ayudar. En agosto del 2021, Patitas Felices contaba con seis voluntarios. Hoy en día, el refugio cuenta con 18 voluntarios, dos turnos por día, tres integrantes por turno y funciona de lunes a lunes. Estas 18 personas hacen la vida de los perritos mejor: limpian el lugar, cortan el pasto, tienden sus camitas, lavan sus sábanas, los alimentan, los medican cuando lo necesitan, los llevan al veterinario a sus controles rutinarios, los castran y los sacan a pasear 2 veces por día. Les dan amor, les hacen cariños, les quitan sus miedosy los hacen volver a confiar en los seres humanos hasta que cada uno de ellos consiga su nueva familia."
+  },
+  "dogs": {
+    "noDogs": "No hay ningún perro con estas características."
+  },
+  "donation": {
+    "text": "Patitas Felices es una organización sin fines de lucro que se financia y mantiene gracias al trabajo incansable de nuestros voluntarios, la venta de productos para perros y las donaciones que recibimos de la comunidad. Todo tipo de ayuda es de vital importancia para que el refugio perdure en el tiempo. Te invitamos a que colabores con nuestra causa de la manera en que puedas hacerlo.",
+    "mp": "Ayuda donando con Mercado Pago",
+    "placeholder": "Ingresa tu monto aquí",
+    "other": "¿Te interesa contribuír de otra manera?",
+    "talk": "¡Charlemos!"
+  },
+  "dalai": {
+    "text": "Casi todas las cosas buenas que suceden en el mundo, nacen de una actitud de aprecio a los demás."
+  },
+  "reviews": {
+    "comment": "Aun no has hecho ningún comentario.",
+    "noDoubt": "¡No dudes en hacerlo!",
+    "send": "¡Comentar!"
   }
+  
 }

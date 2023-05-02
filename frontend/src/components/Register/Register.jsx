@@ -8,9 +8,13 @@ import { registerUserAction, googleUserAction, setShowOverlayAction } from '../.
 import Swal from 'sweetalert2';
 import {useFormik} from 'formik';
 import {Button, CircularProgress, createTheme, TextField, ThemeProvider} from '@mui/material';
+import { useTranslation } from 'react-i18next';
+
 
 const Register = () => {
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
+	const { t } = useTranslation();
+
 	const isFetching = useSelector(state => state.authReducer.isFetching)
 	const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated)
 	const navigate = useNavigate()
@@ -125,7 +129,7 @@ const Register = () => {
 		<div className={style.mainContainerRegister} data-aos="fade-left">
 			<div className={style.formRegister}>
 				<div className={style.title}>
-					<h1>Registrarse</h1>
+					<h1>{t('nav.signUp')}</h1>
 				</div>
 
 				<div className={style.containerInputsRegister}>
@@ -197,7 +201,7 @@ const Register = () => {
 
 						<div className={style.containerButtonRegister}>
 							<ThemeProvider theme={theme}>
-								<Button disabled={isFetching} fullWidth={true} type="submit" color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >Crear cuenta</Button>
+								<Button disabled={isFetching} fullWidth={true} type="submit" color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >{t('register.create')}</Button>
 								{isFetching && (<CircularProgress size={24} sx={{
 									color: '#D9AD77',
 									position: 'absolute',
@@ -213,13 +217,13 @@ const Register = () => {
 
 				<div className={style.containerGoogleRegister} onClick={() => handleOnGoogle()}>
 					<p>
-						Registrarse con <img src={Google} alt="Google" />
+						{t('register.regis')}<img src={Google} alt="Google" />
 					</p>
 				</div>
 
 				<div className={style.siCuenta}>
-					<p>¿Ya tienes una cuenta? </p>
-					<Link to="/login">Ingresa</Link>
+					<p>{t('register.haveOne')}</p>
+					<Link to="/login">{t('login.enter')}</Link>
 				</div>
 
 				<div>

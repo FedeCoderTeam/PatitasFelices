@@ -47,8 +47,8 @@
       "donation": {
         "helpUsTo": "Help us",
         "help": "helping",
-        "text1": "Your donation will betrageted to their food, medical care and temporary home",
-        "text2": "Even the tiniest peace of help can make a difference in their lives!",
+        "text1": "Your donation will be trageted to their food, medical care and temporary home",
+        "text2": "Even the tiniest piece of help can make a difference in their lives!",
         "donate": "Donate"
       },
       "product": {
@@ -56,7 +56,8 @@
         "products": "products",
         "text1": "Did you know that here you can help homeless puppies by shopping items for your own pets?",
         "text2": "Every purchase helps homeless puppies living at our shelter.",
-        "purchaseNow": "Purchase"
+        "purchaseNow": "Purchase",
+        "noProduct": "There aren´t products"
       },
       "review": {
         "yourOpinionMattersToUs": "Your opinion matters. Please",
@@ -78,5 +79,144 @@
       "removeProduct": "Product successfully removed",
       "removeAllProduct": "You have successfully removed all products from the cart"
     }
+  },
+  "dogFilters": {
+    "orderby": "Order by",
+    "age": "Age",
+    "chooseOrder": "Choose ordering",
+    "lessToMore": "Younger to older",
+    "moreToLess": "Older to younger",
+    "weight": "Weight",
+    "thinToFat": "Lighter to heavier",
+    "fatToThin": "Heavier to lighter",
+    "filterBy": "Filter by",
+    "size": "Size",
+    "all": "All",
+    "giant": "Giant",
+    "large": "Large",
+    "medium": "Medium",
+    "small": "Small",
+    "mini": "Mini",
+    "temper": "Temperaments",
+    "gender": "Gender",
+    "reset": "RESET FILTERS"
+  },
+  "prodFilters": {
+    "price": "Price",
+    "choose": "Choose",
+    "cheap": "Cheaper",
+    "expens": "Expensive",
+    "name": "Name",
+    "category": "Category",
+    "food": "Food",
+    "accessory": "Accessories",
+    "subcateg": "Subcategory"
+  },
+  "productDetail": {
+    "fireTitle": "Please, sign in to add products in your cart.",
+    "fireHtml1": "Please, sign in or create an account to add products in your cart. Click here to ",
+    "fireHtml2": "<a href='/login'>sign in</a>",
+    "fireHtml3": " or ",
+    "fireHtml4": "<a href='/register'>create an account.</a>",
+    "fireHtml5": " Thanks for choosing us!",
+    "toastWarn": "You can`t add more products.",
+    "toastSuccess": "Product added",
+    "quant": "Quantity:",
+    "addCart": "ADD TO CART",
+    "alsoInter": "Likely related interests"
+  },
+  "dogCard": {
+    "toAdopt": "Fill in the form to apply for adoption!"
+  },
+  "cloudWidg": {
+    "attach": "Attach image"
+  },
+  "cloudWidgFull": {
+    "attachSuccess": "Successfully attached image"
+  },
+  "yupAdop": {
+    "val1": "Name must have at least 4 characters. *",
+    "val2": "Only letters from 'A' to 'Z' *",
+    "val3": "Name is compulsory",
+    "val4": "Age must be 18 or more *",
+    "val5": "Age is compulsory.",
+    "val6": "Enter a valid number.",
+    "val7": "Phone number is compulsory.",
+    "val8": "Address is compulsory.",
+    "val9": "Enter a valid email address.",
+    "val10": "Email address is compulsory.",
+    "val11": "Choose an option.",
+    "val12": "Select an option.",
+    "val13": "Choose a valid image."
+  },
+  "adopForm": {
+    "nodetail": "Without details",
+    "sent": "Adoption request sent for: ",
+    "title": "Adoption form for ",
+    "name": "Interested party full name",
+    "age": "Age",
+    "phone": "Phone number",
+    "address": "Address",
+    "quest1": "Do you have other animals? If you do have, how many and what type are they?",
+    "yes": "Yes",
+    "no": "No",
+    "placeholder": "For example: 2 cats and 1 dog.",
+    "quest2": "Can you afford having a/another pet?",
+    "quest3": "Did you check whether you can take the dog to the place you live in?",
+    "quest4": "Picture of your backyard/balcony/outdoor space",
+    "quest5": "Are these areas in proper conditions? Choose one",
+    "excellent": "Excellent",
+    "good": "Good",
+    "bad": "Bad",
+    "n/a": "N/A",
+    "send": "SEND",
+    "ready": "I don`t know if I`m ready to go back "
+  },
+  "HomeReview": {
+    "comment": "Comment",
+    "rating": "Rating",
+    "send": "Send comment"
+  },
+  "login": {
+    "enter": "Sign in",
+    "forget": "Did you forget your password?",
+    "enter2": "Log in with ",
+    "quest1": "Are you new here?",
+    "signup": "Sign up"
+  },
+  "navi": {
+    "sp": "Spanish",
+    "en": "English"
+  },
+  "e404": {
+    "lost": "Are you lost?",
+    "home": "Let`s go home."
+  },
+  "register": {
+    "create": "Create an account",
+    "regis": "Register with ",
+    "haveOne": "Do you already have an account? "
+  },
+  "about": {
+    "writer": "Our Happy Paws team!",
+    "text": "Happy Paws was born many years ago due to the good predisposition of a woman in the city of Cordoba, Argentina. Our heroine is named Karina. She used to rescue stray dogs she found in her neighborhood: she fed them, treated their wounds and once they were healthy and strong, she gave them for responsible adoption. In March 2020, due to the mandatory quarantine caused by the COVID-19 pandemic, a neighbor of Karina was stranded far from his home. As she lived nearby, a few days after the start of quarantine, he asked her if she could go to see his two female dogs. When Karina arrived at the house, the situation of the dogs was terrible. They were sad, alone and hungry. That day the shelter was born. Karina agreed to take care of these two dogs in exchange for bringing another stray dog to that place. There was no room for another dog in her house. So, she and the owner of the house joined forces. Her neighbors were touched and also started to help. In August 2021, Happy Paws had six volunteers. Today, the shelter has 18 volunteers, two shifts per day, three members per shift and operates from Monday to Monday. These 18 people make dogs' lives better: they clean the place, cut the grass, make their beds, wash their sheets, feed them, medicate them when needed, take them to the vet for their routine checkups, neuter them and take them for walks twice a day. They give them love, show them affection, take away their fears and make them trust humans again until each of them finds their new family."
+  },
+  "dogs": {
+    "noDogs": "There are no dogs with these features."
+  },
+  "donation": {
+    "text": "Happy Paws is a non-profit organization that is financed and maintained thanks to the tireless work of our volunteers, the sale of products for dogs, and donations we receive from the community. All types of help are vital to ensure the shelter endures over time. We invite you to collaborate with our cause in any way you can.",
+    "mp": "Help with Mercado Pago",
+    "placeholder": "Type the amount here",
+    "other": "Would you like helping in any other way?",
+    "talk": "Let`s talk!"
+  },
+  "dalai": {
+    "text": "The vast majority of the good things that happen in the world stem from an attitude of appreciation towards others."
+  },
+  "reviews": {
+    "comment": "You haven`t made any comment yet.",
+    "noDoubt": "Let`s do it!",
+    "send": "Comment"
   }
 }

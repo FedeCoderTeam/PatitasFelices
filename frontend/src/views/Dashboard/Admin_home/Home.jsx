@@ -5,7 +5,7 @@ import style from './homeDash.module.css';
 const Home = () => {
 	return (
 		<>
-			<h1 style={{ display: 'flex', justifyContent: 'center' }}>Admin home </h1>
+			{/* <h1 style={{ display: 'flex', justifyContent: 'center' }}>Admin home </h1> */}
 
 			<div className={style.containerBtnNav}>
 				<Link to="/dashboard/" style={{ textDecoration: 'none' }}>

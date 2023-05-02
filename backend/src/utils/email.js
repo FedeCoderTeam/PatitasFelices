@@ -84,6 +84,31 @@ const email_reset_password = async (user, token, lang = 'es') => {
 	});
 };
 
+const email_google = async (user, lang = 'es') => {
+	const subject_en = `Welcome to our Happy Paws Community!`;
+	const subject_es = `Bienvenido a nuestra comunidad de Patitas Felices!`;
+
+	const replacements = {
+		username: user.name
+	};
+
+	const html_en = await readHTMLFile(
+		__dirname + '/template/email_google_en.html',
+		replacements,
+	);
+	const html_es = await readHTMLFile(
+		__dirname + '/template/email_google_es.html',
+		replacements,
+	);
+
+	await transporter.sendMail({
+		from: '"Patitas Felices" <noreply@patitasfelices.com>',
+		to: `${user.email}`,
+		subject: lang === 'es' ? subject_es : subject_en,
+		html: lang === 'es' ? html_es : html_en,
+	});
+}
+
 // const email_successful_purchase = async (user, lang = 'es') => {
 // 	const subject_en = ``;
 // 	const subject_es = ``;
@@ -100,4 +125,5 @@ module.exports = {
 	event_request_dogs_mail,
 	email_account_verification,
 	email_reset_password,
+	email_google
 };

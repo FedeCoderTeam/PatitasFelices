@@ -23,6 +23,7 @@ import StarIcon from '@mui/icons-material/Star';
 import { red } from '@mui/material/colors';
 import { grey } from '@mui/material/colors';
 
+
 export default function Nav() {
 	const location = useLocation();
 
@@ -131,7 +132,7 @@ export default function Nav() {
 					}`}
 				>
 					<div className={style.divNav}>
-						<i class="fa-solid fa-heart-circle-plus"></i>
+						<i className="fa-solid fa-heart-circle-plus"></i>
 						<p className={style.links}>{t('nav.links.donate')}</p>
 					</div>
 				</NavLink>
@@ -186,7 +187,7 @@ export default function Nav() {
 									handleLangChange('es');
 								}}
 							>
-								{getFlag('es')} Español
+								{getFlag('es')} {t('navi.sp')}
 							</MenuItem>
 							<MenuItem
 								selected={i18n.language === 'en'}
@@ -195,7 +196,7 @@ export default function Nav() {
 									handleLangChange('en');
 								}}
 							>
-								{getFlag('en')} English
+								{getFlag('en')} {t('navi.en')}
 							</MenuItem>
 						</Menu>
 					</div>
@@ -250,6 +251,7 @@ export function AvatarComponent(props) {
 						<Avatar
 							alt={props.selector.user.name}
 							src={props.selector.user.image}
+							imgProps={{ referrerPolicy: "no-referrer" }}
 						/>
 					</IconButton>
 				</Tooltip>
@@ -279,7 +281,7 @@ export function AvatarComponent(props) {
 						}}
 					>
 						<ListItemIcon>
-							<StarIcon fontSize="small" color="warning" textDecoration />
+							<StarIcon fontSize="small" color="warning" />
 						</ListItemIcon>
 						<Link to={'/myreviews'} className={style.myReviews}>
 							{t('nav.account.myComments')}

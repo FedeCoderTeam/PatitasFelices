@@ -6,13 +6,16 @@ import DogFilters from '../../components/Filters/DogFilters/DogFilters.jsx';
 import DogCard from '../../components/Cards/DogCard/DogCard.jsx';
 import PaginatedDogs from '../../components/Paginated/PaginatedDogs/PaginatedDogs.jsx';
 import style from './dogs.module.css';
+import { useTranslation } from 'react-i18next';
+
 
 const Dogs = () => {
 	const dispatch = useDispatch();
+	const { t } = useTranslation();
 	const allDogs = useSelector((state) => state.dogsReducer.dogs);
 	const temperaments = useSelector((state) => state.dogsReducer.temperaments);
 	const colors = useSelector((state) => state.dogsReducer.colors);
-	const gender = useSelector((state) => state.dogsReducer.genders);
+	const genders = useSelector((state) => state.dogsReducer.genders);
 	let currentPage = useSelector((state) => state.dogsReducer.currentPage);
 
 	//----------------------------------------PAGINADO---------------------------------------------------------------
@@ -56,7 +59,7 @@ const Dogs = () => {
 						allDogs={allDogs}
 						temperaments={temperaments}
 						colors={colors}
-						gender={gender}
+						genders={genders}
 					/>
 				</div>
 			</div>
@@ -77,7 +80,7 @@ const Dogs = () => {
 
 				{!currentDogs.length ? (
 					<div className={style.noDogs}>
-						<h2>No hay ningún perro con estas características.</h2>
+						<h2>{t('dogs.noDogs')}</h2>
 						<div><iframe src="https://giphy.com/embed/kC21HpDLCD7ASL8MsC" width="100%" height="100%" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
 					</div>
 				) : (

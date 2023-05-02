@@ -11,18 +11,19 @@ import style from './productDetail.module.css';
 import ProductCard from '../../Cards/ProductCard/ProductCard';
 import useToast from '../../../utils/hooks/useToast';
 import Swal from 'sweetalert2';
-import { Player } from '@lottiefiles/react-lottie-player';
-import ShoppingCart from '../../../utils/animations/ShoppingCart.json';
+import { useTranslation } from 'react-i18next';
+// import { Player } from '@lottiefiles/react-lottie-player';
+// import ShoppingCart from '../../../utils/animations/ShoppingCart.json'
 
 function ProductDetail() {
 	const { id } = useParams();
+	const { t } = useTranslation();
 	const dispatch = useDispatch();
 	const isAuthenticated = useSelector(
 		(state) => state.authReducer.isAuthenticated,
 	);
 
 	const [count, setCount] = useState(0);
-	const [randomProducts, setRandomProducts] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const toast = useToast();
@@ -45,6 +46,8 @@ function ProductDetail() {
 
 	const allProducts = useSelector((state) => state.productsReducer.products);
 
+	const allProductNoId = allProducts.filter((product) => product.id !== productDetail.id);
+
 	useEffect(() => {
 		setTimeout(() => {
 			setIsLoading(false);
@@ -58,8 +61,8 @@ function ProductDetail() {
 	const addProduct = (quantity) => {
 		if (!isAuthenticated) {
 			Swal.fire({
-				title: 'Inicia sesión para agregar productos al carrito',
-				html: `Por favor inicia sesión en tu cuenta o regístrate para agregar productos al carrito. Haz clic aquí para <a href='/login'>iniciar sesión</a> o <a href='/register'>registrarte</a>. ¡Gracias por elegirnos!`,
+				title: t('productDetail.fireTitle'),
+				html: t('productDetail.fireHtml1')+ t('productDetail.fireHtml2') + t('productDetail.fireHtml3') + t('productDetail.fireHtml4') + t('productDetail.fireHtml5'),
 				timer: 10000,
 				icon: 'info',
 			});
@@ -78,7 +81,7 @@ function ProductDetail() {
 			if (qtyAdd > 0) {
 				productExist.quantity += qtyAdd;
 			} else {
-				toast.warning('No podes agregar mas productos', { duration: 2000 });
+				toast.warning(t('productDetail.toastWarn'), { duration: 2000 });
 			}
 		} else {
 			products.push({
@@ -92,7 +95,7 @@ function ProductDetail() {
 		localStorage.setItem('products', productUpdated);
 		setCount(0);
 		dispatch(setItemsAction());
-		toast.success('Producto agregado al carrito', { duration: 4000 });
+		toast.success(t('productDetail.toastSuccess'), { duration: 4000 });
 	};
 
 	return (
@@ -132,7 +135,7 @@ function ProductDetail() {
 								<span className={style.spanDetail}>{productDetail.stock}</span>
 							</p>
 							<div className={style.divCantidad}>
-								<p className={style.pDeatil}>Cantidad: </p>
+								<p className={style.pDeatil}>{t('productDetail.quant')}</p>
 								<button
 									className={style.btnRestaSuma}
 									onClick={handleClickResta}
@@ -153,48 +156,37 @@ function ProductDetail() {
 								className={style.btnCarritoDetail}
 								onClick={() => addProduct(count)}
 							>
-								AÑADIR AL CARRITO
+								{t('productDetail.addCart')}
 							</button>
 						</div>
 					</div>
 					<div className={style.containerOtros}>
 						<div className={style.divTitleMasProductos}>
 							<h2 className={style.titleMasProductos}>
-								También te pueden interesar
+								{t('productDetail.alsoInter')}
 							</h2>
 						</div>
 						<div className={style.divOtros}>
-							<div className={style.arrows}>
-								<i
-									className="fa-solid fa-chevron-left"
-									onClick={() =>
-										setCurrentIndex(
-											currentIndex > 0
-												? (currentIndex - 1) % allProducts.length
-												: currentIndex,
-										)
-									}
-								></i>
+
+							<div onClick={() =>
+										setCurrentIndex(currentIndex > 0 && currentIndex - 1)
+									} className={style.arrowLeft}>
+									<i className="fa-solid fa-chevron-left" ></i>
 							</div>
-							{allProducts
-								.slice(currentIndex + 1, currentIndex + 4)
-								.map((product) => (
-									<ProductCard
-										key={product.id}
-										id={product.id}
-										name={product.name}
-										image={product.image}
-										brand={product.brand}
-										price={product.price}
-									/>
-								))}
-							<div className={style.arrows}>
-								<i
-									className="fa-solid fa-chevron-right"
-									onClick={() =>
-										setCurrentIndex((currentIndex + 4) % allProducts.length)
-									}
-								></i>
+							{allProductNoId.length && allProductNoId.slice(currentIndex, currentIndex + 3).map((product) => (
+								<ProductCard
+									key={product.id}
+									id={product.id}
+									name={product.name}
+									image={product.image}
+									brand={product.brand}
+									price={product.price}
+								/>
+							))}
+							<div onClick={() =>
+									setCurrentIndex((currentIndex + 1) % allProductNoId.length)
+								} className={style.arrowRight}>
+								<i className="fa-solid fa-chevron-right"></i>
 							</div>
 						</div>
 					</div>

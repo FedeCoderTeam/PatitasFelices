@@ -6,6 +6,7 @@ const URL = 'http://localhost:3001';
 
 const authUserAction = () => {
 	return async function (dispatch) {
+		dispatch(setIsFetchingAuth(true));
 		dispatch(setIsFetching(true));
 		try {
 			let result = await axios.post(
@@ -14,8 +15,10 @@ const authUserAction = () => {
 				{ withCredentials: true },
 			);
 			dispatch(setUser(result.data));
+			dispatch(setIsFetchingAuth(false));
 			dispatch(setIsFetching(false));
 		} catch (error) {
+			dispatch(setIsFetchingAuth(false));
 			dispatch(setIsFetching(false));
 		}
 	};

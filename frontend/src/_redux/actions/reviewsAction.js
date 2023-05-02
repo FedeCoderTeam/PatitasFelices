@@ -1,5 +1,8 @@
 import axios from "axios";
-import {getAllReviews} from '../reducer/reviewsReducer.js';
+import {
+	getAllReviews,
+	getDeleteReview,
+} from '../reducer/reviewsReducer.js';
 
 const getReviews = () => {
 	return async function (dispatch) {
@@ -32,10 +35,21 @@ const updateReviews = (obj) => {
 	}
 }
 
+const deleteReview = (id) =>{
+	return async function (dispatch) {
+		try {
+			let dbData = await axios.delete('http://localhost:3001/reviews' + id)
+			dispatch(getDeleteReview(dbData.data))
+		} catch (error) {
+			console.log(error);
+		}
+	}
+}
 
 
 export {
     getReviews,
 	postReviews,
 	updateReviews,
+	deleteReview,
 }

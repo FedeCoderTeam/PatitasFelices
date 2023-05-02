@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import * as reviewsAction from '../../../_redux/actions/reviewsAction';
 import Star from '@mui/icons-material/Star';
 import { yellow } from '@mui/material/colors';
+import style from './Reviews.module.css'
+import { Link } from 'react-router-dom';
 
 // import StarIcon from '@material-ui/icons/Star';
 
@@ -76,6 +78,14 @@ const Reviews = () => {
 
 	return (
 		<>
+			<div className={style.containerBtnNav}>
+				<Link to="/dashboard/" style={{ textDecoration: 'none' }}>
+					<button className={style.btnBackHomeDash}>Home Dashboard</button>
+				</Link>
+				<Link to="/home" style={{ textDecoration: 'none' }}>
+					<button className={style.btnBackHome}>Home Principal</button>
+				</Link>
+			</div>
 			<Box
 				sx={{
 					height: 'auto',

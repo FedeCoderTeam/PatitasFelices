@@ -55,6 +55,8 @@ function App() {
 		dispatch(reviewsAction.getReviews());
 		dispatch(mercadopagoAction.getOrders());
 		dispatch(mercadopagoAction.getPurchases());
+		dispatch(productsAction.getCategoriesAction());
+
 		if (localStorage.getItem('products')) {
 			if (JSON.parse(localStorage.getItem('products')).length)
 				dispatch(
