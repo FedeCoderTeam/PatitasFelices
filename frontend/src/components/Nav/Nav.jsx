@@ -136,6 +136,17 @@ export default function Nav() {
 						<p className={style.links}>{t('nav.links.donate')}</p>
 					</div>
 				</NavLink>
+				<NavLink
+					to="/about"
+					className={`${style.link} ${
+						location.pathname === '/about' ? style.active : ''
+					}`}
+				>
+					<div className={style.divNav}>
+						<i class="fa-solid fa-users"></i>
+						<p className={style.links}>{t('nav.links.us')}</p>
+					</div>
+				</NavLink>
 				{selector.user?.role === 'Administrador' && (
 					<Link to="/dashboard" className={style.link}>
 						<div className={style.divNav}>
