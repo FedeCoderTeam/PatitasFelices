@@ -184,6 +184,36 @@ const event_successful_purchase = async (order, lang = 'es') => {
 	});
 };
 
+const event_approved_adoption = async (id, email, dog, lang = 'es') => {
+	const subject_en = `Adoption application #${id} (Approved) - Happy Paws`;
+	const subject_es = `Solicitud de adopción #${id} (Aprobado) - Patitas Felices`;
+
+	const replacements = {
+		dogname: dog.name,
+		weight: dog.weight,
+		color: dog.color,
+		temperament: dog.temperament,
+		age: dog.age,
+		description: dog.description,
+	};
+
+	const html_en = await readHTMLFile(
+		__dirname + '/template/approved_adoption_en.html',
+		replacements,
+	);
+	const html_es = await readHTMLFile(
+		__dirname + '/template/approved_adoption_es.html',
+		replacements,
+	);
+
+	await transporter.sendMail({
+		from: '"Patitas Felices" <noreply@patitasfelices.com>',
+		to: `${email}`,
+		subject: lang === 'es' ? subject_es : subject_en,
+		html: lang === 'es' ? html_es : html_en,
+	});
+};
+
 module.exports = {
 	event_request_dogs_mail,
 	email_account_verification,
@@ -191,5 +221,6 @@ module.exports = {
 	event_successful_registration,
 	event_rejected_adoption,
 	event_successful_donation,
-	event_successful_purchase
+	event_successful_purchase,
+	event_approved_adoption
 };
