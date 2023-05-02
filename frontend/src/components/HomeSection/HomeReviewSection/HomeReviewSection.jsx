@@ -67,13 +67,12 @@ const HomeReviewSection = () => {
 							<span>{t('home.section.review.shareIt')}</span>
 						</h1>
 						<div className={style.carousel}>
-							<div className={style.arrows}>
-								<i className="fa-solid fa-chevron-left" 
-								onClick={() =>
+							<div className={style.arrows} onClick={() =>
 									setCurrentIndex(
 										currentIndex > 0 ? currentIndex - 1 : allReviews.length - 1
 									)
-								}></i>
+								}>
+								<i className="fa-solid fa-chevron-left" ></i>
 							</div>
 							<ReviewCard
 								data-aos="fade-right" data-aos-duration="1000"
@@ -84,11 +83,10 @@ const HomeReviewSection = () => {
 								last={allReviews[currentIndex]?.user?.last}
 								image={allReviews[currentIndex]?.user?.image}
 							/>
-							<div className={style.arrows}>
-								<i className="fa-solid fa-chevron-right"
-								onClick={() =>
+							<div className={style.arrows} onClick={() =>
 									setCurrentIndex((currentIndex + 1) % allReviews.length)
-								}></i>
+								}>
+								<i className="fa-solid fa-chevron-right"></i>
 							</div>
 						</div>
 						<button onClick={handleOpenReview} className="button">

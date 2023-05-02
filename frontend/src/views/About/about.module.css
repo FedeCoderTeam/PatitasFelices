@@ -15,7 +15,7 @@
     justify-content: center;
     width: 90%;
     align-items: center;
-    margin-bottom: 135px;
+    margin-bottom: 105px;
 }
 .containerStory > p {
     width: 70%;
@@ -25,6 +25,7 @@
 .mainContainer{
     display: flex;
     align-items: center;
+    min-height: calc(100vh - 172px);
 }
 .description{
     display: flex;
