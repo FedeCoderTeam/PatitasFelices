@@ -23,20 +23,20 @@ const MyReviews = () => {
 
     const handleDeleteReview = (id) => {
 			Swal.fire({
-			title: 'Seguro quieres eliminar tu comentario?',
-			text: "No podras deshacer esta accion!",
+			title: '¿Seguro quieres eliminar tu comentario?',
+			text: "¡No podrás deshacer esta acción!",
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Si, eliminar !',
+			confirmButtonText: 'Si, eliminar',
 			cancelButtonText: 'No, cancelar',
 			}).then( async (result) => {
 			if (result.isConfirmed) {
 				dispatch(reviewsAction.deleteReview(id))
 				await Swal.fire(
-				'Eliminado!',
-				'Tu comentario se ha borrado con éxito.',
+				'¡Eliminado!',
+				'Tu comentario se ha eliminado exitosamente.',
 				'success',
 				)
                 dispatch(reviewsAction.getReviews())
@@ -47,37 +47,44 @@ const MyReviews = () => {
     return (
         <>
             <div className={style.main}>
-                <h4 className={style.noReviewsSubtitle}>{t('reviews.comment')}</h4>
-                <h3 className={style.noReviewsTitle}>{t('reviews.noDoubt')}</h3>
-                <Player
-                    autoplay
-                    loop
-                    src={ReviewNotFound}
-                    className={style.reviewNotFound}
-                />
-                <button onClick={handleOpenReview} className={style.buttonComment}>{t('reviews.send')}</button>
-                    <ReviewDetail
-                    handleOpenReview={handleOpenReview}
-                    showModal={showModal}
-                />
-                <div className={style.cardReviewContainer}>
-                    {allReviews?.map((e) => (
-                        <div className={style.eachCard}>
-                            <ReviewCard
-                                data-aos="fade-right" data-aos-duration="1000"
-                                id={e.id}
-                                rating={e.rating}
-                                comment={e.comment}
-                                name={e.user?.name}
-                                last={e.user?.last}
-                                /* image={e.user?.image} */
-								handleDeleteReview={() => handleDeleteReview(e.id)}
+				{
+					allReviews === [] ? (
+						<>
+							<h4 className={style.noReviewsSubtitle}>{t('reviews.comment')}</h4>
+							<h3 className={style.noReviewsTitle}>{t('reviews.noDoubt')}</h3>
+							<Player
+								autoplay
+								loop
+								src={ReviewNotFound}
+								className={style.reviewNotFound}
+							/>
+							<button onClick={handleOpenReview} className={style.buttonComment}>{t('reviews.send')}</button>
+								<ReviewDetail
 								handleOpenReview={handleOpenReview}
-                            />
-                            
-                        </div>
-                    ))}
-                </div>
+								showModal={showModal}
+							/>
+						</>
+					) : (
+						<div className={style.cardReviewContainer}>
+							{allReviews?.map((e) => (
+								<div className={style.eachCard}>
+									<ReviewCard
+										data-aos="fade-right" data-aos-duration="1000"
+										id={e.id}
+										rating={e.rating}
+										comment={e.comment}
+										name={e.user?.name}
+										last={e.user?.last}
+										/* image={e.user?.image} */
+										handleDeleteReview={() => handleDeleteReview(e.id)}
+										handleOpenReview={handleOpenReview}
+									/>
+									
+								</div>
+							))}
+						</div>
+					)
+				}
             </div>
         </>
     )
