@@ -91,15 +91,12 @@ const HomeReviewSection = () => {
 								}></i>
 							</div>
 						</div>
-						{/* FALTA HACER LOGICA DE QUE SI ESTA LOGEADO,
-                    PUEDA COMENTAR SINO QUE SE REGISTRE PREVIO A COMENTAR */}
 						<button onClick={handleOpenReview} className="button">
 							{t('home.section.review.comment')}
 						</button>
 					</div>
 				</div>
 			</div>
-
 			<ReviewDetail handleOpenReview={handleOpenReview} showModal={showModal} />
 		</>
 	);
