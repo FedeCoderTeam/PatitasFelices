@@ -58,7 +58,7 @@ const DogsGrid = () => {
 			<img
 				src={value}
 				alt="Imagen"
-				style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+				style={{ maxWidth: '2em', maxHeight: '20em', objectFit: 'contain' }}
 			/>
 		);
 	};
@@ -103,7 +103,7 @@ const DogsGrid = () => {
 		{
 			field: 'col11',
 			headerName: 'Imagen',
-			width: 220,
+			width: 100,
 			renderCell: (params) => <ImageCell value={params.value} />,
 		},
 	];
