@@ -37,8 +37,6 @@ const About = () => {
                     }}
                 />
                 </p>
-                    {/* <p>{t('about.text')}
-                    </p> */}
                 </div>
             </div>
         </>
