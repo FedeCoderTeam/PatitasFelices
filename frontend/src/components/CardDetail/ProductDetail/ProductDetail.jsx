@@ -47,6 +47,8 @@ function ProductDetail() {
 
 	const allProducts = useSelector((state) => state.productsReducer.products);
 
+	const allProductNoId = allProducts.filter((product) => product.id !== productDetail.id);
+
 	useEffect(() => {
 		setTimeout(() => {
 			setIsLoading(false);
@@ -169,7 +171,7 @@ function ProductDetail() {
 									} className={style.arrowLeft}>
 									<i className="fa-solid fa-chevron-left" ></i>
 							</div>
-							{allProducts.length > 0 && allProducts.slice(currentIndex, currentIndex + 3).map((product) => (
+							{allProductNoId.length && allProductNoId.slice(currentIndex, currentIndex + 3).map((product) => (
 								<ProductCard
 									key={product.id}
 									id={product.id}
@@ -180,7 +182,7 @@ function ProductDetail() {
 								/>
 							))}
 							<div onClick={() =>
-									setCurrentIndex((currentIndex + 1) % allProducts.length)
+									setCurrentIndex((currentIndex + 1) % allProductNoId.length)
 								} className={style.arrowRight}>
 								<i className="fa-solid fa-chevron-right"></i>
 							</div>
