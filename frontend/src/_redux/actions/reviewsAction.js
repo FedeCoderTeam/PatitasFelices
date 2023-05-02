@@ -38,7 +38,7 @@ const updateReviews = (obj) => {
 const deleteReview = (id) =>{
 	return async function (dispatch) {
 		try {
-			let dbData = await axios.delete('http://localhost:3001/reviews' + id)
+			let dbData = await axios.delete('http://localhost:3001/reviews/' + id)
 			dispatch(getDeleteReview(dbData.data))
 		} catch (error) {
 			console.log(error);

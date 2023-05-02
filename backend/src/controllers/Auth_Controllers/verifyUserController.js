@@ -1,5 +1,6 @@
 const { user, userVerification, role, session } = require ('../../database/db')
 const { verifyToken, signToken} = require('../../utils/token');
+const { event_successful_registration } = require('../../utils/email');
 
 const verifyUser = async (token) => {
     if(!token) throw new Error('Token is required')
@@ -12,13 +13,15 @@ const verifyUser = async (token) => {
     await user.update({ isVerified: true }, { where: { id: decoded.user.id, email: decoded.user.email } })
     await findUserVerification.destroy()
 
-    const findUser = await user.findOne({where: {id: decoded.user.id}, include: [{model: role}]})
+    const findUser = await user.findOne({where: {id: decoded.user.id}, include: [{model: role}], attributes: { exclude: ["password"] }})
     const tokenUser = await signToken({user: findUser.dataValues }, process.env.JWT_PRIVATE_KEY_AUTH, {expiresIn: '24h'})
 
     await session.create({
         token: tokenUser,
         userId: decoded.user.id
     })
+
+    await event_successful_registration({name: findUser.name, email: findUser.email})
 
     return {
         error: null,

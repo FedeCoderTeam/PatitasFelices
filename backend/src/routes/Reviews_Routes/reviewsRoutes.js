@@ -39,8 +39,8 @@ router.put('/', async (req, res) => {
 	}
 });
 
-router.delete('/', async (req, res) => {
-	let { id } = req.body;
+router.delete('/:id', async (req, res) => {
+	let {id} = req.params;
 	try {
 		let reviewDelete = await deleteReview(id);
 		if (reviewDelete.error) throw new Error(reviewDelete.error);

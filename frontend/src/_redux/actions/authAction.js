@@ -1,4 +1,4 @@
-import { setIsFetching, setShowOverlay, setStatusVerify, setUser, getAllUsers, setIsFetchingAuth } from '../reducer/authReducer';
+import { setIsFetching, setShowOverlay, setStatusVerify, setUser, getAllUsers, setIsFetchingAuth, getUserDetail } from '../reducer/authReducer';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -252,6 +252,17 @@ const getUsers = () => {
 	};
 };
 
+const getUserById = (id) => {
+	return async function (dispatch) {
+		try {
+			const dbData = await axios.get(`${URL}/users/${id}`);
+			dispatch(getUserDetail(dbData.data));
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
 const updateUser = (obj) => {
 	return async () => {
 		try {
@@ -277,4 +288,5 @@ export {
 	setShowOverlayAction,
 	getUsers,
 	updateUser,
+	getUserById,
 };

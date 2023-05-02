@@ -136,6 +136,17 @@ export default function Nav() {
 						<p className={style.links}>{t('nav.links.donate')}</p>
 					</div>
 				</NavLink>
+				<NavLink
+					to="/about"
+					className={`${style.link} ${
+						location.pathname === '/about' ? style.active : ''
+					}`}
+				>
+					<div className={style.divNav}>
+						<i class="fa-solid fa-users"></i>
+						<p className={style.links}>{t('nav.links.us')}</p>
+					</div>
+				</NavLink>
 				{selector.user?.role === 'Administrador' && (
 					<Link to="/dashboard" className={style.link}>
 						<div className={style.divNav}>
@@ -228,6 +239,7 @@ export function AvatarComponent(props) {
 	const { t } = useTranslation();
 
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
+	const selector = useSelector((state) => state.authReducer);
 
 	const handleOpenUserMenu = (event) => {
 		setAnchorElUser(event.currentTarget);
@@ -287,12 +299,16 @@ export function AvatarComponent(props) {
 							{t('nav.account.myComments')}
 						</Link>
 					</MenuItem>
-					<MenuItem onClick={handleCloseUserMenu}>
-						<ListItemIcon>
-							<Settings fontSize="small" sx={{ color: grey[900] }} />
-						</ListItemIcon>
-						{t('nav.account.settings')}
-					</MenuItem>
+					{!selector.user?.googleId &&(
+						<MenuItem onClick={handleCloseUserMenu}>
+							<ListItemIcon>
+								<Settings fontSize="small" sx={{ color: grey[900] }} />
+							</ListItemIcon>
+							<Link to={`/users/${props.selector.user.id}`} className={style.myReviews}>
+								{t('nav.account.settings')}
+							</Link>
+						</MenuItem>
+					)}
 					<MenuItem
 						onClick={(event) => {
 							handleCloseUserMenu(event);

@@ -14,6 +14,7 @@ import NotFound from './components/NotFound/NotFound';
 import AdoptionForm from './components/Forms/AdoptionForm/AdoptionForm';
 import ProductDetail from './components/CardDetail/ProductDetail/ProductDetail';
 import MyReviews from './views/MyReviews/MyReviews';
+import UserSettings from './views/UserSettings/UserSettings';
 import Donation from './views/Donation/Donation';
 import Success from './components/Modals/Success';
 import SuccessDonation from './components/Modals/SuccessDonation';
@@ -37,6 +38,7 @@ import PasswordReset from './components/AuthForms/PasswordReset/PasswordReset';
 import Overlay from './components/Overlay/Overlay';
 import Cart from './components/Carts/Cart/Cart';
 import TestComponent from './components/testComponent/TestComponent';
+
 
 function App() {
 	const location = useLocation();
@@ -90,6 +92,7 @@ function App() {
 				<Route path={'/form'} element={<AdoptionForm />} />
 				<Route path={'/dogs'} element={<Dogs />} />
 				<Route path={'/myreviews'} element={<MyReviews />} />
+				<Route path={'/users/:id'} element={<UserSettings />} />
 				<Route path={'/products'} element={<Products />} />
 				<Route path={'/products/:id'} element={<ProductDetail />} />
 				<Route path={'/donation'} element={<Donation />} />
@@ -119,6 +122,7 @@ function App() {
 				location.pathname !== '/form' &&
 				location.pathname !== '/products/success' &&
 				location.pathname !== '/products' &&
+				location.pathname !== '/donation' &&
 				location.pathname !== '/donation/success_donation' &&
 				(!location.pathname.includes('/dashboard') ||
 					selector.user?.role !== 'Administrador') && <Footer />}
