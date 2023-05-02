@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 const Request = () => {
 	const dispatch = useDispatch();
 	const allRequest = useSelector((state) => state.requestReducer.allAdoptions);
+	const token = useSelector(state => state.authReducer.token)
 	const { success, error } = useToast();
 
 	let [edit, setEdit] = useState(false);
@@ -75,10 +76,10 @@ const Request = () => {
 		};
 
 		if (row.col13 !== change && change !== '') {
-			dispatch(requestAction.updateAdoptionDog(obj));
+			dispatch(requestAction.updateAdoptionDog({...obj, token}));
 			successNotify();
 		} else if (row.col13 === change && change !== '') {
-			dispatch(requestAction.updateAdoptionDog(obj));
+			dispatch(requestAction.updateAdoptionDog({...obj, token}));
 			successNotify();
 		} else {
 			cancelNotify();

@@ -12,7 +12,7 @@ const googleUser = async (profile) => {
     const isVerified = profile.emails[0].verified
     const image = profile.photos[0].value
 
-    const findUser = await user.findOne({where: {email}, include: [{model: role}]})
+    const findUser = await user.findOne({where: {email}, include: [{model: role}], attributes: { exclude: ["password"] }})
 
     if(findUser) {
         if(findUser.googleId) {
