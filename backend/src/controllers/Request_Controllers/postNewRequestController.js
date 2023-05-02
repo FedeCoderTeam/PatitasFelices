@@ -1,4 +1,4 @@
-const { event_request_dogs_mail } = require('../../config/mailer');
+const { event_request_dogs_mail } = require('../../utils/email');
 const { requests, dog } = require('../../database/db');
 
 const postNewRequest = async (
@@ -50,7 +50,14 @@ const postNewRequest = async (
 		});
 		await newRequest.setDog(doguiId);
 
-		await event_request_dogs_mail(newRequest.email, newRequest.name);
+		const userinfo = {
+			name: newRequest.name,
+			phone: newRequest.phone,
+			address: newRequest.address,
+			email: newRequest.email
+		}
+
+		await event_request_dogs_mail(newRequest.id, userinfo, doguiId.name);
 	}
 };
 

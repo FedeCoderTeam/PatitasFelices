@@ -1,12 +1,13 @@
 const { requests, dog } = require('../../database/db');
-// const jwt = require('jsonwebtoken');
+const {event_rejected_adoption} = require('../../utils/email');
+const {verifyToken} = require('../../utils/token');
 
-let updateRequest = async (id, status, dogId) => {
+let updateRequest = async (id, status, dogId, token) => {
 	try {
-		// const infoUser = jwt.verify(token, process.env.JWT_PRIVATE_KEY_AUTH);
+		const infoUser = await verifyToken(token, process.env.JWT_PRIVATE_KEY_AUTH);
 
-		// if (infoUser.user.role.name !== 'Administrador')
-		// 	return 'Error al intentar actualizar la solicitud';
+		if (infoUser.user.role.name !== 'Administrador') throw new Error(`Error al intentar actualizar la solicitud`);
+		// return 'Error al intentar actualizar la solicitud';
 
 		let requestToUpdate = await requests.findOne({ where: { id: id } });
 
@@ -14,7 +15,7 @@ let updateRequest = async (id, status, dogId) => {
 			throw new Error(`No se encontró una solicitud con id ${id}`);
 
 		if (status === 'Accepted' || status === 'Denied' || status === 'Pending') {
-			await requestToUpdate.update({
+			await requests.update({
 				status: status,
 			});
 		}
@@ -46,10 +47,13 @@ let updateRequest = async (id, status, dogId) => {
 					id: dogId,
 				},
 			});
+			if(requestToUpdate.status === 'Accepted') {
+				await dogui.update({
+					adopted: false,
+				});
+			}
 
-			await dogui.update({
-				adopted: false,
-			});
+			await event_rejected_adoption(requestToUpdate.id, requestToUpdate.email)
 
 			return 'Se modificó correctamente la solicitud';
 		}
