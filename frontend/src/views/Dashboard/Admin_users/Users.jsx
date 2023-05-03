@@ -36,7 +36,7 @@ const Users = () => {
 
 				params.api.setEditCellValue({
 					id: params.id,
-					field: 'col9',
+					field: 'col8',
 					value,
 				});
 			}}
@@ -59,7 +59,7 @@ const Users = () => {
 
 				params.api.setEditCellValue({
 					id: params.id,
-					field: 'col8',
+					field: 'col7',
 					value,
 				});
 			}}
@@ -89,16 +89,15 @@ const Users = () => {
 	let saveChange = (row) => {
 		let obj = {
 			id: allUsers[row.id - 1].id,
-			password: row.col5,
-			image: row.col6,
-			isDisabled: row.col8,
-			roleId: row.col9,
+			image: row.col5,
+			isDisabled: row.col7,
+			roleId: row.col8,
 		};
 
 		if (
-			row.col9 !== change &&
+			row.col8 !== change &&
 			change !== '' &&
-			row.col8 !== disabled &&
+			row.col7 !== disabled &&
 			disabled !== ''
 		) {
 			obj.isDisabled = disabled === 'Si' ? 'Si' : 'No';
@@ -108,9 +107,9 @@ const Users = () => {
 			dispatch(authActions.updateUser(obj));
 			successNotify();
 		} else if (
-			row.col9 === change &&
+			row.col8 === change &&
 			change !== '' &&
-			row.col8 === disabled &&
+			row.col7 === disabled &&
 			disabled !== ''
 		) {
 			obj.isDisabled = disabled === 'Si' ? 'Si' : 'No';
@@ -119,24 +118,24 @@ const Users = () => {
 
 			dispatch(authActions.updateUser(obj));
 			successNotify();
-		} else if (row.col9 !== change && change !== '') {
+		} else if (row.col8 !== change && change !== '') {
 			obj.roleId =
 				change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3;
 
 			dispatch(authActions.updateUser(obj));
 			successNotify();
-		} else if (row.col9 === change && change !== '') {
+		} else if (row.col8 === change && change !== '') {
 			obj.roleId =
 				change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3;
 
 			dispatch(authActions.updateUser(obj));
 			successNotify();
-		} else if (row.col8 !== disabled && disabled !== '') {
+		} else if (row.col7 !== disabled && disabled !== '') {
 			obj.isDisabled = disabled === 'Si' ? 'Si' : 'No';
 
 			dispatch(authActions.updateUser(obj));
 			successNotify();
-		} else if (row.col8 === disabled && disabled !== '') {
+		} else if (row.col7 === disabled && disabled !== '') {
 			obj.isDisabled = disabled === 'Si' ? 'Si' : 'No';
 			dispatch(authActions.updateUser(obj));
 			successNotify();
@@ -155,15 +154,14 @@ const Users = () => {
 			allUsers.map((user, index) => {
 				return {
 					id: index + 1,
-					col1: user.googleId ? user.googleId : 'N/A',
+					col1: user.googleId ? 'Si' : 'No',
 					col2: user.name,
 					col3: user.last,
 					col4: user.email,
-					col5: user.password,
-					col6: user.image,
-					col7: user.isVerified === true ? 'Si' : 'No',
-					col8: user.isDisabled === true ? 'Si' : 'No',
-					col9: user.role.name,
+					col5: user.image,
+					col6: user.isVerified === true ? 'Si' : 'No',
+					col7: user.isDisabled === true ? 'Si' : 'No',
+					col8: user.role.name,
 				};
 			}),
 		[allUsers],
@@ -211,35 +209,34 @@ const Users = () => {
 			},
 		},
 		{ field: 'id', headerName: 'Id', width: 80 },
-		{ field: 'col1', headerName: 'Google id', width: 200 },
+		{ field: 'col1', headerName: '¿Google?', width: 200 },
 		{ field: 'col2', headerName: 'Nombre', width: 130 },
 		{ field: 'col3', headerName: 'Apellido', width: 130 },
 		{ field: 'col4', headerName: 'Email', width: 240 },
-		{ field: 'col5', headerName: 'Contraseña', width: 150 },
 		{
-			field: 'col6',
+			field: 'col5',
 			headerName: 'Imagen',
 			width: 150,
 			renderCell: (params) => <ImageCell value={params.value} />,
 		},
-		{ field: 'col7', headerName: 'Verificado', width: 150 },
+		{ field: 'col6', headerName: 'Verificado', width: 150 },
 		{
-			field: 'col8',
+			field: 'col7',
 			headerName: 'Desactivado',
 			width: 150,
 			editable: edit,
 			cellClassName: bgOnEdit.bg,
-			valueGetter: (params) => params.row.col8,
+			valueGetter: (params) => params.row.col7,
 			valueOptions: disabledOptions,
 			renderEditCell: renderSelect2,
 		},
 		{
-			field: 'col9',
+			field: 'col8',
 			headerName: 'Rol',
 			width: 150,
 			editable: edit,
 			cellClassName: bgOnEdit.bg,
-			valueGetter: (params) => params.row.col9,
+			valueGetter: (params) => params.row.col8,
 			valueOptions: rolesOptions,
 			renderEditCell: renderSelect,
 		},
