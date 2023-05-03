@@ -169,11 +169,12 @@ function ProductDetail() {
 						<div className={style.divOtros}>
 
 							<div onClick={() =>
-										setCurrentIndex(currentIndex > 0 && currentIndex - 1)
+										setCurrentIndex(currentIndex > 2 ? currentIndex - 1 : 0)
 									} className={style.arrowLeft}>
 									<i className="fa-solid fa-chevron-left" ></i>
 							</div>
 							{allProductNoId.length && allProductNoId.slice(currentIndex, currentIndex + 3).map((product) => (
+								
 								<ProductCard
 									key={product.id}
 									id={product.id}
@@ -184,7 +185,7 @@ function ProductDetail() {
 								/>
 							))}
 							<div onClick={() =>
-									setCurrentIndex((currentIndex + 1) % allProductNoId.length)
+									setCurrentIndex(currentIndex + 3 < allProductNoId.length ? currentIndex + 1 : currentIndex)
 								} className={style.arrowRight}>
 								<i className="fa-solid fa-chevron-right"></i>
 							</div>
