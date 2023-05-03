@@ -1,15 +1,21 @@
 import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import * as reviewsAction from '../../../_redux/actions/reviewsAction';
 import Star from '@mui/icons-material/Star';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import useToast from '../../../utils/hooks/useToast';
 import style from './Reviews.module.css';
 import { Link } from 'react-router-dom';
 
 const Reviews = () => {
 	const allReviews = useSelector((state) => state.reviewsReducer.reviews);
 	const dispatch = useDispatch();
+	const { success, error, warning } = useToast();
+
+	let [edit, setEdit] = useState(false);
 
 	useEffect(() => {
 		dispatch(reviewsAction.getReviews());
@@ -26,11 +32,42 @@ const Reviews = () => {
 					col4: rev.user.last,
 					col5: rev.user.email,
 					col6: rev.user.image,
-					col7: rev.createdAt,
+					col7: new Date(rev.createdAt)
+						.toLocaleDateString()
+						.replace(/\//g, '-'),
 				};
 			}),
 		[allReviews],
 	);
+
+	const successNotify = () => {
+		success('Comentario eliminado', { duration: 2000 });
+	};
+
+	const cancelNotify = () => {
+		error('Edición cancelada', { duration: 2000 });
+	};
+
+	const warningNotify = () => {
+		warning('Elige comentario a eliminar', { duration: 2000 });
+	};
+
+	let handleEditClick = () => {
+		if (!edit) {
+			warningNotify();
+			setEdit(true);
+		}
+		if (edit) {
+			setEdit(false);
+			cancelNotify();
+		}
+	};
+
+	let daleteReview = (row) => {
+		dispatch(reviewsAction.deleteReview(row.id));
+		successNotify();
+		setEdit(false);
+	};
 
 	let ImageCell = ({ value }) => {
 		return (
@@ -51,6 +88,32 @@ const Reviews = () => {
 	};
 
 	const columns = [
+		{
+			field: 'actions',
+			type: 'actions',
+			headerName: 'Acciones',
+			width: 80,
+			cellClassName: 'actions',
+			getActions: ({ row }) => {
+				return [
+					<GridActionsCellItem
+						key={row.id}
+						icon={<EditIcon />}
+						label="Edit"
+						onClick={() => handleEditClick()}
+						color="inherit"
+					/>,
+					<GridActionsCellItem
+						key={row.id}
+						icon={<DeleteIcon />}
+						label="Delete"
+						onClick={() => daleteReview(row)}
+						color="inherit"
+						disabled={!edit}
+					/>,
+				];
+			},
+		},
 		{ field: 'id', headerName: 'Id', width: 80 },
 		{
 			field: 'col1',
