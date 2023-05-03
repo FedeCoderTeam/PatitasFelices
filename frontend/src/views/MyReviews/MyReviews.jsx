@@ -64,14 +64,14 @@ const MyReviews = () => {
 
 		const currentUserReviews = () => {
 			// Filtra la lista allReviews para mostrar solo las revisiones que pertenecen al usuario actualmente conectado
-			return allReviews.filter((review) => review.userId === currentUser.id);
+			return allReviews && currentUser && allReviews?.filter((review) => review.userId === currentUser.id);
 		}
 
     return (
         <>
             <div className={style.main}>
 				{
-					currentUserReviews().length === 0 ? (
+					currentUserReviews()?.length === 0 ? (
 						<>
 							<h4 className={style.noReviewsSubtitle}>{t('reviews.comment')}</h4>
 							<h3 className={style.noReviewsTitle}>{t('reviews.noDoubt')}</h3>
@@ -89,7 +89,7 @@ const MyReviews = () => {
 						</>
 					) : (
 						<div className={style.cardReviewContainer}>
-							{currentUserReviews().map((e) => (
+							{currentUserReviews()?.map((e) => (
 								<div className={style.eachCard}>
 									<ReviewCard
 										data-aos="fade-right" data-aos-duration="1000"
