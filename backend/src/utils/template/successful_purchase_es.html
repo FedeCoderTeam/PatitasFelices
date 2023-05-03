@@ -1,0 +1,71 @@
+<table style="max-width: 600px; max-height: 600px; margin: 0 auto; width: auto; border-radius: 20px; background-color: #D9AD77; font-family: 'Be Vietnam Pro';">
+    <tr>
+        <td style="text-align: center;">
+            <p style="color:#163440; font-weight:bold; font-size: 25px">
+                ¡Muchas gracias por comprar en nuestra tienda!
+            </p>
+            <img src="https://res.cloudinary.com/dsbekpj9h/image/upload/v1682535848/Patitas%20felices/Gracias_por_tu_compra_omnb9r.jpg"
+            style="width: 308px; height: 463px; border-radius: 20px; " alt=""/>
+        </td>
+    </tr>
+    <tr>
+        <td style="color:#163440; font-weight:bold; font-size: 18px">
+            <p style="color:#592519; text-align: center;">
+                Aquí dejamos la información de la compra realizada:
+            </p>
+            <p style="color:#163440; text-align: left;">
+                <img src="https://res.cloudinary.com/dsbekpj9h/image/upload/v1682196730/Patitas%20felices/paw_ro5uij.png"
+                     alt="item-image"
+                     style="width: 15px; height: 15px; text-align: left; margin-left: 20px;"/>
+                Nº de Orden: {{order}}
+            </p>
+            <p style="color:#163440; text-align: left;">
+                <img src="https://res.cloudinary.com/dsbekpj9h/image/upload/v1682196730/Patitas%20felices/paw_ro5uij.png"
+                alt="item-image"
+                style="width: 15px; height: 15px; text-align: left; margin-left: 20px;"/>
+                Productos comprados:</p>
+            <ul>
+                {{#each product}}
+                <li>{{this.name}}
+                    <ul>
+                        <li>Precio unitario: $ {{this.price}}</li>
+                        <li>Cantidad: {{this.quantity}}</li>
+                    </ul>
+                </li>
+                {{/each}}
+            </ul>
+            <p style="color:#163440; text-align: left;">
+                <img src="https://res.cloudinary.com/dsbekpj9h/image/upload/v1682196730/Patitas%20felices/paw_ro5uij.png"
+                alt="item-image"
+                style="width: 15px; height: 15px; text-align: left; margin-left: 20px;"/>
+                Precio total: ${{amount}}
+            </p>
+            <p style="font-size: 18px; color: #666666;text-align:center;">
+                    Para coordinar el envío del producto escríbenos al correo electrónico
+            </p>
+            <p style="font-size: 18px; text-align:center;">
+                <a style="text-decoration: none; cursor: pointer; color: #163440; margin: 20px"
+                href="mailto:happypawspf2023@gmail.com">
+                    <img style="width: 25px; height: 25px"
+                    src="https://res.cloudinary.com/dsbekpj9h/image/upload/v1682552071/email_qyeisu.png"/> happypawspf2023@gmail.com
+                </a>
+            </p>
+            <p style="font-size: 18px; color: #666666;text-align:center;">
+                o puedes enviarnos un whatsapp
+            </p>
+            <p style="font-size: 18px; text-align:center;">
+                <a style="text-decoration: none; cursor: pointer; color: #163440; margin: 20px;"
+                href="https://wa.me/+5493516848443">
+                    <img style="width: 25px; height: 25px"
+                    src="https://res.cloudinary.com/dsbekpj9h/image/upload/v1682551853/whatsapp_q209mp.png"/> 3516848443
+                </a>
+            </p>
+            <p style="color:#163440; font-weight:bold; text-align: justify; margin: 10px;">
+                ¡Gracias por adquirir nuestros productos! Al comprar con nosotros, no solo adquieres productos de alta calidad, sino que también contribuyes con nuestra misión de ayudar a darles un hogar a los perritos callejeros. Sabemos que tu apoyo es fundamental para lograr nuestro objetivo de brindar un hogar seguro y lleno de amor a cada perrito necesitado. ¡Juntos podemos hacer una gran diferencia en el mundo!
+            </p>
+            <img src="https://res.cloudinary.com/dsbekpj9h/image/upload/v1682439195/Patitas%20felices/xAQYbIA_mqguat.png"
+            alt="logo not found"
+            style="max-width: 100px; display:block; margin: 20px auto;" />
+        </td>
+    </tr>
+</table>

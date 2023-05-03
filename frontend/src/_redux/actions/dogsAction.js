@@ -13,7 +13,7 @@ import {
 	getDogDetail,
 	setEmptyDetail,
 	setMaybeAdoptedDog,
-	emptyMaybeAdoptedDog,
+	emptyMaybeAdoptedDog, set_name, getByName,
 } from '../reducer/dogsReducer.js';
 
 const getDogs = () => {
@@ -152,6 +152,19 @@ const setFilterAction = (size, color, gender, temperament) => {
 	}
 }
 
+const setName = (name) => {
+	return (dispatch) => {
+		dispatch(set_name(name));
+	};
+};
+
+const getName = () => {
+	return (dispatch) => {
+		dispatch(getByName());
+	};
+};
+
+
 
 export {
 	getDogs,
@@ -171,5 +184,7 @@ export {
 	setSortAction,
 	setFilterAction,
 	setPageAction,
-	filterAction
+	filterAction,
+	setName,
+	getName
 };

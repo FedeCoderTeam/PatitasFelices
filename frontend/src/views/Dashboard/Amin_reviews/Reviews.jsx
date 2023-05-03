@@ -58,17 +58,17 @@ const Reviews = () => {
 			width: 150,
 			renderCell: (params) => <StarCell value={params.value} />,
 		},
-		{ field: 'col2', headerName: 'Comentario', width: 250 },
-		{ field: 'col3', headerName: 'Nombre', width: 150 },
-		{ field: 'col4', headerName: 'Apellido', width: 150 },
-		{ field: 'col5', headerName: 'Email', width: 250 },
+		{ field: 'col2', headerName: 'Comentario', width: 350 },
+		{ field: 'col3', headerName: 'Nombre', width: 200 },
+		{ field: 'col4', headerName: 'Apellido', width: 200 },
+		{ field: 'col5', headerName: 'Email', width: 300 },
 		{
 			field: 'col6',
 			headerName: 'Foto',
 			width: 100,
 			renderCell: (params) => <ImageCell value={params.value} />,
 		},
-		{ field: 'col7', headerName: 'Fecha', width: 150 },
+		{ field: 'col7', headerName: 'Fecha', width: 200 },
 	];
 
 	return (

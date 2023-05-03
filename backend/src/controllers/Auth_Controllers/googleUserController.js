@@ -2,7 +2,7 @@ const { user, role, session } = require ('../../database/db')
 const { signToken } = require('../../utils/token');
 const { bcrypt, saltRounds} = require('../../utils/bcrypt');
 const { generatorPassword } = require('../../utils/generatorPassword')
-const { email_google } = require('../../utils/email');
+const { event_successful_registration } = require('../../utils/email');
 
 const googleUser = async (profile) => {
     const googleId = profile.id
@@ -12,7 +12,7 @@ const googleUser = async (profile) => {
     const isVerified = profile.emails[0].verified
     const image = profile.photos[0].value
 
-    const findUser = await user.findOne({where: {email}, include: [{model: role}]})
+    const findUser = await user.findOne({where: {email}, include: [{model: role}], attributes: { exclude: ["password"] }})
 
     if(findUser) {
         if(findUser.googleId) {
@@ -57,7 +57,7 @@ const googleUser = async (profile) => {
 
         const userinfo = await user.findOne({where: {id: newUser.id}, include: [{model: role}]})
 
-        await email_google({name: newUser.name, email: newUser.email})
+        await event_successful_registration({name: newUser.name, email: newUser.email})
 
         return {
             error: null,

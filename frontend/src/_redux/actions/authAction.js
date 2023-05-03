@@ -264,6 +264,17 @@ const getUsers = () => {
 	};
 };
 
+const getUserById = (id) => {
+	return async function (dispatch) {
+		try {
+			const dbData = await axios.get(`${URL}/users/${id}`);
+			dispatch(getUserDetail(dbData.data));
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
 const updateUser = (obj) => {
 	return async () => {
 		try {
@@ -289,4 +300,5 @@ export {
 	setShowOverlayAction,
 	getUsers,
 	updateUser,
+	getUserById,
 };

@@ -176,7 +176,8 @@
   "HomeReview": {
     "comment": "Comentario",
     "rating": "Puntuación",
-    "send": "Enviar reseña"
+    "send": "Enviar reseña",
+    "edit": "Editar reseña"
   },
   "login": {
     "enter": "Ingresar",

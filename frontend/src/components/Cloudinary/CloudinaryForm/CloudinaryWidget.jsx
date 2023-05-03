@@ -3,7 +3,7 @@ import './cloudinaryWidget.css'
 import { useTranslation } from 'react-i18next';
 
 
-const CloudinaryWidget = ({ setUrl }) => {
+const CloudinaryWidget = ({ setUrl, setDisabled }) => {
 
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
@@ -27,7 +27,7 @@ const CloudinaryWidget = ({ setUrl }) => {
     return(
     
         <div className='containerCloudinaryBtn-AdoptionForm' >
-            <button type='button' onClick={() => widgetRef.current.open()}>{t('cloudWidg.attach')} <i className="fa-solid fa-upload"></i></button>
+            <button type='button' disabled={setDisabled === undefined ? false : setDisabled} onClick={() => widgetRef.current.open()}>{t('cloudWidg.attach')} <i className="fa-solid fa-upload"></i></button>
         </div>
     );
 }
