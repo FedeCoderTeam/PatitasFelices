@@ -15,9 +15,10 @@ const getReviews = () => {
 };
 
 const postReviews = (obj) => {
-	return async function () {
+	return async function (dispatch) {
 		try {
 			await axios.post('http://localhost:3001/reviews', obj);
+			dispatch(getReviews())
 		} catch (error) {
 			console.log(error);
 		}

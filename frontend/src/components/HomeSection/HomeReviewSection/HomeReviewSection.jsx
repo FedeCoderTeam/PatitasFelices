@@ -20,13 +20,16 @@ import * as reviewsAction from '../../../_redux/actions/reviewsAction';
 import { useFormik } from 'formik';
 import { Player } from '@lottiefiles/react-lottie-player';
 import ReviewGuy from '../../../utils/animations/ReviewGuy.json'
-
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const HomeReviewSection = () => {
 	const { t } = useTranslation();
 	const [showModal, setShowModal] = useState(false);
 	const allReviews = useSelector((state) => state.reviewsReducer.reviews);
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const user = useSelector((state) => state.authReducer.user)
+	const navigate = useNavigate();
 	
 
 	useEffect(() => {
@@ -39,13 +42,24 @@ const HomeReviewSection = () => {
 	}, [currentIndex, allReviews.length]);
 
 	const handleOpenReview = () => {
-		setShowModal(!showModal);
+		user !== null 
+		? setShowModal(!showModal) 
+		: Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Necesitas iniciar sesión para poder dejar tu comentario',
+			confirmButtonText: "Registrarse !"
+		}).then(async (result) => {
+			if(result.isConfirmed) {
+				navigate('/register')
+			}
+		})
 	};
 
 	const handleClickPrev = () => {
 		const container = document.querySelector(`.${style.productCardContainer}`);
 		container.classList.add(style.moveRight);
-	  
+
 		setTimeout(() => {
 			setCurrentIndex(
 				currentIndex > 0 ? currentIndex - 1 : allReviews.length - 1
