@@ -208,8 +208,8 @@ const Users = () => {
 				];
 			},
 		},
-		{ field: 'id', headerName: 'Id', width: 80, align: 'center' },
-		{ field: 'col1', headerName: '¿Google?', width: 150, align: 'center' },
+		{ field: 'id', headerName: 'Id', width: 90, align: 'center', headerAlign: 'center' },
+		{ field: 'col1', headerName: '¿Google?', width: 150, align: 'center', headerAlign: 'center' },
 		{ field: 'col2', headerName: 'Nombre', width: 200 },
 		{ field: 'col3', headerName: 'Apellido', width: 200 },
 		{ field: 'col4', headerName: 'Email', width: 290 },
@@ -218,10 +218,11 @@ const Users = () => {
 			headerName: 'Imagen',
 			width: 150,
 			align: 'center',
+			headerAlign: 'center',
 			renderCell: (params) => <ImageCell value={params.value} />,
 			
 		},
-		{ field: 'col6', headerName: 'Verificado', width: 150, align: 'center' },
+		{ field: 'col6', headerName: 'Verificado', width: 150, align: 'center', headerAlign: 'center' },
 		{
 			field: 'col7',
 			headerName: 'Desactivado',
@@ -238,6 +239,7 @@ const Users = () => {
 			headerName: 'Rol',
 			width: 155,
 			align: 'center',
+			headerAlign: 'center',
 			editable: edit,
 			cellClassName: bgOnEdit.bg,
 			valueGetter: (params) => params.row.col8,
