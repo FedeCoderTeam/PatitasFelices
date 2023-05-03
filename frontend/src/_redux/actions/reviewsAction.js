@@ -1,7 +1,6 @@
 import axios from "axios";
 import {
 	getAllReviews,
-	getDeleteReview,
 } from '../reducer/reviewsReducer.js';
 
 const getReviews = () => {
@@ -39,12 +38,25 @@ const deleteReview = (id) =>{
 	return async function (dispatch) {
 		try {
 			let dbData = await axios.delete('http://localhost:3001/reviews/' + id)
-			dispatch(getDeleteReview(dbData.data))
+			dispatch(getReviews())
+			return dbData.data
 		} catch (error) {
 			console.log(error);
 		}
 	}
 }
+
+const updateReview = (obj) => {
+	return async (dispatch) => {
+		try {
+			let newReview = await axios.put('http://localhost:3001/reviews', obj);
+			dispatch(getReviews());
+			return newReview.data;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
 
 
 export {
@@ -52,4 +64,5 @@ export {
 	postReviews,
 	updateReviews,
 	deleteReview,
+	updateReview,
 }

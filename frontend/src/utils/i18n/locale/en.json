@@ -176,7 +176,8 @@
   "HomeReview": {
     "comment": "Comment",
     "rating": "Rating",
-    "send": "Send comment"
+    "send": "Send comment",
+    "edit": "Edit comment"
   },
   "login": {
     "enter": "Sign in",

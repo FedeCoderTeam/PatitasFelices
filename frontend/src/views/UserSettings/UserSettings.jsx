@@ -16,7 +16,12 @@ const UserSettings = () =>{
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+
+    useEffect(() => {
+		dispatch(getUserById(id));
+	}, [dispatch]);
     let userId = useSelector((state) => state.authReducer.user);
+
 
     let [input, setInput] = useState({
         id: userId?.id,
