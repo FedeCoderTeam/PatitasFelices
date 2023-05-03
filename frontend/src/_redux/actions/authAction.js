@@ -152,6 +152,8 @@ const requestPasswordResetAction = (email) => {
 				icon: 'success',
 				timer: 5000,
 			});
+			if (result.data.redirectUrl) {
+				window.open('https://accounts.google.com/', '_blank');}
 			dispatch(setIsFetching(false));
 		} catch (error) {
 			await Swal.fire({
