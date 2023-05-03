@@ -5,6 +5,7 @@ import {
 	setUser,
 	getAllUsers,
 	setIsFetchingAuth,
+	getUserDetail
 } from '../reducer/authReducer';
 import axios from 'axios';
 import Swal from 'sweetalert2';

@@ -7,7 +7,7 @@ const initialState = {
 	statusVerify: 'Pending',
 	showOverlay: false,
 	user: null,
-	token: '',
+	token: 'null',
 	users: [],
 	userDetail: {},
 };
