@@ -87,7 +87,7 @@ const Success = () => {
 			localStorage.setItem('products', JSON.stringify([]));
 			dispatch(setItemsAction());
 			navigate('/products');
-		}, 3000);
+		}, 2000);
 	}, [cartItems, navigate, orderGenerated, token, orderId, purchaseGenerated]);
 
 	return (

@@ -19,7 +19,9 @@ const Users = () => {
 	let [edit, setEdit] = useState(false);
 	let [editRow, setEditRow] = useState(null);
 	let [change, setChange] = useState('');
+	let [disabled, setDisabled] = useState('');
 	const rolesOptions = ['Administrador', 'Moderador', 'Usuario'];
+	const disabledOptions = ['Si', 'No'];
 
 	useEffect(() => {
 		dispatch(authActions.getUsers());
@@ -48,6 +50,29 @@ const Users = () => {
 		</Select>
 	);
 
+	const renderSelect2 = (params) => (
+		<Select
+			value={params.value}
+			onChange={(event) => {
+				const value = event.target.value;
+				setDisabled(value);
+
+				params.api.setEditCellValue({
+					id: params.id,
+					field: 'col8',
+					value,
+				});
+			}}
+			sx={{ minWidth: 120 }}
+		>
+			{disabledOptions.map((option) => (
+				<MenuItem key={option} value={option}>
+					{option}
+				</MenuItem>
+			))}
+		</Select>
+	);
+
 	const successNotify = () => {
 		success('Solicitud modificada', { duration: 2000 });
 	};
@@ -66,14 +91,20 @@ const Users = () => {
 			id: allUsers[row.id - 1].id,
 			password: row.col5,
 			image: row.col6,
-			isDisabled: false,
+			isDisabled: disabled === 'Si' ? 'Si' : 'No',
 			roleId: change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3,
 		};
 
-		if (row.col9 !== change && change !== '') {
+		if (
+			(row.col9 !== change && change !== '') ||
+			(row.col8 !== disabled && disabled !== '')
+		) {
 			dispatch(authActions.updateUser(obj));
 			successNotify();
-		} else if (row.col9 === change && change !== '') {
+		} else if (
+			(row.col9 === change && change !== '') ||
+			(row.col8 === disabled && disabled !== '')
+		) {
 			dispatch(authActions.updateUser(obj));
 
 			successNotify();
@@ -84,6 +115,7 @@ const Users = () => {
 		setEdit(false);
 		setEditRow(null);
 		setChange('');
+		setDisabled('');
 	};
 
 	const rows = useMemo(
@@ -104,6 +136,16 @@ const Users = () => {
 			}),
 		[allUsers],
 	);
+
+	let ImageCell = ({ value }) => {
+		return (
+			<img
+				src={value}
+				alt="Imagen"
+				style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+			/>
+		);
+	};
 
 	let bgOnEdit = {
 		bg: (params) => (params.row.id === editRow?.id ? style.brown : ''),
@@ -146,9 +188,19 @@ const Users = () => {
 			field: 'col6',
 			headerName: 'Imagen',
 			width: 150,
+			renderCell: (params) => <ImageCell value={params.value} />,
 		},
 		{ field: 'col7', headerName: 'Verificado', width: 150 },
-		{ field: 'col8', headerName: 'Desactivado', width: 150 },
+		{
+			field: 'col8',
+			headerName: 'Desactivado',
+			width: 150,
+			editable: edit,
+			cellClassName: bgOnEdit.bg,
+			valueGetter: (params) => params.row.col8,
+			valueOptions: disabledOptions,
+			renderEditCell: renderSelect2,
+		},
 		{
 			field: 'col9',
 			headerName: 'Rol',
@@ -163,8 +215,6 @@ const Users = () => {
 
 	return (
 		<>
-			{/* <h2>Usuarios</h2> */}
-
 			<div className={style.containerBtnNav}>
 				<Link to="/dashboard/" style={{ textDecoration: 'none' }}>
 					<button className={style.btnBackHomeDash}>Home Dashboard</button>

@@ -17,7 +17,6 @@ router.post('/', async (req, res) => {
 	let { status, total, payment_method, source, token } = req.body;
 	try {
 		let order = await postOrder(status, total, payment_method, source, token);
-		if (order.error) throw new Error(order.error);
 		res.status(200).json(order);
 	} catch (error) {
 		res.status(404).json({ error: error.message });

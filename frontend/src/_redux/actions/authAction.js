@@ -1,4 +1,11 @@
-import { setIsFetching, setShowOverlay, setStatusVerify, setUser, getAllUsers, setIsFetchingAuth } from '../reducer/authReducer';
+import {
+	setIsFetching,
+	setShowOverlay,
+	setStatusVerify,
+	setUser,
+	getAllUsers,
+	setIsFetchingAuth,
+} from '../reducer/authReducer';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -18,6 +25,7 @@ const authUserAction = () => {
 			dispatch(setIsFetchingAuth(false));
 			dispatch(setIsFetching(false));
 		} catch (error) {
+			dispatch(setUser(error.response.data));
 			dispatch(setIsFetchingAuth(false));
 			dispatch(setIsFetching(false));
 		}
@@ -36,7 +44,7 @@ const registerUserAction = (name, last, email, password, setIsSuccess) => {
 				icon: 'success',
 				timer: 5000,
 			});
-			setIsSuccess(true)
+			setIsSuccess(true);
 		} catch (error) {
 			dispatch(setIsFetching(false));
 			await Swal.fire({
@@ -102,7 +110,11 @@ const verifyUserAction = (token) => {
 	return async function (dispatch) {
 		dispatch(setIsFetchingAuth(true));
 		try {
-			const result = await axios.post(`${URL}/auth/verify-account`, { token }, { withCredentials: true });
+			const result = await axios.post(
+				`${URL}/auth/verify-account`,
+				{ token },
+				{ withCredentials: true },
+			);
 			await Swal.fire({
 				title: result.data.message,
 				icon: 'success',
@@ -129,7 +141,7 @@ const verifyUserAction = (token) => {
 
 const requestPasswordResetAction = (email) => {
 	return async function (dispatch) {
-		dispatch(setIsFetching(true))
+		dispatch(setIsFetching(true));
 		try {
 			const result = await axios.post(`${URL}/auth/request-password-reset`, {
 				email,
@@ -139,30 +151,30 @@ const requestPasswordResetAction = (email) => {
 				icon: 'success',
 				timer: 5000,
 			});
-			dispatch(setIsFetching(false))
+			dispatch(setIsFetching(false));
 		} catch (error) {
 			await Swal.fire({
 				title: error.response.data.error,
 				icon: 'error',
 				timer: 5000,
 			});
-			dispatch(setIsFetching(false))
+			dispatch(setIsFetching(false));
 		}
 	};
 };
 
 const verifyPasswordResetAction = (token) => {
 	return async function (dispatch) {
-		dispatch(setIsFetching(true))
+		dispatch(setIsFetching(true));
 		try {
 			const result = await axios.post(`${URL}/auth/verify-password-reset`, {
 				token,
 			});
 			dispatch(setStatusVerify(result.data.message));
-			dispatch(setIsFetching(false))
+			dispatch(setIsFetching(false));
 		} catch (error) {
 			dispatch(setStatusVerify(error.response.data.message));
-			dispatch(setIsFetching(false))
+			dispatch(setIsFetching(false));
 			await Swal.fire({
 				title: error.response.data.error,
 				icon: 'error',
@@ -174,7 +186,7 @@ const verifyPasswordResetAction = (token) => {
 
 const confirmPasswordResetAction = (token, password) => {
 	return async function (dispatch) {
-		dispatch(setIsFetching(true))
+		dispatch(setIsFetching(true));
 		try {
 			const result = await axios.post(`${URL}/auth/password-reset`, {
 				token,
@@ -185,9 +197,9 @@ const confirmPasswordResetAction = (token, password) => {
 				icon: 'success',
 				timer: 5000,
 			});
-			dispatch(setIsFetching(false))
+			dispatch(setIsFetching(false));
 		} catch (error) {
-			dispatch(setIsFetching(false))
+			dispatch(setIsFetching(false));
 			await Swal.fire({
 				title: error.response.data.error,
 				icon: 'error',

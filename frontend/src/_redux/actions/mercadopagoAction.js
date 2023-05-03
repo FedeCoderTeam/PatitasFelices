@@ -7,7 +7,6 @@ import {
 
 const setLinkDePagos = (items) => {
 	return async function () {
-		console.log(items);
 		try {
 			let link = await axios.post(
 				'http://localhost:3001/mercadopago/payment',
