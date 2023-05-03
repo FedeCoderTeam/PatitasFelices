@@ -34,15 +34,17 @@ const Orders = () => {
 	);
 
 	const columns = [
-		{ field: 'id', headerName: 'Id', width: 80 },
+		{ field: 'id', headerName: 'Id', width: 300, align: 'center', headerAlign: 'center' },
 		{
 			field: 'col1',
 			headerName: 'Motivo',
 			width: 150,
+			align: 'center', 
+			headerAlign: 'center'
 		},
-		{ field: 'col2', headerName: 'Total', width: 250 },
-		{ field: 'col3', headerName: 'Usuario', width: 150 },
-		{ field: 'col4', headerName: 'Fecha', width: 150 },
+		{ field: 'col2', headerName: 'Total', width: 250, align: 'center', headerAlign: 'center'},
+		{ field: 'col3', headerName: 'Usuario', width: 250 },
+		{ field: 'col4', headerName: 'Fecha', width: 150, align: 'center', headerAlign: 'center' },
 	];
 
 	return (
@@ -60,9 +62,10 @@ const Orders = () => {
 			<Box
 				sx={{
 					height: 'auto',
-					width: '100%',
+					width: '70%',
 					alignContent: 'center',
 					marginTop: '20px',
+					marginLeft:'15%',
 				}}
 			>
 				<DataGrid rows={rows} columns={columns} />
