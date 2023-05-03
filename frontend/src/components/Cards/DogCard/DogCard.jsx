@@ -175,8 +175,8 @@ export function DialogDogsDetail(props) {
 								<h3>
 									<img 
 										className={style.itemIcon} 
-										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
-
+										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'}
+										alt='icono' 
 									/>
 									{props.dog.ageInYears}
 								</h3>
@@ -184,7 +184,7 @@ export function DialogDogsDetail(props) {
 									<img 
 										className={style.itemIcon} 
 										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
-
+										alt='icono'
 									/>
 									{props.dog.weight + 'kg'}
 								</h3>
@@ -192,7 +192,7 @@ export function DialogDogsDetail(props) {
 									<img 
 										className={style.itemIcon} 
 										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
-
+										alt='icono'
 									/>
 									{props.dog.colors.join(' - ')}
 								</h3>
@@ -200,15 +200,15 @@ export function DialogDogsDetail(props) {
 									<img 
 										className={style.itemIcon} 
 										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
-
+										alt='icono'
 									/>
 									{props.dog.gender}
 								</h3>
 								<h3>
 									<img 
 										className={style.itemIcon} 
-										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
-
+										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'}
+										alt='icono' 
 									/>
 									{props.dog.size}
 								</h3>
@@ -216,7 +216,7 @@ export function DialogDogsDetail(props) {
 									<img 
 										className={style.itemIcon} 
 										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
-
+										alt='icono'
 									/>
 									{props.dog.temperaments.join(' - ')}
 								</h3>
