@@ -9,19 +9,14 @@ import validationEmpty from './Validations/ValidationsEmpty';
 import CloudinaryWidget from '../../components/Cloudinary/CloudinaryForm/CloudinaryWidget';
 import CloudinaryWidgetFull from '../../components/Cloudinary/CloudinaryForm/CloudinaryWidgetFull';
 import useToast from '../../utils/hooks/useToast';
-import { getUserById } from '../../_redux/actions/authAction';
+
 
 const UserSettings = () =>{
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { id } = useParams();
 
-    let userId = useSelector((state) => state.authReducer.userDetail);
-
-    useEffect(() => {
-	    dispatch(getUserById(id));
-	}, [dispatch]);
+    let userId = useSelector((state) => state.authReducer.user);
 
     let [input, setInput] = useState({
         id: userId?.id,
@@ -53,7 +48,6 @@ const UserSettings = () =>{
                 email: input.email,
                 last: input.last,
                 image: url ? url : input.image,
-                password: input.password,
                 isDisabled: input.isDisabled,
                 isVerified: input.isVerified,
                 roleId: input.roleId,
@@ -68,6 +62,7 @@ const UserSettings = () =>{
 			}, 2000);
 		
 	};
+
 
     let handlerChange = (event) => {
 		setInput({
