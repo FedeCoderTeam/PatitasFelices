@@ -121,7 +121,6 @@ function App() {
 				location.pathname !== '/password-reset' &&
 				location.pathname !== '/form' &&
 				location.pathname !== '/products/success' &&
-				location.pathname !== '/products' &&
 				location.pathname !== '/donation' &&
 				location.pathname !== '/donation/success_donation' &&
 				(!location.pathname.includes('/dashboard') ||

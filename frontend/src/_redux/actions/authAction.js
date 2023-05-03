@@ -4,6 +4,7 @@ import {
 	setStatusVerify,
 	setUser,
 	getAllUsers,
+	getUserDetail,
 	setIsFetchingAuth,
 } from '../reducer/authReducer';
 import axios from 'axios';

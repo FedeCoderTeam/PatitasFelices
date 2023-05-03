@@ -202,9 +202,6 @@ const Home = () => {
 	return (
 		<>
 			<div className={style.containerBtnNav}>
-				<Link to="/dashboard/" style={{ textDecoration: 'none' }}>
-					<button className={style.btnBackHomeDash}>Home Dashboard</button>
-				</Link>
 				<Link to="/home" style={{ textDecoration: 'none' }}>
 					<button className={style.btnBackHome}>Home Principal</button>
 				</Link>
