@@ -36,7 +36,7 @@ const googleUser = async (profile) => {
                     role: findUser.role.name
                 }
             }
-        } else throw new Error('A user with that email already exists. Please login with your normal email and password.')
+        } else throw new Error('Ya existe un usuario con ese correo electrónico. Ingrese sesión con su correo y contraseña usuales.')
     } else {
         const hashedPassword = await bcrypt.hash(generatorPassword(), saltRounds)
         const newUser = await user.create({

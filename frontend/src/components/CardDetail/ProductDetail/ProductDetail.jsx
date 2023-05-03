@@ -40,6 +40,30 @@ function ProductDetail() {
 		}
 	};
 
+	const handleClickPrev = () => {
+		const container = document.querySelector(`.${style.productCardContainer}`);
+		container.classList.add(style.moveRight);
+	  
+		setTimeout(() => {
+		  setCurrentIndex(
+			currentIndex > 2 ? currentIndex - 1 : 0
+		  );
+		  container.classList.remove(style.moveRight);
+		}, 590);
+	};
+
+	const handleClickNext = () =>{
+		const container = document.querySelector(`.${style.productCardContainer}`);
+		container.classList.add(style.moveLeft);
+		  
+		setTimeout(() => {
+			setCurrentIndex(
+				currentIndex + 3 < allProductNoId.length ? currentIndex + 1 : currentIndex
+			);
+			container.classList.remove(style.moveLeft);
+		}, 590);
+	};
+
 	const productDetail = useSelector(
 		(state) => state.productsReducer.productDetail,
 	);
@@ -168,24 +192,24 @@ function ProductDetail() {
 						</div>
 						<div className={style.divOtros}>
 
-							<div onClick={() =>
-										setCurrentIndex(currentIndex > 0 && currentIndex - 1)
-									} className={style.arrowLeft}>
-									<i className="fa-solid fa-chevron-left" ></i>
+							<div onClick={handleClickPrev} className={style.arrowLeft}>
+								<i className="fa-solid fa-chevron-left" ></i>
 							</div>
-							{allProductNoId.length && allProductNoId.slice(currentIndex, currentIndex + 3).map((product) => (
-								<ProductCard
+							<div className={style.productCardContainer}>
+								{allProductNoId
+								.slice(currentIndex, currentIndex + 3)
+								.map((product) => (
+									<ProductCard
 									key={product.id}
 									id={product.id}
 									name={product.name}
 									image={product.image}
 									brand={product.brand}
 									price={product.price}
-								/>
-							))}
-							<div onClick={() =>
-									setCurrentIndex((currentIndex + 1) % allProductNoId.length)
-								} className={style.arrowRight}>
+									/>
+								))}
+							</div>
+							<div onClick={handleClickNext} className={style.arrowRight}>
 								<i className="fa-solid fa-chevron-right"></i>
 							</div>
 						</div>

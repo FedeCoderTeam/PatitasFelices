@@ -3,14 +3,14 @@ const { bcrypt, saltRounds } = require('../../utils/bcrypt')
 const { verifyToken } = require('../../utils/token');
 
 const confirmPasswordResetUser = async (token, password) => {
-    if(!token || !password) throw new Error('Email and Password is required')
+    if(!token || !password) throw new Error('Se requiere un email y una contraseña.')
 
     const decoded = await verifyToken(token, process.env.JWT_PRIVATE_KEY_PASSWORD_RESET)
     const findUserPasswordReset = await userPasswordReset.findOne({where: { token: token, userId: decoded.user.id }})
-    if(!findUserPasswordReset) throw new Error('No valid password reset request was found with this token')
+    if(!findUserPasswordReset) throw new Error('No se encontró ninguna solicitud para reestablecer la contraseña con este token.')
 
     const findUser = user.findOne({where: { id: decoded.user.id, email: decoded.user.email }})
-    if(!findUser) throw new Error('No valid password reset request was found with this token')
+    if(!findUser) throw new Error('No se encontró ninguna solicitud para reestablecer la contraseña con este token.')
 
     const hashedPassword = await bcrypt.hash(password, saltRounds)
 
@@ -19,7 +19,7 @@ const confirmPasswordResetUser = async (token, password) => {
 
     return {
         error: null,
-        message: 'Password reset successfully'
+        message: 'Se reestableció la contraseña exitosamente.'
     }
 
 }

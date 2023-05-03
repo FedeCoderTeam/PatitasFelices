@@ -176,3 +176,30 @@
     font-weight: 500;
     margin-left: 5px;
 }
+
+@keyframes anim {
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.3;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+.productCardContainer{
+	display: flex;
+	gap: 16px;
+}
+
+.productCardContainer.moveLeft {
+	animation: anim 800ms ease-in 0s 1 normal none;
+  }
+  
+  .productCardContainer.moveRight {
+	animation: anim 800ms ease-in 0s 1 normal none;
+  }

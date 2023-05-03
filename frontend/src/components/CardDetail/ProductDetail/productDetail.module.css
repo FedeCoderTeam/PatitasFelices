@@ -265,10 +265,10 @@
 	transition: ease-in-out 0.2s;
 	border-radius: 5px;
 	padding: 2px 10px 2px 10px;
-	background-color: rgba(0, 0, 0, 0.699);
+	background-color: #d9ad77;
 }
 .arrowLeft:hover {
-	color: #a65424;
+	color: #ffffff;
 	background-color: rgba(0, 0, 0, 0.425);
 }
 
@@ -281,11 +281,36 @@
 	transition: ease-in-out 0.2s;
 	border-radius: 5px;
 	padding: 2px 10px 2px 10px;
-	background-color: rgba(0, 0, 0, 0.699);
+	background-color: #d9ad77;
 }
 .arrowRight:hover {
-	color: #a65424;
+	color: #ffffff;
 	background-color: rgba(0, 0, 0, 0.425);
 }
 
+@keyframes anim {
+	0% {
+		opacity: 1;
+	}
 
+	50% {
+		opacity: 0.3;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+.productCardContainer{
+	display: flex;
+	gap: 16px;
+}
+
+.productCardContainer.moveLeft {
+	animation: anim 600ms ease-in 0s 1 normal none;
+  }
+  
+  .productCardContainer.moveRight {
+	animation: anim 600ms ease-in 0s 1 normal none;
+  }

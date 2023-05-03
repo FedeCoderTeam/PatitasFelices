@@ -34,8 +34,11 @@ const SuccessDonation = () => {
 	};
 
 	useEffect(() => {
-		if ((token === null || token !== '') && orderGenerated === 'No creada') {
-			generateOrder();
+		if (
+			(token !== 'null' || token === null) &&
+			orderGenerated === 'No creada'
+		) {
+			generateOrder().then();
 		}
 		setTimeout(() => {
 			localStorage.setItem('donation', JSON.stringify([]));

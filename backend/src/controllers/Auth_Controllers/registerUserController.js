@@ -4,12 +4,12 @@ const { signToken } = require('../../utils/token');
 const { email_account_verification } = require('../../utils/email');
 
 const registerUser = async (name, last, email, password) => {
-    if(!name || !last || !email || !password) throw new Error('Name, Last, Email and Password are required')
-    if (!/\S+@\S+\.\S+/.test(email)) throw new Error('Please enter a valid email address')
+    if(!name || !last || !email || !password) throw new Error('Se requiere nombre, apellido y contraseña.')
+    if (!/\S+@\S+\.\S+/.test(email)) throw new Error('Ingresa un correo electrónico válido.')
 
     const existUser = await user.findOne({where: {email}})
 
-    if(existUser) throw new Error('The email is already in use. Please enter a different email address')
+    if(existUser) throw new Error('Este correo ya se encuentra en uso. Ingresa un dirección de correo electrónico diferente.')
 
     const hashedPassword = await bcrypt.hash(password, saltRounds)
 
@@ -32,7 +32,7 @@ const registerUser = async (name, last, email, password) => {
 
     return {
         error: null,
-        message: 'AuthForms created, you must verify your email'
+        message: 'Se creó AuthForms. Debes verificar tu correo electrónico.'
     }
 }
 
