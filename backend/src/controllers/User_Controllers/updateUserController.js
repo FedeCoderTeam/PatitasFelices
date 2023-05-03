@@ -10,7 +10,7 @@ const updateUser = async (id, password, image, isDisabled, roleId) => {
 		await userUpdated.update({
 			password: !password ? userUpdated.password : password,
 			image: !image ? userUpdated.image : image,
-			isDisabled: !isDisabled ? userUpdated.isDisabled : isDisabled,
+			isDisabled: isDisabled === 'Si' ? true : false,
 		});
 		if (roleId) {
 			let newRole = await role.findOne({

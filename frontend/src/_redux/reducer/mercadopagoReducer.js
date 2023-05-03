@@ -11,23 +11,11 @@ export const reviewsSlice = createSlice({
 	initialState,
 	reducers: {
 		getAllOrders: (state, action) => {
-			if (action.payload !== 'No hay solicitudes de adopción') {
-				return {
-					orders: action.payload,
-				};
-			}
-
-			state.orders = [];
+			state.orders = action.payload;
 		},
 
 		getAllPurchases: (state, action) => {
-			if (action.payload !== 'No hay solicitudes de adopción') {
-				return {
-					purchases: action.payload,
-				};
-			}
-
-			state.purchases = [];
+			state.purchases = action.payload;
 		},
 
 		setNewOrder: (state, action) => {

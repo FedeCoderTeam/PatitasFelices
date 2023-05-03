@@ -2,18 +2,13 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import * as reviewsAction from '../../../_redux/actions/reviewsAction';
 import Star from '@mui/icons-material/Star';
-import { yellow } from '@mui/material/colors';
-import style from './Reviews.module.css'
+import style from './Reviews.module.css';
 import { Link } from 'react-router-dom';
-
-// import StarIcon from '@material-ui/icons/Star';
 
 const Reviews = () => {
 	const allReviews = useSelector((state) => state.reviewsReducer.reviews);
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	useEffect(() => {

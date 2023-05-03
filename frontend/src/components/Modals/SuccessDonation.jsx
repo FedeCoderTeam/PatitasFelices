@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import Aprob from '../../utils/animations/Success.json';
 import { postOrders } from '../../_redux/actions/mercadopagoAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const SuccessDonation = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+
+	const token = useSelector((state) => state.authReducer.token);
 
 	const [orderGenerated, setOrderGenerated] = useState('No creada');
 
@@ -20,6 +22,7 @@ const SuccessDonation = () => {
 			total: donation[0].price,
 			payment_method: 'Mercado Pago',
 			source: 'Donacion',
+			token,
 		};
 
 		try {
@@ -31,15 +34,14 @@ const SuccessDonation = () => {
 	};
 
 	useEffect(() => {
-		if (orderGenerated === 'No creada') {
+		if ((token === null || token !== '') && orderGenerated === 'No creada') {
 			generateOrder();
 		}
-
 		setTimeout(() => {
 			localStorage.setItem('donation', JSON.stringify([]));
 			navigate('/donation');
 		}, 2000);
-	}, [navigate, orderGenerated]);
+	}, [navigate, orderGenerated, token]);
 
 	return (
 		<div
