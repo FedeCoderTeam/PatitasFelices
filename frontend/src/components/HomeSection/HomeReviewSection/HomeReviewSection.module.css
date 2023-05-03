@@ -112,7 +112,7 @@
 	background-color: white;
 	color: #16343f;
 	font-weight: 700;
-	height: 350px;
+	height: 370px;
 	width: 500px;
 }
 
@@ -124,10 +124,11 @@
 }
 
 .commentSectionDialog {
+	height: 230px;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 
 .commentSectionDialog textarea {
@@ -167,4 +168,11 @@
 .buttonDialog:hover {
     transform: scale(1.01);
     background-color: #16343f;
+}
+
+.errorMessage {
+	font-size: 12px;
+    color: rgb(202, 0, 0);
+    font-weight: 500;
+    margin-left: 5px;
 }

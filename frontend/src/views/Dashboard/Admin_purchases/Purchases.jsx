@@ -3,6 +3,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actionPurchase from '../../../_redux/actions/mercadopagoAction';
+import { Link } from 'react-router-dom';
+import style from './Purchases.module.css'
 
 const Purchases = () => {
 	const allPurchase = useSelector(
@@ -86,7 +88,15 @@ const Purchases = () => {
 	];
 
 	return (
-		<>
+		<>	
+			<div className={style.containerBtnNav}>
+				<Link to="/dashboard/" style={{ textDecoration: 'none' }}>
+					<button className={style.btnBackHomeDash}>Home Dashboard</button>
+				</Link>
+				<Link to="/home" style={{ textDecoration: 'none' }}>
+					<button className={style.btnBackHome}>Home Principal</button>
+				</Link>
+			</div>
 			<Box
 				sx={{
 					height: 'auto',

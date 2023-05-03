@@ -133,8 +133,9 @@ export function ReviewDetail(props) {
 
 	const validationSchema = Yup.object().shape({
 		comment: Yup.string()
-			.max(130, 'El comentario no puede superar los 130 caracteres')
-			.required('El comentario es obligatorio'),
+			.max(250, 'El comentario no puede superar los 250 caracteres.*')
+			.matches(/^[a-zA-Z\u00C0-\u00FF\s.,!¡?¿]+$/, 'Solo se permiten letras, comas, puntos y signos de exclamación e interrogación.*')
+			.required('El comentario es obligatorio.*'),
 		rating: Yup.number(),
 	});
 
@@ -200,7 +201,7 @@ export function ReviewDetail(props) {
 										}}
 									/>
 									{formik.touched.comment && formik.errors.comment && (
-										<div>{formik.errors.comment}</div>
+										<div className={style.errorMessage}>{formik.errors.comment}</div>
 									)}
 								</div>
 
