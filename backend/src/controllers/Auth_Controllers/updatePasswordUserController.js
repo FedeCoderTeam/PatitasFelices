@@ -2,7 +2,7 @@ const { user } = require ('../../database/db')
 const { verifyToken } = require('../../utils/token');
 const {bcrypt, saltRounds} = require('../../utils/bcrypt');
 
-const updatePasswordUser = async (id, token, currentPassword, newPassword) => {
+const updatePasswordUser = async (token, currentPassword, newPassword) => {
     if(!token) throw new Error('Token is required')
 
     const decoded = await verifyToken(token, process.env.JWT_PRIVATE_KEY_AUTH)
