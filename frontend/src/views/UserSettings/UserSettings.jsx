@@ -136,7 +136,7 @@ const UserSettings = () =>{
     return(
 		<div className={style.mainContainer}>
 			{userId &&
-			<>
+			<div className={style.containerBox}>
 				<div className={style.avatar}>
 					<Avatar
 						alt={userId.name}
@@ -154,81 +154,83 @@ const UserSettings = () =>{
 					<Grid2 xs={6}>
 						<div className={style.container}>
 							<div className={style.title}>
-								<h2>General info</h2>
-								<Fab onClick={() => handleSetEditModeUser()} size={'small'} color={'warning'}>
-									<EditIcon />
+								<h2>Información general</h2>
+								<Fab onClick={() => handleSetEditModeUser()} size={'small'} sx={{marginTop: '15px', marginLeft: '165px', color: '#592519'}}>
+									<EditIcon color={'black'} />
 								</Fab>
 							</div>
-							<div className={style.inputs}>
-								<ThemeProvider theme={theme}>
-									<TextField
-										fullWidth
-										name={'name'}
-										label={'Nombre'}
-										variant={'filled'}
-										disabled={!modeEditUser}
-										defaultValue={initialValuesUser.name}
-										value={formikUser.values.name}
-										onChange={formikUser.handleChange}
-										error={formikUser.touched.name && Boolean(formikUser.errors.name)}
-										helperText={formikUser.touched.name && formikUser.errors.name}
-									/>
-								</ThemeProvider>
-							</div>
-							<div className={style.inputs}>
-								<ThemeProvider theme={theme}>
-									<TextField
-										fullWidth
-										name={'last'}
-										label={'Apellido'}
-										variant={'filled'}
-										disabled={!modeEditUser}
-										defaultValue={initialValuesUser.last}
-										value={formikUser.values.last}
-										onChange={formikUser.handleChange}
-										error={formikUser.touched.last && Boolean(formikUser.errors.last)}
-										helperText={formikUser.touched.last && formikUser.errors.last}
-									/>
-								</ThemeProvider>
-							</div>
-							<div className={style.containerUploadForm}>
-								<div>
-									<div className={style.divImgUser}>
-										<img
-											src={formikUser.values.image || userId.image}
-											loading="lazy"
-											alt=""
+							<div className={style.containerInputs}>
+								<div className={style.inputs}>
+									<ThemeProvider theme={theme}>
+										<TextField
+											fullWidth
+											name={'name'}
+											label={'Nombre'}
+											variant={'filled'}
+											disabled={!modeEditUser}
+											defaultValue={initialValuesUser.name}
+											value={formikUser.values.name}
+											onChange={formikUser.handleChange}
+											error={formikUser.touched.name && Boolean(formikUser.errors.name)}
+											helperText={formikUser.touched.name && formikUser.errors.name}
 										/>
-									</div>
-									{url ? (
-										<div className={`${style.divCloudinaryBtn} ${!modeEditUser ? style.disableButton : ''}`}>
-											<CloudinaryWidgetFull url={userId.image} setUrl={(url) => {
-												formikUser.setFieldValue('image', url)
-												setUrl(url)
-											}} setDisabled={!modeEditUser} />
-										</div>
-									) : (
-										<div className={`${style.divCloudinaryBtn} ${!modeEditUser ? style.disableButton : ''}`}>
-											<CloudinaryWidget url={formikUser.values.image} setUrl={(url) => {
-												formikUser.setFieldValue('image', url)
-												setUrl(url)
-											}} setDisabled={!modeEditUser} />
-										</div>
-									)}
+									</ThemeProvider>
 								</div>
-							</div>
-							<div className={style.button}>
-								<ThemeProvider theme={theme}>
-									<Button disabled={!modeEditUser} fullWidth={true} type={'button'} color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} onClick={formikUser.handleSubmit} >Actualizar</Button>
-									{ isFetching && (<CircularProgress size={24} sx={{
-										color: '#D9AD77',
-										position: 'absolute',
-										top: '50%',
-										left: '50%',
-										marginTop: '-12px',
-										marginLeft: '-12px',
-									}}></CircularProgress>)}
-								</ThemeProvider>
+								<div className={style.inputs}>
+									<ThemeProvider theme={theme}>
+										<TextField
+											fullWidth
+											name={'last'}
+											label={'Apellido'}
+											variant={'filled'}
+											disabled={!modeEditUser}
+											defaultValue={initialValuesUser.last}
+											value={formikUser.values.last}
+											onChange={formikUser.handleChange}
+											error={formikUser.touched.last && Boolean(formikUser.errors.last)}
+											helperText={formikUser.touched.last && formikUser.errors.last}
+										/>
+									</ThemeProvider>
+								</div>
+								<div className={style.containerUploadForm}>
+									<div>
+										<div className={style.divImgUser}>
+											<img
+												src={formikUser.values.image || userId.image}
+												loading="lazy"
+												alt=""
+											/>
+										</div>
+										{url ? (
+											<div className={`${style.divCloudinaryBtn} ${!modeEditUser ? style.disableButton : ''}`}>
+												<CloudinaryWidgetFull url={userId.image} setUrl={(url) => {
+													formikUser.setFieldValue('image', url)
+													setUrl(url)
+												}} setDisabled={!modeEditUser} />
+											</div>
+										) : (
+											<div className={`${style.divCloudinaryBtn} ${!modeEditUser ? style.disableButton : ''}`}>
+												<CloudinaryWidget url={formikUser.values.image} setUrl={(url) => {
+													formikUser.setFieldValue('image', url)
+													setUrl(url)
+												}} setDisabled={!modeEditUser} />
+											</div>
+										)}
+									</div>
+								</div>
+								<div className={style.button}>
+									<ThemeProvider theme={theme}>
+										<Button disabled={!modeEditUser} fullWidth={true} type={'button'} color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} onClick={formikUser.handleSubmit} >Actualizar</Button>
+										{ isFetching && (<CircularProgress size={24} sx={{
+											color: '#D9AD77',
+											position: 'absolute',
+											top: '50%',
+											left: '50%',
+											marginTop: '-12px',
+											marginLeft: '-12px',
+										}}></CircularProgress>)}
+									</ThemeProvider>
+								</div>
 							</div>
 						</div>
 					</Grid2>
@@ -236,76 +238,78 @@ const UserSettings = () =>{
 						<div className={style.container}>
 							<div className={style.title}>
 								<h2>Cambiar contraseña</h2>
-								<Fab onClick={() => handleSetEditModePass()} size={'small'} color={'warning'}>
+								<Fab onClick={() => handleSetEditModePass()} size={'small'} sx={{marginTop: '15px', marginLeft: '160px', color: '#592519'}}>
 									<EditIcon />
 								</Fab>
 							</div>
-							<div className={style.inputs}>
-								<ThemeProvider theme={theme}>
-									<TextField
-										fullWidth
-										name={'currentPassword'}
-										label={'Contraseña actual'}
-										variant={'filled'}
-										type={'password'}
-										disabled={!modeEditPass}
-										value={formikPassword.values.currentPassword}
-										onChange={formikPassword.handleChange}
-										error={formikPassword.touched.currentPassword && Boolean(formikPassword.errors.currentPassword)}
-										helperText={formikPassword.touched.currentPassword && formikPassword.errors.currentPassword}
-									/>
-								</ThemeProvider>
-							</div>
-							<div className={style.inputs}>
-								<ThemeProvider theme={theme}>
-									<TextField
-										fullWidth
-										name={'newPassword'}
-										label={'Contraseña nueva'}
-										variant={'filled'}
-										type={'password'}
-										disabled={!modeEditPass}
-										value={formikPassword.values.newPassword}
-										onChange={formikPassword.handleChange}
-										error={formikPassword.touched.newPassword && Boolean(formikPassword.errors.newPassword)}
-										helperText={formikPassword.touched.newPassword && formikPassword.errors.newPassword}
-									/>
-								</ThemeProvider>
-							</div>
-							<div className={style.inputs}>
-								<ThemeProvider theme={theme}>
-									<TextField
-										fullWidth
-										name={'repeatNewPassword'}
-										label={'Repetir contraseña nueva'}
-										variant={'filled'}
-										type={'password'}
-										disabled={!modeEditPass}
-										value={formikPassword.values.repeatNewPassword}
-										onChange={formikPassword.handleChange}
-										error={formikPassword.touched.repeatNewPassword && Boolean(formikPassword.errors.repeatNewPassword)}
-										helperText={formikPassword.touched.repeatNewPassword && formikPassword.errors.repeatNewPassword}
-									/>
-								</ThemeProvider>
-							</div>
-							<div className={style.button}>
-								<ThemeProvider theme={theme}>
-									<Button disabled={!modeEditPass} fullWidth={true} type={'button'} color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} onClick={formikPassword.handleSubmit} >Actualizar</Button>
-									{ isFetching && (<CircularProgress size={24} sx={{
-										color: '#D9AD77',
-										position: 'absolute',
-										top: '50%',
-										left: '50%',
-										marginTop: '-12px',
-										marginLeft: '-12px',
-									}}></CircularProgress>)}
-								</ThemeProvider>
+							<div className={style.containerInputs}>
+								<div className={style.inputs}>
+									<ThemeProvider theme={theme}>
+										<TextField
+											fullWidth
+											name={'currentPassword'}
+											label={'Contraseña actual'}
+											variant={'filled'}
+											type={'password'}
+											disabled={!modeEditPass}
+											value={formikPassword.values.currentPassword}
+											onChange={formikPassword.handleChange}
+											error={formikPassword.touched.currentPassword && Boolean(formikPassword.errors.currentPassword)}
+											helperText={formikPassword.touched.currentPassword && formikPassword.errors.currentPassword}
+										/>
+									</ThemeProvider>
+								</div>
+								<div className={style.inputs}>
+									<ThemeProvider theme={theme}>
+										<TextField
+											fullWidth
+											name={'newPassword'}
+											label={'Contraseña nueva'}
+											variant={'filled'}
+											type={'password'}
+											disabled={!modeEditPass}
+											value={formikPassword.values.newPassword}
+											onChange={formikPassword.handleChange}
+											error={formikPassword.touched.newPassword && Boolean(formikPassword.errors.newPassword)}
+											helperText={formikPassword.touched.newPassword && formikPassword.errors.newPassword}
+										/>
+									</ThemeProvider>
+								</div>
+								<div className={style.inputs}>
+									<ThemeProvider theme={theme}>
+										<TextField
+											fullWidth
+											name={'repeatNewPassword'}
+											label={'Repetir contraseña nueva'}
+											variant={'filled'}
+											type={'password'}
+											disabled={!modeEditPass}
+											value={formikPassword.values.repeatNewPassword}
+											onChange={formikPassword.handleChange}
+											error={formikPassword.touched.repeatNewPassword && Boolean(formikPassword.errors.repeatNewPassword)}
+											helperText={formikPassword.touched.repeatNewPassword && formikPassword.errors.repeatNewPassword}
+										/>
+									</ThemeProvider>
+								</div>
+								<div className={style.button}>
+									<ThemeProvider theme={theme}>
+										<Button disabled={!modeEditPass} fullWidth={true} type={'button'} color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} onClick={formikPassword.handleSubmit} >Actualizar</Button>
+										{ isFetching && (<CircularProgress size={24} sx={{
+											color: '#D9AD77',
+											position: 'absolute',
+											top: '50%',
+											left: '50%',
+											marginTop: '-12px',
+											marginLeft: '-12px',
+										}}></CircularProgress>)}
+									</ThemeProvider>
+								</div>
 							</div>
 						</div>
 					</Grid2>
 				</Grid2>
 
-			</>
+			</div>
 			}
 		</div>
 	)
