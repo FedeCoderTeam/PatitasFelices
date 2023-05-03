@@ -12,6 +12,7 @@ const postAdoptionDog = (obj) => {
 };
 
 const updateAdoptionDog = (obj) => {
+	console.log(obj)
 	return async () => {
 		try {
 			await axios.put('http://localhost:3001/requests', obj);

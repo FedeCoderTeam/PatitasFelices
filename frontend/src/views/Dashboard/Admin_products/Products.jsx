@@ -44,7 +44,7 @@ const Products = () => {
 			<img
 				src={value}
 				alt="Imagen"
-				style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+				style={{ maxWidth: '2.5em', maxHeight: '6em', objectFit: 'contain' }}
 			/>
 		);
 	};
@@ -74,8 +74,8 @@ const Products = () => {
 		{ field: 'col3', headerName: 'Precio', width: 150 },
 		{ field: 'col4', headerName: 'Stock', width: 150 },
 		{ field: 'col5', headerName: 'Categoria', width: 150 },
-		{ field: 'col6', headerName: 'Sub-categoria', width: 200 },
-		{ field: 'col7', headerName: '¿Descontinuado?', width: 200 },
+		{ field: 'col6', headerName: 'Sub-categoria', width: 150 },
+		{ field: 'col7', headerName: '¿Descontinuado?', width: 150 },
 		{
 			field: 'col8',
 			headerName: 'Imagen',

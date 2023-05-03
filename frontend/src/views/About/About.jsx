@@ -17,7 +17,8 @@ const About = () => {
                         autoStart: true,
                         loop: true,
                         delay:200,
-                        strings: ["Patitas Felices - Happy Paws"]
+                        strings: ["Patitas Felices - Happy Paws"],
+                        pauseFor: '5000ms'
                     }}
                 />
                 </h2>
@@ -31,9 +32,10 @@ const About = () => {
                 <Typewriter 
                     options={{
                         autoStart: true,
-                        loop: false,
+                        // loop: false,
                         delay:30,
-                        strings: [t('about.text')]
+                        strings: [t('about.text')],
+                        pauseFor: '15000ms'
                     }}
                 />
                 </p>

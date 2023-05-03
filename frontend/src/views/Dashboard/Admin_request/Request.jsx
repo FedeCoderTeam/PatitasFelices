@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 const Request = () => {
 	const dispatch = useDispatch();
 	const allRequest = useSelector((state) => state.requestReducer.allAdoptions);
+	const token = useSelector(state => state.authReducer.token)
 	const { success, error } = useToast();
 
 	let [edit, setEdit] = useState(false);
@@ -75,10 +76,10 @@ const Request = () => {
 		};
 
 		if (row.col13 !== change && change !== '') {
-			dispatch(requestAction.updateAdoptionDog(obj));
+			dispatch(requestAction.updateAdoptionDog({...obj, token}));
 			successNotify();
 		} else if (row.col13 === change && change !== '') {
-			dispatch(requestAction.updateAdoptionDog(obj));
+			dispatch(requestAction.updateAdoptionDog({...obj, token}));
 			successNotify();
 		} else {
 			cancelNotify();
@@ -160,8 +161,8 @@ const Request = () => {
 			},
 		},
 		{ field: 'id', headerName: 'Id', width: 80 },
-		{ field: 'col1', headerName: 'Nombre', width: 160 },
-		{ field: 'col2', headerName: 'Edad', width: 100 },
+		{ field: 'col1', headerName: 'Nombre', width: 140 },
+		{ field: 'col2', headerName: 'Edad', width: 80 },
 		{ field: 'col3', headerName: 'Telefono', width: 120 },
 		{ field: 'col4', headerName: 'Direccion', width: 140 },
 		{ field: 'col5', headerName: 'Email', width: 150 },

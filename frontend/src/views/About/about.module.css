@@ -26,6 +26,9 @@
     font-size: 21px;
     margin-left: 30px;
 }
+.containerStory > div > img {
+    border-radius: 10px;
+}
 .mainContainer{
     display: flex;
     align-items: center;
