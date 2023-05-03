@@ -304,7 +304,7 @@ export function AvatarComponent(props) {
 							<ListItemIcon>
 								<Settings fontSize="small" sx={{ color: grey[900] }} />
 							</ListItemIcon>
-							<Link to={`/users/${props.selector.user.id}`} className={style.myReviews}>
+							<Link to={`/account`} className={style.myReviews}>
 								{t('nav.account.settings')}
 							</Link>
 						</MenuItem>
