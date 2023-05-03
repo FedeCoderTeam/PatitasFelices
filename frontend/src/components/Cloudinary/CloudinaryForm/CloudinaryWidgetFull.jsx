@@ -3,7 +3,7 @@ import './cloudinaryWidgetFull.css';
 import { useTranslation } from 'react-i18next';
 
 
-const CloudinaryWidgetFull = ({ setUrl }) => {
+const CloudinaryWidgetFull = ({ setUrl, setDisabled }) => {
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
 	const { t } = useTranslation();
@@ -25,7 +25,7 @@ const CloudinaryWidgetFull = ({ setUrl }) => {
 
     return(
         <div className='containerCloudinaryFullBtn-AdoptionForm' >
-            <button type='button' onClick={() => widgetRef.current.open()}>{t('cloudWidgFull.attachSuccess')} <i class="fa-solid fa-circle-check"></i></button>
+            <button type='button' disabled={setDisabled === undefined ? false : setDisabled} onClick={() => widgetRef.current.open()}>{t('cloudWidgFull.attachSuccess')} <i class="fa-solid fa-circle-check"></i></button>
         </div>
     );
 }
