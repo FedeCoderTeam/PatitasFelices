@@ -162,24 +162,60 @@ const Request = () => {
 				];
 			},
 		},
-		{ field: 'id', headerName: 'Id', width: 50, align: 'center', headerAlign: 'center' },
+		{
+			field: 'id',
+			headerName: 'Id',
+			width: 50,
+			align: 'center',
+			headerAlign: 'center',
+		},
 		{ field: 'col1', headerName: 'Nombre', width: 190 },
-		{ field: 'col2', headerName: 'Edad', width: 80, align: 'center', headerAlign: 'center' },
+		{
+			field: 'col2',
+			headerName: 'Edad',
+			width: 80,
+			align: 'center',
+			headerAlign: 'center',
+		},
 		{ field: 'col3', headerName: 'Telefono', width: 120 },
 		{ field: 'col4', headerName: 'Direccion', width: 190 },
 		{ field: 'col5', headerName: 'Email', width: 150 },
-		{ field: 'col6', headerName: '¿Animales?', width: 90, align: 'center', headerAlign: 'center' },
+		{
+			field: 'col6',
+			headerName: '¿Animales?',
+			width: 90,
+			align: 'center',
+			headerAlign: 'center',
+		},
 		{ field: 'col7', headerName: 'Detalles', width: 120 },
-		{ field: 'col8', headerName: '¿Economía?', width: 100, align: 'center', headerAlign: 'center' },
-		{ field: 'col9', headerName: '¿Permisos?', width: 100, align: 'center', headerAlign: 'center' },
+		{
+			field: 'col8',
+			headerName: '¿Economía?',
+			width: 100,
+			align: 'center',
+			headerAlign: 'center',
+		},
+		{
+			field: 'col9',
+			headerName: '¿Permisos?',
+			width: 100,
+			align: 'center',
+			headerAlign: 'center',
+		},
 		{
 			field: 'col10',
 			headerName: 'Patio/balcón',
 			width: 100,
 			renderCell: (params) => <ImageCell value={params.value} />,
 		},
-		{ field: 'col11', headerName: 'Id perro', width: 100, 			align: 'center', 
-			headerAlign: 'center', align:'center' },
+		{
+			field: 'col11',
+			headerName: 'Id perro',
+			width: 100,
+			align: 'center',
+			headerAlign: 'center',
+			align: 'center',
+		},
 		{
 			field: 'col12',
 			headerName: 'Solicitud',
@@ -211,7 +247,15 @@ const Request = () => {
 					marginTop: '20px',
 				}}
 			>
-				<DataGrid rows={rows} columns={columns} />
+				<DataGrid
+					rows={rows}
+					columns={columns}
+					initialState={{
+						...rows.initialState,
+						pagination: { paginationModel: { pageSize: 10 } },
+					}}
+					pageSizeOptions={[10, Math.floor(rows.length / 2), rows.length]}
+				/>
 			</Box>
 		</>
 	);

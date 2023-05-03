@@ -75,7 +75,11 @@ const Success = () => {
 	};
 
 	useEffect(() => {
-		if (token && cartItems?.length && orderGenerated === 'No creada') {
+		if (
+			token !== 'null' &&
+			cartItems?.length &&
+			orderGenerated === 'No creada'
+		) {
 			generateOrder();
 		}
 
