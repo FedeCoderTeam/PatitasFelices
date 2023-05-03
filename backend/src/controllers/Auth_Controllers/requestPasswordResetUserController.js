@@ -3,14 +3,14 @@ const { signToken } = require('../../utils/token');
 const { email_reset_password } = require('../../utils/email');
 
 const requestPasswordResetUser = async (email) => {
-    if(!email) throw new Error('Email is required')
-    if (!/\S+@\S+\.\S+/.test(email)) throw new Error('Please enter a valid email address')
+    if(!email) throw new Error('Se requiere un correo electrónico.')
+    if (!/\S+@\S+\.\S+/.test(email)) throw new Error('Ingresa un correo electrónico válido.')
 
     const findUser = await user.findOne({ where: {email: email} })
 
-    if(!findUser) throw new Error('We\'re sorry. We weren\'t able to identify you given the information provided.')
+    if(!findUser) throw new Error('Lo sentimos. No pudimos identificarte con la información provista.')
 
-    if(findUser.googleId) throw new Error('Password reset not available for Google accounts')
+    if(findUser.googleId) throw new Error('No está disponible el reestablecimiento de contraseña para las cuentas de Google.')
 
     const token = await signToken({user: {id: findUser.id, email: findUser.email}}, process.env.JWT_PRIVATE_KEY_PASSWORD_RESET, {expiresIn: '900000'})
 
@@ -23,7 +23,7 @@ const requestPasswordResetUser = async (email) => {
 
     return {
         error: null,
-        message: 'You have requested password reset, check your email'
+        message: 'Has solicitado reestablecer tu contraseña. Verifica tu correo electrónico.'
     }
 
 }
