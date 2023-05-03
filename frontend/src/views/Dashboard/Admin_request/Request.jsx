@@ -126,7 +126,7 @@ const Request = () => {
 			<img
 				src={value}
 				alt="Imagen"
-				style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+				style={{ maxWidth: '60%', maxHeight: '60%', objectFit: 'contain' }}
 			/>
 		);
 	};
@@ -140,7 +140,7 @@ const Request = () => {
 			field: 'actions',
 			type: 'actions',
 			headerName: 'Acciones',
-			width: 80,
+			width: 100,
 			cellClassName: 'actions',
 			getActions: ({ row }) => {
 				return [
@@ -162,23 +162,24 @@ const Request = () => {
 				];
 			},
 		},
-		{ field: 'id', headerName: 'Id', width: 80 },
-		{ field: 'col1', headerName: 'Nombre', width: 140 },
-		{ field: 'col2', headerName: 'Edad', width: 80 },
+		{ field: 'id', headerName: 'Id', width: 50, align: 'center', headerAlign: 'center' },
+		{ field: 'col1', headerName: 'Nombre', width: 190 },
+		{ field: 'col2', headerName: 'Edad', width: 80, align: 'center', headerAlign: 'center' },
 		{ field: 'col3', headerName: 'Telefono', width: 120 },
-		{ field: 'col4', headerName: 'Direccion', width: 140 },
+		{ field: 'col4', headerName: 'Direccion', width: 190 },
 		{ field: 'col5', headerName: 'Email', width: 150 },
-		{ field: 'col6', headerName: '¿Animales?', width: 100 },
-		{ field: 'col7', headerName: 'Detalles', width: 100 },
-		{ field: 'col8', headerName: '¿Economía?', width: 100 },
-		{ field: 'col9', headerName: '¿Permisos?', width: 100 },
+		{ field: 'col6', headerName: '¿Animales?', width: 90, align: 'center', headerAlign: 'center' },
+		{ field: 'col7', headerName: 'Detalles', width: 120 },
+		{ field: 'col8', headerName: '¿Economía?', width: 100, align: 'center', headerAlign: 'center' },
+		{ field: 'col9', headerName: '¿Permisos?', width: 100, align: 'center', headerAlign: 'center' },
 		{
 			field: 'col10',
-			headerName: 'Imagen patio/balcón',
+			headerName: 'Patio/balcón',
 			width: 100,
 			renderCell: (params) => <ImageCell value={params.value} />,
 		},
-		{ field: 'col11', headerName: 'Id perro', width: 100 },
+		{ field: 'col11', headerName: 'Id perro', width: 100, 			align: 'center', 
+			headerAlign: 'center', align:'center' },
 		{
 			field: 'col12',
 			headerName: 'Solicitud',
