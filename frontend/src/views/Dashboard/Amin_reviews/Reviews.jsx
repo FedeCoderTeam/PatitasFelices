@@ -92,7 +92,7 @@ const Reviews = () => {
 			field: 'actions',
 			type: 'actions',
 			headerName: 'Acciones',
-			width: 80,
+			width: 130,
 			cellClassName: 'actions',
 			getActions: ({ row }) => {
 				return [
@@ -114,11 +114,11 @@ const Reviews = () => {
 				];
 			},
 		},
-		{ field: 'id', headerName: 'Id', width: 80 },
+		{ field: 'id', headerName: 'Id', width: 80, align: 'center' },
 		{
 			field: 'col1',
 			headerName: 'Puntaje',
-			width: 150,
+			width: 170,
 			renderCell: (params) => <StarCell value={params.value} />,
 		},
 		{ field: 'col2', headerName: 'Comentario', width: 350 },
@@ -128,10 +128,11 @@ const Reviews = () => {
 		{
 			field: 'col6',
 			headerName: 'Foto',
-			width: 100,
+			width: 130,
+			align: 'center',
 			renderCell: (params) => <ImageCell value={params.value} />,
 		},
-		{ field: 'col7', headerName: 'Fecha', width: 200 },
+		{ field: 'col7', headerName: 'Fecha', width: 130, align: 'center' },
 	];
 
 	return (

@@ -186,7 +186,7 @@ const Users = () => {
 			field: 'actions',
 			type: 'actions',
 			headerName: 'Actions',
-			width: 100,
+			width: 130,
 			cellClassName: 'actions',
 			getActions: ({ row }) => {
 				return [
@@ -208,22 +208,25 @@ const Users = () => {
 				];
 			},
 		},
-		{ field: 'id', headerName: 'Id', width: 80 },
-		{ field: 'col1', headerName: '¿Google?', width: 200 },
-		{ field: 'col2', headerName: 'Nombre', width: 130 },
-		{ field: 'col3', headerName: 'Apellido', width: 130 },
-		{ field: 'col4', headerName: 'Email', width: 240 },
+		{ field: 'id', headerName: 'Id', width: 80, align: 'center' },
+		{ field: 'col1', headerName: '¿Google?', width: 150, align: 'center' },
+		{ field: 'col2', headerName: 'Nombre', width: 200 },
+		{ field: 'col3', headerName: 'Apellido', width: 200 },
+		{ field: 'col4', headerName: 'Email', width: 290 },
 		{
 			field: 'col5',
 			headerName: 'Imagen',
 			width: 150,
+			align: 'center',
 			renderCell: (params) => <ImageCell value={params.value} />,
+			
 		},
-		{ field: 'col6', headerName: 'Verificado', width: 150 },
+		{ field: 'col6', headerName: 'Verificado', width: 150, align: 'center' },
 		{
 			field: 'col7',
 			headerName: 'Desactivado',
-			width: 150,
+			width: 155,
+			align: 'center',
 			editable: edit,
 			cellClassName: bgOnEdit.bg,
 			valueGetter: (params) => params.row.col7,
@@ -233,7 +236,8 @@ const Users = () => {
 		{
 			field: 'col8',
 			headerName: 'Rol',
-			width: 150,
+			width: 155,
+			align: 'center',
 			editable: edit,
 			cellClassName: bgOnEdit.bg,
 			valueGetter: (params) => params.row.col8,
