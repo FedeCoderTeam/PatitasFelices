@@ -14,6 +14,7 @@ const postAdoptionDog = (obj) => {
 };
 
 const updateAdoptionDog = (obj) => {
+	console.log(obj)
 	return async () => {
 		try {
 			await axios.put(`${URL}/requests`, obj);

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
-import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import CloudinaryWidget from '../../../../components/Cloudinary/CloudinaryForm/CloudinaryWidget';
 import CloudinaryWidgetFull from '../../../../components/Cloudinary/CloudinaryForm/CloudinaryWidgetFull';
 import style from './UpdateDogForm.module.css';
 import * as dogsAction from '../../../../_redux/actions/dogsAction';
 import { Link } from 'react-router-dom';
+import useToast from '../../../../utils/hooks/useToast';
+import { useNavigate } from 'react-router-dom';
+import validation from './ValidationsDog/Validations';
+import validationEmpty from './ValidationsDog/ValidationEmpty';
 
 const UpdateDogForm = () => {
 	const dispatch = useDispatch();
@@ -15,392 +17,395 @@ const UpdateDogForm = () => {
 	const dogToUpdate = useSelector((state) => state.dogsReducer.dogDetail);
 	console.log(dogToUpdate);
 
+	const navigate = useNavigate();
+	const { success } = useToast();
+
 	useEffect(() => {
 		return () => {
 			dispatch(dogsAction.setDetail());
 		};
-	}, []);
+	}, [dispatch]);
 
 	const [url, setUrl] = useState('');
+	let [errors, setErrors] = useState({});
 
-	const initialValues = {
-		id: dogToUpdate.id,
-		name: dogToUpdate.name,
-		age: dogToUpdate.age,
-		size: dogToUpdate.size,
-		weight: dogToUpdate.weight,
-		castrated: dogToUpdate.castrated,
-		tempers: dogToUpdate.tempers,
-		colors: dogToUpdate.colors,
-		gender: dogToUpdate.gender,
-		image: dogToUpdate.image,
-		description: dogToUpdate.description,
-		adopted: dogToUpdate.adopted,
-		isDisabled: dogToUpdate.isDisabled,
+	let [input, setInput] = useState({
+		id: dogToUpdate?.id,
+		name: dogToUpdate?.name,
+		age: dogToUpdate?.age,
+		size: dogToUpdate?.size,
+		weight: dogToUpdate?.weight,
+		castrated: dogToUpdate?.castrated,
+		tempers: dogToUpdate?.temperaments,
+		colors: dogToUpdate?.colors,
+		gender: dogToUpdate?.gender,
+		image: dogToUpdate?.image,
+		description: dogToUpdate?.description,
+		adopted: dogToUpdate?.adopted,
+		isDisabled: dogToUpdate?.isDisabled,
+	});
+
+	console.log(input);
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+
+		if (
+			input.id &&
+			input.name &&
+			input.age &&
+			input.size &&
+			input.weight &&
+			input.castrated &&
+			input.tempers &&
+			input.colors &&
+			input.gender &&
+			input.image &&
+			input.description &&
+			// input.adopted &&
+			// input.isDisabled &&
+			(input.name !== dogToUpdate.name ||
+				input.age !== dogToUpdate.age ||
+				input.size !== dogToUpdate.size ||
+				input.weight !== dogToUpdate.weight ||
+				input.castrated !== dogToUpdate.castrated ||
+				input.tempers !== dogToUpdate.tempers ||
+				input.colors !== dogToUpdate.colors ||
+				input.gender !== dogToUpdate.gender ||
+				input.description !== dogToUpdate.description)
+			// input.adopted !== dogToUpdate.adopted ||
+			// input.isDisabled !== dogToUpdate.isDisabled
+		) {
+			let obj = {
+				id: input.id,
+				name: input.name,
+				age: input.age,
+				size: input.size,
+				weight: input.weight,
+				castrated: input.castrated,
+				tempers: input.temperaments,
+				colors: input.colors,
+				gender: input.gender,
+				image: input.image,
+				description: input.description,
+				adopted: input.adopted,
+				isDisabled: input.isDisabled,
+			};
+
+			dispatch(dogsAction.updateDogs(obj));
+			success(`Perro editado exitosamente!`, {
+				duration: 2000,
+			});
+			setTimeout(() => {
+				navigate('/dashboard/dogs');
+			}, 2000);
+		} else {
+			setErrors(validationEmpty({ ...input }));
+		}
 	};
 
-	const validationSchema = Yup.object().shape({
-		name: Yup.string()
-			.min(4, 'El nombre debe tener mínimo 4 caracteres. *')
-			.matches(
-				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
-				'Sólo letras de la "A" a la "Z". *',
-			)
-			.required('El nombre es obligatorio. *'),
-		age: Yup.number()
-			.min(1, 'Debe introducir una edad aproximada en meses. *')
-			.max(240, '¡WOW!¿Estás seguro que el perro tiene estos meses? *')
-			// .matches(/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/, 'Sólo letras de la "A" a la "Z" *')
-			.required('La edad es obligatoria. *'),
-		size: Yup.string().oneOf(
-			['Giant', 'Large', 'Medium', 'Small', 'Mini'],
-			'El tamaño es obligatorio. *',
-		),
-		weight: Yup.number()
-			.min(1, 'El peso tiene que ser mayor a 1. *')
-			.max(110, '¡WOW!¿Estás seguro que es un perro? *')
-			.required('El peso es obligatorio. *'),
-		gender: Yup.string().oneOf(
-			['Hembra', 'Macho'],
-			'El género es obligatorio. *',
-		),
-		castrated: Yup.boolean().oneOf(
-			['Yes', 'No'],
-			'Este campo es obligatorio. *',
-		),
-		colors: Yup.string().oneOf(
-			['Negro', 'Blanco', 'Gris', 'Marron', 'Dorado', 'Cobrizo', 'Crema'],
-			'El color es obligatorio. *',
-		),
-		description: Yup.string().required('La descripción es obligatoria. *'),
-		adopted: Yup.boolean().oneOf(['Yes', 'No'], 'Este campo es obligatorio. *'),
-		isDisabled: Yup.boolean().oneOf(
-			['Yes', 'No'],
-			'Este campo es obligatorio. *',
-		),
-		image: Yup.string()
-			.matches(/^.*\.(jpg|jpeg|png)$/i, 'Inserte una imagen válida. *')
-			.required('La imagen es obligatoria. *'),
-	});
+	let handlerChange = (event) => {
+		setInput({
+			...input,
+			[event.target.name]: event.target.value,
+		});
 
-	const formik = useFormik({
-		initialValues,
-		validationSchema,
-		// handleSubmit,
-	});
+		setErrors(
+			validation({ ...input, [event.target.name]: event.target.value }),
+		);
+	};
 
 	return (
 		<div className={style.mainContainerForm}>
 			<div className={style.containerForm}>
-				<Formik
-					initialValues={initialValues}
-					validationSchema={validationSchema}
-					// onSubmit={(values) => handleSubmit(values)}
-				>
-					{({ errors, values }) => (
-						<Form>
-							<div>
-								<Link to='/dashboard/dogs'>
-									<button className={style.goBackBtn}><i class="fa-solid fa-arrow-left"></i></button>
-								</Link>
-								<h1 className={style.titleForm}>Editar Perro</h1>
+				<form onSubmit={(event) => handleSubmit(event)}>
+					<div>
+						<Link to="/dashboard/dogs">
+							<button className={style.goBackBtn}>
+								<i class="fa-solid fa-arrow-left"></i>
+							</button>
+						</Link>
+						<h1 className={style.titleForm}>Editar Perro</h1>
+					</div>
+					<div className={style.boxForm}>
+						<div className={style.containerInputsLeftForm}>
+							<div className={style.containerInputs}>
+								<label className={style.labels} htmlFor="name">
+									Nombre
+								</label>
+								<input
+									className={style.inputs}
+									value={input.name}
+									name="name"
+									type="text"
+									placeholder="Ej: Otis"
+									onChange={(event) => handlerChange(event)}
+								/>
+								<div className={style.errors}>{errors.name}</div>
 							</div>
-							<div className={style.boxForm}>
-								<div className={style.containerInputsLeftForm}>
-									<div className={style.containerInputs}>
-										<label className={style.labels} htmlFor="name">
-											Nombre
-										</label>
-										<Field
-											className={style.inputs}
-											value={initialValues.name}
-											name="name"
-											type="text"
-											placeholder="Ej: Otis"
-										/>
-										<ErrorMessage name="name">
-											{(msg) => <div className={style.errors}>{msg}</div>}
-										</ErrorMessage>
-									</div>
 
-									<div className={style.containerInputs}>
-										<label className={style.labels} htmlFor="age">
-											Edad (meses)
-										</label>
-										<Field
-											className={style.inputs}
-											value={initialValues.age}
-											name="age"
-											type="number"
-											placeholder="Ej: 24"
-										/>
-										<ErrorMessage name="age">
-											{(msg) => <div className={style.errors}>{msg}</div>}
-										</ErrorMessage>
-									</div>
-
-									<div className={style.containerInputs}>
-										<label className={style.labels} htmlFor="size">
-											Tamaño
-										</label>
-										<Field
-											className={style.inputSelect}
-											value={initialValues.size}
-											as="select"
-											id="category"
-											name="size"
-										>
-											<option className={style.options} value="all"></option>
-											<option className={style.options} value="Giant">
-												Gigante
-											</option>
-											<option className={style.options} value="Large">
-												Grande
-											</option>
-											<option className={style.options} value="Medium">
-												Mediano
-											</option>
-											<option className={style.options} value="Small">
-												Pequeño
-											</option>
-											<option className={style.options} value="Medium">
-												Muy pequeño
-											</option>
-										</Field>
-										<ErrorMessage name="size">
-											{(msg) => <div className={style.errors}>{msg}</div>}
-										</ErrorMessage>
-									</div>
-
-									<div className={style.containerInputs}>
-										<label className={style.labels} htmlFor="weight">
-											Peso (kg.)
-										</label>
-										<Field
-											className={style.inputs}
-											value={initialValues.weight}
-											name="weight"
-											type="number"
-											placeholder="Ej: 24"
-										/>
-										<ErrorMessage name="weight">
-											{(msg) => <div className={style.errors}>{msg}</div>}
-										</ErrorMessage>
-									</div>
-
-									<div className={style.containerInputs}>
-										<label className={style.labels} htmlFor="gender">
-											Género
-										</label>
-										<Field
-											className={style.inputSelect}
-											value={initialValues.gender}
-											as="select"
-											id="gender"
-											name="gender"
-										>
-											<option className={style.options} value="all"></option>
-											<option className={style.options} value="Hembra">
-												Hembra
-											</option>
-											<option className={style.options} value="Macho">
-												Macho
-											</option>
-										</Field>
-										<ErrorMessage name="gender">
-											{(msg) => <div className={style.errors}>{msg}</div>}
-										</ErrorMessage>
-									</div>
-
-									<div className={style.containerInputs}>
-										<label className={style.labels} htmlFor="castrated">
-											¿Está castrado?
-										</label>
-										<Field
-											className={style.inputSelect}
-											value={initialValues.castrated}
-											as="select"
-											id="category"
-											name="castrated"
-										>
-											<option className={style.options} value="all"></option>
-											<option className={style.options} value={true}>
-												Sí
-											</option>
-											<option className={style.options} value={false}>
-												No
-											</option>
-										</Field>
-										<ErrorMessage name="castrated">
-											{(msg) => <div className={style.errors}>{msg}</div>}
-										</ErrorMessage>
-									</div>
-								</div>
-								<div className={style.containerInputsRightForm}>
-									<div className={style.containerInputs}>
-										<label className={style.labels} htmlFor="tempers">
-											Temperamentos
-										</label>
-										<Field
-											className={style.inputSelect}
-											value={initialValues.tempers}
-											as="select"
-											id="category"
-											name="tempers"
-										>
-											<option className={style.options} value="all"></option>
-											{temperaments.map((temper) => (
-												<option className={style.options}>{temper.name}</option>
-											))}
-										</Field>
-									</div>
-
-									<div className={style.containerInputs}>
-										<label className={style.labels} htmlFor="colors">
-											Colores
-										</label>
-										<Field
-											className={style.inputSelect}
-											value={initialValues.colors}
-											as="select"
-											id="colors"
-											name="colors"
-										>
-											<option className={style.options} value="all"></option>
-											<option className={style.options} value="Negro">
-												Negro
-											</option>
-											<option className={style.options} value="Blanco">
-												Blanco
-											</option>
-											<option className={style.options} value="Gris">
-												Gris
-											</option>
-											<option className={style.options} value="Marron">
-												Marrón
-											</option>
-											<option className={style.options} value="Dorado">
-												Dorado
-											</option>
-											<option className={style.options} value="Cobrizo">
-												Cobrizo
-											</option>
-											<option className={style.options} value="Crema">
-												Crema
-											</option>
-										</Field>
-										<ErrorMessage name="colors">
-											{(msg) => <div className={style.errors}>{msg}</div>}
-										</ErrorMessage>
-									</div>
-
-									<div className={style.containerInputs}>
-										<label className={style.labels} htmlFor="description">
-											Descripción del Perro
-										</label>
-										<Field
-											className={style.inputTextArea}
-											value={initialValues.description}
-											type="text"
-											id="description"
-											name="description"
-										/>
-										<ErrorMessage name="description">
-											{(msg) => <div className={style.errors}>{msg}</div>}
-										</ErrorMessage>
-									</div>
-
-									<div className={style.containerInputs}>
-										<label className={style.labels} htmlFor="adopted">
-											¿Fue adoptado?
-										</label>
-										<Field
-											className={style.inputSelect}
-											value={initialValues.adopted}
-											as="select"
-											id="category"
-											name="adopted"
-										>
-											<option className={style.options} value="all"></option>
-											<option className={style.options} value={true}>
-												Sí
-											</option>
-											<option className={style.options} value={false}>
-												No
-											</option>
-										</Field>
-										<ErrorMessage name="adopted">
-											{(msg) => <div className={style.errors}>{msg}</div>}
-										</ErrorMessage>
-									</div>
-
-									<div className={style.containerInputs}>
-										<label className={style.labels} htmlFor="isDisabled">
-											¿El perrito falleció?
-										</label>
-										<Field
-											className={style.inputSelect}
-											value={initialValues.isDisabled}
-											as="select"
-											id="category"
-											name="isDisabled"
-										>
-											<option className={style.options} value="all"></option>
-											<option className={style.options} value={true}>
-												Sí
-											</option>
-											<option className={style.options} value={false}>
-												No
-											</option>
-										</Field>
-										<ErrorMessage name="isDisabled">
-											{(msg) => <div className={style.errors}>{msg}</div>}
-										</ErrorMessage>
-									</div>
-
-									<div className={style.eachField}>
-										<label className={style.labels} htmlFor="image">
-											Adjunte la imagen de su producto
-										</label>
-										<div className={style.containerUploadForm}>
-											{url.length > 0 && (
-												<div>
-													<CloudinaryWidgetFull url={url} setUrl={setUrl} />
-												</div>
-											)}
-											{url.length === 0 && (
-												<div>
-													<CloudinaryWidget url={url} setUrl={setUrl} />
-												</div>
-											)}
-											<div className={style.divImgUser}>
-												<img
-													className={style.imgUser}
-													src={!url.length ? initialValues.image : url}
-													alt={formik.values.title}
-													title={formik.values.title}
-													loading="lazy"
-												/>
-											</div>
-										</div>
-										<ErrorMessage name="image">
-											{(msg) => <div className={style.errorMessage}>{msg}</div>}
-										</ErrorMessage>
-									</div>
-								</div>
+							<div className={style.containerInputs}>
+								<label className={style.labels} htmlFor="age">
+									Edad (meses)
+								</label>
+								<input
+									className={style.inputs}
+									value={input.age}
+									name="age"
+									type="number"
+									placeholder="Ej: 24"
+									onChange={(event) => handlerChange(event)}
+								/>
+								<div className={style.errors}>{errors.age}</div>
 							</div>
-							<div className={style.containerBtnForm}>
-								<button
-									className={style.btnCreate}
-									disabled={Object.keys(errors).length > 0}
-									type="submit"
+
+							<div className={style.containerInputs}>
+								<label className={style.labels} htmlFor="size">
+									Tamaño
+								</label>
+								<select
+									className={style.inputSelect}
+									value={input.size}
+									id="category"
+									name="size"
+									onChange={(event) => handlerChange(event)}
 								>
-									EDITAR
-								</button>
+									<option className={style.options} value="all"></option>
+									<option className={style.options} value="Giant">
+										Gigante
+									</option>
+									<option className={style.options} value="Large">
+										Grande
+									</option>
+									<option className={style.options} value="Medium">
+										Mediano
+									</option>
+									<option className={style.options} value="Small">
+										Pequeño
+									</option>
+									<option className={style.options} value="Medium">
+										Muy pequeño
+									</option>
+								</select>
+								<div className={style.errors}>{errors.size}</div>
 							</div>
-						</Form>
-					)}
-				</Formik>
+
+							<div className={style.containerInputs}>
+								<label className={style.labels} htmlFor="weight">
+									Peso (kg.)
+								</label>
+								<input
+									className={style.inputs}
+									value={input.weight}
+									name="weight"
+									type="number"
+									placeholder="Ej: 24"
+									onChange={(event) => handlerChange(event)}
+								/>
+								<div className={style.errors}>{errors.weight}</div>
+							</div>
+
+							<div className={style.containerInputs}>
+								<label className={style.labels} htmlFor="gender">
+									Género
+								</label>
+								<select
+									className={style.inputSelect}
+									value={input.gender}
+									id="gender"
+									name="gender"
+									onChange={(event) => handlerChange(event)}
+								>
+									<option className={style.options} value="all"></option>
+									<option className={style.options} value="Hembra">
+										Hembra
+									</option>
+									<option className={style.options} value="Macho">
+										Macho
+									</option>
+								</select>
+								<div className={style.errors}>{errors.gender}</div>
+							</div>
+
+							<div className={style.containerInputs}>
+								<label className={style.labels} htmlFor="castrated">
+									¿Está castrado?
+								</label>
+								<select
+									className={style.inputSelect}
+									value={input.castrated}
+									id="castrated"
+									name="castrated"
+									onChange={(event) => handlerChange(event)}
+								>
+									<option className={style.options} value="all"></option>
+									<option className={style.options} value={true}>
+										Sí
+									</option>
+									<option className={style.options} value={false}>
+										No
+									</option>
+								</select>
+								<div className={style.errors}>{errors.castrated}</div>
+							</div>
+						</div>
+						<div className={style.containerInputsRightForm}>
+							<div className={style.containerInputs}>
+								<label className={style.labels} htmlFor="tempers">
+									Temperamentos
+								</label>
+								<select
+									className={style.inputSelect}
+									value={input.tempers}
+									multiple
+									id="tempers"
+									name="tempers"
+									onChange={(event) => handlerChange(event)}
+								>
+									<option className={style.options} value="all"></option>
+									{temperaments.map((temper) => (
+										<option className={style.options}>{temper.name}</option>
+									))}
+								</select>
+								<div className={style.errors}>{errors.tempers}</div>
+							</div>
+
+							<div className={style.containerInputs}>
+								<label className={style.labels} htmlFor="colors">
+									Colores
+								</label>
+								<select
+									className={style.inputSelect}
+									value={input.colors}
+									multiple
+									id="colors"
+									name="colors"
+									onChange={(event) => handlerChange(event)}
+								>
+									<option className={style.options} value="all"></option>
+									<option className={style.options} value="Negro">
+										Negro
+									</option>
+									<option className={style.options} value="Blanco">
+										Blanco
+									</option>
+									<option className={style.options} value="Gris">
+										Gris
+									</option>
+									<option className={style.options} value="Marron">
+										Marrón
+									</option>
+									<option className={style.options} value="Dorado">
+										Dorado
+									</option>
+									<option className={style.options} value="Cobrizo">
+										Cobrizo
+									</option>
+									<option className={style.options} value="Crema">
+										Crema
+									</option>
+								</select>
+								<div className={style.errors}>{errors.colors}</div>
+							</div>
+
+							<div className={style.containerInputs}>
+								<label className={style.labels} htmlFor="description">
+									Descripción del Perro
+								</label>
+								<input
+									className={style.inputTextArea}
+									value={input.description}
+									type="text"
+									id="description"
+									name="description"
+									onChange={(event) => handlerChange(event)}
+								/>
+								<div className={style.errors}>{errors.description}</div>
+							</div>
+
+							<div className={style.containerInputs}>
+								<label className={style.labels} htmlFor="adopted">
+									¿Fue adoptado?
+								</label>
+								<select
+									className={style.inputSelect}
+									value={input.adopted}
+									id="adopted"
+									name="adopted"
+									onChange={(event) => handlerChange(event)}
+								>
+									<option className={style.options} value="all"></option>
+									<option className={style.options} value={true}>
+										Sí
+									</option>
+									<option className={style.options} value={false}>
+										No
+									</option>
+								</select>
+								<div className={style.errors}>{errors.adopted}</div>
+							</div>
+
+							<div className={style.containerInputs}>
+								<label className={style.labels} htmlFor="isDisabled">
+									¿El perrito falleció?
+								</label>
+								<select
+									className={style.inputSelect}
+									value={input.isDisabled}
+									id="isDisabled"
+									name="isDisabled"
+									onChange={(event) => handlerChange(event)}
+								>
+									<option className={style.options} value="all"></option>
+									<option className={style.options} value="true">
+										Sí
+									</option>
+									<option className={style.options} value="false">
+										No
+									</option>
+								</select>
+								<div className={style.errors}>{errors.isDisabled}</div>
+							</div>
+
+							<div className={style.eachField}>
+								<label className={style.labels} htmlFor="image">
+									Adjunte la imagen de su producto
+								</label>
+								<div className={style.containerUploadForm}>
+									{url.length > 0 && (
+										<div>
+											<CloudinaryWidgetFull url={url} setUrl={setUrl} />
+										</div>
+									)}
+
+									{url.length === 0 && (
+										<div>
+											<CloudinaryWidget url={url} setUrl={setUrl} />
+										</div>
+									)}
+									<div className={style.divImgUser}>
+										<img
+											className={style.imgUser}
+											src={!url.length ? input.image : url}
+											alt=""
+											loading="lazy"
+										/>
+									</div>
+								</div>
+								<div className={style.errors}>{errors.image}</div>
+							</div>
+						</div>
+					</div>
+					<div className={style.containerBtnForm}>
+						<button
+							className={style.btnCreate}
+							disabled={Object.keys(errors).length > 0}
+							type="submit"
+						>
+							EDITAR
+						</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	);

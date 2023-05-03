@@ -1,0 +1,52 @@
+{
+	"users": [
+		{
+			"id": "3582aecb-815e-4e40-b298-bda0d3ad1e5b",
+			"googleId": 100792125050560287673,
+			"name": "Patitas",
+			"last": "Felices",
+			"email": "happypawspf2023@gmail.com",
+			"password": "$2b$10$ZnWOl54VYkvxN51mzSipcuE7dkEIA57VKAT/AIvS7C.xy.2lkNkJ2",
+			"image": "https://lh3.googleusercontent.com/a/AGNmyxbELCP2oNNJBrPRL0umun3XGKIqjHmak-X12XmG=s96-c",
+			"isVerified": true,
+			"isDisabled": false,
+			"roleId": 1
+		},
+		{
+			"id": "a7c7732a-d381-4f3a-b5bb-efafa4a6b7a7",
+			"googleId": 113236944229984270207,
+			"name": "Federico",
+			"last": "Nieto Poklepovic",
+			"email": "federiconieto04@gmail.com",
+			"password": "$2b$10$9/yK84BoaxIR.8ivnEZ9V.K4Mqy9tyy2lQUE0EjyqnTJUPj96S7B6",
+			"image": "https://lh3.googleusercontent.com/a/AGNmyxbH63FwNAvfEJmgDuwuEpB9o3lkrLLoBp5xHpAvsQ=s96-c",
+			"isVerified": true,
+			"isDisabled": false,
+			"roleId": 1
+		},
+		{
+			"id": "1ded8eac-ab6c-4390-9903-648f59f3b8f7",
+			"googleId": 109895734743468709330,
+			"name": "Juan Ignacio",
+			"last": "Morales",
+			"email": "nacho.morales5@gmail.com",
+			"password": "$2b$10$LUlrub7iqdBqDz7bNIcQheCAczle2QFs0BORXU22TAPBNIargAbd.",
+			"image": "https://lh3.googleusercontent.com/a/AGNmyxY8yxfNEmLIVQaGR7yAiiFTq5iag5riKFE3VkOWSsE=s96-c",
+			"isVerified": true,
+			"isDisabled": false,
+			"roleId": 1
+		},
+		{
+			"id": "ca1863d2-3204-45ed-9353-8c0bf594f559",
+			"googleId": 114047361869478696210,
+			"name": "Flora",
+			"last": "Bohn",
+			"email": "bohn.florencia@gmail.com",
+			"password": "$2b$10$PpBEzwaxTjfKBKjO/Jt9CuEepCX3sw4J3t3nSGv8BaKUUwW8iiAhC",
+			"image": "https://lh3.googleusercontent.com/a/AGNmyxZVJDt8QQfsco_kjZiHG3E67-vHn6GgV4w6LRp9oto=s96-c",
+			"isVerified": true,
+			"isDisabled": false,
+			"roleId": 1
+		}
+	]
+}

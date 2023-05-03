@@ -8,6 +8,7 @@ import style from './CreateProductForm.module.css';
 import * as productsAction from '../../../../_redux/actions/productsAction';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import useToast from '../../../../utils/hooks/useToast';
 
 const CreateProductForm = () => {
 	const dispatch = useDispatch();
@@ -15,6 +16,8 @@ const CreateProductForm = () => {
 	const navigate = useNavigate();
 
 	const [url, setUrl] = useState('');
+
+	const { success } = useToast();
 
 	const initialValues = {
 		name: '',
@@ -29,29 +32,29 @@ const CreateProductForm = () => {
 
 	const validationSchema = Yup.object().shape({
 		name: Yup.string()
-			.min(4, 'El nombre debe tener mínimo 4 caracteres. *')
+			.min(4, 'Debe tener mínimo 4 caracteres. *')
 			.matches(
-				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
+				/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s,.]+$/,
 				'Sólo letras de la "A" a la "Z" *',
 			)
 			.required('El nombre es obligatorio'),
 		description: Yup.string()
-			.min(10, 'La descripción debe tener mínimo 20 caracteres. *')
+			.min(10, 'Debe tener mínimo 10 caracteres. *')
 			.matches(
-				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
+				/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s,.]+$/,
 				'Sólo letras de la "A" a la "Z" *',
 			)
 			.required('La descripción es obligatoria'),
 		price: Yup.number()
-			.min(1, 'El precio tiene que ser mayor a 1. *')
+			.min(1, 'Tiene que ser mayor a 1. *')
 			.required('El precio es obligatorio.'),
 		stock: Yup.number()
-			.min(0, 'El stock tiene que ser mayor o igual a 0. *')
+			.min(0, 'Tiene que ser mayor o igual a 0. *')
 			.required('El stock tiene que ser obligatorio.'),
 		brand: Yup.string()
-			.min(2, 'La marca debe tener mínimo 2 caracteres. *')
+			.min(2, 'Debe tener mínimo 2 caracteres. *')
 			.matches(
-				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
+				/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s,.]+$/,
 				'Sólo letras de la "A" a la "Z" *',
 			)
 			.required('La marca es obligatoria'),
@@ -83,8 +86,12 @@ const CreateProductForm = () => {
 		dispatch(productsAction.postProduct(obj));
 		//NO BORRAR, SIRVE PARA TESTEAR
 		//console.log(obj);
-		alert('SE CREO EL PRODUCTO, TOCA ACEPTAR PARA VOLVER A LA DASHBOARD');
-		navigate('/dashboard/viewB');
+		success(`¡Producto creado exitosamente!`, {
+			duration: 2000,
+		});
+		setTimeout(() => {
+			navigate('/dashboard/products');
+		}, 2000);
 	};
 
 	const formik = useFormik({
@@ -104,8 +111,10 @@ const CreateProductForm = () => {
 					{({ errors, values }) => (
 						<Form>
 							<div>
-								<Link to='/dashboard/products'>
-									<button className={style.goBackBtn}><i class="fa-solid fa-arrow-left"></i></button>
+								<Link to="/dashboard/products">
+									<button className={style.goBackBtn}>
+										<i class="fa-solid fa-arrow-left"></i>
+									</button>
 								</Link>
 								<h1 className={style.titleForm}>Crear Producto</h1>
 							</div>

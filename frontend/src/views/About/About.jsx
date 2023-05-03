@@ -1,5 +1,48 @@
-export default function About() {
-    return(<div>
-        <h1>About</h1>
-    </div>)
+import React from 'react';
+import AboutImage from './images/AboutImage.jpg';
+import style from './about.module.css';
+import Typewriter from 'typewriter-effect';
+import { useTranslation } from 'react-i18next';
+
+
+const About = () => {
+	const { t } = useTranslation();
+
+    return (
+        <>
+            <div className={style.title}>
+                <h2>
+                <Typewriter 
+                    options={{
+                        autoStart: true,
+                        loop: true,
+                        delay:200,
+                        strings: ["Patitas Felices - Happy Paws"],
+                        pauseFor: '5000ms'
+                    }}
+                />
+                </h2>
+            </div>
+            <div className={style.description} data-aos="fade-down">
+                <div className={style.containerStory}>
+                <div>
+                    <img src={AboutImage} alt="AboutImage" />
+                </div>
+                <p>
+                <Typewriter 
+                    options={{
+                        autoStart: true,
+                        // loop: false,
+                        delay:30,
+                        strings: [t('about.text')],
+                        pauseFor: '15000ms'
+                    }}
+                />
+                </p>
+                </div>
+            </div>
+        </>
+    )
 }
+
+export default About;

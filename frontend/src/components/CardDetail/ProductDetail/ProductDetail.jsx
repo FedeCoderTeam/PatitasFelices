@@ -1,22 +1,32 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
 	getProductsById,
-	setDetail, setItemsAction,
-	setLinkDePagos,
+	setDetail,
+	setItemsAction,
 } from '../../../_redux/actions/productsAction';
 import { useState } from 'react';
 import style from './productDetail.module.css';
 import ProductCard from '../../Cards/ProductCard/ProductCard';
+import useToast from '../../../utils/hooks/useToast';
+import Swal from 'sweetalert2';
+import { useTranslation } from 'react-i18next';
+// import { Player } from '@lottiefiles/react-lottie-player';
+// import ShoppingCart from '../../../utils/animations/ShoppingCart.json'
 
 function ProductDetail() {
 	const { id } = useParams();
+	const { t } = useTranslation();
 	const dispatch = useDispatch();
+	const isAuthenticated = useSelector(
+		(state) => state.authReducer.isAuthenticated,
+	);
 
 	const [count, setCount] = useState(0);
-	const [randomProducts, setRandomProducts] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [currentIndex, setCurrentIndex] = useState(0);
+	const toast = useToast();
 
 	const handleClickSuma = () => {
 		if (count < productDetail.stock) {
@@ -34,75 +44,75 @@ function ProductDetail() {
 		(state) => state.productsReducer.productDetail,
 	);
 
+	const allProducts = useSelector((state) => state.productsReducer.products);
+
+	const allProductNoId = allProducts.filter((product) => product.id !== productDetail.id);
+
 	useEffect(() => {
 		setTimeout(() => {
 			setIsLoading(false);
-		}, 1000);
+		}, 1500);
 		dispatch(getProductsById(id));
 		return () => {
 			dispatch(setDetail());
 		};
-	}, [dispatch, id]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const response = await fetch('https://patitas-felices.onrender.com/products');
-			const data = await response.json();
-			const shuffledProducts = data.sort(() => 0.5 - Math.random());
-			const selectedProducts = shuffledProducts.slice(0, 4);
-			setRandomProducts(selectedProducts);
-		};
-		fetchData();
-	}, []);
+	}, [allProducts, dispatch, id]);
 
 	const addProduct = (quantity) => {
-		if(!localStorage.getItem('products')) localStorage.setItem('products', JSON.stringify([]))
-		const getProductLocal = localStorage.getItem('products')
-		const products = JSON.parse(getProductLocal)
+		if (!isAuthenticated) {
+			Swal.fire({
+				title: t('productDetail.fireTitle'),
+				html: t('productDetail.fireHtml1')+ t('productDetail.fireHtml2') + t('productDetail.fireHtml3') + t('productDetail.fireHtml4') + t('productDetail.fireHtml5'),
+				timer: 10000,
+				icon: 'info',
+			});
+			return;
+		}
+		if (!localStorage.getItem('products'))
+			localStorage.setItem('products', JSON.stringify([]));
+		const getProductLocal = localStorage.getItem('products');
+		const products = JSON.parse(getProductLocal);
 
-		const productExist = products.find(p => p.id === productDetail.id)
+		const productExist = products.find((p) => p.id === productDetail.id);
 
-		if(productExist) {
-			const max = productDetail.stock - productExist.quantity
+		if (productExist) {
+			const max = productDetail.stock - productExist.quantity;
 			const qtyAdd = quantity > max ? max : quantity;
-			if(qtyAdd > 0) {
+			if (qtyAdd > 0) {
 				productExist.quantity += qtyAdd;
 			} else {
-				//Usar con alert bonito
-				alert('no puedes agregar mas producto')
+				toast.warning(t('productDetail.toastWarn'), { duration: 2000 });
 			}
-		}
-		else {
+		} else {
 			products.push({
 				id: productDetail.id,
-				name: productDetail.name,
-				image: productDetail.image,
-				description: productDetail.description,
-				category: productDetail.category,
 				quantity: quantity,
-				price: productDetail.price,
-			})
+			});
 		}
 
-		const productUpdated = JSON.stringify(products)
+		const productUpdated = JSON.stringify(products);
 
-		localStorage.setItem('products', productUpdated)
-		setCount(0)
-		dispatch(setItemsAction())
-	}
+		localStorage.setItem('products', productUpdated);
+		setCount(0);
+		dispatch(setItemsAction());
+		toast.success(t('productDetail.toastSuccess'), { duration: 4000 });
+	};
 
 	return (
 		<div className={style.divMain}>
 			{isLoading ? (
 				<img
 					className={style.loader}
-					src="https://res.cloudinary.com/dreso9ye9/image/upload/v1681877316/Proyecto%20Final/127157-moody-dog_1_w3qyr5.gif"
+					src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682557985/71390-shopping-cart-loader_egwna9.gif"
 					alt="Cargando..."
 				/>
 			) : (
-				<div className={style.bodyDetailProduct}>
+				<div className={style.bodyDetailProduct} data-aos="fade-down">
 					<div className={style.containerProduct}>
 						<div className={style.divLeft}>
+							<Link className={style.links} to="/products">
+								<i className="fa-solid fa-arrow-right fa-rotate-180"></i>
+							</Link>
 							<img
 								className={style.imagenDetail}
 								src={productDetail.image}
@@ -115,15 +125,17 @@ function ProductDetail() {
 								{productDetail.description}
 							</h2>
 							<p className={style.priceDetail}>
-								${productDetail.price}
-								<span className={style.priceSpan}>.00</span>
+								{Number(productDetail.price).toLocaleString('es-AR', {
+									style: 'currency',
+									currency: 'ARS',
+								})}
 							</p>
 							<p className={style.pDeatil}>
 								Stock:{' '}
 								<span className={style.spanDetail}>{productDetail.stock}</span>
 							</p>
 							<div className={style.divCantidad}>
-								<p className={style.pDeatil}>Cantidad: </p>
+								<p className={style.pDeatil}>{t('productDetail.quant')}</p>
 								<button
 									className={style.btnRestaSuma}
 									onClick={handleClickResta}
@@ -138,17 +150,30 @@ function ProductDetail() {
 									<span className={style.btnSpan}>+</span>
 								</button>
 							</div>
-							<button disabled={count <= 0} style={count <= 0 ? { background: 'grey' } : {}} className={style.btnCarritoDetail} onClick={() => addProduct(count)}>
-								AÑADIR AL CARRITO
+							<button
+								disabled={count <= 0}
+								style={count <= 0 ? { background: 'grey' } : {}}
+								className={style.btnCarritoDetail}
+								onClick={() => addProduct(count)}
+							>
+								{t('productDetail.addCart')}
 							</button>
 						</div>
 					</div>
 					<div className={style.containerOtros}>
-						<h2 className={style.titleMasProductos}>
-							También te pueden interesar
-						</h2>
+						<div className={style.divTitleMasProductos}>
+							<h2 className={style.titleMasProductos}>
+								{t('productDetail.alsoInter')}
+							</h2>
+						</div>
 						<div className={style.divOtros}>
-							{randomProducts.map((product) => (
+
+							<div onClick={() =>
+										setCurrentIndex(currentIndex > 0 && currentIndex - 1)
+									} className={style.arrowLeft}>
+									<i className="fa-solid fa-chevron-left" ></i>
+							</div>
+							{allProductNoId.length && allProductNoId.slice(currentIndex, currentIndex + 3).map((product) => (
 								<ProductCard
 									key={product.id}
 									id={product.id}
@@ -158,6 +183,11 @@ function ProductDetail() {
 									price={product.price}
 								/>
 							))}
+							<div onClick={() =>
+									setCurrentIndex((currentIndex + 1) % allProductNoId.length)
+								} className={style.arrowRight}>
+								<i className="fa-solid fa-chevron-right"></i>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -1,6 +1,6 @@
 const { Router } = require('express');
 
-const authRoute = require('./Auths_Routes/authRoute')
+const authRoute = require('./Auths_Routes/authRoute');
 const dogsRoute = require('./Dogs_Routes/dogsRoute');
 const temperamentsRoute = require('./Temperaments_Routes/temperamentsRoute');
 const productsRoute = require('./Products_Route/podructsRoute');
@@ -11,11 +11,16 @@ const rolesRoutes = require('./Roles_Routes/rolesRoutes');
 const subCategoriesRoutes = require('./Sub_Categories_Route/subCategoriesRoutes');
 const cloudinaryRoute = require('./Cloudinary_Route/cloudinaryRoute');
 const mercadopagoRoute = require('./Mercado_Pago_Route/mercadopagoRoute');
-const requestsRoutes = require ('../routes/Requests_Routes/requestsRoutes')
+const purchaseRoute = require('./Purchase_Route/purchaseRoute');
+const orders = require('./Order_Route/orderRoute');
+const requestsRoutes = require ('../routes/Requests_Routes/requestsRoutes');
+const reviewsRoutes = require ('../routes/Reviews_Routes/reviewsRoutes')
+const getCategory = require('./Categories_Routes/categoriesRoutes')
+
 
 const router = Router();
 
-router.use('/auth', authRoute)
+router.use('/auth', authRoute);
 router.use('/dogs', dogsRoute);
 router.use('/temperaments', temperamentsRoute);
 router.use('/colors', colorsRoute);
@@ -25,7 +30,11 @@ router.use('/roles', rolesRoutes);
 router.use('/users', usersRoute);
 router.use('/subcategories', subCategoriesRoutes);
 router.use('/mercadopago', mercadopagoRoute);
-router.use('/cloudinary', cloudinaryRoute)
+router.use('/cloudinary', cloudinaryRoute);
 router.use('/requests', requestsRoutes);
+router.use('/reviews', reviewsRoutes);
+router.use('/orders', orders);
+router.use('/purchase', purchaseRoute);
+router.use('/categories', getCategory)
 
 module.exports = router;

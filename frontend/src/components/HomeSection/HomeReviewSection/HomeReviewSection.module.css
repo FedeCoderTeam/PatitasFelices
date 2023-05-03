@@ -1,0 +1,170 @@
+.mainContainer {
+	width: 1200px;
+	height: 400px;
+	display: flex;
+	align-items: center;
+	margin: 0px 0 50px 0;
+}
+
+.reviewImage {
+	width: 550px;
+	padding-left: 5%;
+}
+
+.containerRight {
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: #16343f;
+	padding-left: 2%;
+}
+
+.containerRight h1 {
+	padding: 0;
+	margin: 0;
+	color: #16343f;
+}
+.containerRight span {
+	color: #a65424;
+}
+.containerRight h3 {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+.carousel {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.arrows {
+	color: #a65424;
+	font-size: 20px;
+	cursor: pointer;
+	transition: ease-in-out 0.2s;
+	border-radius: 5px;
+	padding: 2px 6px 2px 6px;
+}
+.arrows:hover {
+	color: #16343f;
+	background-color: rgba(0, 0, 0, 0.185);
+}
+
+.reviewCard {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 550px;
+	height: 200px;
+	padding: 15px 30px 15px 30px;
+	border-radius: 5px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+	transition: ease-in-out 0.2s;
+}
+.reviewCard:hover {
+	transform: scale(1.01);
+}
+
+.userImg img {
+	height: 150px;
+	border-radius: 50%;
+	margin-right: 30px;
+}
+
+.stars i {
+	color: goldenrod;
+}
+
+.comentary {
+	height: fit-content;
+	width: 370px;
+	display: flex;
+	align-items: start;
+}
+
+.reviewInfo {
+	display: flex;
+	flex-direction: column;
+}
+.reviewInfo h2 {
+	margin-bottom: 0;
+	padding-bottom: 0;
+	color: #592518;
+}
+
+.errorMessage {
+	font-size: 14px;
+	color: rgb(202, 0, 0);
+	font-weight: 500;
+	margin-left: 5px;
+}
+
+/* DIALOG */
+
+.dialogContainer {
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	color: #16343f;
+	font-weight: 700;
+	height: 350px;
+	width: 500px;
+}
+
+.ratingSectionDialog {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+	gap: 10px;
+}
+
+.commentSectionDialog {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.commentSectionDialog textarea {
+	height: 150px;
+	resize: none;
+	border: none;
+	outline: none;
+	font-family: 'Be Vietnam Pro', sans-serif;
+	background-color: rgba(242, 242, 242, 1);
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.buttonDialogContainer {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.buttonDialog {
+	width: 100%;
+    background-color: #a65424;
+    color: white;
+    font-size: 17px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 700;
+    padding: 12.5px 0 12.5px 0;
+    border-color: transparent;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: 
+        background-color 200ms linear,
+        transform 200ms linear;
+}
+
+.buttonDialog:hover {
+    transform: scale(1.01);
+    background-color: #16343f;
+}

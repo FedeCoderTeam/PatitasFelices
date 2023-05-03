@@ -8,6 +8,12 @@ const router = Router();
 router.post('/payment', async (req, res) => {
 	let cart = req.body;
 
+	let isDonation = cart[0].description === 'Donacion';
+
+	let backUrl = isDonation
+		? 'https://patitas-felices.vercel.app/donation/success_donation'
+		: 'https://patitas-felices.vercel.app/products/success';
+
 	let preference = {
 		items: cart.map((product) => {
 			return {
@@ -23,7 +29,7 @@ router.post('/payment', async (req, res) => {
 		}),
 
 		back_urls: {
-			success: 'https://patitas-felices.vercel.app/home',
+			success: backUrl,
 			failure: '',
 			pending: '',
 		},
@@ -40,4 +46,5 @@ router.post('/payment', async (req, res) => {
 		res.status(400).send({ error: error.message });
 	}
 });
+
 module.exports = router;

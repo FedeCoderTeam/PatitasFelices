@@ -1,0 +1,78 @@
+.reviewCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 550px;
+    height: 200px;
+    padding: 15px 30px 15px 30px;
+    border-radius: 5px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: ease-in-out 0.2s;
+}
+.reviewCard:hover {
+    transform: scale(1.01);
+}
+
+.userImg img{
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 30px;
+}
+
+.stars i {
+    color: #f5c34b;
+}
+
+.comentary {
+    height: 150px;
+    width: 370px;
+    display: flex;
+    align-items: start;
+    padding-left: 2px;
+}
+.comentary h4 {
+    margin: 10px 0px 0px 0px;
+    font-size: 14px;
+}
+
+.reviewInfo {
+    display: flex;
+    flex-direction: column;
+}
+.reviewInfo h2 {
+    margin-top: 40px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    color: #592518;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.buttonsContainer button {
+    padding: 10px;
+    border-radius: 50%;
+    border: none;
+    font-size: 20px;
+    background-color: white;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    color: #f2f2f2;
+    background-color: #ad313a;
+    transform: scale(1.03);
+}
+
+.editButton:hover {
+    color: #f2f2f2;
+    background-color: #16343f;
+    transform: scale(1.03);
+}

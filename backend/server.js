@@ -8,7 +8,8 @@ const getSubCategory = require('./src/controllers/SubCategory_Controllers/subCat
 const getAllProducts = require('./src/controllers/Product_Controllers/productControllers');
 const getAllDogs = require('./src/controllers/Dogs_Controllers/getAllDogsController');
 const userRoles = require('./src/controllers/Roles_Controllers/rolesControlers');
-const https = require('https');
+const getAllUsers = require('./src/controllers/User_Controllers/getAllUsersController');
+const getAllReviews = require('./src/controllers/Reviews_Controllers/getAllReviewsController');
 
 // Syncing all the models at once.
 
@@ -23,6 +24,8 @@ conn.sync({ force: false }).then(async () => {
 			userRoles(),
 			getAllDogs(),
 			getAllProducts(),
+			await getAllUsers(),
+			getAllReviews(),
 		]);
 
 		app.listen(3001, () => {

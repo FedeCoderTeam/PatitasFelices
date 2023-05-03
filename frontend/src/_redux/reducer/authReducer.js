@@ -2,13 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	isFetching: false,
-	isRegisterFetching: false,
+	isFetchingAuth: false,
 	isAuthenticated: false,
 	statusVerify: 'Pending',
 	showOverlay: false,
 	user: null,
-	token: '',
+	token: 'null',
 	users: [],
+	userDetail: {},
 };
 
 export const authSlice = createSlice({
@@ -18,8 +19,8 @@ export const authSlice = createSlice({
 		setIsFetching: (state, action) => {
 			state.isFetching = action.payload;
 		},
-		setIsRegisterFetching: (state, action) => {
-			state.isRegisterFetching = action.payload;
+		setIsFetchingAuth: (state, action) => {
+			state.isFetchingAuth = action.payload;
 		},
 		setStatusVerify: (state, action) => {
 			state.statusVerify = action.payload;
@@ -35,16 +36,20 @@ export const authSlice = createSlice({
 		getAllUsers: (state, action) => {
 			state.users = action.payload;
 		},
+		getUserDetail: (state, action) => {
+			state.userDetail = action.payload;
+		},
 	},
 });
 
 export const {
 	setIsFetching,
-	setIsRegisterFetching,
+	setIsFetchingAuth,
 	setStatusVerify,
 	setUser,
 	setShowOverlay,
 	getAllUsers,
+	getUserDetail,
 } = authSlice.actions;
 
 export default authSlice.reducer;

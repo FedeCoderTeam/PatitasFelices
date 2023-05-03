@@ -21,7 +21,9 @@ import PetsIcon from '@mui/icons-material/Pets';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import GradingIcon from '@mui/icons-material/Grading';
 import HomeIcon from '@mui/icons-material/Home';
+import ReviewsIcon from '@mui/icons-material/Reviews';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import InventoryIcon from '@mui/icons-material/Inventory';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { brown } from '@mui/material/colors';
 import {
@@ -43,6 +45,8 @@ import UpdateProductForm from './Admin_products/Update_Product/UpdateProductForm
 import Users from './Admin_users/Users';
 import Orders from './Admin_orders/Orders';
 import Home from './Admin_home/Home';
+import Reviews from './Amin_reviews/Reviews';
+import Purchases from './Admin_purchases/Purchases';
 
 const drawerWidth = 240;
 
@@ -149,17 +153,19 @@ export default function Dashboard() {
 	const links = [
 		{ name: 'Inicio', route: '/', icon: <HomeIcon /> },
 		{ name: 'Solicitudes', route: '/request', icon: <MailIcon /> },
-		{ name: 'Productos', route: '/products', icon: <LocalOfferIcon /> },
+		{ name: 'Productos', route: '/products', icon: <InventoryIcon /> },
 		{ name: 'Perros', route: '/dogs', icon: <PetsIcon /> },
-		{ name: 'Users', route: '/users', icon: <AccountCircleIcon /> },
-		{ name: 'Ordenes', route: '/oders', icon: <GradingIcon /> },
+		{ name: 'Usuarios', route: '/users', icon: <AccountCircleIcon /> },
+		{ name: 'Compras y donaciones', route: '/orders', icon: <GradingIcon /> },
+		{ name: 'Comentarios', route: '/reviews', icon: <ReviewsIcon /> },
+		{ name: 'Ventas', route: '/purchases', icon: <LocalOfferIcon /> },
 	];
 
 	return (
 		<ThemeProvider theme={customTheme}>
 			<Box sx={{ display: 'flex' }}>
 				<CssBaseline />
-				<AppBar position="fixed" open={open} >
+				<AppBar position="fixed" open={open}>
 					<Toolbar>
 						<IconButton
 							color="inherit"
@@ -198,9 +204,19 @@ export default function Dashboard() {
 								Usuarios
 							</Typography>
 						)}
-						{location.pathname === '/dashboard/oders' && (
+						{location.pathname === '/dashboard/orders' && (
 							<Typography variant="h6" noWrap component="div">
-								Órdenes
+								Recaudaciones
+							</Typography>
+						)}
+						{location.pathname === '/dashboard/reviews' && (
+							<Typography variant="h6" noWrap component="div">
+								Comentarios
+							</Typography>
+						)}
+						{location.pathname === '/dashboard/purchases' && (
+							<Typography variant="h6" noWrap component="div">
+								Ventas
 							</Typography>
 						)}
 					</Toolbar>
@@ -262,10 +278,12 @@ export default function Dashboard() {
 								element={<UpdateProductForm />}
 							/>
 							<Route path={'/users'} element={<Users />} />
-							<Route path={'/oders'} element={<Orders />} />
+							<Route path={'/orders'} element={<Orders />} />
 							<Route path={'/dogs'} element={<DogsGrid />} />
 							<Route path={'/dogs/createDog'} element={<CreateDog />} />
 							<Route path={'/dogs/updateDog'} element={<UpdateDogForm />} />
+							<Route path={'/reviews'} element={<Reviews />} />
+							<Route path={'/purchases'} element={<Purchases />} />
 						</Routes>
 					</Typography>
 				</Box>

@@ -55,10 +55,11 @@ router.put('/', async (req, res) => {
 	try {
 		let updateAdopReq = await updateRequest(id, status, dogId, token);
 
-		if (updateAdopReq.error) throw new Error(updateAdopReq.error);
+		// if (updateAdopReq.error) throw new Error(updateAdopReq.error);
 
 		res.status(200).json(updateAdopReq);
 	} catch (error) {
+		console.log(error)
 		res.status(400).json({ error: error.message });
 	}
 });

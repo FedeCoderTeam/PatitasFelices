@@ -77,6 +77,7 @@ router.put('/', async (req, res) => {
 		isDisabled,
 		categoryId,
 		subCategoryId,
+		quantity,
 	} = req.body;
 
 	try {
@@ -91,6 +92,7 @@ router.put('/', async (req, res) => {
 			isDisabled,
 			categoryId,
 			subCategoryId,
+			quantity,
 		);
 
 		if (updateProduct.error) throw new Error(updateProduct.error);

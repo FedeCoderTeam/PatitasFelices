@@ -1,0 +1,19 @@
+{
+    "reviews": [
+        {
+            "userId": "1ded8eac-ab6c-4390-9903-648f59f3b8f7",
+            "rating": 4,
+            "comment": "Hola cocu"
+        },
+        {
+            "userId": "ca1863d2-3204-45ed-9353-8c0bf594f559",
+            "rating": 2,
+            "comment": "No tengo luz"
+        },
+        {
+            "userId": "ca1863d2-3204-45ed-9353-8c0bf594f559",
+            "rating": 3,
+            "comment": "No le digas así"
+        }
+    ]
+}

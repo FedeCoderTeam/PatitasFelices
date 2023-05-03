@@ -1,21 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice, current} from '@reduxjs/toolkit';
 
 const initialState = {
 	products: [], //filtrado
 	allProducts: [], //estado original
 	filtered: [], // el que mantiene el filtro aplicado
 	productDetail: {},
+	categories: [],
 	subCategory: [],
-	sortBy: '',
-	sortOrder: '',
-	setCategory: 'All',
-	setSubCategory: 'All',
-	setSubCategoryId: 0,
 	currentPage: 1,
 	name: '',
 	shoppingCart: {
 		isOpen: false,
-		items: []
+		items: [],
+	},
+	sort: {
+		price: 'asc',
+		name: ''
+	},
+	filter: {
+		category: 'All',
+		subCategory: 'All'
 	}
 };
 
@@ -34,59 +38,12 @@ export const productsSlice = createSlice({
 		getProductDetail: (state, action) => {
 			state.productDetail = action.payload;
 		},
-		setPages: (state, action) => {
+		setPage: (state, action) => {
 			state.currentPage = action.payload;
 		},
 		setEmptyDetail: (state) => {
 			state.productDetail = {};
 		},
-		setFilters: (state, action) => {
-			if (action.payload.setCategory) {
-				state.setCategory = action.payload.setCategory;
-			}
-			if (action.payload.setSubCategory) {
-				state.setSubCategory = action.payload.setSubCategory;
-			}
-			if (action.payload.sortOrder && action.payload.sortBy) {
-				return {
-					...state,
-					sortBy: action.payload.sortBy,
-					sortOrder: action.payload.sortOrder,
-				};
-			}
-		},
-		filtered: (state) => {
-			let filtered = state.allProducts;
-
-			if (state.setCategory !== 'All') {
-				filtered = filtered.filter((el) =>
-					el.category.includes(state.setCategory),
-				);
-			}
-			if (state.setSubCategory !== 'All') {
-				filtered = filtered.filter((el) =>
-					el.subCategory.includes(state.setSubCategory),
-				);
-			}
-
-			state.products = filtered;
-			state.filtered = filtered;
-		},
-		sortProduct: (state) => {
-			let ordered = state.products;
-			if (state.sortBy === 'price') {
-				state.sortOrder === 'asc'
-					? ordered.sort((a, b) => Number(a.price) - Number(b.price))
-					: ordered.sort((a, b) => Number(b.price) - Number(a.price));
-			}
-			if (state.sortBy === 'abc') {
-				state.sortOrder === 'asc'
-					? ordered.sort((a, b) => a.name.localeCompare(b.name))
-					: ordered.sort((a, b) => b.name.localeCompare(a.name));
-			}
-			state.products = ordered;
-		},
-
 		idSubCategories: (state, action) => {
 			state.setSubCategoryId = action.payload;
 		},
@@ -108,39 +65,86 @@ export const productsSlice = createSlice({
 		},
 
 		getByName: (state) => {
-			let name =
-				state.name === ''
-					? state.filtered
-					: state.filtered.filter((el) =>
-							el.name.toLowerCase().includes(state.name.toLowerCase()),
-					  );
+			state.products = state.name === ''
+				? state.filtered
+				: state.filtered.filter((el) =>
+					el.name.toLowerCase().includes(state.name.toLowerCase()),
+				);
+		},
+		setOpen: (state) => {
+			state.shoppingCart.isOpen = !state.shoppingCart.isOpen;
+		},
 
-			state.products = name;
+		setItems: (state, action) => {
+			state.shoppingCart.items = action.payload;
 		},
-		setOpen:(state) => {
-			state.shoppingCart.isOpen = !state.shoppingCart.isOpen
+		setSort: (state, action) => {
+			state.sort.price = action.payload.price
+			state.sort.name = action.payload.name
 		},
-		setItems:(state, action) => {
-			state.shoppingCart.items = action.payload
+		setFilter: (state, action) => {
+			if(action.payload.category) {
+				state.filter.category = action.payload.category
+			}
+			if(action.payload.subCategory) {
+				state.filter.subCategory = action.payload.subCategory
+			}
+		},
+		sort: (state) => {
+			const { price, name } = state.sort
+			const sortedProducts = [...state.products]
+			sortedProducts.sort((a,b) => a.id - b.id)
+
+			if(price === 'asc') {
+				sortedProducts.sort((a, b) => Number(a.price) - Number(b.price))
+			} else if(price === 'desc') {
+				sortedProducts.sort((a, b) => Number(b.price) - Number(a.price))
+			}
+
+			if(name === 'asc') {
+				sortedProducts.sort((a, b) => a.name.localeCompare(b.name))
+			} else if(name === 'desc') {
+				sortedProducts.sort((a, b) => b.name.localeCompare(a.name))
+			}
+
+			state.products = sortedProducts
+		},
+		filter: (state) => {
+			let filtered = state.allProducts
+
+			if(state.filter.category !== 'All') {
+				filtered = filtered.filter((el) => el.category.includes(state.filter.category))
+			}
+			if(state.filter.subCategory !== 'All') {
+				filtered = filtered.filter((el) => el.subCategory.includes(state.filter.subCategory))
+			}
+
+			state.products = filtered
+			state.filtered = filtered
+		},
+		getCategories: (state, action) => {
+			state.categories = action.payload
 		}
 	},
 });
 
 export const {
+	setPage,
+	setSort,
+	setFilter,
+	sort,
+	filter,
 	getAllProducts,
 	getNameProduct,
-	setPages,
 	getProductDetail,
 	setEmptyDetail,
-	setFilters,
-	filtered,
-	sortProduct,
 	getSubCategories,
 	idSubCategories,
 	getByName,
 	set_name,
 	setOpen,
-	setItems
+	setItems,
+	getCategories
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

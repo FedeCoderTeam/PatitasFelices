@@ -1,30 +1,24 @@
-import React, { useRef } from 'react';
+import React, {useEffect, useRef} from 'react';
 import Google from './Google.png';
 import { Link, useNavigate } from 'react-router-dom';
 import style from './login.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import { loginUserAction, googleUserAction, setShowOverlayAction } from '../../_redux/actions/authAction';
 import Swal from 'sweetalert2';
+import * as Yup from 'yup';
+import {useFormik} from 'formik';
+import {Button, CircularProgress, createTheme, TextField, ThemeProvider} from '@mui/material';
+import { useTranslation } from 'react-i18next';
+
+
 
 const Login = () => {
 	const dispatch = useDispatch();
-	const selector = useSelector((state) => state.authReducer)
+	const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated)
+	const isFetching = useSelector(state => state.authReducer.isFetching)
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 
-	const refEmail = useRef(null);
-	const refPass = useRef(null);
-
-	const handleOnLogin = () => {
-		if (!refEmail.current.value || !refPass.current.value) {
-		} else {
-			dispatch(
-				loginUserAction(
-					refEmail.current.value,
-					refPass.current.value,
-				)
-			)
-		}
-	};
 
 	const handleOnGoogle = () => {
 		const width = 500;
@@ -56,53 +50,130 @@ const Login = () => {
 		})
 	};
 
-	if(selector.isAuthenticated) {
-		navigate('/home')
-		return null;
+	const initialValues = {
+		email: '',
+		password: ''
 	}
+
+	const validationSchema = Yup.object({
+		email: Yup
+			.string()
+			.email('Enter a valid email')
+			.required('Email is required'),
+		password: Yup
+			.string()
+			.min(6, 'Password should be of minimum 6 characters length')
+			.max(32, 'Password should be of minimum 32 characters length')
+			.matches(/^\S+$/, 'Cannot contain spaces')
+			.required('Password is required')
+	})
+
+	const handleOnSubmit = (values) => {
+		dispatch(
+			loginUserAction(
+				values.email,
+				values.password
+			)
+		)
+	}
+
+	const formik = useFormik({
+		initialValues: initialValues,
+		validationSchema: validationSchema,
+		onSubmit: handleOnSubmit
+	})
+
+	const theme = createTheme({
+		palette: {
+			primary: {
+				main: '#163440'
+			},
+			secondary: {
+				main: '#592519'
+			},
+			action: {
+				disabledBackground: '#244e6b',
+				disabled: '#fff'
+			}
+		}
+	})
+
+	useEffect(() => {
+		if(isAuthenticated) {
+			navigate('/home')
+		}
+	}, [isAuthenticated, navigate])
 
 	return (
 		<div className={style.mainContainerLogin}>
 			<div className={style.formLogin}>
 				<div className={style.title}>
-					<h1>Ingresar</h1>
+					<h1>{t('login.enter')}</h1>
 				</div>
+				<form onSubmit={formik.handleSubmit}>
+					<div className={style.containerInputsLogin}>
+						<div className={style.emailForm}>
+							<ThemeProvider theme={theme}>
+								<TextField
+									disabled={isFetching}
+									fullWidth={true}
+									name={'email'}
+									label={'Email'}
+									variant={'filled'}
+									value={formik.values.email}
+									onChange={formik.handleChange}
+									error={formik.touched.email && Boolean(formik.errors.email)}
+									helperText={formik.touched.email && formik.errors.email}
+								/>
+							</ThemeProvider>
+						</div>
 
-				<div className={style.containerInputsLogin}>
-					<div className={style.emailForm}>
-						<label>Email</label>
-						<input type="email" ref={refEmail} />
+						<div className={style.contraseñaForm}>
+							<ThemeProvider theme={theme}>
+								<TextField
+									disabled={isFetching}
+									fullWidth={true}
+									name={'password'}
+									label={'Password'}
+									type={'password'}
+									variant={'filled'}
+									value={formik.values.password}
+									onChange={formik.handleChange}
+									error={formik.touched.password && Boolean(formik.errors.password)}
+									helperText={formik.touched.password && formik.errors.password}
+								/>
+							</ThemeProvider>
+						</div>
 					</div>
 
-					<div className={style.contraseñaForm}>
-						<label>Contraseña</label>
-						<input type="password" ref={refPass} />
+					<div className={style.recuperarContraseña} onClick={() => navigate('/request-password-reset')}>
+						<p>{t('login.forget')}</p>
 					</div>
-				</div>
 
-				<div className={style.recuperarContraseña} onClick={() => navigate('/request-password-reset')}>
-					<p>¿Olvidaste tu contraseña?</p>
-				</div>
-
-				<div className={style.containerButtonLogin}>
-					<button
-						type="submit"
-						className={style.ingresarBoton}
-						onClick={handleOnLogin}
-					>
-						Ingresar
-					</button>
-				</div>
+					<div className={style.containerButtonLogin}>
+						<ThemeProvider theme={theme}>
+							<Button disabled={isFetching} fullWidth={true} type={'submit'} color={'secondary'} size={'large'} variant="contained" sx={{ '&:hover': { backgroundColor: '#163440' } }} >{t('login.enter')}</Button>
+							{isFetching && (<CircularProgress size={24} sx={{
+								color: '#D9AD77',
+								position: 'absolute',
+								top: '50%',
+								left: '50%',
+								marginTop: '-12px',
+								marginLeft: '-12px',
+							}}></CircularProgress>)}
+						</ThemeProvider>
+					</div>
+				</form>
 
 				<div className={style.containerGoogleLogin} onClick={handleOnGoogle}>
 					<p>
-						Ingresar con <img src={Google} alt="Google" />
+					{t('login.enter2')} <img src={Google} alt="Google" />
 					</p>
 				</div>
 
 				<div className={style.noCuenta}>
-					<p>¿No tienes cuenta? </p>
-					<Link to="/register">Regístrate</Link>
+					<p>{t('login.quest1')}</p>
+					<Link to="/register">{t('login.signup')}</Link>
 				</div>
 
 				<div>

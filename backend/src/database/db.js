@@ -34,7 +34,7 @@ const {
 	dog,
 	color,
 	gender,
-	temperament ,
+	temperament,
 	user,
 	role,
 	product,
@@ -47,14 +47,21 @@ const {
 	orderItem,
 	payment,
 	userVerification,
-	userPasswordReset
+	userPasswordReset,
+	reviews,
 } = sequelize.models;
 
 dog.belongsToMany(color, { through: 'Dogs_Colors', timestamps: false });
 color.belongsToMany(dog, { through: 'Dogs_Colors', timestamps: false });
 
-dog.belongsToMany(temperament, { through: 'Dogs_Temperaments', timestamps: false });
-temperament.belongsToMany(dog, { through: 'Dogs_Temperaments', timestamps: false });
+dog.belongsToMany(temperament, {
+	through: 'Dogs_Temperaments',
+	timestamps: false,
+});
+temperament.belongsToMany(dog, {
+	through: 'Dogs_Temperaments',
+	timestamps: false,
+});
 
 gender.hasMany(dog, { foreignKey: 'genderId' });
 dog.belongsTo(gender, { foreignKey: 'genderId' });
@@ -62,53 +69,60 @@ dog.belongsTo(gender, { foreignKey: 'genderId' });
 role.hasMany(user, { foreignKey: 'roleId' });
 user.belongsTo(role, { foreignKey: 'roleId' });
 
-category.hasMany(product, { foreignKey: 'categoryId' })
-product.belongsTo(category, { foreignKey: 'categoryId' })
+category.hasMany(product, { foreignKey: 'categoryId' });
+product.belongsTo(category, { foreignKey: 'categoryId' });
 
-category.hasMany(subCategory, { foreignKey: 'categoryId' })
-subCategory.belongsTo(category, { foreignKey: 'categoryId' })
+category.hasMany(subCategory, { foreignKey: 'categoryId' });
+subCategory.belongsTo(category, { foreignKey: 'categoryId' });
 
-subCategory.hasMany(product, { foreignKey: 'subCategoryId' })
-product.belongsTo(subCategory, { foreignKey: 'subCategoryId' })
+subCategory.hasMany(product, { foreignKey: 'subCategoryId' });
+product.belongsTo(subCategory, { foreignKey: 'subCategoryId' });
 
-product.hasMany(cartItem, { foreignKey: 'productId' })
-cartItem.belongsTo(product, { foreignKey: 'productId' })
+product.hasMany(cartItem, { foreignKey: 'productId' });
+cartItem.belongsTo(product, { foreignKey: 'productId' });
 
-user.hasOne(session, { foreignKey: 'userId' })
-session.belongsTo(user, { foreignKey: 'userId' })
+user.hasOne(session, { foreignKey: 'userId' });
+session.belongsTo(user, { foreignKey: 'userId' });
 
-session.hasOne(cartItem, { foreignKey: 'sessionId' })
-cartItem.belongsTo(session, { foreignKey: 'sessionId' })
+session.hasOne(cartItem, { foreignKey: 'sessionId' });
+cartItem.belongsTo(session, { foreignKey: 'sessionId' });
 
-user.hasOne(dog, { foreignKey: 'ownerId'})
-dog.belongsTo(user, { foreignKey: 'ownerId'})
+user.hasOne(dog, { foreignKey: 'ownerId' });
+dog.belongsTo(user, { foreignKey: 'ownerId' });
 
-dog.hasMany(requests, { foreignKey: 'dogId', })
-requests.belongsTo(dog, { foreignKey: 'dogId', })
+dog.hasMany(requests, { foreignKey: 'dogId' });
+requests.belongsTo(dog, { foreignKey: 'dogId' });
 
-user.hasOne(requests, { foreignKey: 'requestBy' })
-requests.belongsTo(user, { foreignKey: 'requestBy' })
+user.hasOne(requests, { foreignKey: 'requestBy' });
+requests.belongsTo(user, { foreignKey: 'requestBy' });
 
-order.hasMany(orderItem, { foreignKey: 'orderId' })
-orderItem.belongsTo(order, { foreignKey: 'orderId' })
+order.hasMany(orderItem, { foreignKey: 'orderId' });
+orderItem.belongsTo(order, { foreignKey: 'orderId' });
 
-user.hasMany(order, { foreignKey: 'userId' })
-order.belongsTo(user, { foreignKey: 'userId' })
+user.hasMany(order, { foreignKey: 'userId' });
+order.belongsTo(user, { foreignKey: 'userId' });
 
-product.hasOne(orderItem, { foreignKey: 'productId' })
-orderItem.belongsTo(product, { foreignKey: 'productId' })
+product.hasOne(orderItem, { foreignKey: 'productId' });
+orderItem.belongsTo(product, { foreignKey: 'productId' });
 
-order.hasOne(payment, { foreignKey: 'orderId' })
-payment.belongsTo(order, { foreignKey: 'orderId' })
+//VER SI USAMOS ESTO
+// *********************************************************//
 
-user.hasMany(payment, { foreignKey: 'userId' })
-payment.belongsTo(user, { foreignKey: 'userId' })
+order.hasOne(payment, { foreignKey: 'orderId' });
+payment.belongsTo(order, { foreignKey: 'orderId' });
 
-user.hasOne(userVerification, { foreignKey: 'userId' })
-userVerification.belongsTo(user, { foreignKey: 'userId' })
+user.hasMany(payment, { foreignKey: 'userId' });
+payment.belongsTo(user, { foreignKey: 'userId' });
+// *********************************************************//
 
-user.hasOne(userPasswordReset, { foreignKey: 'userId' })
-userPasswordReset.belongsTo(user, { foreignKey: 'userId' })
+user.hasOne(userVerification, { foreignKey: 'userId' });
+userVerification.belongsTo(user, { foreignKey: 'userId' });
+
+user.hasOne(userPasswordReset, { foreignKey: 'userId' });
+userPasswordReset.belongsTo(user, { foreignKey: 'userId' });
+
+user.hasMany(reviews, { foreignKey: 'userId' });
+reviews.belongsTo(user, { foreignKey: 'userId' });
 
 module.exports = {
 	...sequelize.models,

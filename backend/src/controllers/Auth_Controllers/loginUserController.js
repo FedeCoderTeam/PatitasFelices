@@ -21,7 +21,18 @@ const loginUser = async (email, password) => {
         throw new Error('Your account is not verified. We will send you an email so you can verify it')
     }
 
-    const token = await signToken({ user: findUser.dataValues}, process.env.JWT_PRIVATE_KEY_AUTH, {expiresIn: '6h'})
+    const objUser = {
+        id: findUser.id,
+        googleId: findUser.googleId,
+        name: findUser.name,
+        last: findUser.last,
+        email: findUser.email,
+        image: findUser.image,
+        isVerified: findUser.isVerified,
+        role: findUser.role.name
+    }
+
+    const token = await signToken({ user: objUser }, process.env.JWT_PRIVATE_KEY_AUTH, {expiresIn: '24h'})
     const findSession = await session.findOne({where: {userId: findUser.id}})
 
     if(findSession) {
@@ -37,16 +48,7 @@ const loginUser = async (email, password) => {
         error: null,
         authenticated: true,
         token: token,
-        user: {
-            id: findUser.id,
-            googleId: findUser.googleId,
-            name: findUser.name,
-            last: findUser.last,
-            email: findUser.email,
-            image: findUser.image,
-            isVerified: findUser.isVerified,
-            role: findUser.role.name
-        }
+        user: objUser
     }
 }
 

@@ -3,7 +3,7 @@
 .mainContainer {
     width: 100%;
     height: 500px;
-    background: url('../Header/img/wallpapersden.com_cute-dog-4k_1920x1080.jpg');
+    background: url(https://res.cloudinary.com/dreso9ye9/image/upload/v1682697410/wallpapersden.com_cute-dasdog-dasdas4k_1920x1080_lrhx1w.jpg);
     /* background: url('https://w0.peakpx.com/wallpaper/912/135/HD-wallpaper-beagle-beam-cute-dog-pets-dogs-forest-cute-animals-beagle-dog.jpg'); */
     /* background-color: #592519; */
     background-repeat: no-repeat;
@@ -36,18 +36,19 @@
 }
 
 .patitasFelices {
-    color: #592519;
+    color: #D9AD77;
 }
 
 .description {
     display: flex;
     align-items: center;
     width: 450px;
-    height: 52px;
+    height: fit-content;
     font-size: 15px;
     font-family: 'Be Vietnam Pro', sans-serif;
     font-weight: 500;
     color: #F2F2F2;
+    margin-bottom: 7px;
 }
 
 .description p {

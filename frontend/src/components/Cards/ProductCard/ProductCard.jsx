@@ -15,8 +15,10 @@ const ProductCard = ({ image, name, brand, price, id }) => {
 						<h5 className={style.title}>{name}</h5>
 						<h5 className={style.subTitle}>{brand}</h5>
 						<h5 className={style.price}>
-							${price}
-							<span className={style.priceSpan}>.00</span>
+							{Number(price).toLocaleString('es-AR', {
+								style: 'currency',
+								currency: 'ARS',
+							})}
 						</h5>
 					</div>
 					<div className={style.divBtn}>

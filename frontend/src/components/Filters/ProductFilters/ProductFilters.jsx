@@ -1,62 +1,64 @@
 import React from 'react';
 import style from './ProductFilters.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import * as productsAction from '../../../_redux/actions/productsAction';
 import SearchProduct from '../../SearchBar/SearchProduct/SearchProduct';
+import { useTranslation } from 'react-i18next';
 
-const ProductFilters = () => {
+import {
+	filterAction,
+	setFilterAction,
+	setPageAction,
+	setSortAction,
+	sortAction
+} from '../../../_redux/actions/productsAction';
+import {createTheme, InputLabel, ThemeProvider} from '@mui/material';
+import {CustomMenuItem, CustomSelect} from './StyledProductFilters';
+import Divider from '@mui/material/Divider';
+
+const ProductFilters = (props) => {
 	const dispatch = useDispatch();
-	const setCategory = useSelector((state) => state.productsReducer.setCategory);
-	const setSubCategory = useSelector(
-		(state) => state.productsReducer.setSubCategory,
-	);
-	const subCategory = useSelector((state) => state.productsReducer.subCategory);
+	const { t } = useTranslation();
 
-	const handleOrder = (event, by) => {
-		dispatch(
-			productsAction.setFilter({
-				sortOrder: event.target.value,
-				sortBy: by,
-			}),
-		);
-		dispatch(productsAction.sortAction());
-	};
+	const sortState = useSelector(state => state.productsReducer.sort)
+	const filterState = useSelector(state => state.productsReducer.filter)
 
-	const handleCategory = (event) => {
-		dispatch(
-			productsAction.setFilter({
-				setCategory: event.target.value,
-			}),
-		);
+	const handleSort = (event) => {
+		const { name, value } = event.target
+		if(name === 'price') {
+			dispatch(setSortAction(value, ''))
+		} else if(name === 'name') {
+			dispatch(setSortAction('', value))
+		}
+		dispatch(sortAction())
+	}
 
-		dispatch(
-			productsAction.setFilter({
-				setSubCategory: 'All',
-			}),
-		);
+	const handleFilter = (event) => {
+		const { name, value } = event.target
+		if(name === 'category') {
+			dispatch(setFilterAction(value, 'All'))
+		} else if(name === 'subCategory') {
+			dispatch(setFilterAction(null, value))
+		}
+		dispatch(filterAction())
+		dispatch(sortAction())
+		dispatch(setPageAction(1))
+	}
 
-		let num =
-			event.target.value === 'All'
-				? 0
-				: event.target.value === 'Alimentos'
-				? 1
-				: 2;
+	const handleRefresh = () => {
+		dispatch(setFilterAction('All', 'All'))
+		dispatch(setSortAction('asc', ''))
+		dispatch(filterAction());
+		dispatch(sortAction());
+		dispatch(setPageAction(1))
+	}
 
-		dispatch(productsAction.getIdSubCategory(num));
-		dispatch(productsAction.getAllsubCategory());
-		dispatch(productsAction.filter());
-		dispatch(productsAction.sortAction());
-	};
-
-	const handleSubCategory = (event) => {
-		dispatch(
-			productsAction.setFilter({
-				setSubCategory: event.target.value,
-			}),
-		);
-		dispatch(productsAction.filter());
-		dispatch(productsAction.sortAction());
-	};
+	const theme = createTheme({
+		palette: {
+			primary: {
+				main: 'rgba(202,146,93,0.39)'
+			}
+		},
+	})
 
 	return (
 		<div className={style.main}>
@@ -64,101 +66,143 @@ const ProductFilters = () => {
 				<div className={style.searchBar}>
 					<SearchProduct />
 				</div>
-
+				<Divider sx={{width: '100%', height: '2px', backgroundColor: '#666666'}} />
 				<div className={style.ordenContainer}>
-					<div className={style.filter}>Ordenar por</div>
+					<div className={style.filter}>{t('dogFilters.orderby')}</div>
 					<div className={style.divSelects}>
-						<div>Precio</div>
-						<select
-							defaultValue="1"
-							className={style.selects}
-							name=""
-							id=""
-							onChange={(event) => {
-								handleOrder(event, 'price');
-							}}
-						>
-							<option className={style.options} value="1" disabled={true}>
-								Elegir
-							</option>
-							<option className={style.options} value="asc">
-								Menor Precio
-							</option>
-							<option className={style.options} value="desc">
-								Mayor Precio
-							</option>
-						</select>
+						<ThemeProvider theme={theme}>
+							<InputLabel id={'sort-price-label'} sx={{color: '#999999'}} >{t('prodFilters.price')}</InputLabel>
+							<CustomSelect
+								labelId={'sort-price-label'}
+								name={'price'}
+								value={sortState.price}
+								onChange={handleSort}
+								displayEmpty
+								fullWidth
+								price={sortState.price}
+								MenuProps={{
+									anchorOrigin: {
+										vertical: "top",
+										horizontal: "right"
+									},
+									transformOrigin: {
+										vertical: "top",
+										horizontal: "left"
+									},
+									getContentAnchorEl: null
+								}}
+							>
+								<CustomMenuItem disabled value={''}>{t('prodFilters.choose')}</CustomMenuItem>
+								<CustomMenuItem value={'asc'}>{t('prodFilters.cheap')}</CustomMenuItem>
+								<CustomMenuItem value={'desc'}>{t('prodFilters.expens')}</CustomMenuItem>
+							</CustomSelect>
+						</ThemeProvider>
 					</div>
 
 					<div className={style.divSelects}>
-						<div>Nombre</div>
-						<select
-							defaultValue="1"
-							className={style.selects}
-							name=""
-							id=""
-							onChange={(event) => {
-								handleOrder(event, 'abc');
-							}}
-						>
-							<option className={style.options} value="1" disabled={true}>
-								Elegir
-							</option>
-							<option className={style.options} value="asc">
-								A - Z
-							</option>
-							<option className={style.options} value="desc">
-								Z - A
-							</option>
-						</select>
+						<ThemeProvider theme={theme}>
+							<InputLabel id={'sort-name-label'} sx={{color: '#999999'}} >{t('prodFilters.name')}</InputLabel>
+							<CustomSelect
+								labelId={'sort-name-label'}
+								name={'name'}
+								value={sortState.name}
+								onChange={handleSort}
+								displayEmpty
+								fullWidth
+								nameprops={sortState.name}
+								MenuProps={{
+									anchorOrigin: {
+										vertical: "top",
+										horizontal: "right"
+									},
+									transformOrigin: {
+										vertical: "top",
+										horizontal: "left"
+									},
+									getContentAnchorEl: null
+								}}
+							>
+								<CustomMenuItem disabled value={''}>{t('prodFilters.choose')}</CustomMenuItem>
+								<CustomMenuItem value={'asc'}>A - Z</CustomMenuItem>
+								<CustomMenuItem value={'desc'}>Z - A</CustomMenuItem>
+							</CustomSelect>
+						</ThemeProvider>
 					</div>
 				</div>
-
+				<Divider sx={{width: '100%', height: '2px', backgroundColor: '#666666'}} />
 				<div className={style.filtroContainer}>
-					<div className={style.filter}>Filtrar por</div>
+					<div className={style.filter}>{t('dogFilters.filterBy')}</div>
 					<div className={style.divSelects}>
-						<div>Categoria</div>
-						<select
-							className={style.selects}
-							name=""
-							id=""
-							value={setCategory}
-							onChange={(event) => {
-								handleCategory(event);
-							}}
-						>
-							<option className={style.options} value="All">
-								Todos
-							</option>
-							<option className={style.options} value="Alimentos">
-								Alimentos
-							</option>
-							<option className={style.options} value="Accesorios">
-								Accesorios
-							</option>
-						</select>
+						<ThemeProvider theme={theme}>
+							<InputLabel id={'sort-category-label'} sx={{color: '#999999'}} >{t('prodFilters.category')}</InputLabel>
+							<CustomSelect
+								labelId={'sort-category-label'}
+								name={'category'}
+								value={filterState.category}
+								onChange={handleFilter}
+								displayEmpty
+								fullWidth
+								category={filterState.category}
+								MenuProps={{
+									anchorOrigin: {
+										vertical: "top",
+										horizontal: "right"
+									},
+									transformOrigin: {
+										vertical: "top",
+										horizontal: "left"
+									},
+									getContentAnchorEl: null
+								}}
+							>
+								<CustomMenuItem value={'All'}>{t('dogFilters.all')}</CustomMenuItem>
+								{props.categories.map(cat => (
+									<CustomMenuItem key={cat.id} value={cat.name}>
+										{cat.name}
+									</CustomMenuItem>
+								))}
+							</CustomSelect>
+						</ThemeProvider>
 					</div>
 					<div className={style.divSelects}>
-						<div>Subcategoria</div>
-						<select
-							className={style.selects}
-							name=""
-							disabled={!subCategory.length}
-							id=""
-							value={setSubCategory}
-							onChange={(event) => {
-								handleSubCategory(event);
-							}}
-						>
-							<option className={style.options} value="All">
-								Todos
-							</option>
-							{subCategory?.map((e) => (
-								<option className={style.options} key={e.id} value={e.name}>
-									{e.name}
-								</option>
-							))}
-						</select>
+						<ThemeProvider theme={theme}>
+							<InputLabel id={'sort-subCategory-label'} sx={{color: '#999999'}} >{t('prodFilters.subcateg')}</InputLabel>
+							<CustomSelect
+								labelId={'sort-subCategory-label'}
+								name={'subCategory'}
+								value={filterState.subCategory}
+								onChange={handleFilter}
+								displayEmpty
+								fullWidth
+								subcategory={filterState.subCategory}
+								disabled={filterState.category === 'All'}
+								MenuProps={{
+									anchorOrigin: {
+										vertical: "top",
+										horizontal: "right"
+									},
+									transformOrigin: {
+										vertical: "top",
+										horizontal: "left"
+									},
+									getContentAnchorEl: null
+								}}
+							>
+								<CustomMenuItem value={'All'}>{t('dogFilters.all')}</CustomMenuItem>
+								{filterState.category !== 'All' && props.categories.find(cat => cat.name === filterState.category).subCategories.map(subCat => (
+									<CustomMenuItem key={subCat.id} value={subCat.name}>
+										{subCat.name}
+									</CustomMenuItem>
+								))}
+							</CustomSelect>
+						</ThemeProvider>
+					</div>
+					<div>
+						<button
+						className={style.btnProduct}
+						type={'button'}
+						onClick={handleRefresh}
+						>{t('dogFilters.reset')}</button>
 					</div>
 				</div>
 			</form>

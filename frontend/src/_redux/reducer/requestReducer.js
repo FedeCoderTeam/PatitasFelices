@@ -4,22 +4,22 @@ const initialState = {
 	allAdoptions: [],
 };
 
-
 export const requestSlice = createSlice({
 	name: 'request',
 	initialState,
 	reducers: {
+		setAdoptionDog: (state, action) => {
+			if (action.payload !== 'No hay solicitudes de adopción') {
+				return {
+					allAdoptions: action.payload,
+				};
+			}
 
-        setAdoptionDog: (state, action) => {
-            state.allAdoptions = action.payload
-        },
-    }
+			state.allAdoptions = [];
+		},
+	},
 });
 
-export const {
-
-            setAdoptionDog,
-
-        } = requestSlice.actions;
+export const { setAdoptionDog } = requestSlice.actions;
 
 export default requestSlice.reducer;

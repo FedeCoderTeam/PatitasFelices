@@ -1,4 +1,26 @@
+.main{
+    height: 100%;
+}
 
+.btnProduct{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    width: 280px;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px 25px;
+    color: #ffff;
+    font-size: 15px;
+    border: 0;
+    border-radius: 5px;
+    background-color: rgba(70, 70, 70, 0.308);
+    font-weight: 400;
+    transition: transform 200ms linear, background-color 200ms linear, color 200ms linear;
+}
+
+.btnProduct:hover{
+    transform: scale(1.01);
+    background-color: rgba(70, 70, 70, 0.493);;
+}
 
 .formControl {
     display: flex;
@@ -6,17 +28,13 @@
     justify-content: space-around;
     align-items: flex-start;
     height: 100%;
-    height: 600px;
-    width: 260px;
-    padding: 0px 30px 0px 30px;
-    /* margin: 0 1% 0 1%; */
+    width: 280px;
+    padding: 15px 20px 15px 20px;
     border-radius: 5px;
-    /* background: rgba( 22, 52, 64, 0.8 ); */
     background: rgba( 0, 0, 0, 0.8 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     backdrop-filter: blur( 10px );
     -webkit-backdrop-filter: blur( 10px );
-    border-radius: 5px;
     color: #999999;
 }
 
@@ -25,21 +43,21 @@
     width: 100%;
     display: flex;
     align-items: center;
-    border-bottom: 2px solid #666666;
 }
 
 .ordenContainer {
-    height: 35%;
+    height: 38%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    border-bottom: 2px solid #666666;
+    margin-bottom: 15px;
 }
 
 .orden {
     color: #f2f2f2;
+    margin-top: 10px;
 }
 
 .filtro {
@@ -48,6 +66,10 @@
 
 .edad {
     width: 100%;
+}
+.edad:hover > div {
+    background-color: rgba(70, 70, 70, 0.308);
+    transition: background-color 0.1s linear;
 }
 .edad select {
     width: 100%;
@@ -71,8 +93,19 @@
     background-color: rgba( 0, 0, 0, 0.8 );;
 }
 
+.edad:hover fieldset {
+    border-color: rgba(202,146,93,0.39) !important;
+}
+.edad .focus fieldset {
+    border-color: rgba(202,146,93,0.39);
+}
+
 .peso {
     width: 100%;
+}
+.peso:hover > div {
+    background-color: rgba(70, 70, 70, 0.308);
+    transition: background-color 0.1s linear;
 }
 .peso select {
     width: 100%;
@@ -89,11 +122,17 @@
     transition: background-color 200ms linear;
 }
 .peso select:hover {
-    background-color: rgba(70, 70, 70, 0.308);;
+    background-color: rgba(70, 70, 70, 0.308);
 }
 .peso option {
     color: #f2f2f2;
     background-color: rgba( 0, 0, 0, 0.8 );
+}
+.peso:hover fieldset {
+     border-color: rgba(202,146,93,0.39) !important;
+ }
+.peso .focus fieldset {
+    border-color: rgba(202,146,93,0.39);
 }
 
 .filtroContainer {
@@ -103,6 +142,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    margin-top: 15px;
 }
 
 /* .filtro {
@@ -158,6 +198,10 @@
 .tamaño option {
     color: #f2f2f2;
     background-color: rgba( 0, 0, 0, 0.8 );;
+}
+
+.focus {
+    box-shadow: 0 0 2px #ca925d;
 }
 
 .color {

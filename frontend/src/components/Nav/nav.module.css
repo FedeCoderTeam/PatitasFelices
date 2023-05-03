@@ -11,7 +11,7 @@
 }
 
 .logoContainer {
-    width: 244px;
+    width: 176px;
     margin-left: 40px;
 }
 
@@ -28,6 +28,12 @@
 .containerRight{
     display: flex;
     gap: 2.5em;
+    margin-right: 40px;
+}
+
+.user {
+    display: flex;
+    gap: 1em;
     margin-right: 40px;
 }
 
@@ -82,4 +88,9 @@
 
 .imgIcons:hover{
     transform: scale(1.09);
+}
+
+.myReviews {
+    text-decoration: none;
+    color: black;
 }

@@ -1,0 +1,54 @@
+.wrapper {
+    width: 500px;
+    padding: 20px;
+}
+
+.wrapper h2{
+    margin-bottom: 50px;
+}
+
+.btnComprar {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    text-align: center;
+    font-weight: 500;
+    font-size: .9em;
+    color: #ffffff;
+    width: 45%;
+    height: 40px;
+    background: #163440;
+    border-radius: 5px;
+    border: none;
+    transition: transform 200ms linear, background-color 200ms linear, color 200ms linear;
+    cursor: pointer;
+}
+
+.close{
+    cursor: pointer;
+    color: #c1996b;
+    width: 5%;
+}
+
+.total {
+    text-align: center;
+}
+
+.btnClean {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    text-align: center;
+    font-weight: 500;
+    font-size: .9em;
+    color: #ffffff;
+    width: 45%;
+    height: 40px;
+    background: #163440;
+    border-radius: 5px;
+    border: none;
+    transition: transform 200ms linear, background-color 200ms linear, color 200ms linear;
+    cursor: pointer;
+}
+
+.containerBtn{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}

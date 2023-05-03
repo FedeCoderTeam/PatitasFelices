@@ -1,17 +1,20 @@
 import axios from 'axios';
 import {
+	setPage,
+	setSort,
+	setFilter,
+	sort,
+	filter,
 	getAllProducts,
 	getNameProduct,
 	getProductDetail,
-	setPages,
 	setEmptyDetail,
-	setFilters,
-	filtered,
-	sortProduct,
 	getSubCategories,
 	idSubCategories,
 	getByName,
-	set_name, setOpen, setItems,
+	set_name,
+	setOpen,
+	setItems, getCategories,
 } from '../reducer/productsReducer.js';
 
 const URL = 'https://patitas-felices.onrender.com'
@@ -21,6 +24,7 @@ const getProducts = () => {
 		try {
 			let dbData = await axios.get(`${URL}/products`);
 			dispatch(getAllProducts(dbData.data));
+			dispatch(sort())
 		} catch (error) {
 			console.log(error);
 		}
@@ -77,7 +81,7 @@ const getName = () => {
 const postProduct = (obj) => {
 	return async () => {
 		try {
-			await axios.post(`${URL}/products`, obj)
+			await axios.post(`${URL}/products`, obj);
 		} catch (error) {
 			console.log(error);
 		}
@@ -88,9 +92,7 @@ const updateProduct = (obj) => {
 	return async () => {
 		try {
 			await axios.put(`${URL}/products`, obj)
-		} catch (error) {
-			
-		}
+		} catch (error) {}
 	}
 }
 
@@ -100,9 +102,9 @@ const setName = (name) => {
 	};
 };
 
-const setPage = (page) => {
+const setPageAction = (page) => {
 	return (dispatch) => {
-		dispatch(setPages(page));
+		dispatch(setPage(page));
 	};
 };
 
@@ -112,48 +114,51 @@ const setDetail = () => {
 	};
 };
 
-const setFilter = (set) => {
+const setFilterAction = (category, subCategory) => {
 	return function (dispatch) {
-		dispatch(setFilters(set));
+		dispatch(setFilter({category, subCategory}));
 	};
 };
 
-const filter = () => {
+const filterAction = () => {
 	return function (dispatch) {
-		dispatch(filtered());
+		dispatch(filter());
 	};
 };
 
 const sortAction = () => {
 	return function (dispatch) {
-		dispatch(sortProduct());
-	};
-};
-
-const setLinkDePagos = (items) => {
-	return async function () {
-		try {
-			let link = await axios.post(
-				`${URL}/mercadopago/payment`,
-				items,
-			);
-			window.location.href = link.data.body.init_point;
-		} catch (error) {
-			console.log(error);
-		}
+		dispatch(sort());
 	};
 };
 
 const setOpenAction = () => {
 	return function (dispatch) {
-		dispatch(setOpen())
-	}
-}
+		dispatch(setOpen());
+	};
+};
 
 const setItemsAction = () => {
 	return function (dispatch) {
-		const items = localStorage.getItem('products')
-		dispatch(setItems(JSON.parse(items)))
+		const items = localStorage.getItem('products');
+		dispatch(setItems(JSON.parse(items)));
+	};
+};
+
+const setSortAction = (price, name) => {
+	return function (dispatch) {
+		dispatch(setSort({price, name}))
+	}
+}
+
+const getCategoriesAction = () =>  {
+	return async function(dispatch) {
+		try {
+			let dbData = await axios.get(`${URL}/categories`);
+			dispatch(getCategories(dbData.data));
+		} catch (error) {
+			console.log(error);
+		}
 	}
 }
 
@@ -161,18 +166,19 @@ export {
 	getProducts,
 	getProductsByName,
 	getProductsById,
-	setPage,
+	setPageAction,
 	setDetail,
-	setFilter,
-	filter,
+	setFilterAction,
+	filterAction,
 	sortAction,
+	setSortAction,
 	getAllsubCategory,
 	getIdSubCategory,
 	getName,
 	setName,
-	setLinkDePagos,
 	postProduct,
 	updateProduct,
 	setOpenAction,
-	setItemsAction
+	setItemsAction,
+	getCategoriesAction
 };
