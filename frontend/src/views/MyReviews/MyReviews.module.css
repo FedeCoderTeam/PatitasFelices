@@ -87,3 +87,65 @@
     cursor: pointer;
 }
 
+.dialogContainer {
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	color: #16343f;
+	font-weight: 700;
+	height: 350px;
+	width: 500px;
+}
+
+.ratingSectionDialog {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+	gap: 10px;
+}
+
+.commentSectionDialog {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.commentSectionDialog textarea {
+	height: 150px;
+	resize: none;
+	border: none;
+	outline: none;
+	font-family: 'Be Vietnam Pro', sans-serif;
+	background-color: rgba(242, 242, 242, 1);
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.buttonDialogContainer {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.buttonDialog {
+	width: 100%;
+    background-color: #a65424;
+    color: white;
+    font-size: 17px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 700;
+    padding: 12.5px 0 12.5px 0;
+    border-color: transparent;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: 
+        background-color 200ms linear,
+        transform 200ms linear;
+}
+
+.buttonDialog:hover {
+    transform: scale(1.01);
+    background-color: #16343f;
+}

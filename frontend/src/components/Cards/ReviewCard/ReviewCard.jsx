@@ -67,11 +67,20 @@ const ReviewCard = ({ id, rating, comment, name, last, image, handleOpenReview, 
             </div>
                     </div>
                     {location.pathname !== '/myreviews' ? "" : <div className={style.buttonsContainer}>
-                        <button onClick={handleOpenReview} className={style.editButton}><i className="fa-solid fa-pen"></i></button>
-                        <button value={id} onClick={handleDeleteReview} className={style.deleteButton}><i className="fa-solid fa-trash"></i></button>
+                        <button 
+                            value={id}
+                            onClick={handleOpenReview} 
+                            className={style.editButton}><i className="fa-solid fa-pen"></i>
+                        </button>
+                        <button 
+                            value={id} 
+                            onClick={handleDeleteReview} 
+                            className={style.deleteButton}><i className="fa-solid fa-trash"></i>
+                        </button>
                     </div>}
 		</>
 	);
 };
 
 export default ReviewCard;
+

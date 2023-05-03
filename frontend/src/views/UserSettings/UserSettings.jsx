@@ -20,7 +20,7 @@ const UserSettings = () =>{
     let userId = useSelector((state) => state.authReducer.userDetail);
 
     useEffect(() => {
-	    dispatch(getUserById(id));
+		dispatch(getUserById(id));
 	}, [dispatch]);
 
     let [input, setInput] = useState({
