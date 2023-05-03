@@ -38,10 +38,6 @@ export default function Footer() {
 					<Link to="https://wa.me/5493517039524" className={style.whatsapp} target="_blank"><i className="fa-brands fa-whatsapp"></i></Link>
 
 				</div>
-
-				<div className={style.mail}>
-					<a href="https://www.gmail.com" className={style.mail} target="_blank"><i className="fa-solid fa-envelope"></i></a>
-				</div>
 			</div>
 		</div>
 	);
