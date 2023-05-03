@@ -76,7 +76,7 @@ const Products = () => {
 		{ 
 			field: 'col1', 
 			headerName: 'Nombre', 
-			width: 460 
+			width: 430 
 		},
 		{ 
 			field: 'col2', 
@@ -87,37 +87,43 @@ const Products = () => {
 			field: 'col3', 
 			headerName: 'Precio', 
 			width: 150,
-			align: 'center'
+			align: 'center',
+			headerAlign: 'center'
 		},
 		{ 
 			field: 'col4', 
 			headerName: 'Stock', 
 			width: 120,
-			align: 'center'
+			align: 'center',
+			headerAlign: 'center'
 		},
 		{ 
 			field: 'col5', 
 			headerName: 'Categoria', 
 			width: 160,
-			align: 'center'
+			align: 'center',
+			headerAlign: 'center'
 		},
 		{ 
 			field: 'col6', 
 			headerName: 'Sub-categoria', 
-			width: 160,
+			width: 175,
 			align: 'center',
+			headerAlign: 'center'
 		},
 		{ 
 			field: 'col7', 
 			headerName: '¿Disponible?', 
-			width: 150,
+			width: 165,
 			align: 'center',
+			headerAlign: 'center'
 		},
 		{
 			field: 'col8',
 			headerName: 'Imagen',
 			width: 120,
 			align: 'center',
+			headerAlign: 'center',
 			renderCell: (params) => <ImageCell value={params.value} />,
 		},
 	];

@@ -114,7 +114,7 @@ const Reviews = () => {
 				];
 			},
 		},
-		{ field: 'id', headerName: 'Id', width: 80, align: 'center' },
+		{ field: 'id', headerName: 'Id', width: 90, align: 'center', headerAlign: 'center' },
 		{
 			field: 'col1',
 			headerName: 'Puntaje',
@@ -130,9 +130,10 @@ const Reviews = () => {
 			headerName: 'Foto',
 			width: 130,
 			align: 'center',
+			headerAlign: 'center',
 			renderCell: (params) => <ImageCell value={params.value} />,
 		},
-		{ field: 'col7', headerName: 'Fecha', width: 130, align: 'center' },
+		{ field: 'col7', headerName: 'Fecha', width: 130, align: 'center', headerAlign: 'center' },
 	];
 
 	return (
