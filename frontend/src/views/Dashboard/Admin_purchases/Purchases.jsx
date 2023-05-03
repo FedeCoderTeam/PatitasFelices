@@ -61,28 +61,28 @@ const Purchases = () => {
 			<img
 				src={value}
 				alt="Imagen"
-				style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+				style={{ maxWidth: '2em', maxHeight: '6em', objectFit: 'contain' }}
 			/>
 		);
 	};
 
 	const columns = [
-		{ field: 'id', headerName: 'Id', width: 80 },
+		{ field: 'id', headerName: 'Id', width: 80, align: 'center', headerAlign: 'center'},
 		{ field: 'col1', headerName: 'N° Orden', width: 150 },
-		{ field: 'col2', headerName: 'Producto', width: 250 },
+		{ field: 'col2', headerName: 'Producto', width: 350 },
 		{ field: 'col3', headerName: 'Marca', width: 150 },
 		{ field: 'col4', headerName: 'Categoria', width: 150 },
 		{ field: 'col5', headerName: 'Subcategoria', width: 150 },
-		{ field: 'col6', headerName: 'Precio', width: 150 },
-		{ field: 'col7', headerName: 'Cantidad', width: 150 },
-		{ field: 'col8', headerName: 'Total', width: 150 },
+		{ field: 'col6', headerName: 'Precio', width: 110 },
+		{ field: 'col7', headerName: 'Cantidad', width: 100, align: 'center', headerAlign: 'center'},
+		{ field: 'col8', headerName: 'Total', width: 150, align: 'center', headerAlign: 'center' },
 		{
 			field: 'col9',
 			headerName: 'Imagen',
-			width: 150,
+			width: 100,
 			renderCell: (params) => <ImageCell value={params.value} />,
 		},
-		{ field: 'col10', headerName: 'Fecha', width: 150 },
+		{ field: 'col10', headerName: 'Fecha', width: 150, align: 'center', headerAlign: 'center' },
 	];
 
 	return (
