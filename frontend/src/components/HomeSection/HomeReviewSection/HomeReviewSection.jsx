@@ -145,7 +145,7 @@ export function ReviewDetail(props) {
             rating: values.rating
         };      
         dispatch(reviewsAction.postReviews(obj)) 
-        success('Tu comentario se ha enviada correctamente', {
+        success('Tu comentario se ha enviado correctamente', {
             duration: 2000
 		});
 		props.handleOpenReview();
