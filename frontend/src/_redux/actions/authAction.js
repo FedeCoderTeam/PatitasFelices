@@ -4,6 +4,7 @@ import {
 	setStatusVerify,
 	setUser,
 	getAllUsers,
+	getUserDetail,
 	setIsFetchingAuth,
 	getUserDetail
 } from '../reducer/authReducer';
