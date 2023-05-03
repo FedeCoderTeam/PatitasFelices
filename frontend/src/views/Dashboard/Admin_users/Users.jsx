@@ -91,22 +91,54 @@ const Users = () => {
 			id: allUsers[row.id - 1].id,
 			password: row.col5,
 			image: row.col6,
-			isDisabled: disabled === 'Si' ? 'Si' : 'No',
-			roleId: change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3,
+			isDisabled: row.col8,
+			roleId: row.col9,
 		};
 
 		if (
-			(row.col9 !== change && change !== '') ||
-			(row.col8 !== disabled && disabled !== '')
+			row.col9 !== change &&
+			change !== '' &&
+			row.col8 !== disabled &&
+			disabled !== ''
 		) {
+			obj.isDisabled = disabled === 'Si' ? 'Si' : 'No';
+			obj.roleId =
+				change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3;
+
 			dispatch(authActions.updateUser(obj));
 			successNotify();
 		} else if (
-			(row.col9 === change && change !== '') ||
-			(row.col8 === disabled && disabled !== '')
+			row.col9 === change &&
+			change !== '' &&
+			row.col8 === disabled &&
+			disabled !== ''
 		) {
-			dispatch(authActions.updateUser(obj));
+			obj.isDisabled = disabled === 'Si' ? 'Si' : 'No';
+			obj.roleId =
+				change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3;
 
+			dispatch(authActions.updateUser(obj));
+			successNotify();
+		} else if (row.col9 !== change && change !== '') {
+			obj.roleId =
+				change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3;
+
+			dispatch(authActions.updateUser(obj));
+			successNotify();
+		} else if (row.col9 === change && change !== '') {
+			obj.roleId =
+				change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3;
+
+			dispatch(authActions.updateUser(obj));
+			successNotify();
+		} else if (row.col8 !== disabled && disabled !== '') {
+			obj.isDisabled = disabled === 'Si' ? 'Si' : 'No';
+
+			dispatch(authActions.updateUser(obj));
+			successNotify();
+		} else if (row.col8 === disabled && disabled !== '') {
+			obj.isDisabled = disabled === 'Si' ? 'Si' : 'No';
+			dispatch(authActions.updateUser(obj));
 			successNotify();
 		} else {
 			cancelNotify();

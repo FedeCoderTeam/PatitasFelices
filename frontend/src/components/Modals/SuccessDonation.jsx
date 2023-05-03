@@ -33,11 +33,11 @@ const SuccessDonation = () => {
 		}
 	};
 
-	console.log(token)
-
 	useEffect(() => {
-		//(true || false)
-		if ((token !== 'null' || token === null) && orderGenerated === 'No creada') {
+		if (
+			(token !== 'null' || token === null) &&
+			orderGenerated === 'No creada'
+		) {
 			generateOrder().then();
 		}
 		setTimeout(() => {
