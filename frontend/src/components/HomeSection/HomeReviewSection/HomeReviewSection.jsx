@@ -42,6 +42,28 @@ const HomeReviewSection = () => {
 		setShowModal(!showModal);
 	};
 
+	const handleClickPrev = () => {
+		const container = document.querySelector(`.${style.productCardContainer}`);
+		container.classList.add(style.moveRight);
+	  
+		setTimeout(() => {
+			setCurrentIndex(
+				currentIndex > 0 ? currentIndex - 1 : allReviews.length - 1
+			);
+		  container.classList.remove(style.moveRight);
+		}, 750);
+	  };
+
+	const handleClickNext = () =>{
+		const container = document.querySelector(`.${style.productCardContainer}`);
+		container.classList.add(style.moveLeft);
+		  
+		setTimeout(() => {
+			setCurrentIndex((currentIndex + 1) % allReviews.length)
+			container.classList.remove(style.moveLeft);
+		}, 750);
+	}
+
 	return (
 		<>
 			<div>
@@ -66,25 +88,21 @@ const HomeReviewSection = () => {
 							<span>{t('home.section.review.shareIt')}</span>
 						</h1>
 						<div className={style.carousel}>
-							<div className={style.arrows} onClick={() =>
-									setCurrentIndex(
-										currentIndex > 0 ? currentIndex - 1 : allReviews.length - 1
-									)
-								}>
+							<div className={style.arrows} onClick={handleClickPrev}>
 								<i className="fa-solid fa-chevron-left" ></i>
 							</div>
-							<ReviewCard
-								data-aos="fade-right" data-aos-duration="1000"
-								id={allReviews[currentIndex]?.id}
-								rating={allReviews[currentIndex]?.rating}
-								comment={allReviews[currentIndex]?.comment}
-								name={allReviews[currentIndex]?.user?.name}
-								last={allReviews[currentIndex]?.user?.last}
-								image={allReviews[currentIndex]?.user?.image}
-							/>
-							<div className={style.arrows} onClick={() =>
-									setCurrentIndex((currentIndex + 1) % allReviews.length)
-								}>
+							<div className={style.productCardContainer}>
+								<ReviewCard
+									data-aos="fade-right" data-aos-duration="1000"
+									id={allReviews[currentIndex]?.id}
+									rating={allReviews[currentIndex]?.rating}
+									comment={allReviews[currentIndex]?.comment}
+									name={allReviews[currentIndex]?.user?.name}
+									last={allReviews[currentIndex]?.user?.last}
+									image={allReviews[currentIndex]?.user?.image}
+								/>
+							</div>
+							<div className={style.arrows} onClick={handleClickNext}>
 								<i className="fa-solid fa-chevron-right"></i>
 							</div>
 						</div>
@@ -133,8 +151,9 @@ export function ReviewDetail(props) {
 
 	const validationSchema = Yup.object().shape({
 		comment: Yup.string()
-			.max(130, 'El comentario no puede superar los 130 caracteres')
-			.required('El comentario es obligatorio'),
+			.max(250, 'El comentario no puede superar los 250 caracteres.*')
+			.matches(/^[a-zA-Z\u00C0-\u00FF\s.,!¡?¿]+$/, 'Solo se permiten letras, comas, puntos y signos de exclamación e interrogación.*')
+			.required('El comentario es obligatorio.*'),
 		rating: Yup.number(),
 	});
 
@@ -200,7 +219,7 @@ export function ReviewDetail(props) {
 										}}
 									/>
 									{formik.touched.comment && formik.errors.comment && (
-										<div>{formik.errors.comment}</div>
+										<div className={style.errorMessage}>{formik.errors.comment}</div>
 									)}
 								</div>
 
