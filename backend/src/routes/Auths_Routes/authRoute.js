@@ -67,7 +67,7 @@ router.post('/logout', cors({credentials: true, origin: 'https://patitas-felices
     }
 })
 
-router.post('/verify-account', cors({credentials: true, origin: 'http://localhost:3000'}), async (req, res) => {
+router.post('/verify-account', cors({credentials: true, origin: 'https://patitas-felices.vercel.app'}), async (req, res) => {
     const { token } = req.body
     try {
         const result = await verifyUser(token)
