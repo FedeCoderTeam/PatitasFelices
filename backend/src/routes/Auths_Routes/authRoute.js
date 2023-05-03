@@ -13,6 +13,7 @@ const requestPasswordResetUser = require('../../controllers/Auth_Controllers/req
 const verifyPasswordResetUser = require('../../controllers/Auth_Controllers/verifyPasswordResetUserController')
 const confirmPasswordResetUser = require('../../controllers/Auth_Controllers/confirmPasswordResetUserController')
 const updatePasswordUser = require('../../controllers/Auth_Controllers/updatePasswordUserController')
+const updateUserByOwn = require('../../controllers/Auth_Controllers/updateUserByOwnController')
 
 // const userGoogle = require('../../controllers/Auth_Controllers/userGoogleController');
 
@@ -121,6 +122,17 @@ router.post('/change-password', async(req, res) => {
         res.status(200).json(result)
     } catch (error) {
         // console.log(error)
+        res.status(400).json({error: error.message, message: null})
+    }
+})
+
+router.post('/update-user', cors({credentials: true, origin: 'http://localhost:3000'}), async(req, res) => {
+    const { token, name, last, image} = req.body
+    try {
+        const result = await updateUserByOwn(token, name, last, image)
+        res.cookie('tkn_usr', result.token, {maxAge: 86400000, hostOnly:false, httpOnly: true, sameSite: 'lax', secure: true})
+        res.status(200).json(result)
+    } catch (error) {
         res.status(400).json({error: error.message, message: null})
     }
 })

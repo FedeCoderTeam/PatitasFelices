@@ -299,16 +299,14 @@ export function AvatarComponent(props) {
 							{t('nav.account.myComments')}
 						</Link>
 					</MenuItem>
-					{!selector.user?.googleId &&(
-						<MenuItem onClick={handleCloseUserMenu}>
-							<ListItemIcon>
-								<Settings fontSize="small" sx={{ color: grey[900] }} />
-							</ListItemIcon>
-							<Link to={`/account`} className={style.myReviews}>
-								{t('nav.account.settings')}
-							</Link>
-						</MenuItem>
-					)}
+					<MenuItem onClick={handleCloseUserMenu}>
+						<ListItemIcon>
+							<Settings fontSize="small" sx={{ color: grey[900] }} />
+						</ListItemIcon>
+						<Link to={`/account`} className={style.myReviews}>
+							{t('nav.account.settings')}
+						</Link>
+					</MenuItem>
 					<MenuItem
 						onClick={(event) => {
 							handleCloseUserMenu(event);
