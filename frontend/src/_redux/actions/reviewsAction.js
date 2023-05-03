@@ -3,10 +3,12 @@ import {
 	getAllReviews,
 } from '../reducer/reviewsReducer.js';
 
+const URL = 'https://patitas-felices.vercel.app'
+
 const getReviews = () => {
 	return async function (dispatch) {
 		try {
-			let dbData = await axios.get('http://localhost:3001/reviews');
+			let dbData = await axios.get(`${URL}/reviews`);
 			dispatch(getAllReviews(dbData.data));
 		} catch (error) {
 			console.log(error);
@@ -17,7 +19,7 @@ const getReviews = () => {
 const postReviews = (obj) => {
 	return async function () {
 		try {
-			await axios.post('http://localhost:3001/reviews', obj);
+			await axios.post(`${URL}/reviews`, obj);
 		} catch (error) {
 			console.log(error);
 		}
@@ -27,7 +29,7 @@ const postReviews = (obj) => {
 const updateReviews = (obj) => {
 	return async function () {
 		try {
-			await axios.put('http://localhost:3001/reviews', obj);
+			await axios.put(`${URL}/reviews`, obj);
 		} catch (error) {
 			console.log(error);
 		}
@@ -37,7 +39,7 @@ const updateReviews = (obj) => {
 const deleteReview = (id) => {
 	return async function (dispatch) {
 		try {
-			let dbData = await axios.delete('http://localhost:3001/reviews/' + id)
+			let dbData = await axios.delete(`${URL}/reviews/` + id)
 			dispatch(getReviews())
 			return dbData.data
 		} catch (error) {
@@ -49,7 +51,7 @@ const deleteReview = (id) => {
 const updateReview = (obj) => {
 	return async (dispatch) => {
 		try {
-			let newReview = await axios.put('http://localhost:3001/reviews', obj);
+			let newReview = await axios.put(`${URL}/reviews`, obj);
 			dispatch(getReviews());
 			return newReview.data;
 		} catch (error) {
