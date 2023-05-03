@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 const Request = () => {
 	const dispatch = useDispatch();
 	const allRequest = useSelector((state) => state.requestReducer.allAdoptions);
-	const token = useSelector(state => state.authReducer.token)
+	const token = useSelector((state) => state.authReducer.token);
 	const { success, error } = useToast();
 
 	let [edit, setEdit] = useState(false);
@@ -34,7 +34,7 @@ const Request = () => {
 				setChange(value);
 				params.api.setEditCellValue({
 					id: params.id,
-					field: 'col13',
+					field: 'col12',
 					value,
 				});
 			}}
@@ -71,15 +71,15 @@ const Request = () => {
 					? 'Accepted'
 					: change === 'Denegada'
 					? 'Denied'
-					: row.col13,
-			dogId: row.col12,
+					: row.col12,
+			dogId: row.col11,
 		};
 
-		if (row.col13 !== change && change !== '') {
-			dispatch(requestAction.updateAdoptionDog({...obj, token}));
+		if (row.col12 !== change && change !== '') {
+			dispatch(requestAction.updateAdoptionDog({ ...obj, token }));
 			successNotify();
-		} else if (row.col13 === change && change !== '') {
-			dispatch(requestAction.updateAdoptionDog({...obj, token}));
+		} else if (row.col12 === change && change !== '') {
+			dispatch(requestAction.updateAdoptionDog({ ...obj, token }));
 			successNotify();
 		} else {
 			cancelNotify();
@@ -100,34 +100,36 @@ const Request = () => {
 					col3: request.phone,
 					col4: request.address,
 					col5: request.email,
-					col6:
-						request.areas_conditions === 'Excellent'
-							? 'Excelente'
-							: request.areas_conditions === 'Good'
-							? 'Buena'
-							: request.areas_conditions === 'Bad'
-							? 'Mala'
-							: 'N/A',
-					col7: request.more_animals === true ? 'Si' : 'No',
-					col8: request.moreAnimals_details,
-					col9: request.proper_income === 'Yes' ? 'Si' : 'No',
-					col10: request.inHouse_allowance === 'Yes' ? 'Si' : 'No',
-					col11: request.outDoor_image,
-					col12: request.dogId,
+					col6: request.more_animals === true ? 'Si' : 'No',
+					col7: request.moreAnimals_details,
+					col8: request.proper_income === 'Yes' ? 'Si' : 'No',
+					col9: request.inHouse_allowance === 'Yes' ? 'Si' : 'No',
+					col10: request.outDoor_image,
+					col11: request.dogId,
 
-					col13:
+					col12:
 						request.status === 'Pending'
 							? 'Pendiente'
 							: request.status === 'Accepted'
 							? 'Aceptada'
 							: 'Denegada',
-					col14: new Date(request.createdAt)
+					col13: new Date(request.createdAt)
 						.toLocaleDateString()
 						.replace(/\//g, '-'),
 				};
 			}),
 		[allRequest],
 	);
+
+	let ImageCell = ({ value }) => {
+		return (
+			<img
+				src={value}
+				alt="Imagen"
+				style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+			/>
+		);
+	};
 
 	let bgOnEdit = {
 		bg: (params) => (params.row.id === editRow?.id ? style.brown : ''),
@@ -166,24 +168,28 @@ const Request = () => {
 		{ field: 'col3', headerName: 'Telefono', width: 120 },
 		{ field: 'col4', headerName: 'Direccion', width: 140 },
 		{ field: 'col5', headerName: 'Email', width: 150 },
-		{ field: 'col6', headerName: 'Patio/balcón ', width: 100 },
-		{ field: 'col7', headerName: '¿Animales?', width: 100 },
-		{ field: 'col8', headerName: 'Detalles', width: 100 },
-		{ field: 'col9', headerName: '¿Economía?', width: 100 },
-		{ field: 'col10', headerName: '¿Permisos?', width: 100 },
-		{ field: 'col11', headerName: 'Imagen patio/balcón', width: 100 },
-		{ field: 'col12', headerName: 'Id perro', width: 100 },
+		{ field: 'col6', headerName: '¿Animales?', width: 100 },
+		{ field: 'col7', headerName: 'Detalles', width: 100 },
+		{ field: 'col8', headerName: '¿Economía?', width: 100 },
+		{ field: 'col9', headerName: '¿Permisos?', width: 100 },
 		{
-			field: 'col13',
+			field: 'col10',
+			headerName: 'Imagen patio/balcón',
+			width: 100,
+			renderCell: (params) => <ImageCell value={params.value} />,
+		},
+		{ field: 'col11', headerName: 'Id perro', width: 100 },
+		{
+			field: 'col12',
 			headerName: 'Solicitud',
 			width: 120,
 			editable: edit,
 			cellClassName: bgOnEdit.bg,
-			valueGetter: (params) => params.row.col13,
+			valueGetter: (params) => params.row.col12,
 			valueOptions: statusOptions,
 			renderEditCell: renderSelect,
 		},
-		{ field: 'col14', headerName: 'Creación', width: 100 },
+		{ field: 'col13', headerName: 'Creación', width: 100 },
 	];
 
 	return (
