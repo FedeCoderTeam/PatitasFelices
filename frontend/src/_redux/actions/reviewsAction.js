@@ -3,7 +3,7 @@ import {
 	getAllReviews,
 } from '../reducer/reviewsReducer.js';
 
-const URL = 'https://patitas-felices.vercel.app'
+const URL = 'https://patitas-felices.onrender.com'
 
 const getReviews = () => {
 	return async function (dispatch) {
