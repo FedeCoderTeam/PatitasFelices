@@ -10,6 +10,7 @@ const initialState = {
 	genders: [],
 	currentPage: 1,
 	maybeAdoptedDog: {},
+	name: '',
 	sort: {
 		age: 'asc',
 		weight: ''
@@ -133,6 +134,17 @@ export const dogsSlice = createSlice({
 			state.maybeAdoptedDog = {};
 		},
 
+		set_name: (state, action) => {
+			state.name = action.payload.name;
+		},
+		getByName: (state) => {
+			state.dogs = state.name === ''
+				? state.filtered
+				: state.filtered.filter((el) =>
+					el.name.toLowerCase().includes(state.name.toLowerCase()),
+				);
+		},
+
 	},
 });
 
@@ -151,6 +163,8 @@ export const {
 	setEmptyDetail,
 	setMaybeAdoptedDog,
 	emptyMaybeAdoptedDog,
+	set_name,
+	getByName
 } = dogsSlice.actions;
 
 export default dogsSlice.reducer;

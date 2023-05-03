@@ -1,28 +1,38 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
+import {useDispatch, useSelector} from "react-redux";
 import * as dogsAction from "../../../_redux/actions/dogsAction.js";
 import style from './SearchDog.module.css'
 
 const SearchDog = () => {
-
     const dispatch = useDispatch();
+    let name = useSelector((state) => state.dogsReducer.name);
 
-    const [inputDog, setInputDog] = useState('')
+    const handlerSetName = (event) => {
+        const regex = /^[a-zA-Z\sñÑáéíóúÁÉÍÓÚ]*$/;
+        if (regex.test(event) || event === "") {
+            dispatch(dogsAction.setName({ name: event}));
+        }
+    };
 
-    const handleInputChange = (e) => {
-        setInputDog(e.target.value)
-    }
-
-    /* const handleOnClick = () => {
-        dispatch(dogsAction.getDogsByName(inputDog))
-        setInputDog("");
-    } */
+    const handleGetName = () => {
+        dispatch(dogsAction.getName());
+        dispatch(dogsAction.setPageAction(1));
+    };
 
     return(
         <>
             <div className={style.searchBar}>
-                <input className={style.input} type='search' placeholder='Search...' onChange={handleInputChange}/>
+                <input
+                    className={style.input}
+                    autoComplete="off"
+                    type="text"
+                    placeholder="Search..."
+                    value={name}
+                    onChange={(event) => {
+                        handlerSetName(event.target.value);
+                        handleGetName();
+                    }}
+                />
             </div>
         </>
     )

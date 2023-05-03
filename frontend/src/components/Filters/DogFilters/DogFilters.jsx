@@ -6,6 +6,7 @@ import { createTheme, InputLabel, ThemeProvider } from '@mui/material';
 import { CustomMenuItem, CustomSelect } from './StyledDogFilters';
 import Divider from '@mui/material/Divider';
 import { useTranslation } from 'react-i18next';
+import SearchDog from '../../SearchBar/SearchDog/SearchDog';
 
 
 const DogFilters = (props) => {
@@ -62,10 +63,10 @@ const DogFilters = (props) => {
 	return (
 		<div className={style.main}>
 			<form action="" className={style.formControl}>
-				{/* <div className={style.searchBar}>
+				<div className={style.searchBar}>
                     <SearchDog/>
-                </div> */}
-
+                </div>
+				<Divider sx={{width: '100%', height: '2px', backgroundColor: '#666666'}} />
 				<div className={style.ordenContainer}>
 					<div className={style.orden}>{t('dogFilters.orderby')}</div>
 					<div className={style.edad}>
