@@ -55,7 +55,6 @@ const Success = () => {
 
 			await Promise.all(promises);
 		} catch (error) {
-			console.error(error);
 		}
 	};
 
@@ -70,7 +69,6 @@ const Success = () => {
 			dispatch(emptyOrder());
 			setPurchaseGenerated('Creada');
 		} catch (error) {
-			console.error(error);
 		}
 	};
 

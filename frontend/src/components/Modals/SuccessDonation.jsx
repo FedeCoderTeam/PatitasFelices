@@ -29,7 +29,6 @@ const SuccessDonation = () => {
 			dispatch(postOrders(newOrder));
 			setOrderGenerated('Creada');
 		} catch (error) {
-			console.error(error);
 		}
 	};
 
