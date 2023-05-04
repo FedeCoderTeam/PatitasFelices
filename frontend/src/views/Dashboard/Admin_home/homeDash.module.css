@@ -41,3 +41,65 @@
     justify-content: center;
     gap: 50px;
 }
+
+.mixedChart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    margin-top: 50px;
+}
+
+.section2 {
+    display: flex;
+    margin: 50px 0 50px 0;
+}
+
+.section3 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+/* import React, { useState } from 'react';
+import Chart from 'react-apexcharts';
+
+const ApexChart = () => {
+  const [options, setOptions] = useState({
+    chart: {
+      type: 'polarArea',
+    },
+    stroke: {
+      colors: ['#fff'],
+    },
+    fill: {
+      opacity: 0.8,
+    },
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200,
+          },
+          legend: {
+            position: 'bottom',
+          },
+        },
+      },
+    ],
+  });
+
+  const [series, setSeries] = useState([14, 23, 21, 17, 15, 10, 12, 17, 21]);
+
+  return (
+    <Chart
+      options={options}
+      series={series}
+      type="polarArea"
+      width="500"
+    />
+  );
+};
+
+export default ApexChart; */

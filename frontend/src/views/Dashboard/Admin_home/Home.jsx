@@ -48,7 +48,7 @@ const Home = () => {
 	const [chartData, setChartData] = useState({
 		series: [
 			{
-				name: 'Cantidad',
+				name: 'Total',
 				data: [maleCount, femaleCount],
 			},
 			{
@@ -81,7 +81,7 @@ const Home = () => {
 			},
 			yaxis: {
 				title: {
-					text: 'Marcos puto',
+					text: 'Cantidad',
 				},
 			},
 			fill: {
@@ -197,6 +197,35 @@ const Home = () => {
 		],
 	});
 
+	const [options, setOptions] = useState({
+		chart: {
+		type: 'polarArea',
+		},
+		stroke: {
+		colors: ['#fff'],
+		},
+		fill: {
+		opacity: 0.8,
+		},
+		responsive: [
+		{
+			breakpoint: 480,
+			options: {
+			chart: {
+				width: 200,
+			},
+			legend: {
+				position: 'bottom',
+			},
+			},
+		},
+		],
+	});
+	
+	const [series, setSeries] = useState([...dates]);
+	console.log(purchases);
+	
+
 	return (
 		<>
 			<div className={style.containerBtnNav}>
@@ -206,32 +235,44 @@ const Home = () => {
 			</div>
 
 			<div className="row">
-				<div className="mixed-chart">
+				<div className={style.mixedChart}>
 					<Chart
 						options={chartData.options}
 						series={chartData.series}
 						type="bar"
 						height={350}
+						width={1000}
 					/>
 
-					<Chart
-						options={ratingData.options}
-						series={ratingData.series}
-						type="bar"
-						width="500"
-					/>
-					<Chart
-						options={orderData.options}
-						series={orderData.series}
-						type="bar"
-						width="500"
-					/>
-					<Chart
-						options={purchaseData.options}
-						series={purchaseData.series}
-						type="bar"
-						width="500"
-					/>
+					<div className={style.section2}>
+						<Chart
+							options={ratingData.options}
+							series={ratingData.series}
+							type="bar"
+							width="500"
+						/>
+						<Chart
+							options={orderData.options}
+							series={orderData.series}
+							type="bar"
+							width="500"
+						/>
+					</div>
+
+					<div className={style.section3}>
+						<Chart
+							options={purchaseData.options}
+							series={purchaseData.series}
+							type="bar"
+							width="500"
+						/>
+						<Chart
+							options={options}
+							series={series}
+							type="polarArea"
+							width="500"
+						/>
+					</div>
 				</div>
 			</div>
 		</>
