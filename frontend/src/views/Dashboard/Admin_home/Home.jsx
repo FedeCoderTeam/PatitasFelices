@@ -24,28 +24,36 @@ const Home = () => {
 		dispatch(actionMp.getOrders());
 	}, [dispatch]);
 
-	//INFO PERROS CANTIDAD DE MACHOS Y HEMBRAS; Y ADOPTADOS
+	//INFO PERROS CANTIDAD DE MACHOS, HEMBRAS Y ADOPTADOS
 
-	let maleCount = 0;
-	let femaleCount = 0;
-	let adoptedMale = 0;
-	let adoptedFemela = 0;
+	const [maleCount, femaleCount, adoptedMale, adoptedFemale] = useMemo(() => {
+		let maleCount = 0;
+		let femaleCount = 0;
+		let adoptedMale = 0;
+		let adoptedFemale = 0;
 
-	for (let i = 0; i < allDogs.length; i++) {
-		if (allDogs[i].adopted === false && allDogs[i].isDisabled === false) {
-			if (allDogs[i].gender === 'Macho') maleCount += 1;
-			else femaleCount += 1;
+		for (let i = 0; i < allDogs.length; i++) {
+			const { adopted, gender } = allDogs[i];
+
+			if (!adopted) {
+				if (gender === 'Macho') {
+					maleCount++;
+				} else {
+					femaleCount++;
+				}
+			} else {
+				if (gender === 'Macho') {
+					adoptedMale++;
+				} else {
+					adoptedFemale++;
+				}
+			}
 		}
-	}
 
-	for (let i = 0; i < allDogs.length; i++) {
-		if (allDogs[i].adopted === true) {
-			if (allDogs[i].gender === 'Macho') adoptedMale += 1;
-			else adoptedFemela += 1;
-		}
-	}
+		return [maleCount, femaleCount, adoptedMale, adoptedFemale];
+	}, [allDogs]);
 
-	const [chartData, setChartData] = useState({
+	const chartData = {
 		series: [
 			{
 				name: 'Total',
@@ -58,7 +66,7 @@ const Home = () => {
 			},
 			{
 				name: 'Adoptados',
-				data: [adoptedMale, adoptedFemela],
+				data: [adoptedMale, adoptedFemale],
 				labels: {
 					style: {
 						colors: ['#FFFFFF', '#FFFFFF'],
@@ -114,38 +122,42 @@ const Home = () => {
 			},
 			colors: ['#BF5841', '#F2A477'],
 		},
-	});
+	};
 
 	//INFO REVIEWS
 
-	let uno = 0;
-	let dos = 0;
-	let tres = 0;
-	let cuatro = 0;
-	let cinco = 0;
+	const [uno, dos, tres, cuatro, cinco] = useMemo(() => {
+		let uno = 0;
+		let dos = 0;
+		let tres = 0;
+		let cuatro = 0;
+		let cinco = 0;
 
-	for (let i = 0; i < allReviews?.length; i++) {
-		switch (allReviews[i].rating) {
-			case 1:
-				uno += 1;
-				break;
+		for (let i = 0; i < allReviews?.length; i++) {
+			switch (allReviews[i].rating) {
+				case 1:
+					uno += 1;
+					break;
 
-			case 2:
-				dos += 1;
-				break;
-			case 3:
-				tres += 1;
-				break;
-			case 4:
-				cuatro += 1;
-				break;
-			case 5:
-				cinco += 1;
-				break;
+				case 2:
+					dos += 1;
+					break;
+				case 3:
+					tres += 1;
+					break;
+				case 4:
+					cuatro += 1;
+					break;
+				case 5:
+					cinco += 1;
+					break;
+			}
 		}
-	}
 
-	const [ratingData, setRatingData] = useState({
+		return [uno, dos, tres, cuatro, cinco];
+	}, [allReviews]);
+
+	const ratingData = {
 		options: {
 			chart: {
 				id: 'basic-bar',
@@ -180,22 +192,26 @@ const Home = () => {
 			},
 			colors: ['#daa520', '#F2A477'],
 		},
-	});
+	};
 
 	//INFO RECAUDACIONES
 
-	let totalDonation = 0;
-	let totalPurchase = 0;
+	const [totalDonation, totalPurchase] = useMemo(() => {
+		let totalDonation = 0;
+		let totalPurchase = 0;
 
-	for (let i = 0; i < allOrders?.length; i++) {
-		if (allOrders[i].source === 'Compra') {
-			totalPurchase = totalPurchase + Number(allOrders[i].total);
-		} else {
-			totalDonation = totalDonation + Number(allOrders[i].total);
+		for (let i = 0; i < allOrders?.length; i++) {
+			if (allOrders[i].source === 'Compra') {
+				totalPurchase = totalPurchase + Number(allOrders[i].total);
+			} else {
+				totalDonation = totalDonation + Number(allOrders[i].total);
+			}
 		}
-	}
 
-	const [orderData, setOrderData] = useState({
+		return [totalDonation, totalPurchase];
+	}, [allOrders]);
+
+	const orderData = {
 		options: {
 			chart: {
 				id: 'basic-bar',
@@ -218,15 +234,15 @@ const Home = () => {
 			},
 			colors: ['#daa520', '#F2A477'],
 		},
-		
+
 		series: [
 			{
 				name: 'series-1',
 				data: [totalDonation, totalPurchase],
 			},
-			
+
 		],
-	});
+	};
 
 	//PURCHASES
 
@@ -240,72 +256,67 @@ const Home = () => {
             return acc;
         }, {});
 
-        console.log(total);
+		const purchases = Object.keys(total);
+		const dates = Object.values(total);
 
-        const purchases = Object.keys(total);
-        const dates = Object.values(total);
-
-        console.log(purchases);
-        console.log(dates);
-
-        return { purchases, dates };
-    }, [allPurchase]);
+		return { purchases, dates };
+	}, [allPurchase]);
 
 	const series = dates
 	const [options, setOptions] = useState({
 		plotOptions: {
 			pie: {
 				donut: {
-				labels: {
-					show: true,
-					name: {
-					show: true,
-					fontSize: '18px',
-					color: undefined,
-					offsetY: -10
-					},
-					value: {
-					show: true,
-					fontSize: '16px',
-					color: '#FFFFFF',
-					offsetY: 16,
-					formatter: function (val) {
-						return val
+					labels: {
+						show: true,
+						name: {
+							show: true,
+							fontSize: '18px',
+							color: undefined,
+							offsetY: -10
+						},
+						value: {
+							show: true,
+							fontSize: '16px',
+							color: '#FFFFFF',
+							offsetY: 16,
+							formatter: function (val) {
+								return val
+							}
+						},
+						total: {
+							show: true,
+							showAlways: false,
+							label: 'Total',
+							fontSize: '18px',
+							color: '#FFFFFF',
+							formatter: function (w) {
+								return w.globals.seriesTotals.reduce((a, b) => {
+									return a + b
+								}, 0)
+							}
+						}
 					}
-					},
-					total: {
-					show: true,
-					showAlways: false,
-					label: 'Total',
-					fontSize: '18px',
-					color: '#FFFFFF',
-					formatter: function (w) {
-						return w.globals.seriesTotals.reduce((a, b) => {
-						return a + b
-						}, 0)
-					}
-					}
-				}
 				}
 			}
-			},
-			colors: ['#daa520', '#F2A477'],
+		},
+		colors: ['#daa520', '#F2A477'],
 		chart: {
-		type: 'donut',
-		height: '700px',
+			type: 'donut',
+			height: '700px',
 		},
 		labels: purchases,
 		responsive: [{
-		breakpoint: 480,
-		options: {
-			legend: {
-			position: 'bottom',
+			breakpoint: 480,
+			options: {
+				legend: {
+					position: 'bottom',
+				},
+				colors: ['#daa520', '#F2A477'],
 			},
-			colors: ['#daa520', '#F2A477'],
-		},
 		}],
 	});
-	
+
 	return (
 		<>
 			<div className={style.containerBtnNav}>
@@ -337,7 +348,7 @@ const Home = () => {
 						</div>
 
 						<div className={style.section22}>
-							<h2 className={style.title}>Donaciones y Ventas</h2>	
+							<h2 className={style.title}>Donaciones y Ventas</h2>
 							<Chart
 								options={orderData.options}
 								series={orderData.series}

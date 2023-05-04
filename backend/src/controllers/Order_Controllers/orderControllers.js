@@ -38,7 +38,6 @@ const postOrder = async (status, total, payment_method, source, token) => {
 
 		return newOrder;
 	} catch (error) {
-		console.log(error);
 		return 'Error in create order';
 	}
 };

@@ -70,7 +70,6 @@ const updateDog = async (
 
 		return 'Se modificó correctamente al perro';
 	} catch (error) {
-		console.log(error);
 		return 'Error al intentar actualizar el perro';
 	}
 };

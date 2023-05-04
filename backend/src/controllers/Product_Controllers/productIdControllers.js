@@ -31,7 +31,6 @@ const getProductById = async (id) => {
 
 		return productId;
 	} catch (error) {
-		console.log(error.message);
 		return { error: `Product with id ${id} does not exist` };
 	}
 };
