@@ -129,8 +129,8 @@ export function DialogDogsDetail(props) {
 				main: brown[500],
 			},
 			background: {
-				default: '#163440',
-				paper: '#163440',
+				default: 'transparent',
+				paper: 'transparent',
 			},
 			text: {
 				...{
@@ -149,6 +149,8 @@ export function DialogDogsDetail(props) {
 						'& .MuiDialog-container': {
 							'& .MuiPaper-root': {
 								borderRadius: '5px',
+								maxWidth: '1350px',
+								maxHeight: '770px'
 							},
 						},
 					}}
@@ -162,78 +164,44 @@ export function DialogDogsDetail(props) {
 							id="alert-dialog-description"
 							className={style.dialogDescription}
 						>
-							<div className={style.dogDetail}>
-								<h3>{props.dog.name}</h3>
-								<div className={style.avatar}>
-									<img src={props.dog.image} alt={props.dog.name} />
+								<div className={style.div1}>
+
+									<div className={style.div2}>
+										<img className={style.img} src={props.dog.image} alt={props.dog.name} />
+									<div className={style.divTitles}>
+										<span className={style.title}>{props.dog.name}</span>
+										<span className={style.subtitle}>{props.dog.temperaments.join(' - ')}</span>
+									</div>
+									
+									</div>
+
+									<div className={style.div3}>
+										<h3 className={style.spanTitle}>Tamaño: <span className={style.spanSubtitle}>{props.dog.size}</span></h3>
+										<hr />
+										<h3 className={style.spanTitle}>Peso: <span className={style.spanSubtitle}>{props.dog.weight + 'kg'}</span></h3>
+										<hr />
+										<h3 className={style.spanTitle}>Edad: <span className={style.spanSubtitle}>{props.dog.age}</span></h3> 
+										<hr />
+										<h3 className={style.spanTitle}>Colores: <span className={style.spanSubtitle}>{props.dog.colors.join(' - ')}</span></h3>
+										<hr />
+										<div className={style.descriptionContainer}>
+											<h3 className={style.spanTitle}>Descripción: <span className={style.spanSubtitle}>{props.dog.description}</span></h3>
+										</div>
+										<DialogActions>
+											<div className={style.buttonContainer}>
+												<button className={style.button} onClick={() => {
+														handleClick(props.dog.id);
+													}}>{t('dogCard.toAdopt')}</button>
+											</div>
+										</DialogActions>
+									</div>
+								
 								</div>
-								<div>
-									<p className={style.description}>{props.dog.description}</p>
-								</div>
-							</div>
-							<div className={style.containerInfo}>
-								<h3>
-									<img 
-										className={style.itemIcon} 
-										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
+							
 
-									/>
-									{props.dog.ageInYears}
-								</h3>
-								<h3>
-									<img 
-										className={style.itemIcon} 
-										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
-
-									/>
-									{props.dog.weight + 'kg'}
-								</h3>
-								<h3>
-									<img 
-										className={style.itemIcon} 
-										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
-
-									/>
-									{props.dog.colors.join(' - ')}
-								</h3>
-								<h3>
-									<img 
-										className={style.itemIcon} 
-										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
-
-									/>
-									{props.dog.gender}
-								</h3>
-								<h3>
-									<img 
-										className={style.itemIcon} 
-										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
-
-									/>
-									{props.dog.size}
-								</h3>
-								<h3>
-									<img 
-										className={style.itemIcon} 
-										src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/paw_rlhv5l.png'} 
-
-									/>
-									{props.dog.temperaments.join(' - ')}
-								</h3>
-							</div>
 						</DialogContentText>
 					</DialogContent>
-					<DialogActions>
-						<Button
-							variant="contained"
-							onClick={() => {
-								handleClick(props.dog.id);
-							}}
-							autoFocus
-						>
-							{t('dogCard.toAdopt')}
-						</Button>
-					</DialogActions>
+					
 				</Dialog>
 			</ThemeProvider>
 		</>
