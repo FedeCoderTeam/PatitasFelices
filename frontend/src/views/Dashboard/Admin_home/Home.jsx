@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import Chart from 'react-apexcharts';
 import { Link } from 'react-router-dom';
 import style from './homeDash.module.css';
@@ -9,7 +8,6 @@ import * as actionReviews from '../../../_redux/actions/reviewsAction';
 import * as actionMp from '../../../_redux/actions/mercadopagoAction';
 
 const Home = () => {
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const allDogs = useSelector((state) => state.dogsReducer.allDogs);
@@ -21,7 +19,7 @@ const Home = () => {
 
 	useEffect(() => {
 		dispatch(actionDogs.getDogs());
-		dispatch(actionReviews.getReviews);
+		dispatch(actionReviews.getReviews());
 		dispatch(actionMp.getPurchases());
 		dispatch(actionMp.getOrders());
 	}, [dispatch]);

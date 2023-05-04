@@ -70,8 +70,7 @@ const MyReviews = () => {
     return (
         <>
             <div className={style.main}>
-				{
-					currentUserReviews()?.length === 0 ? (
+				{!currentUserReviews()?.length ? (
 						<>
 							<h4 className={style.noReviewsSubtitle}>{t('reviews.comment')}</h4>
 							<h3 className={style.noReviewsTitle}>{t('reviews.noDoubt')}</h3>

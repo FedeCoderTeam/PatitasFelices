@@ -2,7 +2,6 @@ const { order, user } = require('../../database/db');
 const { verifyToken } = require('../../utils/token');
 
 const postOrder = async (status, total, payment_method, source, token) => {
-	console.log(status, total, payment_method, source, token);
 	try {
 		if (!status || !total || !payment_method || !source)
 			throw new Error(

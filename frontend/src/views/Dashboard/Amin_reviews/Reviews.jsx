@@ -1,15 +1,21 @@
 import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import * as reviewsAction from '../../../_redux/actions/reviewsAction';
 import Star from '@mui/icons-material/Star';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import useToast from '../../../utils/hooks/useToast';
 import style from './Reviews.module.css';
 import { Link } from 'react-router-dom';
 
 const Reviews = () => {
 	const allReviews = useSelector((state) => state.reviewsReducer.reviews);
 	const dispatch = useDispatch();
+	const { success, error, warning } = useToast();
+
+	let [edit, setEdit] = useState(false);
 
 	useEffect(() => {
 		dispatch(reviewsAction.getReviews());
@@ -26,11 +32,42 @@ const Reviews = () => {
 					col4: rev.user.last,
 					col5: rev.user.email,
 					col6: rev.user.image,
-					col7: rev.createdAt,
+					col7: new Date(rev.createdAt)
+						.toLocaleDateString()
+						.replace(/\//g, '-'),
 				};
 			}),
 		[allReviews],
 	);
+
+	const successNotify = () => {
+		success('Comentario eliminado', { duration: 2000 });
+	};
+
+	const cancelNotify = () => {
+		error('Edición cancelada', { duration: 2000 });
+	};
+
+	const warningNotify = () => {
+		warning('Elige comentario a eliminar', { duration: 2000 });
+	};
+
+	let handleEditClick = () => {
+		if (!edit) {
+			warningNotify();
+			setEdit(true);
+		}
+		if (edit) {
+			setEdit(false);
+			cancelNotify();
+		}
+	};
+
+	let daleteReview = (row) => {
+		dispatch(reviewsAction.deleteReview(row.id));
+		successNotify();
+		setEdit(false);
+	};
 
 	let ImageCell = ({ value }) => {
 		return (
@@ -51,11 +88,37 @@ const Reviews = () => {
 	};
 
 	const columns = [
-		{ field: 'id', headerName: 'Id', width: 80 },
+		{
+			field: 'actions',
+			type: 'actions',
+			headerName: 'Acciones',
+			width: 130,
+			cellClassName: 'actions',
+			getActions: ({ row }) => {
+				return [
+					<GridActionsCellItem
+						key={row.id}
+						icon={<EditIcon />}
+						label="Edit"
+						onClick={() => handleEditClick()}
+						color="inherit"
+					/>,
+					<GridActionsCellItem
+						key={row.id}
+						icon={<DeleteIcon />}
+						label="Delete"
+						onClick={() => daleteReview(row)}
+						color="inherit"
+						disabled={!edit}
+					/>,
+				];
+			},
+		},
+		{ field: 'id', headerName: 'Id', width: 90, align: 'center', headerAlign: 'center' },
 		{
 			field: 'col1',
 			headerName: 'Puntaje',
-			width: 150,
+			width: 170,
 			renderCell: (params) => <StarCell value={params.value} />,
 		},
 		{ field: 'col2', headerName: 'Comentario', width: 350 },
@@ -65,10 +128,12 @@ const Reviews = () => {
 		{
 			field: 'col6',
 			headerName: 'Foto',
-			width: 100,
+			width: 130,
+			align: 'center',
+			headerAlign: 'center',
 			renderCell: (params) => <ImageCell value={params.value} />,
 		},
-		{ field: 'col7', headerName: 'Fecha', width: 200 },
+		{ field: 'col7', headerName: 'Fecha', width: 130, align: 'center', headerAlign: 'center' },
 	];
 
 	return (
@@ -89,7 +154,15 @@ const Reviews = () => {
 					marginTop: '20px',
 				}}
 			>
-				<DataGrid rows={rows} columns={columns} />
+				<DataGrid
+					rows={rows}
+					columns={columns}
+					initialState={{
+						...rows.initialState,
+						pagination: { paginationModel: { pageSize: 10 } },
+					}}
+					pageSizeOptions={[10, Math.floor(rows.length / 2), rows.length]}
+				/>
 			</Box>
 		</>
 	);

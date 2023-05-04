@@ -34,17 +34,35 @@ const Orders = () => {
 	);
 
 	const columns = [
-		{ field: 'id', headerName: 'Id', width: 300, align: 'center', headerAlign: 'center' },
+		{
+			field: 'id',
+			headerName: 'Id',
+			width: 300,
+			align: 'center',
+			headerAlign: 'center',
+		},
 		{
 			field: 'col1',
 			headerName: 'Motivo',
 			width: 150,
-			align: 'center', 
-			headerAlign: 'center'
+			align: 'center',
+			headerAlign: 'center',
 		},
-		{ field: 'col2', headerName: 'Total', width: 250, align: 'center', headerAlign: 'center'},
+		{
+			field: 'col2',
+			headerName: 'Total',
+			width: 250,
+			align: 'center',
+			headerAlign: 'center',
+		},
 		{ field: 'col3', headerName: 'Usuario', width: 250 },
-		{ field: 'col4', headerName: 'Fecha', width: 150, align: 'center', headerAlign: 'center' },
+		{
+			field: 'col4',
+			headerName: 'Fecha',
+			width: 150,
+			align: 'center',
+			headerAlign: 'center',
+		},
 	];
 
 	return (
@@ -65,10 +83,18 @@ const Orders = () => {
 					width: '70%',
 					alignContent: 'center',
 					marginTop: '20px',
-					marginLeft:'15%',
+					marginLeft: '15%',
 				}}
 			>
-				<DataGrid rows={rows} columns={columns} />
+				<DataGrid
+					rows={rows}
+					columns={columns}
+					initialState={{
+						...rows.initialState,
+						pagination: { paginationModel: { pageSize: 10 } },
+					}}
+					pageSizeOptions={[10, Math.floor(rows.length / 2), rows.length]}
+				/>
 			</Box>
 		</>
 	);

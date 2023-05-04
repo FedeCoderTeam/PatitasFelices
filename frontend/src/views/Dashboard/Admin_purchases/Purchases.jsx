@@ -1,10 +1,10 @@
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actionPurchase from '../../../_redux/actions/mercadopagoAction';
 import { Link } from 'react-router-dom';
-import style from './Purchases.module.css'
+import style from './Purchases.module.css';
 
 const Purchases = () => {
 	const allPurchase = useSelector(
@@ -69,26 +69,50 @@ const Purchases = () => {
 	};
 
 	const columns = [
-		{ field: 'id', headerName: 'Id', width: 80, align: 'center', headerAlign: 'center'},
+		{
+			field: 'id',
+			headerName: 'Id',
+			width: 80,
+			align: 'center',
+			headerAlign: 'center',
+		},
 		{ field: 'col1', headerName: 'N° Orden', width: 150 },
 		{ field: 'col2', headerName: 'Producto', width: 350 },
 		{ field: 'col3', headerName: 'Marca', width: 150 },
 		{ field: 'col4', headerName: 'Categoria', width: 150 },
 		{ field: 'col5', headerName: 'Subcategoria', width: 150 },
 		{ field: 'col6', headerName: 'Precio', width: 110 },
-		{ field: 'col7', headerName: 'Cantidad', width: 100, align: 'center', headerAlign: 'center'},
-		{ field: 'col8', headerName: 'Total', width: 150, align: 'center', headerAlign: 'center' },
+		{
+			field: 'col7',
+			headerName: 'Cantidad',
+			width: 100,
+			align: 'center',
+			headerAlign: 'center',
+		},
+		{
+			field: 'col8',
+			headerName: 'Total',
+			width: 150,
+			align: 'center',
+			headerAlign: 'center',
+		},
 		{
 			field: 'col9',
 			headerName: 'Imagen',
 			width: 100,
 			renderCell: (params) => <ImageCell value={params.value} />,
 		},
-		{ field: 'col10', headerName: 'Fecha', width: 150, align: 'center', headerAlign: 'center' },
+		{
+			field: 'col10',
+			headerName: 'Fecha',
+			width: 150,
+			align: 'center',
+			headerAlign: 'center',
+		},
 	];
 
 	return (
-		<>	
+		<>
 			<div className={style.containerBtnNav}>
 				<Link to="/dashboard/" style={{ textDecoration: 'none' }}>
 					<button className={style.btnBackHomeDash}>Home Dashboard</button>
@@ -105,7 +129,15 @@ const Purchases = () => {
 					marginTop: '20px',
 				}}
 			>
-				<DataGrid rows={rows} columns={columns} />
+				<DataGrid
+					rows={rows}
+					columns={columns}
+					initialState={{
+						...rows.initialState,
+						pagination: { paginationModel: { pageSize: 10 } },
+					}}
+					pageSizeOptions={[10, Math.floor(rows.length / 2), rows.length]}
+				/>
 			</Box>
 		</>
 	);

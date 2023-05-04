@@ -195,10 +195,7 @@ export function DialogDogsDetail(props) {
 											</div>
 										</DialogActions>
 									</div>
-								
 								</div>
-							
-
 						</DialogContentText>
 					</DialogContent>
 					

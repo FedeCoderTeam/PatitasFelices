@@ -152,6 +152,8 @@ const requestPasswordResetAction = (email) => {
 				icon: 'success',
 				timer: 5000,
 			});
+			if (result.data.redirectUrl) {
+				window.open('https://accounts.google.com/', '_blank');}
 			dispatch(setIsFetching(false));
 		} catch (error) {
 			await Swal.fire({
@@ -211,19 +213,22 @@ const confirmPasswordResetAction = (token, password) => {
 };
 
 const changePasswordAction = (token, currentPassword, newPassword) => {
-	return async function () {
+	return async function (dispatch) {
+		dispatch(setIsFetching(true));
 		try {
 			const result = await axios.post(`${URL}/auth/change-password`, {
 				token,
 				currentPassword,
 				newPassword,
 			});
+			dispatch(setIsFetching(false));
 			await Swal.fire({
 				title: result.data.message,
 				icon: 'success',
 				timer: 10000,
 			});
 		} catch (error) {
+			dispatch(setIsFetching(false));
 			await Swal.fire({
 				title: error.response.data.error,
 				icon: 'error',
@@ -287,6 +292,34 @@ const updateUser = (obj) => {
 	};
 };
 
+const updateUserByOwnAction = (token, name, last, image) => {
+	return async function (dispatch) {
+		dispatch(setIsFetching(true));
+		try {
+			const result = await axios.post(`${URL}/auth/update-user`, {
+				token,
+				name,
+				last,
+				image
+			}, { withCredentials: true });
+			dispatch(setUser(result.data));
+			dispatch(setIsFetching(false));
+			await Swal.fire({
+				title: 'Tu cuenta esta actualizada con éxito',
+				icon: 'success',
+				timer: 5000,
+			});
+		} catch (error) {
+			dispatch(setIsFetching(false));
+			await Swal.fire({
+				title: error.response.data.error,
+				icon: 'error',
+				timer: 5000,
+			});
+		}
+	};
+};
+
 export {
 	authUserAction,
 	registerUserAction,
@@ -302,4 +335,5 @@ export {
 	getUsers,
 	updateUser,
 	getUserById,
+	updateUserByOwnAction
 };
