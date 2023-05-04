@@ -36,7 +36,7 @@ const Users = () => {
 
 				params.api.setEditCellValue({
 					id: params.id,
-					field: 'col9',
+					field: 'col8',
 					value,
 				});
 			}}
@@ -59,7 +59,7 @@ const Users = () => {
 
 				params.api.setEditCellValue({
 					id: params.id,
-					field: 'col8',
+					field: 'col7',
 					value,
 				});
 			}}
@@ -89,24 +89,55 @@ const Users = () => {
 	let saveChange = (row) => {
 		let obj = {
 			id: allUsers[row.id - 1].id,
-			password: row.col5,
-			image: row.col6,
-			isDisabled: disabled === 'Si' ? 'Si' : 'No',
-			roleId: change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3,
+			image: row.col5,
+			isDisabled: row.col7,
+			roleId: row.col8,
 		};
 
 		if (
-			(row.col9 !== change && change !== '') ||
-			(row.col8 !== disabled && disabled !== '')
+			row.col8 !== change &&
+			change !== '' &&
+			row.col7 !== disabled &&
+			disabled !== ''
 		) {
+			obj.isDisabled = disabled === 'Si' ? 'Si' : 'No';
+			obj.roleId =
+				change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3;
+
 			dispatch(authActions.updateUser(obj));
 			successNotify();
 		} else if (
-			(row.col9 === change && change !== '') ||
-			(row.col8 === disabled && disabled !== '')
+			row.col8 === change &&
+			change !== '' &&
+			row.col7 === disabled &&
+			disabled !== ''
 		) {
-			dispatch(authActions.updateUser(obj));
+			obj.isDisabled = disabled === 'Si' ? 'Si' : 'No';
+			obj.roleId =
+				change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3;
 
+			dispatch(authActions.updateUser(obj));
+			successNotify();
+		} else if (row.col8 !== change && change !== '') {
+			obj.roleId =
+				change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3;
+
+			dispatch(authActions.updateUser(obj));
+			successNotify();
+		} else if (row.col8 === change && change !== '') {
+			obj.roleId =
+				change === 'Administrador' ? 1 : change === 'Moderador' ? 2 : 3;
+
+			dispatch(authActions.updateUser(obj));
+			successNotify();
+		} else if (row.col7 !== disabled && disabled !== '') {
+			obj.isDisabled = disabled === 'Si' ? 'Si' : 'No';
+
+			dispatch(authActions.updateUser(obj));
+			successNotify();
+		} else if (row.col7 === disabled && disabled !== '') {
+			obj.isDisabled = disabled === 'Si' ? 'Si' : 'No';
+			dispatch(authActions.updateUser(obj));
 			successNotify();
 		} else {
 			cancelNotify();
@@ -123,15 +154,14 @@ const Users = () => {
 			allUsers.map((user, index) => {
 				return {
 					id: index + 1,
-					col1: user.googleId ? user.googleId : 'N/A',
+					col1: user.googleId ? 'Si' : 'No',
 					col2: user.name,
 					col3: user.last,
 					col4: user.email,
-					col5: user.password,
-					col6: user.image,
-					col7: user.isVerified === true ? 'Si' : 'No',
-					col8: user.isDisabled === true ? 'Si' : 'No',
-					col9: user.role.name,
+					col5: user.image,
+					col6: user.isVerified === true ? 'Si' : 'No',
+					col7: user.isDisabled === true ? 'Si' : 'No',
+					col8: user.role.name,
 				};
 			}),
 		[allUsers],
@@ -156,7 +186,7 @@ const Users = () => {
 			field: 'actions',
 			type: 'actions',
 			headerName: 'Actions',
-			width: 100,
+			width: 130,
 			cellClassName: 'actions',
 			getActions: ({ row }) => {
 				return [
@@ -178,36 +208,41 @@ const Users = () => {
 				];
 			},
 		},
-		{ field: 'id', headerName: 'Id', width: 80 },
-		{ field: 'col1', headerName: 'Google id', width: 200 },
-		{ field: 'col2', headerName: 'Nombre', width: 130 },
-		{ field: 'col3', headerName: 'Apellido', width: 130 },
-		{ field: 'col4', headerName: 'Email', width: 240 },
-		{ field: 'col5', headerName: 'Contraseña', width: 150 },
+		{ field: 'id', headerName: 'Id', width: 90, align: 'center', headerAlign: 'center' },
+		{ field: 'col1', headerName: '¿Google?', width: 150, align: 'center', headerAlign: 'center' },
+		{ field: 'col2', headerName: 'Nombre', width: 200 },
+		{ field: 'col3', headerName: 'Apellido', width: 200 },
+		{ field: 'col4', headerName: 'Email', width: 290 },
 		{
-			field: 'col6',
+			field: 'col5',
 			headerName: 'Imagen',
 			width: 150,
+			align: 'center',
+			headerAlign: 'center',
 			renderCell: (params) => <ImageCell value={params.value} />,
+			
 		},
-		{ field: 'col7', headerName: 'Verificado', width: 150 },
+		{ field: 'col6', headerName: 'Verificado', width: 150, align: 'center', headerAlign: 'center' },
 		{
-			field: 'col8',
+			field: 'col7',
 			headerName: 'Desactivado',
-			width: 150,
+			width: 155,
+			align: 'center',
 			editable: edit,
 			cellClassName: bgOnEdit.bg,
-			valueGetter: (params) => params.row.col8,
+			valueGetter: (params) => params.row.col7,
 			valueOptions: disabledOptions,
 			renderEditCell: renderSelect2,
 		},
 		{
-			field: 'col9',
+			field: 'col8',
 			headerName: 'Rol',
-			width: 150,
+			width: 155,
+			align: 'center',
+			headerAlign: 'center',
 			editable: edit,
 			cellClassName: bgOnEdit.bg,
-			valueGetter: (params) => params.row.col9,
+			valueGetter: (params) => params.row.col8,
 			valueOptions: rolesOptions,
 			renderEditCell: renderSelect,
 		},
@@ -232,7 +267,15 @@ const Users = () => {
 					marginTop: '20px',
 				}}
 			>
-				<DataGrid rows={rows} columns={columns} />
+				<DataGrid
+					rows={rows}
+					columns={columns}
+					initialState={{
+						...rows.initialState,
+						pagination: { paginationModel: { pageSize: 10 } },
+					}}
+					pageSizeOptions={[10, Math.floor(rows.length / 2), rows.length]}
+				/>
 			</Box>
 		</>
 	);

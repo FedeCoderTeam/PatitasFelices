@@ -11,17 +11,16 @@ const getReviews = () => {
 			let dbData = await axios.get(`${URL}/reviews`);
 			dispatch(getAllReviews(dbData.data));
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
 
 const postReviews = (obj) => {
-	return async function () {
+	return async function (dispatch) {
 		try {
 			await axios.post(`${URL}/reviews`, obj);
+			dispatch(getReviews())
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -31,7 +30,6 @@ const updateReviews = (obj) => {
 		try {
 			await axios.put(`${URL}/reviews`, obj);
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -43,7 +41,6 @@ const deleteReview = (id) => {
 			dispatch(getReviews())
 			return dbData.data
 		} catch (error) {
-			console.log(error);
 		}
 	}
 }
@@ -55,7 +52,6 @@ const updateReview = (obj) => {
 			dispatch(getReviews());
 			return newReview.data;
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };

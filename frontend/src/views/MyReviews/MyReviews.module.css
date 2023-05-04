@@ -5,7 +5,34 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-image: url(https://res.cloudinary.com/dreso9ye9/image/upload/v1683150687/desktop-1920x1080_bypnet.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center;
 }
+
+.avatar {
+    display: flex;
+    background: rgb(255, 255, 255);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 1);
+    align-items: center;
+    padding: 15px;
+    width: 1000px;
+    border-radius: 14px;
+}
+
+.avatar h1 {
+    margin: 0 0 0 15px;
+}
+
+.avatar h2 {
+    margin: 0 0 0 15px;
+    color: rgba(0, 0, 0, 0.452);
+}
+
+.cardReviewContainer 
+/* No sacar lo de arriba (cardReviewContainer) */
 
 .main img {
     height: 500px;

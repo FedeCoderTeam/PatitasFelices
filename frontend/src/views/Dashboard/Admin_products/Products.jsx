@@ -53,8 +53,8 @@ const Products = () => {
 		{
 			field: 'actions',
 			type: 'actions',
-			headerName: 'Actions',
-			width: 100,
+			headerName: 'Acciones',
+			width: 120,
 			cellClassName: 'actions',
 			getActions: ({ row }) => {
 				return [
@@ -68,18 +68,62 @@ const Products = () => {
 				];
 			},
 		},
-		{ field: 'id', headerName: 'Id', width: 80 },
-		{ field: 'col1', headerName: 'Nombre', width: 420 },
-		{ field: 'col2', headerName: 'Marca', width: 150 },
-		{ field: 'col3', headerName: 'Precio', width: 150 },
-		{ field: 'col4', headerName: 'Stock', width: 150 },
-		{ field: 'col5', headerName: 'Categoria', width: 150 },
-		{ field: 'col6', headerName: 'Sub-categoria', width: 150 },
-		{ field: 'col7', headerName: '¿Descontinuado?', width: 150 },
+		{ 
+			field: 'id', 
+			headerName: 'Id', 
+			width: 80,
+		},
+		{ 
+			field: 'col1', 
+			headerName: 'Nombre', 
+			width: 430 
+		},
+		{ 
+			field: 'col2', 
+			headerName: 'Marca', 
+			width: 150 
+		},
+		{ 
+			field: 'col3', 
+			headerName: 'Precio', 
+			width: 150,
+			align: 'center',
+			headerAlign: 'center'
+		},
+		{ 
+			field: 'col4', 
+			headerName: 'Stock', 
+			width: 120,
+			align: 'center',
+			headerAlign: 'center'
+		},
+		{ 
+			field: 'col5', 
+			headerName: 'Categoria', 
+			width: 160,
+			align: 'center',
+			headerAlign: 'center'
+		},
+		{ 
+			field: 'col6', 
+			headerName: 'Sub-categoria', 
+			width: 175,
+			align: 'center',
+			headerAlign: 'center'
+		},
+		{ 
+			field: 'col7', 
+			headerName: '¿Disponible?', 
+			width: 165,
+			align: 'center',
+			headerAlign: 'center'
+		},
 		{
 			field: 'col8',
 			headerName: 'Imagen',
-			width: 150,
+			width: 120,
+			align: 'center',
+			headerAlign: 'center',
 			renderCell: (params) => <ImageCell value={params.value} />,
 		},
 	];
@@ -118,7 +162,15 @@ const Products = () => {
 					marginTop: '20px',
 				}}
 			>
-				<DataGrid rows={rows} columns={columns} />
+				<DataGrid
+					rows={rows}
+					columns={columns}
+					initialState={{
+						...rows.initialState,
+						pagination: { paginationModel: { pageSize: 10 } },
+					}}
+					pageSizeOptions={[10, Math.floor(rows.length / 2), rows.length]}
+				/>
 			</Box>
 		</>
 	);

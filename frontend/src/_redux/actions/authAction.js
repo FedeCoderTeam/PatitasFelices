@@ -4,8 +4,8 @@ import {
 	setStatusVerify,
 	setUser,
 	getAllUsers,
+	getUserDetail,
 	setIsFetchingAuth,
-	getUserDetail
 } from '../reducer/authReducer';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -152,6 +152,8 @@ const requestPasswordResetAction = (email) => {
 				icon: 'success',
 				timer: 5000,
 			});
+			if (result.data.redirectUrl) {
+				window.open('https://accounts.google.com/', '_blank');}
 			dispatch(setIsFetching(false));
 		} catch (error) {
 			await Swal.fire({
@@ -211,19 +213,22 @@ const confirmPasswordResetAction = (token, password) => {
 };
 
 const changePasswordAction = (token, currentPassword, newPassword) => {
-	return async function () {
+	return async function (dispatch) {
+		dispatch(setIsFetching(true));
 		try {
 			const result = await axios.post(`${URL}/auth/change-password`, {
 				token,
 				currentPassword,
 				newPassword,
 			});
+			dispatch(setIsFetching(false));
 			await Swal.fire({
 				title: result.data.message,
 				icon: 'success',
 				timer: 10000,
 			});
 		} catch (error) {
+			dispatch(setIsFetching(false));
 			await Swal.fire({
 				title: error.response.data.error,
 				icon: 'error',
@@ -246,7 +251,6 @@ const googleUserAction = (payload) => {
 				timer: 10000,
 			});
 		} catch (error) {
-			console.log(error.message);
 			dispatch(setIsFetchingAuth(false));
 		}
 	};
@@ -271,7 +275,6 @@ const getUserById = (id) => {
 			const dbData = await axios.get(`${URL}/users/${id}`);
 			dispatch(getUserDetail(dbData.data));
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -282,7 +285,34 @@ const updateUser = (obj) => {
 			let newRole = await axios.put(`${URL}/users`, obj);
 			return newRole.data;
 		} catch (error) {
-			console.log(error);
+		}
+	};
+};
+
+const updateUserByOwnAction = (token, name, last, image) => {
+	return async function (dispatch) {
+		dispatch(setIsFetching(true));
+		try {
+			const result = await axios.post(`${URL}/auth/update-user`, {
+				token,
+				name,
+				last,
+				image
+			}, { withCredentials: true });
+			dispatch(setUser(result.data));
+			dispatch(setIsFetching(false));
+			await Swal.fire({
+				title: 'Tu cuenta esta actualizada con éxito',
+				icon: 'success',
+				timer: 5000,
+			});
+		} catch (error) {
+			dispatch(setIsFetching(false));
+			await Swal.fire({
+				title: error.response.data.error,
+				icon: 'error',
+				timer: 5000,
+			});
 		}
 	};
 };
@@ -302,4 +332,5 @@ export {
 	getUsers,
 	updateUser,
 	getUserById,
+	updateUserByOwnAction
 };

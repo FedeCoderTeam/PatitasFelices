@@ -75,8 +75,10 @@ const DogsGrid = () => {
 			field: 'actions',
 			type: 'actions',
 			headerName: 'Actions',
-			width: 100,
+			width: 90,
 			cellClassName: 'actions',
+			align: 'center',
+			headerAlign: 'center',
 			getActions: ({ row }) => {
 				return [
 					<GridActionsCellItem
@@ -89,21 +91,65 @@ const DogsGrid = () => {
 				];
 			},
 		},
-		{ field: 'id', headerName: 'Id', width: 80 },
+		{
+			field: 'id',
+			headerName: 'Id',
+			width: 80,
+			align: 'center',
+			headerAlign: 'center',
+		},
 		{ field: 'col1', headerName: 'Nombre', width: 120 },
 		{ field: 'col2', headerName: 'Edad', width: 105 },
-		{ field: 'col3', headerName: 'Tamaño', width: 120 },
-		{ field: 'col4', headerName: 'Peso', width: 110 },
-		{ field: 'col5', headerName: 'Castrado', width: 130 },
-		{ field: 'col6', headerName: 'Temperamentos', width: 240 },
-		{ field: 'col7', headerName: 'Colores', width: 150 },
-		{ field: 'col8', headerName: 'Genero', width: 120 },
-		{ field: 'col9', headerName: '¿Adoptado?', width: 150 },
-		{ field: 'col10', headerName: '¿Muerto?', width: 140 },
+		{
+			field: 'col3',
+			headerName: 'Tamaño',
+			width: 120,
+			align: 'center',
+			headerAlign: 'center',
+		},
+		{
+			field: 'col4',
+			headerName: 'Peso',
+			width: 90,
+			align: 'center',
+			headerAlign: 'center',
+		},
+		{
+			field: 'col5',
+			headerName: 'Castrado',
+			width: 110,
+			align: 'center',
+			headerAlign: 'center',
+		},
+		{ field: 'col6', headerName: 'Temperamentos', width: 290 },
+		{ field: 'col7', headerName: 'Colores', width: 190 },
+		{
+			field: 'col8',
+			headerName: 'Genero',
+			width: 120,
+			align: 'center',
+			headerAlign: 'center',
+		},
+		{
+			field: 'col9',
+			headerName: '¿Adoptado?',
+			width: 120,
+			align: 'center',
+			headerAlign: 'center',
+		},
+		{
+			field: 'col10',
+			headerName: '¿Muerto?',
+			width: 120,
+			align: 'center',
+			headerAlign: 'center',
+		},
 		{
 			field: 'col11',
 			headerName: 'Imagen',
 			width: 100,
+			align: 'center',
+			headerAlign: 'center',
 			renderCell: (params) => <ImageCell value={params.value} />,
 		},
 	];
@@ -135,7 +181,15 @@ const DogsGrid = () => {
 					marginTop: '20px',
 				}}
 			>
-				<DataGrid rows={rows} columns={columns} />
+				<DataGrid
+					rows={rows}
+					columns={columns}
+					initialState={{
+						...rows.initialState,
+						pagination: { paginationModel: { pageSize: 10 } },
+					}}
+					pageSizeOptions={[10, Math.floor(rows.length / 2), rows.length]}
+				/>
 			</Box>
 		</>
 	);

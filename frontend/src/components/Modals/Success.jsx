@@ -55,7 +55,6 @@ const Success = () => {
 
 			await Promise.all(promises);
 		} catch (error) {
-			console.error(error);
 		}
 	};
 
@@ -70,12 +69,15 @@ const Success = () => {
 			dispatch(emptyOrder());
 			setPurchaseGenerated('Creada');
 		} catch (error) {
-			console.error(error);
 		}
 	};
 
 	useEffect(() => {
-		if (token && cartItems?.length && orderGenerated === 'No creada') {
+		if (
+			token !== 'null' &&
+			cartItems?.length &&
+			orderGenerated === 'No creada'
+		) {
 			generateOrder();
 		}
 

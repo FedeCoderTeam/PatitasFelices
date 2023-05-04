@@ -29,21 +29,21 @@ const SuccessDonation = () => {
 			dispatch(postOrders(newOrder));
 			setOrderGenerated('Creada');
 		} catch (error) {
-			console.error(error);
 		}
 	};
 
-	console.log(token)
-
 	useEffect(() => {
-		//(true || false)
-		if ((token !== 'null' || token === null) && orderGenerated === 'No creada') {
+		if (
+			(token !== 'null' || token === null) &&
+			orderGenerated === 'No creada'
+		) {
 			generateOrder().then();
 		}
-		setTimeout(() => {
+
+		if(orderGenerated === 'Creada') {
 			localStorage.setItem('donation', JSON.stringify([]));
 			navigate('/donation');
-		}, 2000);
+		}
 	}, [navigate, orderGenerated, token]);
 
 	return (

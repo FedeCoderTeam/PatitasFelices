@@ -16,7 +16,6 @@ const setLinkDePagos = (items) => {
 			);
 			window.location.href = link.data.body.init_point;
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -27,7 +26,6 @@ const getOrders = () => {
 			let ordersDb = await axios.get(`${URL}/orders`);
 			dispatch(getAllOrders(ordersDb.data));
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -41,7 +39,6 @@ const postOrders = (order) => {
 			}
 			return newOrder.data;
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -55,7 +52,6 @@ const getPurchases = (purchase) => {
 			);
 			dispatch(getAllPurchases(purchasesDb.data));
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -69,7 +65,6 @@ const postPurchases = (purchases) => {
 			);
 			return newPurchase.data;
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -79,7 +74,6 @@ const emptyOrder = () => {
 		try {
 			dispatch(setNewOrder());
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };

@@ -84,8 +84,6 @@ const CreateProductForm = () => {
 			subCategory: values.subCategory,
 		};
 		dispatch(productsAction.postProduct(obj));
-		//NO BORRAR, SIRVE PARA TESTEAR
-		//console.log(obj);
 		success(`¡Producto creado exitosamente!`, {
 			duration: 2000,
 		});

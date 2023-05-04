@@ -8,18 +8,15 @@ const postAdoptionDog = (obj) => {
 		try {
 			await axios.post(`${URL}/requests`, obj);
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
 
 const updateAdoptionDog = (obj) => {
-	console.log(obj)
 	return async () => {
 		try {
 			await axios.put(`${URL}/requests`, obj);
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -30,7 +27,6 @@ const getAdoptionDog = () => {
 			let db = await axios.get(`${URL}/requests`);
 			dispatch(setAdoptionDog(db.data));
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };

@@ -25,7 +25,6 @@ const getDogs = () => {
 			dispatch(getAllDogs(dbData.data));
 			dispatch(sort())
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -35,7 +34,6 @@ const postDogs = (obj) => {
 		try {
 			await axios.post(`${URL}/dogs`, obj);
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -45,7 +43,6 @@ const updateDogs = (someDog) => {
 		try {
 			await axios.put(`${URL}/dogs`, someDog);
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -56,7 +53,6 @@ const getDogsById = (id) => {
 			const dbData = await axios.get(`${URL}/dogs/${id}`);
 			dispatch(getDogDetail(dbData.data));
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -73,7 +69,6 @@ const getDogsByName = (name) => {
 			const dbData = await axios.get(`${URL}/dogs?name=${name}`);
 			dispatch(getNameDog(dbData.data));
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -84,7 +79,6 @@ const getTemperaments = () => {
 			let dbData = await axios.get(`${URL}/temperaments`);
 			dispatch(getAllTemperaments(dbData.data));
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -95,7 +89,6 @@ const genders = () => {
 			let dbData = await axios.get(`${URL}/genders`);
 			dispatch(getGenders(dbData.data));
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -106,7 +99,6 @@ const getDogsColors = () => {
 			let dbData = await axios.get(`${URL}/colors`);
 			dispatch(getAllDogsColors(dbData.data));
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };

@@ -9,6 +9,7 @@
     margin-top: 25px;
     margin-bottom: 25px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    background-color: white;
     transition: ease-in-out 0.2s;
 }
 .reviewCard:hover {

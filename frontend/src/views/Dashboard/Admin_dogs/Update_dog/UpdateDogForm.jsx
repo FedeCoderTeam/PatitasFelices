@@ -15,7 +15,6 @@ const UpdateDogForm = () => {
 
 	const temperaments = useSelector((state) => state.dogsReducer.temperaments);
 	const dogToUpdate = useSelector((state) => state.dogsReducer.dogDetail);
-	console.log(dogToUpdate);
 
 	const navigate = useNavigate();
 	const { success } = useToast();
@@ -44,8 +43,6 @@ const UpdateDogForm = () => {
 		adopted: dogToUpdate?.adopted,
 		isDisabled: dogToUpdate?.isDisabled,
 	});
-
-	console.log(input);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();

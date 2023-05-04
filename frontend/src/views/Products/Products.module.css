@@ -6,8 +6,8 @@
     min-height: calc(100vh - 172px);
     background-image: url(https://res.cloudinary.com/dreso9ye9/image/upload/v1682699430/6158e9d4c5ddbe2e9863e810_AdobeSfsfsdtfsdfsdock_195024674_50_cabmka.jpg);
     background-attachment: fixed;
-    background-repeat: no-repeat;
-    padding-top: 60px;
+    background-repeat: repeat;
+    padding-bottom: 60px;
 }
 
 .filtersBox{

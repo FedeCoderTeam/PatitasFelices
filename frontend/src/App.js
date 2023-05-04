@@ -92,7 +92,9 @@ function App() {
 				<Route path={'/form'} element={<AdoptionForm />} />
 				<Route path={'/dogs'} element={<Dogs />} />
 				<Route path={'/myreviews'} element={<MyReviews />} />
-				<Route path={'/account'} element={<UserSettings />} />
+				{selector.user &&
+					<Route path={'/account'} element={<UserSettings />} />
+				}
 				<Route path={'/products'} element={<Products />} />
 				<Route path={'/products/:id'} element={<ProductDetail />} />
 				<Route path={'/donation'} element={<Donation />} />
@@ -121,7 +123,6 @@ function App() {
 				location.pathname !== '/password-reset' &&
 				location.pathname !== '/form' &&
 				location.pathname !== '/products/success' &&
-				location.pathname !== '/products' &&
 				location.pathname !== '/donation' &&
 				location.pathname !== '/donation/success_donation' &&
 				(!location.pathname.includes('/dashboard') ||

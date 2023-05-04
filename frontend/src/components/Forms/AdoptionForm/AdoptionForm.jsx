@@ -40,6 +40,7 @@ const AdoptionForm = () => {
 	const validationSchema = Yup.object().shape({
 		name: Yup.string()
 			.min(4, t('yupAdop.val1'))
+			.max(40, t('yupAdop.val1b'))
 			.matches(
 				/^[A-Za-z]+(?:[ ][A-Za-z]+)*$/,
 				t('yupAdop.val2'),
@@ -47,6 +48,7 @@ const AdoptionForm = () => {
 			.required(t('yupAdop.val3')),
 		age: Yup.number()
 			.min(18, t('yupAdop.val4'))
+			.max(100, t('yupAdop.val4b'))
 			.required(t('yupAdop.val5')),
 		phone: Yup.string()
 			.matches(
@@ -54,7 +56,10 @@ const AdoptionForm = () => {
 				t('yupAdop.val6'),
 			)
 			.required(t('yupAdop.val7')),
-		address: Yup.string().required(t('yupAdop.val8')),
+		address: Yup.string()
+		.max(40,t('yupAdop.val8b'))
+		.min(4, t('yupAdop.val8a'))
+		.required(t('yupAdop.val8')),
 		email: Yup.string()
 			.matches(
 				/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -66,7 +71,8 @@ const AdoptionForm = () => {
 			t('yupAdop.val11'),
 		),
 		more_animals: Yup.string().required(t('yupAdop.val11')),
-		moreAnimals_details: Yup.string(),
+		moreAnimals_details: Yup.string()
+		.max(100, t('yupAdop.val11a')),
 		// .required('Es obligatoria esta información.')
 		proper_income: Yup.string().required(t('yupAdop.val12')),
 		inHouse_allowance: Yup.string().required('Elige una opción.'),

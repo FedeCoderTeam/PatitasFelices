@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import {Link, NavLink, useNavigate} from 'react-router-dom';
 import style from '../Nav/nav.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -62,7 +62,7 @@ export default function Nav() {
 			default:
 				return (
 					<img
-						src="https://www.otherworldproject.com/wiki/images/9/96/Unknown_flag.png"
+						src="https://flagcdn.com/w320/ar.png"
 						width="40"
 						height="25"
 						alt={'default'}
@@ -237,6 +237,7 @@ export function AvatarComponent(props) {
 	const dispatch = useDispatch();
 
 	const { t } = useTranslation();
+	const navigate = useNavigate()
 
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 	const selector = useSelector((state) => state.authReducer);
@@ -253,6 +254,7 @@ export function AvatarComponent(props) {
 		dispatch(logoutUserAction(props.selector.user.id));
 		localStorage.setItem('products', JSON.stringify([]));
 		dispatch(setItemsAction());
+		navigate('/home')
 	};
 
 	return (
@@ -290,25 +292,23 @@ export function AvatarComponent(props) {
 					<MenuItem
 						onClick={(event) => {
 							handleCloseUserMenu(event);
+							navigate('/myreviews')
 						}}
 					>
 						<ListItemIcon>
 							<StarIcon fontSize="small" color="warning" />
 						</ListItemIcon>
-						<Link to={'/myreviews'} className={style.myReviews}>
-							{t('nav.account.myComments')}
-						</Link>
+						{t('nav.account.myComments')}
 					</MenuItem>
-					{!selector.user?.googleId &&(
-						<MenuItem onClick={handleCloseUserMenu}>
-							<ListItemIcon>
-								<Settings fontSize="small" sx={{ color: grey[900] }} />
-							</ListItemIcon>
-							<Link to={`/account`} className={style.myReviews}>
-								{t('nav.account.settings')}
-							</Link>
-						</MenuItem>
-					)}
+					<MenuItem onClick={(event) => {
+						handleCloseUserMenu(event)
+						navigate('/account')
+					}}>
+						<ListItemIcon>
+							<Settings fontSize="small" sx={{ color: grey[900] }} />
+						</ListItemIcon>
+						{t('nav.account.settings')}
+					</MenuItem>
 					<MenuItem
 						onClick={(event) => {
 							handleCloseUserMenu(event);

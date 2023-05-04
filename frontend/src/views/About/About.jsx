@@ -9,7 +9,7 @@ const About = () => {
 	const { t } = useTranslation();
 
     return (
-        <>
+        <div className={style.mainContainer}>
             <div className={style.title}>
                 <h2>
                 <Typewriter 
@@ -28,20 +28,10 @@ const About = () => {
                 <div>
                     <img src={AboutImage} alt="AboutImage" />
                 </div>
-                <p>
-                <Typewriter 
-                    options={{
-                        autoStart: true,
-                        // loop: false,
-                        delay:30,
-                        strings: [t('about.text')],
-                        pauseFor: '15000ms'
-                    }}
-                />
-                </p>
+                <p>{t('about.text')}</p>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

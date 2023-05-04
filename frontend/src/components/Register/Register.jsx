@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Google from './Google.png';
 import {Link, useNavigate} from 'react-router-dom';
 import style from './Register.module.css';
@@ -104,6 +104,12 @@ const Register = () => {
 		onSubmit: handleOnSubmit
 	})
 
+	const handleResetForm = useCallback(() => {
+		if(isSuccess) {
+			formik.resetForm()
+		}
+	}, [isSuccess, formik])
+
 	const theme = createTheme({
 		palette: {
 			primary: {
@@ -123,7 +129,11 @@ const Register = () => {
 		if(isAuthenticated) {
 			navigate('/home')
 		}
-	}, [isAuthenticated, navigate])
+		if(isSuccess) {
+			handleResetForm()
+			setIsSuccess(false)
+		}
+	}, [isAuthenticated, navigate, handleResetForm])
 
 	return (
 		<div className={style.mainContainerRegister} data-aos="fade-left">

@@ -14,7 +14,7 @@ import {
 	getByName,
 	set_name,
 	setOpen,
-	setItems, getCategories,
+	setItems, getCategories, setIsFetching,
 } from '../reducer/productsReducer.js';
 
 const URL = 'https://patitas-felices.onrender.com'
@@ -26,7 +26,6 @@ const getProducts = () => {
 			dispatch(getAllProducts(dbData.data));
 			dispatch(sort())
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -39,18 +38,19 @@ const getProductsByName = (name) => {
 			);
 			dispatch(getNameProduct(dbData.data));
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
 
 const getProductsById = (id) => {
 	return async function (dispatch) {
+		dispatch(setIsFetching(true))
 		try {
 			const dbData = await axios.get(`${URL}/products/${id}`);
 			dispatch(getProductDetail(dbData.data));
+			dispatch(setIsFetching(false))
 		} catch (error) {
-			console.log(error);
+			dispatch(setIsFetching(false))
 		}
 	};
 };
@@ -61,7 +61,6 @@ const getAllsubCategory = () => {
 			const db = await axios.get(`${URL}/subcategories`);
 			dispatch(getSubCategories(db.data));
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -83,7 +82,6 @@ const postProduct = (obj) => {
 		try {
 			await axios.post(`${URL}/products`, obj);
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -157,7 +155,6 @@ const getCategoriesAction = () =>  {
 			let dbData = await axios.get(`${URL}/categories`);
 			dispatch(getCategories(dbData.data));
 		} catch (error) {
-			console.log(error);
 		}
 	}
 }

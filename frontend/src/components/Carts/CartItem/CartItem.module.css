@@ -27,6 +27,9 @@
 
 .information>p>.productQuantity {
     color: #c1996b;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 7px; 
 }
 
 .cartItem img {

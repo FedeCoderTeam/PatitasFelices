@@ -18,6 +18,7 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
+import Avatar from '@mui/material/Avatar';
 
 const MyReviews = () => {
 
@@ -53,7 +54,6 @@ const MyReviews = () => {
 				'Tu comentario se ha eliminado exitosamente.',
 				'success',
 				)
-					
 			}
 			})
 		}
@@ -70,8 +70,7 @@ const MyReviews = () => {
     return (
         <>
             <div className={style.main}>
-				{
-					currentUserReviews()?.length === 0 ? (
+				{!currentUserReviews()?.length ? (
 						<>
 							<h4 className={style.noReviewsSubtitle}>{t('reviews.comment')}</h4>
 							<h3 className={style.noReviewsTitle}>{t('reviews.noDoubt')}</h3>
@@ -88,7 +87,20 @@ const MyReviews = () => {
 							/>
 						</>
 					) : (
+						
 						<div className={style.cardReviewContainer}>
+							<div className={style.avatar}>
+								<Avatar
+									alt={currentUser.name}
+									src={currentUser.image}
+									imgProps={{ referrerPolicy: "no-referrer" }}
+									sx={{ width: 100, height: 100 }}
+								/>
+								<div>
+									<h1>{currentUser.name} {currentUser.last}</h1>
+									<h2>Mis comentarios</h2>
+								</div>
+							</div>
 							{currentUserReviews()?.map((e) => (
 								<div className={style.eachCard}>
 									<ReviewCard
@@ -98,7 +110,7 @@ const MyReviews = () => {
 										comment={e.comment}
 										name={e.user?.name}
 										last={e.user?.last}
-										/* image={e.user?.image} */
+										// image={e.user?.image} 
 										handleDeleteReview={() => handleDeleteReview(e.id)}
 										handleOpenReview={handleOpenReview}
 									/>
@@ -136,8 +148,9 @@ export function EditMyReview(props) {
 
 	const validationSchema = Yup.object().shape({
 		comment: Yup.string()
-			.max(130, 'El comentario no puede superar los 130 caracteres')
-			.required('El comentario es obligatorio'),
+			.max(250, 'El comentario no puede superar los 250 caracteres.*')
+			.matches(/^[a-zA-Z\u00C0-\u00FF\s.,!¡?¿]+$/, 'Solo se permiten letras, comas, puntos y signos de exclamación e interrogación.*')
+			.required('El comentario es obligatorio.*'),
 		rating: Yup.number(),
 	});
 
