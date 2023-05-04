@@ -223,7 +223,6 @@ const Home = () => {
 	});
 	
 	const [series, setSeries] = useState([...dates]);
-	console.log(purchases);
 	
 
 	return (
