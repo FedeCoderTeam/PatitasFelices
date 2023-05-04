@@ -20,13 +20,17 @@ const initialState = {
 	filter: {
 		category: 'All',
 		subCategory: 'All'
-	}
+	},
+	isFetching: false
 };
 
 export const productsSlice = createSlice({
 	name: 'products',
 	initialState,
 	reducers: {
+		setIsFetching: (state, action) => {
+			state.isFetching = action.payload
+		},
 		getAllProducts: (state, action) => {
 			state.products = action.payload;
 			state.allProducts = action.payload;
@@ -144,7 +148,8 @@ export const {
 	set_name,
 	setOpen,
 	setItems,
-	getCategories
+	getCategories,
+	setIsFetching
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
