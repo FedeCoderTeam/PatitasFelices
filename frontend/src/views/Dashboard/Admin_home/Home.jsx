@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Chart from 'react-apexcharts';
 import { Link } from 'react-router-dom';
@@ -50,10 +50,20 @@ const Home = () => {
 			{
 				name: 'Total',
 				data: [maleCount, femaleCount],
+				labels: {
+					style: {
+						colors: ['#FFFFFF', '#FFFFFF'],
+					}
+				}
 			},
 			{
 				name: 'Adoptados',
 				data: [adoptedMale, adoptedFemela],
+				labels: {
+					style: {
+						colors: ['#FFFFFF', '#FFFFFF'],
+					}
+				}
 			},
 		],
 		options: {
@@ -78,15 +88,31 @@ const Home = () => {
 			},
 			xaxis: {
 				categories: ['Macho', 'Hembra'],
+				labels: {
+					style: {
+						colors: ['#FFFFFF', '#FFFFFF'],
+					}
+				},
+				colors: ['#fff']
 			},
 			yaxis: {
 				title: {
 					text: 'Cantidad',
+					style: {
+						colors: ['#FFFFFF', '#FFFFFF'],
+					}
 				},
+				labels: {
+					style: {
+						colors: ['#FFFFFF', '#FFFFFF'],
+					}
+				},
+				colors: ['#BF5841', '#F2A477'],
 			},
 			fill: {
 				opacity: 1,
 			},
+			colors: ['#BF5841', '#F2A477'],
 		},
 	});
 
@@ -134,6 +160,26 @@ const Home = () => {
 				data: [uno, dos, tres, cuatro, cinco],
 			},
 		],
+		options: {
+			xaxis: {
+				categories: ['⭐', '⭐⭐', '⭐⭐⭐', '⭐⭐⭐⭐', '⭐⭐⭐⭐⭐'],
+				colors: ['#fff']
+			},
+			yaxis: {
+				title: {
+					text: 'Cantidad',
+				},
+				labels: {
+					style: {
+						colors: ['#FFFFFF', '#FFFFFF'],
+					}
+				}
+			},
+			fill: {
+				opacity: 1,
+			},
+			colors: ['#daa520', '#F2A477'],
+		},
 	});
 
 	//INFO RECAUDACIONES
@@ -154,77 +200,111 @@ const Home = () => {
 			chart: {
 				id: 'basic-bar',
 			},
+			stroke: {
+				show: true,
+				width: 1,
+				colors: ['transparent'],
+			},
 			xaxis: {
 				categories: ['Donaciones', 'Ventas'],
+				labels: {
+					style: {
+						colors: ['#FFFFFF', '#FFFFFF'],
+					}
+				}
 			},
+			fill: {
+				opacity: 1,
+			},
+			colors: ['#daa520', '#F2A477'],
 		},
+		
 		series: [
 			{
 				name: 'series-1',
 				data: [totalDonation, totalPurchase],
 			},
+			
 		],
 	});
 
 	//PURCHASES
 
-	const total = allPurchase.reduce((acc, purchase) => {
-		const purchaseDate = new Date(purchase.createdAt).toLocaleDateString();
-		const subtotal = Number(purchase.product.price) * purchase.quantity;
-		acc[purchaseDate] = acc[purchaseDate]
-			? acc[purchaseDate] + subtotal
-			: subtotal;
-		return acc;
-	}, {});
+	const { purchases, dates } = useMemo(() => {
+        const total = allPurchase.reduce((acc, purchase) => {
+            const purchaseDate = new Date(purchase.createdAt).toLocaleDateString();
+            const subtotal = Number(purchase.product.price) * purchase.quantity;
+            acc[purchaseDate] = acc[purchaseDate]
+                ? acc[purchaseDate] + subtotal
+                : subtotal;
+            return acc;
+        }, {});
 
-	let purchases = Object.keys(total);
-	let dates = Object.values(total);
+        console.log(total);
 
-	const [purchaseData, setPurchaseData] = useState({
-		options: {
-			chart: {
-				id: 'basic-bar',
-			},
-			xaxis: {
-				categories: [...purchases],
-			},
-		},
-		series: [
-			{
-				name: 'series-1',
-				data: [...dates],
-			},
-		],
-	});
+        const purchases = Object.keys(total);
+        const dates = Object.values(total);
 
+        console.log(purchases);
+        console.log(dates);
+
+        return { purchases, dates };
+    }, [allPurchase]);
+
+	const series = dates
 	const [options, setOptions] = useState({
+		plotOptions: {
+			pie: {
+				donut: {
+				labels: {
+					show: true,
+					name: {
+					show: true,
+					fontSize: '18px',
+					color: undefined,
+					offsetY: -10
+					},
+					value: {
+					show: true,
+					fontSize: '16px',
+					color: '#FFFFFF',
+					offsetY: 16,
+					formatter: function (val) {
+						return val
+					}
+					},
+					total: {
+					show: true,
+					showAlways: false,
+					label: 'Total',
+					fontSize: '18px',
+					color: '#FFFFFF',
+					formatter: function (w) {
+						return w.globals.seriesTotals.reduce((a, b) => {
+						return a + b
+						}, 0)
+					}
+					}
+				}
+				}
+			}
+			},
+			colors: ['#daa520', '#F2A477'],
 		chart: {
-		type: 'polarArea',
+		type: 'donut',
+		height: '700px',
 		},
-		stroke: {
-		colors: ['#fff'],
-		},
-		fill: {
-		opacity: 0.8,
-		},
-		responsive: [
-		{
-			breakpoint: 480,
-			options: {
-			chart: {
-				width: 200,
-			},
+		labels: purchases,
+		responsive: [{
+		breakpoint: 480,
+		options: {
 			legend: {
-				position: 'bottom',
+			position: 'bottom',
 			},
-			},
+			colors: ['#daa520', '#F2A477'],
 		},
-		],
+		}],
 	});
-	
-	const [series, setSeries] = useState([...dates]);
-	console.log(purchases);
-	
 
 	return (
 		<>
@@ -236,6 +316,7 @@ const Home = () => {
 
 			<div className="row">
 				<div className={style.mixedChart}>
+					<h2 className={style.title1}>Perros por género y estado</h2>
 					<Chart
 						options={chartData.options}
 						series={chartData.series}
@@ -245,33 +326,30 @@ const Home = () => {
 					/>
 
 					<div className={style.section2}>
-						<Chart
-							options={ratingData.options}
-							series={ratingData.series}
-							type="bar"
-							width="500"
-						/>
-						<Chart
-							options={orderData.options}
-							series={orderData.series}
-							type="bar"
-							width="500"
-						/>
+						<div className={style.section21}>
+							<h2 className={style.title}>Reviews por puntaje</h2>
+							<Chart
+								options={ratingData.options}
+								series={ratingData.series}
+								type="bar"
+								width="500"
+							/>
+						</div>
+
+						<div className={style.section22}>
+							<h2 className={style.title}>Donaciones y Ventas</h2>	
+							<Chart
+								options={orderData.options}
+								series={orderData.series}
+								type="bar"
+								width="500"
+							/>
+						</div>
 					</div>
 
 					<div className={style.section3}>
-						<Chart
-							options={purchaseData.options}
-							series={purchaseData.series}
-							type="bar"
-							width="500"
-						/>
-						<Chart
-							options={options}
-							series={series}
-							type="polarArea"
-							width="500"
-						/>
+						<h2 className={style.title}>Ingresos por fecha</h2>
+						<Chart options={options} series={series} type="donut" height={700} width={500}/>
 					</div>
 				</div>
 			</div>

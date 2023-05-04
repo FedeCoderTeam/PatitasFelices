@@ -50,56 +50,48 @@
     margin-top: 50px;
 }
 
+.title1 {
+    color: #daa520;
+    width: 400px;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.575);
+    border-radius: 5px;
+}
+
+.title {
+    color: #daa520;
+    width: 300px;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.575);
+    border-radius: 5px;
+}
+
 .section2 {
     display: flex;
     margin: 50px 0 50px 0;
+    color: #daa520;
+}
+
+.section21 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section22 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .section3 {
+    color: #daa520;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     margin-bottom: 50px;
+    font-weight: 300;
 }
-
-/* import React, { useState } from 'react';
-import Chart from 'react-apexcharts';
-
-const ApexChart = () => {
-  const [options, setOptions] = useState({
-    chart: {
-      type: 'polarArea',
-    },
-    stroke: {
-      colors: ['#fff'],
-    },
-    fill: {
-      opacity: 0.8,
-    },
-    responsive: [
-      {
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: 200,
-          },
-          legend: {
-            position: 'bottom',
-          },
-        },
-      },
-    ],
-  });
-
-  const [series, setSeries] = useState([14, 23, 21, 17, 15, 10, 12, 17, 21]);
-
-  return (
-    <Chart
-      options={options}
-      series={series}
-      type="polarArea"
-      width="500"
-    />
-  );
-};
-
-export default ApexChart; */
