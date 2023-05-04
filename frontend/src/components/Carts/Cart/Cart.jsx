@@ -31,7 +31,11 @@ const Cart = () => {
 		items.reduce((acc, item) => acc + item.quantity * item.price, 0);
 
 	const handleOnBuy = () => {
-		dispatch(setLinkDePagos(cartItems));
+		if(cartItems.length > 0) {
+			dispatch(setLinkDePagos(cartItems));
+		} else {
+			toast.error('No hay productos agregados', { duration: 4000 })
+		}
 	};
 
 	const handleCloseCart = () => {
