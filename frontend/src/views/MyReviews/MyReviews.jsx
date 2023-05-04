@@ -214,7 +214,7 @@ export function EditMyReview(props) {
 									<label htmlFor="comment">{t('HomeReview.comment')}</label>
 									<textarea
 										name="comment"
-										placeholder="Escribe aquÃ­..."
+										placeholder="Escribe aquí..."
 										value={formik.values.comment}
 										onChange={(event) => {
 											formik.handleChange(event);
