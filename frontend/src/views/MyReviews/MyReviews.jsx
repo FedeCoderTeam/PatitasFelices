@@ -54,7 +54,6 @@ const MyReviews = () => {
 				'Tu comentario se ha eliminado exitosamente.',
 				'success',
 				)
-					
 			}
 			})
 		}

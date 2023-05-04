@@ -48,10 +48,13 @@ const HomeReviewSection = () => {
 			icon: 'error',
 			title: 'Oops...',
 			text: 'Necesitas iniciar sesión para poder dejar tu comentario',
-			confirmButtonText: "Registrarse !"
+			confirmButtonText: "Iniciar Sesión!",
+			confirmButtonColor: '#592519',
+			showConfirmButton: true,
+			showCloseButton: true,
 		}).then(async (result) => {
 			if(result.isConfirmed) {
-				navigate('/register')
+				navigate('/login')
 			}
 		})
 	};
