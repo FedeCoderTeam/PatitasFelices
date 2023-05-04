@@ -12,8 +12,6 @@ import ProductCard from '../../Cards/ProductCard/ProductCard';
 import useToast from '../../../utils/hooks/useToast';
 import Swal from 'sweetalert2';
 import { useTranslation } from 'react-i18next';
-// import { Player } from '@lottiefiles/react-lottie-player';
-// import ShoppingCart from '../../../utils/animations/ShoppingCart.json'
 
 function ProductDetail() {
 	const { id } = useParams();
@@ -22,6 +20,8 @@ function ProductDetail() {
 	const isAuthenticated = useSelector(
 		(state) => state.authReducer.isAuthenticated,
 	);
+
+	const isFetching = useSelector(state => state.productsReducer.isFetching)
 
 	const [count, setCount] = useState(0);
 	const [isLoading, setIsLoading] = useState(true);
@@ -124,7 +124,7 @@ function ProductDetail() {
 
 	return (
 		<div className={style.divMain}>
-			{isLoading ? (
+			{isFetching ? (
 				<img
 					className={style.loader}
 					src="https://res.cloudinary.com/dreso9ye9/image/upload/v1682557985/71390-shopping-cart-loader_egwna9.gif"

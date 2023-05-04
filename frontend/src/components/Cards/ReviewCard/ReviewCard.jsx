@@ -63,7 +63,7 @@ const ReviewCard = ({ id, rating, comment, name, last, image, handleOpenReview, 
 
                     <div className={style.comentary}>
                         <h4>{comment}</h4>
-                </div>
+                    </div>
             </div>
                     </div>
                     {location.pathname !== '/myreviews' ? "" : <div className={style.buttonsContainer}>

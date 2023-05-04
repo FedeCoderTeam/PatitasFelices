@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Chart from 'react-apexcharts';
 import { Link } from 'react-router-dom';
@@ -56,12 +56,22 @@ const Home = () => {
 	const chartData = {
 		series: [
 			{
-				name: 'Cantidad',
+				name: 'Total',
 				data: [maleCount, femaleCount],
+				labels: {
+					style: {
+						colors: ['#FFFFFF', '#FFFFFF'],
+					}
+				}
 			},
 			{
 				name: 'Adoptados',
 				data: [adoptedMale, adoptedFemale],
+				labels: {
+					style: {
+						colors: ['#FFFFFF', '#FFFFFF'],
+					}
+				}
 			},
 		],
 		options: {
@@ -86,15 +96,31 @@ const Home = () => {
 			},
 			xaxis: {
 				categories: ['Macho', 'Hembra'],
+				labels: {
+					style: {
+						colors: ['#FFFFFF', '#FFFFFF'],
+					}
+				},
+				colors: ['#fff']
 			},
 			yaxis: {
 				title: {
-					text: 'Marcos puto',
+					text: 'Cantidad',
+					style: {
+						colors: ['#FFFFFF', '#FFFFFF'],
+					}
 				},
+				labels: {
+					style: {
+						colors: ['#FFFFFF', '#FFFFFF'],
+					}
+				},
+				colors: ['#BF5841', '#F2A477'],
 			},
 			fill: {
 				opacity: 1,
 			},
+			colors: ['#BF5841', '#F2A477'],
 		},
 	};
 
@@ -146,6 +172,26 @@ const Home = () => {
 				data: [uno, dos, tres, cuatro, cinco],
 			},
 		],
+		options: {
+			xaxis: {
+				categories: ['⭐', '⭐⭐', '⭐⭐⭐', '⭐⭐⭐⭐', '⭐⭐⭐⭐⭐'],
+				colors: ['#fff']
+			},
+			yaxis: {
+				title: {
+					text: 'Cantidad',
+				},
+				labels: {
+					style: {
+						colors: ['#FFFFFF', '#FFFFFF'],
+					}
+				}
+			},
+			fill: {
+				opacity: 1,
+			},
+			colors: ['#daa520', '#F2A477'],
+		},
 	};
 
 	//INFO RECAUDACIONES
@@ -170,29 +216,45 @@ const Home = () => {
 			chart: {
 				id: 'basic-bar',
 			},
+			stroke: {
+				show: true,
+				width: 1,
+				colors: ['transparent'],
+			},
 			xaxis: {
 				categories: ['Donaciones', 'Ventas'],
+				labels: {
+					style: {
+						colors: ['#FFFFFF', '#FFFFFF'],
+					}
+				}
 			},
+			fill: {
+				opacity: 1,
+			},
+			colors: ['#daa520', '#F2A477'],
 		},
+
 		series: [
 			{
 				name: 'series-1',
 				data: [totalDonation, totalPurchase],
 			},
+
 		],
 	};
 
 	//PURCHASES
 
 	const { purchases, dates } = useMemo(() => {
-		const total = allPurchase.reduce((acc, purchase) => {
-			const purchaseDate = new Date(purchase.createdAt).toLocaleDateString();
-			const subtotal = Number(purchase.product.price) * purchase.quantity;
-			acc[purchaseDate] = acc[purchaseDate]
-				? acc[purchaseDate] + subtotal
-				: subtotal;
-			return acc;
-		}, {});
+        const total = allPurchase.reduce((acc, purchase) => {
+            const purchaseDate = new Date(purchase.createdAt).toLocaleDateString();
+            const subtotal = Number(purchase.product.price) * purchase.quantity;
+            acc[purchaseDate] = acc[purchaseDate]
+                ? acc[purchaseDate] + subtotal
+                : subtotal;
+            return acc;
+        }, {});
 
 		const purchases = Object.keys(total);
 		const dates = Object.values(total);
@@ -200,22 +262,60 @@ const Home = () => {
 		return { purchases, dates };
 	}, [allPurchase]);
 
-	const purchaseData = {
-		options: {
-			chart: {
-				id: 'basic-bar',
-			},
-			xaxis: {
-				categories: [...purchases],
-			},
+	const series = dates
+	const [options, setOptions] = useState({
+		plotOptions: {
+			pie: {
+				donut: {
+					labels: {
+						show: true,
+						name: {
+							show: true,
+							fontSize: '18px',
+							color: undefined,
+							offsetY: -10
+						},
+						value: {
+							show: true,
+							fontSize: '16px',
+							color: '#FFFFFF',
+							offsetY: 16,
+							formatter: function (val) {
+								return val
+							}
+						},
+						total: {
+							show: true,
+							showAlways: false,
+							label: 'Total',
+							fontSize: '18px',
+							color: '#FFFFFF',
+							formatter: function (w) {
+								return w.globals.seriesTotals.reduce((a, b) => {
+									return a + b
+								}, 0)
+							}
+						}
+					}
+				}
+			}
 		},
-		series: [
-			{
-				name: 'series-1',
-				data: [...dates],
+		colors: ['#daa520', '#F2A477'],
+		chart: {
+			type: 'donut',
+			height: '700px',
+		},
+		labels: purchases,
+		responsive: [{
+			breakpoint: 480,
+			options: {
+				legend: {
+					position: 'bottom',
+				},
+				colors: ['#daa520', '#F2A477'],
 			},
-		],
-	};
+		}],
+	});
 
 	return (
 		<>
@@ -226,32 +326,42 @@ const Home = () => {
 			</div>
 
 			<div className="row">
-				<div className="mixed-chart">
+				<div className={style.mixedChart}>
+					<h2 className={style.title1}>Perros por género y estado</h2>
 					<Chart
 						options={chartData.options}
 						series={chartData.series}
 						type="bar"
 						height={350}
+						width={1000}
 					/>
 
-					<Chart
-						options={ratingData.options}
-						series={ratingData.series}
-						type="bar"
-						width="500"
-					/>
-					<Chart
-						options={orderData.options}
-						series={orderData.series}
-						type="bar"
-						width="500"
-					/>
-					<Chart
-						options={purchaseData.options}
-						series={purchaseData.series}
-						type="bar"
-						width="500"
-					/>
+					<div className={style.section2}>
+						<div className={style.section21}>
+							<h2 className={style.title}>Reviews por puntaje</h2>
+							<Chart
+								options={ratingData.options}
+								series={ratingData.series}
+								type="bar"
+								width="500"
+							/>
+						</div>
+
+						<div className={style.section22}>
+							<h2 className={style.title}>Donaciones y Ventas</h2>
+							<Chart
+								options={orderData.options}
+								series={orderData.series}
+								type="bar"
+								width="500"
+							/>
+						</div>
+					</div>
+
+					<div className={style.section3}>
+						<h2 className={style.title}>Ingresos por fecha</h2>
+						<Chart options={options} series={series} type="donut" height={700} width={500}/>
+					</div>
 				</div>
 			</div>
 		</>

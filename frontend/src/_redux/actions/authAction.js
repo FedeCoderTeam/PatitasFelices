@@ -251,7 +251,6 @@ const googleUserAction = (payload) => {
 				timer: 10000,
 			});
 		} catch (error) {
-			console.log(error.message);
 			dispatch(setIsFetchingAuth(false));
 		}
 	};
@@ -276,7 +275,6 @@ const getUserById = (id) => {
 			const dbData = await axios.get(`${URL}/users/${id}`);
 			dispatch(getUserDetail(dbData.data));
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };
@@ -287,7 +285,6 @@ const updateUser = (obj) => {
 			let newRole = await axios.put(`${URL}/users`, obj);
 			return newRole.data;
 		} catch (error) {
-			console.log(error);
 		}
 	};
 };

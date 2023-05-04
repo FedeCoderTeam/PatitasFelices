@@ -9,7 +9,7 @@ const About = () => {
 	const { t } = useTranslation();
 
     return (
-        <>
+        <div className={style.mainContainer}>
             <div className={style.title}>
                 <h2>
                 <Typewriter 
@@ -31,7 +31,7 @@ const About = () => {
                 <p>{t('about.text')}</p>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

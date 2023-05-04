@@ -32,36 +32,35 @@ const purchaseControllers = async (purchases) => {
 			}
 		}
 
-		const info = await order.findOne({
-			where: { id: idOrder },
-			include: [
-				{
-					model: user,
-				},
-				{
-					model: orderItem,
-					include: [
-						{
-							model: product,
-						},
-					],
-				},
-			],
-		});
-		const productsArray = info.orderItems.map((oi) => {
-			const productInfo = oi.product.get({ plain: true });
+		const info = await order.findOne({where: {id: idOrder}, include: [
+			{
+				model: user
+			},
+			{
+				model: orderItem,
+				include: [
+					{
+						model:product
+					}
+				]
+			}
+			]})
+		const productsArray = info.orderItems.map(oi => {
+			const productInfo = oi.product.get({plain: true})
+			const formattedPrice = Number(productInfo.price).toLocaleString('es-AR', {style: 'currency', currency: 'ARS'})
 			return {
 				...productInfo,
 				quantity: oi.quantity,
-			};
-		});
+				price: formattedPrice
+			}
+		})
 		const orderObj = {
 			email: info.user.email,
 			id: info.id,
-			amount: info.total,
-			product: productsArray,
-		};
-		await event_successful_purchase(orderObj);
+			amount: Number(info.total).toLocaleString('es-AR', {style: 'currency', currency: 'ARS'}),
+			product: productsArray
+		}
+		await event_successful_purchase(orderObj)
 
 		return 'Successfully created pruchase';
 	} catch (error) {

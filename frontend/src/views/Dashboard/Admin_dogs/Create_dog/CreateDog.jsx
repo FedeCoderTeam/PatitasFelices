@@ -99,7 +99,6 @@ const CreateDog = () => {
 			image: url,
 			description: values.description,
 		};
-		console.log(obj);
 		dispatch(dogsAction.postDogs(obj));
 		success(`¡Perro ingresado exitosamente!`, {
 			duration: 2000,
