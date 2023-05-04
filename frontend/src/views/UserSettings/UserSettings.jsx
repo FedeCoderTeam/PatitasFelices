@@ -12,16 +12,19 @@ import EditIcon from '@mui/icons-material/Edit';
 import * as Yup from 'yup';
 import Grid2 from '@mui/material/Unstable_Grid2';
 import useToast from '../../utils/hooks/useToast';
+import {useNavigate} from 'react-router-dom';
 
 
 const UserSettings = () =>{
 
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 	const toast = useToast();
 
     const userId = useSelector((state) => state.authReducer.user);
 	const token = useSelector(state => state.authReducer.token)
 	const isFetching = useSelector(state => state.authReducer.isFetching)
+	const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated)
 
 	const [modeEditUser, setModeEditUser] = useState(false)
 	const [modeEditPass, setModeEditPass] = useState(false)
@@ -76,7 +79,7 @@ const UserSettings = () =>{
 	const handleSubmitUser = (values) => {
 		setModeEditUser(false)
 		if(values.name === userId.name && values.last === userId.last && values.image === userId.image) {
-			alert('No hubo cambios')
+			toast.error('Actualización cancelada', { duration: 4000 })
 			return;
 		}
 		dispatch(authAction.updateUserByOwnAction(token, values.name, values.last, values.image))
@@ -102,7 +105,7 @@ const UserSettings = () =>{
 
 	useEffect(() => {
 		formikUser.setValues({...initialValuesUser})
-	}, [userId])
+	}, [userId, isFetching, isAuthenticated, navigate])
 
 	const theme = createTheme({
 		palette: {

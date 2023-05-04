@@ -40,10 +40,11 @@ const SuccessDonation = () => {
 		) {
 			generateOrder().then();
 		}
-		setTimeout(() => {
+
+		if(orderGenerated === 'Creada') {
 			localStorage.setItem('donation', JSON.stringify([]));
 			navigate('/donation');
-		}, 2000);
+		}
 	}, [navigate, orderGenerated, token]);
 
 	return (
