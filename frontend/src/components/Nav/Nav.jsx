@@ -62,7 +62,7 @@ export default function Nav() {
 			default:
 				return (
 					<img
-						src="https://www.otherworldproject.com/wiki/images/9/96/Unknown_flag.png"
+						src="https://flagcdn.com/w320/ar.png"
 						width="40"
 						height="25"
 						alt={'default'}
