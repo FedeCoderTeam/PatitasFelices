@@ -29,11 +29,13 @@ const postOrder = async (status, total, payment_method, source, token) => {
 			});
 
 			await newOrder.setUser(buyer);
-			await event_successful_donation({
-				name: decoded.user.name,
-				email: decoded.user.email,
-				amount: Number(total).toLocaleString('es-AR', {style: 'currency', currency: 'ARS'})
-			})
+			if(source === 'Donacion') {
+				await event_successful_donation({
+					name: decoded.user.name,
+					email: decoded.user.email,
+					amount: Number(total).toLocaleString('es-AR', {style: 'currency', currency: 'ARS'})
+				})
+			}
 		}
 
 		return newOrder;

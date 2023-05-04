@@ -89,7 +89,7 @@ const Success = () => {
 			localStorage.setItem('products', JSON.stringify([]));
 			dispatch(setItemsAction());
 			navigate('/products');
-		}, 2000);
+		}, 4000);
 	}, [cartItems, navigate, orderGenerated, token, orderId, purchaseGenerated]);
 
 	return (
@@ -104,7 +104,7 @@ const Success = () => {
 		>
 			<Player
 				autoplay
-				loop
+				keepLastFrame
 				src={Aprob}
 				style={{
 					width: '100%',
