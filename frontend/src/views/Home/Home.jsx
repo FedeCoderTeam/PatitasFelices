@@ -7,18 +7,11 @@ import HomeDonationSection from '../../components/HomeSection/HomeDonationSectio
 import HomeProductSection from '../../components/HomeSection/HomeProductSection/HomeProductSection';
 import HomeReviewSection from '../../components/HomeSection/HomeReviewSection/HomeReviewSection';
 import { useTranslation } from 'react-i18next';
-import ReviewCard from '../../components/Cards/ReviewCard/ReviewCard';
 import { Player } from '@lottiefiles/react-lottie-player';
 import GirlAndDog from '../../utils/animations/GirlAndDogHome.json'
 
 const Home = () => {
-	//navbar
-	//header
-	//cards
-	// const [dogsPerPage] = useState(7);
 	const { t } = useTranslation();
-	const allReviews = useSelector((state) => state.reviewsReducer.reviews);
-	// console.log(allReviews);
 	return (
 		<>
 			<Header />
