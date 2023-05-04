@@ -121,12 +121,12 @@ const MyReviews = () => {
 					)
 				}
             </div>
-			{idReview && <EditMyReview 
+			{idReview ? <EditMyReview
 				showModal={showModal}
 				handleOpenReview={handleOpenReview}
 				idReview={idReview}
 				allReviews={allReviews}
-			/>}
+			/>: ''}
         </>
     )
 }
