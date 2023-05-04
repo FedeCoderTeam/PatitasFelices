@@ -62,7 +62,6 @@ const productUpdateControllers = async (
 
 		return 'Product was successfully modified';
 	} catch (error) {
-		console.log(error);
 		return 'Error while trying to update the product';
 	}
 };

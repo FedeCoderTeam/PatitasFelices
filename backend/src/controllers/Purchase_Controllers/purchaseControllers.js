@@ -1,8 +1,8 @@
 const { order, orderItem, product, user } = require('../../database/db');
-const {event_successful_purchase} = require('../../utils/email');
+const { event_successful_purchase } = require('../../utils/email');
 
 const purchaseControllers = async (purchases) => {
-	let flag = true
+	let flag = true;
 	let idOrder;
 	try {
 		for (let i = 0; i < purchases.length; i++) {
@@ -26,43 +26,45 @@ const purchaseControllers = async (purchases) => {
 
 			await purchase.setOrder(orderPurchase);
 
-			if(flag) {
-				idOrder = purchases[i].idOrder
+			if (flag) {
+				idOrder = purchases[i].idOrder;
 				flag = false;
 			}
 		}
 
-		const info = await order.findOne({where: {id: idOrder}, include: [
-			{
-				model: user
-			},
-			{
-				model: orderItem,
-				include: [
-					{
-						model:product
-					}
-				]
-			}
-			]})
-		const productsArray = info.orderItems.map(oi => {
-			const productInfo = oi.product.get({plain: true})
+		const info = await order.findOne({
+			where: { id: idOrder },
+			include: [
+				{
+					model: user,
+				},
+				{
+					model: orderItem,
+					include: [
+						{
+							model: product,
+						},
+					],
+				},
+			],
+		});
+		const productsArray = info.orderItems.map((oi) => {
+			const productInfo = oi.product.get({ plain: true });
 			return {
 				...productInfo,
-				quantity: oi.quantity
-			}
-		})
+				quantity: oi.quantity,
+			};
+		});
 		const orderObj = {
 			email: info.user.email,
 			id: info.id,
 			amount: info.total,
-			product: productsArray
-		}
-		await event_successful_purchase(orderObj)
+			product: productsArray,
+		};
+		await event_successful_purchase(orderObj);
 
 		return 'Successfully created pruchase';
 	} catch (error) {
-		console.log(error);
 		return 'Error in create purchase';
 	}
 };

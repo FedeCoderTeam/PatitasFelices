@@ -42,7 +42,6 @@ router.post('/payment', async (req, res) => {
 		const response = await mercadopago.preferences.create(preference);
 		res.status(200).json(response);
 	} catch (error) {
-		console.log(error);
 		res.status(400).send({ error: error.message });
 	}
 });

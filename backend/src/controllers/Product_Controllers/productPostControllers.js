@@ -52,7 +52,6 @@ const productPostControlers = async (
 
 		return 'Successfully created product';
 	} catch (error) {
-		console.log(error);
 		return 'Error in create product';
 	}
 };

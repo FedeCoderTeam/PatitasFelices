@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Chart from 'react-apexcharts';
 import { Link } from 'react-router-dom';
@@ -24,28 +24,36 @@ const Home = () => {
 		dispatch(actionMp.getOrders());
 	}, [dispatch]);
 
-	//INFO PERROS CANTIDAD DE MACHOS Y HEMBRAS; Y ADOPTADOS
+	//INFO PERROS CANTIDAD DE MACHOS, HEMBRAS Y ADOPTADOS
 
-	let maleCount = 0;
-	let femaleCount = 0;
-	let adoptedMale = 0;
-	let adoptedFemela = 0;
+	const [maleCount, femaleCount, adoptedMale, adoptedFemale] = useMemo(() => {
+		let maleCount = 0;
+		let femaleCount = 0;
+		let adoptedMale = 0;
+		let adoptedFemale = 0;
 
-	for (let i = 0; i < allDogs.length; i++) {
-		if (allDogs[i].adopted === false && allDogs[i].isDisabled === false) {
-			if (allDogs[i].gender === 'Macho') maleCount += 1;
-			else femaleCount += 1;
+		for (let i = 0; i < allDogs.length; i++) {
+			const { adopted, gender } = allDogs[i];
+
+			if (!adopted) {
+				if (gender === 'Macho') {
+					maleCount++;
+				} else {
+					femaleCount++;
+				}
+			} else {
+				if (gender === 'Macho') {
+					adoptedMale++;
+				} else {
+					adoptedFemale++;
+				}
+			}
 		}
-	}
 
-	for (let i = 0; i < allDogs.length; i++) {
-		if (allDogs[i].adopted === true) {
-			if (allDogs[i].gender === 'Macho') adoptedMale += 1;
-			else adoptedFemela += 1;
-		}
-	}
+		return [maleCount, femaleCount, adoptedMale, adoptedFemale];
+	}, [allDogs]);
 
-	const [chartData, setChartData] = useState({
+	const chartData = {
 		series: [
 			{
 				name: 'Cantidad',
@@ -53,7 +61,7 @@ const Home = () => {
 			},
 			{
 				name: 'Adoptados',
-				data: [adoptedMale, adoptedFemela],
+				data: [adoptedMale, adoptedFemale],
 			},
 		],
 		options: {
@@ -88,38 +96,42 @@ const Home = () => {
 				opacity: 1,
 			},
 		},
-	});
+	};
 
 	//INFO REVIEWS
 
-	let uno = 0;
-	let dos = 0;
-	let tres = 0;
-	let cuatro = 0;
-	let cinco = 0;
+	const [uno, dos, tres, cuatro, cinco] = useMemo(() => {
+		let uno = 0;
+		let dos = 0;
+		let tres = 0;
+		let cuatro = 0;
+		let cinco = 0;
 
-	for (let i = 0; i < allReviews?.length; i++) {
-		switch (allReviews[i].rating) {
-			case 1:
-				uno += 1;
-				break;
+		for (let i = 0; i < allReviews?.length; i++) {
+			switch (allReviews[i].rating) {
+				case 1:
+					uno += 1;
+					break;
 
-			case 2:
-				dos += 1;
-				break;
-			case 3:
-				tres += 1;
-				break;
-			case 4:
-				cuatro += 1;
-				break;
-			case 5:
-				cinco += 1;
-				break;
+				case 2:
+					dos += 1;
+					break;
+				case 3:
+					tres += 1;
+					break;
+				case 4:
+					cuatro += 1;
+					break;
+				case 5:
+					cinco += 1;
+					break;
+			}
 		}
-	}
 
-	const [ratingData, setRatingData] = useState({
+		return [uno, dos, tres, cuatro, cinco];
+	}, [allReviews]);
+
+	const ratingData = {
 		options: {
 			chart: {
 				id: 'basic-bar',
@@ -134,22 +146,26 @@ const Home = () => {
 				data: [uno, dos, tres, cuatro, cinco],
 			},
 		],
-	});
+	};
 
 	//INFO RECAUDACIONES
 
-	let totalDonation = 0;
-	let totalPurchase = 0;
+	const [totalDonation, totalPurchase] = useMemo(() => {
+		let totalDonation = 0;
+		let totalPurchase = 0;
 
-	for (let i = 0; i < allOrders?.length; i++) {
-		if (allOrders[i].source === 'Compra') {
-			totalPurchase = totalPurchase + Number(allOrders[i].total);
-		} else {
-			totalDonation = totalDonation + Number(allOrders[i].total);
+		for (let i = 0; i < allOrders?.length; i++) {
+			if (allOrders[i].source === 'Compra') {
+				totalPurchase = totalPurchase + Number(allOrders[i].total);
+			} else {
+				totalDonation = totalDonation + Number(allOrders[i].total);
+			}
 		}
-	}
 
-	const [orderData, setOrderData] = useState({
+		return [totalDonation, totalPurchase];
+	}, [allOrders]);
+
+	const orderData = {
 		options: {
 			chart: {
 				id: 'basic-bar',
@@ -164,23 +180,27 @@ const Home = () => {
 				data: [totalDonation, totalPurchase],
 			},
 		],
-	});
+	};
 
 	//PURCHASES
 
-	const total = allPurchase.reduce((acc, purchase) => {
-		const purchaseDate = new Date(purchase.createdAt).toLocaleDateString();
-		const subtotal = Number(purchase.product.price) * purchase.quantity;
-		acc[purchaseDate] = acc[purchaseDate]
-			? acc[purchaseDate] + subtotal
-			: subtotal;
-		return acc;
-	}, {});
+	const { purchases, dates } = useMemo(() => {
+		const total = allPurchase.reduce((acc, purchase) => {
+			const purchaseDate = new Date(purchase.createdAt).toLocaleDateString();
+			const subtotal = Number(purchase.product.price) * purchase.quantity;
+			acc[purchaseDate] = acc[purchaseDate]
+				? acc[purchaseDate] + subtotal
+				: subtotal;
+			return acc;
+		}, {});
 
-	let purchases = Object.keys(total);
-	let dates = Object.values(total);
+		const purchases = Object.keys(total);
+		const dates = Object.values(total);
 
-	const [purchaseData, setPurchaseData] = useState({
+		return { purchases, dates };
+	}, [allPurchase]);
+
+	const purchaseData = {
 		options: {
 			chart: {
 				id: 'basic-bar',
@@ -195,7 +215,7 @@ const Home = () => {
 				data: [...dates],
 			},
 		],
-	});
+	};
 
 	return (
 		<>
