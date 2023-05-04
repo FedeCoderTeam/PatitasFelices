@@ -305,7 +305,7 @@ const Home = () => {
 		},
 		}],
 	});
-
+	
 	return (
 		<>
 			<div className={style.containerBtnNav}>

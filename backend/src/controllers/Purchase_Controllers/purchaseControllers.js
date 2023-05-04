@@ -47,15 +47,17 @@ const purchaseControllers = async (purchases) => {
 			]})
 		const productsArray = info.orderItems.map(oi => {
 			const productInfo = oi.product.get({plain: true})
+			const formattedPrice = Number(productInfo.price).toLocaleString('es-AR', {style: 'currency', currency: 'ARS'})
 			return {
 				...productInfo,
-				quantity: oi.quantity
+				quantity: oi.quantity,
+				price: formattedPrice
 			}
 		})
 		const orderObj = {
 			email: info.user.email,
 			id: info.id,
-			amount: info.total,
+			amount: Number(info.total).toLocaleString('es-AR', {style: 'currency', currency: 'ARS'}),
 			product: productsArray
 		}
 		await event_successful_purchase(orderObj)

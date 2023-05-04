@@ -10,7 +10,7 @@ import {
 	ThemeProvider,
 } from '@mui/material';
 import { brown } from '@mui/material/colors';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setMaybeAdoptedDogs } from '../../../_redux/actions/dogsAction';
 import { useTranslation } from 'react-i18next';
@@ -36,7 +36,7 @@ const DogCard = ({
 	return (
 		<>
 			<div className={style.containerCard}>
-				<a href='https://patitas-felices.vercel.app/donation'>
+				<Link to='/donation'>
 					<div className={style.containerIcon}>
 						<img className={style.Icon} 
 							src={'https://res.cloudinary.com/dmn9piojd/image/upload/v1682473119/Iconos/perro_hjswvs.png'} 
@@ -44,7 +44,7 @@ const DogCard = ({
 							title='Donar'
 						/>
 					</div>
-				</a>
+				</Link>
 				<div className={style.pic}>
 					<h3 className={style.divDataName}>
 						{name}

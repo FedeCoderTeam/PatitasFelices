@@ -214,7 +214,6 @@ const Request = () => {
 			width: 100,
 			align: 'center',
 			headerAlign: 'center',
-			align: 'center',
 		},
 		{
 			field: 'col12',

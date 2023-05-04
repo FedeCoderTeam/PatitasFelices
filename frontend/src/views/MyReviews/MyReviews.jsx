@@ -18,6 +18,7 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
+import Avatar from '@mui/material/Avatar';
 
 const MyReviews = () => {
 
@@ -53,7 +54,6 @@ const MyReviews = () => {
 				'Tu comentario se ha eliminado exitosamente.',
 				'success',
 				)
-					
 			}
 			})
 		}
@@ -87,7 +87,20 @@ const MyReviews = () => {
 							/>
 						</>
 					) : (
+						
 						<div className={style.cardReviewContainer}>
+							<div className={style.avatar}>
+								<Avatar
+									alt={currentUser.name}
+									src={currentUser.image}
+									imgProps={{ referrerPolicy: "no-referrer" }}
+									sx={{ width: 100, height: 100 }}
+								/>
+								<div>
+									<h1>{currentUser.name} {currentUser.last}</h1>
+									<h2>Mis comentarios</h2>
+								</div>
+							</div>
 							{currentUserReviews()?.map((e) => (
 								<div className={style.eachCard}>
 									<ReviewCard
@@ -97,7 +110,7 @@ const MyReviews = () => {
 										comment={e.comment}
 										name={e.user?.name}
 										last={e.user?.last}
-										/* image={e.user?.image} */
+										// image={e.user?.image} 
 										handleDeleteReview={() => handleDeleteReview(e.id)}
 										handleOpenReview={handleOpenReview}
 									/>

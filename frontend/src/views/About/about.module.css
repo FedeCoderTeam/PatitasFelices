@@ -30,8 +30,6 @@
     border-radius: 10px;
 }
 .mainContainer{
-    display: flex;
-    align-items: center;
     min-height: calc(100vh - 172px);
 }
 .description{
